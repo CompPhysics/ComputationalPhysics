@@ -1,0 +1,342 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Statistical physics">
+
+<title>Slides PHY 480 and PHY 905  Lectures: Statistical physics</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+</style>
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Ensembles', 2, None, '___sec0'),
+              ('Famous Ensembles', 2, None, '___sec1'),
+              ('Canonical Ensemble', 2, None, '___sec2'),
+              ('The partition function is a normalization constant',
+               2,
+               None,
+               '___sec3'),
+              ('Helmoltz free energy, what does it mean?',
+               2,
+               None,
+               '___sec4'),
+              ('Thermodynamical quantities', 2, None, '___sec5'),
+              ('Thermodynamical quantities, the energy in the canonical ensemble',
+               2,
+               None,
+               '___sec6'),
+              ('Energy and specific heat in the canonical ensemble',
+               2,
+               None,
+               '___sec7'),
+              ('Magnetic moments and susceptibility in the canonical ensemble',
+               2,
+               None,
+               '___sec8'),
+              ('Our model, the Ising model in one and two dimensions',
+               2,
+               None,
+               '___sec9'),
+              ('Boltzmann distribution', 2, None, '___sec10'),
+              ('Energy for a specific configuration', 2, None, '___sec11'),
+              ('Configurations', 2, None, '___sec12'),
+              ('Boundary conditions, free ends', 2, None, '___sec13'),
+              ('Free ends and the energy', 2, None, '___sec14'),
+              ('Free ends and energy', 2, None, '___sec15'),
+              ('Periodic boundary conditions', 2, None, '___sec16'),
+              ('Energy with PBC', 2, None, '___sec17'),
+              ('Simple code for PBC', 2, None, '___sec18'),
+              ('Summing up', 2, None, '___sec19'),
+              ('Reorganizing', 2, None, '___sec20'),
+              ('Our model, the Ising model in one and two dimensions',
+               2,
+               None,
+               '___sec21'),
+              ('Ising model in one and two dimensions', 2, None, '___sec22'),
+              ('List of configurations with energies and magnetic moment',
+               2,
+               None,
+               '___sec23'),
+              ('Phase Transitions and Critical Phenomena',
+               2,
+               None,
+               '___sec24'),
+              ('Phase Transitions and Critical Phenomena, correlation length',
+               2,
+               None,
+               '___sec25'),
+              ('Classification of phase transitions', 2, None, '___sec26'),
+              ('Second-order phase Transitions', 2, None, '___sec27'),
+              ('Phase Transitions and Critical Phenomena',
+               2,
+               None,
+               '___sec28'),
+              ('Eherenfest definition of phase Transitions',
+               2,
+               None,
+               '___sec29'),
+              ('Phase Transitions and Critical Phenomena',
+               2,
+               None,
+               '___sec30'),
+              ('The Ising Model and Phase Transitions', 2, None, '___sec31'),
+              ('The Ising Model and Phase Transitions, mean magnetization',
+               2,
+               None,
+               '___sec32'),
+              ('The Ising Model and Phase Transitions, correlation length',
+               2,
+               None,
+               '___sec33'),
+              ('The Ising Model and Phase Transitions, critical behavior',
+               2,
+               None,
+               '___sec34'),
+              ('The Ising Model and Phase Transitions, critical temperature',
+               2,
+               None,
+               '___sec35'),
+              ('The Ising Model and Phase Transitions, correlation length',
+               2,
+               None,
+               '___sec36'),
+              ('The Metropolis Algorithm and the Two-dimensional Ising Model',
+               2,
+               None,
+               '___sec37'),
+              ('The Metropolis Algorithm and the Two-dimensional Ising Model',
+               2,
+               None,
+               '___sec38'),
+              ('The Metropolis Algorithm and the Two-dimensional Ising Model, practical issues',
+               2,
+               None,
+               '___sec39'),
+              ('Five possible energy differences', 2, None, '___sec40'),
+              ('The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program',
+               2,
+               None,
+               '___sec41'),
+              ('Coding energy differences', 2, None, '___sec42'),
+              ('Efficient expression for energy differences',
+               2,
+               None,
+               '___sec43'),
+              ('Final energy difference', 2, None, '___sec44'),
+              ('Change in magnetization', 2, None, '___sec45'),
+              ('A small note', 2, None, '___sec46'),
+              ('Initialization', 2, None, '___sec47'),
+              ('Two-dimensional Ising Model, energy per spin and specific heat',
+               2,
+               None,
+               '___sec48'),
+              ('Two-dimensional Ising Model and analysis of spin values',
+               2,
+               None,
+               '___sec49')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="statphys-bs.html">Slides PHY 480 and PHY 905  Lectures: Statistical physics</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._statphys-bs001.html#___sec0" style="font-size: 80%;">Ensembles</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs002.html#___sec1" style="font-size: 80%;">Famous Ensembles</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs003.html#___sec2" style="font-size: 80%;">Canonical Ensemble</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs004.html#___sec3" style="font-size: 80%;">The partition function is a normalization constant</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs005.html#___sec4" style="font-size: 80%;">Helmoltz free energy, what does it mean?</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs006.html#___sec5" style="font-size: 80%;">Thermodynamical quantities</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs007.html#___sec6" style="font-size: 80%;">Thermodynamical quantities, the energy in the canonical ensemble</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs008.html#___sec7" style="font-size: 80%;">Energy and specific heat in the canonical ensemble</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs009.html#___sec8" style="font-size: 80%;">Magnetic moments and susceptibility in the canonical ensemble</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs010.html#___sec9" style="font-size: 80%;">Our model, the Ising model in one and two dimensions</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs011.html#___sec10" style="font-size: 80%;">Boltzmann distribution</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs012.html#___sec11" style="font-size: 80%;">Energy for a specific configuration</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs013.html#___sec12" style="font-size: 80%;">Configurations</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs014.html#___sec13" style="font-size: 80%;">Boundary conditions, free ends</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs015.html#___sec14" style="font-size: 80%;">Free ends and the energy</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs016.html#___sec15" style="font-size: 80%;">Free ends and energy</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs017.html#___sec16" style="font-size: 80%;">Periodic boundary conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs018.html#___sec17" style="font-size: 80%;">Energy with PBC</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs019.html#___sec18" style="font-size: 80%;">Simple code for PBC</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs020.html#___sec19" style="font-size: 80%;">Summing up</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs021.html#___sec20" style="font-size: 80%;">Reorganizing</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs022.html#___sec21" style="font-size: 80%;">Our model, the Ising model in one and two dimensions</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs023.html#___sec22" style="font-size: 80%;">Ising model in one and two dimensions</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs024.html#___sec23" style="font-size: 80%;">List of configurations with energies and magnetic moment</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs025.html#___sec24" style="font-size: 80%;">Phase Transitions and Critical Phenomena</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs026.html#___sec25" style="font-size: 80%;">Phase Transitions and Critical Phenomena, correlation length</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs027.html#___sec26" style="font-size: 80%;">Classification of phase transitions</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs028.html#___sec27" style="font-size: 80%;">Second-order phase Transitions</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs029.html#___sec28" style="font-size: 80%;">Phase Transitions and Critical Phenomena</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs030.html#___sec29" style="font-size: 80%;">Eherenfest definition of phase Transitions</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs031.html#___sec30" style="font-size: 80%;">Phase Transitions and Critical Phenomena</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec31" style="font-size: 80%;">The Ising Model and Phase Transitions</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs033.html#___sec32" style="font-size: 80%;">The Ising Model and Phase Transitions, mean magnetization</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs034.html#___sec33" style="font-size: 80%;">The Ising Model and Phase Transitions, correlation length</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs035.html#___sec34" style="font-size: 80%;">The Ising Model and Phase Transitions, critical behavior</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs036.html#___sec35" style="font-size: 80%;">The Ising Model and Phase Transitions, critical temperature</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs037.html#___sec36" style="font-size: 80%;">The Ising Model and Phase Transitions, correlation length</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs038.html#___sec37" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs039.html#___sec38" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs040.html#___sec39" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model, practical issues</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs041.html#___sec40" style="font-size: 80%;">Five possible energy differences</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs042.html#___sec41" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs043.html#___sec42" style="font-size: 80%;">Coding energy differences</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs044.html#___sec43" style="font-size: 80%;">Efficient expression for energy differences</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs045.html#___sec44" style="font-size: 80%;">Final energy difference</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs046.html#___sec45" style="font-size: 80%;">Change in magnetization</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs047.html#___sec46" style="font-size: 80%;">A small note</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs048.html#___sec47" style="font-size: 80%;">Initialization</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs049.html#___sec48" style="font-size: 80%;">Two-dimensional Ising Model, energy per spin and specific heat</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs050.html#___sec49" style="font-size: 80%;">Two-dimensional Ising Model and analysis of spin values</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0032"></a>
+<!-- !split -->
+
+<h2 id="___sec31">The Ising Model and Phase Transitions </h2>
+
+<p>
+The Ising model in two dimensions with \( {\cal B} = 0 \) undergoes a
+phase transition of second order. What it actually means is that below
+a given critical temperature \( T_C \), the Ising model exhibits a
+spontaneous magnetization with \( \langle {\cal M} \rangle\ne 0 \). Above
+\( T_C \) the average magnetization is zero.  The mean magnetization
+approaches zero at \( T_C \) with an infinite slope.  Such a behavior is
+an example of what are called critical phenomena.  A critical
+phenomenon is normally marked by one or more thermodynamical variables
+which vanish above a critical point. In our case this is the mean
+magnetization \( \langle {\cal M} \rangle\ne 0 \). Such a parameter is
+normally called the order parameter.
+
+<p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+<li><a href="._statphys-bs031.html">&laquo;</a></li>
+  <li><a href="._statphys-bs000.html">1</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._statphys-bs024.html">25</a></li>
+  <li><a href="._statphys-bs025.html">26</a></li>
+  <li><a href="._statphys-bs026.html">27</a></li>
+  <li><a href="._statphys-bs027.html">28</a></li>
+  <li><a href="._statphys-bs028.html">29</a></li>
+  <li><a href="._statphys-bs029.html">30</a></li>
+  <li><a href="._statphys-bs030.html">31</a></li>
+  <li><a href="._statphys-bs031.html">32</a></li>
+  <li class="active"><a href="._statphys-bs032.html">33</a></li>
+  <li><a href="._statphys-bs033.html">34</a></li>
+  <li><a href="._statphys-bs034.html">35</a></li>
+  <li><a href="._statphys-bs035.html">36</a></li>
+  <li><a href="._statphys-bs036.html">37</a></li>
+  <li><a href="._statphys-bs037.html">38</a></li>
+  <li><a href="._statphys-bs038.html">39</a></li>
+  <li><a href="._statphys-bs039.html">40</a></li>
+  <li><a href="._statphys-bs040.html">41</a></li>
+  <li><a href="._statphys-bs041.html">42</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._statphys-bs050.html">51</a></li>
+  <li><a href="._statphys-bs033.html">&raquo;</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright only on the titlepage -->
+</center>
+
+
+</body>
+</html>
+    
+
