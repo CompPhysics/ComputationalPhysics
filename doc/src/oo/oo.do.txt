@@ -1,0 +1,1724 @@
+TITLE: Slides PHY 480 and PHY 905  Lectures: Programming aspects, object orientation in C++ and Fortran
+AUTHOR: Phil Duxbury at Department of Physics and Astronomy, Michigan State University
+AUTHOR: Morten Hjorth-Jensen {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
+DATE: Spring 2016
+
+
+!split
+===== Object orientation =====
+
+Why object orientation?
+
+  * Three main topics: objects, class hierarchies and polymorphism
+  * The aim here is to be to be able to write a more general code which can easily be tailored to new situations.
+  * _Polymorphism_ is a term used in software development to describe a variety of techniques employed by programmers to create flexible and reusable software components. The term is Greek and it loosely translates to "many forms". Strategy: try to single out the variables needed to describe a given system and those needed to describe a given solver. 
+
+!split
+===== Object orientation =====
+
+In programming languages, a polymorphic object is an entity, such as a variable or a procedure, that can hold or operate on values of differing types during the program's execution. Because a polymorphic object can operate on a variety of values and types, it can also be used in a variety of programs, sometimes with little or no change by the programmer. The idea of write once, run many, also known as code reusability, is an important characteristic to the programming paradigm known as Object-Oriented Programming (OOP).
+
+OOP describes an approach to programming where a program is viewed as a collection of interacting, but mostly independent software components. These software components are known as objects in OOP and they are typically implemented in a programming language as an entity that encapsulates both data and procedures.
+
+!split
+===== Programming classes =====
+
+In Fortran a vector or matrix start with $1$, but it is easy
+to change a vector so that it starts with zero or even a negative number.
+If we have a double precision Fortran vector  which starts at $-10$ and ends at $10$, we could declare it as
+`REAL(KIND=8) ::  vector(-10:10)`. Similarly, if we want to start at zero and end at 10 we could write
+`REAL(KIND=8) ::  vector(0:10)`.
+We have also seen that Fortran  allows us to write a matrix addition $\mathbf{A} = \mathbf{B}+\mathbf{C}$ as
+`A = B + C`.  This means that we have overloaded the addition operator so that it translates this operation into
+two loops and an addition of two matrix elements $a_{ij} = b_{ij}+c_{ij}$.
+
+!split
+===== Programming classes =====
+
+The way the matrix addition is written is very close to the way we express this relation mathematically. The benefit for the
+programmer is that our code is easier to read. Furthermore, such a way of coding makes it  more likely  to spot eventual
+errors as well.
+
+In Ansi C and C++ arrays start by default from $i=0$.  Moreover, if we  wish to add two matrices we need to explicitely write out
+the two loops as
+
+!bc cppcod
+   for(i=0 ; i < n ; i++) {
+      for(j=0 ; j < n ; j++) {
+         a[i][j]=b[i][j]+c[i][j]
+
+!ec
+
+!split
+===== Programming classes =====
+
+However,
+the strength of C++ is the possibility
+to define new data types, tailored to some particular problem.
+Via new data types and overloading of operations such as addition and subtraction, we can easily define
+sets of operations and data types which allow us to write a matrix addition in exactly the same
+way as we would do in Fortran.  We could also change the way we declare a C++ matrix elements $a_{ij}$, from  $a[i][j]$
+to say $a(i,j)$, as we would do in Fortran. Similarly, we could also change the default range from $0:n-1$ to $1:n$.
+
+To achieve this we need to introduce two important entities in C++ programming, classes and templates.
+
+!split
+===== Programming classes =====
+
+The function and class declarations are fundamental concepts within C++.  Functions are abstractions
+which encapsulate an algorithm or parts of it and perform specific tasks in a program.
+We have already met several examples on how to use  functions.
+Classes can be defined as abstractions which encapsulate
+data and operations on these data.
+The data can be very complex data structures  and the class can contain particular functions
+which operate on these data. Classes allow therefore for a higher level of abstraction in computing.
+The elements (or components) of the data
+type are the class data members, and the procedures are the class
+member functions.
+
+!split
+===== Programming classes =====
+
+Classes are user-defined tools used to create multi-purpose software which can be reused by other classes or functions.
+These user-defined data types contain data (variables) and
+functions operating on the data.
+
+A simple example is that of a point in two dimensions.
+The data could be the $x$ and $y$ coordinates of a given  point. The functions
+we define could be simple read and write functions or the possibility to compute the distance between two points.
+
+!split
+===== Programming classes =====
+
+C++ has a class complex in its standard
+template library (STL). The standard usage in a given function could then look like
+
+!bc cppcod
+// Program to calculate addition and multiplication of two complex numbers
+using namespace std;
+#include <iostream>
+#include <cmath>
+#include <complex>
+int main()
+{
+  complex<double> x(6.1,8.2), y(0.5,1.3);
+  // write out x+y
+  cout << x + y << x*y  << endl;
+  return 0;
+
+!ec
+where we add and multiply two complex numbers $x=6.1+\imath 8.2$ and $y=0.5+\imath 1.3$ with the obvious results
+$z=x+y=6.6+\imath 9.5$ and $z=x\cdot y= -7.61+\imath 12.03$.
+
+!split
+===== Programming classes =====
+
+We proceed by  splitting our task in three files.
+
+We define first a header file complex.h  which contains the declarations of
+the class. The header file contains the class declaration (data and
+functions), declaration of stand-alone functions, and all inlined
+functions, starting as follows
+
+!bc cppcod
+#ifndef Complex_H
+#define Complex_H
+//   various include statements and definitions
+#include <iostream>          // Standard ANSI-C++ include files
+#include <new>
+#include ....
+
+class Complex
+{...
+definition of variables and their character
+};
+//   declarations of various functions used by the class
+...
+#endif
+!ec
+
+!split
+===== Programming classes =====
+
+Next we provide a file complex.cpp where the code and algorithms of
+different functions (except inlined functions) declared within the
+class are written.  The files `complex.h` and `complex.cpp` are normally
+placed in a directory with other classes and libraries we have
+defined.
+
+Finally, we discuss here an example of a main program which uses this
+particular class.  An example of a program which uses our complex
+class is given below. In particular we would like our class to perform
+tasks like declaring complex variables, writing out the real and
+imaginary part and performing algebraic operations such as adding or
+multiplying two complex numbers.
+
+!split
+===== Programming classes =====
+
+!bc cppcod
+#include "Complex.h"
+...  other include and declarations
+int main ()
+{
+  Complex a(0.1,1.3);    // we declare a complex variable a
+  Complex b(3.0), c(5.0,-2.3);  // we declare  complex variables b and c
+  Complex d = b;         //  we declare  a new complex variable d
+  cout << "d=" << d << ", a=" << a << ", b=" << b << endl;
+  d = a*c + b/a;  //   we add, multiply and divide two complex numbers
+  cout << "Re(d)=" << d.Re() << ", Im(d)=" << d.Im() << endl;  // write out of the real and imaginary parts
+
+!ec
+
+!split
+===== Programming classes =====
+
+We include the header file complex.h and define four different complex variables. These
+are $a=0.1+\imath 1.3$, $b=3.0+\imath 0$ (note that if you don't define a value for the imaginary part  this is set to
+zero), $c=5.0-\imath 2.3$ and $d=b$.  Thereafter we have defined standard algebraic operations and the member functions
+of the class which allows us to print out the real and imaginary part of a given variable.
+
+!split
+===== Programming classes =====
+
+!bc cppcod
+class Complex
+{
+private:
+   double re, im; // real and imaginary part
+public:
+   Complex ();                              // Complex c;
+   Complex (double re, double im = 0.0); // Definition of a complex variable;
+   Complex (const Complex& c);              // Usage: Complex c(a);   // equate two complex variables
+   Complex& operator= (const Complex& c); // c = a;   //  equate two complex variables, same as previous
+....
+
+!ec
+
+!split
+===== Programming classes =====
+
+!bc cppcod
+  ~Complex () {}                        // destructor
+   double   Re () const;        // double real_part = a.Re();
+   double   Im () const;        // double imag_part = a.Im();
+   double   abs () const;       // double m = a.abs(); // modulus
+   friend Complex operator+ (const Complex&  a, const Complex& b);
+   friend Complex operator- (const Complex&  a, const Complex& b);
+   friend Complex operator* (const Complex&  a, const Complex& b);
+   friend Complex operator/ (const Complex&  a, const Complex& b);
+};
+!ec
+
+!split
+===== Programming classes =====
+
+The class is defined via the statement `class Complex`. We must first use the key word
+`class`, which in turn is followed by the user-defined variable name  `Complex`.
+The body of the class, data and functions, is encapsulated  within the parentheses `{...}`.
+
+!split
+===== Programming classes =====
+
+Data and specific functions can be private, which means that they cannot be accessed from outside the class.
+This means also that access cannot be inherited by other functions outside the class. If we use `protected`
+instead of `private`, then data and functions can be inherited outside the class.
+
+!split
+===== Programming classes =====
+
+The key word `public` means  that data and functions can be accessed from outside the class.
+Here we have defined several functions  which can be accessed by functions outside the class.
+The declaration `friend` means that stand-alone functions can work on privately declared  variables  of the type
+`(re, im)`.  Data members of a class should be declared as private variables.
+
+!split
+===== Programming classes =====
+
+The first public function we encounter is a so-called
+constructor, which  tells how we declare a variable of type `Complex`
+and how this variable is initialized. We have chose  three possibilities in the example above:
+
+A declaration like `Complex c;` calls the member function `Complex()` which can have the following implementation
+
+!bc cppcod
+Complex:: Complex () { re = im = 0.0; }
+!ec
+
+meaning that it sets the real and imaginary parts to zero. Note the
+way a member function is defined. The constructor is the first
+function that is called when an object is instantiated.
+
+!split
+===== Programming classes =====
+
+Another possibility is
+
+!bc cppcod
+Complex:: Complex () {}
+!ec
+which means that there is no initialization of the real and imaginary parts. The drawback is that a given compiler can then assign random values to a given variable.
+
+A call like `Complex a(0.1,1.3);` means that we could call the member function `Complex(double, double)`as
+
+!bc cppcod
+Complex:: Complex (double re_a, double im_a) {
+    re = re_a; im = im_a; }
+!ec
+
+!split
+===== Programming classes =====
+
+The simplest member function are those we defined to extract
+the real and imaginary part of a variable. Here you have to recall that these are private data,
+that is they invisible for users of the class.  We obtain a copy of these variables by defining the
+functions
+
+!bc cppcod
+double Complex:: Re () const { return re; }} //  getting the real part
+double Complex:: Im () const { return im; }  //   and the imaginary part
+!ec
+Note that we have introduced   the declaration  `const`.  What does it mean?
+This declaration means that a variabale cannot be changed within  a called function.
+
+!split
+===== Programming classes =====
+
+If we define a variable as
+`const double p = 3;` and then try to change its value, we will get an error when we
+compile our program. This means that constant arguments in functions cannot be changed.
+
+!bc cppcod
+// const arguments (in functions) cannot be changed:
+void myfunc (const Complex& c)
+{ c.re = 0.2; /* ILLEGAL!! compiler error... */  }
+!ec
+If we declare the function and try to change the value to $0.2$, the compiler will complain by sending
+an error message.
+
+!split
+===== Programming classes =====
+
+If we define a function to compute the absolute value of complex variable like
+
+!bc cppcod
+double Complex:: abs ()  { return sqrt(re*re + im*im);}
+!ec
+without the constant declaration  and define thereafter a function
+`myabs` as
+
+!bc cppcod
+double myabs (const Complex& c)
+{ return c.abs(); }   // Not ok because c.abs() is not a const func.
+!ec
+the compiler would not allow the c.abs() call in myabs
+since `Complex::abs` is not a constant member function.
+
+!split
+===== Programming classes =====
+
+Constant functions cannot change the object's state.
+To avoid this we declare the function `abs` as
+
+!bc cppcod
+double Complex:: abs () const { return sqrt(re*re + im*im); }
+!ec
+
+!split
+===== Programming classes =====
+
+C++ (and Fortran) allow for overloading of operators. That means we
+can define algebraic operations on for example vectors or any
+arbitrary object.  As an example, a vector addition of the type 
+$\mathbf{c} = \mathbf{a} + \mathbf{b}$ means that we need to write a small part of
+code with a for-loop over the dimension of the array.  We would rather
+like to write this statement as `c = a+b;` as this makes the code much
+more readable and close to eventual equations we want to code.  To
+achieve this we need to extend the definition of operators.
+
+!split
+===== Programming classes =====
+
+Let us study the declarations in our complex class.
+In our main function we have a statement like `d = b;`, which means
+that we call `d.operator= (b)` and we have defined a so-called assignment operator
+as a part of the class defined as
+
+!bc cppcod
+Complex& Complex:: operator= (const Complex& c)
+{
+   re = c.re;
+   im = c.im;
+   return *this;
+}
+!ec
+
+!split
+===== Programming classes =====
+
+With this function, statements like
+`Complex d = b;` or `Complex d(b);`
+make a new object $d$, which becomes a copy of $b$.
+We can make simple implementations in terms of the assignment
+
+!bc cppcod
+Complex:: Complex (const Complex& c)
+{ *this = c; }
+!ec
+which  is a pointer to "this object", `*this` is the present object,
+so `*this = c;` means setting the present object equal to $c$, that is
+`this->operator= (c);`.
+
+!split
+===== Programming classes =====
+
+The meaning of the addition operator $+$ for Complex objects is defined in the
+function
+`Complex operator+ (const Complex& a, const Complex& b); // a+b`
+The compiler translates `c = a + b;` into `c = operator+ (a, b);`.
+Since this implies the call to function, it brings in an additional overhead. If speed
+is crucial and this function call is performed inside a loop, then it is more difficult for a
+given compiler to perform optimizations of a loop.
+
+!split
+===== Programming classes =====
+
+The solution to this is to inline functions.   We discussed inlining in chapter
+2 of the lecture notes.
+Inlining means that the function body is copied directly into
+the calling code, thus avoiding calling the function.
+Inlining is enabled by the inline keyword
+
+!bc cppcod
+inline Complex operator+ (const Complex& a, const Complex& b)
+{ return Complex (a.re + b.re, a.im + b.im); }
+!ec
+Inline functions, with complete bodies must be written in the header file  complex.h.
+
+!split
+===== Programming classes =====
+
+Consider  the case `c = a + b;`
+that is,  `c.operator= (operator+ (a,b));`
+If `operator+`, `operator=` and the constructor `Complex(r,i)` all
+are inline functions, this transforms to
+
+!bc cppcod
+c.re = a.re + b.re;
+c.im = a.im + b.im;
+!ec
+by the compiler, i.e., no function calls
+
+!split
+===== Programming classes =====
+
+The stand-alone function `operator+` is a friend of the Complex  class
+
+!bc cppcod
+class Complex
+{
+   ...
+   friend Complex operator+ (const Complex& a, const Complex& b);
+   ...
+};
+!ec
+so it can read (and manipulate) the private data parts $re$ and
+$im$ via
+
+!bc cppcod
+inline Complex operator+ (const Complex& a, const Complex& b)
+{ return Complex (a.re + b.re, a.im + b.im); }
+!ec
+
+!split
+===== Programming classes =====
+
+Since we do not need to alter the re and im variables, we can
+get the values by Re() and Im(), and there is no need to be a
+friend function
+
+!bc cppcod
+inline Complex operator+ (const Complex& a, const Complex& b)
+{ return Complex (a.Re() + b.Re(), a.Im() + b.Im()); }
+!ec
+
+!split
+===== Programming classes =====
+
+The multiplication functionality can now be extended to imaginary numbers by the following code
+
+!bc cppcod
+inline Complex operator* (const Complex& a, const Complex& b)
+{
+  return Complex(a.re*b.re - a.im*b.im, a.im*b.re + a.re*b.im);
+
+!ec
+It will be convenient to inline all functions used by this operator.
+
+!split
+===== Programming classes =====
+
+To inline the complete expression `a*b;`, the constructors and
+`operator=`  must also be inlined.  This can be achieved via the following piece of code
+
+!bc cppcod
+inline Complex:: Complex () { re = im = 0.0; }
+inline Complex:: Complex (double re_, double im_)
+{ ... }
+inline Complex:: Complex (const Complex& c)
+{ ... }
+inline Complex:: operator= (const Complex& c)
+{ ... }
+!ec
+
+!split
+===== Programming classes =====
+
+!bc cppcod
+// e, c, d are complex
+e = c*d;
+// first compiler translation:
+e.operator= (operator* (c,d));
+// result of nested inline functions
+// operator=, operator*, Complex(double,double=0):
+e.re = c.re*d.re - c.im*d.im;
+e.im = c.im*d.re + c.re*d.im;
+!ec
+The definitions `operator-` and `operator/` follow the same set up.
+
+!split
+===== Programming classes =====
+
+Finally, if we wish to write to file or another device a complex number using the simple syntax
+`cout << c;`, we obtain this by defining
+the effect of $<<$ for a Complex object as
+
+!bc cppcod
+ostream& operator<< (ostream& o, const Complex& c)
+{ o << "(" << c.Re() << "," << c.Im() << ") "; return o;}
+!ec
+
+!split
+===== Programming classes, templates =====
+
+What if we wanted to make a class which takes integers
+or floating point numbers with single precision?
+A simple way to achieve this is copy and paste our class and replace `double` with for
+example `int`.
+
+C++  allows us to do this automatically via the usage of templates, which
+are the C++ constructs for parameterizing parts of
+classes. Class templates  is a template for producing classes. The declaration consists
+of the keyword `template` followed by a list of template arguments enclosed in brackets.
+
+!split
+===== Programming classes =====
+
+We can therefore make a more general class by rewriting our original example as
+
+!bc cppcod
+template<class T>
+class Complex
+{
+private:
+   T re, im; // real and imaginary part
+public:
+   Complex ();                              // Complex c;
+   Complex (T re, T im = 0); // Definition of a complex variable;
+   Complex (const Complex& c);              // Usage: Complex c(a);   // equate two complex variables
+   Complex& operator= (const Complex& c); // c = a;   //  equate two complex variables, same as previous
+
+!ec
+
+!split
+===== Programming classes =====
+
+We can therefore make a more general class by rewriting our original example as
+
+!bc cppcod
+  ~Complex () {}                        // destructor
+   T   Re () const;        // T real_part = a.Re();
+   T   Im () const;        // T imag_part = a.Im();
+   T   abs () const;       // T m = a.abs(); // modulus
+   friend Complex operator+ (const Complex&  a, const Complex& b);
+   friend Complex operator- (const Complex&  a, const Complex& b);
+   friend Complex operator* (const Complex&  a, const Complex& b);
+   friend Complex operator/ (const Complex&  a, const Complex& b);
+};
+!ec
+
+!split
+===== Programming classes =====
+
+What it says is that `Complex` is a parameterized type with $T$ as a parameter and $T$ has to be a type such as double
+or float.
+The class complex is now a class template
+and we would define variables in a code as
+
+!bc cppcod
+Complex<double> a(10.0,5.1);
+Complex<int> b(1,0);
+!ec
+
+!split
+===== Programming classes =====
+
+Member functions of our class are defined by preceding the name of the function with the `template` keyword.
+Consider the function we defined as `Complex:: Complex (double re_a, double im_a)`.
+We would rewrite this function as
+
+!bc cppcod
+template<class T>
+Complex<T>:: Complex (T re_a, T im_a)
+{ re = re_a; im = im_a; }
+!ec
+The member functions  are otherwise defined following ordinary member function definitions.
+
+!split
+===== Programming classes =====
+
+Here follows a very simple first class in the file squared.h
+
+!bc cppcod
+// Not all declarations here
+// Class to compute the square of a number
+template<class T>
+class Squared{
+  public:
+    // Default constructor, not used here
+    Squared(){}
+
+    // Overload the function operator()
+    T operator()(T x){return x*x;}
+
+};
+!ec
+
+!split
+===== Programming classes =====
+
+and we would use it as
+
+!bc cppcod
+#include <iostream>
+#include "squared.h"
+using namespace std;
+
+int main(){
+  Squared<double> s;
+  cout << s(3) << endl;
+
+!ec
+
+
+!split
+===== A matrix-vector class, first its usage =====
+!bc cppcod
+#include <cmath>
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include "/Users/hjensen/Teaching/fys4411/programs/cgm/vectorclass.h"
+
+using namespace  std;
+
+  Vector ConjugateGradient(Matrix A, Vector b, Vector x0){
+  int dim = x0.Dimension();
+  const double tolerance = 1.0e-14;
+  Vector x(dim),r(dim),v(dim),z(dim);
+  double c,t,d;
+
+  x = x0;
+  r = b - A*x;
+  v = r;
+  c = dot(r,r);
+  for(int i=0;i<dim;i++){
+    if(sqrt(dot(v,v))<tolerance){
+      cerr << "An error has occurred in ConjugateGradient: execution of function terminated" << endl;
+      break;
+    }
+    z = A*v;
+    t = c/dot(v,z);
+    x = x + t*v;
+    r = r - t*z;
+    d = dot(r,r);
+    if(sqrt(d) < tolerance)
+      break;
+    v = r + (d/c)*v;
+    c = d;
+  }
+  return x;
+}
+
+
+Vector SteepestDescent(Matrix A, Vector b, Vector x0){
+  int IterMax, i;
+  int dim = x0.Dimension();
+  const double tolerance = 1.0e-14;
+  Vector x(dim),f(dim),z(dim);
+  double c,alpha,d;
+  IterMax = 30;
+  x = x0;
+  f = A*x-b;
+  i = 0;
+  while (i <= IterMax || sqrt(dot(f,f)) < tolerance ){
+    if(sqrt(dot(f,f))<tolerance){
+       cerr << "An error has occurred: execution of function terminated" << endl;
+       break;
+    }
+    z = A*f;
+    c = dot(f,f);
+    alpha = c/dot(f,z);
+    x = x - alpha*f;
+    f =  A*x-b;
+    if(sqrt(dot(f,f)) < tolerance) break;
+    i++;
+  }
+  return x;
+}
+
+//   Main function begins here
+int main(int  argc, char * argv[]){
+  int dim = 2;
+  Vector x(dim),xsd(dim), b(dim),x0(dim);
+  Matrix A(dim,dim);
+
+  // Set our initial guess
+  x0(0) = x0(1) = 0;
+  // Set the matrix
+  A(0,0) =  3;    A(1,0) =  2;   A(0,1) =  2;   A(1,1) =  6;
+
+  cout << "The Matrix A that we are using: " << endl;
+  A.Print();
+  cout << endl;
+
+  Vector y(dim);
+  y(0) = 2.;
+  y(1) = -2.;
+
+  cout << "The exact solution is: " << endl;
+  y.Print();
+  cout << endl;
+  b = A*y;
+
+  cout << "The right hand side, b, of the expression Ax=b: " << endl;
+  b.Print();
+  cout << endl;
+
+  x = ConjugateGradient(A,b,x0);
+
+  xsd = SteepestDescent(A,b,x0);
+
+  cout << "The approximate solution using Conjugate Gradient is: " << endl;
+  x.Print();
+  cout << endl;
+
+  cout << "The approximate solution using Steepest Descent is: " << endl;
+  xsd.Print();
+  cout << endl;
+}
+!ec
+
+
+
+!split
+===== A matrix-vector class, the class definitions themselves =====
+
+!bc cppcod
+#ifndef _vectorclass
+#define _vectorclass
+
+
+#include <cmath>
+#include <iostream>
+using namespace  std;
+
+
+
+class Point;
+class Vector;
+class Matrix;
+
+
+/********************************/
+/*        Point Class        */
+/********************************/
+
+class Point{
+ private:
+  int   dimension;
+  double *data;
+  
+ public:
+  Point(int dim);
+  Point(const Point& v);
+  ~Point();
+  
+  int    Dimension() const;
+
+  //************************
+  // User Defined Operators
+  //************************
+  int operator==(const Point& v) const;
+  int operator!=(const Point& v) const;
+  Point & operator=(const Point& v);
+
+  double  operator()(const int i) const;
+  double& operator()(const int i);
+
+  void Print() const;
+};
+
+
+
+/********************************/
+/*        Vector Class        */
+/********************************/
+
+class Vector{
+ private:
+  int   dimension;
+  double *data;
+  
+ public:
+  Vector();
+  Vector(int dim);
+  Vector(const Vector& v);
+  Vector(int col, const Matrix &A);
+  ~Vector();
+  
+  void Initialize(int dim);
+  int    Dimension() const;
+  double Length();     /* Euclidean Norm of the Vector */
+  void   Normalize();
+
+  double Norm_l1();
+  double Norm_l2();
+  double Norm_linf();
+  double MaxMod();
+  double ElementofMaxMod();
+  int MaxModindex();
+  
+  //************************
+  // User Defined Operators
+  //************************
+  int operator==(const Vector& v) const;
+  int operator!=(const Vector& v) const;
+  Vector & operator=(const Vector& v);
+
+  double  operator()(const int i) const;
+  double& operator()(const int i);
+
+  void Print() const;
+  void Initialize(double a);
+  void Initialize(double *v);
+};
+
+
+
+/********************************/
+/*        Matrix Class        */
+/********************************/
+
+class Matrix {
+private:
+  int rows, columns;
+  double **data;
+  
+public:
+
+  Matrix(int dim);
+  Matrix(int rows1, int columns1);
+  Matrix(const Matrix& m);
+  Matrix(int num_vectors, const Vector * q);
+  Matrix(int rows1, int columns1, double **rowptrs);
+  ~Matrix();
+
+  int Rows() const;
+  int Columns() const;
+  double ** GetPointer();
+  void GetColumn(int col, Vector &x);
+  void GetColumn(int col, Vector &x, int rowoffset);
+  void PutColumn(int col, const Vector &x);
+  double Norm_l1();
+  double Norm_linf();
+
+  //************************
+  // User Defined Operators
+  //************************
+  Matrix& operator=(const Matrix& m);
+  double operator()(const int i, const int j) const;
+  double& operator()(const int i, const int j);
+
+  double MaxModInRow(int row);
+  double MaxModInRow(int row, int starting_column);
+  int MaxModInRowindex(int row);
+  int MaxModInRowindex(int row, int starting_column);
+ 
+  double MaxModInColumn(int column);
+  double MaxModInColumn(int column, int starting_row);
+  int MaxModInColumnindex(int column);
+  int MaxModInColumnindex(int column, int starting_row);
+
+  void RowSwap(int row1, int row2);
+
+  void Print() const;
+
+};
+
+
+/********************************/
+/*   Operator Declarations      */
+/********************************/
+
+// Unitary operator -
+Vector operator-(const Vector& v);
+
+// Binary operator +,-
+Vector operator+(const Vector& v1, const Vector& v2);
+Vector operator-(const Vector& v1, const Vector& v2);
+
+// Vector Scaling (multiplication by a scaler : defined commutatively)
+Vector operator*(const double s, const Vector& v);
+Vector operator*(const Vector& v, const double s);
+
+// Vector Scaling (division by a scaler)
+Vector operator/(const Vector& v, const double s);
+
+Vector operator*(const Matrix& A, const Vector& x); 
+
+
+/********************************/
+/*   Function Declarations      */
+/********************************/
+
+int min_dimension(const Vector& u, const Vector& v);
+double dot(const Vector& u, const Vector& v); 
+double dot(int N, double *a, double *b);
+double dot(int N, const Vector &u, const Vector &v); 
+void Swap(double &a, double &b);
+double Sign(double x);
+
+/* Misc. useful functions to have */
+double log2(double x);
+double GammaF(double x);
+int Factorial(int n);
+double ** CreateMatrix(int m, int n);
+void DestroyMatrix(double ** mat, int m, int n); 
+
+int ** ICreateMatrix(int m, int n);
+void IDestroyMatrix(int ** mat, int m, int n);
+
+#endif
+!ec
+
+!split
+===== A matrix-vector class, and finally all its functions =====
+
+!bc cppcod
+#include "vectorclass.h"
+
+Point::Point(int dim){
+  dimension = dim;
+  data = new double[dimension];
+
+  for(int i=0;i<dimension;i++)
+    data[i] = 0.0;
+}
+
+
+Point::Point(const Point &v){
+  dimension = v.Dimension();
+  data = new double[dimension];
+
+  for(int i=0;i<dimension;i++)
+    data[i] = v.data[i];
+}
+
+
+Point::~Point(){
+  dimension = 0;
+  delete[] data;
+  data = NULL;
+}
+
+
+int Point::Dimension() const{
+  return(dimension);
+}
+
+
+double Point::operator()(const int i) const{
+  if(i>=0 && i<dimension)
+    return data[i];
+
+  cerr << "Point::Invalid index " << i << " for Point of dimension " << dimension << endl;
+  return(0);
+}
+
+
+
+double& Point::operator()(const int i){
+  if(i>=0 && i<dimension)
+    return data[i];
+
+  cerr << "Point::Invalid index " << i << " for Point of dimension " << dimension << endl;
+  return(data[0]);
+}
+
+
+Point& Point::operator=(const Point &v) {
+  dimension = v.Dimension();
+  for(int i=0;i<dimension;i++)
+    data[i] = v.data[i];
+  return *this;
+};
+
+void Point::Print() const{
+  cout << endl;
+  cout << "[ ";
+  if(dimension>0)
+    cout << data[0];
+  for(int i=1;i<dimension;i++)
+    cout << "; " << data[i];
+  cout << " ]" << endl;
+}
+
+Vector::Vector(){
+  dimension = 0;
+  data = NULL;
+}
+
+
+Vector::Vector(int dim){
+  dimension = dim;
+  data = new double[dimension];
+
+  for(int i=0;i<dimension;i++)
+    data[i] = 0.0;
+}
+
+
+Vector::Vector(const Vector &v){
+  dimension = v.Dimension();
+  data = new double[dimension];
+
+  for(int i=0;i<dimension;i++)
+    data[i] = v.data[i];
+}
+
+
+Vector::Vector(int col, const Matrix &A){
+  dimension = A.Rows();
+
+  data = new double[dimension];
+  
+  for(int i=0;i<A.Rows();i++)
+    data[i] = A(i,col);
+
+}
+
+
+Vector::~Vector(){
+  dimension = 0;
+  delete[] data;
+  data = NULL;
+}
+
+
+void Vector::Initialize(int dim){
+  if(dimension!=0)
+    delete[] data;
+
+  dimension = dim;
+  data = new double[dimension];
+  
+  for(int i=0;i<dimension;i++)
+    data[i] = 0.0;
+}
+
+
+int Vector::Dimension() const{
+  return(dimension);
+}
+
+
+double Vector::operator()(const int i) const{
+  if(i>=0 && i<dimension)
+    return data[i];
+
+  cerr << "Vector::Invalid index " << i << " for Vector of dimension " << dimension << endl;
+  return(0);
+}
+
+
+
+double& Vector::operator()(const int i){
+  if(i>=0 && i<dimension)
+    return data[i];
+
+  cerr << "Vector::Invalid index " << i << " for Vector of dimension " << dimension << endl;
+  return(data[0]);
+}
+
+
+Vector& Vector::operator=(const Vector &v) {
+  dimension = v.Dimension();
+  for(int i=0;i<dimension;i++)
+    data[i] = v.data[i];
+  return *this;
+};
+
+void Vector::Print() const{
+  cout << endl;
+  cout << "[ ";
+  if(dimension>0)
+    cout << data[0];
+  for(int i=1;i<dimension;i++)
+    cout << "; " << data[i];
+  cout << " ]" << endl;
+}
+
+
+double Vector::Norm_l1(){
+  double sum = 0.0;
+  for(int i=0;i<dimension;i++)
+    sum += fabs(data[i]);
+  return(sum);
+}
+
+
+double Vector::Norm_l2(){
+  double sum = 0.0;
+  for(int i=0;i<dimension;i++)
+    sum += data[i]*data[i];
+  return(sqrt(sum));
+}
+
+void Vector::Normalize(){
+  double tmp = 1.0/Norm_l2();
+  for(int i=0;i<dimension;i++)
+    data[i] = data[i]*tmp;
+}
+
+
+double Vector::Norm_linf(){
+  double maxval = 0.0,tmp;
+  
+  for(int i=0;i<dimension;i++){
+    tmp = fabs(data[i]);
+    maxval = (maxval > tmp)?maxval:tmp;
+  }
+  return(maxval);
+}
+
+double Vector::MaxMod(){
+  double maxm = -1.0e+10;
+
+  for(int i=0; i<dimension; i++)
+    maxm = (maxm > fabs(data[i]))?maxm:fabs(data[i]);
+  
+  return maxm;
+}
+
+double Vector::ElementofMaxMod(){
+  return(data[MaxModindex()]);
+}
+
+
+int Vector::MaxModindex(){
+  double maxm = -1.0e+10;
+  int maxmindex = 0;
+
+  for(int i=0; i<dimension; i++){
+    if(maxm<fabs(data[i])){
+      maxm = fabs(data[i]);
+      maxmindex = i;
+    }
+  }
+  
+  return maxmindex;
+}
+
+void Vector::Initialize(double a){
+  for(int i=0; i<dimension; i++)
+    data[i] = a;
+}
+
+void Vector::Initialize(double *v){
+  for(int i=0; i<dimension; i++)
+    data[i] = v[i];
+}
+
+Matrix::Matrix(int dim){
+  rows = dim;
+  columns = dim;
+  data = new double*[rows];
+  for(int i=0;i<rows;i++){
+    data[i] = new double[columns];
+    for(int j=0;j<columns;j++)
+      data[i][j] = 0.0;
+  }
+}
+
+  
+Matrix::Matrix(int rows1, int columns1){
+  rows = rows1;
+  columns = columns1;
+
+  data = new double*[rows];
+  for(int i=0;i<rows;i++){
+    data[i] = new double[columns];
+    for(int j=0;j<columns;j++)
+      data[i][j] = 0.0;
+  }
+}
+
+Matrix::Matrix(const Matrix& m){
+  rows = m.rows;
+  columns = m.columns;
+
+  data = new double*[rows];
+
+  for(int i=0;i<rows;i++){
+    data[i] = new double[columns];
+    for(int j=0; j<columns; j++)
+      data[i][j] = m.data[i][j];
+  }
+}
+
+Matrix::Matrix(int num_Vectors, const Vector * q){
+  rows = q[0].Dimension();
+  columns = num_Vectors;
+
+  data = new double*[rows];
+
+  for(int i=0;i<rows;i++){
+    data[i] = new double[columns];
+    for(int j=0; j<columns; j++)
+      data[i][j] = q[j](i);
+  }
+}
+
+Matrix::Matrix(int rows1, int columns1, double **rowptrs){
+  rows = rows1;
+  columns = columns1;
+
+  data = new double*[rows];
+
+  for(int i=0;i<rows;i++)
+    data[i] = rowptrs[i];
+}
+
+
+Matrix::~Matrix(){
+  for(int i=0;i<rows;i++)
+    delete[] data[i];
+
+  rows = 0;
+  columns = 0;
+  delete[] data;
+}
+
+int Matrix::Rows() const{
+  return(rows);
+}  
+
+int Matrix::Columns() const{
+  return(columns);
+}  
+
+
+double **Matrix::GetPointer(){
+  return(data);
+}
+
+void Matrix::GetColumn(int col, Vector &x){
+  x.Initialize(0.0);
+  for(int i=0;i<rows;i++)
+    x(i) = data[i][col];
+}
+
+void Matrix::GetColumn(int col, Vector &x, int rowoffset){
+  x.Initialize(0.0);
+  for(int i=0;i<rows-rowoffset;i++)
+    x(i) = data[i+rowoffset][col];
+}
+
+void Matrix::PutColumn(int col, const Vector &x){
+  for(int i=0;i<rows;i++)
+    data[i][col] = x(i);
+}
+
+
+double Matrix::Norm_linf(){
+  double maxval = 0.0,sum;
+  
+  for(int i=0;i<rows;i++){
+    sum = 0.0;
+    for(int j=0;j<columns;j++)
+      sum += fabs(data[i][j]);
+    maxval = (maxval > sum)?maxval:sum;
+  }
+  return(maxval);
+}
+
+
+double Matrix::Norm_l1(){
+  double maxval = 0.0,sum;
+
+  for(int j=0;j<columns;j++){
+    sum = 0.0;
+    for(int i=0;i<rows;i++)
+      sum += fabs(data[i][j]);
+    maxval = (maxval > sum)?maxval:sum;
+  }
+  return(maxval);
+}
+
+
+
+Matrix& Matrix::operator=(const Matrix &m){
+  if( (rows == m.rows) && (columns == m.columns)){
+    for(int i=0; i<rows; i++)
+      for(int j=0;j<columns;j++){
+	data[i][j] = m.data[i][j];
+      }
+  }
+  else
+    cerr << "Matrix Error: Cannot equate matrices of different sizes\n";
+  return *this;
+}
+
+  
+double Matrix::operator()(const int i, const int j) const {
+  if( (i>=0) && (j>=0) && (i<rows) && (j<columns))
+    return(data[i][j]);  
+  else
+    cerr << "Matrix Error: Invalid Matrix indices (" << i << "," << j << 
+      "), for Matrix of size " << rows << " X " << columns << endl;
+  return((double)0);
+}
+  
+
+double& Matrix::operator()(const int i, const int j) {
+  if( (i>=0) && (j>=0) && (i<rows) && (j<columns))
+    return(data[i][j]);  
+  else
+    cerr << "Matrix Error: Invalid Matrix indices (" << i << "," << j << 
+      "), for Matrix of size " << rows << " X " << columns << endl;;
+  return(data[0][0]);
+}
+
+
+void Matrix::Print() const{
+  cout << endl;
+
+
+  cout << "[ ";
+  for(int i=0;i<rows;i++){
+    cout << data[i][0];
+    for(int j=1;j<columns;j++)
+      cout << " " << data[i][j];
+    if(i!=(rows-1))
+      cout << ";\n";
+  }
+  cout << " ]" << endl;
+}
+
+
+double Matrix::MaxModInRow(int row){
+  double maxv = -1.0e+10;
+  for(int i=0;i<columns;i++)
+    maxv = (fabs(data[row][i])>maxv)?fabs(data[row][i]):maxv;
+
+  return maxv;
+}
+
+double Matrix::MaxModInRow(int row, int starting_column){
+  double maxv = -1.0e+10;
+  for(int i=starting_column;i<columns;i++)
+    maxv = (fabs(data[row][i])>maxv)?fabs(data[row][i]):maxv;
+
+  return maxv;
+}
+
+int Matrix::MaxModInRowindex(int row){
+  int maxvindex = 0;
+  double maxv = -1.0e+10;
+  
+  for(int i=0;i<columns;i++){
+    if(maxv < fabs(data[row][i])){
+      maxv = fabs(data[row][i]);
+      maxvindex = i;
+    }
+  }
+
+  return maxvindex;
+}
+
+int Matrix::MaxModInRowindex(int row, int starting_column){
+  int maxvindex = 0;
+  double maxv = -1.0e+10;
+
+  for(int i=starting_column;i<columns;i++){
+    if(maxv < fabs(data[row][i])){
+      maxv = fabs(data[row][i]);
+      maxvindex = i;
+    }
+  }
+  
+  return maxvindex;
+}
+
+double Matrix::MaxModInColumn(int column){
+  double maxv = -1.0e+10;
+  for(int i=0;i<rows;i++)
+    maxv = (fabs(data[i][column])>maxv)?fabs(data[i][column]):maxv;
+
+  return maxv;
+}
+
+double Matrix::MaxModInColumn(int column, int starting_row){
+  double maxv = -1.0e+10;
+  for(int i=starting_row;i<rows;i++)
+    maxv = (fabs(data[i][column])>maxv)?fabs(data[i][column]):maxv;
+
+  return maxv;
+}
+
+int Matrix::MaxModInColumnindex(int column){
+  int maxvindex = 0;
+  double maxv = -1.0e+10;
+  
+  for(int i=0;i<rows;i++){
+    if(maxv < fabs(data[i][column])){
+      maxv = fabs(data[i][column]);
+      maxvindex = i;
+    }
+  }
+
+  return maxvindex;
+}
+
+int Matrix::MaxModInColumnindex(int column, int starting_column){
+  int maxvindex = 0;
+  double maxv = -1.0e+10;
+
+  for(int i=starting_column;i<rows;i++){
+    if(maxv < fabs(data[i][column])){
+      maxv = fabs(data[i][column]);
+      maxvindex = i;
+    }
+  }
+  
+  return maxvindex;
+}
+
+void Matrix::RowSwap(int row1, int row2){
+  double * tmp = data[row1];
+  data[row1] = data[row2];
+  data[row2] = tmp;
+}
+
+
+
+/****************************************************************/
+/*                 Operator Definitions                         */
+/****************************************************************/
+
+
+Vector operator-(const Vector& v){
+  Vector x(v.Dimension());
+  for(int i=0;i<v.Dimension();i++)
+    x(i) = -v(i);
+  return x;
+}
+
+
+Vector operator+(const Vector& v1, const Vector& v2){
+  int min_dim = min_dimension(v1,v2);
+  Vector x(min_dim);
+  for(int i=0;i<min_dim;i++)
+    x(i) = v1(i) + v2(i);
+  return x;
+}
+
+
+Vector operator-(const Vector& v1, const Vector& v2){
+  int min_dim = min_dimension(v1,v2);
+  Vector x(min_dim);
+  for(int i=0;i<min_dim;i++)
+    x(i) = v1(i) - v2(i);
+  return x;
+}
+
+
+Vector operator/(const Vector& v, const double s) {
+  Vector x(v.Dimension());
+  for(int i=0;i<v.Dimension();i++)
+    x(i) = v(i)/s;
+  return x;
+}
+
+
+
+Vector operator*(const double s, const Vector &v) {
+  Vector x(v.Dimension());
+  for(int i=0;i<v.Dimension();i++)
+    x(i) = s*v(i);
+  return x;
+}
+
+
+Vector operator*(const Vector& v, const double s) {
+  Vector x(v.Dimension());
+  for(int i=0;i<v.Dimension();i++)
+    x(i) = s*v(i);
+  return x;
+}
+
+Vector operator*(const Matrix& A, const Vector& x){
+  int rows = A.Rows(), columns = A.Columns();
+  int dim = x.Dimension();
+  Vector b(dim);
+  
+  if(columns != dim){
+    cerr << "Invalid dimensions given in matrix-vector multiply" << endl;
+    return(b);
+  }
+  
+  for(int i=0;i<rows;i++){
+    b(i) = 0.0;
+    for(int j=0;j<columns;j++){
+      b(i) += A(i,j)*x(j);
+    }
+  }
+  
+  return b;
+}
+
+
+/****************************************************************/
+/*                 Function Definitions                         */
+/****************************************************************/
+
+int min_dimension(const Vector& v1, const Vector& v2){
+  int min_dim = (v1.Dimension()<v2.Dimension())?v1.Dimension():v2.Dimension();
+  return(min_dim);
+}
+
+
+double dot(const Vector& u, const Vector& v){
+  double sum = 0.0;
+  int min_dim = min_dimension(u,v);
+
+  for(int i=0;i<min_dim;i++)
+    sum += u(i)*v(i);
+  
+  return sum; 
+}
+
+
+double dot(int N, const Vector& u, const Vector& v){
+  double sum = 0.0;
+
+  for(int i=0;i<N;i++)
+    sum += u(i)*v(i);
+  
+  return sum;
+}
+
+
+double dot(int N, double *a, double *b){
+  double sum = 0.0;
+  
+  for(int i=0;i<N;i++)
+    sum += a[i]*b[i];
+
+  return sum;
+}
+
+
+/*******************************/
+/*   Log base 2 of a number    */
+/*******************************/
+
+double log2(double x){
+  return(log(x)/log(2.0));
+}
+
+void Swap(double &a, double &b){
+  double tmp = a;
+  a = b;
+  b = tmp;
+}
+
+double Sign(double x){
+  double xs;
+
+  xs = (x>=0.0)?1.0:-1.0;
+
+  return xs;
+}
+
+//GammaF function valid for x integer, or x (integer+0.5)
+double GammaF(double x){
+  double gamma = 1.0;
+  
+  if (x == -0.5) 
+    gamma = -2.0*sqrt(M_PI);
+  else if (!x) return gamma;
+  else if ((x-(int)x) == 0.5){ 
+    int n = (int) x;
+    double tmp = x;
+    
+    gamma = sqrt(M_PI);
+    while(n--){
+      tmp   -= 1.0;
+      gamma *= tmp;
+    }
+  }
+  else if ((x-(int)x) == 0.0){
+    int n = (int) x;
+    double tmp = x;
+    
+    while(--n){
+      tmp   -= 1.0;
+      gamma *= tmp;
+    }
+  }  
+  
+  return gamma;
+}
+
+
+int Factorial(int n){
+  int value=1;
+  for(int i=n;i>0;i--)
+    value = value*i;
+
+  return value;
+}
+
+double ** CreateMatrix(int m, int n){
+  double ** mat;
+  mat = new double*[m];
+  for(int i=0;i<m;i++){
+    mat[i] = new double[n];
+    for(int j=0;j<m;j++)
+      mat[i][j] = 0.0;
+  }
+  return mat;
+}
+
+int ** ICreateMatrix(int m, int n){
+  int ** mat;
+  mat = new int*[m];
+  for(int i=0;i<m;i++){
+    mat[i] = new int[n];
+    for(int j=0;j<m;j++)
+      mat[i][j] = 0;
+  }
+  return mat;
+}
+
+void DestroyMatrix(double ** mat, int m, int n){
+  for(int i=0;i<m;i++)
+    delete[] mat[i];
+  delete[] mat;
+}
+
+void IDestroyMatrix(int ** mat, int m, int n){
+  for(int i=0;i<m;i++)
+    delete[] mat[i];
+  delete[] mat;
+}
+
+
+
+
+
+
+
+
+!ec
+
+
+
+!split
+===== Unit Testing =====
+!bblock
+Unit Testing is the practice of testing the smallest testable parts,
+called units, of an application individually and independently to
+determine if they behave exactly as expected. Unit tests (short code
+fragments) are usually written such that they can be preformed at any
+time during the development to continually verify the behavior of the
+code. In this way, possible bugs will be identified early in the
+development cycle, making the debugging at later stage much
+easier. 
+!eblock
+!split
+===== Unit Testing, benefits =====
+!bblock
+There are many benefits associated with Unit Testing, such as
+  * It increases confidence in changing and maintaining code. Big changes can be made to the code quickly, since the tests will ensure that everything still is working properly.
+  * Since the code needs to be modular to make Unit Testing possible, the code will be easier to reuse. This improves the code design.
+  * Debugging is easier, since when a test fails, only the latest changes need to be debugged.
+  *  Different parts of a project can be tested without the need to wait for the other parts to be available.
+  * A unit test can serve as a documentation on the functionality of a unit of the code.
+!eblock
+
+
+!split
+===== Simple example of unit test =====
+!bblock
+Look up the guide on how to install unit tests for c++ at course webpage. This is the version with classes.
+!bc cppcod
+#include <unittest++/UnitTest++.h>
+
+class MyMultiplyClass{
+public:
+    double multiply(double x, double y) {
+        return x * y;
+    }
+};
+
+TEST(MyMath) {
+    MyMultiplyClass my;
+    CHECK_EQUAL(56, my.multiply(7,8));
+}
+
+int main()
+{
+    return UnitTest::RunAllTests();
+}
+!ec
+!eblock
+
+!split
+===== Simple example of unit test =====
+!bblock
+And without classes
+!bc cppcod
+#include <unittest++/UnitTest++.h>
+
+
+double multiply(double x, double y) {
+    return x * y;
+}
+
+TEST(MyMath) {
+    CHECK_EQUAL(56, multiply(7,8));
+}
+
+int main()
+{
+    return UnitTest::RunAllTests();
+} 
+!ec
+For Fortran users, the link at URL: "http://sourceforge.net/projects/fortranxunit/" contains a similar
+software for unit testing. 
+!eblock
+
+

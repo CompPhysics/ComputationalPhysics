@@ -1,0 +1,132 @@
+TITLE: Random walks, Brownian motion and the Metropolis algorithm
+AUTHOR: Morten Hjorth-Jensen  {copyright, 1999-present|CC BY-NC} Email morten.hjorth-jensen@fys.uio.no at Department of Physics and Center of Mathematics for Applications, University of Oslo & National Superconducting Cyclotron Laboratory, Michigan State University
+DATE: Fall 2015
+
+<%
+# Mako code is placed in a separate file for easier debugging of the Python code
+# #include "src/mako/code.py"
+%>
+
+
+!split
+${ssh('Demo of code in different languages; Python', 1)}
+
+Include a complete program in the language ${CODE}:
+
+${code(filename='apb')}
+
+Include a portion:
+
+# Recall that + is reserved char in regex, must be escaped
+${code(filename='apb', from_regex='a =', to_regex=r'a \+ b')}
+
+!split
+${ssh('Demo of code in a specific language; from file', 1)}
+
+Include a C++ program:
+
+${code(filename='demo', language='C++')}
+
+!split
+${ssh('Demo of code in a specific language; from inline text block', 1)}
+
+Include a C++ program:
+
+${code(language='C++', code="""
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  a = 1;
+  b = 2;
+  cout << a + b;
+  return 0;
+}
+""")}
+
+!split
+${ssh("Why Markov chains, Brownian motion and the Metropolis algorithm", 1)}
+
+We want to study a physical system which evolves towards equilibrium, from som given  initial conditions.
+Recall the simple example of particles in a box. At an initial time $t_0$ all particles are in the left half of the box. Thereafter they are allowed to diffuse into the two halves of the box.
+
+!bc pyscpro
+#!/usr/bin/env python
+from  matplotlib import pyplot as plt
+from math import exp
+import numpy as np
+import random
+
+# initial number of particles
+N0 = 1000
+MaxTime = 10*N0
+values = np.zeros(MaxTime)
+time = np.zeros(MaxTime)
+random.seed()
+# initial number of particles in left half
+nleft = N0
+for t in range (0, MaxTime, 1):
+    if N0*random.random() <= nleft:
+       nleft -= 1
+    else:
+       nleft += 1
+    time[t] = t
+    values[t] = nleft
+
+# Finally we plot the results
+plt.plot(time, values,'b-')
+plt.axis([0,MaxTime, N0/4, N0])
+plt.xlabel('$t$')
+plt.ylabel('$N$')
+plt.title('Number of particles in left half')
+plt.savefig('box.pdf')
+plt.show()
+!ec
+
+!split
+${ssh("Why Markov chains, Brownian motion and the Metropolis algorithm", 0)}
+
+* We want to study a physical system which evolves towards equilibrium, from given  initial conditions.
+* We start with a PDF $w(x_0,t_0)$  and we want to understand how the system evolves with time.
+* We want to reach a situation where after a given number of time steps we obtain a steady state. This means that the system reaches its most likely state (equilibrium situation)
+* Our PDF is normally a multidimensional object whose normalization constant is impossible to find.
+* Analytical calculations from $w(x,t)$ are not possible.
+* To sample directly from from $w(x,t)$ is not possible/difficult.
+* The transition probability $W$ is also not  known.
+* How can we establish that we have reached a steady state?   Sounds impossible!
+
+_Use Markov chain Monte Carlo_
+
+!split
+${ssh("Brownian motion and Markov processes", 1)}
+A Markov process is a random walk with a selected probability for making a
+move. The new move is independent of the previous history of the system.
+
+The Markov process is used repeatedly in Monte Carlo simulations in order to generate
+new random states.
+
+The reason for choosing a Markov process is that when it is run for a
+long enough time starting with a random state, we will eventually reach the most likely state of the system.
+
+In thermodynamics, this means that after a certain number of Markov processes
+we reach an equilibrium distribution.
+
+This mimicks the way a real system reaches
+its most likely state at a given temperature of the surroundings.
+
+!split
+${ssh("Brownian motion and Markov processes, Ergodicity and Detailed balance", 0)}
+
+To reach this distribution, the Markov process needs to obey two important conditions, that of
+_ergodicity_ and _detailed balance_. These conditions impose then constraints on our algorithms
+for accepting or rejecting new random states.
+
+
+The Metropolis algorithm discussed here
+abides to both these constraints.
+
+The Metropolis algorithm is widely used in Monte Carlo
+simulations and the understanding of it rests within
+the interpretation of random walks and Markov processes.
+

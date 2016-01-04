@@ -1,0 +1,1485 @@
+TITLE: Slides PHY 480 and PHY 905  Lectures: How to optimize codes, from vectorization to parallelization
+AUTHOR: Phil Duxbury at Department of Physics and Astronomy, Michigan State University
+AUTHOR: Morten Hjorth-Jensen {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
+DATE: Spring 2016
+
+
+!split
+=====  Content =====
+* Simple compiler options 
+* Tools to benchmark your code
+* Machine architectures
+* What is vectorization?
+* Parallelization with OpenMP
+* Parallelization with MPI
+* Vectorization and parallelization, examples
+
+!split
+=====     Optimization and profiling =====
+!bblock
+
+
+Till now we have not paid much attention to speed and possible optimization possibilities
+inherent in the various compilers. We have compiled and linked as
+!bc cppcod
+c++  -c  mycode.cpp
+c++  -o  mycode.exe  mycode.o
+!ec
+For Fortran replace with for example _gfortran_ or _ifort_.
+This is what we call a flat compiler option and should be used when we develop the code.
+It produces normally a very large and slow code when translated to machine instructions.
+We use this option for debugging and for establishing the correct program output because
+every operation is done precisely as the user specified it.
+
+It is instructive to look up the compiler manual for further instructions by writing
+!bc cppcod
+man c++
+!ec
+
+!eblock
+!split
+===== More on optimization =====
+!bblock
+We have additional compiler options for optimization. These may include procedure inlining where 
+performance may be improved, moving constants inside loops outside the loop, 
+identify potential parallelism, include automatic vectorization or replace a division with a reciprocal
+and a multiplication if this speeds up the code.
+!bc cppcod
+c++  -O3 -c  mycode.cpp
+c++  -O3 -o  mycode.exe  mycode.o
+!ec
+This (other options are -O2 or -Ofast) is the recommended option. 
+
+
+!eblock
+!split
+=====    Optimization and profiling  =====
+!bblock
+It is also useful to profile your program under the development stage.
+You would then compile with 
+!bc cppcod
+c++  -pg -O3 -c  mycode.cpp
+c++  -pg -O3 -o  mycode.exe  mycode.o
+!ec
+After you have run the code you can obtain the profiling information via
+!bc cppcod
+gprof mycode.exe >  ProfileOutput
+!ec
+When you have profiled properly your code, you must take out this option as it 
+slows down performance.
+For memory tests use "valgrind":"http://www.valgrind.org". An excellent environment for all these aspects, and much  more, is  Qt creator.
+
+!eblock
+
+!split
+=====    Optimization and debugging  =====
+!bblock
+Adding debugging options is a very useful alternative under the development stage of a program.
+You would then compile with 
+!bc cppcod
+c++  -g -O0 -c  mycode.cpp
+c++  -g -O0 -o  mycode.exe  mycode.o
+!ec
+This option generates debugging information allowing you to trace for example if an array is properly allocated. Some compilers work best with the no optimization option _-O0_. 
+!eblock
+!bblock Other optimization flags 
+Depending on the compiler, one can add flags which generate code that catches integer overflow errors. 
+The flag _-ftrapv_ does this for the CLANG compiler on OS X operating systems.   
+!eblock
+
+
+
+!split
+=====    Other hints  =====
+!bblock
+In general, irrespective of compiler options, it is useful to
+* avoid if tests or call to functions inside loops, if possible. 
+* avoid multiplication with constants inside loops if possible
+Here is an example of a part of a program where specific operations lead to a slower code
+!bc cppcod
+k = n-1;
+for (i = 0; i < n; i++){
+    a[i] = b[i] +c*d;
+    e = g[k];
+}
+!ec
+A better code is
+!bc cppcod
+temp = c*d;
+for (i = 0; i < n; i++){
+    a[i] = b[i] + temp;
+}
+e = g[n-1];
+!ec
+Here we avoid a repeated multiplication inside a loop. 
+Most compilers, depending on compiler flags, identify and optimize such bottlenecks on their own, without requiring any particular action by the programmer. However, it is always useful to single out and avoid code examples like the first one discussed here.
+!eblock
+
+!split
+===== Vectorization and the basic idea behind parallel computing =====
+!bblock
+Present CPUs are highly parallel processors with varying levels of parallelism. The typical situation can be described via the following three statements.
+* Pursuit of shorter computation time and larger simulation size gives rise to parallel computing.
+* Multiple processors are involved to solve a global problem.
+* The essence is to divide the entire computation evenly among collaborative processors.  Divide and conquer.
+
+Before we proceed with a more detailed discussion of topics like vectorization and parallelization, we need to remind ourselves about some basic features of different hardware models. 
+
+!eblock
+
+!split
+===== A rough classification of hardware models  =====
+!bblock
+
+* Conventional single-processor computers are named SISD (single-instruction-single-data) machines.
+* SIMD (single-instruction-multiple-data) machines incorporate the idea of parallel processing, using a large number of processing units to execute the same instruction on different data.
+* Modern parallel computers are so-called MIMD (multiple-instruction-multiple-data) machines and can execute different instruction streams in parallel on different data.
+
+
+!eblock
+!split
+=====  Shared memory and distributed memory =====
+!bblock
+One way of categorizing modern parallel computers is to look at the memory configuration.
+* In shared memory systems the CPUs share the same address space. Any CPU can access any data in the global memory.
+* In distributed memory systems each CPU has its own memory.
+
+The CPUs are connected by some network and may exchange messages.
+
+!eblock
+
+!split
+=====    Different parallel programming paradigms  =====
+!bblock
+
+* _Task parallelism_:  the work of a global problem can be divided into a number of independent tasks, which rarely need to synchronize.  Monte Carlo simulations represent a typical situation. Integration is another. However this paradigm is of limited use.
+* _Data parallelism_:  use of multiple threads (e.g. one or more threads per processor) to dissect loops over arrays etc.  Communication and synchronization between processors are often hidden, thus easy to program. However, the user surrenders much control to a specialized compiler. Examples of data parallelism are compiler-based parallelization and OpenMP directives. 
+
+!eblock
+!split
+=====    Different parallel programming paradigms =====
+!bblock
+
+* _Message passing_:  all involved processors have an independent memory address space. The user is responsible for  partitioning the data/work of a global problem and distributing the  subproblems to the processors. Collaboration between processors is achieved by explicit message passing, which is used for data transfer plus synchronization.
+
+* This paradigm is the most general one where the user has full control. Better parallel efficiency is usually achieved by explicit message passing. However, message-passing programming is more difficult.
+
+!eblock
+
+
+!split 
+===== What is vectorization? ===== 
+Vectorization is a special
+case of _Single Instructions Multiple Data_ (SIMD) to denote a single
+instruction stream capable of operating on multiple data elements in
+parallel. 
+We can think of vectorization as the unrolling of loops accompanied with SIMD instructions.
+
+Vectorization is the process of converting an algorithm that performs scalar operations
+(typically one operation at the time) to vector operations where a single operation can refer to many simultaneous operations.
+Consider the following example
+!bc cppcod
+for (i = 0; i < n; i++){
+    a[i] = b[i] + c[i];
+}
+!ec
+If the code is not vectorized, the compiler will simply start with the first element and 
+then perform subsequent additions operating on one address in memory at the time. 
+
+!split 
+===== Number of elements that can acted upon =====
+A SIMD instruction can operate  on multiple data elements in one single instruction.
+It uses the so-called 128-bit SIMD floating-point register. 
+In this sense,vectorization adds some form of parallelism since one instruction is applied  
+to many parts of say a vector.
+
+The number of elements which can be operated on in parallel
+range from four single-precision floating point data elements in so-called 
+Streaming SIMD Extensions and two double-precision floating-point data
+elements in Streaming SIMD Extensions 2 to sixteen byte operations in
+a 128-bit register in Streaming SIMD Extensions 2. Thus, vector-length
+ranges from 2 to 16, depending on the instruction extensions used and
+on the data type. 
+
+!split 
+===== Number of elements that can acted upon, examples =====
+We start with the simple scalar operations given by
+!bc cppcod
+for (i = 0; i < n; i++){
+    a[i] = b[i] + c[i];
+}
+!ec
+If the code is not vectorized  and we have a 128-bit register to store a 32 bits floating point number,
+it means that we have $3\times 32$ bits that are not used. For the first element we have
+
+
+|-------------------------------|
+| 0 | 1 | 2 | 3                 | 
+|-------------------------------|
+| a[0]= | not used | not used| not used|
+|-------------------------------|
+| b[0]+ | not used | not used| not used|
+|-------------------------------|
+| c[0] | not used | not used| not used|
+|-------------------------------|
+
+We have thus unused space in our SIMD registers. These registers could hold three additional integers.
+
+
+
+!split 
+===== Number of elements that can acted upon, examples =====
+If we vectorize the code, we can perform, with a 128-bit register four simultaneous operations, that is
+we have
+!bc cppcod
+for (i = 0; i < n; i+=4){
+    a[i] = b[i] + c[i];
+    a[i+1] = b[i+1] + c[i+1];
+    a[i+2] = b[i+2] + c[i+2];
+    a[i+3] = b[i+3] + c[i+3];
+}
+!ec
+displayed here as
+
+|-------------------------------|
+| 0 | 1 | 2 | 3                 | 
+|-------------------------------|
+|  a[0]= | a[1]= | a[2]=| a[3]= |
+|-------------------------------|
+|  b[0]+ | b[1]+ | b[2]+| b[3]+ |
+|-------------------------------|
+| c[0]| c[1] | c[2] | c[3]      | 
+|-------------------------------|
+Four additions are now done in a single step.
+
+!split
+===== A simple test case with and without vectorization =====
+We implement these operations in a simple c++ program as 
+
+!bc cppcode
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include "time.h" 
+
+using namespace std; // note use of namespace                                       
+int main (int argc, char* argv[])
+{
+  int i = atoi(argv[1]); 
+  double *a, *b, *c;
+  a = new double[i]; 
+  b = new double[i]; 
+  c = new double[i]; 
+  for (int j = 0; j < i; j++) {
+    a[j] = 0.0;
+    b[j] = cos(j*1.0);
+    c[j] = sin(j*3.0);
+  }
+  clock_t start, finish;
+  start = clock();
+  for (int j = 0; j < i; j++) {
+    a[j] = b[j]+b[j]*c[j];
+  }
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout << setiosflags(ios::showpoint | ios::uppercase);
+  cout << setprecision(10) << setw(20) << "Time used  for vector addition and multiplication=" << timeused  << endl;
+  delete [] a;
+  delete [] b;
+  delete [] c;
+  return 0;     
+}
+!ec
+
+
+!split 
+===== Compiling with and without vectorization =====
+We can compile and link without vectorization
+!bc cppcod
+c++ -o novec.x vecexample.cpp
+!ec
+and with vectorization (and additional optimizations)
+!bc cppcod
+c++ -O3 -o  vec.x vecexample.cpp 
+!ec
+The speedup depends on the size of the vectors. In the example here we have run with $10^7$ elements.
+The example here was run on a PC with ubuntu 14.04 as operating system and an Intel i7-4790 CPU running at 3.60 GHz. 
+!bc cppcod 
+Compphys:~ hjensen$ ./vec.x 10000000
+Time used  for vector addition = 0.0100000
+Compphys:~ hjensen$ ./novec.x 10000000
+Time used  for vector addition = 0.03000000000
+!ec
+This particular C++ compiler speeds up the above loop operations with a factor of 3. 
+Performing the same operations for $10^8$ elements results only in a factor $1.4$.
+The result will however vary from compiler to compiler. In general however, with optimization flags like $-O3$ or $-Ofast$, we gain a considerable speedup if our code can be vectorized. Many of these operations can be done automatically by your compiler. These automatic or near automatic compiler techniques improve performance considerably. 
+
+!split
+=====  Automatic vectorization and vectorization inhibitors, criteria =====
+
+Not all loops can be vectorized, as discussed in "Intel's guide to vectorization":"https://software.intel.com/en-us/articles/a-guide-to-auto-vectorization-with-intel-c-compilers"
+
+An important criteria is that the loop counter $n$ is known at the entry of the loop.
+!bc cppcod
+  for (int j = 0; j < n; j++) {
+    a[j] = cos(j*1.0);
+  }
+!ec
+The variable $n$ does need to be known at compile time. However, this variable must stay the same for the entire duration of the loop. It implies that an exit statement inside the loop cannot be data dependent.
+
+!split
+=====  Automatic vectorization and vectorization inhibitors, exit criteria =====
+
+An exit statement should in general be avoided. 
+If the exit statement contains data-dependent conditions, the loop cannot be vectorized. 
+The following is an example of a non-vectorizable loop
+!bc cppcod
+  for (int j = 0; j < n; j++) {
+    a[j] = cos(j*1.0);
+    if (a[j] < 0 ) break;
+  }
+!ec
+Avoid loop termination conditions and opt for a single entry loop variable $n$. The lower and upper bounds have to be kept fixed within the loop. 
+!split
+=====  Automatic vectorization and vectorization inhibitors, straight-line code =====
+SIMD instructions perform the same type of operations multiple times. 
+A _switch_ statement leads thus to a non-vectorizable loop since different statemens cannot branch.
+The following code can however be vectorized since the _if_ statement is implemented as a masked assignment.
+!bc cppcod
+  for (int j = 0; j < n; j++) {
+    double x  = cos(j*1.0);
+    if (x > 0 ) {
+       a[j] =  x*sin(j*2.0); 
+    }
+    else {
+       a[j] = 0.0;
+    }
+  }
+!ec
+These operations can be performed for all data elements but only those elements which the mask evaluates as true are stored. In general, one should avoid branches such as _switch_, _go to_, or _return_ statements or _if_ constructs that cannot be treated as masked assignments. 
+
+
+!split
+=====  Automatic vectorization and vectorization inhibitors, nested loops =====
+
+Only the innermost loop of the following example is vectorized
+!bc cppcod
+  for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+           a[i][j] += b[i][j];
+      }  
+  }
+!ec
+The exception is if an original outer loop is transformed into an inner loop as the result of compiler optimizations.
+
+
+!split
+=====  Automatic vectorization and vectorization inhibitors, function calls =====
+
+Calls to programmer defined functions ruin vectorization. However, calls to intrinsic functions like
+$\sin{x}$, $\cos{x}$, $\exp{x}$ etc are allowed since they are normally efficiently vectorized. 
+The following example is fully vectorizable
+!bc cppcod
+  for (int i = 0; i < n; i++) {
+      a[i] = log10(i)*cos(i);
+  }
+!ec
+Similarly, _inline_ functions defined by the programmer, allow for vectorization since the function statements are glued into the actual place where the function is called. 
+
+
+!split
+=====  Automatic vectorization and vectorization inhibitors, data dependencies =====
+
+One has to keep in mind that vectorization changes the order of operations inside a loop. A so-called
+read-after-write statement with an explicit flow dependency cannot be vectorized. The following code
+!bc cppcod
+  double b = 15.;
+  for (int i = 1; i < n; i++) {
+      a[i] = a[i-1] + b;
+  }
+!ec
+is an example of flow dependency and results in wrong numerical results if vectorized. For a scalar operation, the value $a[i-1]$ computed during the iteration is loaded into the right-hand side and the results are fine. In vector mode however, with a vector length of four, the values $a[0]$, $a[1]$, $a[2]$ and $a[3]$ from the previous loop will be loaded into the right-hand side and produce wrong results. That is, we have
+!bc cppcod
+   a[1] = a[0] + b;
+   a[2] = a[1] + b;
+   a[3] = a[2] + b;
+   a[4] = a[3] + b;
+!ec
+and if the two first iterations are  executed at the same by the SIMD instruction, the value of say $a[1]$ could be used by the second iteration before it has been calculated by the first iteration, leading thereby to wrong results.
+
+!split
+=====  Automatic vectorization and vectorization inhibitors, more data dependencies =====
+
+On the other hand,  a so-called 
+write-after-read statement can be vectorized. The following code
+!bc cppcod
+  double b = 15.;
+  for (int i = 1; i < n; i++) {
+      a[i-1] = a[i] + b;
+  }
+!ec
+is an example of flow dependency that can be vectorized since no iteration with a higher value of $i$
+can complete before an iteration with a lower value of $i$. However, such code leads to problems with parallelization.
+
+
+!split
+=====  Automatic vectorization and vectorization inhibitors, memory stride =====
+
+
+For C++ programmers  it is also worth keeping in mind that an array notation is preferred to the more compact use of pointers to access array elements. The compiler can often not tell if it is safe to vectorize the code. 
+
+When dealing with arrays, you should also avoid memory stride, since this slows down considerably vectorization. When you access array element, write for example the inner loop to vectorize using unit stride, that is, access successively the next array element in memory, as shown here
+!bc cppcod
+  for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+           a[i][j] += b[i][j];
+      }  
+  }
+!ec
+
+
+!split
+=====    Today's situation of parallel computing  =====
+!bblock
+
+* Distributed memory is the dominant hardware configuration. There is a large diversity in these machines, from  MPP (massively parallel processing) systems to clusters of off-the-shelf PCs, which are very cost-effective.
+* Message-passing is a mature programming paradigm and widely accepted. It often provides an efficient match to the hardware. It is primarily used for the distributed memory systems, but can also be used on shared memory systems.
+
+* Modern nodes have nowadays several cores, which makes it interesting to use both shared memory (the given node) and distributed memory (several nodes with communication). This leads often to codes which use both MPI and OpenMP.
+
+Our lectures will focus on both MPI and OpenMP.
+
+!eblock
+
+!split
+=====  Overhead present in parallel computing =====
+!bblock
+
+* _Uneven load balance_:  not all the processors can perform useful work at all time.
+* _Overhead of synchronization_
+* _Overhead of communication_
+* _Extra computation due to parallelization_
+
+Due to the above overhead and that certain parts of a sequential
+algorithm cannot be parallelized we may not achieve an optimal parallelization.
+!eblock
+
+
+!split
+=====    Parallelizing a sequential algorithm  =====
+!bblock
+
+* Identify the part(s) of a sequential algorithm that can be  executed in parallel. This is the difficult part,
+* Distribute the global work and data among $P$ processors.
+
+!eblock
+
+
+
+
+!split
+===== Strategies =====
+!bblock
+* Develop codes locally, run with some few processes and test your codes.  Do benchmarking, timing and so forth on local nodes, for example your laptop or PC. 
+* When you are convinced that your codes run correctly, you can start your production runs on available supercomputers.
+
+!eblock
+
+!split
+===== How do I run MPI on a PC/Laptop?  =====
+!bblock
+The  machines at the computer lab have eight CPUs (look up the file /proc/cpuinfo)
+* Compile with mpicxx or mpic++ or mpif90
+* Set up collaboration between processes and run 
+!bc cppcod
+  mpd --ncpus=8 &
+  #  run code with
+  mpiexec -n 8 ./nameofprog
+!ec
+Here we declare that we will use 8 CPUs via the *-ncpus* option and via $-n 8$ when running.
+!eblock
+
+!split
+===== Can I do it on my own PC/laptop? =====
+!bblock
+At the computer lab, we have installed both OpenMP and MPI. If you wish to install MPI and OpenMP 
+on your laptop, we recommend the following:
+* For MPI, we recommend that you follow the instructions at the "Open MPI":"www.open-mpi.org/software" website and follow the instructions. OpenMPI is also accessible for easy installation for Ubuntu users via the _synaptic package manager_. 
+* For OpenMP, the compile option _-fopenmp_ is included automatically in recent versions of the C++ compiler and Fortran compilers. 
+* For OS X users however, use for example 
+!bc cppcod
+  brew install clang-omp
+!ec
+!eblock
+
+!split
+===== What is Message Passing Interface (MPI)?  =====
+!bblock
+
+_MPI_ is a library, not a language. It specifies the names, calling sequences and results of functions
+or subroutines to be called from C/C++ or Fortran programs, and the classes and methods that make up the MPI C++
+library. The programs that users write in Fortran, C or C++ are compiled with ordinary compilers and linked
+with the MPI library.
+
+MPI programs should be able to run
+on all possible machines and run all MPI implementetations without change.
+
+An MPI computation is a collection of processes communicating with messages.
+
+
+!eblock
+!split
+===== Going Parallel with MPI =====
+!bblock
+_Task parallelism_: the work of a global problem can be divided
+into a number of independent tasks, which rarely need to synchronize. 
+Monte Carlo simulations or numerical integration are examples of this.
+
+
+MPI is a message-passing library where all the routines
+have corresponding C/C++-binding
+!bc cppcod
+   MPI_Command_name
+!ec
+and Fortran-binding (routine names are in uppercase, but can also be in lower case)
+!bc forcod
+   MPI_COMMAND_NAME
+!ec
+!eblock
+
+
+!split
+===== MPI is a library  =====
+!bblock
+MPI is a library specification for the message passing interface,
+proposed as a standard.
+
+* independent of hardware;
+* not a language or compiler specification;
+* not a specific implementation or product.
+
+
+A message passing standard for portability and ease-of-use. 
+Designed for high performance.
+
+Insert communication and synchronization functions where necessary.
+
+
+!eblock
+
+
+
+!split
+=====    Bindings to MPI routines  =====
+!bblock
+
+
+MPI is a message-passing library where all the routines
+have corresponding C/C++-binding
+!bc cppcod
+   MPI_Command_name
+!ec
+and Fortran-binding (routine names are in uppercase, but can also be in lower case)
+!bc forcod
+   MPI_COMMAND_NAME
+!ec
+The discussion in these slides focuses on the C++ binding.
+
+!eblock
+
+
+!split
+===== Communicator  =====
+!bblock
+* A group of MPI processes with a name (context).
+* Any process is identified by its rank. The rank is only meaningful within a particular communicator.
+* By default the communicator contains all the MPI processes.
+!bc cppcod
+  MPI_COMM_WORLD 
+!ec
+* Mechanism to identify subset of processes.
+* Promotes modular design of parallel libraries.
+
+
+!eblock
+
+
+!split
+=====  Some of the most  important MPI functions =====
+!bblock
+
+
+
+* $MPI\_Init$ - initiate an MPI computation
+* $MPI\_Finalize$ - terminate the MPI computation and clean up
+* $MPI\_Comm\_size$ - how many processes participate in a given MPI communicator?
+* $MPI\_Comm\_rank$ - which one am I? (A number between 0 and size-1.)
+* $MPI\_Send$ - send a message to a particular process within an MPI communicator
+* $MPI\_Recv$ - receive a message from a particular process within an MPI communicator
+* $MPI\_reduce$  or $MPI\_Allreduce$, send and receive messages
+
+!eblock
+
+
+!split
+=====    The first MPI C/C++ program  =====
+!bblock
+
+
+Let every process write "Hello world" (oh not this program again!!) on the standard output. 
+!bc cppcod
+using namespace std;
+#include <mpi.h>
+#include <iostream>
+int main (int nargs, char* args[])
+{
+int numprocs, my_rank;
+//   MPI initializations
+MPI_Init (&nargs, &args);
+MPI_Comm_size (MPI_COMM_WORLD, &numprocs);
+MPI_Comm_rank (MPI_COMM_WORLD, &my_rank);
+cout << "Hello world, I have  rank " << my_rank << " out of " 
+     << numprocs << endl;
+//  End MPI
+MPI_Finalize ();
+!ec
+
+!eblock
+
+
+!split
+=====    The Fortran program =====
+!bblock
+!bc forcod
+PROGRAM hello
+INCLUDE "mpif.h"
+INTEGER:: size, my_rank, ierr
+
+CALL  MPI_INIT(ierr)
+CALL MPI_COMM_SIZE(MPI_COMM_WORLD, size, ierr)
+CALL MPI_COMM_RANK(MPI_COMM_WORLD, my_rank, ierr)
+WRITE(*,*)"Hello world, I've rank ",my_rank," out of ",size
+CALL MPI_FINALIZE(ierr)
+
+END PROGRAM hello
+!ec
+
+
+!eblock
+
+
+!split
+=====    Note 1  =====
+!bblock
+
+* The output to screen is not ordered since all processes are trying to write  to screen simultaneously.
+* It is the operating system which opts for an ordering.  
+* If we wish to have an organized output, starting from the first process, we may rewrite our program as in the next example.
+
+!eblock
+
+
+!split
+=====    Ordered output with $MPI\_Barrier$  =====
+!bblock
+
+!bc cppcod
+int main (int nargs, char* args[])
+{
+ int numprocs, my_rank, i;
+ MPI_Init (&nargs, &args);
+ MPI_Comm_size (MPI_COMM_WORLD, &numprocs);
+ MPI_Comm_rank (MPI_COMM_WORLD, &my_rank);
+ for (i = 0; i < numprocs; i++) {}
+ MPI_Barrier (MPI_COMM_WORLD);
+ if (i == my_rank) {
+ cout << "Hello world, I have  rank " << my_rank << 
+        " out of " << numprocs << endl;}
+      MPI_Finalize ();
+!ec
+
+!eblock
+
+
+!split
+=====    Note 2 =====
+!bblock
+* Here we have used the $MPI\_Barrier$ function to ensure that that every process has completed  its set of instructions in  a particular order.
+* A barrier is a special collective operation that does not allow the processes to continue until all processes in the communicator (here $MPI\_COMM\_WORLD$) have called $MPI\_Barrier$. 
+* The barriers make sure that all processes have reached the same point in the code. Many of the collective operations like $MPI\_ALLREDUCE$ to be discussed later, have the same property; that is, no process can exit the operation until all processes have started. 
+
+However, this is slightly more time-consuming since the processes synchronize between themselves as many times as there
+are processes.  In the next Hello world example we use the send and receive functions in order to a have a synchronized
+action.
+
+
+!eblock
+
+
+!split
+=====    Ordered output  =====
+!bblock
+
+
+!bc ccpcod
+.....
+int numprocs, my_rank, flag;
+MPI_Status status;
+MPI_Init (&nargs, &args);
+MPI_Comm_size (MPI_COMM_WORLD, &numprocs);
+MPI_Comm_rank (MPI_COMM_WORLD, &my_rank);
+if (my_rank > 0)
+MPI_Recv (&flag, 1, MPI_INT, my_rank-1, 100, 
+           MPI_COMM_WORLD, &status);
+cout << "Hello world, I have  rank " << my_rank << " out of " 
+<< numprocs << endl;
+if (my_rank < numprocs-1)
+MPI_Send (&my_rank, 1, MPI_INT, my_rank+1, 
+          100, MPI_COMM_WORLD);
+MPI_Finalize ();
+!ec
+
+!eblock
+
+
+!split
+=====    Note 3  =====
+!bblock
+
+
+The basic sending of messages is given by the function $MPI\_SEND$, which in C/C++
+is defined as 
+!bc cppcod
+int MPI_Send(void *buf, int count, 
+             MPI_Datatype datatype, 
+             int dest, int tag, MPI_Comm comm)}
+!ec
+This single command allows the passing of any kind of variable, even a large array, to any group of tasks. 
+The variable _buf_ is the variable we wish to send while _count_
+is the  number of variables we are passing. If we are passing only a single value, this should be 1. 
+
+If we transfer an array, it is  the overall size of the array. 
+For example, if we want to send a 10 by 10 array, count would be $10\times 10=100$ 
+since we are  actually passing 100 values.  
+
+
+!eblock
+
+
+!split
+=====    Note 4  =====
+!bblock
+
+Once you have  sent a message, you must receive it on another task. The function $MPI\_RECV$
+is similar to the send call.
+!bc cppcod
+int MPI_Recv( void *buf, int count, MPI_Datatype datatype, 
+            int source, 
+            int tag, MPI_Comm comm, MPI_Status *status )
+!ec
+
+The arguments that are different from those in MPI\_SEND are
+_buf_ which  is the name of the variable where you will  be storing the received data, 
+_source_ which  replaces the destination in the send command. This is the return ID of the sender.
+
+Finally,  we have used  $MPI\_Status\_status$,  
+where one can check if the receive was completed.
+
+The output of this code is the same as the previous example, but now
+process 0 sends a message to process 1, which forwards it further
+to process 2, and so forth.
+
+
+!eblock
+
+!split
+===== Numerical integration in parallel =====
+!bblock    Integrating $\pi$
+
+* The code example computes $\pi$ using the trapezoidal rules.
+* The trapezoidal rule
+!bt
+\[
+   I=\int_a^bf(x) dx\approx h\left(f(a)/2 + f(a+h) +f(a+2h)+\dots +f(b-h)+ f(b)/2\right).
+\]
+!et
+
+
+!eblock
+
+!split
+=====    Dissection of trapezoidal rule with $MPI\_reduce$ =====
+!bblock
+
+!bc cppcod
+//    Trapezoidal rule and numerical integration usign MPI
+using namespace std;
+#include <mpi.h>
+#include <iostream>
+
+//     Here we define various functions called by the main program
+
+double int_function(double );
+double trapezoidal_rule(double , double , int , double (*)(double));
+
+//   Main function begins here
+int main (int nargs, char* args[])
+{
+  int n, local_n, numprocs, my_rank; 
+  double a, b, h, local_a, local_b, total_sum, local_sum;   
+  double  time_start, time_end, total_time;
+!ec
+
+
+!eblock
+
+!split
+=====    Dissection of trapezoidal rule  =====
+!bblock
+
+!bc cppcod
+  //  MPI initializations
+  MPI_Init (&nargs, &args);
+  MPI_Comm_size (MPI_COMM_WORLD, &numprocs);
+  MPI_Comm_rank (MPI_COMM_WORLD, &my_rank);
+  time_start = MPI_Wtime();
+  //  Fixed values for a, b and n 
+  a = 0.0 ; b = 1.0;  n = 1000;
+  h = (b-a)/n;    // h is the same for all processes 
+  local_n = n/numprocs;  
+  // make sure n > numprocs, else integer division gives zero
+  // Length of each process' interval of
+  // integration = local_n*h.  
+  local_a = a + my_rank*local_n*h;
+  local_b = local_a + local_n*h;
+!ec
+
+
+!eblock
+
+!split
+===== Integrating with _MPI_ =====
+!bblock
+
+!bc cppcod
+  total_sum = 0.0;
+  local_sum = trapezoidal_rule(local_a, local_b, local_n, 
+                               &int_function); 
+  MPI_Reduce(&local_sum, &total_sum, 1, MPI_DOUBLE, 
+              MPI_SUM, 0, MPI_COMM_WORLD);
+  time_end = MPI_Wtime();
+  total_time = time_end-time_start;
+  if ( my_rank == 0) {
+    cout << "Trapezoidal rule = " <<  total_sum << endl;
+    cout << "Time = " <<  total_time  
+         << " on number of processors: "  << numprocs  << endl;
+  }
+  // End MPI
+  MPI_Finalize ();  
+  return 0;
+}  // end of main program
+!ec
+
+!eblock
+
+!split
+===== How do I use $MPI\_reduce$? =====
+!bblock
+
+Here we have used
+!bc cppcod
+MPI_reduce( void *senddata, void* resultdata, int count, 
+     MPI_Datatype datatype, MPI_Op, int root, MPI_Comm comm)
+!ec
+
+The two variables $senddata$ and $resultdata$ are obvious, besides the fact that one sends the address
+of the variable or the first element of an array.  If they are arrays they need to have the same size. 
+The variable $count$ represents the total dimensionality, 1 in case of just one variable, 
+while $MPI\_Datatype$ 
+defines the type of variable which is sent and received.  
+
+The new feature is $MPI\_Op$. It defines the type
+of operation we want to do. 
+!eblock
+
+!split
+===== More on $MPI\_Reduce$ =====
+!bblock
+In our case, since we are summing
+the rectangle  contributions from every process we define  $MPI\_Op = MPI\_SUM$.
+If we have an array or matrix we can search for the largest og smallest element by sending either $MPI\_MAX$ or 
+$MPI\_MIN$.  If we want the location as well (which array element) we simply transfer 
+$MPI\_MAXLOC$ or $MPI\_MINOC$. If we want the product we write $MPI\_PROD$. 
+
+$MPI\_Allreduce$ is defined as
+!bc cppcod     
+MPI_Allreduce( void *senddata, void* resultdata, int count, 
+          MPI_Datatype datatype, MPI_Op, MPI_Comm comm)        
+!ec 
+
+
+!eblock
+
+!split
+=====     Dissection of trapezoidal rule  =====
+!bblock
+
+We use $MPI\_reduce$ to collect data from each process. Note also the use of the function 
+$MPI\_Wtime$. 
+!bc cppcod
+//  this function defines the function to integrate
+double int_function(double x)
+{
+  double value = 4./(1.+x*x);
+  return value;
+} // end of function to evaluate
+
+!ec
+
+
+!eblock
+
+!split
+=====    Dissection of trapezoidal rule  =====
+!bblock
+!bc cppcod
+//  this function defines the trapezoidal rule
+double trapezoidal_rule(double a, double b, int n, 
+                         double (*func)(double))
+{
+  double trapez_sum;
+  double fa, fb, x, step;
+  int    j;
+  step=(b-a)/((double) n);
+  fa=(*func)(a)/2. ;
+  fb=(*func)(b)/2. ;
+  trapez_sum=0.;
+  for (j=1; j <= n-1; j++){
+    x=j*step+a;
+    trapez_sum+=(*func)(x);
+  }
+  trapez_sum=(trapez_sum+fb+fa)*step;
+  return trapez_sum;
+}  // end trapezoidal_rule 
+!ec
+
+
+!eblock
+
+
+!split
+=====    What is OpenMP =====
+!bblock
+* OpenMP provides high-level thread programming
+* Multiple cooperating threads are allowed to run simultaneously
+* Threads are created and destroyed dynamically in a fork-join pattern
+  *  An OpenMP program consists of a number of parallel regions
+  *  Between two parallel regions there is only one master thread
+  *  In the beginning of a parallel region, a team of new threads is spawned
+  * The newly spawned threads work simultaneously with the master thread
+  * At the end of a parallel region, the new threads are destroyed
+
+
+!eblock
+
+!split
+=====    Getting started, things to remember =====
+!bblock
+*  Remember the header file 
+!bc cppcod
+#include <omp.h>
+!ec
+*  Insert compiler directives in C++ syntax as 
+!bc cppcod
+#pragma omp...
+!ec
+* Compile with for example *c++ -fopenmp code.cpp*
+* Execute
+  * Remember to assign the environment variable _OMP NUM THREADS_
+  * It specifies the total number of threads inside a parallel region, if not otherwise overwritten
+
+!eblock
+
+!split
+=====    General code structure  =====
+!bblock
+!bc cppcod
+#include <omp.h>
+main ()
+{
+int var1, var2, var3;
+/* serial code */
+/* ... */
+/* start of a parallel region */
+#pragma omp parallel private(var1, var2) shared(var3)
+{
+/* ... */
+}
+/* more serial code */
+/* ... */
+/* another parallel region */
+#pragma omp parallel
+{
+/* ... */
+}
+}
+!ec
+
+
+!eblock
+
+!split
+=====    Parallel region =====
+!bblock
+* A parallel region is a block of code that is executed by a team of threads
+* The following compiler directive creates a parallel region
+!bc cppcod
+#pragma omp parallel { ... }
+!ec
+* Clauses can be added at the end of the directive
+* Most often used clauses:
+ * _default(shared)_ or _default(none)_
+ * _public(list of variables)_
+ * _private(list of variables)_
+
+
+!eblock
+
+!split
+=====    Hello world, not again, please! =====
+!bblock
+!bc cppcod
+#include <omp.h>
+#include <stdio.h>
+int main (int argc, char *argv[])
+{
+int th_id, nthreads;
+#pragma omp parallel private(th_id) shared(nthreads)
+{
+th_id = omp_get_thread_num();
+printf("Hello World from thread %d\n", th_id);
+#pragma omp barrier
+if ( th_id == 0 ) {
+nthreads = omp_get_num_threads();
+printf("There are %d threads\n",nthreads);
+}
+}
+return 0;
+}
+!ec
+
+!eblock
+
+!split
+=====    Important OpenMP library routines =====
+!bblock
+
+* _int omp get num threads ()_, returns the number of threads inside a parallel region
+* _int omp get thread num ()_,  returns the  a thread for each thread inside a parallel region
+* _void omp set num threads (int)_, sets the number of threads to be used
+* _void omp set nested (int)_,  turns nested parallelism on/off
+
+!eblock
+
+!split
+=====    Parallel for loop =====
+!bblock
+*  Inside a parallel region, the following compiler directive can be used to parallelize a for-loop:
+!bc cppcod
+#pragma omp for
+!ec
+* Clauses can be added, such as
+ *  _schedule(static, chunk size)_
+ *  _schedule(dynamic, chunk size)_ 
+ *  _schedule(guided, chunk size)_ (non-deterministic allocation)
+ *  _schedule(runtime)_
+ *  _private(list of variables)_
+ *  _reduction(operator:variable)_
+ *  _nowait_
+
+!eblock
+
+!split
+===== Example code =====
+!bblock
+!bc cppcod
+#include <omp.h>
+#define CHUNKSIZE 100
+#define N
+1000
+main ()
+{
+int i, chunk;
+float a[N], b[N], c[N];
+for (i=0; i < N; i++)
+a[i] = b[i] = i * 1.0;
+chunk = CHUNKSIZE;
+#pragma omp parallel shared(a,b,c,chunk) private(i)
+{
+#pragma omp for schedule(dynamic,chunk)
+for (i=0; i < N; i++)
+c[i] = a[i] + b[i];
+} /* end of parallel region */
+}
+!ec
+
+
+!eblock
+
+!split
+=====    More on Parallel for loop =====
+!bblock
+* The number of loop iterations cannot be non-deterministic; break, return, exit, goto not allowed inside the for-loop
+* The loop index is private to each thread
+* A reduction variable is special
+  * During the for-loop there is a local private copy in each thread
+  * At the end of the for-loop, all the local copies are combined together by the reduction operation
+* Unless the nowait clause is used, an implicit barrier synchronization will be added at the end by the compiler
+!bc cppcod
+// #pragma omp parallel and #pragma omp for
+!ec
+can be combined into
+!bc cppcod
+#pragma omp parallel for
+!ec
+
+
+!eblock
+
+!split
+=====    Inner product =====
+!bblock
+!bt
+\[
+\sum_{i=0}^{n-1} a_ib_i
+\]
+!et
+!bc cppcod
+int i;
+double sum = 0.;
+/* allocating and initializing arrays */
+/* ... */
+#pragma omp parallel for default(shared) private(i) reduction(+:sum)
+for (i=0; i<N; i++)
+sum += a[i]*b[i];
+}
+!ec
+
+
+!eblock
+
+!split
+===== Different threads do different tasks =====
+!bblock
+
+Different threads do different tasks independently, each section is executed by one thread.
+!bc cppcod
+#pragma omp parallel
+{
+#pragma omp sections
+{
+#pragma omp section
+funcA ();
+#pragma omp section
+funcB ();
+#pragma omp section
+funcC ();
+}
+}
+!ec
+
+!eblock
+
+!split
+=====     Single execution  =====
+!bblock
+!bc cppcod
+#pragma omp single { ... }
+!ec
+The code is executed by one thread only, no guarantee which thread
+
+Can introduce an implicit barrier at the end
+!bc cppcod
+#pragma omp master { ... }
+!ec
+Code executed by the master thread, guaranteed and no implicit barrier at the end.
+!eblock
+
+
+!split
+=====    Coordination and synchronization  =====
+!bblock
+!bc cppcod
+#pragma omp barrier
+!ec 
+Synchronization, must be encountered by all threads in a team (or none)
+!bc cppcod
+#pragma omp ordered { a block of codes }
+!ec
+is another form of synchronization (in sequential order).
+The form
+!bc cppcod
+#pragma omp critical { a block of codes }
+!ec
+and 
+!bc cppcod
+#pragma omp atomic { single assignment statement }
+!ec
+is  more efficient than 
+!bc cppcod
+#pragma omp critical
+!ec
+
+
+!eblock
+
+
+!split
+=====    Data scope  =====
+!bblock
+* OpenMP data scope attribute clauses:
+ * _shared_
+ * _private_
+ * _firstprivate_
+ * _lastprivate_
+ * _reduction_
+
+What are the purposes of these attributes
+* define how and which variables are transferred to a parallel region (and back)
+* define which variables are visible to all threads in a parallel region, and which variables are privately allocated to each thread
+
+
+!eblock
+
+
+!split
+=====    Some remarks  =====
+!bblock
+
+* When entering a parallel region, the _private_ clause ensures each thread having its own new variable instances. The new variables are assumed to be uninitialized.
+* A shared variable exists in only one memory location and all threads can read and write to that address. It is the programmer's responsibility to ensure that multiple threads properly access a shared variable.
+* The _firstprivate_ clause combines the behavior of the private clause with automatic initialization.
+* The _lastprivate_ clause combines the behavior of the private clause with a copy back (from the last loop iteration or section) to the original variable outside the parallel region.
+
+
+!eblock
+
+
+!split
+=====    Parallelizing nested for-loops =====
+!bblock
+
+*  Serial code
+!bc cppcod
+for (i=0; i<100; i++)
+for (j=0; j<100; j++)
+a[i][j] = b[i][j] + c[i][j]
+!ec
+
+* Parallelization
+!bc cppcod
+#pragma omp parallel for private(j)
+for (i=0; i<100; i++)
+for (j=0; j<100; j++)
+a[i][j] = b[i][j] + c[i][j]
+!ec
+
+* Why not parallelize the inner loop? to save overhead of repeated thread forks-joins
+
+* Why must _j_ be private? To avoid race condition among the threads
+
+!eblock
+
+
+!split
+=====    Nested parallelism  =====
+!bblock
+When a thread in a parallel region encounters another parallel construct, it
+may create a new team of threads and become the master of the new
+team.
+!bc cppcod
+#pragma omp parallel num_threads(4)
+{
+/* .... */
+#pragma omp parallel num_threads(2)
+{
+//  
+}
+}
+!ec
+!eblock
+
+
+!split
+=====    Parallel tasks =====
+!bblock
+!bc cppcod
+#pragma omp task 
+#pragma omp parallel shared(p_vec) private(i)
+{
+#pragma omp single
+{
+for (i=0; i<N; i++) {
+double r = random_number();
+if (p_vec[i] > r) {
+#pragma omp task
+do_work (p_vec[i]);
+!ec
+
+!eblock
+
+
+!split
+=====    Common mistakes =====
+!bblock
+Race condition
+!bc cppcod
+int nthreads;
+#pragma omp parallel shared(nthreads)
+{
+nthreads = omp_get_num_threads();
+}
+!ec
+Deadlock
+!bc cppcod
+#pragma omp parallel
+{
+...
+#pragma omp critical
+{
+...
+#pragma omp barrier
+}
+}
+!ec
+
+
+!eblock
+
+
+!split
+=====    Matrix-matrix multiplication =====
+!bblock
+!bc cppcod
+# include <cstdlib>
+# include <iostream>
+# include <cmath>
+# include <ctime>
+# include <omp.h>
+
+using namespace std;
+
+// Main function
+int main ( )
+{
+// brute force coding of arrays
+  double a[500][500];
+  double angle;
+  double b[500][500];
+  double c[500][500];
+  int i;
+  int j;
+  int k;
+!ec
+
+!eblock
+
+
+!split
+=====    Matrix-matrix multiplication  =====
+!bblock
+!bc cppcod
+  int n = 500;
+  double pi = acos(-1.0);
+  double s;
+  int thread_num;
+  double wtime;
+
+  cout << "\n";
+  cout << "  C++/OpenMP version\n";
+  cout << "  Compute matrix product C = A * B.\n";
+
+  thread_num = omp_get_max_threads ( );
+
+//
+//  Loop 1: Evaluate A.
+//
+  s = 1.0 / sqrt ( ( double ) ( n ) );
+
+  wtime = omp_get_wtime ( );
+!ec
+
+
+!eblock
+
+
+!split
+=====    Matrix-matrix multiplication =====
+!bblock
+!bc cppcod
+# pragma omp parallel shared ( a, b, c, n, pi, s ) 
+private ( angle, i, j, k )
+{
+  # pragma omp for
+  for ( i = 0; i < n; i++ )
+  {
+    for ( j = 0; j < n; j++ )
+    {
+      angle = 2.0 * pi * i * j / ( double ) n;
+      a[i][j] = s * ( sin ( angle ) + cos ( angle ) );
+    }
+  }
+//
+//  Loop 2: Copy A into B.
+//
+  # pragma omp for
+  for ( i = 0; i < n; i++ )
+  {
+    for ( j = 0; j < n; j++ )
+    {
+      b[i][j] = a[i][j];
+    }
+  }
+!ec
+
+
+!eblock
+
+
+
+!split
+=====    Matrix-matrix multiplication =====
+!bblock
+!bc cppcod
+//  Loop 3: Compute C = A * B.
+//
+  # pragma omp for
+  for ( i = 0; i < n; i++ )
+  {
+    for ( j = 0; j < n; j++ )
+    {
+      c[i][j] = 0.0;
+      for ( k = 0; k < n; k++ )
+      {
+        c[i][j] = c[i][j] + a[i][k] * b[k][j];
+      }
+    }
+  }
+}
+  wtime = omp_get_wtime ( ) - wtime;
+  cout << "  Elapsed seconds = " << wtime << "\n";
+  cout << "  C(100,100)  = " << c[99][99] << "\n";
+//
+//  Terminate.
+//
+  cout << "\n";
+  cout << "  Normal end of execution.\n";
+  return 0;
+!ec
+
+
+!eblock
+
+
+

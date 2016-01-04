@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures, introduction to the course">
+
+<title>Slides PHY 480 and PHY 905  Lectures, introduction to the course</title>
+
+
+
+
+
+
+
+<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/serif.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/darkgray.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/cbc.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simula.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/league.css" id="theme">
+-->
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+<!-- Printing and PDF exports -->
+<script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+<style type="text/css">
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .reveal .alert-text-small   { font-size: 80%;  }
+    .reveal .alert-text-large   { font-size: 130%; }
+    .reveal .alert-text-normal  { font-size: 90%;  }
+    .reveal .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:5px solid #bababa;
+             -webkit-border-radius: 14px; -moz-border-radius: 14px;
+             border-radius:14px;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 30px; /* 55px; if icon */
+     }
+     .reveal .alert-block {padding-top:14px; padding-bottom:14px}
+     .reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+     /*.reveal .alert li {margin-top: 1em}*/
+     .reveal .alert-block p+p {margin-top:5px}
+     /*.reveal .alert-notice { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
+     .reveal .alert-summary  { background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
+     .reveal .alert-warning { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
+     .reveal .alert-question {background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+
+</style>
+
+
+
+<!-- Styles for table layout of slides -->
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+
+    
+
+
+
+<section>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1 style="text-align: center;">Slides PHY 480 and PHY 905  Lectures, introduction to the course</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Phil Duxbury, and Morten Hjorth-Jensen -->
+
+<center>
+<b>Phil Duxbury</b> [1]
+</center>
+
+<center>
+<b>Morten Hjorth-Jensen</b> [2, 3]
+</center>
+
+<p>&nbsp;<br>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Astronomy, Michigan State University</b></center>
+<center>[2] <b>Department of Physics, University of Oslo</b></center>
+<center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>&nbsp;<br>
+<center><h4>Spring 2016</h4></center> <!-- date -->
+<br>
+<p>
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+</section>
+
+
+<section>
+<h2 id="___sec0">Overview of first week </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<ul>
+
+<p><li> Thursday: First lecture: Presentation of the course, aims and content</li>
+
+<p><li> Thursday: Second Lecture: Introduction to C++ programming and numerical precision. Exercises for first week.</li>
+
+<p><li> Friday: Numerical precision and C++ programming, continued and exercises for first week (chapter 2 of lecture notes)</li>
+
+<p><li> Numerical differentiation and loss of numerical precision (chapter 3 lecture notes)</li>
+
+<p><li> Computer lab: Thursday and Friday. First time: Thursday and Friday this week, Presentation of hardware and software at room FV329 first hour of every labgroup and solution of first simple exercises. The first two weeks we focus on simple programming exercises and to set up github and QTcreator.</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec1">Lectures and ComputerLab </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<ul>
+
+<p><li> Lectures:</li>
+
+<p><li> Weekly reading assignments needed to solve projects.</li>
+
+<p><li> First hour of each lab session may be used to discuss technicalities, address questions etc linked with projects.</li>
+
+<p><li> Detailed lecture notes, exercises, all programs presented, projects etc can be found at the homepage of the course.</li>
+
+<p><li> Computerlab:</li>
+
+<p><li> Weekly plans and all other information are on the official webpage.</li>
+
+<p><li> Final oral exam:</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec2">Course Format </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<ul>
+
+<p><li> Several computer exercises, 4 compulsory projects. Electronic reports only using <a href="https://github.com/" target="_blank">Git</a> for repository and all your material.</li>
+
+<p><li> Evaluation and grading:</li>
+
+<p><li> The computer lab consists of xxx Linux PCs, but many prefer own laptops. C/C++ is the default programming language, but Fortran2008 and Python are also used. All source codes discussed during the lectures can be found at the webpage and <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU" target="_blank">github address</a> of the course. We recommend either C/C++, Fortran2008 or Python as languages.</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec3">ComputerLab </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">           day            </th> <th align="center">teacher</th> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   Group 1: Thursday 10am-2pm    </td> <td align="left">   MHJ        </td> </tr>
+<tr><td align="left">   Group 2: Thursday 2pm-6pm     </td> <td align="left">   MHJ        </td> </tr>
+<tr><td align="left">   Group 3: Friday 10am-2pm      </td> <td align="left">   MHJ        </td> </tr>
+<tr><td align="left">   Group 4: Friday 2pm-6pm       </td> <td align="left">   MHJ        </td> </tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec4">Topics covered in this course </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<ul>
+
+<p><li> Numerical precision and intro to C++ programming</li>
+
+<p><li> Numerical derivation and integration</li>
+
+<p><li> Random numbers and Monte Carlo integration</li>
+
+<p><li> Monte Carlo methods in statistical physics</li>
+
+<p><li> Quantum Monte Carlo methods</li>
+
+<p><li> Linear algebra and eigenvalue problems</li>
+
+<p><li> Non-linear equations and roots of polynomials</li>
+
+<p><li> Ordinary differential equations</li>
+
+<p><li> Partial differential equations</li>
+
+<p><li> Parallelization of codes</li>
+
+<p><li> High-performance computing aspects</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec5">Syllabus  </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Linear algebra and eigenvalue problems, chapters 6 and 7.</b>
+<ul>
+
+<p><li> Know Gaussian elimination and LU decomposition</li>
+
+<p><li> How to solve linear equations</li>
+
+<p><li> How to obtain the inverse and the determinant of a real symmetric matrix</li>
+
+<p><li> Cholesky and tridiagonal matrix decomposition</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec6">Syllabus </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Linear algebra and eigenvalue problems, chapters 6 and 7.</b>
+<ul>
+
+<p><li> Householder's tridiagonalization technique and finding eigenvalues based on this</li>
+
+<p><li> Jacobi's method for finding eigenvalues</li>
+
+<p><li> Singular value decomposition</li>
+
+<p><li> Qubic Spline interpolation</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec7">Syllabus  </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Numerical integration, standard methods and Monte Carlo methods (chapters 4 and 11).</b>
+<ul>
+
+<p><li> Trapezoidal, rectangle and Simpson's rules</li>
+
+<p><li> Gaussian quadrature, emphasis on Legendre polynomials, but you need to know about other polynomials as well.</li>
+
+<p><li> Brute force Monte Carlo integration</li>
+
+<p><li> Random numbers (simplest algo, ran0) and probability distribution functions, expectation values</li>
+
+<p><li> Improved Monte Carlo integration and importance sampling.</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec8">Syllabus  </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Monte Carlo methods in physics (chapters 12, 13, and 14).</b>
+<ul>
+
+<p><li> Random walks and Markov chains and relation with diffusion equation</li>
+
+<p><li> Metropolis algorithm, detailed balance and ergodicity</li>
+
+<p><li> Simple spin systems and phase transitions</li>
+
+<p><li> Variational Monte Carlo</li>
+
+<p><li> How to construct trial wave functions for quantum systems</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec9">Syllabus  </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Ordinary differential equations (chapters 8 and 9).</b>
+<ul>
+
+<p><li> Euler's method and improved Euler's method, truncation errors</li>
+
+<p><li> Runge Kutta methods, 2nd and 4th order, truncation errors</li>
+
+<p><li> How to implement a second-order differential equation, both linear and non-linear. How to make your equations dimensionless.</li>
+
+<p><li> Boundary value problems, shooting and matching method (chap 9).</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec10">Syllabus </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Partial differential equations, chapter 10.</b>
+<ul>
+
+<p><li> Set up diffusion, Poisson and wave equations up to 2 spatial dimensions and time</li>
+
+<p><li> Set up the mathematical model and algorithms for these equations, with boundary and initial conditions. Their stability conditions.</li>
+
+<p><li> Explicit, implicit and Crank-Nicolson schemes, and how to solve them. Remember that they result in triangular matrices.</li>
+
+<p><li> How to compute the Laplacian in Poisson's equation.</li>
+
+<p><li> How to solve the wave equation in one and two dimensions.</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec11">Overarching aims of this course </h2>
+
+<ul>
+
+<p><li> Develop a critical approach to all steps in a project, which methods are most relevant, which natural laws and physical processes are important. Sort out initial conditions and boundary conditions etc.</li>
+
+<p><li> This means to teach you structured scientific computing, learn to structure a project.</li>
+
+<p><li> A critical understanding of central mathematical algorithms and methods from numerical analysis. In particular their limits and stability criteria.</li>
+
+<p><li> Always try to find good checks of your codes (like solutions on closed/analytical form)</li>
+
+<p><li> To enable you to develop a critical view on the mathematical model and the physics.</li>
+</ul>
+</section>
+
+
+<section>
+<h2 id="___sec12">And, there is nothing like a code which gives correct results!! </h2>
+
+<p>
+<center><p><img src="fig-intro/Nebbdyr2.png" align="bottom" width=500></p></center>
+
+<ul>
+ <p><li> J. J. Barton and L. R. Nackman,*Scientific and Engineering C++*, Addison Wesley, 3rd edition 2000.</li>
+ <p><li> B. Stoustrup, <em>The C++ programming language</em>, Pearson, 1997.</li>
+ <p><li> H. P. Langtangen INF-VERK3830 <a href="http://heim.ifi.uio.no/~hpl/INF-VERK4830/" target="_blank"><tt>http://heim.ifi.uio.no/~hpl/INF-VERK4830/</tt></a></li>
+ <p><li> D. Yang, <em>C++ and Object-oriented Numeric Computing for Scientists and Engineers</em>, Springer 2000.</li>
+</ul>
+</section>
+
+
+<section>
+<h2 id="___sec13">Extremely useful tools, strongly recommended </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>and discussed at the lab sessions.</b>
+<ul>
+
+<p><li> GIT for version control and hand in of projects, short demo at computer lab plus video</li>
+
+<p><li> ipython notebook</li>
+
+<p><li> QTcreator for editing and mastering computational projects (for C++ codes, see webpage of course), demonstration at lab</li>
+
+<p><li> Armadillo as a useful numerical library for C++, highly recommended, demonstration at lab plus video</li>
+
+<p><li> Unit testing libraries, to be discussed later</li>
+</ul>
+</div>
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+    // Display navigation controls in the bottom right corner
+    controls: true,
+
+    // Display progress bar (below the horiz. slider)
+    progress: true,
+
+    // Display the page number of the current slide
+    slideNumber: true,
+
+    // Push each slide change to the browser history
+    history: false,
+
+    // Enable keyboard shortcuts for navigation
+    keyboard: true,
+
+    // Enable the slide overview mode
+    overview: true,
+
+    // Vertical centering of slides
+    //center: true,
+    center: false,
+
+    // Enables touch navigation on devices with touch input
+    touch: true,
+
+    // Loop the presentation
+    loop: false,
+
+    // Change the presentation direction to be RTL
+    rtl: false,
+
+    // Turns fragments on and off globally
+    fragments: true,
+
+    // Flags if the presentation is running in an embedded mode,
+    // i.e. contained within a limited portion of the screen
+    embedded: false,
+
+    // Number of milliseconds between automatically proceeding to the
+    // next slide, disabled when set to 0, this value can be overwritten
+    // by using a data-autoslide attribute on your slides
+    autoSlide: 0,
+
+    // Stop auto-sliding after user input
+    autoSlideStoppable: true,
+
+    // Enable slide navigation via mouse wheel
+    mouseWheel: false,
+
+    // Hides the address bar on mobile devices
+    hideAddressBar: true,
+
+    // Opens links in an iframe preview overlay
+    previewLinks: false,
+
+    // Transition style
+    transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Transition speed
+    transitionSpeed: 'default', // default/fast/slow
+
+    // Transition style for full page slide backgrounds
+    backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+
+    // Number of slides away from the current that are visible
+    viewDistance: 3,
+
+    // Parallax background image
+    //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+    // Parallax background size
+    //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+
+    theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+});
+
+Reveal.initialize({
+    dependencies: [
+        // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+        { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+        // Interpret Markdown in <section> elements
+        { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+        // Syntax highlight for <code> elements
+        { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+        // Zoom in and out with Alt+click
+        { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Speaker notes
+        { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Remote control your reveal.js presentation using a touch device
+        //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // MathJax
+        //{ src: 'reveal.js/plugin/math/math.js', async: true }
+    ]
+});
+
+Reveal.initialize({
+
+    // The "normal" size of the presentation, aspect ratio will be preserved
+    // when the presentation is scaled to fit different resolutions. Can be
+    // specified using percentage units.
+    width: 1170,  // original: 960,
+    height: 700,
+
+    // Factor of the display size that should remain empty around the content
+    margin: 0.1,
+
+    // Bounds for smallest/largest possible scale to apply to content
+    minScale: 0.2,
+    maxScale: 1.0
+
+});
+</script>
+
+<!-- begin footer logo
+<div style="position: absolute; bottom: 0px; left: 0; margin-left: 0px">
+<img src="somelogo.png">
+</div>
+     end footer logo -->
+
+
+
+</body>
+</html>

@@ -1,0 +1,2719 @@
+<!DOCTYPE html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Numerical integration, Newton-Cotes and Gaussian quadrature">
+
+<title>Numerical integration, Newton-Cotes and Gaussian quadrature</title>
+
+
+
+
+
+
+
+<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/serif.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/darkgray.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/cbc.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simula.css" id="theme">
+-->
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+<script>
+document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+</script>
+
+<style type="text/css">
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .reveal .alert-text-small   { font-size: 80%;  }
+    .reveal .alert-text-large   { font-size: 130%; }
+    .reveal .alert-text-normal  { font-size: 90%;  }
+    .reveal .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:5px solid #bababa;
+             -webkit-border-radius: 14px; -moz-border-radius: 14px;
+             border-radius:14px;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 30px; /* 55px; if icon */
+     }
+     .reveal .alert-block {padding-top:14px; padding-bottom:14px}
+     .reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+     /*.reveal .alert li {margin-top: 1em}*/
+     .reveal .alert-block p+p {margin-top:5px}
+     /*.reveal .alert-notice { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
+     .reveal .alert-summary  { background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
+     .reveal .alert-warning { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
+     .reveal .alert-question {background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+
+</style>
+
+
+
+<!-- Styles for table layout of slides -->
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+
+
+
+<section>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1 style="text-align: center;">Numerical integration, Newton-Cotes and Gaussian quadrature</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Morten Hjorth-Jensen  Email morten.hjorth-jensen@fys.uio.no -->
+
+<center>
+<b>Morten Hjorth-Jensen  Email morten.hjorth-jensen@fys.uio.no</b> [1, 2]
+</center>
+
+<p>&nbsp;<br>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Center of Mathematics for Applications, University of Oslo</b></center>
+<center>[2] <b>National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>&nbsp;<br>
+<center><h4>Fall 2015</h4></center> <!-- date -->
+<br>
+</section>
+
+
+<section>
+<h2 id="___sec0">Numerical Integration </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Here we will  discuss some of the classical methods for integrating a function. The methods we discuss are  
+
+<ul>
+<p><li> Equal step methods like the trapezoidal, rectangular and Simpson's rule, parts of what are called Newton-Cotes quadrature methods.</li>
+<p><li> and integration approaches   based on Gaussian quadrature.</li> 
+</ul>
+<p>
+
+The latter are more suitable
+for the case where the abscissas are not equally spaced. 
+We emphasize methods for evaluating few-dimensional (typically up to four dimensions) integrals. Multi-dimensional integrals will be discussed in connection with Monte Carlo methods.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec1">Newton-Cotes Quadrature or equal-step methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The integral 
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   I=\int_a^bf(x) dx
+\tag{1}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+has a very simple meaning. The integral is the
+area enscribed by the function \( f(x) \) starting from \( x=a \) to  \( x=b \). It is subdivided in several smaller areas whose evaluation is to  be approximated by different techniques. The areas under the curve can for example  be approximated by rectangular boxes or trapezoids.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec2">Basic philosophy of equal-step methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In considering equal step  methods, our basic approach is that of approximating
+a function \( f(x) \) with a polynomial of at most 
+degree \( N-1 \), given \( N \) integration points. If our polynomial is of degree \( 1 \),
+the function will be approximated with \( f(x)\approx a_0+a_1x \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec3">Simple algorithm for equal step methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The algorithm for these integration methods  is rather simple, and the number of approximations perhaps  unlimited!
+
+<ul>
+<p><li> Choose a step size \( h=(b-a)/N \)  where \( N \) is the number of steps and \( a \) and \( b \) the lower and upper limits of integration.</li>
+<p><li> With a given step length we rewrite the integral as</li>  
+</ul>
+<p>&nbsp;<br>
+$$
+\begin{equation*}     
+\int_a^bf(x) dx= \int_a^{a+h}f(x)dx + \int_{a+h}^{a+2h}f(x)dx+\dots \int_{b-h}^{b}f(x)dx.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+
+<ul>
+<p><li> The strategy then is to find a reliable polynomial approximation   for \( f(x) \) in the various intervals.  Choosing a given approximation for  \( f(x) \), we obtain a specific approximation to the  integral.</li>
+<p><li> With this approximation to \( f(x) \) we perform the integration by computing the integrals over all subintervals.</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec4">Simple algorithm for equal step methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+One possible strategy then is to find a reliable polynomial expansion for \( f(x) \) in the smaller
+subintervals. Consider for example evaluating
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \int_a^{a+2h}f(x)dx, 
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which we rewrite as
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   \int_a^{a+2h}f(x)dx=
+ \int_{x_0-h}^{x_0+h}f(x)dx.
+\tag{2}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+We have chosen a midpoint \( x_0 \) and have defined \( x_0=a+h \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec5">Lagrange's interpolation formula </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Using Lagrange's interpolation formula
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   P_N(x)=\sum_{i=0}^{N}\prod_{k\ne i} \frac{x-x_k}{x_i-x_k}y_i,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+we could attempt to approximate the function \( f(x) \) with a first-order polynomial in \( x \) in the two
+sub-intervals \( x\in[x_0-h,x_0] \) and \( x\in[x_0,x_0+h] \). A first order polynomial means simply that 
+we have for say the interval  \( x\in[x_0,x_0+h] \)
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   f(x)\approx P_1(x)=\frac{x-x_0}{(x_0+h)-x_0}f(x_0+h)+\frac{x-(x_0+h)}{x_0-(x_0+h)}f(x_0),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and for the interval  \( x\in[x_0-h,x_0] \)
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   f(x)\approx P_1(x)=\frac{x-(x_0-h)}{x_0-(x_0-h)}f(x_0)+\frac{x-x_0}{(x_0-h)-x_0}f(x_0-h).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec6">Polynomial approximation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Having performed this subdivision and polynomial approximation,
+one from \( x_0-h \) to \( x_0 \) and the other from \( x_0 \) to \( x_0+h \),
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \int_a^{a+2h}f(x)dx=\int_{x_0-h}^{x_0}f(x)dx+\int_{x_0}^{x_0+h}f(x)dx,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+we can easily calculate for example the second integral as
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\int_{x_0}^{x_0+h}f(x)dx\approx \int_{x_0}^{x_0+h}\left(\frac{x-x_0}{(x_0+h)-x_0}f(x_0+h)+\frac{x-(x_0+h)}{x_0-(x_0+h)}f(x_0)\right)dx.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec7">Simplifying the integral </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+This integral can be simplified to
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\int_{x_0}^{x_0+h}f(x)dx\approx \int_{x_0}^{x_0+h}\left(\frac{x-x_0}{h}f(x_0+h)-\frac{x-(x_0+h)}{h}f(x_0)\right)dx,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+resulting in
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\int_{x_0}^{x_0+h}f(x)dx=\frac{h}{2}\left(f(x_0+h) + f(x_0)\right)+O(h^3).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+Here we added the error made in approximating our integral 
+with a polynomial of degree \( 1 \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec8">The trapezoidal rule </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The other integral gives
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\int_{x_0-h}^{x_0}f(x)dx=\frac{h}{2}\left(f(x_0) + f(x_0-h)\right)+O(h^3),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and adding up we obtain
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   \int_{x_0-h}^{x_0+h}f(x)dx=\frac{h}{2}\left(f(x_0+h) + 2f(x_0) + f(x_0-h)\right)+O(h^3),
+\tag{3}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+which is the well-known trapezoidal rule.  Concerning the error in the approximation made,
+\( O(h^3)=O((b-a)^3/N^3) \), you should  note 
+that this is the local error.  Since we are splitting the integral from
+\( a \) to \( b \) in \( N \) pieces, we will have to perform approximately \( N \) 
+such operations.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec9">Global error </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+This means that the <em>global error</em> goes like \( \approx O(h^2) \). 
+The trapezoidal reads then
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   I=\int_a^bf(x) dx=h\left(f(a)/2 + f(a+h) +f(a+2h)+
+                          \dots +f(b-h)+ f_{b}/2\right),
+\tag{4}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+with a global error which goes like \( O(h^2) \).
+
+<p>
+Hereafter we use the shorthand notations \( f_{-h}=f(x_0-h) \), \( f_{0}=f(x_0) \)
+and \( f_{h}=f(x_0+h) \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec10">Error in the trapezoidal rule </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The correct mathematical expression for the local error for the trapezoidal rule is
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\int_a^bf(x)dx -\frac{b-a}{2}\left[f(a)+f(b)\right]=-\frac{h^3}{12}f^{(2)}(\xi),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and the global error reads
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\int_a^bf(x)dx -T_h(f)=-\frac{b-a}{12}h^2f^{(2)}(\xi),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+where \( T_h \) is the trapezoidal result and \( \xi \in [a,b] \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec11">Algorithm for the trapezoidal rule </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The trapezoidal rule is easy to  implement numerically 
+through the following simple algorithm
+
+<ul>
+
+<p><li> Choose the number of mesh points and fix the step length.</li>
+
+<p><li> calculate \( f(a) \) and \( f(b) \) and multiply with \( h/2 \).</li>
+
+<p><li> Perform a loop over \( n=1 \) to \( n-1 \) (\( f(a) \) and \( f(b) \) are known) and sum up  the terms \( f(a+h) +f(a+2h)+f(a+3h)+\dots +f(b-h) \). Each step in the loop  corresponds to a given value \( a+nh \).</li>
+
+<p><li> Multiply the final result by \( h \) and add \( hf(a)/2 \) and \( hf(b)/2 \).</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec12">Code example  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+A simple function which implements this algorithm is as follows
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">TrapezoidalRule</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> a, <span style="color: #a7a7a7; font-weight: bold">double</span> b, <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> (*func)(<span style="color: #a7a7a7; font-weight: bold">double</span>))
+{
+      <span style="color: #a7a7a7; font-weight: bold">double</span> TrapezSum;
+      <span style="color: #a7a7a7; font-weight: bold">double</span> fa, fb, x, step;
+      <span style="color: #a7a7a7; font-weight: bold">int</span>    j;
+      step=(b-a)/((<span style="color: #a7a7a7; font-weight: bold">double</span>) n);
+      fa=(*func)(a)/<span style="color: #B452CD">2.</span> ;
+      fb=(*func)(b)/<span style="color: #B452CD">2.</span> ;
+      TrapezSum=<span style="color: #B452CD">0.</span>;
+      <span style="color: #8B008B; font-weight: bold">for</span> (j=<span style="color: #B452CD">1</span>; j &lt;= n-<span style="color: #B452CD">1</span>; j++){
+         x=j*step+a;
+         TrapezSum+=(*func)(x);
+      }
+      TrapezSum=(TrapezSum+fb+fa)*step;
+      <span style="color: #8B008B; font-weight: bold">return</span> TrapezSum;
+}  <span style="color: #228B22">// end TrapezoidalRule </span>
+</pre></div>
+<p>
+The function returns a new value for the specific integral through the variable <b>TrapezSum</b>.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec13">Transfer of  function names  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+There is one new feature to note here, namely
+the transfer of a user defined function called <b>func</b> in the 
+definition 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%">  <span style="color: #a7a7a7; font-weight: bold">void</span> TrapezoidalRule(<span style="color: #a7a7a7; font-weight: bold">double</span> a, <span style="color: #a7a7a7; font-weight: bold">double</span> b, <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> *TrapezSum, <span style="color: #a7a7a7; font-weight: bold">double</span> (*func)(<span style="color: #a7a7a7; font-weight: bold">double</span>) )  
+</pre></div>
+<p>
+What happens here is that we are transferring a pointer to the name 
+of a user defined function, which has as input a double precision variable and returns
+a double precision number. The function  <b>TrapezoidalRule</b> is called as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%">  TrapezoidalRule(a, b, n, &amp;MyFunction )       
+</pre></div>
+<p>
+in the calling function. We note that <b>a</b>, <b>b</b> and <b>n</b> are called by value,
+while <b>TrapezSum</b> and the user defined function <b>MyFunction</b>
+are called by reference.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec14">The rectangle method </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Another very simple approach is the so-called midpoint or rectangle method.
+In this case the integration area is split in a given number of rectangles with length \( h \) and height given by the mid-point value of the function.  This gives the following simple rule for approximating an integral
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   I=\int_a^bf(x) dx \approx  h\sum_{i=1}^N f(x_{i-1/2}), 
+\tag{5}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+where \( f(x_{i-1/2}) \) is the midpoint value of \( f \) for a given rectangle. We will discuss its truncation 
+error below.  It is easy to implement this algorithm,  as shown here
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">RectangleRule</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> a, <span style="color: #a7a7a7; font-weight: bold">double</span> b, <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> (*func)(<span style="color: #a7a7a7; font-weight: bold">double</span>))
+{
+      <span style="color: #a7a7a7; font-weight: bold">double</span> RectangleSum;
+      <span style="color: #a7a7a7; font-weight: bold">double</span> fa, fb, x, step;
+      <span style="color: #a7a7a7; font-weight: bold">int</span>    j;
+      step=(b-a)/((<span style="color: #a7a7a7; font-weight: bold">double</span>) n);
+      RectangleSum=<span style="color: #B452CD">0.</span>;
+      <span style="color: #8B008B; font-weight: bold">for</span> (j = <span style="color: #B452CD">0</span>; j &lt;= n; j++){
+         x = (j+<span style="color: #B452CD">0.5</span>)*step+;   <span style="color: #228B22">// midpoint of a given rectangle</span>
+         RectangleSum+=(*func)(x);   <span style="color: #228B22">//  add value of function.</span>
+      }
+      RectangleSum *= step;  <span style="color: #228B22">//  multiply with step length.</span>
+      <span style="color: #8B008B; font-weight: bold">return</span> RectangleSum;
+}  <span style="color: #228B22">// end RectangleRule </span>
+</pre></div>
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec15">Truncation error for the rectangular rule  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The correct mathematical expression for the local error for the rectangular rule \( R_i(h) \) for element \( i \) is
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\int_{-h}^hf(x)dx - R_i(h)=-\frac{h^3}{24}f^{(2)}(\xi),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and the global error reads
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\int_a^bf(x)dx -R_h(f)=-\frac{b-a}{24}h^2f^{(2)}(\xi),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+where \( R_h \) is the result obtained with rectangular rule and \( \xi \in [a,b] \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec16">Second-order polynomial </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Instead of using the above first-order polynomials 
+approximations for \( f \), we attempt at using a second-order polynomials.
+In this case we need three points in order to define a second-order 
+polynomial approximation
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+f(x) \approx P_2(x)=a_0+a_1x+a_2x^2.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+Using again Lagrange's interpolation formula we have
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+     P_2(x)=\frac{(x-x_0)(x-x_1)}{(x_2-x_0)(x_2-x_1)}y_2+
+            \frac{(x-x_0)(x-x_2)}{(x_1-x_0)(x_1-x_2)}y_1+
+            \frac{(x-x_1)(x-x_2)}{(x_0-x_1)(x_0-x_2)}y_0.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+Inserting this formula in the integral of Eq.  <a href="#mjx-eqn-2">(2)</a> we obtain
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \int_{-h}^{+h}f(x)dx=\frac{h}{3}\left(f_h + 4f_0 + f_{-h}\right)+O(h^5),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which is Simpson's rule.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec17">Simpson's rule </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Note that the improved accuracy in the evaluation of
+the derivatives gives a better error approximation, \( O(h^5) \) vs.\ \( O(h^3) \) .
+But this is again the <em>local error approximation</em>. 
+Using Simpson's rule we can easily compute
+the integral     of Eq.  <a href="#mjx-eqn-1">(1)</a> to be
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   I=\int_a^bf(x) dx=\frac{h}{3}\left(f(a) + 4f(a+h) +2f(a+2h)+
+                          \dots +4f(b-h)+ f_{b}\right),
+\tag{6}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+with a global error which goes like \( O(h^4) \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec18">Mathematical expressions for the truncation error </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+More formal expressions for the local and global errors are for the local error
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\int_a^bf(x)dx -\frac{b-a}{6}\left[f(a)+4f((a+b)/2)+f(b)\right]=-\frac{h^5}{90}f^{(4)}(\xi),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and for the global error
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\int_a^bf(x)dx -S_h(f)=-\frac{b-a}{180}h^4f^{(4)}(\xi).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+with \( \xi\in[a,b] \) and \( S_h \) the results obtained with Simpson's method.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec19">Algorithm for Simpson's rule </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The method 
+can easily be implemented numerically through the following simple algorithm
+
+<ul>
+
+<p><li> Choose the number of mesh points and fix the step.</li>
+
+<p><li> calculate \( f(a) \) and \( f(b) \)</li>
+
+<p><li> Perform a loop over \( n=1 \) to \( n-1 \) (\( f(a) \) and \( f(b) \) are known) and sum up   the terms \( 4f(a+h) +2f(a+2h)+4f(a+3h)+\dots +4f(b-h) \). Each step in the loop  corresponds to a given value \( a+nh \). Odd values of \( n \) give \( 4 \) as factor  while even values yield \( 2 \) as factor.</li>
+
+<p><li> Multiply the final result by \( \frac{h}{3} \).</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec20">Summary for equal-step methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In more general terms, what we have done here is to approximate a given function \( f(x) \) with a polynomial
+of a certain degree. One can show that 
+given \( n+1 \) distinct points \( x_0,\dots, x_n\in[a,b] \) and \( n+1 \) values \( y_0,\dots,y_n \) there exists a 
+unique polynomial \( P_n(x) \) with the property
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   P_n(x_j) = y_j\hspace{0.5cm} j=0,\dots,n
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec21">Lagrange's polynomial </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In the Lagrange representation the interpolating polynomial is given by
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+P_n = \sum_{k=0}^nl_ky_k,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+with the Lagrange factors
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   l_k(x) = \prod_{\begin{array}{c}i=0 \\ i\ne k\end{array}}^n\frac{x-x_i}{x_k-x_i}\hspace{0.2cm} k=0,\dots,n.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec22">Polynomial approximation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If we for example set \( n=1 \), we obtain
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+P_1(x) = y_0\frac{x-x_1}{x_0-x_1}+y_1\frac{x-x_0}{x_1-x_0}=\frac{y_1-y_0}{x_1-x_0}x-\frac{y_1x_0+y_0x_1}{x_1-x_0},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which we recognize as the equation for a straight line.
+
+<p>
+The polynomial interpolatory quadrature of order \( n \) with equidistant quadrature points \( x_k=a+kh \)
+and step \( h=(b-a)/n \) is called the Newton-Cotes quadrature formula of order \( n \).
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec23">Gaussian Quadrature </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The methods we have presented hitherto are tailored to problems where the 
+mesh points \( x_i \) are equidistantly spaced, \( x_i \) differing from \( x_{i+1} \) by the step \( h \).
+
+<p>
+The basic idea behind all integration methods is to approximate the integral
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   I=\int_a^bf(x)dx \approx \sum_{i=1}^N\omega_if(x_i),  
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+where \( \omega \) and \( x \) are the weights and the chosen mesh points, respectively.
+In our previous discussion, these mesh points were fixed at the beginning, by choosing
+a given number of points \( N \). The weigths \( \omega \) resulted then from the integration
+method we applied. Simpson's rule, see Eq.  <a href="#mjx-eqn-6">(6)</a> would give
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \omega : \left\{h/3,4h/3,2h/3,4h/3,\dots,4h/3,h/3\right\},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+for the weights, while the trapezoidal rule resulted in
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \omega : \left\{h/2,h,h,\dots,h,h/2\right\}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec24">Gaussian Quadrature, main idea </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In general, an integration formula which is based on a Taylor series using \( N \) points,
+will integrate exactly a polynomial \( P \) of degree \( N-1 \). That is, the \( N \) weights
+\( \omega_n \) can be chosen to satisfy \( N \) linear equations, see chapter 3 of Ref.\ [3]. 
+A greater precision for a given amount of numerical work can  be achieved
+if we are willing to give up the requirement of equally spaced integration points.  
+In Gaussian quadrature (hereafter GQ), both the mesh points and the weights are to
+be determined. The points will not be equally spaced.
+
+<p>
+The theory behind GQ is to obtain an arbitrary weight \( \omega \) through the use of
+so-called orthogonal polynomials. These polynomials are orthogonal in some
+interval say e.g., [-1,1]. Our points \( x_i \) are chosen in some optimal sense subject
+only to the constraint that they should lie in this interval. Together with the weights
+we have then \( 2N \) (\( N \) the number of points) parameters at our disposal.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec25">Gaussian Quadrature </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Even though the integrand is not smooth, we could render it smooth by extracting
+from it the weight function of an orthogonal polynomial, i.e.,
+we are rewriting
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   I= \int_a^b f(x)dx =\int_a^b W(x)g(x)dx \approx \sum_{i=1}^N\omega_ig(x_i),  
+\tag{7}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+where \( g \) is smooth and \( W \) is the weight function, which is to  be associated with a given 
+orthogonal polynomial. Note that with a given weight function we end up evaluating the integrand
+for the function \( g(x_i) \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec26">Gaussian Quadrature, weight function </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The weight function \( W \) is non-negative in the integration interval 
+\( x\in [a,b] \) such that
+for any \( n \ge 0 \), the integral \( \int_a^b |x|^n W(x) dx \) is integrable. The naming
+weight function arises from the fact that it may be used to give more emphasis
+to one part of the interval than another. 
+A quadrature formula 
+<p>&nbsp;<br>
+$$
+\begin{equation} 
+   \int_a^b W(x)f(x)dx \approx \sum_{i=1}^N\omega_if(x_i), 
+\tag{8}
+\end{equation} 
+$$
+<p>&nbsp;<br>
+
+with \( N \) distinct quadrature points (mesh points) is a called a Gaussian quadrature 
+formula if it integrates all polynomials \( p\in P_{2N-1} \) exactly, that is
+<p>&nbsp;<br>
+$$
+\begin{equation} 
+\int_a^bW(x)p(x)dx =\sum_{i=1}^N\omega_ip(x_i), 
+\tag{9}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+It is assumed that \( W(x) \) is continuous and positive and that the integral
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+\int_a^bW(x)dx
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+exists. Note that the replacement of \( f\rightarrow Wg \) is normally a better approximation
+due to the fact that we may isolate possible singularities of \( W \) and its 
+derivatives at the endpoints of the interval.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec27">Gaussian Quadrature weights and integration points </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The quadrature weights or just weights (not to be confused with the weight function) 
+are positive and the sequence of Gaussian quadrature formulae is convergent 
+if the sequence \( Q_N \) of quadrature formulae
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   Q_N(f)\rightarrow Q(f)=\int_a^bf(x)dx,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+in the limit \( N\rightarrow \infty \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec28">Gaussian Quadrature </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Then  we say that the sequence
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+Q_N(f) = \sum_{i=1}^N\omega_i^{(N)}f(x_i^{(N)}), 
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+is convergent for all polynomials \( p \), that is
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+Q_N(p) = Q(p) 
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+if there exits a constant \( C \) such that
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+ \sum_{i=1}^N|\omega_i^{(N)}| \le C,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+for all \( N \) which are natural numbers.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec29">Error in Gaussian Quadrature </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The error for the Gaussian quadrature formulae of order \( N \) is given
+by
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_a^bW(x)f(x)dx-\sum_{k=1}^Nw_kf(x_k)=\frac{f^{2N}(\xi)}{(2N)!}\int_a^bW(x)[q_{N}(x)]^2dx
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+where \( q_{N} \) is the chosen orthogonal polynomial and \( \xi \) is a number in the interval \( [a,b] \).
+We have assumed that \( f\in C^{2N}[a,b] \), viz. the space of all real or complex  \( 2N \) times continuously
+differentiable functions.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec30">Important polynomials in Gaussian Quadrature </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In science there are several important orthogonal polynomials which arise
+from the solution of differential equations. Well-known examples are the  
+Legendre, Hermite, Laguerre and Chebyshev polynomials. They have the following weight functions
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">      Weight function      </th> <th align="center">           Interval           </th> <th align="center">Polynomial</th> </tr>
+</thead>
+<tbody>
+<tr><td align="right">   \( W(x)=1 \)                   </td> <td align="right">   \( x\in [-1,1] \)                 </td> <td align="right">   Legendre      </td> </tr>
+<tr><td align="right">   \( W(x)=e^{-x^2} \)            </td> <td align="right">   \( -\infty \le x \le \infty \)    </td> <td align="right">   Hermite       </td> </tr>
+<tr><td align="right">   \( W(x)=x^{\alpha}e^{-x} \)    </td> <td align="right">   \( 0 \le x \le \infty \)          </td> <td align="right">   Laguerre      </td> </tr>
+<tr><td align="right">   \( W(x)=1/(\sqrt{1-x^2}) \)    </td> <td align="right">   \( -1 \le x \le 1 \)              </td> <td align="right">   Chebyshev     </td> </tr>
+</tbody>
+</table>
+<p>
+The importance of the use of orthogonal polynomials in the evaluation
+of integrals can be summarized as follows.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec31">Gaussian Quadrature, win-win situation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Methods based on Taylor series using \( N \) points will  integrate exactly a polynomial \( P \) of degree \( N-1 \). If a function \( f(x) \) can be approximated with a polynomial of degree \( N-1 \)
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}            
+f(x)\approx P_{N-1}(x),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+with \( N \) mesh points we should be able to integrate exactly the polynomial \( P_{N-1} \).
+
+<p>
+Gaussian quadrature methods promise more than this. We can get a better          polynomial approximation with order greater than \( N \)  to \( f(x) \) and still          get away with only \( N \) mesh points. More precisely, we approximate
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}             
+f(x) \approx P_{2N-1}(x),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and with only \( N \) mesh points these methods promise that
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+            \int f(x)dx \approx \int P_{2N-1}(x)dx=\sum_{i=0}^{N-1} P_{2N-1}(x_i)\omega_i,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec32">Gaussian Quadrature, determining mesh points and weights </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The reason why we can represent a function \( f(x) \) with a polynomial of degree
+\( 2N-1 \) is due to the fact that we have \( 2N \) equations, \( N \) for the mesh points and \( N \)
+for the weights.
+
+<p>
+<em>The mesh points are the zeros  of the chosen  orthogonal polynomial</em> of
+order \( N \), and the weights are determined from the inverse of a matrix.
+An orthogonal polynomials of degree \( N \) defined in an interval \( [a,b] \)
+has precisely \( N \) distinct zeros on the open interval \( (a,b) \).
+
+<p>
+Before we detail how to obtain mesh points and weights with orthogonal 
+polynomials, let us revisit some features of orthogonal polynomials
+by specializing to Legendre polynomials. In the text below, we reserve 
+hereafter the labelling
+\( L_N \) for a Legendre polynomial of order \( N \), while \( P_N \) is an arbitrary polynomial
+of order \( N \). 
+These polynomials form then the basis for the Gauss-Legendre method.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec33">Orthogonal polynomials, Legendre </h2>
+
+<p>
+The Legendre polynomials are the solutions of an important
+differential equation in Science, namely
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+C(1-x^2)P-m_l^2P+(1-x^2)\frac{d}{dx}\left((1-x^2)\frac{dP}{dx}\right)=0.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+Here \( C \) is a constant. For \( m_l=0 \) we obtain the Legendre polynomials
+as solutions, whereas \( m_l \ne 0 \) yields the so-called associated Legendre
+polynomials. This differential equation arises in for example the solution
+of the angular dependence of Schroedinger's 
+equation with spherically symmetric potentials such as
+the Coulomb potential.
+</section>
+
+
+<section>
+<h2 id="___sec34">Orthogonal polynomials, Legendre </h2>
+The corresponding polynomials \( P \) are
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   L_k(x)=\frac{1}{2^kk!}\frac{d^k}{dx^k}(x^2-1)^k \hspace{1cm} k=0,1,2,\dots,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which, up to a factor, are the Legendre polynomials \( L_k \). 
+The latter fulfil the orthogonality relation
+<p>&nbsp;<br>
+$$
+\begin{equation} 
+  \int_{-1}^1L_i(x)L_j(x)dx=\frac{2}{2i+1}\delta_{ij},
+\tag{10}
+\end{equation} 
+$$
+<p>&nbsp;<br>
+
+and the recursion relation
+<p>&nbsp;<br>
+$$
+\begin{equation} 
+  (j+1)L_{j+1}(x)+jL_{j-1}(x)-(2j+1)xL_j(x)=0.
+\tag{11}
+\end{equation} 
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec35">Orthogonal polynomials, Legendre </h2>
+It is common to choose the normalization condition
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    L_N(1)=1.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+With these equations we can determine a Legendre polynomial of arbitrary order
+with input polynomials of order \( N-1 \) and \( N-2 \).
+
+<p>
+As an example, consider the determination of \( L_0 \), \( L_1 \) and \( L_2 \). 
+We have that
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   L_0(x) = c,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+with \( c \) a constant. Using the normalization equation \( L_0(1)=1 \)
+we get that
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   L_0(x) = 1.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec36">Orthogonal polynomials, Legendre </h2>
+For \( L_1(x) \) we have the general expression
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   L_1(x) = a+bx,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and using the orthogonality relation
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_{-1}^1L_0(x)L_1(x)dx=0,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+we obtain \( a=0 \) and with the condition \( L_1(1)=1 \), we obtain \( b=1 \), yielding
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   L_1(x) = x.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec37">Orthogonal polynomials, Legendre </h2>
+We can proceed in a similar fashion in order to determine
+the coefficients of \( L_2 \)
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   L_2(x) = a+bx+cx^2,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+using the orthogonality relations
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_{-1}^1L_0(x)L_2(x)dx=0,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_{-1}^1L_1(x)L_2(x)dx=0,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and the condition
+\( L_2(1)=1 \) we would get 
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   L_2(x) = \frac{1}{2}\left(3x^2-1\right).
+\tag{12}
+\end{equation}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec38">Orthogonal polynomials, Legendre </h2>
+We note that we have three equations to determine the three coefficients
+\( a \), \( b \) and \( c \).
+
+<p>
+Alternatively, we could have 
+employed the recursion relation of Eq. <a href="#mjx-eqn-11">(11)</a>, resulting in
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   2L_2(x)=3xL_1(x)-L_0,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which leads to Eq. <a href="#mjx-eqn-12">(12)</a>.
+</section>
+
+
+<section>
+<h2 id="___sec39">Orthogonal polynomials, Legendre </h2>
+The orthogonality relation above is important in our discussion
+on how to obtain the weights and mesh points. Suppose we have an arbitrary
+polynomial \( Q_{N-1} \) of order \( N-1 \) and a Legendre polynomial \( L_N(x) \) of
+order \( N \). We could represent \( Q_{N-1} \) 
+by the Legendre polynomials through 
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   Q_{N-1}(x)=\sum_{k=0}^{N-1}\alpha_kL_{k}(x),
+\tag{13}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+where \( \alpha_k \)'s are constants.
+
+<p>
+Using the orthogonality relation of Eq. <a href="#mjx-eqn-10">(10)</a> we see that
+<p>&nbsp;<br>
+$$
+\begin{equation}
+  \int_{-1}^1L_N(x)Q_{N-1}(x)dx=\sum_{k=0}^{N-1} \int_{-1}^1L_N(x) \alpha_kL_{k}(x)dx=0.
+\tag{14}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+We will use this result in our construction of mesh points and weights 
+in the next subsection.
+</section>
+
+
+<section>
+<h2 id="___sec40">Orthogonal polynomials, Legendre </h2>
+In summary, the first few Legendre polynomials are
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   L_0(x) =1,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  L_1(x) = x,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  L_2(x) = (3x^2-1)/2,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   L_3(x) = (5x^3-3x)/2,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   L_4(x) = (35x^4-30x^2+3)/8.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec41">Orthogonal polynomials, simple code for Legendre polynomials </h2>
+The following simple function implements the above recursion relation
+of Eq. <a href="#mjx-eqn-11">(11)</a>.
+for computing Legendre polynomials of order \( N \).
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">//  This function computes the Legendre polynomial of degree N</span>
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">Legendre</span>( <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> x) 
+{
+       <span style="color: #a7a7a7; font-weight: bold">double</span> r, s, t;
+       <span style="color: #a7a7a7; font-weight: bold">int</span> m;
+       r = <span style="color: #B452CD">0</span>; s = <span style="color: #B452CD">1.</span>;
+       <span style="color: #228B22">//  Use recursion relation to generate p1 and p2</span>
+       <span style="color: #8B008B; font-weight: bold">for</span> (m=<span style="color: #B452CD">0</span>; m &lt; n; m++ )  
+       {
+          t = r; r = s; 
+          s = (<span style="color: #B452CD">2</span>*m+<span style="color: #B452CD">1</span>)*x*r - m*t;
+          s /= (m+<span style="color: #B452CD">1</span>);
+	} <span style="color: #228B22">// end of do loop </span>
+        <span style="color: #8B008B; font-weight: bold">return</span> s;
+}   <span style="color: #228B22">// end of function Legendre</span>
+</pre></div>
+<p>
+The variable \( s \) represents \( L_{j+1}(x) \), while \( r \) holds
+\( L_j(x) \) and \( t \) the value \( L_{j-1}(x) \).
+</section>
+
+
+<section>
+<h2 id="___sec42">Integration points and weights with orthogonal polynomials </h2>
+
+<p>
+To understand how the weights and the mesh points are generated, we define first
+a polynomial of degree \( 2N-1 \) (since we have \( 2N \) variables at hand, the mesh points
+and weights for \( N \) points). This polynomial can be represented through polynomial
+division by
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   P_{2N-1}(x)=L_N(x)P_{N-1}(x)+Q_{N-1}(x),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+where \( P_{N-1}(x) \) and \( Q_{N-1}(x) \) are some polynomials of degree \( N-1 \) or less.
+The function \( L_N(x) \) is a Legendre polynomial of order \( N \).
+
+<p>
+Recall that we wanted to approximate  an arbitrary function \( f(x) \) with a
+polynomial \( P_{2N-1} \) in order to evaluate
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \int_{-1}^1f(x)dx\approx \int_{-1}^1P_{2N-1}(x)dx.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec43">Integration points and weights with orthogonal polynomials </h2>
+We can use Eq. <a href="#mjx-eqn-14">(14)</a>
+to rewrite the above integral as
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   \int_{-1}^1P_{2N-1}(x)dx=\int_{-1}^1(L_N(x)P_{N-1}(x)+Q_{N-1}(x))dx=\int_{-1}^1Q_{N-1}(x)dx,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+due to the orthogonality properties of the Legendre polynomials. We see that it suffices
+to evaluate the integral over \( \int_{-1}^1Q_{N-1}(x)dx \) in order to evaluate 
+\( \int_{-1}^1P_{2N-1}(x)dx \). In addition, at the points \( x_k \) where \( L_N \) is zero, we have
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    P_{2N-1}(x_k)=Q_{N-1}(x_k)\hspace{1cm} k=0,1,\dots, N-1,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and we see that through these \( N \) points we can fully define \( Q_{N-1}(x) \)  and thereby the 
+integral. Note that we have chosen to let the numbering of the points run from \( 0 \) to \( N-1 \).
+The reason for this choice is that we wish to have the same numbering as the order of a 
+polynomial of degree \( N-1 \).  This numbering will be useful below when  we introduce the matrix
+elements  which define the integration weights \( w_i \).
+</section>
+
+
+<section>
+<h2 id="___sec44">Integration points and weights with orthogonal polynomials </h2>
+We develope then \( Q_{N-1}(x) \) in terms of Legendre polynomials,
+as done in Eq. <a href="#mjx-eqn-13">(13)</a>, 
+<p>&nbsp;<br>
+$$
+\begin{equation} 
+  Q_{N-1}(x)=\sum_{i=0}^{N-1}\alpha_iL_i(x).
+\tag{15}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+Using the orthogonality property of the Legendre polynomials we have
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+  \int_{-1}^1Q_{N-1}(x)dx=\sum_{i=0}^{N-1}\alpha_i\int_{-1}^1L_0(x)L_i(x)dx=2\alpha_0,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+where we have just inserted \( L_0(x)=1 \)!
+</section>
+
+
+<section>
+<h2 id="___sec45">Integration points and weights with orthogonal polynomials </h2>
+Instead of an integration problem we need now to define the coefficient \( \alpha_0 \).
+Since we know the values of \( Q_{N-1} \) at the zeros of \( L_N \), we may rewrite  
+Eq.  <a href="#mjx-eqn-15">(15)</a> as
+<p>&nbsp;<br>
+$$
+\begin{equation} 
+  Q_{N-1}(x_k)=\sum_{i=0}^{N-1}\alpha_iL_i(x_k)=\sum_{i=0}^{N-1}\alpha_iL_{ik} \hspace{1cm} k=0,1,\dots, N-1.
+\tag{16}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+Since the Legendre polynomials are linearly independent of each other, none 
+of the columns in the matrix \( L_{ik} \) are linear combinations of the others.
+</section>
+
+
+<section>
+<h2 id="___sec46">Integration points and weights with orthogonal polynomials </h2>
+This means that the matrix \( L_{ik} \) has an inverse with the properties
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \hat{L}^{-1}\hat{L} = \hat{I}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+Multiplying both sides of Eq. <a href="#mjx-eqn-16">(16)</a> with \( \sum_{j=0}^{N-1}L_{ji}^{-1} \) results in 
+<p>&nbsp;<br>
+$$
+\begin{equation}
+  \sum_{i=0}^{N-1}(L^{-1})_{ki}Q_{N-1}(x_i)=\alpha_k.
+\tag{17}
+\end{equation}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec47">Integration points and weights with orthogonal polynomials </h2>
+We can derive this result in an alternative way by defining the vectors
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\hat{x}_k=\left(\begin{array} {c} x_0\\
+                                x_1\\
+                                .\\
+                                .\\
+                                x_{N-1}\end{array}\right) \hspace{0.5cm}
+\hat{\alpha}=\left(\begin{array} {c} \alpha_0\\
+                                \alpha_1\\
+                                .\\
+                                .\\
+                                \alpha_{N-1}\end{array}\right),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and the matrix
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \hat{L}=\left(\begin{array} {cccc} L_0(x_0)  & L_1(x_0) &\dots &L_{N-1}(x_0)\\
+                                   L_0(x_1)  & L_1(x_1) &\dots &L_{N-1}(x_1)\\
+                                   \dots  & \dots &\dots &\dots\\
+L_0(x_{N-1})  & L_1(x_{N-1}) &\dots &L_{N-1}(x_{N-1})
+\end{array}\right).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec48">Integration points and weights with orthogonal polynomials </h2>
+We have then
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+Q_{N-1}(\hat{x}_k) = \hat{L}\hat{\alpha},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+yielding (if \( \hat{L} \) has an inverse)
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\hat{L}^{-1}Q_{N-1}(\hat{x}_k) = \hat{\alpha},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which is Eq. <a href="#mjx-eqn-17">(17)</a>.
+</section>
+
+
+<section>
+<h2 id="___sec49">Integration points and weights with orthogonal polynomials </h2>
+Using the above results and the fact that
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   \int_{-1}^1P_{2N-1}(x)dx=\int_{-1}^1Q_{N-1}(x)dx,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+we get
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   \int_{-1}^1P_{2N-1}(x)dx=\int_{-1}^1Q_{N-1}(x)dx=2\alpha_0=
+   2\sum_{i=0}^{N-1}(L^{-1})_{0i}P_{2N-1}(x_i).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec50">Integration points and weights with orthogonal polynomials </h2>
+If we identify the weights with \( 2(L^{-1})_{0i} \), where the points \( x_i \) are
+the zeros of \( L_N \), we have an integration formula of the type
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \int_{-1}^1P_{2N-1}(x)dx=\sum_{i=0}^{N-1}\omega_iP_{2N-1}(x_i)  
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and if our function \( f(x) \)  can be approximated by a polynomial \( P \) of degree
+\( 2N-1 \), we have finally that
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    \int_{-1}^1f(x)dx\approx \int_{-1}^1P_{2N-1}(x)dx=\sum_{i=0}^{N-1}\omega_iP_{2N-1}(x_i)  .
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+In summary, the mesh points \( x_i \) are defined by the zeros of an orthogonal polynomial of degree \( N \), that is 
+\( L_N \), while the weights are
+given by \( 2(L^{-1})_{0i} \).
+</section>
+
+
+<section>
+<h2 id="___sec51">Application to the case \( N=2 \) </h2>
+
+<p>
+Let us apply the above formal results to the case \( N=2 \). 
+This means that we can approximate a function \( f(x) \) with a
+polynomial \( P_3(x) \) of order \( 2N-1=3 \).
+
+<p>
+The mesh points are the zeros of \( L_2(x)=1/2(3x^2-1) \). 
+These points are \( x_0=-1/\sqrt{3} \) and \( x_1=1/\sqrt{3} \).
+
+<p>
+Specializing Eq. <a href="#mjx-eqn-16">(16)</a>
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+  Q_{N-1}(x_k)=\sum_{i=0}^{N-1}\alpha_iL_i(x_k) \hspace{1cm} k=0,1,\dots, N-1.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+to \( N=2 \) yields
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   Q_1(x_0)=\alpha_0-\alpha_1\frac{1}{\sqrt{3}},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   Q_1(x_1)=\alpha_0+\alpha_1\frac{1}{\sqrt{3}},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+since \( L_0(x=\pm 1/\sqrt{3})=1 \) and \( L_1(x=\pm 1/\sqrt{3})=\pm 1/\sqrt{3} \).
+</section>
+
+
+<section>
+<h2 id="___sec52">Application to the case \( N=2 \) </h2>
+The matrix \( L_{ik} \) defined in Eq. <a href="#mjx-eqn-16">(16)</a> is then
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \hat{L}=\left(\begin{array} {cc} 1  & -\frac{1}{\sqrt{3}}\\
+                                   1  & \frac{1}{\sqrt{3}}\end{array}\right),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+with an inverse given by
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \hat{L}^{-1}=\frac{\sqrt{3}}{2}\left(\begin{array} {cc} \frac{1}{\sqrt{3}}  & \frac{1}{\sqrt{3}}\\
+                                   -1  & 1\end{array}\right).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+The weights are given by the matrix elements \( 2(L_{0k})^{-1} \). We have thence
+\( \omega_0=1 \) and \( \omega_1=1 \).
+</section>
+
+
+<section>
+<h2 id="___sec53">Application to the case \( N=2 \) </h2>
+Obviously, there is no problem in changing the numbering of the matrix elements \( i,k=0,1,2,\dots,N-1 \) to
+\( i,k=1,2,\dots,N \).  We have chosen to start from zero, since we deal with polynomials of degree \( N-1 \).
+
+<p>
+Summarizing, for Legendre polynomials with \( N=2 \) we have
+weights
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \omega : \left\{1,1\right\},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and mesh points
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   x : \left\{-\frac{1}{\sqrt{3}},\frac{1}{\sqrt{3}}\right\}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec54">Application to the case \( N=2 \) </h2>
+If we wish to integrate
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \int_{-1}^1f(x)dx,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+with \( f(x)=x^2 \), we approximate
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   I=\int_{-1}^1x^2dx \approx \sum_{i=0}^{N-1}\omega_ix_i^2.  
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec55">Application to the case \( N=2 \) </h2>
+The exact answer is \( 2/3 \). Using \( N=2 \) with the above two weights 
+and mesh points we get
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   I=\int_{-1}^1x^2dx =\sum_{i=0}^{1}\omega_ix_i^2=\frac{1}{3}+\frac{1}{3}=\frac{2}{3},  
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+the exact answer!
+
+<p>
+If we were to emply the trapezoidal rule we would get
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   I=\int_{-1}^1x^2dx =\frac{b-a}{2}\left((a)^2+(b)^2\right)/2=
+                       \frac{1-(-1)}{2}\left((-1)^2+(1)^2\right)/2=1!
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+With just two points we can calculate exactly the integral for a second-order
+polynomial since our methods approximates the exact function with higher
+order polynomial. 
+How many points do you need with the trapezoidal rule in order to achieve a
+similar accuracy?
+</section>
+
+
+<section>
+<h2 id="___sec56">General integration intervals for Gauss-Legendre </h2>
+
+<p>
+Note that the Gauss-Legendre method is not limited
+to an interval [-1,1], since we can always through a change of variable
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   t=\frac{b-a}{2}x+\frac{b+a}{2},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+rewrite  the integral for an interval  [a,b]
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_a^bf(t)dt=\frac{b-a}{2}\int_{-1}^1f\left(\frac{(b-a)x}{2}+\frac{b+a}{2}\right)dx.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec57">Mapping integration points and weights </h2>
+If we have an integral on the form
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_0^{\infty}f(t)dt,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+we can choose new mesh points and weights by using the mapping
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\tilde{x}_i=tan\left\{\frac{\pi}{4}(1+x_i)\right\},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\tilde{\omega}_i= \frac{\pi}{4}\frac{\omega_i}{cos^2\left(\frac{\pi}{4}(1+x_i)\right)},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+where \( x_i \) and \( \omega_i \) are the original mesh points and weights in the 
+interval \( [-1,1] \), while \( \tilde{x}_i \) and \( \tilde{\omega}_i \) are the new
+mesh points and weights for the interval \( [0,\infty) \).
+</section>
+
+
+<section>
+<h2 id="___sec58">Mapping integration points and weights </h2>
+To see  that this is correct by inserting the 
+the value of \( x_i=-1 \) (the lower end of the interval \( [-1,1] \))
+into the expression for \( \tilde{x}_i \). That gives \( \tilde{x}_i=0 \),
+the lower end of the interval \( [0,\infty) \). For
+\( x_i=1 \), we obtain \( \tilde{x}_i=\infty \). To check that the new
+weights are correct, recall that the weights should correspond to the 
+derivative of the mesh points. Try to convince yourself that the
+above expression fulfills this condition.
+</section>
+
+
+<section>
+<h2 id="___sec59">Other orthogonal polynomials, Laguerre polynomials </h2>
+
+<p>
+If we are able to rewrite our integral of Eq.  <a href="#mjx-eqn-7">(7)</a> with a
+weight function \( W(x)=x^{\alpha}e^{-x} \) with integration limits 
+\( [0,\infty) \), we could then use the Laguerre polynomials.
+The polynomials form then the basis for the Gauss-Laguerre method which can be applied
+to integrals of the form
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   I=\int_0^{\infty}f(x)dx =\int_0^{\infty}x^{\alpha}e^{-x}g(x)dx.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec60">Other orthogonal polynomials, Laguerre polynomials </h2>
+These polynomials arise from the solution of the differential
+equation
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\left(\frac{d^2 }{dx^2}-\frac{d }{dx}+\frac{\lambda}{x}-\frac{l(l+1)}{x^2}\right){\cal L}(x)=0,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+where \( l \) is an integer \( l\ge 0 \) and \( \lambda \) a constant. This equation
+arises for example from the solution of the radial Schr\"odinger equation with 
+a centrally symmetric potential such as the Coulomb potential.
+</section>
+
+
+<section>
+<h2 id="___sec61">Other orthogonal polynomials, Laguerre polynomials </h2>
+The first few polynomials are
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   {\cal L}_0(x)=1,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    {\cal L}_1(x)=1-x,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    {\cal L}_2(x)=2-4x+x^2,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    {\cal L}_3(x)=6-18x+9x^2-x^3,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    {\cal L}_4(x)=x^4-16x^3+72x^2-96x+24.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec62">Other orthogonal polynomials, Laguerre polynomials </h2>
+They fulfil the orthogonality relation
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_{0}^{\infty}e^{-x}{\cal L}_n(x)^2dx=1,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and the recursion relation
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  (n+1){\cal L}_{n+1}(x)=(2n+1-x){\cal L}_{n}(x)-n{\cal L}_{n-1}(x).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec63">Other orthogonal polynomials, Hermite polynomials </h2>
+
+<p>
+In a similar way, for an integral which goes like
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   I=\int_{-\infty}^{\infty}f(x)dx =\int_{-\infty}^{\infty}e^{-x^2}g(x)dx.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+we could use the Hermite polynomials in order to extract weights and mesh points.
+The Hermite polynomials are the solutions of the following differential
+equation
+
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   \frac{d^2H(x)}{dx^2}-2x\frac{dH(x)}{dx}+
+       (\lambda-1)H(x)=0.
+\tag{18}
+\end{equation}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec64">Other orthogonal polynomials, Hermite polynomials </h2>
+A typical example is again the solution of Schrodinger's
+equation, but this time with a harmonic oscillator potential.
+The first few polynomials are
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   H_0(x)=1,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    H_1(x)=2x,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    H_2(x)=4x^2-2,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    H_3(x)=8x^3-12,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    H_4(x)=16x^4-48x^2+12.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+They fulfil the orthogonality relation
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_{-\infty}^{\infty}e^{-x^2}H_n(x)^2dx=2^nn!\sqrt{\pi},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and the recursion relation
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  H_{n+1}(x)=2xH_{n}(x)-2nH_{n-1}(x).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec65">Demonstration of Gaussian Quadrature </h2>
+Let us here compare three methods for integrating, namely the trapezoidal rule,
+Simpson's method and the Gauss-Legendre approach. 
+We choose two functions to integrate:
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_1^{100}\frac{\exp{(-x)}}{x}dx,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_{0}^{3}\frac{1}{2+x^2}dx.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec66">Demonstration of Gaussian Quadrature, simple program </h2>
+A program example which uses the trapezoidal rule, Simpson's rule
+and the Gauss-Legendre method is included here. 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #1e889b">#include &lt;iostream&gt;</span>
+<span style="color: #1e889b">#include &quot;lib.h&quot;</span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+<span style="color: #228B22">//     Here we define various functions called by the main program</span>
+<span style="color: #228B22">//     this function defines the function to integrate</span>
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">int_function</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x);
+<span style="color: #228B22">//   Main function begins here</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
+{
+     <span style="color: #a7a7a7; font-weight: bold">int</span> n;
+     <span style="color: #a7a7a7; font-weight: bold">double</span> a, b;
+     cout &lt;&lt; <span style="color: #CD5555">&quot;Read in the number of integration points&quot;</span> &lt;&lt; endl;
+     cin &gt;&gt; n;
+     cout &lt;&lt; <span style="color: #CD5555">&quot;Read in integration limits&quot;</span> &lt;&lt; endl;
+     cin &gt;&gt; a &gt;&gt; b;
+<span style="color: #228B22">//   reserve space in memory for vectors containing the mesh points</span>
+<span style="color: #228B22">//   weights and function values for the use of the gauss-legendre</span>
+<span style="color: #228B22">//   method</span>
+     <span style="color: #a7a7a7; font-weight: bold">double</span> *x = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span> [n];
+     <span style="color: #a7a7a7; font-weight: bold">double</span> *w = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span> [n];
+<span style="color: #228B22">//   set up the mesh points and weights</span>
+     gauss_legendre(a, b,x,w, n);
+<span style="color: #228B22">//   evaluate the integral with the Gauss-Legendre method</span>
+<span style="color: #228B22">//   Note that we initialize the sum</span>
+     <span style="color: #a7a7a7; font-weight: bold">double</span> int_gauss = <span style="color: #B452CD">0.</span>;
+     <span style="color: #8B008B; font-weight: bold">for</span> ( <span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>;  i &lt; n; i++){
+        int_gauss+=w[i]*int_function(x[i]);
+     }
+<span style="color: #228B22">//    final output</span>
+      cout &lt;&lt; <span style="color: #CD5555">&quot;Trapez-rule = &quot;</span> &lt;&lt; trapezoidal_rule(a, b,n, int_function)
+           &lt;&lt; endl;
+      cout &lt;&lt; <span style="color: #CD5555">&quot;Simpson&#39;s rule = &quot;</span> &lt;&lt; simpson(a, b,n, int_function) 
+           &lt;&lt; endl;
+      cout &lt;&lt; <span style="color: #CD5555">&quot;Gaussian quad = &quot;</span> &lt;&lt; int_gauss &lt;&lt; endl;
+      <span style="color: #8B008B; font-weight: bold">delete</span> [] x;
+      <span style="color: #8B008B; font-weight: bold">delete</span> [] w;
+      <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+}  <span style="color: #228B22">// end of main program</span>
+<span style="color: #228B22">//  this function defines the function to integrate</span>
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">int_function</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x)
+{
+  <span style="color: #a7a7a7; font-weight: bold">double</span> value = <span style="color: #B452CD">4.</span>/(<span style="color: #B452CD">1.</span>+x*x);
+  <span style="color: #8B008B; font-weight: bold">return</span> value;
+} <span style="color: #228B22">// end of function to evaluate</span>
+</pre></div>
+</section>
+
+
+<section>
+<h2 id="___sec67">Demonstration of Gaussian Quadrature </h2>
+To be noted in this program is that we can transfer the name of a given function to integrate.
+In the table here we show the results for the first integral using various 
+mesh points,.
+
+<p>
+<table border="1">
+<thead>
+<tr><td align="center">\( N \)</td> <th align="center"> Trapez </th> <th align="center">Simpson </th> <th align="center">Gauss-Legendre</th> </tr>
+</thead>
+<tbody>
+<tr><td align="right">   10         </td> <td align="left">   1.821020    </td> <td align="left">   1.214025    </td> <td align="left">   0.1460448         </td> </tr>
+<tr><td align="right">   20         </td> <td align="left">   0.912678    </td> <td align="left">   0.609897    </td> <td align="left">   0.2178091         </td> </tr>
+<tr><td align="right">   40         </td> <td align="left">   0.478456    </td> <td align="left">   0.333714    </td> <td align="left">   0.2193834         </td> </tr>
+<tr><td align="right">   100        </td> <td align="left">   0.273724    </td> <td align="left">   0.231290    </td> <td align="left">   0.2193839         </td> </tr>
+<tr><td align="right">   1000       </td> <td align="left">   0.219984    </td> <td align="left">   0.219387    </td> <td align="left">   0.2193839         </td> </tr>
+</tbody>
+</table>
+<p>
+We note here that, since the area over where we integrate is rather large and the integrand 
+goes slowly to zero for large values of \( x \), both the trapezoidal rule and Simpson's method
+need quite many points in order to approach the Gauss-Legendre method. 
+This integrand demonstrates clearly the strength of the Gauss-Legendre method
+(and other GQ methods as well), viz., few points
+are needed in order to achieve a very high precision.
+</section>
+
+
+<section>
+<h2 id="___sec68">Demonstration of Gaussian Quadrature </h2>
+The second table however shows that for smaller integration intervals, both the trapezoidal rule
+and Simpson's method compare well with the results obtained with the Gauss-Legendre
+approach.
+
+<p>
+<table border="1">
+<thead>
+<tr><td align="center">\( N \)</td> <th align="center"> Trapez </th> <th align="center">Simpson </th> <th align="center">Gauss-Legendre</th> </tr>
+</thead>
+<tbody>
+<tr><td align="right">   10         </td> <td align="left">   0.798861    </td> <td align="left">   0.799231    </td> <td align="left">   0.799233          </td> </tr>
+<tr><td align="right">   20         </td> <td align="left">   0.799140    </td> <td align="left">   0.799233    </td> <td align="left">   0.799233          </td> </tr>
+<tr><td align="right">   40         </td> <td align="left">   0.799209    </td> <td align="left">   0.799233    </td> <td align="left">   0.799233          </td> </tr>
+<tr><td align="right">   100        </td> <td align="left">   0.799229    </td> <td align="left">   0.799233    </td> <td align="left">   0.799233          </td> </tr>
+<tr><td align="right">   1000       </td> <td align="left">   0.799233    </td> <td align="left">   0.799233    </td> <td align="left">   0.799233          </td> </tr>
+</tbody>
+</table>
+</section>
+
+
+<section>
+<h2 id="___sec69">Treatment of Singular Integrals </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+So-called principal value (PV) integrals are often employed in physics,
+from Green's functions for scattering to dispersion relations.
+Dispersion relations are often related to measurable quantities
+and provide important consistency checks in atomic, nuclear and
+particle physics. 
+A PV integral is defined as
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   I(x)={\cal P}\int_a^bdt\frac{f(t)}{t-x}=\lim_{\epsilon\rightarrow 0^+}
+\left[\int_a^{x-\epsilon}dt\frac{f(t)}{t-x}+\int_{x+\epsilon}^bdt\frac{f(t)}{t-x}\right],
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and 
+arises in applications
+of Cauchy's residue theorem when the pole \( x \)  lies 
+on the real axis within the interval of integration \( [a,b] \). Here \( {\cal P} \) stands for the principal value. <em>An important assumption is that the function \( f(t) \) is continuous 
+on the interval of integration</em>.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec70">Treatment of Singular Integrals </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In case \( f(t) \) is a closed form expression or it has an analytic continuation
+in the complex plane, it may be  possible to obtain an expression on closed
+form for the above integral.
+
+<p>
+However, the situation which we are often confronted with is that
+\( f(t) \) is only known at some points \( t_i \) with corresponding
+values \( f(t_i) \). In order to obtain \( I(x) \) we need to resort to a
+numerical evaluation.
+
+<p>
+To evaluate such an integral, let us first rewrite it as
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+ {\cal P}\int_a^bdt\frac{f(t)}{t-x}=
+\int_a^{x-\Delta}dt\frac{f(t)}{t-x}+\int_{x+\Delta}^bdt\frac{f(t)}{t-x}+
+{\cal P}\int_{x-\Delta}^{x+\Delta}dt\frac{f(t)}{t-x},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+where we have isolated the principal value part in the last integral.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec71">Treatment of Singular Integrals, change of variables </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Defining a new variable \( u=t-x \), we can rewrite the principal value
+integral as
+<p>&nbsp;<br>
+$$
+\begin{equation} 
+I_{\Delta}(x)={\cal P}\int_{-\Delta}^{+\Delta}du\frac{f(u+x)}{u}.
+\tag{19}
+\end{equation} 
+$$
+<p>&nbsp;<br>
+
+One possibility is to Taylor expand \( f(u+x) \) around \( u=0 \), and compute
+derivatives to a certain order as we did for the Trapezoidal rule or
+Simpson's rule. 
+Since all terms with even powers of \( u \) in the Taylor expansion dissapear,
+we have that
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+I_{\Delta}(x)\approx \sum_{n=0}^{N_{max}}f^{(2n+1)}(x)
+                     \frac{\Delta^{2n+1}}{(2n+1)(2n+1)!}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec72">Treatment of Singular Integrals, higher-order derivatives </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+To evaluate higher-order derivatives may be both time 
+consuming and delicate from a numerical point of view, since 
+there is always the risk of loosing precision when calculating
+derivatives numerically. Unless we have an analytic expression
+for \( f(u+x) \) and can evaluate the derivatives in a closed form,
+the above approach is not the preferred one.
+
+<p>
+Rather, we show here how to use the Gauss-Legendre method
+to compute Eq. <a href="#mjx-eqn-19">(19)</a>. 
+Let us first introduce a new variable \( s=u/\Delta \) and rewrite
+Eq. <a href="#mjx-eqn-19">(19)</a> as
+
+<p>&nbsp;<br>
+$$
+\begin{equation}
+I_{\Delta}(x)={\cal P}\int_{-1}^{+1}ds\frac{f(\Delta s+x)}{s}.
+\tag{20}
+\end{equation}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec73">Treatment of Singular Integrals  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The integration limits are now from \( -1 \) to \( 1 \), as for the Legendre
+polynomials.
+The principal value in Eq. <a href="#mjx-eqn-20">(20)</a> is however rather tricky
+to evaluate numerically, mainly since computers have limited
+precision. We will here use a subtraction trick often used
+when dealing with singular integrals in numerical calculations.
+We introduce first the calculus relation
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_{-1}^{+1} \frac{ds}{s} =0.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+It means that the curve \( 1/(s) \) has equal and opposite
+areas on both sides of the singular point \( s=0 \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec74">Treatment of Singular Integrals  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If we then note that \( f(x) \) is just a constant, we have also
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  f(x)\int_{-1}^{+1} \frac{ds}{s}=\int_{-1}^{+1}f(x) \frac{ds}{s} =0.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>
+Subtracting this equation from 
+Eq. <a href="#mjx-eqn-20">(20)</a> yields
+<p>&nbsp;<br>
+$$
+\begin{equation}
+I_{\Delta}(x)={\cal P}\int_{-1}^{+1}ds\frac{f(\Delta s+x)}{s}=\int_{-1}^{+1}ds\frac{f(\Delta s+x)-f(x)}{s},
+\tag{21}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+and the integrand is no longer singular since we have that 
+\( \lim_{s \rightarrow 0} (f(s+x) -f(x))=0 \) and for the particular case
+\( s=0 \) the integrand 
+is now finite.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec75">Treatment of Singular Integrals  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Eq. <a href="#mjx-eqn-21">(21)</a> is now rewritten using the Gauss-Legendre
+method resulting in
+<p>&nbsp;<br>
+$$
+\begin{equation}
+\int_{-1}^{+1}ds\frac{f(\Delta s+x)-f(x)}{s}=\sum_{i=1}^{N}\omega_i\frac{f(\Delta s_i+x)-f(x)}{s_i},
+\tag{22}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+where \( s_i \) are the mesh points (\( N \) in total) and \( \omega_i \) are the weights.
+
+<p>
+In the selection of mesh points for  a PV integral, it is important
+to use an even number of points, since an odd number of mesh
+points always picks \( s_i=0 \) as one of the mesh points. The sum in
+Eq. <a href="#mjx-eqn-22">(22)</a> will then diverge.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec76">Treatment of Singular Integrals  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Let us apply this method to the integral
+<p>&nbsp;<br>
+$$
+\begin{equation}
+I(x)={\cal P}\int_{-1}^{+1}dt\frac{e^t}{t}.
+\tag{23}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+The integrand diverges at \( x=t=0 \). We
+rewrite it using Eq. <a href="#mjx-eqn-21">(21)</a> as
+<p>&nbsp;<br>
+$$
+\begin{equation}
+{\cal P}\int_{-1}^{+1}dt\frac{e^t}{t}=\int_{-1}^{+1}\frac{e^t-1}{t},
+\tag{24}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+since \( e^x=e^0=1 \). With Eq. <a href="#mjx-eqn-22">(22)</a> we have then
+<p>&nbsp;<br>
+$$
+\begin{equation}
+\int_{-1}^{+1}\frac{e^t-1}{t}\approx \sum_{i=1}^{N}\omega_i\frac{e^{t_i}-1}{t_i}.
+\tag{25}
+\end{equation}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec77">Treatment of Singular Integrals  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The exact results is \( 2.11450175075.... \). With just two mesh points we recall
+from the previous subsection that \( \omega_1=\omega_2=1 \) and that the mesh points are the zeros of \( L_2(x) \), namely \( x_1=-1/\sqrt{3} \) and 
+\( x_2=1/\sqrt{3} \). Setting \( N=2 \) and inserting these values in the last
+equation gives
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   I_2(x=0)=\sqrt{3}\left(e^{1/\sqrt{3}}-e^{-1/\sqrt{3}}\right)=2.1129772845.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+With six mesh points we get even the exact result to the tenth digit
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   I_6(x=0)=2.11450175075!
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec78">Treatment of Singular Integrals  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We can repeat the above subtraction trick  for more complicated
+integrands.
+First we modify the integration limits to \( \pm \infty \) and use the fact
+that
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_{-\infty}^{\infty} \frac{dk}{k-k_0}=
+  \int_{-\infty}^{0} \frac{dk}{k-k_0}+
+  \int_{0}^{\infty} \frac{dk}{k-k_0} =0.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+A change of variable \( u=-k \) in the integral with limits from \( -\infty \) to \( 0 \) gives
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_{-\infty}^{\infty} \frac{dk}{k-k_0}=
+  \int_{\infty}^{0} \frac{-du}{-u-k_0}+
+  \int_{0}^{\infty} \frac{dk}{k-k_0}=  \int_{0}^{\infty} \frac{dk}{-k-k_0}+
+  \int_{0}^{\infty} \frac{dk}{k-k_0}=0.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec79">Treatment of Singular Integrals  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+It means that the curve \( 1/(k-k_0) \) has equal and opposite
+areas on both sides of the singular point \( k_0 \). If we break
+the integral into one over positive \( k \) and one over 
+negative \( k \), a change of variable \( k\rightarrow -k \) 
+allows us to rewrite the last equation as
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+  \int_{0}^{\infty} \frac{dk}{k^2-k_0^2} =0.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec80">Treatment of Singular Integrals  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We can use this to express a principal values integral
+as
+<p>&nbsp;<br>
+$$
+\begin{equation}
+  {\cal P}\int_{0}^{\infty} \frac{f(k)dk}{k^2-k_0^2} =
+  \int_{0}^{\infty} \frac{(f(k)-f(k_0))dk}{k^2-k_0^2},
+\tag{26}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+where the right-hand side is no longer singular at 
+\( k=k_0 \), it is proportional to the derivative \( df/dk \),
+and can be evaluated numerically as any other integral.
+
+<p>
+Such a trick is often used when evaluating integral  equations, as discussed in the next section.
+</div>
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.min.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+    // Display navigation controls in the bottom right corner
+    controls: true,
+
+    // Display progress bar (below the horiz. slider)
+    progress: true,
+
+    // Display the page number of the current slide
+    slideNumber: true,
+
+    // Push each slide change to the browser history
+    history: false,
+
+    // Enable keyboard shortcuts for navigation
+    keyboard: true,
+
+    // Enable the slide overview mode
+    overview: true,
+
+    // Vertical centering of slides
+    //center: true,
+    center: false,
+
+    // Enables touch navigation on devices with touch input
+    touch: true,
+
+    // Loop the presentation
+    loop: false,
+
+    // Change the presentation direction to be RTL
+    rtl: false,
+
+    // Turns fragments on and off globally
+    fragments: true,
+
+    // Flags if the presentation is running in an embedded mode,
+    // i.e. contained within a limited portion of the screen
+    embedded: false,
+
+    // Number of milliseconds between automatically proceeding to the
+    // next slide, disabled when set to 0, this value can be overwritten
+    // by using a data-autoslide attribute on your slides
+    autoSlide: 0,
+
+    // Stop auto-sliding after user input
+    autoSlideStoppable: true,
+
+    // Enable slide navigation via mouse wheel
+    mouseWheel: false,
+
+    // Hides the address bar on mobile devices
+    hideAddressBar: true,
+
+    // Opens links in an iframe preview overlay
+    previewLinks: false,
+
+    // Transition style
+    transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Transition speed
+    transitionSpeed: 'default', // default/fast/slow
+
+    // Transition style for full page slide backgrounds
+    backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+
+    // Number of slides away from the current that are visible
+    viewDistance: 3,
+
+    // Parallax background image
+    //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+    // Parallax background size
+    //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+
+    theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+});
+
+Reveal.initialize({
+    dependencies: [
+        // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+        { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+        // Interpret Markdown in <section> elements
+        { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+        // Syntax highlight for <code> elements
+        { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+        // Zoom in and out with Alt+click
+        { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Speaker notes
+        { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Remote control your reveal.js presentation using a touch device
+        //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // MathJax
+        //{ src: 'reveal.js/plugin/math/math.js', async: true }
+    ]
+});
+
+Reveal.initialize({
+
+    // The "normal" size of the presentation, aspect ratio will be preserved
+    // when the presentation is scaled to fit different resolutions. Can be
+    // specified using percentage units.
+    width: 1170,  // original: 960,
+    height: 700,
+
+    // Factor of the display size that should remain empty around the content
+    margin: 0.1,
+
+    // Bounds for smallest/largest possible scale to apply to content
+    minScale: 0.2,
+    maxScale: 1.0
+
+});
+</script>
+
+<!-- begin footer logo
+<div style="position: absolute; bottom: 0px; left: 0; margin-left: 0px">
+<img src="somelogo.png">
+</div>
+     end footer logo -->
+
+
+
+</body>
+</html>

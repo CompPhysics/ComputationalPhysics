@@ -1,0 +1,2318 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: How to optimize codes, from vectorization to parallelization">
+
+<title>Slides PHY 480 and PHY 905  Lectures: How to optimize codes, from vectorization to parallelization</title>
+
+
+<style type="text/css">
+/* bloodish style */
+
+body {
+  font-family: Helvetica, Verdana, Arial, Sans-serif;
+  color: #404040;
+  background: #ffffff;
+}
+h1 { font-size: 1.8em;  color: #8A0808; }
+h2 { font-size: 1.6em;  color: #8A0808; }
+h3 { font-size: 1.4em;  color: #8A0808; }
+h4 { color: #8A0808; }
+a { color: #8A0808; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+/* pre style removed because it will interfer with pygments */
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.alert-text-small   { font-size: 80%;  }
+.alert-text-large   { font-size: 130%; }
+.alert-text-normal  { font-size: 90%;  }
+.alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:1px solid #bababa;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #555;
+  background-color: #f8f8f8;
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 55px;
+  width: 75%;
+ }
+.alert-block {padding-top:14px; padding-bottom:14px}
+.alert-block > p, .alert-block > ul {margin-bottom:1em}
+.alert li {margin-top: 1em}
+.alert-block p+p {margin-top:5px}
+.alert-notice { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_notice.png); }
+.alert-summary  { background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_summary.png); }
+.alert-warning { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_warning.png); }
+.alert-question {background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_question.png); }
+
+div { text-align: justify; text-justify: inter-word; }
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Content', 2, None, '___sec0'),
+              ('Optimization and profiling', 2, None, '___sec1'),
+              ('More on optimization', 2, None, '___sec2'),
+              ('Optimization and profiling', 2, None, '___sec3'),
+              ('Optimization and debugging', 2, None, '___sec4'),
+              ('Other hints', 2, None, '___sec5'),
+              ('Vectorization and the basic idea behind parallel computing',
+               2,
+               None,
+               '___sec6'),
+              ('A rough classification of hardware models',
+               2,
+               None,
+               '___sec7'),
+              ('Shared memory and distributed memory', 2, None, '___sec8'),
+              ('Different parallel programming paradigms',
+               2,
+               None,
+               '___sec9'),
+              ('Different parallel programming paradigms',
+               2,
+               None,
+               '___sec10'),
+              ('What is vectorization?', 2, None, '___sec11'),
+              ('Number of elements that can acted upon', 2, None, '___sec12'),
+              ('Number of elements that can acted upon, examples',
+               2,
+               None,
+               '___sec13'),
+              ('Number of elements that can acted upon, examples',
+               2,
+               None,
+               '___sec14'),
+              ('A simple test case with and without vectorization',
+               2,
+               None,
+               '___sec15'),
+              ('Compiling with and without vectorization',
+               2,
+               None,
+               '___sec16'),
+              ('Automatic vectorization and vectorization inhibitors, criteria',
+               2,
+               None,
+               '___sec17'),
+              ('Automatic vectorization and vectorization inhibitors, exit criteria',
+               2,
+               None,
+               '___sec18'),
+              ('Automatic vectorization and vectorization inhibitors, straight-line code',
+               2,
+               None,
+               '___sec19'),
+              ('Automatic vectorization and vectorization inhibitors, nested loops',
+               2,
+               None,
+               '___sec20'),
+              ('Automatic vectorization and vectorization inhibitors, function calls',
+               2,
+               None,
+               '___sec21'),
+              ('Automatic vectorization and vectorization inhibitors, data dependencies',
+               2,
+               None,
+               '___sec22'),
+              ('Automatic vectorization and vectorization inhibitors, more data dependencies',
+               2,
+               None,
+               '___sec23'),
+              ('Automatic vectorization and vectorization inhibitors, memory stride',
+               2,
+               None,
+               '___sec24'),
+              ("Today's situation of parallel computing",
+               2,
+               None,
+               '___sec25'),
+              ('Overhead present in parallel computing', 2, None, '___sec26'),
+              ('Parallelizing a sequential algorithm', 2, None, '___sec27'),
+              ('Strategies', 2, None, '___sec28'),
+              ('How do I run MPI on a PC/Laptop?', 2, None, '___sec29'),
+              ('Can I do it on my own PC/laptop?', 2, None, '___sec30'),
+              ('What is Message Passing Interface (MPI)?',
+               2,
+               None,
+               '___sec31'),
+              ('Going Parallel with MPI', 2, None, '___sec32'),
+              ('MPI is a library', 2, None, '___sec33'),
+              ('Bindings to MPI routines', 2, None, '___sec34'),
+              ('Communicator', 2, None, '___sec35'),
+              ('Some of the most  important MPI functions',
+               2,
+               None,
+               '___sec36'),
+              ('The first MPI C/C++ program', 2, None, '___sec37'),
+              ('The Fortran program', 2, None, '___sec38'),
+              ('Note 1', 2, None, '___sec39'),
+              ('Ordered output with $MPI\\_Barrier$', 2, None, '___sec40'),
+              ('Note 2', 2, None, '___sec41'),
+              ('Ordered output', 2, None, '___sec42'),
+              ('Note 3', 2, None, '___sec43'),
+              ('Note 4', 2, None, '___sec44'),
+              ('Numerical integration in parallel', 2, None, '___sec45'),
+              ('Dissection of trapezoidal rule with $MPI\\_reduce$',
+               2,
+               None,
+               '___sec46'),
+              ('Dissection of trapezoidal rule', 2, None, '___sec47'),
+              ('Integrating with _MPI_', 2, None, '___sec48'),
+              ('How do I use $MPI\\_reduce$?', 2, None, '___sec49'),
+              ('More on $MPI\\_Reduce$', 2, None, '___sec50'),
+              ('Dissection of trapezoidal rule', 2, None, '___sec51'),
+              ('Dissection of trapezoidal rule', 2, None, '___sec52'),
+              ('What is OpenMP', 2, None, '___sec53'),
+              ('Getting started, things to remember', 2, None, '___sec54'),
+              ('General code structure', 2, None, '___sec55'),
+              ('Parallel region', 2, None, '___sec56'),
+              ('Hello world, not again, please!', 2, None, '___sec57'),
+              ('Important OpenMP library routines', 2, None, '___sec58'),
+              ('Parallel for loop', 2, None, '___sec59'),
+              ('Example code', 2, None, '___sec60'),
+              ('More on Parallel for loop', 2, None, '___sec61'),
+              ('Inner product', 2, None, '___sec62'),
+              ('Different threads do different tasks', 2, None, '___sec63'),
+              ('Single execution', 2, None, '___sec64'),
+              ('Coordination and synchronization', 2, None, '___sec65'),
+              ('Data scope', 2, None, '___sec66'),
+              ('Some remarks', 2, None, '___sec67'),
+              ('Parallelizing nested for-loops', 2, None, '___sec68'),
+              ('Nested parallelism', 2, None, '___sec69'),
+              ('Parallel tasks', 2, None, '___sec70'),
+              ('Common mistakes', 2, None, '___sec71'),
+              ('Matrix-matrix multiplication', 2, None, '___sec72'),
+              ('Matrix-matrix multiplication', 2, None, '___sec73'),
+              ('Matrix-matrix multiplication', 2, None, '___sec74'),
+              ('Matrix-matrix multiplication', 2, None, '___sec75')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1>Slides PHY 480 and PHY 905  Lectures: How to optimize codes, from vectorization to parallelization</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Phil Duxbury, and Morten Hjorth-Jensen -->
+
+<center>
+<b>Phil Duxbury</b> [1]
+</center>
+
+<center>
+<b>Morten Hjorth-Jensen</b> [2, 3]
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Astronomy, Michigan State University</b></center>
+<center>[2] <b>Department of Physics, University of Oslo</b></center>
+<center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>
+<center><h4>Spring 2016</h4></center> <!-- date -->
+<br>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec0">Content </h2>
+
+<ul>
+<li> Simple compiler options</li> 
+<li> Tools to benchmark your code</li>
+<li> Machine architectures</li>
+<li> What is vectorization?</li>
+<li> Parallelization with OpenMP</li>
+<li> Parallelization with MPI</li>
+<li> Vectorization and parallelization, examples</li>
+</ul>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec1">Optimization and profiling </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+Till now we have not paid much attention to speed and possible optimization possibilities
+inherent in the various compilers. We have compiled and linked as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>c  mycode.cpp
+c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>o  mycode.exe  mycode.o
+</pre></div>
+<p>
+For Fortran replace with for example <b>gfortran</b> or <b>ifort</b>.
+This is what we call a flat compiler option and should be used when we develop the code.
+It produces normally a very large and slow code when translated to machine instructions.
+We use this option for debugging and for establishing the correct program output because
+every operation is done precisely as the user specified it.
+
+<p>
+It is instructive to look up the compiler manual for further instructions by writing
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">man c<span style="color: #666666">++</span>
+</pre></div>
+
+</div>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec2">More on optimization </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have additional compiler options for optimization. These may include procedure inlining where 
+performance may be improved, moving constants inside loops outside the loop, 
+identify potential parallelism, include automatic vectorization or replace a division with a reciprocal
+and a multiplication if this speeds up the code.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>c  mycode.cpp
+c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>o  mycode.exe  mycode.o
+</pre></div>
+<p>
+This (other options are -O2 or -Ofast) is the recommended option.
+
+
+</div>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec3">Optimization and profiling  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+It is also useful to profile your program under the development stage.
+You would then compile with 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>pg <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>c  mycode.cpp
+c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>pg <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>o  mycode.exe  mycode.o
+</pre></div>
+<p>
+After you have run the code you can obtain the profiling information via
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">gprof mycode.exe <span style="color: #666666">&gt;</span>  ProfileOutput
+</pre></div>
+<p>
+When you have profiled properly your code, you must take out this option as it 
+slows down performance.
+For memory tests use <a href="http://www.valgrind.org" target="_blank">valgrind</a>. An excellent environment for all these aspects, and much  more, is  Qt creator.
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec4">Optimization and debugging  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Adding debugging options is a very useful alternative under the development stage of a program.
+You would then compile with 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>g <span style="color: #666666">-</span>O0 <span style="color: #666666">-</span>c  mycode.cpp
+c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>g <span style="color: #666666">-</span>O0 <span style="color: #666666">-</span>o  mycode.exe  mycode.o
+</pre></div>
+<p>
+This option generates debugging information allowing you to trace for example if an array is properly allocated. Some compilers work best with the no optimization option <b>-O0</b>.
+</div>
+
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Other optimization flags.</b>
+<p>
+Depending on the compiler, one can add flags which generate code that catches integer overflow errors. 
+The flag <b>-ftrapv</b> does this for the CLANG compiler on OS X operating systems.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec5">Other hints  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In general, irrespective of compiler options, it is useful to
+
+<ul>
+<li> avoid if tests or call to functions inside loops, if possible.</li> 
+<li> avoid multiplication with constants inside loops if possible</li>
+</ul>
+
+Here is an example of a part of a program where specific operations lead to a slower code
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">k <span style="color: #666666">=</span> n<span style="color: #666666">-1</span>;
+<span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span>c<span style="color: #666666">*</span>d;
+    e <span style="color: #666666">=</span> g[k];
+}
+</pre></div>
+<p>
+A better code is
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">temp <span style="color: #666666">=</span> c<span style="color: #666666">*</span>d;
+<span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span> temp;
+}
+e <span style="color: #666666">=</span> g[n<span style="color: #666666">-1</span>];
+</pre></div>
+<p>
+Here we avoid a repeated multiplication inside a loop. 
+Most compilers, depending on compiler flags, identify and optimize such bottlenecks on their own, without requiring any particular action by the programmer. However, it is always useful to single out and avoid code examples like the first one discussed here.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec6">Vectorization and the basic idea behind parallel computing </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Present CPUs are highly parallel processors with varying levels of parallelism. The typical situation can be described via the following three statements.
+
+<ul>
+<li> Pursuit of shorter computation time and larger simulation size gives rise to parallel computing.</li>
+<li> Multiple processors are involved to solve a global problem.</li>
+<li> The essence is to divide the entire computation evenly among collaborative processors.  Divide and conquer.</li>
+</ul>
+
+Before we proceed with a more detailed discussion of topics like vectorization and parallelization, we need to remind ourselves about some basic features of different hardware models.
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec7">A rough classification of hardware models  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> Conventional single-processor computers are named SISD (single-instruction-single-data) machines.</li>
+<li> SIMD (single-instruction-multiple-data) machines incorporate the idea of parallel processing, using a large number of processing units to execute the same instruction on different data.</li>
+<li> Modern parallel computers are so-called MIMD (multiple-instruction-multiple-data) machines and can execute different instruction streams in parallel on different data.</li>
+</ul>
+</div>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec8">Shared memory and distributed memory </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+One way of categorizing modern parallel computers is to look at the memory configuration.
+
+<ul>
+<li> In shared memory systems the CPUs share the same address space. Any CPU can access any data in the global memory.</li>
+<li> In distributed memory systems each CPU has its own memory.</li>
+</ul>
+
+The CPUs are connected by some network and may exchange messages.
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec9">Different parallel programming paradigms  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> <b>Task parallelism</b>:  the work of a global problem can be divided into a number of independent tasks, which rarely need to synchronize.  Monte Carlo simulations represent a typical situation. Integration is another. However this paradigm is of limited use.</li>
+<li> <b>Data parallelism</b>:  use of multiple threads (e.g. one or more threads per processor) to dissect loops over arrays etc.  Communication and synchronization between processors are often hidden, thus easy to program. However, the user surrenders much control to a specialized compiler. Examples of data parallelism are compiler-based parallelization and OpenMP directives.</li> 
+</ul>
+</div>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec10">Different parallel programming paradigms </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> <b>Message passing</b>:  all involved processors have an independent memory address space. The user is responsible for  partitioning the data/work of a global problem and distributing the  subproblems to the processors. Collaboration between processors is achieved by explicit message passing, which is used for data transfer plus synchronization.</li>
+<li> This paradigm is the most general one where the user has full control. Better parallel efficiency is usually achieved by explicit message passing. However, message-passing programming is more difficult.</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split  -->
+
+<h2 id="___sec11">What is vectorization? </h2>
+Vectorization is a special
+case of <b>Single Instructions Multiple Data</b> (SIMD) to denote a single
+instruction stream capable of operating on multiple data elements in
+parallel. 
+We can think of vectorization as the unrolling of loops accompanied with SIMD instructions.
+
+<p>
+Vectorization is the process of converting an algorithm that performs scalar operations
+(typically one operation at the time) to vector operations where a single operation can refer to many simultaneous operations.
+Consider the following example
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span> c[i];
+}
+</pre></div>
+<p>
+If the code is not vectorized, the compiler will simply start with the first element and 
+then perform subsequent additions operating on one address in memory at the time.
+
+<p>
+<!-- !split  -->
+
+<h2 id="___sec12">Number of elements that can acted upon </h2>
+A SIMD instruction can operate  on multiple data elements in one single instruction.
+It uses the so-called 128-bit SIMD floating-point register. 
+In this sense,vectorization adds some form of parallelism since one instruction is applied  
+to many parts of say a vector.
+
+<p>
+The number of elements which can be operated on in parallel
+range from four single-precision floating point data elements in so-called 
+Streaming SIMD Extensions and two double-precision floating-point data
+elements in Streaming SIMD Extensions 2 to sixteen byte operations in
+a 128-bit register in Streaming SIMD Extensions 2. Thus, vector-length
+ranges from 2 to 16, depending on the instruction extensions used and
+on the data type.
+
+<p>
+<!-- !split  -->
+
+<h2 id="___sec13">Number of elements that can acted upon, examples </h2>
+We start with the simple scalar operations given by
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span> c[i];
+}
+</pre></div>
+<p>
+If the code is not vectorized  and we have a 128-bit register to store a 32 bits floating point number,
+it means that we have \( 3\times 32 \) bits that are not used. For the first element we have
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">  0  </th> <th align="center">   1    </th> <th align="center">   2    </th> <th align="center">   3    </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   a[0]=    </td> <td align="center">   not used    </td> <td align="center">   not used    </td> <td align="center">   not used    </td> </tr>
+<tr><td align="center">   b[0]+    </td> <td align="center">   not used    </td> <td align="center">   not used    </td> <td align="center">   not used    </td> </tr>
+<tr><td align="center">   c[0]     </td> <td align="center">   not used    </td> <td align="center">   not used    </td> <td align="center">   not used    </td> </tr>
+</tbody>
+</table>
+<p>
+We have thus unused space in our SIMD registers. These registers could hold three additional integers.
+
+<p>
+<!-- !split  -->
+
+<h2 id="___sec14">Number of elements that can acted upon, examples </h2>
+If we vectorize the code, we can perform, with a 128-bit register four simultaneous operations, that is
+we have
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">+=4</span>){
+    a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span> c[i];
+    a[i<span style="color: #666666">+1</span>] <span style="color: #666666">=</span> b[i<span style="color: #666666">+1</span>] <span style="color: #666666">+</span> c[i<span style="color: #666666">+1</span>];
+    a[i<span style="color: #666666">+2</span>] <span style="color: #666666">=</span> b[i<span style="color: #666666">+2</span>] <span style="color: #666666">+</span> c[i<span style="color: #666666">+2</span>];
+    a[i<span style="color: #666666">+3</span>] <span style="color: #666666">=</span> b[i<span style="color: #666666">+3</span>] <span style="color: #666666">+</span> c[i<span style="color: #666666">+3</span>];
+}
+</pre></div>
+<p>
+displayed here as
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">  0  </th> <th align="center">  1  </th> <th align="center">  2  </th> <th align="center">  3  </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   a[0]=    </td> <td align="center">   a[1]=    </td> <td align="center">   a[2]=    </td> <td align="center">   a[3]=    </td> </tr>
+<tr><td align="center">   b[0]+    </td> <td align="center">   b[1]+    </td> <td align="center">   b[2]+    </td> <td align="center">   b[3]+    </td> </tr>
+<tr><td align="center">   c[0]     </td> <td align="center">   c[1]     </td> <td align="center">   c[2]     </td> <td align="center">   c[3]     </td> </tr>
+</tbody>
+</table>
+Four additions are now done in a single step.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec15">A simple test case with and without vectorization </h2>
+We implement these operations in a simple c++ program as
+
+<p>
+
+<!-- code=text (!bc cppcode) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;iomanip&gt;
+#include &quot;time.h&quot; 
+
+using namespace std; // note use of namespace                                       
+int main (int argc, char* argv[])
+{
+  int i = atoi(argv[1]); 
+  double *a, *b, *c;
+  a = new double[i]; 
+  b = new double[i]; 
+  c = new double[i]; 
+  for (int j = 0; j &lt; i; j++) {
+    a[j] = 0.0;
+    b[j] = cos(j*1.0);
+    c[j] = sin(j*3.0);
+  }
+  clock_t start, finish;
+  start = clock();
+  for (int j = 0; j &lt; i; j++) {
+    a[j] = b[j]+b[j]*c[j];
+  }
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
+  cout &lt;&lt; setprecision(10) &lt;&lt; setw(20) &lt;&lt; &quot;Time used  for vector addition and multiplication=&quot; &lt;&lt; timeused  &lt;&lt; endl;
+  delete [] a;
+  delete [] b;
+  delete [] c;
+  return 0;     
+}
+</pre></div>
+<p>
+<!-- !split  -->
+
+<h2 id="___sec16">Compiling with and without vectorization </h2>
+We can compile and link without vectorization
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span> <span style="color: #666666">-</span>o novec.x vecexample.cpp
+</pre></div>
+<p>
+and with vectorization (and additional optimizations)
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
+</pre></div>
+<p>
+The speedup depends on the size of the vectors. In the example here we have run with \( 10^7 \) elements.
+The example here was run on a PC with ubuntu 14.04 as operating system and an Intel i7-4790 CPU running at 3.60 GHz. 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>vec.x <span style="color: #666666">10000000</span>
+Time used  <span style="color: #008000; font-weight: bold">for</span> vector addition <span style="color: #666666">=</span> <span style="color: #666666">0.0100000</span>
+<span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>novec.x <span style="color: #666666">10000000</span>
+Time used  <span style="color: #008000; font-weight: bold">for</span> vector addition <span style="color: #666666">=</span> <span style="color: #666666">0.03000000000</span>
+</pre></div>
+<p>
+This particular C++ compiler speeds up the above loop operations with a factor of 3. 
+Performing the same operations for \( 10^8 \) elements results only in a factor \( 1.4 \).
+The result will however vary from compiler to compiler. In general however, with optimization flags like \( -O3 \) or \( -Ofast \), we gain a considerable speedup if our code can be vectorized. Many of these operations can be done automatically by your compiler. These automatic or near automatic compiler techniques improve performance considerably.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec17">Automatic vectorization and vectorization inhibitors, criteria </h2>
+
+<p>
+Not all loops can be vectorized, as discussed in <a href="https://software.intel.com/en-us/articles/a-guide-to-auto-vectorization-with-intel-c-compilers" target="_blank">Intel's guide to vectorization</a>
+
+<p>
+An important criteria is that the loop counter \( n \) is known at the entry of the loop.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+    a[j] <span style="color: #666666">=</span> cos(j<span style="color: #666666">*1.0</span>);
+  }
+</pre></div>
+<p>
+The variable \( n \) does need to be known at compile time. However, this variable must stay the same for the entire duration of the loop. It implies that an exit statement inside the loop cannot be data dependent.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec18">Automatic vectorization and vectorization inhibitors, exit criteria </h2>
+
+<p>
+An exit statement should in general be avoided. 
+If the exit statement contains data-dependent conditions, the loop cannot be vectorized. 
+The following is an example of a non-vectorizable loop
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+    a[j] <span style="color: #666666">=</span> cos(j<span style="color: #666666">*1.0</span>);
+    <span style="color: #008000; font-weight: bold">if</span> (a[j] <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span> ) <span style="color: #008000; font-weight: bold">break</span>;
+  }
+</pre></div>
+<p>
+Avoid loop termination conditions and opt for a single entry loop variable \( n \). The lower and upper bounds have to be kept fixed within the loop. 
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec19">Automatic vectorization and vectorization inhibitors, straight-line code </h2>
+SIMD instructions perform the same type of operations multiple times. 
+A <b>switch</b> statement leads thus to a non-vectorizable loop since different statemens cannot branch.
+The following code can however be vectorized since the <b>if</b> statement is implemented as a masked assignment.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+    <span style="color: #B00040">double</span> x  <span style="color: #666666">=</span> cos(j<span style="color: #666666">*1.0</span>);
+    <span style="color: #008000; font-weight: bold">if</span> (x <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span> ) {
+       a[j] <span style="color: #666666">=</span>  x<span style="color: #666666">*</span>sin(j<span style="color: #666666">*2.0</span>); 
+    }
+    <span style="color: #008000; font-weight: bold">else</span> {
+       a[j] <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+    }
+  }
+</pre></div>
+<p>
+These operations can be performed for all data elements but only those elements which the mask evaluates as true are stored. In general, one should avoid branches such as <b>switch</b>, <b>go to</b>, or <b>return</b> statements or <b>if</b> constructs that cannot be treated as masked assignments.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec20">Automatic vectorization and vectorization inhibitors, nested loops </h2>
+
+<p>
+Only the innermost loop of the following example is vectorized
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
+      <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+           a[i][j] <span style="color: #666666">+=</span> b[i][j];
+      }  
+  }
+</pre></div>
+<p>
+The exception is if an original outer loop is transformed into an inner loop as the result of compiler optimizations.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec21">Automatic vectorization and vectorization inhibitors, function calls </h2>
+
+<p>
+Calls to programmer defined functions ruin vectorization. However, calls to intrinsic functions like
+\( \sin{x} \), \( \cos{x} \), \( \exp{x} \) etc are allowed since they are normally efficiently vectorized. 
+The following example is fully vectorizable
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
+      a[i] <span style="color: #666666">=</span> log10(i)<span style="color: #666666">*</span>cos(i);
+  }
+</pre></div>
+<p>
+Similarly, <b>inline</b> functions defined by the programmer, allow for vectorization since the function statements are glued into the actual place where the function is called.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec22">Automatic vectorization and vectorization inhibitors, data dependencies </h2>
+
+<p>
+One has to keep in mind that vectorization changes the order of operations inside a loop. A so-called
+read-after-write statement with an explicit flow dependency cannot be vectorized. The following code
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #B00040">double</span> b <span style="color: #666666">=</span> <span style="color: #666666">15.</span>;
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">1</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
+      a[i] <span style="color: #666666">=</span> a[i<span style="color: #666666">-1</span>] <span style="color: #666666">+</span> b;
+  }
+</pre></div>
+<p>
+is an example of flow dependency and results in wrong numerical results if vectorized. For a scalar operation, the value \( a[i-1] \) computed during the iteration is loaded into the right-hand side and the results are fine. In vector mode however, with a vector length of four, the values \( a[0] \), \( a[1] \), \( a[2] \) and \( a[3] \) from the previous loop will be loaded into the right-hand side and produce wrong results. That is, we have
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   a[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">0</span>] <span style="color: #666666">+</span> b;
+   a[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">1</span>] <span style="color: #666666">+</span> b;
+   a[<span style="color: #666666">3</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">2</span>] <span style="color: #666666">+</span> b;
+   a[<span style="color: #666666">4</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">3</span>] <span style="color: #666666">+</span> b;
+</pre></div>
+<p>
+and if the two first iterations are  executed at the same by the SIMD instruction, the value of say \( a[1] \) could be used by the second iteration before it has been calculated by the first iteration, leading thereby to wrong results.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec23">Automatic vectorization and vectorization inhibitors, more data dependencies </h2>
+
+<p>
+On the other hand,  a so-called 
+write-after-read statement can be vectorized. The following code
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #B00040">double</span> b <span style="color: #666666">=</span> <span style="color: #666666">15.</span>;
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">1</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
+      a[i<span style="color: #666666">-1</span>] <span style="color: #666666">=</span> a[i] <span style="color: #666666">+</span> b;
+  }
+</pre></div>
+<p>
+is an example of flow dependency that can be vectorized since no iteration with a higher value of \( i \)
+can complete before an iteration with a lower value of \( i \). However, such code leads to problems with parallelization.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec24">Automatic vectorization and vectorization inhibitors, memory stride </h2>
+
+<p>
+For C++ programmers  it is also worth keeping in mind that an array notation is preferred to the more compact use of pointers to access array elements. The compiler can often not tell if it is safe to vectorize the code.
+
+<p>
+When dealing with arrays, you should also avoid memory stride, since this slows down considerably vectorization. When you access array element, write for example the inner loop to vectorize using unit stride, that is, access successively the next array element in memory, as shown here
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
+      <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+           a[i][j] <span style="color: #666666">+=</span> b[i][j];
+      }  
+  }
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec25">Today's situation of parallel computing  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> Distributed memory is the dominant hardware configuration. There is a large diversity in these machines, from  MPP (massively parallel processing) systems to clusters of off-the-shelf PCs, which are very cost-effective.</li>
+<li> Message-passing is a mature programming paradigm and widely accepted. It often provides an efficient match to the hardware. It is primarily used for the distributed memory systems, but can also be used on shared memory systems.</li>
+<li> Modern nodes have nowadays several cores, which makes it interesting to use both shared memory (the given node) and distributed memory (several nodes with communication). This leads often to codes which use both MPI and OpenMP.</li>
+</ul>
+
+Our lectures will focus on both MPI and OpenMP.
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec26">Overhead present in parallel computing </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> <b>Uneven load balance</b>:  not all the processors can perform useful work at all time.</li>
+<li> <b>Overhead of synchronization</b></li>
+<li> <b>Overhead of communication</b></li>
+<li> <b>Extra computation due to parallelization</b></li>
+</ul>
+
+Due to the above overhead and that certain parts of a sequential
+algorithm cannot be parallelized we may not achieve an optimal parallelization.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec27">Parallelizing a sequential algorithm  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> Identify the part(s) of a sequential algorithm that can be  executed in parallel. This is the difficult part,</li>
+<li> Distribute the global work and data among \( P \) processors.</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec28">Strategies </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> Develop codes locally, run with some few processes and test your codes.  Do benchmarking, timing and so forth on local nodes, for example your laptop or PC.</li> 
+<li> When you are convinced that your codes run correctly, you can start your production runs on available supercomputers.</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec29">How do I run MPI on a PC/Laptop?  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The  machines at the computer lab have eight CPUs (look up the file /proc/cpuinfo)
+
+<ul>
+<li> Compile with mpicxx or mpic++ or mpif90</li>
+<li> Set up collaboration between processes and run</li> 
+</ul>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  mpd <span style="color: #666666">--</span>ncpus<span style="color: #666666">=8</span> <span style="color: #666666">&amp;</span>
+  <span style="color: #BC7A00">#  run code with</span>
+  mpiexec <span style="color: #666666">-</span>n <span style="color: #666666">8</span> .<span style="color: #666666">/</span>nameofprog
+</pre></div>
+<p>
+Here we declare that we will use 8 CPUs via the <em>-ncpus</em> option and via \( -n 8 \) when running.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec30">Can I do it on my own PC/laptop? </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+At the computer lab, we have installed both OpenMP and MPI. If you wish to install MPI and OpenMP 
+on your laptop, we recommend the following:
+
+<ul>
+<li> For MPI, we recommend that you follow the instructions at the "Open MPI":"www.open-mpi.org/software" website and follow the instructions. OpenMPI is also accessible for easy installation for Ubuntu users via the <b>synaptic package manager</b>.</li> 
+<li> For OpenMP, the compile option <b>-fopenmp</b> is included automatically in recent versions of the C++ compiler and Fortran compilers.</li> 
+<li> For OS X users however, use for example</li> 
+</ul>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  brew install clang<span style="color: #666666">-</span>omp
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec31">What is Message Passing Interface (MPI)?  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+<b>MPI</b> is a library, not a language. It specifies the names, calling sequences and results of functions
+or subroutines to be called from C/C++ or Fortran programs, and the classes and methods that make up the MPI C++
+library. The programs that users write in Fortran, C or C++ are compiled with ordinary compilers and linked
+with the MPI library.
+
+<p>
+MPI programs should be able to run
+on all possible machines and run all MPI implementetations without change.
+
+<p>
+An MPI computation is a collection of processes communicating with messages.
+
+
+</div>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec32">Going Parallel with MPI </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<b>Task parallelism</b>: the work of a global problem can be divided
+into a number of independent tasks, which rarely need to synchronize. 
+Monte Carlo simulations or numerical integration are examples of this.
+
+<p>
+MPI is a message-passing library where all the routines
+have corresponding C/C++-binding
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   MPI_Command_name
+</pre></div>
+<p>
+and Fortran-binding (routine names are in uppercase, but can also be in lower case)
+<p>
+
+<!-- code=text (!bc forcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   MPI_COMMAND_NAME
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec33">MPI is a library  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+MPI is a library specification for the message passing interface,
+proposed as a standard.
+
+<ul>
+<li> independent of hardware;</li>
+<li> not a language or compiler specification;</li>
+<li> not a specific implementation or product.</li>
+</ul>
+
+A message passing standard for portability and ease-of-use. 
+Designed for high performance.
+
+<p>
+Insert communication and synchronization functions where necessary.
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec34">Bindings to MPI routines  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+MPI is a message-passing library where all the routines
+have corresponding C/C++-binding
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   MPI_Command_name
+</pre></div>
+<p>
+and Fortran-binding (routine names are in uppercase, but can also be in lower case)
+<p>
+
+<!-- code=text (!bc forcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   MPI_COMMAND_NAME
+</pre></div>
+<p>
+The discussion in these slides focuses on the C++ binding.
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec35">Communicator  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> A group of MPI processes with a name (context).</li>
+<li> Any process is identified by its rank. The rank is only meaningful within a particular communicator.</li>
+<li> By default the communicator contains all the MPI processes.</li>
+</ul>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  MPI_COMM_WORLD 
+</pre></div>
+<ul>
+<li> Mechanism to identify subset of processes.</li>
+<li> Promotes modular design of parallel libraries.</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec36">Some of the most  important MPI functions </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> \( MPI\_Init \) - initiate an MPI computation</li>
+<li> \( MPI\_Finalize \) - terminate the MPI computation and clean up</li>
+<li> \( MPI\_Comm\_size \) - how many processes participate in a given MPI communicator?</li>
+<li> \( MPI\_Comm\_rank \) - which one am I? (A number between 0 and size-1.)</li>
+<li> \( MPI\_Send \) - send a message to a particular process within an MPI communicator</li>
+<li> \( MPI\_Recv \) - receive a message from a particular process within an MPI communicator</li>
+<li> \( MPI\_reduce \)  or \( MPI\_Allreduce \), send and receive messages</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec37">The first MPI C/C++ program  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+Let every process write "Hello world" (oh not this program again!!) on the standard output. 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+<span style="color: #BC7A00">#include &lt;mpi.h&gt;</span>
+<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> nargs, <span style="color: #B00040">char</span><span style="color: #666666">*</span> args[])
+{
+<span style="color: #B00040">int</span> numprocs, my_rank;
+<span style="color: #408080; font-style: italic">//   MPI initializations</span>
+MPI_Init (<span style="color: #666666">&amp;</span>nargs, <span style="color: #666666">&amp;</span>args);
+MPI_Comm_size (MPI_COMM_WORLD, <span style="color: #666666">&amp;</span>numprocs);
+MPI_Comm_rank (MPI_COMM_WORLD, <span style="color: #666666">&amp;</span>my_rank);
+cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Hello world, I have  rank &quot;</span> <span style="color: #666666">&lt;&lt;</span> my_rank <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot; out of &quot;</span> 
+     <span style="color: #666666">&lt;&lt;</span> numprocs <span style="color: #666666">&lt;&lt;</span> endl;
+<span style="color: #408080; font-style: italic">//  End MPI</span>
+MPI_Finalize ();
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec38">The Fortran program </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=text (!bc forcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">PROGRAM hello
+INCLUDE &quot;mpif.h&quot;
+INTEGER:: size, my_rank, ierr
+
+CALL  MPI_INIT(ierr)
+CALL MPI_COMM_SIZE(MPI_COMM_WORLD, size, ierr)
+CALL MPI_COMM_RANK(MPI_COMM_WORLD, my_rank, ierr)
+WRITE(*,*)&quot;Hello world, I&#39;ve rank &quot;,my_rank,&quot; out of &quot;,size
+CALL MPI_FINALIZE(ierr)
+
+END PROGRAM hello
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec39">Note 1  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> The output to screen is not ordered since all processes are trying to write  to screen simultaneously.</li>
+<li> It is the operating system which opts for an ordering.</li>  
+<li> If we wish to have an organized output, starting from the first process, we may rewrite our program as in the next example.</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec40">Ordered output with \( MPI\_Barrier \)  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> nargs, <span style="color: #B00040">char</span><span style="color: #666666">*</span> args[])
+{
+ <span style="color: #B00040">int</span> numprocs, my_rank, i;
+ MPI_Init (<span style="color: #666666">&amp;</span>nargs, <span style="color: #666666">&amp;</span>args);
+ MPI_Comm_size (MPI_COMM_WORLD, <span style="color: #666666">&amp;</span>numprocs);
+ MPI_Comm_rank (MPI_COMM_WORLD, <span style="color: #666666">&amp;</span>my_rank);
+ <span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> numprocs; i<span style="color: #666666">++</span>) {}
+ MPI_Barrier (MPI_COMM_WORLD);
+ <span style="color: #008000; font-weight: bold">if</span> (i <span style="color: #666666">==</span> my_rank) {
+ cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Hello world, I have  rank &quot;</span> <span style="color: #666666">&lt;&lt;</span> my_rank <span style="color: #666666">&lt;&lt;</span> 
+        <span style="color: #BA2121">&quot; out of &quot;</span> <span style="color: #666666">&lt;&lt;</span> numprocs <span style="color: #666666">&lt;&lt;</span> endl;}
+      MPI_Finalize ();
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec41">Note 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> Here we have used the \( MPI\_Barrier \) function to ensure that that every process has completed  its set of instructions in  a particular order.</li>
+<li> A barrier is a special collective operation that does not allow the processes to continue until all processes in the communicator (here \( MPI\_COMM\_WORLD \)) have called \( MPI\_Barrier \).</li> 
+<li> The barriers make sure that all processes have reached the same point in the code. Many of the collective operations like \( MPI\_ALLREDUCE \) to be discussed later, have the same property; that is, no process can exit the operation until all processes have started.</li> 
+</ul>
+
+However, this is slightly more time-consuming since the processes synchronize between themselves as many times as there
+are processes.  In the next Hello world example we use the send and receive functions in order to a have a synchronized
+action.
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec42">Ordered output  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+
+<!-- code=text (!bc ccpcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">.....
+int numprocs, my_rank, flag;
+MPI_Status status;
+MPI_Init (&amp;nargs, &amp;args);
+MPI_Comm_size (MPI_COMM_WORLD, &amp;numprocs);
+MPI_Comm_rank (MPI_COMM_WORLD, &amp;my_rank);
+if (my_rank &gt; 0)
+MPI_Recv (&amp;flag, 1, MPI_INT, my_rank-1, 100, 
+           MPI_COMM_WORLD, &amp;status);
+cout &lt;&lt; &quot;Hello world, I have  rank &quot; &lt;&lt; my_rank &lt;&lt; &quot; out of &quot; 
+&lt;&lt; numprocs &lt;&lt; endl;
+if (my_rank &lt; numprocs-1)
+MPI_Send (&amp;my_rank, 1, MPI_INT, my_rank+1, 
+          100, MPI_COMM_WORLD);
+MPI_Finalize ();
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec43">Note 3  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+The basic sending of messages is given by the function \( MPI\_SEND \), which in C/C++
+is defined as 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> MPI_Send(<span style="color: #B00040">void</span> <span style="color: #666666">*</span>buf, <span style="color: #B00040">int</span> count, 
+             MPI_Datatype datatype, 
+             <span style="color: #B00040">int</span> dest, <span style="color: #B00040">int</span> tag, MPI_Comm comm)}
+</pre></div>
+<p>
+This single command allows the passing of any kind of variable, even a large array, to any group of tasks. 
+The variable <b>buf</b> is the variable we wish to send while <b>count</b>
+is the  number of variables we are passing. If we are passing only a single value, this should be 1.
+
+<p>
+If we transfer an array, it is  the overall size of the array. 
+For example, if we want to send a 10 by 10 array, count would be \( 10\times 10=100 \) 
+since we are  actually passing 100 values.
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec44">Note 4  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+Once you have  sent a message, you must receive it on another task. The function \( MPI\_RECV \)
+is similar to the send call.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> MPI_Recv( <span style="color: #B00040">void</span> <span style="color: #666666">*</span>buf, <span style="color: #B00040">int</span> count, MPI_Datatype datatype, 
+            <span style="color: #B00040">int</span> source, 
+            <span style="color: #B00040">int</span> tag, MPI_Comm comm, MPI_Status <span style="color: #666666">*</span>status )
+</pre></div>
+<p>
+The arguments that are different from those in MPI\_SEND are
+<b>buf</b> which  is the name of the variable where you will  be storing the received data, 
+<b>source</b> which  replaces the destination in the send command. This is the return ID of the sender.
+
+<p>
+Finally,  we have used  \( MPI\_Status\_status \),  
+where one can check if the receive was completed.
+
+<p>
+The output of this code is the same as the previous example, but now
+process 0 sends a message to process 1, which forwards it further
+to process 2, and so forth.
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec45">Numerical integration in parallel </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Integrating \( \pi \).</b>
+<p>
+
+<ul>
+<li> The code example computes \( \pi \) using the trapezoidal rules.</li>
+<li> The trapezoidal rule</li>
+</ul>
+
+$$
+   I=\int_a^bf(x) dx\approx h\left(f(a)/2 + f(a+h) +f(a+2h)+\dots +f(b-h)+ f(b)/2\right).
+$$
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec46">Dissection of trapezoidal rule with \( MPI\_reduce \) </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//    Trapezoidal rule and numerical integration usign MPI</span>
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+<span style="color: #BC7A00">#include &lt;mpi.h&gt;</span>
+<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+
+<span style="color: #408080; font-style: italic">//     Here we define various functions called by the main program</span>
+
+<span style="color: #B00040">double</span> <span style="color: #0000FF">int_function</span>(<span style="color: #B00040">double</span> );
+<span style="color: #B00040">double</span> <span style="color: #0000FF">trapezoidal_rule</span>(<span style="color: #B00040">double</span> , <span style="color: #B00040">double</span> , <span style="color: #B00040">int</span> , <span style="color: #B00040">double</span> (<span style="color: #666666">*</span>)(<span style="color: #B00040">double</span>));
+
+<span style="color: #408080; font-style: italic">//   Main function begins here</span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> nargs, <span style="color: #B00040">char</span><span style="color: #666666">*</span> args[])
+{
+  <span style="color: #B00040">int</span> n, local_n, numprocs, my_rank; 
+  <span style="color: #B00040">double</span> a, b, h, local_a, local_b, total_sum, local_sum;   
+  <span style="color: #B00040">double</span>  time_start, time_end, total_time;
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec47">Dissection of trapezoidal rule  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #408080; font-style: italic">//  MPI initializations</span>
+  MPI_Init (<span style="color: #666666">&amp;</span>nargs, <span style="color: #666666">&amp;</span>args);
+  MPI_Comm_size (MPI_COMM_WORLD, <span style="color: #666666">&amp;</span>numprocs);
+  MPI_Comm_rank (MPI_COMM_WORLD, <span style="color: #666666">&amp;</span>my_rank);
+  time_start <span style="color: #666666">=</span> MPI_Wtime();
+  <span style="color: #408080; font-style: italic">//  Fixed values for a, b and n </span>
+  a <span style="color: #666666">=</span> <span style="color: #666666">0.0</span> ; b <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>;  n <span style="color: #666666">=</span> <span style="color: #666666">1000</span>;
+  h <span style="color: #666666">=</span> (b<span style="color: #666666">-</span>a)<span style="color: #666666">/</span>n;    <span style="color: #408080; font-style: italic">// h is the same for all processes </span>
+  local_n <span style="color: #666666">=</span> n<span style="color: #666666">/</span>numprocs;  
+  <span style="color: #408080; font-style: italic">// make sure n &gt; numprocs, else integer division gives zero</span>
+  <span style="color: #408080; font-style: italic">// Length of each process&#39; interval of</span>
+  <span style="color: #408080; font-style: italic">// integration = local_n*h.  </span>
+  local_a <span style="color: #666666">=</span> a <span style="color: #666666">+</span> my_rank<span style="color: #666666">*</span>local_n<span style="color: #666666">*</span>h;
+  local_b <span style="color: #666666">=</span> local_a <span style="color: #666666">+</span> local_n<span style="color: #666666">*</span>h;
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec48">Integrating with <b>MPI</b> </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  total_sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+  local_sum <span style="color: #666666">=</span> trapezoidal_rule(local_a, local_b, local_n, 
+                               <span style="color: #666666">&amp;</span>int_function); 
+  MPI_Reduce(<span style="color: #666666">&amp;</span>local_sum, <span style="color: #666666">&amp;</span>total_sum, <span style="color: #666666">1</span>, MPI_DOUBLE, 
+              MPI_SUM, <span style="color: #666666">0</span>, MPI_COMM_WORLD);
+  time_end <span style="color: #666666">=</span> MPI_Wtime();
+  total_time <span style="color: #666666">=</span> time_end<span style="color: #666666">-</span>time_start;
+  <span style="color: #008000; font-weight: bold">if</span> ( my_rank <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+    cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Trapezoidal rule = &quot;</span> <span style="color: #666666">&lt;&lt;</span>  total_sum <span style="color: #666666">&lt;&lt;</span> endl;
+    cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Time = &quot;</span> <span style="color: #666666">&lt;&lt;</span>  total_time  
+         <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot; on number of processors: &quot;</span>  <span style="color: #666666">&lt;&lt;</span> numprocs  <span style="color: #666666">&lt;&lt;</span> endl;
+  }
+  <span style="color: #408080; font-style: italic">// End MPI</span>
+  MPI_Finalize ();  
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}  <span style="color: #408080; font-style: italic">// end of main program</span>
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec49">How do I use \( MPI\_reduce \)? </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+Here we have used
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">MPI_reduce( <span style="color: #B00040">void</span> <span style="color: #666666">*</span>senddata, <span style="color: #B00040">void</span><span style="color: #666666">*</span> resultdata, <span style="color: #B00040">int</span> count, 
+     MPI_Datatype datatype, MPI_Op, <span style="color: #B00040">int</span> root, MPI_Comm comm)
+</pre></div>
+<p>
+The two variables \( senddata \) and \( resultdata \) are obvious, besides the fact that one sends the address
+of the variable or the first element of an array.  If they are arrays they need to have the same size. 
+The variable \( count \) represents the total dimensionality, 1 in case of just one variable, 
+while \( MPI\_Datatype \) 
+defines the type of variable which is sent and received.
+
+<p>
+The new feature is \( MPI\_Op \). It defines the type
+of operation we want to do.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec50">More on \( MPI\_Reduce \) </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In our case, since we are summing
+the rectangle  contributions from every process we define  \( MPI\_Op = MPI\_SUM \).
+If we have an array or matrix we can search for the largest og smallest element by sending either \( MPI\_MAX \) or 
+\( MPI\_MIN \).  If we want the location as well (which array element) we simply transfer 
+\( MPI\_MAXLOC \) or \( MPI\_MINOC \). If we want the product we write \( MPI\_PROD \).
+
+<p>
+\( MPI\_Allreduce \) is defined as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">MPI_Allreduce( <span style="color: #B00040">void</span> <span style="color: #666666">*</span>senddata, <span style="color: #B00040">void</span><span style="color: #666666">*</span> resultdata, <span style="color: #B00040">int</span> count, 
+          MPI_Datatype datatype, MPI_Op, MPI_Comm comm)        
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec51">Dissection of trapezoidal rule  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+We use \( MPI\_reduce \) to collect data from each process. Note also the use of the function 
+\( MPI\_Wtime \). 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//  this function defines the function to integrate</span>
+<span style="color: #B00040">double</span> <span style="color: #0000FF">int_function</span>(<span style="color: #B00040">double</span> x)
+{
+  <span style="color: #B00040">double</span> value <span style="color: #666666">=</span> <span style="color: #666666">4./</span>(<span style="color: #666666">1.+</span>x<span style="color: #666666">*</span>x);
+  <span style="color: #008000; font-weight: bold">return</span> value;
+} <span style="color: #408080; font-style: italic">// end of function to evaluate</span>
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec52">Dissection of trapezoidal rule  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//  this function defines the trapezoidal rule</span>
+<span style="color: #B00040">double</span> <span style="color: #0000FF">trapezoidal_rule</span>(<span style="color: #B00040">double</span> a, <span style="color: #B00040">double</span> b, <span style="color: #B00040">int</span> n, 
+                         <span style="color: #B00040">double</span> (<span style="color: #666666">*</span>func)(<span style="color: #B00040">double</span>))
+{
+  <span style="color: #B00040">double</span> trapez_sum;
+  <span style="color: #B00040">double</span> fa, fb, x, step;
+  <span style="color: #B00040">int</span>    j;
+  step<span style="color: #666666">=</span>(b<span style="color: #666666">-</span>a)<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n);
+  fa<span style="color: #666666">=</span>(<span style="color: #666666">*</span>func)(a)<span style="color: #666666">/2.</span> ;
+  fb<span style="color: #666666">=</span>(<span style="color: #666666">*</span>func)(b)<span style="color: #666666">/2.</span> ;
+  trapez_sum<span style="color: #666666">=0.</span>;
+  <span style="color: #008000; font-weight: bold">for</span> (j<span style="color: #666666">=1</span>; j <span style="color: #666666">&lt;=</span> n<span style="color: #666666">-1</span>; j<span style="color: #666666">++</span>){
+    x<span style="color: #666666">=</span>j<span style="color: #666666">*</span>step<span style="color: #666666">+</span>a;
+    trapez_sum<span style="color: #666666">+=</span>(<span style="color: #666666">*</span>func)(x);
+  }
+  trapez_sum<span style="color: #666666">=</span>(trapez_sum<span style="color: #666666">+</span>fb<span style="color: #666666">+</span>fa)<span style="color: #666666">*</span>step;
+  <span style="color: #008000; font-weight: bold">return</span> trapez_sum;
+}  <span style="color: #408080; font-style: italic">// end trapezoidal_rule </span>
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec53">What is OpenMP </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> OpenMP provides high-level thread programming</li>
+<li> Multiple cooperating threads are allowed to run simultaneously</li>
+<li> Threads are created and destroyed dynamically in a fork-join pattern</li>
+
+<ul>
+   <li> An OpenMP program consists of a number of parallel regions</li>
+   <li> Between two parallel regions there is only one master thread</li>
+   <li> In the beginning of a parallel region, a team of new threads is spawned</li>
+</ul>
+
+  <li> The newly spawned threads work simultaneously with the master thread</li>
+  <li> At the end of a parallel region, the new threads are destroyed</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec54">Getting started, things to remember </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+ <li> Remember the header file</li> 
+</ul>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
+</pre></div>
+<ul>
+ <li> Insert compiler directives in C++ syntax as</li> 
+</ul>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp...</span>
+</pre></div>
+<ul>
+<li> Compile with for example <em>c++ -fopenmp code.cpp</em></li>
+<li> Execute</li>
+
+<ul>
+  <li> Remember to assign the environment variable <b>OMP NUM THREADS</b></li>
+  <li> It specifies the total number of threads inside a parallel region, if not otherwise overwritten</li>
+</ul>
+
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec55">General code structure  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
+main ()
+{
+<span style="color: #B00040">int</span> var1, var2, var3;
+<span style="color: #408080; font-style: italic">/* serial code */</span>
+<span style="color: #408080; font-style: italic">/* ... */</span>
+<span style="color: #408080; font-style: italic">/* start of a parallel region */</span>
+<span style="color: #BC7A00">#pragma omp parallel private(var1, var2) shared(var3)</span>
+{
+<span style="color: #408080; font-style: italic">/* ... */</span>
+}
+<span style="color: #408080; font-style: italic">/* more serial code */</span>
+<span style="color: #408080; font-style: italic">/* ... */</span>
+<span style="color: #408080; font-style: italic">/* another parallel region */</span>
+<span style="color: #BC7A00">#pragma omp parallel</span>
+{
+<span style="color: #408080; font-style: italic">/* ... */</span>
+}
+}
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec56">Parallel region </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> A parallel region is a block of code that is executed by a team of threads</li>
+<li> The following compiler directive creates a parallel region</li>
+</ul>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel { ... }</span>
+</pre></div>
+<ul>
+<li> Clauses can be added at the end of the directive</li>
+<li> Most often used clauses:</li>
+
+<ul>
+ <li> <b>default(shared)</b> or <b>default(none)</b></li>
+ <li> <b>public(list of variables)</b></li>
+ <li> <b>private(list of variables)</b></li>
+</ul>
+
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec57">Hello world, not again, please! </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
+<span style="color: #BC7A00">#include &lt;stdio.h&gt;</span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span> <span style="color: #666666">*</span>argv[])
+{
+<span style="color: #B00040">int</span> th_id, nthreads;
+<span style="color: #BC7A00">#pragma omp parallel private(th_id) shared(nthreads)</span>
+{
+th_id <span style="color: #666666">=</span> omp_get_thread_num();
+printf(<span style="color: #BA2121">&quot;Hello World from thread %d</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>, th_id);
+<span style="color: #BC7A00">#pragma omp barrier</span>
+<span style="color: #008000; font-weight: bold">if</span> ( th_id <span style="color: #666666">==</span> <span style="color: #666666">0</span> ) {
+nthreads <span style="color: #666666">=</span> omp_get_num_threads();
+printf(<span style="color: #BA2121">&quot;There are %d threads</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>,nthreads);
+}
+}
+<span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec58">Important OpenMP library routines </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> <b>int omp get num threads ()</b>, returns the number of threads inside a parallel region</li>
+<li> <b>int omp get thread num ()</b>,  returns the  a thread for each thread inside a parallel region</li>
+<li> <b>void omp set num threads (int)</b>, sets the number of threads to be used</li>
+<li> <b>void omp set nested (int)</b>,  turns nested parallelism on/off</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec59">Parallel for loop </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+ <li> Inside a parallel region, the following compiler directive can be used to parallelize a for-loop:</li>
+</ul>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp for</span>
+</pre></div>
+<ul>
+<li> Clauses can be added, such as</li>
+
+<ul>
+  <li> <b>schedule(static, chunk size)</b></li>
+  <li> <b>schedule(dynamic, chunk size)</b></li> 
+  <li> <b>schedule(guided, chunk size)</b> (non-deterministic allocation)</li>
+  <li> <b>schedule(runtime)</b></li>
+  <li> <b>private(list of variables)</b></li>
+  <li> <b>reduction(operator:variable)</b></li>
+  <li> <b>nowait</b></li>
+</ul>
+
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec60">Example code </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
+<span style="color: #BC7A00">#define CHUNKSIZE 100</span>
+<span style="color: #BC7A00">#define N</span>
+<span style="color: #666666">1000</span>
+<span style="color: #0000FF">main</span> ()
+{
+<span style="color: #B00040">int</span> i, chunk;
+<span style="color: #B00040">float</span> a[N], b[N], c[N];
+<span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i <span style="color: #666666">&lt;</span> N; i<span style="color: #666666">++</span>)
+a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">=</span> i <span style="color: #666666">*</span> <span style="color: #666666">1.0</span>;
+chunk <span style="color: #666666">=</span> CHUNKSIZE;
+<span style="color: #BC7A00">#pragma omp parallel shared(a,b,c,chunk) private(i)</span>
+{
+<span style="color: #BC7A00">#pragma omp for schedule(dynamic,chunk)</span>
+<span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i <span style="color: #666666">&lt;</span> N; i<span style="color: #666666">++</span>)
+c[i] <span style="color: #666666">=</span> a[i] <span style="color: #666666">+</span> b[i];
+} <span style="color: #408080; font-style: italic">/* end of parallel region */</span>
+}
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec61">More on Parallel for loop </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> The number of loop iterations cannot be non-deterministic; break, return, exit, goto not allowed inside the for-loop</li>
+<li> The loop index is private to each thread</li>
+<li> A reduction variable is special</li>
+
+<ul>
+  <li> During the for-loop there is a local private copy in each thread</li>
+  <li> At the end of the for-loop, all the local copies are combined together by the reduction operation</li>
+</ul>
+
+<li> Unless the nowait clause is used, an implicit barrier synchronization will be added at the end by the compiler</li>
+</ul>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// #pragma omp parallel and #pragma omp for</span>
+</pre></div>
+<p>
+can be combined into
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel for</span>
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec62">Inner product </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+$$
+\sum_{i=0}^{n-1} a_ib_i
+$$
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> i;
+<span style="color: #B00040">double</span> sum <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;
+<span style="color: #408080; font-style: italic">/* allocating and initializing arrays */</span>
+<span style="color: #408080; font-style: italic">/* ... */</span>
+<span style="color: #BC7A00">#pragma omp parallel for default(shared) private(i) reduction(+:sum)</span>
+<span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>N; i<span style="color: #666666">++</span>)
+sum <span style="color: #666666">+=</span> a[i]<span style="color: #666666">*</span>b[i];
+}
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec63">Different threads do different tasks </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+Different threads do different tasks independently, each section is executed by one thread.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel</span>
+{
+<span style="color: #BC7A00">#pragma omp sections</span>
+{
+<span style="color: #BC7A00">#pragma omp section</span>
+funcA ();
+<span style="color: #BC7A00">#pragma omp section</span>
+funcB ();
+<span style="color: #BC7A00">#pragma omp section</span>
+funcC ();
+}
+}
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec64">Single execution  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp single { ... }</span>
+</pre></div>
+<p>
+The code is executed by one thread only, no guarantee which thread
+
+<p>
+Can introduce an implicit barrier at the end
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp master { ... }</span>
+</pre></div>
+<p>
+Code executed by the master thread, guaranteed and no implicit barrier at the end.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec65">Coordination and synchronization  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp barrier</span>
+</pre></div>
+<p>
+Synchronization, must be encountered by all threads in a team (or none)
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp ordered { a block of codes }</span>
+</pre></div>
+<p>
+is another form of synchronization (in sequential order).
+The form
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp critical { a block of codes }</span>
+</pre></div>
+<p>
+and 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp atomic { single assignment statement }</span>
+</pre></div>
+<p>
+is  more efficient than 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp critical</span>
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec66">Data scope  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> OpenMP data scope attribute clauses:</li>
+
+<ul>
+ <li> <b>shared</b></li>
+ <li> <b>private</b></li>
+ <li> <b>firstprivate</b></li>
+ <li> <b>lastprivate</b></li>
+ <li> <b>reduction</b></li>
+</ul>
+
+</ul>
+
+What are the purposes of these attributes
+
+<ul>
+<li> define how and which variables are transferred to a parallel region (and back)</li>
+<li> define which variables are visible to all threads in a parallel region, and which variables are privately allocated to each thread</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec67">Some remarks  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> When entering a parallel region, the <b>private</b> clause ensures each thread having its own new variable instances. The new variables are assumed to be uninitialized.</li>
+<li> A shared variable exists in only one memory location and all threads can read and write to that address. It is the programmer's responsibility to ensure that multiple threads properly access a shared variable.</li>
+<li> The <b>firstprivate</b> clause combines the behavior of the private clause with automatic initialization.</li>
+<li> The <b>lastprivate</b> clause combines the behavior of the private clause with a copy back (from the last loop iteration or section) to the original variable outside the parallel region.</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec68">Parallelizing nested for-loops </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+ <li> Serial code</li>
+</ul>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;100</span>; i<span style="color: #666666">++</span>)
+<span style="color: #008000; font-weight: bold">for</span> (j<span style="color: #666666">=0</span>; j<span style="color: #666666">&lt;100</span>; j<span style="color: #666666">++</span>)
+a[i][j] <span style="color: #666666">=</span> b[i][j] <span style="color: #666666">+</span> c[i][j]
+</pre></div>
+<ul>
+<li> Parallelization</li>
+</ul>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel for private(j)</span>
+<span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;100</span>; i<span style="color: #666666">++</span>)
+<span style="color: #008000; font-weight: bold">for</span> (j<span style="color: #666666">=0</span>; j<span style="color: #666666">&lt;100</span>; j<span style="color: #666666">++</span>)
+a[i][j] <span style="color: #666666">=</span> b[i][j] <span style="color: #666666">+</span> c[i][j]
+</pre></div>
+<ul>
+<li> Why not parallelize the inner loop? to save overhead of repeated thread forks-joins</li>
+<li> Why must <b>j</b> be private? To avoid race condition among the threads</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec69">Nested parallelism  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+When a thread in a parallel region encounters another parallel construct, it
+may create a new team of threads and become the master of the new
+team.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel num_threads(4)</span>
+{
+<span style="color: #408080; font-style: italic">/* .... */</span>
+<span style="color: #BC7A00">#pragma omp parallel num_threads(2)</span>
+{
+<span style="color: #408080; font-style: italic">//  </span>
+}
+}
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec70">Parallel tasks </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp task </span>
+<span style="color: #BC7A00">#pragma omp parallel shared(p_vec) private(i)</span>
+{
+<span style="color: #BC7A00">#pragma omp single</span>
+{
+<span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>N; i<span style="color: #666666">++</span>) {
+<span style="color: #B00040">double</span> r <span style="color: #666666">=</span> random_number();
+<span style="color: #008000; font-weight: bold">if</span> (p_vec[i] <span style="color: #666666">&gt;</span> r) {
+<span style="color: #BC7A00">#pragma omp task</span>
+do_work (p_vec[i]);
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec71">Common mistakes </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Race condition
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> nthreads;
+<span style="color: #BC7A00">#pragma omp parallel shared(nthreads)</span>
+{
+nthreads <span style="color: #666666">=</span> omp_get_num_threads();
+}
+</pre></div>
+<p>
+Deadlock
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel</span>
+{
+...
+<span style="color: #BC7A00">#pragma omp critical</span>
+{
+...
+<span style="color: #BC7A00">#pragma omp barrier</span>
+}
+}
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec72">Matrix-matrix multiplication </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00"># include &lt;cstdlib&gt;</span>
+<span style="color: #BC7A00"># include &lt;iostream&gt;</span>
+<span style="color: #BC7A00"># include &lt;cmath&gt;</span>
+<span style="color: #BC7A00"># include &lt;ctime&gt;</span>
+<span style="color: #BC7A00"># include &lt;omp.h&gt;</span>
+
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+
+<span style="color: #408080; font-style: italic">// Main function</span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> ( )
+{
+<span style="color: #408080; font-style: italic">// brute force coding of arrays</span>
+  <span style="color: #B00040">double</span> a[<span style="color: #666666">500</span>][<span style="color: #666666">500</span>];
+  <span style="color: #B00040">double</span> angle;
+  <span style="color: #B00040">double</span> b[<span style="color: #666666">500</span>][<span style="color: #666666">500</span>];
+  <span style="color: #B00040">double</span> c[<span style="color: #666666">500</span>][<span style="color: #666666">500</span>];
+  <span style="color: #B00040">int</span> i;
+  <span style="color: #B00040">int</span> j;
+  <span style="color: #B00040">int</span> k;
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec73">Matrix-matrix multiplication  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #B00040">int</span> n <span style="color: #666666">=</span> <span style="color: #666666">500</span>;
+  <span style="color: #B00040">double</span> pi <span style="color: #666666">=</span> acos(<span style="color: #666666">-1.0</span>);
+  <span style="color: #B00040">double</span> s;
+  <span style="color: #B00040">int</span> thread_num;
+  <span style="color: #B00040">double</span> wtime;
+
+  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>;
+  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;  C++/OpenMP version</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>;
+  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;  Compute matrix product C = A * B.</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>;
+
+  thread_num <span style="color: #666666">=</span> omp_get_max_threads ( );
+
+<span style="color: #408080; font-style: italic">//</span>
+<span style="color: #408080; font-style: italic">//  Loop 1: Evaluate A.</span>
+<span style="color: #408080; font-style: italic">//</span>
+  s <span style="color: #666666">=</span> <span style="color: #666666">1.0</span> <span style="color: #666666">/</span> sqrt ( ( <span style="color: #B00040">double</span> ) ( n ) );
+
+  wtime <span style="color: #666666">=</span> omp_get_wtime ( );
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec74">Matrix-matrix multiplication </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00"># pragma omp parallel shared ( a, b, c, n, pi, s ) </span>
+<span style="color: #008000; font-weight: bold">private</span> ( angle, i, j, k )
+{
+  <span style="color: #BC7A00"># pragma omp for</span>
+  <span style="color: #008000; font-weight: bold">for</span> ( i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span> )
+  {
+    <span style="color: #008000; font-weight: bold">for</span> ( j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span> )
+    {
+      angle <span style="color: #666666">=</span> <span style="color: #666666">2.0</span> <span style="color: #666666">*</span> pi <span style="color: #666666">*</span> i <span style="color: #666666">*</span> j <span style="color: #666666">/</span> ( <span style="color: #B00040">double</span> ) n;
+      a[i][j] <span style="color: #666666">=</span> s <span style="color: #666666">*</span> ( sin ( angle ) <span style="color: #666666">+</span> cos ( angle ) );
+    }
+  }
+<span style="color: #408080; font-style: italic">//</span>
+<span style="color: #408080; font-style: italic">//  Loop 2: Copy A into B.</span>
+<span style="color: #408080; font-style: italic">//</span>
+  <span style="color: #BC7A00"># pragma omp for</span>
+  <span style="color: #008000; font-weight: bold">for</span> ( i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span> )
+  {
+    <span style="color: #008000; font-weight: bold">for</span> ( j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span> )
+    {
+      b[i][j] <span style="color: #666666">=</span> a[i][j];
+    }
+  }
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec75">Matrix-matrix multiplication </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//  Loop 3: Compute C = A * B.</span>
+<span style="color: #408080; font-style: italic">//</span>
+  <span style="color: #BC7A00"># pragma omp for</span>
+  <span style="color: #008000; font-weight: bold">for</span> ( i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span> )
+  {
+    <span style="color: #008000; font-weight: bold">for</span> ( j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span> )
+    {
+      c[i][j] <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+      <span style="color: #008000; font-weight: bold">for</span> ( k <span style="color: #666666">=</span> <span style="color: #666666">0</span>; k <span style="color: #666666">&lt;</span> n; k<span style="color: #666666">++</span> )
+      {
+        c[i][j] <span style="color: #666666">=</span> c[i][j] <span style="color: #666666">+</span> a[i][k] <span style="color: #666666">*</span> b[k][j];
+      }
+    }
+  }
+}
+  wtime <span style="color: #666666">=</span> omp_get_wtime ( ) <span style="color: #666666">-</span> wtime;
+  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;  Elapsed seconds = &quot;</span> <span style="color: #666666">&lt;&lt;</span> wtime <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>;
+  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;  C(100,100)  = &quot;</span> <span style="color: #666666">&lt;&lt;</span> c[<span style="color: #666666">99</span>][<span style="color: #666666">99</span>] <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>;
+<span style="color: #408080; font-style: italic">//</span>
+<span style="color: #408080; font-style: italic">//  Terminate.</span>
+<span style="color: #408080; font-style: italic">//</span>
+  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>;
+  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;  Normal end of execution.</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>;
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+</pre></div>
+
+</div>
+
+
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+

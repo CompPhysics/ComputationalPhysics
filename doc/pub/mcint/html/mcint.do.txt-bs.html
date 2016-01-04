@@ -1,0 +1,458 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Introduction to Monte Carlo methods">
+
+<title>Introduction to Monte Carlo methods</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Monte Carlo methods, plan for the lectures',
+               2,
+               None,
+               '___sec0'),
+              ('Monte Carlo: Enhances algorithmic thinking!',
+               2,
+               None,
+               '___sec1'),
+              ('Domains and probabilities', 2, None, '___sec2'),
+              ('Monte Carlo methods, tossing a dice', 2, None, '___sec3'),
+              ('Stochastic variables', 2, None, '___sec4'),
+              ('Stochastic variables and the main concepts, the discrete case',
+               2,
+               None,
+               '___sec5'),
+              ('Stochastic variables and the main concepts, the continuous case',
+               2,
+               None,
+               '___sec6'),
+              ('The cumulative probability', 2, None, '___sec7'),
+              ('Properties of PDFs', 2, None, '___sec8'),
+              ('Important distributions, the uniform distribution',
+               2,
+               None,
+               '___sec9'),
+              ('Gaussian distribution', 2, None, '___sec10'),
+              ('Exponential distribution', 2, None, '___sec11'),
+              ('Expectation values', 2, None, '___sec12'),
+              ('Stochastic variables and the main concepts, mean values',
+               2,
+               None,
+               '___sec13'),
+              ('Stochastic variables and the main concepts, central moments, the variance',
+               2,
+               None,
+               '___sec14'),
+              ('First Illustration of the Use of Monte-Carlo Methods, integration',
+               2,
+               None,
+               '___sec15'),
+              ('First Illustration of the Use of Monte-Carlo Methods, integration',
+               2,
+               None,
+               '___sec16'),
+              ('First Illustration of the Use of Monte-Carlo Methods, variance in integration',
+               2,
+               None,
+               '___sec17'),
+              ('Monte-Carlo integration, meaning of variance',
+               2,
+               None,
+               '___sec18'),
+              ('First Illustration of the Use of Monte-Carlo Methods, integration',
+               2,
+               None,
+               '___sec19'),
+              ('Important aspects of Monte-Carlo Methods',
+               2,
+               None,
+               '___sec20'),
+              ('Why Monte Carlo integration?', 2, None, '___sec21'),
+              ('Why Monte Carlo integration?', 2, None, '___sec22'),
+              ('Why Monte Carlo integration? Example', 2, None, '___sec23'),
+              ('Monte Carlo integration, simple  example',
+               2,
+               None,
+               '___sec24'),
+              ('Monte Carlo integration, simple  example',
+               2,
+               None,
+               '___sec25'),
+              ('Monte Carlo integration, simple  example',
+               2,
+               None,
+               '___sec26'),
+              ('Monte Carlo integration, simple  example',
+               2,
+               None,
+               '___sec27'),
+              ('Monte Carlo integration, algorithm', 2, None, '___sec28'),
+              ('Monte Carlo integration, simple  example, the program',
+               2,
+               None,
+               '___sec29'),
+              ('Monte Carlo integration, simple  example and the results',
+               2,
+               None,
+               '___sec30'),
+              ('Testing against the trapezoidal rule for a one-dimensional integral',
+               2,
+               None,
+               '___sec31'),
+              ('Second example, particles in a box', 2, None, '___sec32'),
+              ('Second example, particles in a box', 2, None, '___sec33'),
+              ('Second example, particles in a box', 2, None, '___sec34'),
+              ('Second example, particles in a box, discussion',
+               2,
+               None,
+               '___sec35'),
+              ('Second example, particles in a box, discussion',
+               2,
+               None,
+               '___sec36'),
+              ('Simple demonstration using python', 2, None, '___sec37'),
+              ('Brief Summary', 2, None, '___sec38'),
+              ('Probability Distribution Functions', 2, None, '___sec39'),
+              ('Probability Distribution Functions', 2, None, '___sec40'),
+              ('The three famous Probability Distribution Functions',
+               2,
+               None,
+               '___sec41'),
+              ('Probability Distribution Functions, the normal distribution',
+               2,
+               None,
+               '___sec42'),
+              ('Probability Distribution Functions, the normal distribution',
+               2,
+               None,
+               '___sec43'),
+              ('Probability Distribution Functions, the cumulative distribution',
+               2,
+               None,
+               '___sec44'),
+              ('Probability Distribution Functions, other important distribution',
+               2,
+               None,
+               '___sec45'),
+              ('Probability Distribution Functions, the binomial distribution',
+               2,
+               None,
+               '___sec46'),
+              ("Probability Distribution Functions, Poisson's  distribution",
+               2,
+               None,
+               '___sec47'),
+              ("Probability Distribution Functions, Poisson's  distribution",
+               2,
+               None,
+               '___sec48'),
+              ('Meet the  covariance!', 2, None, '___sec49'),
+              ('Meet the  covariance in matrix disguise',
+               2,
+               None,
+               '___sec50'),
+              ('Meet the  covariance, uncorrelated events',
+               2,
+               None,
+               '___sec51'),
+              ('Numerical experiments and the covariance',
+               2,
+               None,
+               '___sec52'),
+              ('Numerical experiments and the covariance',
+               2,
+               None,
+               '___sec53'),
+              ('Numerical experiments and the covariance, actual situations',
+               2,
+               None,
+               '___sec54'),
+              ('Numerical experiments and the covariance, our observables',
+               2,
+               None,
+               '___sec55'),
+              ('Numerical experiments and the covariance, the sample variance',
+               2,
+               None,
+               '___sec56'),
+              ('Numerical experiments and the covariance, central limit theorem',
+               2,
+               None,
+               '___sec57'),
+              ('Definition of Correlation Functions and Standard Deviation',
+               2,
+               None,
+               '___sec58'),
+              ('Definition of Correlation Functions and Standard Deviation',
+               2,
+               None,
+               '___sec59'),
+              ('Definition of Correlation Functions and Standard Deviation',
+               2,
+               None,
+               '___sec60'),
+              ('Definition of Correlation Functions and Standard Deviation',
+               2,
+               None,
+               '___sec61'),
+              ('Definition of Correlation Functions and Standard Deviation, sample variance',
+               2,
+               None,
+               '___sec62'),
+              ('Definition of Correlation Functions and Standard Deviation',
+               2,
+               None,
+               '___sec63'),
+              ('Random Numbers', 1, None, '___sec64'),
+              ('Random Numbers, better name: pseudo random numbers',
+               1,
+               None,
+               '___sec65'),
+              ('Random number generator RNG', 1, None, '___sec66'),
+              ('Random number generator RNG and periodic outputs',
+               1,
+               None,
+               '___sec67'),
+              ('Random number generator RNG and its period',
+               1,
+               None,
+               '___sec68'),
+              ('Random number generator RNG, other examples',
+               1,
+               None,
+               '___sec69'),
+              ('Random number generator RNG, other examples',
+               1,
+               None,
+               '___sec70'),
+              ('Random number generator RNG, RAN0', 1, None, '___sec71'),
+              ('Random number generator RNG, RAN0', 1, None, '___sec72'),
+              ('Random number generator RNG, RAN0', 1, None, '___sec73'),
+              ('Random number generator RNG, RAN0', 1, None, '___sec74'),
+              ('Random number generator RNG, RAN0 code', 1, None, '___sec75'),
+              ('Properties of Selected Random Number Generators',
+               2,
+               None,
+               '___sec76'),
+              ('Properties of Selected Random Number Generators',
+               2,
+               None,
+               '___sec77'),
+              ('Properties of Selected Random Number Generators',
+               2,
+               None,
+               '___sec78'),
+              ('Simple demonstration of RNGs using python',
+               2,
+               None,
+               '___sec79'),
+              ('Properties of Selected Random Number Generators',
+               2,
+               None,
+               '___sec80'),
+              ('Improved Monte Carlo Integration', 1, None, '___sec81'),
+              ('Change of Variables', 2, None, '___sec82'),
+              ('Change of Variables', 2, None, '___sec83'),
+              ('Transformed Uniform Distribution', 2, None, '___sec84'),
+              ('Exponential Distribution', 2, None, '___sec85'),
+              ('Exponential Distribution', 2, None, '___sec86'),
+              ('Exponential Distribution', 2, None, '___sec87'),
+              ('Normal Distribution', 2, None, '___sec88'),
+              ('Normal Distribution', 2, None, '___sec89'),
+              ('Normal Distribution', 2, None, '___sec90'),
+              ('Normal Distribution', 2, None, '___sec91'),
+              ('Normal Distribution', 2, None, '___sec92'),
+              ('Importance Sampling', 2, None, '___sec93'),
+              ('Importance Sampling', 2, None, '___sec94'),
+              ('Importance Sampling', 2, None, '___sec95'),
+              ('Importance Sampling', 2, None, '___sec96'),
+              ('Importance Sampling', 2, None, '___sec97'),
+              ('Importance Sampling', 2, None, '___sec98'),
+              ('Acceptance-Rejection Method', 2, None, '___sec99'),
+              ('Acceptance-Rejection Method', 2, None, '___sec100'),
+              ('Acceptance-Rejection Method', 2, None, '___sec101'),
+              ('Monte Carlo Integration of Multidimensional Integrals',
+               2,
+               None,
+               '___sec102'),
+              ('Monte Carlo Integration of Multidimensional Integrals',
+               2,
+               None,
+               '___sec103'),
+              ('Monte Carlo Integration of Multidimensional Integrals',
+               2,
+               None,
+               '___sec104'),
+              ('Monte Carlo Integration of Multidimensional Integrals',
+               2,
+               None,
+               '___sec105'),
+              ('Monte Carlo Integration of Multidimensional Integrals',
+               2,
+               None,
+               '___sec106'),
+              ('Brute Force Integration', 2, None, '___sec107'),
+              ('Importance Sampling', 2, None, '___sec108'),
+              ('Results', 2, None, '___sec109')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="mcint.do.txt-bs.html">Introduction to Monte Carlo methods</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs065.html#___sec64" style="font-size: 80%;">Random Numbers</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs066.html#___sec65" style="font-size: 80%;">Random Numbers, better name: pseudo random numbers</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs067.html#___sec66" style="font-size: 80%;">Random number generator RNG</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs068.html#___sec67" style="font-size: 80%;">Random number generator RNG and periodic outputs</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs069.html#___sec68" style="font-size: 80%;">Random number generator RNG and its period</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs070.html#___sec69" style="font-size: 80%;">Random number generator RNG, other examples</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs071.html#___sec70" style="font-size: 80%;">Random number generator RNG, other examples</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs072.html#___sec71" style="font-size: 80%;">Random number generator RNG, RAN0</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs073.html#___sec72" style="font-size: 80%;">Random number generator RNG, RAN0</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs074.html#___sec73" style="font-size: 80%;">Random number generator RNG, RAN0</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs075.html#___sec74" style="font-size: 80%;">Random number generator RNG, RAN0</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs076.html#___sec75" style="font-size: 80%;">Random number generator RNG, RAN0 code</a></li>
+     <!-- navigation toc: --> <li><a href="._mcint.do.txt-bs082.html#___sec81" style="font-size: 80%;">Improved Monte Carlo Integration</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0000"></a>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Introduction to Monte Carlo methods</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Morten Hjorth-Jensen   Email morten.hjorth-jensen@fys.uio.no -->
+
+<center>
+<b>Morten Hjorth-Jensen   Email morten.hjorth-jensen@fys.uio.no</b> [1, 2]
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Center of Mathematics for Applications, University of Oslo</b></center>
+<center>[2] <b>National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>
+<center><h4>Fall 2015</h4></center> <!-- date -->
+<br>
+<p>
+
+
+<p><a href="._mcint.do.txt-bs001.html" class="btn btn-primary btn-lg">Read &raquo;</a></p>
+
+
+</div> <!-- end jumbotron -->
+
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+  <li class="active"><a href="._mcint.do.txt-bs000.html">1</a></li>
+  <li><a href="._mcint.do.txt-bs001.html">2</a></li>
+  <li><a href="._mcint.do.txt-bs002.html">3</a></li>
+  <li><a href="._mcint.do.txt-bs003.html">4</a></li>
+  <li><a href="._mcint.do.txt-bs004.html">5</a></li>
+  <li><a href="._mcint.do.txt-bs005.html">6</a></li>
+  <li><a href="._mcint.do.txt-bs006.html">7</a></li>
+  <li><a href="._mcint.do.txt-bs007.html">8</a></li>
+  <li><a href="._mcint.do.txt-bs008.html">9</a></li>
+  <li><a href="._mcint.do.txt-bs009.html">10</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._mcint.do.txt-bs110.html">111</a></li>
+  <li><a href="._mcint.do.txt-bs001.html">&raquo;</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2015, Morten Hjorth-Jensen   Email morten.hjorth-jensen@fys.uio.no. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+

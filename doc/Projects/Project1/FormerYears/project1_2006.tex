@@ -1,0 +1,255 @@
+\documentclass[11pt,a4wide]{article}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{epic}
+\usepackage{eepic}
+\usepackage{a4wide}
+\usepackage{color}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[dvips]{epsfig}
+\usepackage{psfig}
+\usepackage[T1]{fontenc}
+\usepackage{cite} % [2,3,4] --> [2--4]
+\usepackage{shadow}
+\usepackage{hyperref}
+
+\setcounter{tocdepth}{2}
+
+\lstset{language=c++}
+\lstset{alsolanguage=[90]Fortran}
+\lstset{basicstyle=\small}
+\lstset{backgroundcolor=\color{white}}
+\lstset{frame=single}
+\lstset{stringstyle=\ttfamily}
+\lstset{keywordstyle=\color{red}\bfseries}
+\lstset{commentstyle=\itshape\color{blue}}
+\lstset{showspaces=false}
+\lstset{showstringspaces=false}
+\lstset{showtabs=false}
+\lstset{breaklines}
+\begin{document}
+\section*{Introduction to numerical projects}
+
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+\begin{itemize}
+\item Give a short description of the nature of the problem and the eventual 
+numerical methods you have used.
+\item Describe the algorithm you have used and/or developed. Here you may find it convenient
+to use pseudocoding. In many cases you can describe the algorithm
+in the program itself.
+
+\item Include the source code of your program. Comment your program properly.
+\item If possible, try to find analytic solutions, or known limits
+in order to test your program when developing the code.
+\item Include your results either in figure form or in a table. Remember to
+       label your results. All tables and figures should have relevant captions
+       and labels on the axes.
+\item Try to evaluate the reliabilty and numerical stability/precision
+of your results. If possible, include a qualitative and/or quantitative
+discussion of the numerical stability, eventual loss of precision etc. 
+
+\item Try to give an interpretation of you results in your answers to 
+the problems.
+\item Critique: if possible include your comments and reflections about the 
+exercise, whether you felt you learnt something, ideas for improvements and 
+other thoughts you've made when solving the exercise.
+We wish to keep this course at the interactive level and your comments can help
+us improve it.
+\item Try to establish a practice where you log your work at the 
+computerlab. You may find such a logbook very handy at later stages
+in your work, especially when you don't properly remember 
+what a previous test version 
+of your program did. Here you could also record 
+the time spent on solving the exercise, various algorithms you may have tested
+or other topics which you feel worthy of mentioning.
+\end{itemize}
+
+
+
+\section*{Format for electronic delivery of report and programs}
+%
+The preferred format for the report is a PDF file. You can also
+use DOC or postscript formats. 
+As programming language we prefer that you choose between C/C++ and Fortran90/95.
+You could also use Java or Python as programming languages. 
+Matlab/Maple/Mathematica/IDL are not allowed as programming
+languages for the handins, but you can use them to check your results where possible.
+The following prescription should be followed when preparing the report:
+\begin{itemize}
+\item Use Classfronter to hand in your projects, log in  at 
+blyant.uio.no and choose 'fellesrom fys3150 og fys4150'.
+Thereafter you will see an icon to the left with 'hand in' or 'innlevering'.
+Click on that icon and go to the given project. 
+There you can load up the files within the deadline.
+\item Upload {\bf only} the report file and the source code file(s) you have developed.
+The report file should include all of your discussions and a list of the codes you have developed. 
+Do not include library files which are available at the course homepage, unless you have
+made specific changes to them.
+\item Comments  from us on your projects, approval or not, corrections to be made 
+etc can be found under
+your Classfronter domain and are only visible to you and the teachers of the course.
+ 
+\end{itemize}
+Finally, 
+we do prefer that you work two and two together. Optimal working groups consist of 
+2-3 students. You can then hand in a common report. 
+
+\section*{Project 1, deadline 18 september 12pm (midnight)}
+
+The aim of this project is to get familiar with various matrix operations,
+from dynamic memory allocation to the usage of programs in the library
+package of the course. 
+For Fortran users memory handling and most matrix and vector operations
+are included in the ANSI standard of Fortran 90/95. For C++ user however,
+there are three possible options
+\begin{enumerate}
+\item Make your own functions for dynamic memory allocation of a 
+vector and a matrix. Use then the 
+library package lib.cpp with its header file 
+lib.hpp for obtaining LU-decomposed matrices, solve linear equations
+etc.
+\item Use the library package lib.cpp with its header file 
+lib.hpp which includes a function \verb?matrix? for dynamic memory
+allocation. This program package includes all the other functions
+discussed during the lectures for solving systems of linear equations,
+obatining the determinant, getting the inverse etc.
+\item Finally, we provide on the web-page of the course a library package
+which uses Blitz++'s classes for array handling. You could then, since
+Blitz++ is installed on all machines at the lab, use these classes for handling
+arrays.
+\end{enumerate}
+
+Your program, whether it is written in C++ or Fortran 90/95, should include
+dynamic memory handling of matrices and vectors. You should also read the matrix from a file
+and write your results to a file. Make sure your code includes these options.
+\begin{enumerate}
+\item[(a)] 
+Consider the linear system of equations 
+%
+\begin{eqnarray}
+ a_{11}x_1 +a_{12}x_2 +a_{13}x_3 =&w_1 \nonumber \\
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3=&w_2 \nonumber \\
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3=&w_3. \nonumber 
+\end{eqnarray}
+This can be written in matrix form as
+\[
+   {\bf Ax}={\bf w}.
+\]
+Use the included programs for LU decomposition to solve the system of equations
+\begin{eqnarray}
+ -x_1 +x_2 -4x_3 =&0 \nonumber \\
+  2x_1 + 2x_2 =&1 \nonumber \\
+3x_1 + 3x_2 + 2x_3=&\frac{1}{2}. \nonumber 
+\end{eqnarray}
+Use first standard Gaussian elimination and compute the result
+analytically. Compare thereafter your analytical results with
+the numerical ones obtained using the LU programs in the program library.
+
+\item[(b)] 
+We start with the linear set of equations 
+\[
+   {\bf A}{\bf u} = {\bf f},
+\]
+where ${\bf A}$ is a tridiagonal matrix which we rewrite as 
+\begin{equation}
+    {\bf A} = \left(\begin{array}{cccccc}
+                           b_1& c_1 & 0 &\dots   & \dots &\dots \\
+                           a_2 & b_2 & c_2 &\dots &\dots &\dots \\
+                           & a_3 & b_3 & c_3 & \dots & \dots \\
+                           & \dots   & \dots &\dots   &\dots & \dots \\
+                           &   &  &a_{n-2}  &b_{n-1}& c_{n-1} \\
+                           &    &  &   &a_n & b_n \\
+                      \end{array} \right)
+\end{equation}
+where $a,b,c$ are one-dimensional arrays of length $1:n$. 
+We set the arrays $a$ and $c$ to be equal, namely $a_i=c_i=-1/100$.
+We set $b_i = 2/100$.
+Our linear equation reads
+\begin{equation}
+    {\bf A} = \left(\begin{array}{cccccc}
+                           b_1& c_1 & 0 &\dots   & \dots &\dots \\
+                           a_2 & b_2 & c_2 &\dots &\dots &\dots \\
+                           & a_3 & b_3 & c_3 & \dots & \dots \\
+                           & \dots   & \dots &\dots   &\dots & \dots \\
+                           &   &  &a_{n-2}  &b_{n-1}& c_{n-1} \\
+                           &    &  &   &a_n & b_n \\
+                      \end{array} \right)\left(\begin{array}{c}
+                           u_1\\
+                           u_2\\
+                           \dots \\
+                          \dots  \\
+                          \dots \\
+                           u_n\\
+                      \end{array} \right)
+  =\left(\begin{array}{c}
+                           f_1\\
+                           f_2\\
+                           \dots \\
+                           \dots \\
+                          \dots \\
+                           f_n\\
+                      \end{array} \right).
+\end{equation}
+A tridiagonal matrix is a special form of banded matrix where all the elements are zero except for 
+those on and immediately above and below the leading diagonal.
+The above tridiagonal system   can be written as
+\begin{equation}
+  a_iu_{i-1}+b_iu_i+c_iu_{i+1} = f_i,
+\end{equation}
+for $i=1,2,\dots,n$. We see that $u_{-1}$ and $u_{n+1}$ are not required and we can set $a_1=c_n=0$.
+The algorithm for solving this set of equations is rather simple and requires two steps only, a decomposition 
+and forward substitution and finally a backward substitution. 
+A possible part of the code which solves these equations is, with the forward substitution part first
+\lstset{language=c++} 
+\begin{lstlisting}
+   btemp = b[1];
+   u[1] = f[1]/btemp;
+   for(i=2 ; i <= n ; i++) {  
+      temp[i] = c[i-1]/btemp;
+      btemp = b[i]-a[i]*temp[i];
+      u[i] = (f[i] - a[i]*u[i-1])/btemp; 
+   }  
+\end{lstlisting}
+Note that you should avoid cases with $b_1=0$. If that is the case, you should rewrite the equations
+as a set of order $n-1$ with $u_2$ eliminated. 
+Finally we perform the backsubstitution leading to the following code
+\begin{lstlisting}
+   for(i=n-1 ; i >= 1 ; i--) {  
+      u[i] = u[i]-temp[i+1]*u[i+1];
+   }  
+\end{lstlisting}
+
+Your first task is to find the number of operations needed to solve the above equations. Show that they behave like $O(n)$ with 
+$n$ the dimensionality of the problem. Compare this with standard Gaussian elimination and LU decomposition.  
+Then you should code the above algorithm and solve the problem for a $100\times 100$ matrix where you let the vector $f_i$ take
+values $f_1=0.1,f_2=0.2,\dots f_{100}=10$. Compare your results with those from the LU decomposition codes.
+Use for example the unix function {\em time} when you run your codes and compare the time usage between LU decomposition and
+the tridiagonal solver. Comment your results.
+\end{enumerate}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1535 @@
+TITLE: Slides PHY 480 and PHY 905  Lectures: Statistical physics
+AUTHOR: Phil Duxbury at Department of Physics and Astronomy, Michigan State University
+AUTHOR: Morten Hjorth-Jensen {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
+DATE: Spring 2016
+
+
+!split
+===== Ensembles =====
+
+In statistical physics the concept of an ensemble is one of the
+cornerstones in the definition of thermodynamical quantities. An
+ensemble is a collection of microphysics systems from which we derive
+expectations values and thermodynamical properties related to
+experiment.  As an example, the specific heat (which is a measurable
+quantity in the laboratory) of a system of infinitely many particles,
+can be derived from the basic interactions between the microscopic
+constituents. The latter can span from electrons to atoms and
+molecules or a system of classical spins. All these microscopic
+constituents interact via a well-defined interaction.  We say
+therefore that statistical physics bridges the gap between the
+microscopic world and the macroscopic world.  Thermodynamical
+quantities such as the specific heat or net magnetization of a system
+can all be derived from a microscopic theory.
+
+
+!split
+===== Famous Ensembles =====
+
+The table lists the most used ensembles in statistical physics
+together with frequently arising extensive (depend on the size of the
+systems such as the number of particles) and intensive variables
+(apply to all components of a system), in addition to associated
+potentials.
+
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                                          | Microcanonical      | Canonical           |   Grand Canonical    |Pressure canonical                                |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------|     
+|                                          |                     |                     |                      |                                                  |
+| Exchange of heat                         | no                  | yes                 | yes                  | yes                                              |
+| with the environment                     |                     |                     |                      |                                                  |
+|                                          |                     |                     |                      |                                                  |
+| Exchange of particles                    | no                  | no                  | yes                  | no                                               |
+| with the environemt                      |                     |                     |                      |                                                  |
+|                                          |                     |                     |                      |                                                  |
+|                                          |                     |                     |                      |                                                  |
+| Thermodynamical                          | $V, \cal M, \cal D$ | $V, \cal M, \cal D$ | $V, \cal M, \cal D$  | $P, \cal H, \cal E$                              |
+| parameters                               | $E$                 | $T$                 | $T$                  | $T$                                              |
+|                                          | $N$                 | $N$                 | $\mu$                | $N$                                              |
+|                                          |                     |                     |                      |                                                  |
+|                                          |                     |                     |                      |                                                  |
+| Potential                                | Entropy             | Helmholtz           | $PV$                 | Gibbs                                            |
+|                                          | $N$                 | $N$                 | $\mu$                | $N$                                              |
+|                                          |                     |                     |                      |                                                  |
+|                                          |                     |                     |                      |                                                  |
+| Energy                                   | Internal            | Internal            | Internal             | Enthalpy                                         |
+|                                          | $N$                 | $N$                 | $\mu$                | $N$                                              |
+|                                          |                     |                     |                      |                                                  |
+|                                          |                     |                     |                      |                                                  |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+
+
+!split
+===== Canonical Ensemble =====
+
+One of the most used ensembles is the canonical one, which is related to the microcanonical ensemble
+via a Legendre transformation. The temperature is an intensive variable in this ensemble whereas the energy
+follows as an expectation value. 
+In order to calculate expectation values such as the mean energy $\langle E \rangle $
+at a given temperature, we need a probability distribution.
+It is given by the Boltzmann distribution
+
+!bt
+\begin{equation*}
+  P_i(\beta) = \frac{e^{-\beta E_i}}{Z}
+\end{equation*}
+!et
+with $\beta=1/k_BT$ being the inverse temperature, $k_B$ is the 
+Boltzmann constant, $E_i$ is the energy of a microstate $i$ while 
+$Z$ is the partition function for the canonical ensemble
+defined as
+
+
+
+!split
+===== The partition function is a normalization constant  =====
+
+In the canonical ensemble the partition function is 
+!bt
+\begin{equation*}
+Z=\sum_{i=1}^{M}e^{-\beta E_i},
+\end{equation*}
+!et
+where the sum extends over all microstates $M$. 
+
+
+!split
+===== Helmoltz free energy, what does it mean?  =====
+
+The potential of interest in this case is Helmholtz' free energy. It
+relates the expectation value of the energy at a given temperatur $T$
+to the entropy at the same temperature via
+
+!bt 
+\begin{equation*} 
+F=-k_{B}TlnZ=\langle E \rangle-TS.
+\end{equation*} 
+!et 
+
+Helmholtz' free energy expresses the
+struggle between two important principles in physics, namely the
+strive towards an energy minimum and the drive towards higher entropy
+as the temperature increases. A higher entropy may be interpreted as a
+larger degree of disorder. When equilibrium is reached at a given
+temperature, we have a balance between these two principles.  The
+numerical expression is Helmholtz' free energy.
+
+!split
+===== Thermodynamical quantities  =====
+
+In the canonical ensemble the entropy is given by
+
+!bt
+\begin{equation*} 
+S =k_{B}lnZ
++k_{B}T\left(\frac{\partial lnZ}{\partial T}\right)_{N, V},
+\end{equation*}
+!et
+and the pressure by
+
+!bt
+\begin{equation*} 
+p=k_{B}T\left(\frac{\partial lnZ}{\partial V}\right)_{N, T}.
+\end{equation*}
+!et
+Similarly we can compute the chemical potential as
+
+!bt
+\begin{equation*} 
+\mu =-k_{B}T\left(\frac{\partial lnZ}{\partial N}\right)_{V, T}.
+\end{equation*}
+!et
+
+!split
+===== Thermodynamical quantities, the energy in the canonical ensemble  =====
+
+For a system described by the canonical ensemble, the energy is an
+expectation value since we allow energy to be exchanged with the surroundings
+(a heat bath with temperature $T$). 
+
+This expectation value, the mean energy,
+can be calculated using
+
+!bt
+\begin{equation*}
+\langle E\rangle  =k_{B}T^{2}\left(\frac{\partial lnZ}{\partial T}\right)_{V, N}
+\end{equation*}
+!et
+or 
+using the probability distribution
+$P_i$ as
+
+!bt
+\begin{equation*}
+  \langle E \rangle = \sum_{i=1}^M E_i P_i(\beta)= 
+  \frac{1}{Z}\sum_{i=1}^M E_ie^{-\beta E_i}.
+\end{equation*}
+!et
+
+!split
+===== Energy and specific heat in the canonical ensemble  =====
+
+
+The energy is proportional to the first derivative of the potential,
+Helmholtz' free energy.  The corresponding variance is defined as
+
+!bt
+\begin{equation*}
+\sigma_E^2=\langle E^2 \rangle-\langle E \rangle^2=
+         \frac{1}{Z}\sum_{i=1}^M E_i^2e^{-\beta E_i}-
+          \left(\frac{1}{Z}\sum_{i=1}^M E_ie^{-\beta E_i}\right)^2.
+\end{equation*}
+!et
+If we divide the latter quantity with
+$kT^2$ we obtain the specific heat at constant volume
+
+!bt
+\begin{equation*}
+   C_V= \frac{1}{k_BT^2}\left(\langle E^2 \rangle-\langle E \rangle^2\right),
+\end{equation*}
+!et
+which again can be related to the second derivative of Helmholtz' free energy.
+
+
+!split
+===== Magnetic moments and susceptibility in the canonical ensemble  =====
+
+Using the same prescription, we can also evaluate the mean magnetization
+through
+
+!bt
+\begin{equation*}
+  \langle {\cal M} \rangle = \sum_i^M {\cal M}_i P_i(\beta)= 
+  \frac{1}{Z}\sum_i^M {\cal M}_ie^{-\beta E_i},
+\end{equation*}
+!et
+and the corresponding variance
+
+!bt
+\begin{equation*}
+\sigma_{{\cal M}}^2=\langle {\cal M}^2 \rangle-\langle {\cal M} \rangle^2=
+         \frac{1}{Z}\sum_{i=1}^M {\cal M}_i^2e^{-\beta E_i}-
+          \left(\frac{1}{Z}\sum_{i=1}^M {\cal M}_ie^{-\beta E_i}\right)^2.
+\end{equation*}
+!et
+This quantity defines also the susceptibility 
+$\chi$
+
+!bt
+\begin{equation*}
+  \chi=\frac{1}{k_BT}\left(\langle {\cal M}^2 \rangle-\langle {\cal M} \rangle^2\right).
+\end{equation*}
+!et
+
+!split
+===== Our model, the Ising model in one and two dimensions =====
+
+The model we will employ in our studies of phase transitions at finite temperature for 
+magnetic systems is the so-called Ising model. In its simplest form
+the energy is expressed as
+
+!bt
+\begin{equation*}
+  E=-J\sum_{<kl>}^{N}s_ks_l-{\cal B}\sum_k^Ns_k,
+\end{equation*}
+!et
+with  $s_k=\pm 1$, $N$ is the total number of spins, 
+$J$ is a coupling constant expressing the strength of the interaction
+between neighboring spins and 
+${\cal B}$ is an external magnetic field interacting with the magnetic
+moment set up by the spins.
+
+The symbol $<kl>$ indicates that we sum over nearest
+neighbors only. 
+Notice that for $J>0$ it is energetically favorable for neighboring spins 
+to be aligned. This feature leads to, at low enough temperatures,
+a cooperative phenomenon called spontaneous magnetization. That is, 
+through interactions between nearest neighbors, a given magnetic
+moment can influence the alignment of spins  that are separated 
+from the given spin by a macroscopic distance. These long range correlations
+between spins are associated with a long-range order in which
+the lattice has a net magnetization in the absence of a magnetic field. 
+
+!split
+===== Boltzmann distribution  =====
+
+In order to calculate expectation values such as the mean energy
+$\langle E \rangle $ or
+magnetization $\langle {\cal M} \rangle $
+in statistical physics
+at a given temperature, we need a probability distribution
+
+!bt
+\begin{equation*}
+  P_i(\beta) = \frac{e^{-\beta E_i}}{Z}
+\end{equation*}
+!et
+with $\beta=1/kT$ being the inverse temperature, $k$ the 
+Boltzmann constant, $E_i$ is the energy of a state $i$ while 
+$Z$ is the partition function for the canonical ensemble
+defined as
+
+!bt
+\begin{equation*}
+Z=\sum_{i=1}^{M}e^{-\beta E_i},
+\end{equation*}
+!et
+where the sum extends over all microstates
+$M$. 
+$P_i$ expresses the probability of finding the system in a given 
+configuration $i$.
+
+
+
+!split
+===== Energy for a specific configuration  =====
+
+The energy for a specific configuration $i$
+is given by
+
+!bt
+\begin{equation*}
+   E_i =-J\sum_{<kl>}^{N}s_ks_l.
+\end{equation*}
+!et
+
+
+!split
+===== Configurations =====
+To better understand what is meant with a configuration, 
+consider first the case of the one-dimensional Ising model
+with ${\cal B}=0$. 
+In general, a given configuration of $N$ spins in one
+dimension may look like
+
+!bt
+\begin{equation*}
+\begin{array}{cccccccccc}
+\uparrow&\uparrow&\uparrow&\dots&\uparrow&\downarrow&\uparrow&\dots&\uparrow&\downarrow\\
+1&2&3&\dots& i-1&i&i+1&\dots&N-1&N\end{array}
+\end{equation*}
+!et
+In order to illustrate these features 
+let us further specialize to
+just two spins.
+
+With two spins, since each spin takes two values only,
+we have $2^2=4$ possible arrangements of the two spins. 
+These four possibilities are
+
+!bt
+\begin{equation*}
+   1= \uparrow\uparrow\hspace{1cm}
+    2= \uparrow\downarrow\hspace{1cm}
+   3= \downarrow\uparrow\hspace{1cm}
+      4=\downarrow\downarrow
+\end{equation*}
+!et
+
+!split
+===== Boundary conditions, free ends =====
+
+What is the energy of each of these configurations? 
+
+For small systems, the way we treat the ends matters. Two cases are
+often used.
+
+In the first case we employ what is called  free ends. This means that there is no contribution from points to the right or left of the endpoints. For the one-dimensional case, the energy is then written as  a sum over a single index  
+!bt 
+\begin{equation*}    
+E_i =-J\sum_{j=1}^{N-1}s_js_{j+1},
+\end{equation*}
+!et
+
+
+!split
+===== Free ends and the energy =====
+
+If we  label the first spin as $s_1$ and the second as $s_2$ 
+we obtain the following 
+expression for the energy
+
+!bt
+\begin{equation*}
+   E=-Js_1s_2.
+\end{equation*}
+!et
+The calculation of the energy for the one-dimensional lattice
+with free ends for one specific spin-configuration 
+can easily be implemented in the following lines
+!bc cppcod
+for ( j=1; j < N; j++) {
+     energy += spin[j]*spin[j+1]; 
+}
+!ec
+where the vector $spin[]$ contains the spin value $s_k=\pm 1$. 
+
+!split
+===== Free ends and energy =====
+
+For the specific state $E_1$, we have chosen all spins up. The energy of
+this configuration becomes then
+
+!bt
+\begin{equation*}
+   E_1=E_{\uparrow\uparrow}=-J.
+\end{equation*}
+!et
+The other configurations give
+
+!bt
+\begin{equation*}
+   E_2=E_{\uparrow\downarrow}=+J,
+\end{equation*}
+!et
+
+!bt
+\begin{equation*}
+   E_3=E_{\downarrow\uparrow}=+J,
+\end{equation*}
+!et
+and
+
+!bt
+\begin{equation*}
+   E_4=E_{\downarrow\downarrow}=-J.
+\end{equation*}
+!et
+
+!split
+===== Periodic boundary conditions =====
+
+We can also choose so-called periodic boundary conditions. This means
+that the neighbour to the right of $s_N$ is assumed to take the value
+of $s_1$. Similarly, the neighbour to the left of $s_1$ takes the
+value $s_N$. In this case the energy for the one-dimensional lattice
+reads 
+!bt 
+\begin{equation*} 
+E_i =-J\sum_{j=1}^{N}s_js_{j+1},
+\end{equation*} 
+!et 
+and we obtain the following expression for the
+two-spin case
+
+!bt
+\begin{equation*}
+   E=-J(s_1s_2+s_2s_1).
+\end{equation*}
+!et
+
+!split
+===== Energy with PBC  =====
+
+In this case the energy for $E_1$ is different, we obtain namely
+
+!bt
+\begin{equation*}
+   E_1=E_{\uparrow\uparrow}=-2J.
+\end{equation*}
+!et
+The other cases do also differ and we have
+
+!bt
+\begin{equation*}
+   E_2=E_{\uparrow\downarrow}=+2J,
+\end{equation*}
+!et
+
+!bt
+\begin{equation*}
+   E_3=E_{\downarrow\uparrow}=+2J,
+\end{equation*}
+!et
+and
+
+!bt
+\begin{equation*}
+   E_4=E_{\downarrow\downarrow}=-2J.
+\end{equation*}
+!et
+
+
+!split
+===== Simple code for PBC =====
+
+
+If we choose to use periodic boundary conditions we can code the above
+expression as
+!bc cppcod
+    jm=N;
+    for ( j=1; j <=N ; j++) {
+        energy += spin[j]*spin[jm]; 
+        jm = j ;
+    }
+!ec
+
+
+The magnetization is however the same, defined as
+
+!bt
+\begin{equation*}
+   {\cal M}_i=\sum_{j=1}^N s_j,
+\end{equation*}
+!et
+where we  sum over all spins for a given configuration $i$. 
+
+
+!split
+===== Summing up =====
+
+The table  lists the energy and magnetization for both free ends
+and periodic boundary conditions. 
+
+|-----------------------------------------------------------------------------------------------------------------------------------|
+| State                          | Energy (FE)                    | Energy (PBC)                   | Magnetization                  |
+|---------------c-------------------------------r-------------------------------r-------------------------------r-------------------|
+| $1= \uparrow\uparrow$          | $-J$                           | $-2J$                          | 2                              |
+| $2=\uparrow\downarrow$         | $J$                            | $2J$                           | 0                              |
+| $   3=\downarrow\uparrow$     | $J$                            | $2J$                           | 0                              |
+| $      4=\downarrow\downarrow$ | $-J$                           | $-2J$                          | -2                             |
+|-----------------------------------------------------------------------------------------------------------------------------------|
+
+
+
+!split
+===== Reorganizing =====
+
+We can reorganize according to the number of spins pointing up, as shown in the table here
+
+|-----------------------------------------------------------------------------------------|
+| Number spins up | Degeneracy      | Energy (FE)     | Energy (PBC)    | Magnetization   |
+|-------l----------------l----------------r----------------r----------------r-------------|
+| 2               | 1               | $-J$            | $-2J$           | 2               |
+| 1               | 2               | $J$             | $2J$            | 0               |
+| 0               | 1               | $-J$            | $-2J$           | -2              |
+|-----------------------------------------------------------------------------------------|
+
+
+
+!split
+===== Our model, the Ising model in one and two dimensions =====
+
+It is worth noting that for small dimensions of the lattice,
+the energy differs depending on whether we use
+periodic boundary conditions or free ends. This means also
+that the partition functions will be different, as discussed
+below. In the thermodynamic limit we have $N\rightarrow \infty$,
+and the final results do not depend on the kind of boundary conditions
+we choose. 
+
+
+For a one-dimensional lattice with periodic boundary conditions, 
+each spin sees two neighbors. For a
+two-dimensional lattice each spin sees four neighboring spins. 
+How many neighbors does a spin see in three dimensions?
+
+!split
+===== Ising model in one and two dimensions =====
+
+
+In a similar way, we could enumerate the number of states for
+a two-dimensional system consisting of two spins, i.e., 
+a $2\times 2$ Ising model on a square lattice with {\em periodic
+boundary conditions}. In this case we have a total of 
+$2^4=16$ states. 
+Some 
+examples of configurations with their respective energies are 
+listed here
+
+!bt
+\begin{equation*}
+  E=-8J\hspace{1cm}\begin{array}{cc}\uparrow & \uparrow \\
+                                    \uparrow & \uparrow\end{array}
+\hspace{0.5cm}
+  E=0\hspace{1cm}\begin{array}{cc}\uparrow & \uparrow \\
+                                    \uparrow & \downarrow\end{array}
+\hspace{0.5cm}
+  E=0\hspace{1cm}\begin{array}{cc}\downarrow & \downarrow \\
+                                    \uparrow & \downarrow\end{array}
+\hspace{0.5cm}
+  E=-8J\hspace{1cm}\begin{array}{cc}\downarrow & \downarrow \\
+                                    \downarrow & \downarrow\end{array}
+\end{equation*}
+!et
+
+
+!split
+===== List of configurations with energies and magnetic moment =====
+
+In the table here we group these configurations
+according to their total energy and magnetization.
+
+|-----------------------------------------------------------------------|
+| Number spins up | Degeneracy      | Energy          | Magnetization   |
+|-------l----------------l----------------r----------------r------------|
+| 4               | 1               | $-8J$           | 4               |
+| 3               | 4               | $0$             | 2               |
+| 2               | 4               | $0$             | 0               |
+| 2               | 2               | $8J$            | 0               |
+| 1               | 4               | $0$             | -2              |
+| 0               | 1               | $-8J$           | -4              |
+|-----------------------------------------------------------------------|
+
+
+!split
+===== Phase Transitions and Critical Phenomena =====
+
+A phase transition is marked by abrupt macroscopic changes as external
+parameters are changed, such as an increase of temperature. The point
+where a phase transition takes place is called a critical point.
+
+We distinguish normally between two types of phase transitions;
+first-order transitions and second-order transitions. An important
+quantity in studies of phase transitions is the so-called correlation
+length $\xi$ and various correlations functions like spin-spin
+correlations.  For the Ising model we shall show below that the
+correlation length is related to the spin-correlation function, which
+again defines the magnetic susceptibility. The spin-correlation
+function is nothing but the covariance and expresses the degree of
+correlation between spins.
+
+
+!split
+===== Phase Transitions and Critical Phenomena, correlation length =====
+
+The correlation length defines the length scale at which the overall
+properties of a material start to differ from its bulk properties.  It
+is the distance over which the fluctuations of the microscopic degrees
+of freedom (for example the position of atoms) are significantly
+correlated with each other. Usually it is of the order of few
+interatomic spacings for a solid.  The correlation length $\xi$
+depends however on external conditions such as pressure and
+temperature.
+
+
+
+!split 
+===== Classification of phase transitions ===== 
+
+First order/discontinuous phase transitions are characterized by two or more
+states on either side of the critical point that can coexist at the
+critical point.  As we pass through the critical point we observe a
+discontinuous behavior of thermodynamical functions.  The correlation
+length is normally finite at the critical point.  Phenomena such as
+hysteris occur, viz. there is a continuation of state below the
+critical point into one above the critical point. This continuation is
+metastable so that the system may take a macroscopically long time to
+readjust. A classical example is the melting of ice. It takes a
+specific amount of time before all the ice has melted. The temperature
+remains constant and water and ice can coexist for a macroscopic
+time. The energy shows a discontinuity at the critical point,
+reflecting the fact that a certain amount of heat is needed in order
+to melt all the ice
+
+
+!split
+===== Second-order phase Transitions =====
+
+Second order or continuous transitions are different and in general
+much difficult to understand and model.  The correlation length
+diverges at the critical point, fluctuations are correlated over all
+distance scales, which forces the system to be in a unique critical
+phase. The two phases on either side of the critical point become
+identical. The disappearance of a spontaneous magnetization is a
+classical example of a second-order phase transitions. Structural
+transitions in solids are other types of second-order phase
+transitions.  
+
+
+!split
+===== Phase Transitions and Critical Phenomena =====
+
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|                                                          |                                                          |                                                          |
+|----------------------------c---------------------------------------------------------c---------------------------------------------------------c-------------------------------|
+| System                              | Transition                          | Order Parameter                    |
+|                                                          |                                                          |                                                          |
+|                                                          |                                                          |                                                          |
+| Liquid-gas                                               | Condensation/evaporation                                 | Density difference $\Delta\rho=\rho_{liquid}-\rho_{gas}$ |
+| Binary liquid                                            | mixture/Unmixing                                         | Composition difference                                   |
+| Quantum liquid                                           | Normal fluid/superfluid                                  | $<\phi>$, $\psi$ = wavefunction                          |
+| Liquid-solid                                             | Melting/crystallisation                                  | Reciprocal lattice vector                                |
+| Magnetic solid                                           | Ferromagnetic                                            | Spontaneous magnetisation $M$                            |
+|                                                          | Antiferromagnetic                                        | Sublattice magnetisation $M$                             |
+| Dielectric solid                                         | Ferroelectric                                            | Polarization $P$                                         |
+|                                                          | Antiferroelectric                                        | Sublattice polarisation $P$                              |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+
+
+!split
+===== Eherenfest definition of phase Transitions  =====
+
+Using Ehrenfest's definition of the order of a phase transition we can
+relate the behavior around the critical point to various derivatives
+of the thermodynamical potential.  In the canonical ensemble we are
+using, the thermodynamical potential is Helmholtz' free energy
+
+!bt
+\begin{equation*}
+   F= \langle E\rangle -TS  = -kTln Z
+\end{equation*}
+!et
+meaning $ lnZ = -F/kT  = -F\beta$. The energy is given as the first derivative of $F$
+
+!bt
+\begin{equation*}
+   \langle E \rangle=-\frac{\partial lnZ}{\partial \beta} =\frac{\partial (\beta F)}{\partial \beta}.
+\end{equation*}
+!et
+and the specific heat is defined via the second derivative of $F$
+
+!bt
+\begin{equation*}
+   C_V=-\frac{1}{kT^2}\frac{\partial^2 (\beta F)}{\partial\beta^2}.
+\end{equation*}
+!et
+
+
+
+!split
+===== Phase Transitions and Critical Phenomena =====
+
+We can relate observables to various derivatives of the partition
+function and the free energy. When a given derivative of the free
+energy or the partition function is discontinuous or diverges
+(logarithmic divergence for the heat capacity from the Ising model) we
+talk of a phase transition of order of the derivative.  A first-order
+phase transition is recognized in a discontinuity of the energy, or
+the first derivative of $F$.  The Ising model exhibits a second-order
+phase transition since the heat capacity diverges. The susceptibility
+is given by the second derivative of $F$ with respect to external
+magnetic field. Both these quantities diverge.
+
+!split
+===== The Ising Model and Phase Transitions =====
+
+The Ising model in two dimensions with ${\cal B} = 0$ undergoes a
+phase transition of second order. What it actually means is that below
+a given critical temperature $T_C$, the Ising model exhibits a
+spontaneous magnetization with $\langle {\cal M} \rangle\ne 0$. Above
+$T_C$ the average magnetization is zero.  The mean magnetization
+approaches zero at $T_C$ with an infinite slope.  Such a behavior is
+an example of what are called critical phenomena.  A critical
+phenomenon is normally marked by one or more thermodynamical variables
+which vanish above a critical point. In our case this is the mean
+magnetization $\langle {\cal M} \rangle\ne 0$. Such a parameter is
+normally called the order parameter.
+
+
+!split
+===== The Ising Model and Phase Transitions, mean magnetization =====
+
+It is possible to show  that the mean magnetization is given by
+(for temperature below $T_C$)
+!bt
+\begin{equation*}
+  \langle {\cal M}(T) \rangle \sim \left(T-T_C\right)^{\beta},
+\end{equation*}
+!et
+where $\beta=1/8$ is a so-called critical exponent. A similar relation
+applies to the heat capacity
+
+!bt
+\begin{equation*}
+  C_V(T) \sim \left|T_C-T\right|^{-\alpha},
+\end{equation*}
+!et
+and the susceptibility
+
+!bt
+\begin{equation*}
+  \chi(T) \sim \left|T_C-T\right|^{-\gamma},
+\end{equation*}
+!et
+with $\alpha = 0$ and $\gamma = -7/4$.
+
+
+!split
+===== The Ising Model and Phase Transitions, correlation length =====
+
+Another important quantity is the correlation length, which is expected
+to be of the order of the lattice spacing for $T$ is close to $T_C$. Because the spins
+become more and more correlated as $T$ approaches $T_C$, the correlation
+length increases as we get closer to the critical temperature. The discontinuous 
+behavior of the correlation $\xi$ near $T_C$  is
+
+!bt
+\begin{equation}
+  \xi(T) \sim \left|T_C-T\right|^{-\nu}.
+  label{eq:xi}
+\end{equation}
+!et
+
+!split
+===== The Ising Model and Phase Transitions, critical behavior =====
+
+A second-order phase transition is characterized by a correlation
+length which spans the whole system.  The correlation length is
+typically of the order of some few interatomic distances. The fact
+that a system like the Ising model, whose energy is described by the
+interaction between neighboring spins only, can yield correlation
+lengths of macroscopic size at a critical point is still a feature
+which is not properly understood.  
+
+!split
+===== The Ising Model and Phase Transitions, critical temperature =====
+ 
+In our actual calculations of the two-dimensional Ising model, we are however 
+always limited to a finite lattice and $\xi$ will
+be proportional with the size of the lattice at the critical point. 
+Through finite size scaling relations
+it is possible to relate the behavior at finite lattices with the 
+results for an infinitely large lattice.
+The critical temperature scales then as
+
+!bt
+\begin{equation}
+ T_C(L)-T_C(L=\infty) \propto aL^{-1/\nu},
+ label{eq:tc}
+\end{equation}
+!et
+with  $a$ a constant and  $\nu$ defined in Eq. (ref{eq:xi}).
+
+!split
+===== The Ising Model and Phase Transitions, correlation length =====
+
+The correlation length for a finite lattice size can then be shown to be proportional to
+
+!bt
+\begin{equation*}
+  \xi(T) \propto L\sim \left|T_C-T\right|^{-\nu}.
+\end{equation*}
+!et
+and if we set $T=T_C$ one can obtain the following relations for the 
+magnetization, energy and susceptibility for $T \le T_C$
+
+!bt
+\begin{equation*}
+  \langle {\cal M}(T) \rangle \sim \left(T-T_C\right)^{\beta}
+  \propto L^{-\beta/\nu},
+\end{equation*}
+!et
+
+!bt
+\begin{equation*}
+  C_V(T) \sim \left|T_C-T\right|^{-\gamma} \propto L^{\alpha/\nu},
+\end{equation*}
+!et
+and
+
+!bt
+\begin{equation*}
+  \chi(T) \sim \left|T_C-T\right|^{-\alpha} \propto L^{\gamma/\nu}.
+\end{equation*}
+!et
+
+
+
+!split
+===== The Metropolis Algorithm and the Two-dimensional Ising Model =====
+
+In our case we have as the Monte Carlo sampling function the probability
+for finding the system in a state $s$ given by
+
+!bt
+\begin{equation*}
+P_s=\frac{e^{-(\beta E_s)}}{Z},
+\end{equation*}
+!et
+with energy $E_s$, $\beta=1/kT$ and $Z$ is a normalization constant which
+defines the partition function in the canonical ensemble. As discussed
+above
+
+!bt
+\begin{equation*}
+  Z(\beta)=\sum_se^{-(\beta E_s)}
+\end{equation*}
+!et
+is difficult to compute since we need all states. 
+
+!split
+===== The Metropolis Algorithm and the Two-dimensional Ising Model =====
+
+In a calculation of the Ising model in two dimensions, the number of
+configurations is given by $2^N$ with $N=L\times L$ the number of
+spins for a lattice of length $L$. Fortunately, the Metropolis
+algorithm considers only ratios between probabilities and we do not
+need to compute the partition function at all.  The algorithm goes as
+follows
+
+  o Establish an initial state with energy $E_b$ by positioning yourself at a random configuration in the lattice
+
+  o Change the initial configuration by flipping  e.g., one spin only. Compute the energy of this trial state $E_t$.
+
+  o Calculate $\Delta E=E_t-E_b$. The number of values $\Delta E$ is limited to five for the Ising model in two dimensions, see the discussion below.
+
+  o If $\Delta E \le 0$ we accept the new configuration, meaning that the energy is lowered and we are hopefully moving towards the energy minimum at a given temperature. Go to step 7.
+
+  o If $\Delta E >  0$, calculate $w=e^{-(\beta \Delta E)}$.
+
+  o Compare $w$ with a random number $r$. If  $r \le w$, then accept the new configuration, else we keep the old configuration.
+  o The next step is to update various expectations values.
+
+  o The steps (2)-(7) are then repeated in order to obtain a sufficently good representation of states.
+
+  o Each time you sweep through the lattice, i.e., when you have summed over all spins, constitutes what is called a Monte Carlo cycle. You could think of one such cycle as a measurement. At the end, you should divide the various expectation values with the total number of cycles. You can choose whether you wish to divide by the number of spins or not. If you divide with the number of spins as well, your result for e.g., the energy is now the energy per spin.
+
+
+!split
+===== The Metropolis Algorithm and the Two-dimensional Ising Model, practical issues =====
+
+The crucial step is the calculation of the energy difference and the
+change in magnetization. This part needs to be coded in an as
+efficient as possible way since the change in energy is computed many
+times.  In the calculation of the energy difference from one spin
+configuration to the other, we will limit the change to the flipping
+of one spin only. For the Ising model in two dimensions it means that
+there will only be a limited set of values for $\Delta E$. Actually,
+there are only five possible values. 
+
+!split
+===== Five possible energy differences =====
+
+To see this, select first a
+random spin position $x,y$ and assume that this spin and its nearest
+neighbors are all pointing up. The energy for this configuration is
+$E=-4J$. Now we flip this spin as shown below.  The energy of the new
+configuration is $E=4J$, yielding $\Delta E=8J$.
+
+!bt
+\begin{equation*}
+  E=-4J\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \uparrow & \uparrow & \uparrow\\
+                                  & \uparrow & \end{array}
+\hspace{1cm}\Longrightarrow\hspace{1cm}
+  E=4J\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \uparrow & \downarrow & \uparrow\\
+                                  & \uparrow & \end{array}
+\end{equation*}
+!et
+The four other possibilities are as follows
+
+!bt
+\begin{equation*}
+  E=-2J\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \downarrow & \uparrow & \uparrow\\
+                                  & \uparrow & \end{array}
+\hspace{1cm}\Longrightarrow\hspace{1cm}
+  E=2J\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \downarrow & \downarrow & \uparrow\\
+                                  & \uparrow & \end{array}
+\end{equation*}
+!et
+with $\Delta E=4J$,
+
+!bt
+\begin{equation*}
+  E=0\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \downarrow & \uparrow & \uparrow\\
+                                  & \downarrow & \end{array}
+\hspace{1cm}\Longrightarrow\hspace{1cm}
+  E=0\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \downarrow & \downarrow & \uparrow\\
+                                  & \downarrow & \end{array}
+\end{equation*}
+!et
+with $\Delta E=0$,
+
+!bt
+\begin{equation*}
+  E=2J\hspace{1cm}\begin{array}{ccc}         & \downarrow &         \\
+                         \downarrow & \uparrow & \uparrow\\
+                                  & \downarrow & \end{array}
+\hspace{1cm}\Longrightarrow\hspace{1cm}
+  E=-2J\hspace{1cm}\begin{array}{ccc}         & \downarrow &         \\
+                         \downarrow & \downarrow & \uparrow\\
+                                  & \downarrow & \end{array}
+\end{equation*}
+!et
+with $\Delta E=-4J$ and finally
+
+!bt
+\begin{equation*}
+  E=4J\hspace{1cm}\begin{array}{ccc}         & \downarrow &         \\
+                         \downarrow & \uparrow & \downarrow\\
+                                  & \downarrow & \end{array}
+\hspace{1cm}\Longrightarrow\hspace{1cm}
+  E=-4J\hspace{1cm}\begin{array}{ccc}         & \downarrow &         \\
+                         \downarrow & \downarrow & \downarrow\\
+                                  & \downarrow & \end{array}
+\end{equation*}
+!et
+with $\Delta E=-8J$.
+
+
+!split
+===== The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program =====
+
+This means in turn that we could construct an array which contains all values
+of $e^{\beta \Delta E}$ before doing the Metropolis sampling. Else, we
+would have to evaluate the exponential  at each Monte Carlo sampling. 
+For the two-dimensional Ising model there are only five possible values. It is rather easy
+to convice oneself that for the one-dimensional Ising model we have only three possible values.
+The main part of the Ising model program is shown here 
+
+!bc cppcod
+/* 
+   Program to solve the two-dimensional Ising model 
+   The coupling constant J = 1
+   Boltzmann's constant = 1, temperature has thus dimension energy
+   Metropolis sampling is used. Periodic boundary conditions.
+*/
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include "lib.h"
+using namespace  std;
+ofstream ofile;
+// inline function for periodic boundary conditions
+inline int periodic(int i, int limit, int add) { 
+  return (i+limit+add) % (limit);
+}
+// Function to read in data from screen  
+void read_input(int&, int&, double&, double&, double&);
+// Function to initialise energy and magnetization
+void initialize(int, double, int **, double&, double&);
+// The metropolis algorithm 
+void Metropolis(int, long&, int **, double&, double&, double *);
+// prints to file the results of the calculations  
+void output(int, int, double, double *);
+
+//  main program
+int main(int argc, char* argv[])
+{
+  char *outfilename;
+  long idum;
+  int **spin_matrix, n_spins, mcs;
+  double w[17], average[5], initial_temp, final_temp, E, M, temp_step;
+
+  // Read in output file, abort if there are too few command-line arguments
+  if( argc <= 1 ){
+    cout << "Bad Usage: " << argv[0] << 
+      " read also output file on same line" << endl;
+    exit(1);
+  }
+  else{
+    outfilename=argv[1];
+  }
+  ofile.open(outfilename);
+  //    Read in initial values such as size of lattice, temp and cycles
+  read_input(n_spins, mcs, initial_temp, final_temp, temp_step);
+  spin_matrix = (int**) matrix(n_spins, n_spins, sizeof(int));
+  idum = -1; // random starting point
+  for ( double temp = initial_temp; temp <= final_temp; temp+=temp_step){
+    //    initialise energy and magnetization 
+    E = M = 0.;
+    // setup array for possible energy changes
+    for( int de =-8; de <= 8; de++) w[de+8] = 0;
+    for( int de =-8; de <= 8; de+=4) w[de+8] = exp(-de/temp);
+    // initialise array for expectation values
+    for( int i = 0; i < 5; i++) average[i] = 0.;
+    initialize(n_spins, double temp, spin_matrix, E, M);
+    // start Monte Carlo computation
+    for (int cycles = 1; cycles <= mcs; cycles++){
+      Metropolis(n_spins, idum, spin_matrix, E, M, w);
+      // update expectation values
+      average[0] += E;    average[1] += E*E;
+      average[2] += M;    average[3] += M*M; average[4] += fabs(M);
+    }
+    // print results
+    output(n_spins, mcs, temp, average);
+  }
+  free_matrix((void **) spin_matrix); // free memory
+  ofile.close();  // close output file
+  return 0;
+}
+!ec
+
+!split
+===== Coding energy differences =====
+
+The array $w[17]$ contains values of $\Delta E$ spanning from $-8J$ to
+$8J$ and it is precalculated in the main part for every new
+temperature. The program takes as input the initial temperature, final
+temperature, a temperature step, the number of spins in one direction
+(we force the lattice to be a square lattice, meaning that we have the
+same number of spins in the $x$ and the $y$ directions) and the number
+of Monte Carlo cycles. 
+
+
+!split
+===== Efficient expression for energy differences =====
+
+For every Monte Carlo cycle we run through all
+spins in the lattice in the function metropolis and flip one spin at
+the time and perform the Metropolis test.  However, every time we flip
+a spin we need to compute the actual energy difference $\Delta E$ in
+order to access the right element of the array which stores $e^{\beta
+\Delta E}$. This is easily done in the Ising model since we can
+exploit the fact that only one spin is flipped, meaning in turn that
+all the remaining spins keep their values fixed.  The energy
+difference between a state $E_1$ and a state $E_2$ with zero external
+magnetic field is
+
+!bt
+\begin{equation*}
+   \Delta E = E_2-E_1 =J\sum_{<kl>}^{N}s_k^1s_{l}^1-J\sum_{<kl>}^{N}s_k^2s_{l}^2,
+\end{equation*}
+!et
+which we can rewrite as
+
+!bt
+\begin{equation*}
+   \Delta E  = -J \sum_{<kl>}^{N}s_k^2(s_l^2-s_{l}^1),
+\end{equation*}
+!et
+where the sum now runs only over the nearest neighbors $k$.  
+
+
+!split
+===== Final energy difference =====
+
+Since the spin to be flipped takes only two values, $s_l^1=\pm 1$ and $s_l^2=\pm 1$, it means that if
+$s_l^1= 1$, then $s_l^2=-1$ and if $s_l^1= -1$, then $s_l^2=1$. 
+The other spins keep their values, meaning that
+$s_k^1=s_k^2$.
+If $s_l^1= 1$ we must have $s_l^1-s_{l}^2=2$, and 
+if $s_l^1= -1$ we must have $s_l^1-s_{l}^2=-2$. From these results we see that the energy difference
+can be coded efficiently as
+
+!bt
+\begin{equation}
+   \Delta E  = 2Js_l^1\sum_{<k>}^{N}s_k,
+label{eq:deltaeising}
+\end{equation}
+!et
+where the sum runs only over the nearest neighbors $k$ of spin $l$.
+We can compute the change in magnetisation by flipping one spin as well.
+Since only spin $l$ is flipped, all the surrounding spins remain unchanged.
+
+!split
+===== Change in magnetization =====
+
+The difference in magnetisation is therefore only given by the difference 
+$s_l^1-s_{l}^2=\pm 2$, or in a more compact way as
+
+!bt
+\begin{equation}
+M_2 = M_1+2s_l^2,
+label{eq:deltamising}
+\end{equation}
+!et
+where $M_1$ and $M_2$ are the magnetizations before and after the spin flip, respectively.  
+Eqs. (ref{eq:deltaeising}) and (ref{eq:deltamising}) are implemented in the function _metropolis_ shown here
+
+!bc cppcod
+void Metropolis(int n_spins, long& idum, int **spin_matrix, double& E, double&M, double *w)
+{
+  // loop over all spins
+  for(int y =0; y < n_spins; y++) {
+    for (int x= 0; x < n_spins; x++){
+      // Find random position
+      int ix = (int) (ran1(&idum)*(double)n_spins);
+      int iy = (int) (ran1(&idum)*(double)n_spins);
+      int deltaE =  2*spin_matrix[iy][ix]*
+	(spin_matrix[iy][periodic(ix,n_spins,-1)]+
+	 spin_matrix[periodic(iy,n_spins,-1)][ix] +
+	 spin_matrix[iy][periodic(ix,n_spins,1)] +
+	 spin_matrix[periodic(iy,n_spins,1)][ix]);
+      // Here we perform the Metropolis test
+      if ( ran1(&idum) <= w[deltaE+8] ) {
+	spin_matrix[iy][ix] *= -1;  // flip one spin and accept new spin config
+        // update energy and magnetization
+        M += (double) 2*spin_matrix[iy][ix];
+        E += (double) deltaE;
+      }
+    }
+  }
+} // end of Metropolis sampling over spins
+!ec
+
+!split
+===== A small note =====
+
+Note that we loop over all spins but that we choose the lattice positions $x$ and $y$ randomly.
+If the move is accepted after performing  the Metropolis test, we update the energy and the magnetisation.
+The new values are used to update the averages computed in the main function.
+
+
+!split
+===== Initialization =====
+
+We need also to initialize various variables.
+This is done in the function here.
+!bc cppcod
+// function to initialise energy, spin matrix and magnetization
+void initialize(int n_spins, double temp, int **spin_matrix, 
+		double& E, double& M)
+{
+  // setup spin matrix and intial magnetization
+  for(int y =0; y < n_spins; y++) {
+    for (int x= 0; x < n_spins; x++){
+      if (temp < 1.5) spin_matrix[y][x] = 1; // spin orientation for the ground state
+      M +=  (double) spin_matrix[y][x];
+    }
+  }
+  // setup initial energy
+  for(int y =0; y < n_spins; y++) {
+    for (int x= 0; x < n_spins; x++){
+      E -=  (double) spin_matrix[y][x]*
+	(spin_matrix[periodic(y,n_spins,-1)][x] +
+	 spin_matrix[y][periodic(x,n_spins,-1)]);
+    }
+  }
+}// end function initialise
+!ec
+
+!split
+===== Two-dimensional Ising Model, energy per spin and specific heat =====
+
+The following Python program, based on the above C++ codes, plots the expectation value of the energy and its fluctuation, that is the specific heat. Both quantities are plotted per spin and genererated for a $20\times 20$ lattice. 
+
+!bc pyscpro
+#  Code for the two-dimensional Ising model with periodic boundary conditions
+import numpy, sys, math
+from  matplotlib import pyplot as plt
+import numpy as np
+
+
+def periodic (i, limit, add):
+    """
+    Choose correct matrix index with periodic
+    boundary conditions
+
+    Input:
+    - i:     Base index
+    - limit: Highest \"legal\" index
+    - add:   Number to add or subtract from i
+    """
+    return (i+limit+add) % limit
+
+def monteCarlo(temp, size, trials):
+    """
+    Calculate the energy and magnetization
+    (\"straight\" and squared) for a given temperature
+
+    Input:
+    - temp:   Temperature to calculate for
+    - size:   dimension of square matrix
+    - trials: Monte-carlo trials (how many times do we
+                                  flip the matrix?)
+
+    Output:
+    - E_av:       Energy of matrix averaged over trials, normalized to spins**2
+    - E_variance: Variance of energy, same normalization * temp**2
+    """
+
+    #Setup spin matrix, initialize to ground state
+    spin_matrix = numpy.zeros( (size,size), numpy.int8) + 1
+
+    #Create and initialize variables
+    E = 0
+    E_av = E2_av = 0
+    
+    #Setup array for possible energy changes
+    w = numpy.zeros(17,numpy.float64)
+    for de in xrange(-8,9,4): #include +8
+        w[de+8] = math.exp(-de/temp)
+    
+    #Calculate initial energy
+    for j in xrange(size): 
+        for i in xrange(size):
+            E -= spin_matrix.item(i,j)*\
+                 (spin_matrix.item(periodic(i,size,-1),j) + spin_matrix.item(i,periodic(j,size,1)))
+
+    #Start metropolis MonteCarlo computation 
+    for i in xrange(trials):
+        #Metropolis
+        #Loop over all spins, pick a random spin each time
+        for s in xrange(size**2):
+            x = int(numpy.random.random()*size)
+            y = int(numpy.random.random()*size)
+            deltaE = 2*spin_matrix.item(x,y)*\
+                     (spin_matrix.item(periodic(x,size,-1), y) +\
+                      spin_matrix.item(periodic(x,size,1),  y) +\
+                      spin_matrix.item(x, periodic(y,size,-1)) +\
+                      spin_matrix.item(x, periodic(y,size,1)))
+            if numpy.random.random() <= w[deltaE+8]:
+                #Accept!
+                spin_matrix[x,y] *= -1
+                E += deltaE
+            
+        #Update expectation values
+        E_av    += E
+        E2_av   += E**2
+
+    E_av       /= float(trials);
+    E2_av      /= float(trials);
+    #Calculate variance and normalize to per-point and temp
+    E_variance  = (E2_av-E_av*E_av)/float(size*size*temp*temp);
+    #Normalize returned averages to per-point
+    E_av       /= float(size*size);
+
+    return (E_av, E_variance)
+    
+    
+# Main program
+
+# values of the lattice, number of Monte Carlo cycles and temperature domain
+size        =   20
+trials      =   100000
+temp_init   = 1.8
+temp_end    = 2.6
+temp_step   = 0.1
+
+
+temps = numpy.arange(temp_init,temp_end+temp_step/2,temp_step,float)
+Dim = np.size(temps)
+energy = np.zeros(Dim)
+heatcapacity = np.zeros(Dim) 
+temperature = np.zeros(Dim)
+for temp in temps:
+    (E_av, E_variance) = monteCarlo(temp,size,trials)
+    temperature[temp] = temp
+    energy[temp] = E_av
+    heatcapacity[temp] = E_variance
+plt.figure(1)
+plt.subplot(211)
+plt.axis([1.8,2.6,-2.0, -1.0])
+plt.xlabel(r'Temperature $J/(k_B)$')
+plt.ylabel(r'Average energy per spin  $E/N$')
+plt.plot(temperature, energy, 'b-')
+plt.subplot(212)
+plt.axis([1.8,2.6, 0.0, 2.0])
+plt.plot(temperature, heatcapacity, 'r-')
+plt.xlabel(r'Temperature $J/(k_B)$')
+plt.ylabel(r'Heat capacity per spin  $C_V/N$')
+plt.savefig('energycv.pdf')
+plt.show()
+
+
+!ec
+
+
+
+!split
+===== Two-dimensional Ising Model and analysis of spin values =====
+
+The following python code displays the values of the spins as function of temperature.
+The blue color corresponds to spin up states while red represents spin down states. Increasing the temperature as input parameter, see the parameters below, results in a a net magnetization which becomes zero. At low temperatures, the system is highly ordered with essentially only one specific spin value.
+!bc pyscpro
+# coding=utf-8
+#2-dimensional ising model with visualization
+
+import numpy, sys, math
+import pygame
+
+#Needed for visualize when using SDL
+screen = None;
+font   = None;
+BLOCKSIZE = 10
+
+def periodic (i, limit, add):
+    """
+    Choose correct matrix index with periodic
+    boundary conditions
+
+    Input:
+    - i:     Base index
+    - limit: Highest \"legal\" index
+    - add:   Number to add or subtract from i
+    """
+    return (i+limit+add) % limit
+
+def visualize(spin_matrix, temp, E, M, method):
+    """
+    Visualize the spin matrix
+
+    Methods:
+    method = -1:No visualization (testing)
+    method = 0: Just print it to the terminal
+    method = 1: Pretty-print to terminal
+    method = 2: SDL/pygame single-pixel
+    method = 3: SDL/pygame rectangle
+    """
+
+    #Simple terminal dump
+    if method == 0:
+        print "temp:", temp, "E:", E, "M:", M
+        print spin_matrix
+    #Pretty-print to terminal
+    elif method == 1:
+        out = ""
+        size = len(spin_matrix)
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    out += "X"
+                else:
+                    out += " "
+            out += "\n"
+        print "temp:", temp, "E:", E, "M:", M
+        print out + "\n"
+    #SDL single-pixel (useful for large arrays)
+    elif method == 2:
+        size = len(spin_matrix)
+        screen.lock()
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    screen.set_at((x,y),(0,0,255))
+                else:
+                    screen.set_at((x,y),(255,0,0))
+        screen.unlock()
+        pygame.display.flip()
+    #SDL block (usefull for smaller arrays)
+    elif method == 3:
+        size = len(spin_matrix)
+        screen.lock()
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(0,0,255),rect)
+                else:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(255,0,0),rect)
+        screen.unlock()
+        pygame.display.flip()
+    #SDL block w/ data-display
+    elif method == 4:
+        size = len(spin_matrix)
+        screen.lock()
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(255,255,255),rect)
+                else:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(0,0,0),rect)
+        s = font.render("<E> = %5.3E; <M> = %5.3E" % E,M,False,(255,0,0))
+        screen.blit(s,(0,0))
+        
+        screen.unlock()
+        pygame.display.flip()    
+
+    
+
+def monteCarlo(temp, size, trials, visual_method):
+    """
+    Calculate the energy and magnetization
+    (\"straight\" and squared) for a given temperature
+
+    Input:
+    - temp:   Temperature to calculate for
+    - size:   dimension of square matrix
+    - trials: Monte-carlo trials (how many times do we
+                                  flip the matrix?)
+    - visual_method: What method should we use to visualize?
+
+    Output:
+    - E_av:       Energy of matrix averaged over trials, normalized to spins**2
+    - E_variance: Variance of energy, same normalization * temp**2
+    - M_av:       Magnetic field of matrix, averaged over trials, normalized to spins**2
+    - M_variance: Variance of magnetic field, same normalization * temp
+    - Mabs:       Absolute value of magnetic field, averaged over trials
+    """
+
+    #Setup spin matrix, initialize to ground state
+    spin_matrix = numpy.zeros( (size,size), numpy.int8) + 1
+
+    #Create and initialize variables
+    E    = M     = 0
+    E_av = E2_av = M_av = M2_av = Mabs_av = 0
+    
+    #Setup array for possible energy changes
+    w = numpy.zeros(17,numpy.float64)
+    for de in xrange(-8,9,4): #include +8
+        w[de+8] = math.exp(-de/temp)
+    
+    #Calculate initial magnetization:
+    M = spin_matrix.sum()
+    #Calculate initial energy
+    for j in xrange(size): 
+        for i in xrange(size):
+            E -= spin_matrix.item(i,j)*\
+                 (spin_matrix.item(periodic(i,size,-1),j) + spin_matrix.item(i,periodic(j,size,1)))
+
+    #Start metropolis MonteCarlo computation 
+    for i in xrange(trials):
+        #Metropolis
+        #Loop over all spins, pick a random spin each time
+        for s in xrange(size**2):
+            x = int(numpy.random.random()*size)
+            y = int(numpy.random.random()*size)
+            deltaE = 2*spin_matrix.item(x,y)*\
+                     (spin_matrix.item(periodic(x,size,-1), y) +\
+                      spin_matrix.item(periodic(x,size,1),  y) +\
+                      spin_matrix.item(x, periodic(y,size,-1)) +\
+                      spin_matrix.item(x, periodic(y,size,1)))
+            if numpy.random.random() <= w[deltaE+8]:
+                #Accept!
+                spin_matrix[x,y] *= -1
+                M += 2*spin_matrix[x,y]
+                E += deltaE
+            
+        #Update expectation values
+        E_av    += E
+        E2_av   += E**2
+        M_av    += M
+        M2_av   += M**2
+        Mabs_av += int(math.fabs(M))
+
+        visualize(spin_matrix, temp,E/float(size**2),M/float(size**2), method);
+
+    #Normalize average values
+    E_av       /= float(trials);
+    E2_av      /= float(trials);
+    M_av       /= float(trials);
+    M2_av      /= float(trials);
+    Mabs_av    /= float(trials);
+    #Calculate variance and normalize to per-point and temp
+    E_variance  = (E2_av-E_av*E_av)/float(size*size*temp*temp);
+    M_variance  = (M2_av-M_av*M_av)/float(size*size*temp);
+    #Normalize returned averages to per-point
+    E_av       /= float(size*size);
+    M_av       /= float(size*size);
+    Mabs_av    /= float(size*size);
+    
+    return (E_av, E_variance, M_av, M_variance, Mabs_av)
+    
+    
+# Main program
+
+size        =   100
+trials      =   100000
+temp        = 2.1
+method      =   3
+
+#Initialize pygame
+if method == 2 or method == 3 or method == 4:
+    pygame.init()
+    if method == 2:
+        screen = pygame.display.set_mode((size,size))
+    elif method == 3:
+        screen = pygame.display.set_mode((size*10,size*10))
+    elif method == 4:
+        screen = pygame.display.set_mode((size*10,size*10))
+        font   = pygame.font.Font(None,12)
+        
+
+(E_av, E_variance, M_av, M_variance, Mabs_av) = monteCarlo(temp,size,trials, method)
+print "%15.8E %15.8E %15.8E %15.8E %15.8E %15.8E\n" % (temp, E_av, E_variance, M_av, M_variance, Mabs_av)
+
+pygame.quit();
+
+!ec
+
+
+
+
+

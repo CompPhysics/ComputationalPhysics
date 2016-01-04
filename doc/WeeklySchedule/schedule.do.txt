@@ -1,0 +1,69 @@
+TITLE: PHY480/905 Computational Physics weekly schedule
+AUTHOR: Department of Physics and Astronomy, Michigan State University
+DATE: Spring 2016
+
+
+===== Teaching schedule fall 2015 =====
+
+Lectures are in "Store Fysiske Auditorium, Department of Physics, University of Oslo":"http://www.mn.uio.no/fysikk/english",
+while exercises are at the computer lab, room FV329 at the Department of Physics. Both rooms are at the third floor, western wing 
+of the department.
+
+|----------------------------------------------------------------------------------------------------------------------------|
+|  Week and days  |  Topics to be covered | Exercises and projects | Reading assignments|  Lab activities                    |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 34 August 17-21| "Introduction to programming":"http://compphysics.github.io/ComputationalPhysics1/doc/pub/languages/html/languages-reveal.html"| Exercises 2.1, 2.2 and 3.1| Chapters 2 and 3 of| Intro to "git":"https://github.com/"           |
+|                     | Numerical derivation       | See lecture notes         |                    | Exercise solving       |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 35 August 24-28| "C++ programming":"http://compphysics.github.io/ComputationalPhysics1/doc/pub/languages/html/languages-reveal.html"  |  Exercises 2.1, 2.2 and 3.1         | Chapters 3 and 6   | "Intro to QT":"http://www.qt.io/"            |
+|                     | "Linear algebra":"http://compphysics.github.io/ComputationalPhysics1/doc/pub/linalg/html/linalg-reveal.html"   |  Presentation of  project 1               |                    | Exercises and project 1|
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 36 August 31-September 4| "Linear Algebra":"http://compphysics.github.io/ComputationalPhysics1/doc/pub/linalg/html/linalg-reveal.html"   | _Project 1, deadline September 14_   | Chapter 6.1-6.5   | Working on project 1  |
+|                              | Gaussian elimination, LU decomposition|                 |                   | Discussion of the library "Armadillo":"http://arma.sourceforge.net/" |
+|                              | Cubic spline and matrix operations    |                 |        | How to write a scientific report                           |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 37 September 7-11| "Eigenvalue problems":"http://compphysics.github.io/ComputationalPhysics1/doc/pub/eigvalues/html/eigvalues-reveal.html"    | Project 1| Chapters 7.1-7.4   | Discussion of compiler flags  |
+|                       | Jacobi's method  | Presentation of project 2     |       | Further discussions of Armadillo |
+|                       | "Object oriented programming":"http://compphysics.github.io/ComputationalPhysics1/doc/pub/languages/html/languages-reveal.html" |                 |      |  Elements of scientific reports  and efficient plotting of data         |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 38 September 14-18| "Eigenvalue problems":"http://compphysics.github.io/ComputationalPhysics1/doc/pub/eigvalues/html/eigvalues-reveal.html"   | _Project 2, deadline october 5_     | Chapter 7.5-7.7   | "Discussion of unit tests":"http://www.uio.no/studier/emner/matnat/fys/FYS4411/v14/guides/unit-tests/index.html"   |
+|    |  Householder's and Lanczos' algorithms   |   | How to develop unit tests  |
+|    |  Power methods     |         |    |    |
+|    |  Object orientation and unit test |         |    |    |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 39 September 21-25 | Numerical integration   | Project 2    | Chapter 5.1-5.5   | Parallelization with MPI and OpenMP  |
+|  | Trapezoidal rule and Simpson's rule   |     |    | Work on project 2  |
+|  | Gaussian quadrature   |     |    |   |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 40 September 28-October 2| Numerical integration  | Project 2    | Chapters 5.5 and 11.1-11.5   | How to optimize your code  |
+|                               | Parallelization and Monte Carlo integration  | Presentation of project 3    |   |Discussion of vectorization   |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 41 October 5-9| Monte Carlo methods   | _Project 3, deadline October 19_    | Chapters 11.1-11.5 and 12.1-12.3    | Discussion of vectorization  |
+|                    | Probabilities and random numbers   |     |    |Work on project 3   |
+|                    | Markov processes   |     |    |   |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 42 October 12-16| Monte Carlo methods    | Project 3    | Chapters 12.3-12.5 and 13.1-13.3  | Code optimization and parallelization  |
+| | Markov processes and the Metropolis algorithm   | Presentation of project 4    |    |   |
+| | Introducing the Ising model   |     |    |   |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 43 October 19-23| Monte Carlo methods   | _Project 4, deadline November 9_    | Chapter 13.3-13.7   | Code optimization and parallelization  |
+|                                              | Statistical physics and the Ising model   |     |    |   |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 44 October 26-30| Monte Carlo methods   |  Project 4   | Chapters 14.1-14.5 and 8.1-8.3   | Work on project 4  |
+|  | Quantum Monte Carlo methods   |     |    |   |
+|  | Ordinary differential equations   |     |    |   |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 45 November 2-6 | Differential equations   | Project 4    |  Chapters 8.4-8.6 and 10.1-10.2 |   |
+|  | Ordinary differential equations   | Presentation of possible projects 5    |    |   |
+| | Partial differential equations, diffusion equation   |     |    |   |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 46 November 9-13|  Differential equations  | _Project 5, deadline November 30_    | 10.3-10.4   | Work on project 5  |
+| |  Partial differential equations, wave equation  |     |    |   |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 47 November 16-20| Differential equations   |     | TBA   | Work on project 5  |
+| | Parallelization of partial differential equation and discussion of projects  |     |    |   |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 48 November 23-27| Summary of course and discussion of projects   |     |    | Work on project 5  |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Final Exam December 14|    |     |    |   |
+|----------------------------------------------------------------------------------------------------------------------------|
