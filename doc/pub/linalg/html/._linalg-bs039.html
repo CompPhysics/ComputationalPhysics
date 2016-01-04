@@ -1,0 +1,374 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Linear Algebra methods">
+
+<title>Slides PHY 480 and PHY 905  Lectures: Linear Algebra methods</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Important Matrix and vector handling packages',
+               2,
+               None,
+               '___sec0'),
+              ('Basic Matrix Features', 2, None, '___sec1'),
+              ('Basic Matrix Features', 2, None, '___sec2'),
+              ('Basic Matrix Features', 2, None, '___sec3'),
+              ('Some famous Matrices', 2, None, '___sec4'),
+              ('Basic Matrix Features', 2, None, '___sec5'),
+              ('Important Mathematical Operations', 2, None, '___sec6'),
+              ('Important Mathematical Operations', 2, None, '___sec7'),
+              ('Important Mathematical Operations', 2, None, '___sec8'),
+              ('Important Mathematical Operations', 2, None, '___sec9'),
+              ('Matrix Handling in C/C++, Static and Dynamical allocation',
+               2,
+               None,
+               '___sec10'),
+              ('Matrix Handling in C/C++', 2, None, '___sec11'),
+              ('Matrix Handling in C/C++', 2, None, '___sec12'),
+              ('Matrix Handling in Fortran 90/95', 2, None, '___sec13'),
+              ('Dynamic memory allocation in C/C++', 2, None, '___sec14'),
+              ('Matrix Handling in C/C++, Dynamic Allocation',
+               2,
+               None,
+               '___sec15'),
+              ('Armadillo, recommended!!', 2, None, '___sec16'),
+              ('Armadillo, simple examples', 2, None, '___sec17'),
+              ('Armadillo, how to compile and install', 2, None, '___sec18'),
+              ('Armadillo, simple examples', 2, None, '___sec19'),
+              ('Armadillo, simple examples', 2, None, '___sec20'),
+              ('Armadillo, simple examples', 2, None, '___sec21'),
+              ('Armadillo, simple examples', 2, None, '___sec22'),
+              ('Armadillo, simple examples', 2, None, '___sec23'),
+              ('Armadillo, simple examples', 2, None, '___sec24'),
+              ('Armadillo, simple examples', 2, None, '___sec25'),
+              ('Gaussian Elimination', 2, None, '___sec26'),
+              ('Gaussian Elimination', 2, None, '___sec27'),
+              ('Gaussian Elimination', 2, None, '___sec28'),
+              ('Gaussian Elimination', 2, None, '___sec29'),
+              ('Gaussian Elimination', 2, None, '___sec30'),
+              ('Gaussian Elimination', 2, None, '___sec31'),
+              ('Gaussian Elimination', 2, None, '___sec32'),
+              ('Gaussian Elimination and Tridiagonal matrices, project 1',
+               2,
+               None,
+               '___sec33'),
+              ('Gaussian Elimination and Tridiagonal matrices, project 1',
+               2,
+               None,
+               '___sec34'),
+              ('Gaussian Elimination and Tridiagonal matrices, project 1',
+               2,
+               None,
+               '___sec35'),
+              ('Gaussian Elimination and Tridiagonal matrices, project 1',
+               2,
+               None,
+               '___sec36'),
+              ('Gaussian Elimination and Tridiagonal matrices, project 1',
+               2,
+               None,
+               '___sec37'),
+              ('Gaussian Elimination and Tridiagonal matrices, project 1',
+               2,
+               None,
+               '___sec38'),
+              ('Gaussian Elimination and Tridiagonal matrices, project 1',
+               2,
+               None,
+               '___sec39'),
+              ('Gaussian Elimination and Tridiagonal matrices, project 1',
+               2,
+               None,
+               '___sec40'),
+              ('Project 1, hints', 2, None, '___sec41'),
+              ('Project 1, hints', 2, None, '___sec42'),
+              ('Linear Algebra Methods', 2, None, '___sec43'),
+              ('LU Decomposition', 2, None, '___sec44'),
+              ('LU Decomposition', 2, None, '___sec45'),
+              ('LU Decomposition, why?', 2, None, '___sec46'),
+              ('LU Decomposition, linear equations', 2, None, '___sec47'),
+              ('LU Decomposition, linear equations', 2, None, '___sec48'),
+              ('LU Decomposition, why?', 2, None, '___sec49'),
+              ('LU Decomposition, linear equations', 2, None, '___sec50'),
+              ('LU Decomposition, the inverse of a matrix',
+               2,
+               None,
+               '___sec51'),
+              ('LU Decomposition, the inverse of a matrix',
+               2,
+               None,
+               '___sec52'),
+              ('LU Decomposition, the inverse', 2, None, '___sec53'),
+              ('How to use the Library functions', 2, None, '___sec54'),
+              ('How to use the Library functions', 2, None, '___sec55'),
+              ('How to use the Library functions', 2, None, '___sec56'),
+              ('How to use the Library functions', 2, None, '___sec57'),
+              ('How to use the Library functions', 2, None, '___sec58'),
+              ('Using Armadillo to perform an LU decomposition',
+               2,
+               None,
+               '___sec59'),
+              ('Iterative methods, Chapter 6', 2, None, '___sec60'),
+              ("Iterative methods, Jacobi's method", 2, None, '___sec61'),
+              ("Iterative methods, Jacobi's method", 2, None, '___sec62'),
+              ("Iterative methods, Jacobi's method", 2, None, '___sec63'),
+              ("Iterative methods, Gauss-Seidel's method",
+               2,
+               None,
+               '___sec64'),
+              ("Iterative methods, Gauss-Seidel's method",
+               2,
+               None,
+               '___sec65'),
+              ('Iterative methods, Successive over-relaxation',
+               2,
+               None,
+               '___sec66'),
+              ('Iterative methods, Successive over-relaxation',
+               2,
+               None,
+               '___sec67'),
+              ('Iterative methods, Successive over-relaxation',
+               2,
+               None,
+               '___sec68'),
+              ('Cubic Splines, Chapter 6', 2, None, '___sec69'),
+              ('Splines', 2, None, '___sec70'),
+              ('Splines', 2, None, '___sec71'),
+              ('Splines', 2, None, '___sec72'),
+              ('Splines', 2, None, '___sec73'),
+              ('Splines', 2, None, '___sec74'),
+              ('Splines', 2, None, '___sec75'),
+              ('Splines', 2, None, '___sec76'),
+              ('Splines', 2, None, '___sec77'),
+              ('Splines', 2, None, '___sec78')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="linalg-bs.html">Slides PHY 480 and PHY 905  Lectures: Linear Algebra methods</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._linalg-bs001.html#___sec0" style="font-size: 80%;">Important Matrix and vector handling packages</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs002.html#___sec1" style="font-size: 80%;">Basic Matrix Features</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs003.html#___sec2" style="font-size: 80%;">Basic Matrix Features</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs004.html#___sec3" style="font-size: 80%;">Basic Matrix Features</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs005.html#___sec4" style="font-size: 80%;">Some famous Matrices</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs006.html#___sec5" style="font-size: 80%;">Basic Matrix Features</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs007.html#___sec6" style="font-size: 80%;">Important Mathematical Operations</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs008.html#___sec7" style="font-size: 80%;">Important Mathematical Operations</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs009.html#___sec8" style="font-size: 80%;">Important Mathematical Operations</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs010.html#___sec9" style="font-size: 80%;">Important Mathematical Operations</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs011.html#___sec10" style="font-size: 80%;">Matrix Handling in C/C++, Static and Dynamical allocation</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs012.html#___sec11" style="font-size: 80%;">Matrix Handling in C/C++</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs013.html#___sec12" style="font-size: 80%;">Matrix Handling in C/C++</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs014.html#___sec13" style="font-size: 80%;">Matrix Handling in Fortran 90/95</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs015.html#___sec14" style="font-size: 80%;">Dynamic memory allocation in C/C++</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs016.html#___sec15" style="font-size: 80%;">Matrix Handling in C/C++, Dynamic Allocation</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs017.html#___sec16" style="font-size: 80%;">Armadillo, recommended!!</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs018.html#___sec17" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs019.html#___sec18" style="font-size: 80%;">Armadillo, how to compile and install</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs020.html#___sec19" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs021.html#___sec20" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs022.html#___sec21" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs023.html#___sec22" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs024.html#___sec23" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs025.html#___sec24" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs026.html#___sec25" style="font-size: 80%;">Armadillo, simple examples</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs027.html#___sec26" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs028.html#___sec27" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs029.html#___sec28" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs030.html#___sec29" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs031.html#___sec30" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs032.html#___sec31" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs033.html#___sec32" style="font-size: 80%;">Gaussian Elimination</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs034.html#___sec33" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs035.html#___sec34" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs036.html#___sec35" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs037.html#___sec36" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs038.html#___sec37" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec38" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs040.html#___sec39" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs041.html#___sec40" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs042.html#___sec41" style="font-size: 80%;">Project 1, hints</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs043.html#___sec42" style="font-size: 80%;">Project 1, hints</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs044.html#___sec43" style="font-size: 80%;">Linear Algebra Methods</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs045.html#___sec44" style="font-size: 80%;">LU Decomposition</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs046.html#___sec45" style="font-size: 80%;">LU Decomposition</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs047.html#___sec46" style="font-size: 80%;">LU Decomposition, why?</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs048.html#___sec47" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs049.html#___sec48" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs050.html#___sec49" style="font-size: 80%;">LU Decomposition, why?</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs051.html#___sec50" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs052.html#___sec51" style="font-size: 80%;">LU Decomposition, the inverse of a matrix</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs053.html#___sec52" style="font-size: 80%;">LU Decomposition, the inverse of a matrix</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs054.html#___sec53" style="font-size: 80%;">LU Decomposition, the inverse</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs055.html#___sec54" style="font-size: 80%;">How to use the Library functions</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs056.html#___sec55" style="font-size: 80%;">How to use the Library functions</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs057.html#___sec56" style="font-size: 80%;">How to use the Library functions</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs058.html#___sec57" style="font-size: 80%;">How to use the Library functions</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs059.html#___sec58" style="font-size: 80%;">How to use the Library functions</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs060.html#___sec59" style="font-size: 80%;">Using Armadillo to perform an LU decomposition</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs061.html#___sec60" style="font-size: 80%;">Iterative methods, Chapter 6</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs062.html#___sec61" style="font-size: 80%;">Iterative methods, Jacobi's method</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs063.html#___sec62" style="font-size: 80%;">Iterative methods, Jacobi's method</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs064.html#___sec63" style="font-size: 80%;">Iterative methods, Jacobi's method</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs065.html#___sec64" style="font-size: 80%;">Iterative methods, Gauss-Seidel's method</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs066.html#___sec65" style="font-size: 80%;">Iterative methods, Gauss-Seidel's method</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs067.html#___sec66" style="font-size: 80%;">Iterative methods, Successive over-relaxation</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs068.html#___sec67" style="font-size: 80%;">Iterative methods, Successive over-relaxation</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs069.html#___sec68" style="font-size: 80%;">Iterative methods, Successive over-relaxation</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs070.html#___sec69" style="font-size: 80%;">Cubic Splines, Chapter 6</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs071.html#___sec70" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs072.html#___sec71" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs073.html#___sec72" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs074.html#___sec73" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs075.html#___sec74" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs076.html#___sec75" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs077.html#___sec76" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs078.html#___sec77" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs079.html#___sec78" style="font-size: 80%;">Splines</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0039"></a>
+<!-- !split -->
+
+<h2 id="___sec38">Gaussian Elimination and Tridiagonal matrices, project 1 </h2>
+
+<p>
+In case your system of equations leads to a tridiagonal matrix, it is clearly an overkill to employ
+Gaussian elimination or the standard LU decomposition.
+You will encounter several applications involving tridiagonal matrices in our discussion of
+partial differential equations in chapter 10.
+
+<p>
+Our algorithm starts with forward substitution with a loop over of the elements \( i \) and can be expressed via the
+following piece of code
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   btemp <span style="color: #666666">=</span> b[<span style="color: #666666">1</span>];
+   u[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> f[<span style="color: #666666">1</span>]<span style="color: #666666">/</span>btemp;
+   <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=2</span> ; i <span style="color: #666666">&lt;=</span> n ; i<span style="color: #666666">++</span>) {
+      temp[i] <span style="color: #666666">=</span> c[i<span style="color: #666666">-1</span>]<span style="color: #666666">/</span>btemp;
+      btemp <span style="color: #666666">=</span> b[i]<span style="color: #666666">-</span>a[i]<span style="color: #666666">*</span>temp[i];
+      u[i] <span style="color: #666666">=</span> (f[i] <span style="color: #666666">-</span> a[i]<span style="color: #666666">*</span>u[i<span style="color: #666666">-1</span>])<span style="color: #666666">/</span>btemp;
+</pre></div>
+<p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+<li><a href="._linalg-bs038.html">&laquo;</a></li>
+  <li><a href="._linalg-bs000.html">1</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._linalg-bs031.html">32</a></li>
+  <li><a href="._linalg-bs032.html">33</a></li>
+  <li><a href="._linalg-bs033.html">34</a></li>
+  <li><a href="._linalg-bs034.html">35</a></li>
+  <li><a href="._linalg-bs035.html">36</a></li>
+  <li><a href="._linalg-bs036.html">37</a></li>
+  <li><a href="._linalg-bs037.html">38</a></li>
+  <li><a href="._linalg-bs038.html">39</a></li>
+  <li class="active"><a href="._linalg-bs039.html">40</a></li>
+  <li><a href="._linalg-bs040.html">41</a></li>
+  <li><a href="._linalg-bs041.html">42</a></li>
+  <li><a href="._linalg-bs042.html">43</a></li>
+  <li><a href="._linalg-bs043.html">44</a></li>
+  <li><a href="._linalg-bs044.html">45</a></li>
+  <li><a href="._linalg-bs045.html">46</a></li>
+  <li><a href="._linalg-bs046.html">47</a></li>
+  <li><a href="._linalg-bs047.html">48</a></li>
+  <li><a href="._linalg-bs048.html">49</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._linalg-bs079.html">80</a></li>
+  <li><a href="._linalg-bs040.html">&raquo;</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright only on the titlepage -->
+</center>
+
+
+</body>
+</html>
+    
+
