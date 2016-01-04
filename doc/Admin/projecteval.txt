@@ -1,0 +1,34 @@
+**  Template for evaluating and grading projects **
+
+**Evaluation of project number: ** 
+**Candidate number: **
+
+*Abstract: accurate and informative? Total number of possible points: 5*
+
+Mark and comments: 
+
+*Introduction: status of problem and the major objectives. Total number of possible points: 10*
+
+Mark and comments: 
+
+*Formalism/methods: Discussion of the methods used and their basis/suitability. Total number of possible points 20*
+
+Mark and comments: 
+
+*Analysis: of results and the effectiveness of their selection and presentation. Are the results well understood and discussed? Total number of possible points: 30*
+
+Mark and comments: 
+
+*Conclusions, discussions and critical comments: on what was learned about the method used and on the results obtained. Possible directions and future improvements? Total number of possible points: 20*
+
+Mark and comments: 
+
+*Clarity of figures and overall presentation. Too much or too little? Total number of possible points: 10*
+
+Mark and comments: 
+
+*Referencing: relevant works cited accurately? Total number of possible points 5*
+
+Mark and comments: 
+
+*Overall mark (%) and final possible final comments*

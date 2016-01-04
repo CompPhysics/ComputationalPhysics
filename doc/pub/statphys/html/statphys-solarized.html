@@ -1,0 +1,1938 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Statistical physics">
+
+<title>Slides PHY 480 and PHY 905  Lectures: Statistical physics</title>
+
+
+<link href="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_styles/style_solarized_box/css/solarized_light_code.css" rel="stylesheet" type="text/css" title="light"/>
+<script src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<link href="http://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet">
+<style type="text/css">
+h1 {color: #b58900;}  /* yellow */
+/* h1 {color: #cb4b16;}  orange */
+/* h1 {color: #d33682;}  magenta, the original choice of thomasf */
+code { padding: 0px; background-color: inherit; }
+pre {
+  border: 0pt solid #93a1a1;
+  box-shadow: none;
+}
+
+div { text-align: justify; text-justify: inter-word; }
+</style>
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Ensembles', 2, None, '___sec0'),
+              ('Famous Ensembles', 2, None, '___sec1'),
+              ('Canonical Ensemble', 2, None, '___sec2'),
+              ('The partition function is a normalization constant',
+               2,
+               None,
+               '___sec3'),
+              ('Helmoltz free energy, what does it mean?',
+               2,
+               None,
+               '___sec4'),
+              ('Thermodynamical quantities', 2, None, '___sec5'),
+              ('Thermodynamical quantities, the energy in the canonical ensemble',
+               2,
+               None,
+               '___sec6'),
+              ('Energy and specific heat in the canonical ensemble',
+               2,
+               None,
+               '___sec7'),
+              ('Magnetic moments and susceptibility in the canonical ensemble',
+               2,
+               None,
+               '___sec8'),
+              ('Our model, the Ising model in one and two dimensions',
+               2,
+               None,
+               '___sec9'),
+              ('Boltzmann distribution', 2, None, '___sec10'),
+              ('Energy for a specific configuration', 2, None, '___sec11'),
+              ('Configurations', 2, None, '___sec12'),
+              ('Boundary conditions, free ends', 2, None, '___sec13'),
+              ('Free ends and the energy', 2, None, '___sec14'),
+              ('Free ends and energy', 2, None, '___sec15'),
+              ('Periodic boundary conditions', 2, None, '___sec16'),
+              ('Energy with PBC', 2, None, '___sec17'),
+              ('Simple code for PBC', 2, None, '___sec18'),
+              ('Summing up', 2, None, '___sec19'),
+              ('Reorganizing', 2, None, '___sec20'),
+              ('Our model, the Ising model in one and two dimensions',
+               2,
+               None,
+               '___sec21'),
+              ('Ising model in one and two dimensions', 2, None, '___sec22'),
+              ('List of configurations with energies and magnetic moment',
+               2,
+               None,
+               '___sec23'),
+              ('Phase Transitions and Critical Phenomena',
+               2,
+               None,
+               '___sec24'),
+              ('Phase Transitions and Critical Phenomena, correlation length',
+               2,
+               None,
+               '___sec25'),
+              ('Classification of phase transitions', 2, None, '___sec26'),
+              ('Second-order phase Transitions', 2, None, '___sec27'),
+              ('Phase Transitions and Critical Phenomena',
+               2,
+               None,
+               '___sec28'),
+              ('Eherenfest definition of phase Transitions',
+               2,
+               None,
+               '___sec29'),
+              ('Phase Transitions and Critical Phenomena',
+               2,
+               None,
+               '___sec30'),
+              ('The Ising Model and Phase Transitions', 2, None, '___sec31'),
+              ('The Ising Model and Phase Transitions, mean magnetization',
+               2,
+               None,
+               '___sec32'),
+              ('The Ising Model and Phase Transitions, correlation length',
+               2,
+               None,
+               '___sec33'),
+              ('The Ising Model and Phase Transitions, critical behavior',
+               2,
+               None,
+               '___sec34'),
+              ('The Ising Model and Phase Transitions, critical temperature',
+               2,
+               None,
+               '___sec35'),
+              ('The Ising Model and Phase Transitions, correlation length',
+               2,
+               None,
+               '___sec36'),
+              ('The Metropolis Algorithm and the Two-dimensional Ising Model',
+               2,
+               None,
+               '___sec37'),
+              ('The Metropolis Algorithm and the Two-dimensional Ising Model',
+               2,
+               None,
+               '___sec38'),
+              ('The Metropolis Algorithm and the Two-dimensional Ising Model, practical issues',
+               2,
+               None,
+               '___sec39'),
+              ('Five possible energy differences', 2, None, '___sec40'),
+              ('The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program',
+               2,
+               None,
+               '___sec41'),
+              ('Coding energy differences', 2, None, '___sec42'),
+              ('Efficient expression for energy differences',
+               2,
+               None,
+               '___sec43'),
+              ('Final energy difference', 2, None, '___sec44'),
+              ('Change in magnetization', 2, None, '___sec45'),
+              ('A small note', 2, None, '___sec46'),
+              ('Initialization', 2, None, '___sec47'),
+              ('Two-dimensional Ising Model, energy per spin and specific heat',
+               2,
+               None,
+               '___sec48'),
+              ('Two-dimensional Ising Model and analysis of spin values',
+               2,
+               None,
+               '___sec49')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1>Slides PHY 480 and PHY 905  Lectures: Statistical physics</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Phil Duxbury, and Morten Hjorth-Jensen -->
+
+<center>
+<b>Phil Duxbury</b> [1]
+</center>
+
+<center>
+<b>Morten Hjorth-Jensen</b> [2, 3]
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Astronomy, Michigan State University</b></center>
+<center>[2] <b>Department of Physics, University of Oslo</b></center>
+<center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>
+<center><h4>Spring 2016</h4></center> <!-- date -->
+<br>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec0">Ensembles </h2>
+
+<p>
+In statistical physics the concept of an ensemble is one of the
+cornerstones in the definition of thermodynamical quantities. An
+ensemble is a collection of microphysics systems from which we derive
+expectations values and thermodynamical properties related to
+experiment.  As an example, the specific heat (which is a measurable
+quantity in the laboratory) of a system of infinitely many particles,
+can be derived from the basic interactions between the microscopic
+constituents. The latter can span from electrons to atoms and
+molecules or a system of classical spins. All these microscopic
+constituents interact via a well-defined interaction.  We say
+therefore that statistical physics bridges the gap between the
+microscopic world and the macroscopic world.  Thermodynamical
+quantities such as the specific heat or net magnetization of a system
+can all be derived from a microscopic theory.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec1">Famous Ensembles </h2>
+
+<p>
+The table lists the most used ensembles in statistical physics
+together with frequently arising extensive (depend on the size of the
+systems such as the number of particles) and intensive variables
+(apply to all components of a system), in addition to associated
+potentials.
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">                     </th> <th align="center">     Microcanonical    </th> <th align="center">       Canonical       </th> <th align="center">    Grand Canonical    </th> <th align="center">   Pressure canonical  </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">                            </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+<tr><td align="center">   Exchange of heat         </td> <td align="center">   no                         </td> <td align="center">   yes                        </td> <td align="center">   yes                        </td> <td align="center">   yes                        </td> </tr>
+<tr><td align="center">   with the environment     </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+<tr><td align="center">                            </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+<tr><td align="center">   Exchange of particles    </td> <td align="center">   no                         </td> <td align="center">   no                         </td> <td align="center">   yes                        </td> <td align="center">   no                         </td> </tr>
+<tr><td align="center">   with the environemt      </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+<tr><td align="center">                            </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+<tr><td align="center">                            </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+<tr><td align="center">   Thermodynamical          </td> <td align="center">   \( V, \cal M, \cal D \)    </td> <td align="center">   \( V, \cal M, \cal D \)    </td> <td align="center">   \( V, \cal M, \cal D \)    </td> <td align="center">   \( P, \cal H, \cal E \)    </td> </tr>
+<tr><td align="center">   parameters               </td> <td align="center">   \( E \)                    </td> <td align="center">   \( T \)                    </td> <td align="center">   \( T \)                    </td> <td align="center">   \( T \)                    </td> </tr>
+<tr><td align="center">                            </td> <td align="center">   \( N \)                    </td> <td align="center">   \( N \)                    </td> <td align="center">   \( \mu \)                  </td> <td align="center">   \( N \)                    </td> </tr>
+<tr><td align="center">                            </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+<tr><td align="center">                            </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+<tr><td align="center">   Potential                </td> <td align="center">   Entropy                    </td> <td align="center">   Helmholtz                  </td> <td align="center">   \( PV \)                   </td> <td align="center">   Gibbs                      </td> </tr>
+<tr><td align="center">                            </td> <td align="center">   \( N \)                    </td> <td align="center">   \( N \)                    </td> <td align="center">   \( \mu \)                  </td> <td align="center">   \( N \)                    </td> </tr>
+<tr><td align="center">                            </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+<tr><td align="center">                            </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+<tr><td align="center">   Energy                   </td> <td align="center">   Internal                   </td> <td align="center">   Internal                   </td> <td align="center">   Internal                   </td> <td align="center">   Enthalpy                   </td> </tr>
+<tr><td align="center">                            </td> <td align="center">   \( N \)                    </td> <td align="center">   \( N \)                    </td> <td align="center">   \( \mu \)                  </td> <td align="center">   \( N \)                    </td> </tr>
+<tr><td align="center">                            </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+<tr><td align="center">                            </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> <td align="center">                              </td> </tr>
+</tbody>
+</table>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec2">Canonical Ensemble </h2>
+
+<p>
+One of the most used ensembles is the canonical one, which is related to the microcanonical ensemble
+via a Legendre transformation. The temperature is an intensive variable in this ensemble whereas the energy
+follows as an expectation value. 
+In order to calculate expectation values such as the mean energy \( \langle E \rangle  \)
+at a given temperature, we need a probability distribution.
+It is given by the Boltzmann distribution
+
+$$
+\begin{equation*}
+  P_i(\beta) = \frac{e^{-\beta E_i}}{Z}
+\end{equation*}
+$$
+
+with \( \beta=1/k_BT \) being the inverse temperature, \( k_B \) is the 
+Boltzmann constant, \( E_i \) is the energy of a microstate \( i \) while 
+\( Z \) is the partition function for the canonical ensemble
+defined as
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec3">The partition function is a normalization constant  </h2>
+
+<p>
+In the canonical ensemble the partition function is 
+$$
+\begin{equation*}
+Z=\sum_{i=1}^{M}e^{-\beta E_i},
+\end{equation*}
+$$
+
+where the sum extends over all microstates \( M \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec4">Helmoltz free energy, what does it mean?  </h2>
+
+<p>
+The potential of interest in this case is Helmholtz' free energy. It
+relates the expectation value of the energy at a given temperatur \( T \)
+to the entropy at the same temperature via
+
+$$
+\begin{equation*} 
+F=-k_{B}TlnZ=\langle E \rangle-TS.
+\end{equation*} 
+$$
+
+<p>
+Helmholtz' free energy expresses the
+struggle between two important principles in physics, namely the
+strive towards an energy minimum and the drive towards higher entropy
+as the temperature increases. A higher entropy may be interpreted as a
+larger degree of disorder. When equilibrium is reached at a given
+temperature, we have a balance between these two principles.  The
+numerical expression is Helmholtz' free energy.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec5">Thermodynamical quantities  </h2>
+
+<p>
+In the canonical ensemble the entropy is given by
+
+$$
+\begin{equation*} 
+S =k_{B}lnZ
++k_{B}T\left(\frac{\partial lnZ}{\partial T}\right)_{N, V},
+\end{equation*}
+$$
+
+and the pressure by
+
+$$
+\begin{equation*} 
+p=k_{B}T\left(\frac{\partial lnZ}{\partial V}\right)_{N, T}.
+\end{equation*}
+$$
+
+Similarly we can compute the chemical potential as
+
+$$
+\begin{equation*} 
+\mu =-k_{B}T\left(\frac{\partial lnZ}{\partial N}\right)_{V, T}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec6">Thermodynamical quantities, the energy in the canonical ensemble  </h2>
+
+<p>
+For a system described by the canonical ensemble, the energy is an
+expectation value since we allow energy to be exchanged with the surroundings
+(a heat bath with temperature \( T \)).
+
+<p>
+This expectation value, the mean energy,
+can be calculated using
+
+$$
+\begin{equation*}
+\langle E\rangle  =k_{B}T^{2}\left(\frac{\partial lnZ}{\partial T}\right)_{V, N}
+\end{equation*}
+$$
+
+or 
+using the probability distribution
+\( P_i \) as
+
+$$
+\begin{equation*}
+  \langle E \rangle = \sum_{i=1}^M E_i P_i(\beta)= 
+  \frac{1}{Z}\sum_{i=1}^M E_ie^{-\beta E_i}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec7">Energy and specific heat in the canonical ensemble  </h2>
+
+<p>
+The energy is proportional to the first derivative of the potential,
+Helmholtz' free energy.  The corresponding variance is defined as
+
+$$
+\begin{equation*}
+\sigma_E^2=\langle E^2 \rangle-\langle E \rangle^2=
+         \frac{1}{Z}\sum_{i=1}^M E_i^2e^{-\beta E_i}-
+          \left(\frac{1}{Z}\sum_{i=1}^M E_ie^{-\beta E_i}\right)^2.
+\end{equation*}
+$$
+
+If we divide the latter quantity with
+\( kT^2 \) we obtain the specific heat at constant volume
+
+$$
+\begin{equation*}
+   C_V= \frac{1}{k_BT^2}\left(\langle E^2 \rangle-\langle E \rangle^2\right),
+\end{equation*}
+$$
+
+which again can be related to the second derivative of Helmholtz' free energy.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec8">Magnetic moments and susceptibility in the canonical ensemble  </h2>
+
+<p>
+Using the same prescription, we can also evaluate the mean magnetization
+through
+
+$$
+\begin{equation*}
+  \langle {\cal M} \rangle = \sum_i^M {\cal M}_i P_i(\beta)= 
+  \frac{1}{Z}\sum_i^M {\cal M}_ie^{-\beta E_i},
+\end{equation*}
+$$
+
+and the corresponding variance
+
+$$
+\begin{equation*}
+\sigma_{{\cal M}}^2=\langle {\cal M}^2 \rangle-\langle {\cal M} \rangle^2=
+         \frac{1}{Z}\sum_{i=1}^M {\cal M}_i^2e^{-\beta E_i}-
+          \left(\frac{1}{Z}\sum_{i=1}^M {\cal M}_ie^{-\beta E_i}\right)^2.
+\end{equation*}
+$$
+
+This quantity defines also the susceptibility 
+\( \chi \)
+
+$$
+\begin{equation*}
+  \chi=\frac{1}{k_BT}\left(\langle {\cal M}^2 \rangle-\langle {\cal M} \rangle^2\right).
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec9">Our model, the Ising model in one and two dimensions </h2>
+
+<p>
+The model we will employ in our studies of phase transitions at finite temperature for 
+magnetic systems is the so-called Ising model. In its simplest form
+the energy is expressed as
+
+$$
+\begin{equation*}
+  E=-J\sum_{< kl>}^{N}s_ks_l-{\cal B}\sum_k^Ns_k,
+\end{equation*}
+$$
+
+with  \( s_k=\pm 1 \), \( N \) is the total number of spins, 
+\( J \) is a coupling constant expressing the strength of the interaction
+between neighboring spins and 
+\( {\cal B} \) is an external magnetic field interacting with the magnetic
+moment set up by the spins.
+
+<p>
+The symbol \( < kl> \) indicates that we sum over nearest
+neighbors only. 
+Notice that for \( J>0 \) it is energetically favorable for neighboring spins 
+to be aligned. This feature leads to, at low enough temperatures,
+a cooperative phenomenon called spontaneous magnetization. That is, 
+through interactions between nearest neighbors, a given magnetic
+moment can influence the alignment of spins  that are separated 
+from the given spin by a macroscopic distance. These long range correlations
+between spins are associated with a long-range order in which
+the lattice has a net magnetization in the absence of a magnetic field.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec10">Boltzmann distribution  </h2>
+
+<p>
+In order to calculate expectation values such as the mean energy
+\( \langle E \rangle  \) or
+magnetization \( \langle {\cal M} \rangle  \)
+in statistical physics
+at a given temperature, we need a probability distribution
+
+$$
+\begin{equation*}
+  P_i(\beta) = \frac{e^{-\beta E_i}}{Z}
+\end{equation*}
+$$
+
+with \( \beta=1/kT \) being the inverse temperature, \( k \) the 
+Boltzmann constant, \( E_i \) is the energy of a state \( i \) while 
+\( Z \) is the partition function for the canonical ensemble
+defined as
+
+$$
+\begin{equation*}
+Z=\sum_{i=1}^{M}e^{-\beta E_i},
+\end{equation*}
+$$
+
+where the sum extends over all microstates
+\( M \). 
+\( P_i \) expresses the probability of finding the system in a given 
+configuration \( i \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec11">Energy for a specific configuration  </h2>
+
+<p>
+The energy for a specific configuration \( i \)
+is given by
+
+$$
+\begin{equation*}
+   E_i =-J\sum_{< kl>}^{N}s_ks_l.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec12">Configurations </h2>
+To better understand what is meant with a configuration, 
+consider first the case of the one-dimensional Ising model
+with \( {\cal B}=0 \). 
+In general, a given configuration of \( N \) spins in one
+dimension may look like
+
+$$
+\begin{equation*}
+\begin{array}{cccccccccc}
+\uparrow&\uparrow&\uparrow&\dots&\uparrow&\downarrow&\uparrow&\dots&\uparrow&\downarrow\\
+1&2&3&\dots& i-1&i&i+1&\dots&N-1&N\end{array}
+\end{equation*}
+$$
+
+In order to illustrate these features 
+let us further specialize to
+just two spins.
+
+<p>
+With two spins, since each spin takes two values only,
+we have \( 2^2=4 \) possible arrangements of the two spins. 
+These four possibilities are
+
+$$
+\begin{equation*}
+   1= \uparrow\uparrow\hspace{1cm}
+    2= \uparrow\downarrow\hspace{1cm}
+   3= \downarrow\uparrow\hspace{1cm}
+      4=\downarrow\downarrow
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec13">Boundary conditions, free ends </h2>
+
+<p>
+What is the energy of each of these configurations?
+
+<p>
+For small systems, the way we treat the ends matters. Two cases are
+often used.
+
+<p>
+In the first case we employ what is called  free ends. This means that there is no contribution from points to the right or left of the endpoints. For the one-dimensional case, the energy is then written as  a sum over a single index  
+$$
+\begin{equation*}    
+E_i =-J\sum_{j=1}^{N-1}s_js_{j+1},
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec14">Free ends and the energy </h2>
+
+<p>
+If we  label the first spin as \( s_1 \) and the second as \( s_2 \) 
+we obtain the following 
+expression for the energy
+
+$$
+\begin{equation*}
+   E=-Js_1s_2.
+\end{equation*}
+$$
+
+The calculation of the energy for the one-dimensional lattice
+with free ends for one specific spin-configuration 
+can easily be implemented in the following lines
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span style="color: #8B008B; font-weight: bold">for</span> ( j=<span style="color: #B452CD">1</span>; j &lt; N; j++) {
+     energy += spin[j]*spin[j+<span style="color: #B452CD">1</span>]; 
+}
+</pre></div>
+<p>
+where the vector \( spin[] \) contains the spin value \( s_k=\pm 1 \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec15">Free ends and energy </h2>
+
+<p>
+For the specific state \( E_1 \), we have chosen all spins up. The energy of
+this configuration becomes then
+
+$$
+\begin{equation*}
+   E_1=E_{\uparrow\uparrow}=-J.
+\end{equation*}
+$$
+
+The other configurations give
+
+$$
+\begin{equation*}
+   E_2=E_{\uparrow\downarrow}=+J,
+\end{equation*}
+$$
+
+
+$$
+\begin{equation*}
+   E_3=E_{\downarrow\uparrow}=+J,
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+   E_4=E_{\downarrow\downarrow}=-J.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec16">Periodic boundary conditions </h2>
+
+<p>
+We can also choose so-called periodic boundary conditions. This means
+that the neighbour to the right of \( s_N \) is assumed to take the value
+of \( s_1 \). Similarly, the neighbour to the left of \( s_1 \) takes the
+value \( s_N \). In this case the energy for the one-dimensional lattice
+reads 
+$$
+\begin{equation*} 
+E_i =-J\sum_{j=1}^{N}s_js_{j+1},
+\end{equation*} 
+$$
+
+and we obtain the following expression for the
+two-spin case
+
+$$
+\begin{equation*}
+   E=-J(s_1s_2+s_2s_1).
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec17">Energy with PBC  </h2>
+
+<p>
+In this case the energy for \( E_1 \) is different, we obtain namely
+
+$$
+\begin{equation*}
+   E_1=E_{\uparrow\uparrow}=-2J.
+\end{equation*}
+$$
+
+The other cases do also differ and we have
+
+$$
+\begin{equation*}
+   E_2=E_{\uparrow\downarrow}=+2J,
+\end{equation*}
+$$
+
+
+$$
+\begin{equation*}
+   E_3=E_{\downarrow\uparrow}=+2J,
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+   E_4=E_{\downarrow\downarrow}=-2J.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec18">Simple code for PBC </h2>
+
+<p>
+If we choose to use periodic boundary conditions we can code the above
+expression as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%">    jm=N;
+    <span style="color: #8B008B; font-weight: bold">for</span> ( j=<span style="color: #B452CD">1</span>; j &lt;=N ; j++) {
+        energy += spin[j]*spin[jm]; 
+        jm = j ;
+    }
+</pre></div>
+<p>
+The magnetization is however the same, defined as
+
+$$
+\begin{equation*}
+   {\cal M}_i=\sum_{j=1}^N s_j,
+\end{equation*}
+$$
+
+where we  sum over all spins for a given configuration \( i \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec19">Summing up </h2>
+
+<p>
+The table  lists the energy and magnetization for both free ends
+and periodic boundary conditions.
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">            State             </th> <th align="center">Energy (FE)</th> <th align="center">Energy (PBC)</th> <th align="center">Magnetization</th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   \( 1= \uparrow\uparrow \)         </td> <td align="right">   \( -J \)       </td> <td align="right">   \( -2J \)       </td> <td align="right">   2                </td> </tr>
+<tr><td align="center">   \( 2=\uparrow\downarrow \)        </td> <td align="right">   \( J \)        </td> <td align="right">   \( 2J \)        </td> <td align="right">   0                </td> </tr>
+<tr><td align="center">   $   3=\downarrow\uparrow$         </td> <td align="right">   \( J \)        </td> <td align="right">   \( 2J \)        </td> <td align="right">   0                </td> </tr>
+<tr><td align="center">   $      4=\downarrow\downarrow$    </td> <td align="right">   \( -J \)       </td> <td align="right">   \( -2J \)       </td> <td align="right">   -2               </td> </tr>
+</tbody>
+</table>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec20">Reorganizing </h2>
+
+<p>
+We can reorganize according to the number of spins pointing up, as shown in the table here
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">Number spins up</th> <th align="center">Degeneracy</th> <th align="center">Energy (FE)</th> <th align="center">Energy (PBC)</th> <th align="center">Magnetization</th> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   2                  </td> <td align="left">   1             </td> <td align="right">   \( -J \)       </td> <td align="right">   \( -2J \)       </td> <td align="right">   2                </td> </tr>
+<tr><td align="left">   1                  </td> <td align="left">   2             </td> <td align="right">   \( J \)        </td> <td align="right">   \( 2J \)        </td> <td align="right">   0                </td> </tr>
+<tr><td align="left">   0                  </td> <td align="left">   1             </td> <td align="right">   \( -J \)       </td> <td align="right">   \( -2J \)       </td> <td align="right">   -2               </td> </tr>
+</tbody>
+</table>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec21">Our model, the Ising model in one and two dimensions </h2>
+
+<p>
+It is worth noting that for small dimensions of the lattice,
+the energy differs depending on whether we use
+periodic boundary conditions or free ends. This means also
+that the partition functions will be different, as discussed
+below. In the thermodynamic limit we have \( N\rightarrow \infty \),
+and the final results do not depend on the kind of boundary conditions
+we choose.
+
+<p>
+For a one-dimensional lattice with periodic boundary conditions, 
+each spin sees two neighbors. For a
+two-dimensional lattice each spin sees four neighboring spins. 
+How many neighbors does a spin see in three dimensions?
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec22">Ising model in one and two dimensions </h2>
+
+<p>
+In a similar way, we could enumerate the number of states for
+a two-dimensional system consisting of two spins, i.e., 
+a \( 2\times 2 \) Ising model on a square lattice with {\em periodic
+boundary conditions}. In this case we have a total of 
+\( 2^4=16 \) states. 
+Some 
+examples of configurations with their respective energies are 
+listed here
+
+$$
+\begin{equation*}
+  E=-8J\hspace{1cm}\begin{array}{cc}\uparrow & \uparrow \\
+                                    \uparrow & \uparrow\end{array}
+\hspace{0.5cm}
+  E=0\hspace{1cm}\begin{array}{cc}\uparrow & \uparrow \\
+                                    \uparrow & \downarrow\end{array}
+\hspace{0.5cm}
+  E=0\hspace{1cm}\begin{array}{cc}\downarrow & \downarrow \\
+                                    \uparrow & \downarrow\end{array}
+\hspace{0.5cm}
+  E=-8J\hspace{1cm}\begin{array}{cc}\downarrow & \downarrow \\
+                                    \downarrow & \downarrow\end{array}
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec23">List of configurations with energies and magnetic moment </h2>
+
+<p>
+In the table here we group these configurations
+according to their total energy and magnetization.
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">Number spins up</th> <th align="center">Degeneracy</th> <th align="center">  Energy </th> <th align="center">Magnetization</th> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   4                  </td> <td align="left">   1             </td> <td align="right">   \( -8J \)    </td> <td align="right">   4                </td> </tr>
+<tr><td align="left">   3                  </td> <td align="left">   4             </td> <td align="right">   \( 0 \)      </td> <td align="right">   2                </td> </tr>
+<tr><td align="left">   2                  </td> <td align="left">   4             </td> <td align="right">   \( 0 \)      </td> <td align="right">   0                </td> </tr>
+<tr><td align="left">   2                  </td> <td align="left">   2             </td> <td align="right">   \( 8J \)     </td> <td align="right">   0                </td> </tr>
+<tr><td align="left">   1                  </td> <td align="left">   4             </td> <td align="right">   \( 0 \)      </td> <td align="right">   -2               </td> </tr>
+<tr><td align="left">   0                  </td> <td align="left">   1             </td> <td align="right">   \( -8J \)    </td> <td align="right">   -4               </td> </tr>
+</tbody>
+</table>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec24">Phase Transitions and Critical Phenomena </h2>
+
+<p>
+A phase transition is marked by abrupt macroscopic changes as external
+parameters are changed, such as an increase of temperature. The point
+where a phase transition takes place is called a critical point.
+
+<p>
+We distinguish normally between two types of phase transitions;
+first-order transitions and second-order transitions. An important
+quantity in studies of phase transitions is the so-called correlation
+length \( \xi \) and various correlations functions like spin-spin
+correlations.  For the Ising model we shall show below that the
+correlation length is related to the spin-correlation function, which
+again defines the magnetic susceptibility. The spin-correlation
+function is nothing but the covariance and expresses the degree of
+correlation between spins.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec25">Phase Transitions and Critical Phenomena, correlation length </h2>
+
+<p>
+The correlation length defines the length scale at which the overall
+properties of a material start to differ from its bulk properties.  It
+is the distance over which the fluctuations of the microscopic degrees
+of freedom (for example the position of atoms) are significantly
+correlated with each other. Usually it is of the order of few
+interatomic spacings for a solid.  The correlation length \( \xi \)
+depends however on external conditions such as pressure and
+temperature.
+
+<p>
+<!-- !split  -->
+
+<h2 id="___sec26">Classification of phase transitions </h2>
+
+<p>
+First order/discontinuous phase transitions are characterized by two or more
+states on either side of the critical point that can coexist at the
+critical point.  As we pass through the critical point we observe a
+discontinuous behavior of thermodynamical functions.  The correlation
+length is normally finite at the critical point.  Phenomena such as
+hysteris occur, viz. there is a continuation of state below the
+critical point into one above the critical point. This continuation is
+metastable so that the system may take a macroscopically long time to
+readjust. A classical example is the melting of ice. It takes a
+specific amount of time before all the ice has melted. The temperature
+remains constant and water and ice can coexist for a macroscopic
+time. The energy shows a discontinuity at the critical point,
+reflecting the fact that a certain amount of heat is needed in order
+to melt all the ice
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec27">Second-order phase Transitions </h2>
+
+<p>
+Second order or continuous transitions are different and in general
+much difficult to understand and model.  The correlation length
+diverges at the critical point, fluctuations are correlated over all
+distance scales, which forces the system to be in a unique critical
+phase. The two phases on either side of the critical point become
+identical. The disappearance of a spontaneous magnetization is a
+classical example of a second-order phase transitions. Structural
+transitions in solids are other types of second-order phase
+transitions.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec28">Phase Transitions and Critical Phenomena </h2>
+
+<p>
+<table border="1">
+<tr></tr>
+<tbody>
+<tr><td align="center">   System              </td> <td align="center">   Transition                  </td> <td align="center">   Order Parameter                                                 </td> </tr>
+<tr><td align="center">                       </td> <td align="center">                               </td> <td align="center">                                                                   </td> </tr>
+<tr><td align="center">                       </td> <td align="center">                               </td> <td align="center">                                                                   </td> </tr>
+<tr><td align="center">   Liquid-gas          </td> <td align="center">   Condensation/evaporation    </td> <td align="center">   Density difference \( \Delta\rho=\rho_{liquid}-\rho_{gas} \)    </td> </tr>
+<tr><td align="center">   Binary liquid       </td> <td align="center">   mixture/Unmixing            </td> <td align="center">   Composition difference                                          </td> </tr>
+<tr><td align="center">   Quantum liquid      </td> <td align="center">   Normal fluid/superfluid     </td> <td align="center">   \( < \phi> \), \( \psi \) = wavefunction                         </td> </tr>
+<tr><td align="center">   Liquid-solid        </td> <td align="center">   Melting/crystallisation     </td> <td align="center">   Reciprocal lattice vector                                       </td> </tr>
+<tr><td align="center">   Magnetic solid      </td> <td align="center">   Ferromagnetic               </td> <td align="center">   Spontaneous magnetisation \( M \)                               </td> </tr>
+<tr><td align="center">                       </td> <td align="center">   Antiferromagnetic           </td> <td align="center">   Sublattice magnetisation \( M \)                                </td> </tr>
+<tr><td align="center">   Dielectric solid    </td> <td align="center">   Ferroelectric               </td> <td align="center">   Polarization \( P \)                                            </td> </tr>
+<tr><td align="center">                       </td> <td align="center">   Antiferroelectric           </td> <td align="center">   Sublattice polarisation \( P \)                                 </td> </tr>
+</tbody>
+</table>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec29">Eherenfest definition of phase Transitions  </h2>
+
+<p>
+Using Ehrenfest's definition of the order of a phase transition we can
+relate the behavior around the critical point to various derivatives
+of the thermodynamical potential.  In the canonical ensemble we are
+using, the thermodynamical potential is Helmholtz' free energy
+
+$$
+\begin{equation*}
+   F= \langle E\rangle -TS  = -kTln Z
+\end{equation*}
+$$
+
+meaning $ lnZ = -F/kT  = -F\beta$. The energy is given as the first derivative of \( F \)
+
+$$
+\begin{equation*}
+   \langle E \rangle=-\frac{\partial lnZ}{\partial \beta} =\frac{\partial (\beta F)}{\partial \beta}.
+\end{equation*}
+$$
+
+and the specific heat is defined via the second derivative of \( F \)
+
+$$
+\begin{equation*}
+   C_V=-\frac{1}{kT^2}\frac{\partial^2 (\beta F)}{\partial\beta^2}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec30">Phase Transitions and Critical Phenomena </h2>
+
+<p>
+We can relate observables to various derivatives of the partition
+function and the free energy. When a given derivative of the free
+energy or the partition function is discontinuous or diverges
+(logarithmic divergence for the heat capacity from the Ising model) we
+talk of a phase transition of order of the derivative.  A first-order
+phase transition is recognized in a discontinuity of the energy, or
+the first derivative of \( F \).  The Ising model exhibits a second-order
+phase transition since the heat capacity diverges. The susceptibility
+is given by the second derivative of \( F \) with respect to external
+magnetic field. Both these quantities diverge.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec31">The Ising Model and Phase Transitions </h2>
+
+<p>
+The Ising model in two dimensions with \( {\cal B} = 0 \) undergoes a
+phase transition of second order. What it actually means is that below
+a given critical temperature \( T_C \), the Ising model exhibits a
+spontaneous magnetization with \( \langle {\cal M} \rangle\ne 0 \). Above
+\( T_C \) the average magnetization is zero.  The mean magnetization
+approaches zero at \( T_C \) with an infinite slope.  Such a behavior is
+an example of what are called critical phenomena.  A critical
+phenomenon is normally marked by one or more thermodynamical variables
+which vanish above a critical point. In our case this is the mean
+magnetization \( \langle {\cal M} \rangle\ne 0 \). Such a parameter is
+normally called the order parameter.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec32">The Ising Model and Phase Transitions, mean magnetization </h2>
+
+<p>
+It is possible to show  that the mean magnetization is given by
+(for temperature below \( T_C \))
+$$
+\begin{equation*}
+  \langle {\cal M}(T) \rangle \sim \left(T-T_C\right)^{\beta},
+\end{equation*}
+$$
+
+where \( \beta=1/8 \) is a so-called critical exponent. A similar relation
+applies to the heat capacity
+
+$$
+\begin{equation*}
+  C_V(T) \sim \left|T_C-T\right|^{-\alpha},
+\end{equation*}
+$$
+
+and the susceptibility
+
+$$
+\begin{equation*}
+  \chi(T) \sim \left|T_C-T\right|^{-\gamma},
+\end{equation*}
+$$
+
+with \( \alpha = 0 \) and \( \gamma = -7/4 \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec33">The Ising Model and Phase Transitions, correlation length </h2>
+
+<p>
+Another important quantity is the correlation length, which is expected
+to be of the order of the lattice spacing for \( T \) is close to \( T_C \). Because the spins
+become more and more correlated as \( T \) approaches \( T_C \), the correlation
+length increases as we get closer to the critical temperature. The discontinuous 
+behavior of the correlation \( \xi \) near \( T_C \)  is
+
+$$
+\begin{equation}
+  \xi(T) \sim \left|T_C-T\right|^{-\nu}.
+\label{eq:xi}
+\end{equation}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec34">The Ising Model and Phase Transitions, critical behavior </h2>
+
+<p>
+A second-order phase transition is characterized by a correlation
+length which spans the whole system.  The correlation length is
+typically of the order of some few interatomic distances. The fact
+that a system like the Ising model, whose energy is described by the
+interaction between neighboring spins only, can yield correlation
+lengths of macroscopic size at a critical point is still a feature
+which is not properly understood.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec35">The Ising Model and Phase Transitions, critical temperature </h2>
+
+<p>
+In our actual calculations of the two-dimensional Ising model, we are however 
+always limited to a finite lattice and \( \xi \) will
+be proportional with the size of the lattice at the critical point. 
+Through finite size scaling relations
+it is possible to relate the behavior at finite lattices with the 
+results for an infinitely large lattice.
+The critical temperature scales then as
+
+$$
+\begin{equation}
+ T_C(L)-T_C(L=\infty) \propto aL^{-1/\nu},
+\label{eq:tc}
+\end{equation}
+$$
+
+with  \( a \) a constant and  \( \nu \) defined in Eq. \eqref{eq:xi}.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec36">The Ising Model and Phase Transitions, correlation length </h2>
+
+<p>
+The correlation length for a finite lattice size can then be shown to be proportional to
+
+$$
+\begin{equation*}
+  \xi(T) \propto L\sim \left|T_C-T\right|^{-\nu}.
+\end{equation*}
+$$
+
+and if we set \( T=T_C \) one can obtain the following relations for the 
+magnetization, energy and susceptibility for \( T \le T_C \)
+
+$$
+\begin{equation*}
+  \langle {\cal M}(T) \rangle \sim \left(T-T_C\right)^{\beta}
+  \propto L^{-\beta/\nu},
+\end{equation*}
+$$
+
+
+$$
+\begin{equation*}
+  C_V(T) \sim \left|T_C-T\right|^{-\gamma} \propto L^{\alpha/\nu},
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+  \chi(T) \sim \left|T_C-T\right|^{-\alpha} \propto L^{\gamma/\nu}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec37">The Metropolis Algorithm and the Two-dimensional Ising Model </h2>
+
+<p>
+In our case we have as the Monte Carlo sampling function the probability
+for finding the system in a state \( s \) given by
+
+$$
+\begin{equation*}
+P_s=\frac{e^{-(\beta E_s)}}{Z},
+\end{equation*}
+$$
+
+with energy \( E_s \), \( \beta=1/kT \) and \( Z \) is a normalization constant which
+defines the partition function in the canonical ensemble. As discussed
+above
+
+$$
+\begin{equation*}
+  Z(\beta)=\sum_se^{-(\beta E_s)}
+\end{equation*}
+$$
+
+is difficult to compute since we need all states.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec38">The Metropolis Algorithm and the Two-dimensional Ising Model </h2>
+
+<p>
+In a calculation of the Ising model in two dimensions, the number of
+configurations is given by \( 2^N \) with \( N=L\times L \) the number of
+spins for a lattice of length \( L \). Fortunately, the Metropolis
+algorithm considers only ratios between probabilities and we do not
+need to compute the partition function at all.  The algorithm goes as
+follows
+
+<ol>
+ <li> Establish an initial state with energy \( E_b \) by positioning yourself at a random configuration in the lattice</li>
+ <li> Change the initial configuration by flipping  e.g., one spin only. Compute the energy of this trial state \( E_t \).</li>
+ <li> Calculate \( \Delta E=E_t-E_b \). The number of values \( \Delta E \) is limited to five for the Ising model in two dimensions, see the discussion below.</li>
+ <li> If \( \Delta E \le 0 \) we accept the new configuration, meaning that the energy is lowered and we are hopefully moving towards the energy minimum at a given temperature. Go to step 7.</li>
+ <li> If \( \Delta E >  0 \), calculate \( w=e^{-(\beta \Delta E)} \).</li>
+ <li> Compare \( w \) with a random number \( r \). If  \( r \le w \), then accept the new configuration, else we keep the old configuration.</li>
+ <li> The next step is to update various expectations values.</li>
+ <li> The steps (2)-(7) are then repeated in order to obtain a sufficently good representation of states.</li>
+ <li> Each time you sweep through the lattice, i.e., when you have summed over all spins, constitutes what is called a Monte Carlo cycle. You could think of one such cycle as a measurement. At the end, you should divide the various expectation values with the total number of cycles. You can choose whether you wish to divide by the number of spins or not. If you divide with the number of spins as well, your result for e.g., the energy is now the energy per spin.</li>
+</ol>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec39">The Metropolis Algorithm and the Two-dimensional Ising Model, practical issues </h2>
+
+<p>
+The crucial step is the calculation of the energy difference and the
+change in magnetization. This part needs to be coded in an as
+efficient as possible way since the change in energy is computed many
+times.  In the calculation of the energy difference from one spin
+configuration to the other, we will limit the change to the flipping
+of one spin only. For the Ising model in two dimensions it means that
+there will only be a limited set of values for \( \Delta E \). Actually,
+there are only five possible values.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec40">Five possible energy differences </h2>
+
+<p>
+To see this, select first a
+random spin position \( x,y \) and assume that this spin and its nearest
+neighbors are all pointing up. The energy for this configuration is
+\( E=-4J \). Now we flip this spin as shown below.  The energy of the new
+configuration is \( E=4J \), yielding \( \Delta E=8J \).
+
+$$
+\begin{equation*}
+  E=-4J\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \uparrow & \uparrow & \uparrow\\
+                                  & \uparrow & \end{array}
+\hspace{1cm}\Longrightarrow\hspace{1cm}
+  E=4J\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \uparrow & \downarrow & \uparrow\\
+                                  & \uparrow & \end{array}
+\end{equation*}
+$$
+
+The four other possibilities are as follows
+
+$$
+\begin{equation*}
+  E=-2J\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \downarrow & \uparrow & \uparrow\\
+                                  & \uparrow & \end{array}
+\hspace{1cm}\Longrightarrow\hspace{1cm}
+  E=2J\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \downarrow & \downarrow & \uparrow\\
+                                  & \uparrow & \end{array}
+\end{equation*}
+$$
+
+with \( \Delta E=4J \),
+
+$$
+\begin{equation*}
+  E=0\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \downarrow & \uparrow & \uparrow\\
+                                  & \downarrow & \end{array}
+\hspace{1cm}\Longrightarrow\hspace{1cm}
+  E=0\hspace{1cm}\begin{array}{ccc}         & \uparrow &         \\
+                         \downarrow & \downarrow & \uparrow\\
+                                  & \downarrow & \end{array}
+\end{equation*}
+$$
+
+with \( \Delta E=0 \),
+
+$$
+\begin{equation*}
+  E=2J\hspace{1cm}\begin{array}{ccc}         & \downarrow &         \\
+                         \downarrow & \uparrow & \uparrow\\
+                                  & \downarrow & \end{array}
+\hspace{1cm}\Longrightarrow\hspace{1cm}
+  E=-2J\hspace{1cm}\begin{array}{ccc}         & \downarrow &         \\
+                         \downarrow & \downarrow & \uparrow\\
+                                  & \downarrow & \end{array}
+\end{equation*}
+$$
+
+with \( \Delta E=-4J \) and finally
+
+$$
+\begin{equation*}
+  E=4J\hspace{1cm}\begin{array}{ccc}         & \downarrow &         \\
+                         \downarrow & \uparrow & \downarrow\\
+                                  & \downarrow & \end{array}
+\hspace{1cm}\Longrightarrow\hspace{1cm}
+  E=-4J\hspace{1cm}\begin{array}{ccc}         & \downarrow &         \\
+                         \downarrow & \downarrow & \downarrow\\
+                                  & \downarrow & \end{array}
+\end{equation*}
+$$
+
+with \( \Delta E=-8J \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec41">The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program </h2>
+
+<p>
+This means in turn that we could construct an array which contains all values
+of \( e^{\beta \Delta E} \) before doing the Metropolis sampling. Else, we
+would have to evaluate the exponential  at each Monte Carlo sampling. 
+For the two-dimensional Ising model there are only five possible values. It is rather easy
+to convice oneself that for the one-dimensional Ising model we have only three possible values.
+The main part of the Ising model program is shown here
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span style="color: #228B22">/* </span>
+<span style="color: #228B22">   Program to solve the two-dimensional Ising model </span>
+<span style="color: #228B22">   The coupling constant J = 1</span>
+<span style="color: #228B22">   Boltzmann&#39;s constant = 1, temperature has thus dimension energy</span>
+<span style="color: #228B22">   Metropolis sampling is used. Periodic boundary conditions.</span>
+<span style="color: #228B22">*/</span>
+<span style="color: #1e889b">#include &lt;iostream&gt;</span>
+<span style="color: #1e889b">#include &lt;fstream&gt;</span>
+<span style="color: #1e889b">#include &lt;iomanip&gt;</span>
+<span style="color: #1e889b">#include &quot;lib.h&quot;</span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span>  std;
+ofstream ofile;
+<span style="color: #228B22">// inline function for periodic boundary conditions</span>
+<span style="color: #8B008B; font-weight: bold">inline</span> <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">periodic</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i, <span style="color: #a7a7a7; font-weight: bold">int</span> limit, <span style="color: #a7a7a7; font-weight: bold">int</span> add) { 
+  <span style="color: #8B008B; font-weight: bold">return</span> (i+limit+add) % (limit);
+}
+<span style="color: #228B22">// Function to read in data from screen  </span>
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">read_input</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">int</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;);
+<span style="color: #228B22">// Function to initialise energy and magnetization</span>
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">initialize</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">int</span> **, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;);
+<span style="color: #228B22">// The metropolis algorithm </span>
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Metropolis</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">long</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">int</span> **, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span> *);
+<span style="color: #228B22">// prints to file the results of the calculations  </span>
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">output</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">double</span> *);
+
+<span style="color: #228B22">//  main program</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+{
+  <span style="color: #a7a7a7; font-weight: bold">char</span> *outfilename;
+  <span style="color: #a7a7a7; font-weight: bold">long</span> idum;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> **spin_matrix, n_spins, mcs;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> w[<span style="color: #B452CD">17</span>], average[<span style="color: #B452CD">5</span>], initial_temp, final_temp, E, M, temp_step;
+
+  <span style="color: #228B22">// Read in output file, abort if there are too few command-line arguments</span>
+  <span style="color: #8B008B; font-weight: bold">if</span>( argc &lt;= <span style="color: #B452CD">1</span> ){
+    cout &lt;&lt; <span style="color: #CD5555">&quot;Bad Usage: &quot;</span> &lt;&lt; argv[<span style="color: #B452CD">0</span>] &lt;&lt; 
+      <span style="color: #CD5555">&quot; read also output file on same line&quot;</span> &lt;&lt; endl;
+    exit(<span style="color: #B452CD">1</span>);
+  }
+  <span style="color: #8B008B; font-weight: bold">else</span>{
+    outfilename=argv[<span style="color: #B452CD">1</span>];
+  }
+  ofile.open(outfilename);
+  <span style="color: #228B22">//    Read in initial values such as size of lattice, temp and cycles</span>
+  read_input(n_spins, mcs, initial_temp, final_temp, temp_step);
+  spin_matrix = (<span style="color: #a7a7a7; font-weight: bold">int</span>**) matrix(n_spins, n_spins, <span style="color: #8B008B; font-weight: bold">sizeof</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>));
+  idum = -<span style="color: #B452CD">1</span>; <span style="color: #228B22">// random starting point</span>
+  <span style="color: #8B008B; font-weight: bold">for</span> ( <span style="color: #a7a7a7; font-weight: bold">double</span> temp = initial_temp; temp &lt;= final_temp; temp+=temp_step){
+    <span style="color: #228B22">//    initialise energy and magnetization </span>
+    E = M = <span style="color: #B452CD">0.</span>;
+    <span style="color: #228B22">// setup array for possible energy changes</span>
+    <span style="color: #8B008B; font-weight: bold">for</span>( <span style="color: #a7a7a7; font-weight: bold">int</span> de =-<span style="color: #B452CD">8</span>; de &lt;= <span style="color: #B452CD">8</span>; de++) w[de+<span style="color: #B452CD">8</span>] = <span style="color: #B452CD">0</span>;
+    <span style="color: #8B008B; font-weight: bold">for</span>( <span style="color: #a7a7a7; font-weight: bold">int</span> de =-<span style="color: #B452CD">8</span>; de &lt;= <span style="color: #B452CD">8</span>; de+=<span style="color: #B452CD">4</span>) w[de+<span style="color: #B452CD">8</span>] = exp(-de/temp);
+    <span style="color: #228B22">// initialise array for expectation values</span>
+    <span style="color: #8B008B; font-weight: bold">for</span>( <span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; <span style="color: #B452CD">5</span>; i++) average[i] = <span style="color: #B452CD">0.</span>;
+    initialize(n_spins, <span style="color: #a7a7a7; font-weight: bold">double</span> temp, spin_matrix, E, M);
+    <span style="color: #228B22">// start Monte Carlo computation</span>
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> cycles = <span style="color: #B452CD">1</span>; cycles &lt;= mcs; cycles++){
+      Metropolis(n_spins, idum, spin_matrix, E, M, w);
+      <span style="color: #228B22">// update expectation values</span>
+      average[<span style="color: #B452CD">0</span>] += E;    average[<span style="color: #B452CD">1</span>] += E*E;
+      average[<span style="color: #B452CD">2</span>] += M;    average[<span style="color: #B452CD">3</span>] += M*M; average[<span style="color: #B452CD">4</span>] += fabs(M);
+    }
+    <span style="color: #228B22">// print results</span>
+    output(n_spins, mcs, temp, average);
+  }
+  free_matrix((<span style="color: #a7a7a7; font-weight: bold">void</span> **) spin_matrix); <span style="color: #228B22">// free memory</span>
+  ofile.close();  <span style="color: #228B22">// close output file</span>
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+}
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec42">Coding energy differences </h2>
+
+<p>
+The array \( w[17] \) contains values of \( \Delta E \) spanning from \( -8J \) to
+\( 8J \) and it is precalculated in the main part for every new
+temperature. The program takes as input the initial temperature, final
+temperature, a temperature step, the number of spins in one direction
+(we force the lattice to be a square lattice, meaning that we have the
+same number of spins in the \( x \) and the \( y \) directions) and the number
+of Monte Carlo cycles.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec43">Efficient expression for energy differences </h2>
+
+<p>
+For every Monte Carlo cycle we run through all
+spins in the lattice in the function metropolis and flip one spin at
+the time and perform the Metropolis test.  However, every time we flip
+a spin we need to compute the actual energy difference \( \Delta E \) in
+order to access the right element of the array which stores \( e^{\beta
+\Delta E} \). This is easily done in the Ising model since we can
+exploit the fact that only one spin is flipped, meaning in turn that
+all the remaining spins keep their values fixed.  The energy
+difference between a state \( E_1 \) and a state \( E_2 \) with zero external
+magnetic field is
+
+$$
+\begin{equation*}
+   \Delta E = E_2-E_1 =J\sum_{< kl>}^{N}s_k^1s_{l}^1-J\sum_{< kl>}^{N}s_k^2s_{l}^2,
+\end{equation*}
+$$
+
+which we can rewrite as
+
+$$
+\begin{equation*}
+   \Delta E  = -J \sum_{< kl>}^{N}s_k^2(s_l^2-s_{l}^1),
+\end{equation*}
+$$
+
+where the sum now runs only over the nearest neighbors \( k \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec44">Final energy difference </h2>
+
+<p>
+Since the spin to be flipped takes only two values, \( s_l^1=\pm 1 \) and \( s_l^2=\pm 1 \), it means that if
+\( s_l^1= 1 \), then \( s_l^2=-1 \) and if \( s_l^1= -1 \), then \( s_l^2=1 \). 
+The other spins keep their values, meaning that
+\( s_k^1=s_k^2 \).
+If \( s_l^1= 1 \) we must have \( s_l^1-s_{l}^2=2 \), and 
+if \( s_l^1= -1 \) we must have \( s_l^1-s_{l}^2=-2 \). From these results we see that the energy difference
+can be coded efficiently as
+
+$$
+\begin{equation}
+   \Delta E  = 2Js_l^1\sum_{< k>}^{N}s_k,
+\label{eq:deltaeising}
+\end{equation}
+$$
+
+where the sum runs only over the nearest neighbors \( k \) of spin \( l \).
+We can compute the change in magnetisation by flipping one spin as well.
+Since only spin \( l \) is flipped, all the surrounding spins remain unchanged.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec45">Change in magnetization </h2>
+
+<p>
+The difference in magnetisation is therefore only given by the difference 
+\( s_l^1-s_{l}^2=\pm 2 \), or in a more compact way as
+
+$$
+\begin{equation}
+M_2 = M_1+2s_l^2,
+\label{eq:deltamising}
+\end{equation}
+$$
+
+where \( M_1 \) and \( M_2 \) are the magnetizations before and after the spin flip, respectively.  
+Eqs. \eqref{eq:deltaeising} and \eqref{eq:deltamising} are implemented in the function <b>metropolis</b> shown here
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Metropolis</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> n_spins, <span style="color: #a7a7a7; font-weight: bold">long</span>&amp; idum, <span style="color: #a7a7a7; font-weight: bold">int</span> **spin_matrix, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; E, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;M, <span style="color: #a7a7a7; font-weight: bold">double</span> *w)
+{
+  <span style="color: #228B22">// loop over all spins</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> y =<span style="color: #B452CD">0</span>; y &lt; n_spins; y++) {
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> x= <span style="color: #B452CD">0</span>; x &lt; n_spins; x++){
+      <span style="color: #228B22">// Find random position</span>
+      <span style="color: #a7a7a7; font-weight: bold">int</span> ix = (<span style="color: #a7a7a7; font-weight: bold">int</span>) (ran1(&amp;idum)*(<span style="color: #a7a7a7; font-weight: bold">double</span>)n_spins);
+      <span style="color: #a7a7a7; font-weight: bold">int</span> iy = (<span style="color: #a7a7a7; font-weight: bold">int</span>) (ran1(&amp;idum)*(<span style="color: #a7a7a7; font-weight: bold">double</span>)n_spins);
+      <span style="color: #a7a7a7; font-weight: bold">int</span> deltaE =  <span style="color: #B452CD">2</span>*spin_matrix[iy][ix]*
+	(spin_matrix[iy][periodic(ix,n_spins,-<span style="color: #B452CD">1</span>)]+
+	 spin_matrix[periodic(iy,n_spins,-<span style="color: #B452CD">1</span>)][ix] +
+	 spin_matrix[iy][periodic(ix,n_spins,<span style="color: #B452CD">1</span>)] +
+	 spin_matrix[periodic(iy,n_spins,<span style="color: #B452CD">1</span>)][ix]);
+      <span style="color: #228B22">// Here we perform the Metropolis test</span>
+      <span style="color: #8B008B; font-weight: bold">if</span> ( ran1(&amp;idum) &lt;= w[deltaE+<span style="color: #B452CD">8</span>] ) {
+	spin_matrix[iy][ix] *= -<span style="color: #B452CD">1</span>;  <span style="color: #228B22">// flip one spin and accept new spin config</span>
+        <span style="color: #228B22">// update energy and magnetization</span>
+        M += (<span style="color: #a7a7a7; font-weight: bold">double</span>) <span style="color: #B452CD">2</span>*spin_matrix[iy][ix];
+        E += (<span style="color: #a7a7a7; font-weight: bold">double</span>) deltaE;
+      }
+    }
+  }
+} <span style="color: #228B22">// end of Metropolis sampling over spins</span>
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec46">A small note </h2>
+
+<p>
+Note that we loop over all spins but that we choose the lattice positions \( x \) and \( y \) randomly.
+If the move is accepted after performing  the Metropolis test, we update the energy and the magnetisation.
+The new values are used to update the averages computed in the main function.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec47">Initialization </h2>
+
+<p>
+We need also to initialize various variables.
+This is done in the function here.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span style="color: #228B22">// function to initialise energy, spin matrix and magnetization</span>
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">initialize</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> n_spins, <span style="color: #a7a7a7; font-weight: bold">double</span> temp, <span style="color: #a7a7a7; font-weight: bold">int</span> **spin_matrix, 
+		<span style="color: #a7a7a7; font-weight: bold">double</span>&amp; E, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; M)
+{
+  <span style="color: #228B22">// setup spin matrix and intial magnetization</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> y =<span style="color: #B452CD">0</span>; y &lt; n_spins; y++) {
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> x= <span style="color: #B452CD">0</span>; x &lt; n_spins; x++){
+      <span style="color: #8B008B; font-weight: bold">if</span> (temp &lt; <span style="color: #B452CD">1.5</span>) spin_matrix[y][x] = <span style="color: #B452CD">1</span>; <span style="color: #228B22">// spin orientation for the ground state</span>
+      M +=  (<span style="color: #a7a7a7; font-weight: bold">double</span>) spin_matrix[y][x];
+    }
+  }
+  <span style="color: #228B22">// setup initial energy</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> y =<span style="color: #B452CD">0</span>; y &lt; n_spins; y++) {
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> x= <span style="color: #B452CD">0</span>; x &lt; n_spins; x++){
+      E -=  (<span style="color: #a7a7a7; font-weight: bold">double</span>) spin_matrix[y][x]*
+	(spin_matrix[periodic(y,n_spins,-<span style="color: #B452CD">1</span>)][x] +
+	 spin_matrix[y][periodic(x,n_spins,-<span style="color: #B452CD">1</span>)]);
+    }
+  }
+}<span style="color: #228B22">// end function initialise</span>
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec48">Two-dimensional Ising Model, energy per spin and specific heat </h2>
+
+<p>
+The following Python program, based on the above C++ codes, plots the expectation value of the energy and its fluctuation, that is the specific heat. Both quantities are plotted per spin and genererated for a \( 20\times 20 \) lattice.
+
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+#  Code for the two-dimensional Ising model with periodic boundary conditions
+import numpy, sys, math
+from  matplotlib import pyplot as plt
+import numpy as np
+
+
+def periodic (i, limit, add):
+    """
+    Choose correct matrix index with periodic
+    boundary conditions
+
+    Input:
+    - i:     Base index
+    - limit: Highest \"legal\" index
+    - add:   Number to add or subtract from i
+    """
+    return (i+limit+add) % limit
+
+def monteCarlo(temp, size, trials):
+    """
+    Calculate the energy and magnetization
+    (\"straight\" and squared) for a given temperature
+
+    Input:
+    - temp:   Temperature to calculate for
+    - size:   dimension of square matrix
+    - trials: Monte-carlo trials (how many times do we
+                                  flip the matrix?)
+
+    Output:
+    - E_av:       Energy of matrix averaged over trials, normalized to spins**2
+    - E_variance: Variance of energy, same normalization * temp**2
+    """
+
+    #Setup spin matrix, initialize to ground state
+    spin_matrix = numpy.zeros( (size,size), numpy.int8) + 1
+
+    #Create and initialize variables
+    E = 0
+    E_av = E2_av = 0
+    
+    #Setup array for possible energy changes
+    w = numpy.zeros(17,numpy.float64)
+    for de in xrange(-8,9,4): #include +8
+        w[de+8] = math.exp(-de/temp)
+    
+    #Calculate initial energy
+    for j in xrange(size): 
+        for i in xrange(size):
+            E -= spin_matrix.item(i,j)*\
+                 (spin_matrix.item(periodic(i,size,-1),j) + spin_matrix.item(i,periodic(j,size,1)))
+
+    #Start metropolis MonteCarlo computation 
+    for i in xrange(trials):
+        #Metropolis
+        #Loop over all spins, pick a random spin each time
+        for s in xrange(size**2):
+            x = int(numpy.random.random()*size)
+            y = int(numpy.random.random()*size)
+            deltaE = 2*spin_matrix.item(x,y)*\
+                     (spin_matrix.item(periodic(x,size,-1), y) +\
+                      spin_matrix.item(periodic(x,size,1),  y) +\
+                      spin_matrix.item(x, periodic(y,size,-1)) +\
+                      spin_matrix.item(x, periodic(y,size,1)))
+            if numpy.random.random() <= w[deltaE+8]:
+                #Accept!
+                spin_matrix[x,y] *= -1
+                E += deltaE
+            
+        #Update expectation values
+        E_av    += E
+        E2_av   += E**2
+
+    E_av       /= float(trials);
+    E2_av      /= float(trials);
+    #Calculate variance and normalize to per-point and temp
+    E_variance  = (E2_av-E_av*E_av)/float(size*size*temp*temp);
+    #Normalize returned averages to per-point
+    E_av       /= float(size*size);
+
+    return (E_av, E_variance)
+    
+    
+# Main program
+
+# values of the lattice, number of Monte Carlo cycles and temperature domain
+size        =   20
+trials      =   100000
+temp_init   = 1.8
+temp_end    = 2.6
+temp_step   = 0.1
+
+
+temps = numpy.arange(temp_init,temp_end+temp_step/2,temp_step,float)
+Dim = np.size(temps)
+energy = np.zeros(Dim)
+heatcapacity = np.zeros(Dim) 
+temperature = np.zeros(Dim)
+for temp in temps:
+    (E_av, E_variance) = monteCarlo(temp,size,trials)
+    temperature[temp] = temp
+    energy[temp] = E_av
+    heatcapacity[temp] = E_variance
+plt.figure(1)
+plt.subplot(211)
+plt.axis([1.8,2.6,-2.0, -1.0])
+plt.xlabel(r'Temperature $J/(k_B)$')
+plt.ylabel(r'Average energy per spin  $E/N$')
+plt.plot(temperature, energy, 'b-')
+plt.subplot(212)
+plt.axis([1.8,2.6, 0.0, 2.0])
+plt.plot(temperature, heatcapacity, 'r-')
+plt.xlabel(r'Temperature $J/(k_B)$')
+plt.ylabel(r'Heat capacity per spin  $C_V/N$')
+plt.savefig('energycv.pdf')
+plt.show()
+
+
+
+</script></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec49">Two-dimensional Ising Model and analysis of spin values </h2>
+
+<p>
+The following python code displays the values of the spins as function of temperature.
+The blue color corresponds to spin up states while red represents spin down states. Increasing the temperature as input parameter, see the parameters below, results in a a net magnetization which becomes zero. At low temperatures, the system is highly ordered with essentially only one specific spin value.
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+# coding=utf-8
+#2-dimensional ising model with visualization
+
+import numpy, sys, math
+import pygame
+
+#Needed for visualize when using SDL
+screen = None;
+font   = None;
+BLOCKSIZE = 10
+
+def periodic (i, limit, add):
+    """
+    Choose correct matrix index with periodic
+    boundary conditions
+
+    Input:
+    - i:     Base index
+    - limit: Highest \"legal\" index
+    - add:   Number to add or subtract from i
+    """
+    return (i+limit+add) % limit
+
+def visualize(spin_matrix, temp, E, M, method):
+    """
+    Visualize the spin matrix
+
+    Methods:
+    method = -1:No visualization (testing)
+    method = 0: Just print it to the terminal
+    method = 1: Pretty-print to terminal
+    method = 2: SDL/pygame single-pixel
+    method = 3: SDL/pygame rectangle
+    """
+
+    #Simple terminal dump
+    if method == 0:
+        print "temp:", temp, "E:", E, "M:", M
+        print spin_matrix
+    #Pretty-print to terminal
+    elif method == 1:
+        out = ""
+        size = len(spin_matrix)
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    out += "X"
+                else:
+                    out += " "
+            out += "\n"
+        print "temp:", temp, "E:", E, "M:", M
+        print out + "\n"
+    #SDL single-pixel (useful for large arrays)
+    elif method == 2:
+        size = len(spin_matrix)
+        screen.lock()
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    screen.set_at((x,y),(0,0,255))
+                else:
+                    screen.set_at((x,y),(255,0,0))
+        screen.unlock()
+        pygame.display.flip()
+    #SDL block (usefull for smaller arrays)
+    elif method == 3:
+        size = len(spin_matrix)
+        screen.lock()
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(0,0,255),rect)
+                else:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(255,0,0),rect)
+        screen.unlock()
+        pygame.display.flip()
+    #SDL block w/ data-display
+    elif method == 4:
+        size = len(spin_matrix)
+        screen.lock()
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(255,255,255),rect)
+                else:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(0,0,0),rect)
+        s = font.render("<E> = %5.3E; <M> = %5.3E" % E,M,False,(255,0,0))
+        screen.blit(s,(0,0))
+        
+        screen.unlock()
+        pygame.display.flip()    
+
+    
+
+def monteCarlo(temp, size, trials, visual_method):
+    """
+    Calculate the energy and magnetization
+    (\"straight\" and squared) for a given temperature
+
+    Input:
+    - temp:   Temperature to calculate for
+    - size:   dimension of square matrix
+    - trials: Monte-carlo trials (how many times do we
+                                  flip the matrix?)
+    - visual_method: What method should we use to visualize?
+
+    Output:
+    - E_av:       Energy of matrix averaged over trials, normalized to spins**2
+    - E_variance: Variance of energy, same normalization * temp**2
+    - M_av:       Magnetic field of matrix, averaged over trials, normalized to spins**2
+    - M_variance: Variance of magnetic field, same normalization * temp
+    - Mabs:       Absolute value of magnetic field, averaged over trials
+    """
+
+    #Setup spin matrix, initialize to ground state
+    spin_matrix = numpy.zeros( (size,size), numpy.int8) + 1
+
+    #Create and initialize variables
+    E    = M     = 0
+    E_av = E2_av = M_av = M2_av = Mabs_av = 0
+    
+    #Setup array for possible energy changes
+    w = numpy.zeros(17,numpy.float64)
+    for de in xrange(-8,9,4): #include +8
+        w[de+8] = math.exp(-de/temp)
+    
+    #Calculate initial magnetization:
+    M = spin_matrix.sum()
+    #Calculate initial energy
+    for j in xrange(size): 
+        for i in xrange(size):
+            E -= spin_matrix.item(i,j)*\
+                 (spin_matrix.item(periodic(i,size,-1),j) + spin_matrix.item(i,periodic(j,size,1)))
+
+    #Start metropolis MonteCarlo computation 
+    for i in xrange(trials):
+        #Metropolis
+        #Loop over all spins, pick a random spin each time
+        for s in xrange(size**2):
+            x = int(numpy.random.random()*size)
+            y = int(numpy.random.random()*size)
+            deltaE = 2*spin_matrix.item(x,y)*\
+                     (spin_matrix.item(periodic(x,size,-1), y) +\
+                      spin_matrix.item(periodic(x,size,1),  y) +\
+                      spin_matrix.item(x, periodic(y,size,-1)) +\
+                      spin_matrix.item(x, periodic(y,size,1)))
+            if numpy.random.random() <= w[deltaE+8]:
+                #Accept!
+                spin_matrix[x,y] *= -1
+                M += 2*spin_matrix[x,y]
+                E += deltaE
+            
+        #Update expectation values
+        E_av    += E
+        E2_av   += E**2
+        M_av    += M
+        M2_av   += M**2
+        Mabs_av += int(math.fabs(M))
+
+        visualize(spin_matrix, temp,E/float(size**2),M/float(size**2), method);
+
+    #Normalize average values
+    E_av       /= float(trials);
+    E2_av      /= float(trials);
+    M_av       /= float(trials);
+    M2_av      /= float(trials);
+    Mabs_av    /= float(trials);
+    #Calculate variance and normalize to per-point and temp
+    E_variance  = (E2_av-E_av*E_av)/float(size*size*temp*temp);
+    M_variance  = (M2_av-M_av*M_av)/float(size*size*temp);
+    #Normalize returned averages to per-point
+    E_av       /= float(size*size);
+    M_av       /= float(size*size);
+    Mabs_av    /= float(size*size);
+    
+    return (E_av, E_variance, M_av, M_variance, Mabs_av)
+    
+    
+# Main program
+
+size        =   100
+trials      =   100000
+temp        = 2.1
+method      =   3
+
+#Initialize pygame
+if method == 2 or method == 3 or method == 4:
+    pygame.init()
+    if method == 2:
+        screen = pygame.display.set_mode((size,size))
+    elif method == 3:
+        screen = pygame.display.set_mode((size*10,size*10))
+    elif method == 4:
+        screen = pygame.display.set_mode((size*10,size*10))
+        font   = pygame.font.Font(None,12)
+        
+
+(E_av, E_variance, M_av, M_variance, Mabs_av) = monteCarlo(temp,size,trials, method)
+print "%15.8E %15.8E %15.8E %15.8E %15.8E %15.8E\n" % (temp, E_av, E_variance, M_av, M_variance, Mabs_av)
+
+pygame.quit();
+
+
+</script></div>
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+

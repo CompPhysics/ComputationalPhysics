@@ -1,0 +1,213 @@
+\documentstyle[a4wide,12pt]{article}
+
+\begin{document}
+\section*{Introduction to numerical projects}
+
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+\begin{itemize}
+\item Give a short description of the nature of the problem and the eventual 
+numerical methods you have used.
+\item Describe the algorithm you have used and/or developed. Here you may find it convenient
+to use pseudocoding. In many cases you can describe the algorithm
+in the program itself.
+
+\item Include the source code of your program. Comment your program properly.
+\item If possible, try to find analytic solutions, or known limits
+in order to test your program when developing the code.
+\item Include your results either in figure form or in a table. Remember to
+       label your results. All tables and figures should have relevant captions
+       and labels on the axes.
+\item Try to evaluate the reliabilty and numerical stability/precision
+of your results. If possible, include a qualitative and/or quantitative
+discussion of the numerical stability, eventual loss of precision etc. 
+
+\item Try to give an interpretation of you results in your answers to 
+the problems.
+\item Critique: if possible include your comments and reflections about the 
+exercise, whether you felt you learnt something, ideas for improvements and 
+other thoughts you've made when solving the exercise.
+We wish to keep this course at the interactive level and your comments can help
+us improve it.
+\item Try to establish a practice where you log your work at the 
+computerlab. You may find such a logbook very handy at later stages
+in your work, especially when you don't properly remember 
+what a previous test version 
+of your program did. Here you could also record 
+the time spent on solving the exercise, various algorithms you may have tested
+or other topics which you feel worthy of mentioning.
+\end{itemize}
+
+
+
+\section*{Format for electronic delivery of report and programs}
+%
+The preferred format for the report is a PDF file. You can also
+use DOC or postscript formats. 
+As programming language we prefer that you choose between C/C++ and Fortran90/95.
+You could also use Java or Python as programming languages. 
+Matlab/Maple/Mathematica/IDL are not allowed as programming
+languages for the handins, but you can use them to check your results where possible.
+The following prescription should be followed when preparing the report:
+\begin{itemize}
+\item Use Classfronter to hand in your projects, log in  at 
+blyant.uio.no and choose 'fellesrom fys3150 og fys4150'.
+Thereafter you will see an icon to the left with 'hand in' or 'innlevering'.
+Click on that icon and go to the given project. 
+There you can load up the files within the deadline.
+\item Upload {\bf only} the report file and the source code file(s) you have developed.
+The report file should include all of your discussions and a list of the codes you have developed. 
+Do not include library files which are available at the course homepage, unless you have
+made specific changes to them.
+\item Comments  from us on your projects, approval or not, corrections to be made 
+etc can be found under
+your Classfronter domain and are only visible to you and the teachers of the course.
+ 
+\end{itemize}
+Finally, 
+we do prefer that you work two and two together. Optimal working groups consist of 
+2-3 students. You can then hand in a common report. 
+
+\section*{Project 1, deadline 19 september 12pm (midnight)}
+
+The aim of this project is to get familiar with various matrix operations,
+from dynamic memory allocation to the usage of programs in the library
+package of the course. 
+For Fortran users memory handling and most matrix and vector operations
+are included in the ANSI standard of Fortran 90/95. For C++ user however,
+there are three possible options
+\begin{enumerate}
+\item Make your own functions for dynamic memory allocation of a 
+vector and a matrix. Use then the 
+library package lib.cpp with its header file 
+lib.hpp for obtaining LU-decomposed matrices, solve linear equations
+etc.
+\item Use the library package lib.cpp with its header file 
+lib.hpp which includes a function \verb?matrix? for dynamic memory
+allocation. This program package includes all the other functions
+discussed during the lectures for solving systems of linear equations,
+obatining the determinant, getting the inverse etc.
+\item Finally, we provide on the web-page of the course a library package
+which uses Blitz++'s classes for array handling. You could then, since
+Blitz++ is installed on all machines at the lab, use these classes for handling
+arrays.
+\end{enumerate}
+
+Your program, whether it is written in C++ or Fortran 90/95, should include
+dynamic memory handling of matrices and vectors. 
+\begin{enumerate}
+\item[(a)] 
+Consider the linear system of equations 
+%
+\begin{eqnarray}
+ a_{11}x_1 +a_{12}x_2 +a_{13}x_3 =&w_1 \nonumber \\
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3=&w_2 \nonumber \\
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3=&w_3. \nonumber 
+\end{eqnarray}
+This can be written in matrix form as
+\[
+   {\bf Ax}={\bf w}.
+\]
+Use the included programs for LU decomposition to solve the system of equations
+\begin{eqnarray}
+ -x_1 +x_2 -4x_3 =&0 \nonumber \\
+  2x_1 + 2x_2 =&1 \nonumber \\
+3x_1 + 3x_2 + 2x_3=&\frac{1}{2}. \nonumber 
+\end{eqnarray}
+Use first standard Gaussian elimination and compute the result
+analytically. Compare thereafter your analytical results with
+the numerical ones obtained using the LU programs in the program library.
+
+\item[(b)] 
+Consider now the $4\times 4$ linear system of equations 
+%
+\begin{eqnarray}
+a_{11}x_1 +a_{12}x_2 +a_{13}x_3 + a_{14}x_4=&w_1 \nonumber \\
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3 + a_{24}x_4=&w_2 \nonumber \\
+a_{31}x_1 + a_{32}x_2 + a_{33}x_3 + a_{34}x_4=&w_3 \nonumber \\
+a_{41}x_1 + a_{42}x_2 + a_{43}x_3 + a_{44}x_4=&w_4. \nonumber
+\end{eqnarray}
+with 
+\begin{eqnarray}
+ x_1 +2x_3 +x_4 =&2 \nonumber \\
+4x_1 -9x_2 + 2x_3 + x_4=&14 \nonumber \\
+8x_1 + 16x_2 + 6x_3 + 5x_4=&-3 \nonumber \\
+2x_1 + 3x_2 + 2x_3 + x_4=&0. \nonumber
+\end{eqnarray}
+Use again standard Gaussian elimination and compute the result
+analytically. Compare thereafter your analytical results with
+the numerical ones obtained using the programs in the program library.
+
+
+\item[(c)] If the matrix $A$ is real, symmetric and positive definite, then
+it has  a unique factorization (called Cholesky factorization)
+\[
+   A = LU = LL^T
+\]
+where $L^T$ is the upper matrix, implying that
+\[
+  L^T_{ij} = L_{ji}.
+\]
+The algorithm for the Cholesky decomposition
+is a special case of the general LU-decomposition algorithm.
+The algorithm of this decomposition is as follows
+\begin{itemize}
+\item Calculate the diagonal element $L_{ii}$ by setting up a loop 
+for $i=0$ to $i=n-1$ (C++ indexing of matrices and vectors)
+\begin{equation}
+   L_{ii} = \left(A_{ii} - \sum_{k=0}^{i-1}L_{ik}^2\right)^{1/2}.
+\end{equation}
+%
+\item within the loop over $i$, introduce a new loop which goes 
+from $j=i+1$ to $n-1$ and calculate 
+%
+\begin{equation}
+      L_{ji} =
+      \frac{1}{L_{ii}}\left(A_{ij}-\sum_{k=0}^{i-1}L_{ik}l_{jk}\right).
+\end{equation}
+\end{itemize}
+For the Cholesky algorithm we have always that $L_{ii} > 0$ and the problem
+with exceedingly large matrix elements does not appear and hence there is no
+need for pivoting.
+Write a function which performs the Cholesky decomposition.
+Test your program against the standard LU decomposition by using the matrix
+\begin{equation}
+ {\bf A} =
+      \left( \begin{array}{ccc} 6 & 3 & 2 \\
+                                 3 & 2 & 1 \\
+                                 2 & 1 & 1 
+             \end{array} \right)
+\end{equation}
+\item[(d)] Finally, use the Cholesky method to solve
+\begin{eqnarray}
+ 0.05x_1 +0.07x_2+0.06x_3 +0.05x_4 =&0.23 \nonumber \\
+0.07x_1 +0.10x_2 + 0.08x_3 + 0.07x_4=&0.32 \nonumber \\
+0.06x_1 + 0.08x_2 + 0.10x_3 + 0.09x_4=&0.33 \nonumber \\
+0.05x_1 + 0.07x_2 + 0.09x_3 + 0.10x_4=&0.31 \nonumber
+\end{eqnarray}
+You can also use the LU codes for linear equations to check the results. 
+\end{enumerate}
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

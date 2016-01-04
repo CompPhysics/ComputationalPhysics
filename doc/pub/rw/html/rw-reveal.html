@@ -1,0 +1,2443 @@
+<!DOCTYPE html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm">
+
+<title>Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm</title>
+
+
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+
+
+
+<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/serif.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/darkgray.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/cbc.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simula.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/league.css" id="theme">
+-->
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+<!-- Printing and PDF exports -->
+<script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+<style type="text/css">
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .reveal .alert-text-small   { font-size: 80%;  }
+    .reveal .alert-text-large   { font-size: 130%; }
+    .reveal .alert-text-normal  { font-size: 90%;  }
+    .reveal .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:5px solid #bababa;
+             -webkit-border-radius: 14px; -moz-border-radius: 14px;
+             border-radius:14px;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 30px; /* 55px; if icon */
+     }
+     .reveal .alert-block {padding-top:14px; padding-bottom:14px}
+     .reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+     /*.reveal .alert li {margin-top: 1em}*/
+     .reveal .alert-block p+p {margin-top:5px}
+     /*.reveal .alert-notice { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
+     .reveal .alert-summary  { background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
+     .reveal .alert-warning { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
+     .reveal .alert-question {background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+
+</style>
+
+
+
+<!-- Styles for table layout of slides -->
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+
+
+
+<section>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1 style="text-align: center;">Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Phil Duxbury, and Morten Hjorth-Jensen -->
+
+<center>
+<b>Phil Duxbury</b> [1]
+</center>
+
+<center>
+<b>Morten Hjorth-Jensen</b> [2, 3]
+</center>
+
+<p>&nbsp;<br>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Astronomy, Michigan State University</b></center>
+<center>[2] <b>Department of Physics, University of Oslo</b></center>
+<center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>&nbsp;<br>
+<center><h4>Spring 2016</h4></center> <!-- date -->
+<br>
+<p>
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+</section>
+
+
+<section>
+<h2 id="___sec0">Why Markov chains, Brownian motion and the Metropolis algorithm </h2>
+
+<p>
+We want to study a physical system which evolves towards equilibrium, from som given  initial conditions.
+Recall the simple example of particles in a box. At an initial time \( t_0 \) all particles are in the left half of the box. Thereafter they are allowed to diffuse into the two halves of the box.
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+#!/usr/bin/env python
+from  matplotlib import pyplot as plt
+from math import exp
+import numpy as np
+import random
+
+# initial number of particles
+N0 = 1000
+MaxTime = 10*N0
+values = np.zeros(MaxTime)
+time = np.zeros(MaxTime)
+random.seed()
+# initial number of particles in left half
+nleft = N0
+for t in range (0, MaxTime, 1):
+    if N0*random.random() <= nleft:
+       nleft -= 1
+    else:
+       nleft += 1
+    time[t] = t
+    values[t] = nleft
+
+# Finally we plot the results
+plt.plot(time, values,'b-')
+plt.axis([0,MaxTime, N0/4, N0])
+plt.xlabel('$t$')
+plt.ylabel('$N$')
+plt.title('Number of particles in left half')
+plt.savefig('box.pdf')
+plt.show()
+
+</script></div>
+</section>
+
+
+<section>
+<h2 id="___sec1">Why Markov chains, Brownian motion and the Metropolis algorithm </h2>
+
+<ul>
+<p><li> We want to study a physical system which evolves towards equilibrium, from given  initial conditions.</li>
+<p><li> We start with a PDF \( w(x_0,t_0) \)  and we want to understand how the system evolves with time.</li>
+<p><li> We want to reach a situation where after a given number of time steps we obtain a steady state. This means that the system reaches its most likely state (equilibrium situation)</li>
+<p><li> Our PDF is normally a multidimensional object whose normalization constant is impossible to find.</li>
+<p><li> Analytical calculations from \( w(x,t) \) are not possible.</li>
+<p><li> To sample directly from from \( w(x,t) \) is not possible/difficult.</li>
+<p><li> The transition probability \( W \) is also not  known.</li>
+<p><li> How can we establish that we have reached a steady state?   Sounds impossible!</li>
+</ul>
+<p>
+
+<b>Use Markov chain Monte Carlo</b>
+</section>
+
+
+<section>
+<h2 id="___sec2">Brownian motion and Markov processes </h2>
+A Markov process is a random walk with a selected probability for making a
+move. The new move is independent of the previous history of the system.
+
+<p>
+The Markov process is used repeatedly in Monte Carlo simulations in order to generate
+new random states.
+
+<p>
+The reason for choosing a Markov process is that when it is run for a
+long enough time starting with a random state, we will eventually reach the most likely state of the system.
+
+<p>
+In thermodynamics, this means that after a certain number of Markov processes
+we reach an equilibrium distribution.
+
+<p>
+This mimicks the way a real system reaches
+its most likely state at a given temperature of the surroundings.
+</section>
+
+
+<section>
+<h2 id="___sec3">Brownian motion and Markov processes, Ergodicity and Detailed balance </h2>
+
+<p>
+To reach this distribution, the Markov process needs to obey two important conditions, that of
+<b>ergodicity</b> and <b>detailed balance</b>. These conditions impose then constraints on our algorithms
+for accepting or rejecting new random states.
+
+<p>
+The Metropolis algorithm discussed here
+abides to both these constraints.
+
+<p>
+The Metropolis algorithm is widely used in Monte Carlo
+simulations and the understanding of it rests within
+the interpretation of random walks and Markov processes.
+</section>
+
+
+<section>
+<h2 id="___sec4">Brownian motion and Markov processes, jargon </h2>
+
+<p>
+In a random walk one defines a mathematical entity called a <b>walker</b>, 
+whose  attributes
+completely define the state of the system in question.
+
+<p>
+The state of the system  can refer to any physical quantities,
+from the vibrational state of a molecule specified by a set of quantum numbers, 
+to the brands of coffee in your favourite supermarket.
+
+<p>
+The walker moves in an appropriate state space by a combination of 
+deterministic and random displacements from its previous
+position.
+
+<p>
+This sequence of steps forms a <b>chain</b>.
+</section>
+
+
+<section>
+<h2 id="___sec5">Brownian motion and Markov processes, sequence of ingredients </h2>
+
+<ul>
+<p><li> We want to study a physical system which evolves towards equilibrium, from given  initial conditions.</li>
+<p><li> Markov chains are intimately linked with the physical process of diffusion.</li> 
+<p><li> From a Markov chain we can then derive the conditions for detailed balance and ergodicity. These are the conditions needed for obtaining a steady state.</li>
+<p><li> The widely used algorithm for doing this is the so-called Metropolis algorithm, in its refined form the Metropolis-Hastings algorithm.</li>
+</ul>
+</section>
+
+
+<section>
+<h2 id="___sec6">Applications: almost every field in science </h2>
+
+<ul>
+<p><li> Financial engineering, see for example Patriarca <em>et al</em>, Physica <b>340</b>, <a href="http://www.sciencedirect.com/science/article/pii/S0378437104004327" target="_blank">page 334 (2004)</a>.</li>
+<p><li> Neuroscience, see for example Lipinski, Physics Medical Biology <b>35</b>, <a href="http://iopscience.iop.org/article/10.1088/0031-9155/35/3/012/meta;jsessionid=FA91B191036E1F10948F7C42B6A6D295.c1" target="_blank">page 441 (1990)</a> or Farnell and Gibson, Journal of Computational Physics <b>208</b>, <a href="http://www.sciencedirect.com/science/article/pii/S0021999105001087" target="_blank">page 253 (2005)</a></li>
+<p><li> Tons of applications in physics</li>
+<p><li> and chemistry</li>
+<p><li> and biology, medicine</li>
+<p><li> Nobel prize in economy to Black and Scholes</li>
+</ul>
+<p>&nbsp;<br>
+$$
+\frac{\partial V}{\partial t}+\frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}}+rS\frac{\partial V}{\partial S}-rV=0.
+$$
+<p>&nbsp;<br>
+
+The Black and Scholes equation is a partial differential equation, which describes the price
+of the option over time. It is a diffusion equation with a random term.
+
+<p>
+The list of applications is endless
+</section>
+
+
+<section>
+<h2 id="___sec7">A simple example (close to project 4) and some more jargon </h2>
+
+<p>
+The obvious case is that of a random walker on a one-, or two- or three-dimensional lattice
+(dubbed coordinate space hereafter).
+
+<p>
+Consider a system whose energy is defined by the orientation of single spins.
+Consider the state \( i \), with given energy \( E_i \) represented by the following \( N \) spins
+<p>&nbsp;<br>
+$$
+\begin{array}{cccccccccc}
+\uparrow&\uparrow&\uparrow&\dots&\uparrow&\downarrow&\uparrow&\dots&\uparrow&\downarrow\\
+1&2&3&\dots& k-1&k&k+1&\dots&N-1&N\end{array}
+$$
+<p>&nbsp;<br>
+
+We may be  interested in the transition with one single  spinflip to a new state \( j \) with energy \( E_j \)
+<p>&nbsp;<br>
+$$
+\begin{array}{cccccccccc}
+\uparrow&\uparrow&\uparrow&\dots&\uparrow&\uparrow&\uparrow&\dots&\uparrow&\downarrow\\
+1&2&3&\dots& k-1&k&k+1&\dots&N-1&N\end{array}
+$$
+<p>&nbsp;<br>
+
+This change from one microstate \( i \) (or spin configuration)  to another microstate \( j \) is the
+<b>configuration space</b>  analogue to a random walk on a lattice. Instead of jumping from
+one place to another in space, we 'jump' from one microstate to another.
+</section>
+
+
+<section>
+<h2 id="___sec8">Markov processes </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+A Markov process allows in principle for a microscopic description of Brownian motion.
+As with the random walk studied in the previous section, we consider a particle 
+which moves along the  \( x \)-axis in the form of a series of jumps with step length 
+\( \Delta x = l \). Time and space are discretized and the subsequent moves are
+statistically independent, i.e., the new move depends only on the previous step
+and not on the results from earlier trials. 
+We start at a position \( x=jl=j\Delta x \) and move to 
+a new position \( x =i\Delta x \) during a step \( \Delta t=\epsilon \), where 
+\( i\ge  0 \) and \( j\ge 0 \) are integers. 
+The original probability distribution function (PDF) of the particles is given by  
+\( w_i(t=0) \) where \( i \) refers to a specific position on the grid in
+</div>
+
+The function \( w_i(t=0) \) is now the discretized version of \( w(x,t) \).
+We can regard the discretized PDF as a vector.
+</section>
+
+
+<section>
+<h2 id="___sec9">Markov processes </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+For the Markov process we have a transition probability from a position
+\( x=jl \) to a position \( x=il \) given by
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   W_{ij}(\epsilon)=W(il-jl,\epsilon)=\left\{\begin{array}{cc}\frac{1}{2} & |i-j| = 1\\
+             0 & \mathrm{else} \end{array} \right. ,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+where \( W_{ij} \) is normally called 
+the transition probability and we can represent it, see below,
+as a matrix. 
+<b>Here we have specialized to a case where the transition probability is known</b>.
+
+<p>
+Our new PDF \( w_i(t=\epsilon) \) is now related to the PDF at
+\( t=0 \) through the relation
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   w_i(t=\epsilon) =\sum_{j} W(j\rightarrow i)w_j(t=0).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>
+This equation represents the discretized time-development of an original 
+PDF with equal probability of jumping left or right.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec10">Markov processes, the probabilities </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Since both \( W \) and \( w \) represent probabilities, they have to be normalized, i.e., we require
+that at each time step we have
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   \sum_i w_i(t) = 1, 
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   \sum_j W(j\rightarrow i) = 1,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which applies for all \( j \)-values.
+The further constraints are
+\( 0 \le W_{ij} \le 1 \)  and  \( 0 \le w_{j} \le 1 \).
+Note that the probability for remaining at the same place is in general 
+not necessarily equal zero.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec11">Markov processes </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The time development of our initial PDF can now be represented through the action of
+the transition probability matrix applied \( n \) times. At a 
+time  \( t_n=n\epsilon \) our initial distribution has developed into
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   w_i(t_n) = \sum_jW_{ij}(t_n)w_j(0),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and defining
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   W(il-jl,n\epsilon)=(W^n(\epsilon))_{ij}
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+we obtain
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   w_i(n\epsilon) = \sum_j(W^n(\epsilon))_{ij}w_j(0),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+or in matrix form
+<p>&nbsp;<br>
+$$
+\begin{equation} \tag{1}
+   \hat{w}(n\epsilon) = \hat{W}^n(\epsilon)\hat{w}(0).
+\end{equation}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec12">An Illustrative Example </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The following simple example may help in understanding the meaning of 
+the transition matrix \( \hat{W} \) and the vector \( \hat{w} \).
+Consider the \( 4\times 4 \) matrix \( \hat{W} \)
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \hat{W} = \left(\begin{array}{cccc} 1/4 & 1/9 & 3/8 & 1/3 \\                   
+                                       2/4 & 2/9 & 0 & 1/3\\                   
+                                       0   & 1/9 & 3/8 & 0\\
+                                       1/4 & 5/9&  2/8 & 1/3 \end{array} \right),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and we choose our initial state as
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\hat{w}(t=0)=  \left(\begin{array}{c} 1\\                   
+                                 0\\
+                                 0 \\                   
+                                 0 \end{array} \right).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec13">An Illustrative Example </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We note that both the vector and the matrix are properly normalized. Summing the vector elements gives one and
+summing over columns for the matrix results also in one.  Furthermore, the largest eigenvalue is one.
+We act then on \( \hat{w} \) with \( \hat{W} \).
+The first iteration is
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \hat{w}(t=\epsilon) = \hat{W}\hat{w}(t=0),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>
+resulting in
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\hat{w}(t=\epsilon)=  \left(\begin{array}{c} 1/4\\                   
+                                1/2 \\
+                                0 \\                   
+                                1/4 \end{array} \right).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec14">An Illustrative Example, next step </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The next iteration results in
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \hat{w}(t=2\epsilon) = \hat{W}\hat{w}(t=\epsilon),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>
+resulting in
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\hat{w}(t=2\epsilon)=  \left(\begin{array}{c} 0.201389\\
+   0.319444 \\
+   0.055556 \\
+   0.423611 \end{array} \right).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+Note that the vector \( \hat{w} \) is always normalized to \( 1 \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec15">An Illustrative Example, the steady state </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We find the steady state of the system by solving the set of equations
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+w(t=\infty) = Ww(t=\infty),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which is an eigenvalue problem with eigenvalue equal to <b>one</b>!
+This set of equations reads
+<p>&nbsp;<br>
+$$
+\begin{align}
+ W_{11}w_1(t=\infty) +W_{12}w_2(t=\infty) +W_{13}w_3(t=\infty)+ W_{14}w_4(t=\infty)=&w_1(t=\infty) \nonumber \\
+W_{21}w_1(t=\infty) + W_{22}w_2(t=\infty) + W_{23}w_3(t=\infty)+ W_{24}w_4(t=\infty)=&w_2(t=\infty) \nonumber \\
+W_{31}w_1(t=\infty) + W_{32}w_2(t=\infty) + W_{33}w_3(t=\infty)+ W_{34}w_4(t=\infty)=&w_3(t=\infty) \nonumber \\
+W_{41}w_1(t=\infty) + W_{42}w_2(t=\infty) + W_{43}w_3(t=\infty)+ W_{44}w_4(t=\infty)=&w_4(t=\infty) \nonumber \\
+\tag{2}
+\end{align}
+$$
+<p>&nbsp;<br>
+
+with the constraint that
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \sum_i w_i(t=\infty) = 1, 
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+yielding as solution
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\hat{w}(t=\infty)=  \left(\begin{array}{c}0.244318 \\                   
+                                 0.319602 \\  0.056818 \\  0.379261 \end{array} \right).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec16">An Illustrative Example, iterative steps </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The table here  demonstrates the convergence as a function of the number of iterations or
+time steps. After  twelve iterations we have reached the exact value with six leading digits.
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">       Iteration       </th> <td align="center">\( w_1 \)</td> <td align="center">\( w_2 \)</td> <td align="center">\( w_3 \)</td> <td align="center">\( w_4 \)</td> </tr>
+</thead>
+<tbody>
+<tr><td align="right">   0                          </td> <td align="left">   1.000000     </td> <td align="left">   0.000000     </td> <td align="left">   0.000000     </td> <td align="left">   0.000000     </td> </tr>
+<tr><td align="right">   1                          </td> <td align="left">   0.250000     </td> <td align="left">   0.500000     </td> <td align="left">   0.000000     </td> <td align="left">   0.250000     </td> </tr>
+<tr><td align="right">   2                          </td> <td align="left">   0.201389     </td> <td align="left">   0.319444     </td> <td align="left">   0.055556     </td> <td align="left">   0.423611     </td> </tr>
+<tr><td align="right">   3                          </td> <td align="left">   0.247878     </td> <td align="left">   0.312886     </td> <td align="left">   0.056327     </td> <td align="left">   0.382909     </td> </tr>
+<tr><td align="right">   4                          </td> <td align="left">   0.245494     </td> <td align="left">   0.321106     </td> <td align="left">   0.055888     </td> <td align="left">   0.377513     </td> </tr>
+<tr><td align="right">   5                          </td> <td align="left">   0.243847     </td> <td align="left">   0.319941     </td> <td align="left">   0.056636     </td> <td align="left">   0.379575     </td> </tr>
+<tr><td align="right">   6                          </td> <td align="left">   0.244274     </td> <td align="left">   0.319547     </td> <td align="left">   0.056788     </td> <td align="left">   0.379391     </td> </tr>
+<tr><td align="right">   7                          </td> <td align="left">   0.244333     </td> <td align="left">   0.319611     </td> <td align="left">   0.056801     </td> <td align="left">   0.379255     </td> </tr>
+<tr><td align="right">   8                          </td> <td align="left">   0.244314     </td> <td align="left">   0.319610     </td> <td align="left">   0.056813     </td> <td align="left">   0.379264     </td> </tr>
+<tr><td align="right">   9                          </td> <td align="left">   0.244317     </td> <td align="left">   0.319603     </td> <td align="left">   0.056817     </td> <td align="left">   0.379264     </td> </tr>
+<tr><td align="right">   10                         </td> <td align="left">   0.244318     </td> <td align="left">   0.319602     </td> <td align="left">   0.056818     </td> <td align="left">   0.379262     </td> </tr>
+<tr><td align="right">   11                         </td> <td align="left">   0.244318     </td> <td align="left">   0.319602     </td> <td align="left">   0.056818     </td> <td align="left">   0.379261     </td> </tr>
+<tr><td align="right">   12                         </td> <td align="left">   0.244318     </td> <td align="left">   0.319602     </td> <td align="left">   0.056818     </td> <td align="left">   0.379261     </td> </tr>
+<tr><td align="right">   \( \hat{w}(t=\infty) \)    </td> <td align="left">   0.244318     </td> <td align="left">   0.319602     </td> <td align="left">   0.056818     </td> <td align="left">   0.379261     </td> </tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec17">An Illustrative Example, what does it mean? </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have after \( t \)-steps
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \hat{w}(t) = \hat{W}^t\hat{w}(0),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+with \( \hat{w}(0) \) the distribution at \( t=0 \) and \( \hat{W} \) representing the 
+transition probability matrix.
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec18">An Illustrative Example, understanding the basics </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We can always expand \( \hat{w}(0) \) in terms of the right eigenvectors 
+\( \hat{v} \) of \( \hat{W} \) as
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    \hat{w}(0)  = \sum_i\alpha_i\hat{v}_i,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+resulting in
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \hat{w}(t) = \hat{W}^t\hat{w}(0)=\hat{W}^t\sum_i\alpha_i\hat{v}_i=
+\sum_i\lambda_i^t\alpha_i\hat{v}_i,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+with \( \lambda_i \) the \( i^{\mathrm{th}} \) eigenvalue corresponding to  
+the eigenvector \( \hat{v}_i \).
+
+<p>
+If we assume that \( \lambda_0 \) is the largest eigenvector we see that in the limit \( t\rightarrow \infty \),
+\( \hat{w}(t) \) becomes proportional to the corresponding eigenvector 
+\( \hat{v}_0 \). This is our steady state or final distribution.
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec19">Simple c++ program to perform the above calculations </h2>
+The c++ program we have included here (using Armadillo) performs the above operations
+for, in this case, a \( 5\times 5 \) matrix. The largest eigenvalue is \( 1 \). 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #1e889b">#include &lt;iostream&gt;</span>
+<span style="color: #1e889b">#include &quot;armadillo&quot;</span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
+{
+  <span style="color: #a7a7a7; font-weight: bold">int</span> dim = <span style="color: #B452CD">5</span>;
+  mat W = zeros&lt;mat&gt;(dim,dim);
+  vec wold = zeros&lt;mat&gt;(dim);
+  vec wnew = zeros&lt;mat&gt;(dim);
+  vec eigenvector = zeros&lt;mat&gt;(dim);
+  <span style="color: #228B22">// Initializing the first vector</span>
+  wold(<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">1.0</span>;
+  <span style="color: #228B22">// Setting up the stochastic matrix W</span>
+  W(<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.</span>; W(<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">0.</span>; W(<span style="color: #B452CD">0</span>,<span style="color: #B452CD">2</span>) = <span style="color: #B452CD">0.25</span>; W(<span style="color: #B452CD">0</span>,<span style="color: #B452CD">3</span>) = <span style="color: #B452CD">0.0</span>;   W(<span style="color: #B452CD">0</span>,<span style="color: #B452CD">4</span>) = <span style="color: #B452CD">0.</span>;   
+  W(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.</span>; W(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">0.</span>; W(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">2</span>) = <span style="color: #B452CD">0.25</span>; W(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">3</span>) = <span style="color: #B452CD">0.</span>; W(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">4</span>) = <span style="color: #B452CD">0.0</span>;     
+  W(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.5</span>; W(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">1.0</span>; W(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">2</span>) = <span style="color: #B452CD">0.</span>; W(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">3</span>) = <span style="color: #B452CD">0.5</span>; W(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">4</span>) = <span style="color: #B452CD">0.</span>;       
+  W(<span style="color: #B452CD">3</span>,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.0</span>; W(<span style="color: #B452CD">3</span>,<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">0.</span>; W(<span style="color: #B452CD">3</span>,<span style="color: #B452CD">2</span>) = <span style="color: #B452CD">0.25</span>; W(<span style="color: #B452CD">3</span>,<span style="color: #B452CD">3</span>) = <span style="color: #B452CD">0.</span>;  W(<span style="color: #B452CD">3</span>,<span style="color: #B452CD">4</span>) = <span style="color: #B452CD">0.</span>;      
+  W(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.5</span>; W(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">0.</span>; W(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">2</span>) = <span style="color: #B452CD">0.25</span>; W(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">3</span>) = <span style="color: #B452CD">0.5</span>;  W(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">4</span>) = <span style="color: #B452CD">1.0</span>;      
+  <span style="color: #a7a7a7; font-weight: bold">double</span> eps = <span style="color: #B452CD">1.0E-10</span>;
+  W.print(<span style="color: #CD5555">&quot;W =&quot;</span>);
+  <span style="color: #a7a7a7; font-weight: bold">double</span> difference  = norm(wold-wnew, <span style="color: #B452CD">2</span>);
+  <span style="color: #a7a7a7; font-weight: bold">int</span> count = <span style="color: #B452CD">0</span>; 
+  <span style="color: #8B008B; font-weight: bold">do</span>{
+    <span style="color: #228B22">// Multiplying the old vector with the transition probability</span>
+    count += <span style="color: #B452CD">1</span>; 
+    wnew = W*wold;
+    difference  = norm(wold-wnew, <span style="color: #B452CD">2</span>);
+    wold = wnew;
+    cout &lt;&lt; <span style="color: #CD5555">&quot;Iteration number = &quot;</span> &lt;&lt; count &lt;&lt; endl;
+    wnew.print(<span style="color: #CD5555">&quot;New vector =&quot;</span>);
+  } <span style="color: #8B008B; font-weight: bold">while</span>(difference &gt; eps);
+
+  <span style="color: #228B22">// Getting the eigenvectors and eigenvalues of the stochastic matrix</span>
+  cx_vec eigval;
+  eig_gen(eigval, W);
+  eigval.print(<span style="color: #CD5555">&quot;Eigenvalues=&quot;</span>);
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+}
+</pre></div>
+</section>
+
+
+<section>
+<h2 id="___sec20">Entropy and the most likely state </h2>
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+# 1D-randomwalk: A walker makes several steps,
+# with a given number of walks pr. trial.
+# It computes the entropy by filling in bins with counts
+
+import numpy, sys, math
+
+def mc_trial(number_walks,move_probability,walk_cum,walk2_cum, probability):
+    """
+    Do a MonteCarlo trial, that is,
+    random-walk one particle.
+
+    Input:
+    - number_walks:     Number of steps to walk the particle
+    - move_probability: Probability that the particle
+                        will step right when doing a step
+    - walk_cum:         Numpy-array of length number_walks + 1,
+                        containing the sum of the position
+                        of the particles as a function of time
+                        (usefull to calculate mean pos. as a function
+                        of time)
+    - walk2_cum:        Same as walk_cum, but with the sum of the
+                        positions squared
+    - probability:      Number of times each gridpoint is hit
+
+    Output: As walk_cum, walk2_cum, and probability are (pointers to)
+    numpy arrays, they are altered also in the calling function.
+    """
+    #Initial pos. As walk_cum[0]=walk2_cum[0] = 0.0
+    #by initialization, it is uneccessary to add this step to
+    #the arrays...
+    pos = 0;
+    
+    for walk in xrange(number_walks+1):
+        if numpy.random.random() <= move_probability:
+            pos += 1
+        else:
+            pos -= 1
+        walk_cum[walk]   += pos
+        walk2_cum[walk]  += pos**2
+        #Zero-position of the array is the leftmost
+        #end of the grid
+        probability[pos+number_walks] += 1
+
+def mc_sample(length,trials, number_walks, move_probability):
+    """
+    Generate the probability distribution for finding
+    a walker at a gridpoint, after a number of walks on a
+    1d lattice with wrap-around boundary conditions
+
+    Input:
+    - length: Lattice-points away from x=0
+    - trials: Number of MonteCarlo trials (number of walkers)
+    - move_probability: Probability of moving right
+
+    Output:
+    Normalized probability of finding a walker on a
+    specific grid position
+    """
+
+    #Grid position of every walker
+    x = numpy.zeros(trials,numpy.int)
+
+    #Loop over timesteps and walkers,
+    #and find the walkers "ending positions"
+    for t in xrange(number_walks):
+        for i in xrange(trials):
+            if numpy.random.random() <= move_probability:
+                x[i] += 1
+                #Wraparound?
+                if x[i] > length:
+                    x[i] = -length
+            else:
+                x[i] -= 1
+                if x[i] < -length:
+                    x[i] = +length
+    
+    #Calculate the probability of finding a walker
+    #each grid-position
+    probability = numpy.zeros(2*length+1)
+    for i in xrange(len(probability)):
+        pos = i-length
+        #count number of occurences of this pos i x array
+        count = 0
+        for j in xrange(len(x)):
+            if x[j] == pos:
+                count += 1
+        #Normalize and save
+        probability[i] = count/float(trials)
+    return probability
+
+#Main program
+
+length               =   10
+trials               =   100000
+number_walks         =   100
+move_probability     =  0.5
+
+#Do the MC
+probability = mc_sample(length,trials,number_walks,move_probability);
+
+#Not reliable: ln(0)
+#entropy = - numpy.sum(probability*numpy.log(probability))
+
+entropy = 0.0
+for i in xrange(len(probability)):
+    if probability[i] > 0.0:
+        entropy -= probability[i]*math.log(probability[i])
+
+print "Timesteps             =",number_walks
+print "Walkers (num. trials) =",trials
+print "Entropy               =",entropy
+print
+if len(probability) <= 101:
+    print "Probability distribution (Flat => high entropy):"
+    print probability
+else:
+    print "Probability distribution to big to print"
+
+
+</script></div>
+</section>
+
+
+<section>
+<h2 id="___sec21">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Let us recapitulate some of our results about Markov chains and random walks.
+
+<ul>
+
+<p><li> The time development of our PDF \( w(t) \), after</li> 
+</ul>
+<p>
+
+one time-step from \( t=0 \) is given by
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}    
+w_i(t=\epsilon) = W(j\rightarrow i)w_j(t=0).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>
+This equation represents the discretized time-development of an original 
+PDF.  We can rewrite this as a
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   w_i(t=\epsilon) = W_{ij}w_j(t=0).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+with the transition matrix \( W \) for a random walk given by
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   W_{ij}(\epsilon)=W(il-jl,\epsilon)=\left\{\begin{array}{cc}\frac{1}{2} & |i-j| = 1\\
+                                             0 & \mathrm{else} \end{array} \right.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec22">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We call \( W_{ij} \) for the transition probability and we represent it
+as a matrix. 
+
+<ul>
+
+<p><li> Both  \( W \) and \( w \) represent probabilities and they have to be normalized, meaning that at each time step we have</li>   
+</ul>
+<p>&nbsp;<br>
+$$
+\begin{equation*}    
+\sum_i w_i(t) = 1,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+   \sum_j W(j\rightarrow i) = 1.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+Here we have written the previous matrix \( W_{ij}=W(j\rightarrow i) \).
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec23">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The further constraints are
+\( 0 \le W_{ij} \le 1 \)  and  \( 0 \le w_{j} \le 1 \).
+
+<ul>
+
+<p><li> We can thus write the action of \( W \) as</li>   
+</ul>
+<p>&nbsp;<br>
+$$
+\begin{equation*}    
+w_i(t+1) = \sum_jW_{ij}w_j(t),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+or as vector-matrix relation
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \hat{w}(t+1) = \hat{W\hat{w}}(t),
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and if we have that \( ||\hat{w}(t+1)-\hat{w}(t)||\rightarrow 0 \), we say that 
+we have reached the most likely state of the system, the so-called steady state or equilibrium state.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec24">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Another way of phrasing this is
+<p>&nbsp;<br>
+$$
+\begin{equation} 
+w(t=\infty) = Ww(t=\infty). 
+\tag{3}
+\end{equation}   
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec25">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The question then is how can we model anything under such a severe lack of knowledge? The Metropolis algorithm comes to our rescue here. Since \( W(j\rightarrow i) \) is unknown, we model it as the product of two probabilities, 
+a probability for accepting the proposed move from the state \( j \) to the state \( j \), and a probability for making the transition to the state \( i \) being in the state \( j \). We label these probabilities \( A(j\rightarrow i) \) and \( T(j\rightarrow i) \), respectively.  Our total transition probability is then
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+W(j\rightarrow i)=T(j\rightarrow i)A(j\rightarrow i).
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+The algorithm can then be expressed as
+
+<ul>
+
+<p><li> We make a suggested move to the new state \( i \) with some transition or moving probability \( T_{j\rightarrow i} \).</li>
+
+<p><li> We accept this move to the new state with an acceptance probability \( A_{j \rightarrow i} \). The new state \( i \) is in turn used as our new starting point for the next move.  We reject this proposed moved with a \( 1-A_{j\rightarrow i} \) and the original state \( j \) is used again as a sample.</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec26">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We wish to derive the required properties of the probabilities \( T \) and \( A \) such that
+\( w_i^{(t\rightarrow \infty)} \rightarrow w_i \), starting
+from any distribution, will lead us to the correct distribution.
+
+<p>
+We can now derive the dynamical process towards 
+equilibrium. To obtain this equation we note that after \( t \) time steps the probability for being in a state \( i \) is related 
+to the probability of being in a state \( j \) and performing a transition to the new state together with the probability of actually being in the state \( i \) and making a move to any of the possible states \( j \) from the previous time step.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec27">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We can express this as, assuming that \( T \) and \( A \) are time-independent,
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+w_i(t+1) = \sum_j \left [
+w_j(t)T_{j\rightarrow i} A_{j\rightarrow i} 
++w_i(t)T_{i\rightarrow j}\left ( 1- A_{i\rightarrow j} \right)
+\right ] \,.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec28">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+All probabilities are normalized, meaning that 
+\( \sum_j T_{i\rightarrow j} = 1 \). Using the latter, we can rewrite the previous equation as
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+w_i(t+1) = w_i(t) +
+ \sum_j \left [
+w_j(t)T_{j\rightarrow i} A_{j\rightarrow i} 
+-w_i(t)T_{i\rightarrow j}A_{i\rightarrow j}\right ] \,,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which can be rewritten as
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+w_i(t+1)-w_i(t) =  \sum_j \left [w_j(t)T_{j\rightarrow i} A_{j\rightarrow i} 
+-w_i(t)T_{i\rightarrow j}A_{i\rightarrow j}\right ] .
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec29">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The last equation is very similar to the so-called Master equation, which relates the temporal dependence of 
+a PDF \( w_i(t) \) to various transition rates. The equation can be derived from the so-called 
+Chapman-Einstein-Enskog-Kolmogorov equation. The equation is given as 
+<p>&nbsp;<br>
+$$
+\begin{equation}
+\tag{4}
+\frac{d w_i(t)}{dt} = \sum_j\left[ W(j\rightarrow i)w_j-W(i\rightarrow j)w_i\right],
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+which simply states that the rate at which the systems moves from a state \( j \)
+to a final state \( i \) (the first term on the right-hand side of the last equation) is balanced by the rate at which the system undergoes transitions from the state \( i \) to a state \( j \) (the second term). If we have reached the so-called steady state, then the temporal development is zero since we are now satisfying
+Eq. \eqref{eq:finalstage}. This  means that in equilibrium we have
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\frac{d w_i(t)}{dt} = 0.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec30">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In the limit \( t\rightarrow \infty \) we require that the  two distributions \( w_i(t+1)=w_i \) and \( w_i(t)=w_i \)
+and we have
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+ \sum_j w_jT_{j\rightarrow i} A_{j\rightarrow i}= \sum_j w_iT_{i\rightarrow j}A_{i\rightarrow j},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which is the condition for balance when the most likely state (or steady state) has been reached.
+We see also that the right-hand side  can be  rewritten as
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+\sum_j w_iT_{i\rightarrow j}A_{i\rightarrow j}= \sum_j w_iW_{i\rightarrow j},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+and using the property that \( \sum_j W_{i\rightarrow j}=1 \), we can rewrite our equation
+as
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+w_i= \sum_j w_jT_{j\rightarrow i} A_{j\rightarrow i}= \sum_j w_j W_{j\rightarrow i},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which is nothing but the standard equation for a Markov chain when the steady state has been reached.
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec31">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+However, the condition that the rates should equal each other is in general not sufficient
+to guarantee that we, after many simulations, generate the correct distribution.
+We may risk to end up with so-called cyclic solutions. To avoid this
+we therefore introduce an additional condition, namely that of detailed balance
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} W(j\rightarrow i)w_j= W(i\rightarrow j)w_i.  \end{equation*}
+$$
+<p>&nbsp;<br>
+
+These equations were derived by Lars Onsager when studying irreversible processes.
+At equilibrium detailed balance gives thus
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} \frac{W(j\rightarrow i)}{W(i\rightarrow j)}=\frac{w_i}{w_j}.  \end{equation*}
+$$
+<p>&nbsp;<br>
+
+Rewriting the last equation in terms of our transition probabilities \( T \) and 
+acceptance probobalities \( A \) we obtain
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+w_j(t)T_{j\rightarrow i}A_{j\rightarrow i}= w_i(t)T_{i\rightarrow j}A_{i\rightarrow j}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec32">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Since we normally have an expression 
+for the probability distribution functions \( w_i \),  we can rewrite the last equation as
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+\frac{T_{j\rightarrow i}A_{j\rightarrow i}}{T_{i\rightarrow j}A_{i\rightarrow j}}= \frac{w_i}{w_j}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec33">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In statistical physics this condition ensures that it is e.g., the 
+Boltzmann distribution which is generated when equilibrium is reached.
+
+<p>
+We introduce  now the Boltzmann distribution
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   w_i= \frac{\exp{(-\beta(E_i))}}{Z},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which states that the probability of finding the system in a state \( i \) with energy \( E_i \) 
+at an inverse temperature \( \beta = 1/k_BT \) is \( w_i\propto \exp{(-\beta(E_i))} \).
+The denominator \( Z \) is a normalization constant which ensures that the sum of all
+probabilities is normalized to one. It is defined as the sum of probabilities over all microstates
+\( j \) of the system
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   Z=\sum_j \exp{(-\beta(E_i))}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec34">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+From the partition function we can in principle generate all interesting quantities
+for a given system in equilibrium with its surroundings at a temperature \( T \).
+
+<p>
+With the probability distribution given by the Boltzmann distribution we are now in a position
+where we can generate expectation values for a given variable \( A \) through the
+definition
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \langle A \rangle = \sum_jA_jw_j=
+    \frac{\sum_jA_j\exp{(-\beta(E_j)}}{Z}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+In general, most systems have an infinity of microstates making thereby the computation
+of \( Z \) practically impossible and 
+a brute force Monte Carlo calculation over a given number of randomly selected microstates
+may therefore not yield those microstates which are important 
+at equilibrium. 
+To select the most important contributions we need to  
+use the condition for detailed balance. Since this is just given by the ratios of probabilities,
+we never need to evaluate the partition function \( Z \).
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec35">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+For the 
+Boltzmann distribution, detailed balance results in
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} \frac{w_i}{w_j}= \exp{(-\beta(E_i-E_j))}. \end{equation*}
+$$
+<p>&nbsp;<br>
+
+<p>
+Let us now specialize to a system whose energy is defined by the orientation of single spins.
+Consider the state \( i \), with given energy \( E_i \) represented by the following \( N \) spins
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\begin{array}{cccccccccc}
+\uparrow&\uparrow&\uparrow&\dots&\uparrow&\downarrow&\uparrow&\dots&\uparrow&\downarrow\\
+1&2&3&\dots& k-1&k&k+1&\dots&N-1&N\end{array}
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec36">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We are interested in the transition with one single  spinflip to a new state \( j \) with energy \( E_j \)
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\begin{array}{cccccccccc}
+\uparrow&\uparrow&\uparrow&\dots&\uparrow&\uparrow&\uparrow&\dots&\uparrow&\downarrow\\
+1&2&3&\dots& k-1&k&k+1&\dots&N-1&N\end{array}
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+This change from one microstate \( i \) (or spin configuration)  to another microstate \( j \) is the
+configuration space analogue to a random walk on a lattice. Instead of jumping from 
+one place to another in space, we 'jump' from one microstate to another.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec37">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+However, the selection of states has to generate a final distribution which is the
+Boltzmann distribution. This is again the same we saw for a random walker, for the discrete case we had 
+always a binomial distribution, whereas for the continuous case we had a normal distribution.
+The way we sample configurations should result, when equilibrium is established, in the 
+Boltzmann distribution. Else, our algorithm for selecting microstates is wrong.
+
+<p>
+As stated above, we do in general not know the closed-form expression of the transition rate and we are free to model it as
+     \( W(i\rightarrow j)=T(i\rightarrow j)A(i\rightarrow j) \).
+Our ratio between probabilities gives us
+
+<p>&nbsp;<br>
+$$
+\begin{equation*} 
+\frac{A_{j\rightarrow i}}{A_{i\rightarrow j}}= \frac{w_iT_{i\rightarrow j}}{w_jT_{j\rightarrow i}}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+The simplest form of the Metropolis algorithm (sometimes called for brute force Metropolis) assumes that 
+the transition probability \( T(i\rightarrow j) \) is symmetric, implying that \( T(i\rightarrow j)=T(j\rightarrow i) \).
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec38">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We obtain then (using the Boltzmann distribution)
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\frac{A(j\rightarrow i)}{A(i\rightarrow j)}= \exp{(-\beta(E_i-E_j))} .
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+We are in this case interested in a new state \( E_j \) whose energy is lower than 
+\( E_i \), viz., \( \Delta E = E_j-E_i \le 0 \). A simple test would then be to accept only those
+microstates which lower the energy.  
+Suppose we have ten microstates with energy \( E_0 \le E_1 \le E_2 \le E_3 \le \dots \le E_9 \).
+Our desired energy is \( E_0 \).
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec39">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+At a given temperature \( T \) we start our simulation by randomly choosing state
+\( E_9 \). Flipping spins we may then find a path from \( E_9\rightarrow E_8 \rightarrow E_7 \dots \rightarrow E_1 \rightarrow E_0 \). 
+This would however lead to biased statistical averages since it would violate the ergodic hypothesis discussed
+in the previous section. This principle states  that 
+it should be possible for any Markov process to reach every possible state of the system
+from any starting point if the simulations is carried out for a long enough time.
+
+<p>
+Any state in a Boltzmann distribution has a probability different from zero and if such 
+a state cannot be reached from a given starting point, then the system is not ergodic.
+This means that another possible path to \( E_0 \) could be 
+\( E_9\rightarrow E_7 \rightarrow E_8 \dots \rightarrow E_9 \rightarrow E_5 \rightarrow E_0 \) and so forth.
+Even though such a path could have a negligible probability it is still a possibility, and if
+we simulate long enough it should be included in our computation of an expectation value.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec40">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Thus, we require that our algorithm should satisfy the principle of detailed balance and be ergodic. 
+The problem with our ratio
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+\frac{A(j\rightarrow i)}{A(i\rightarrow j)}= \exp{(-\beta(E_i-E_j))}, 
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+is that we do not know the acceptance probability. This equation only specifies the ratio of pairs of probabilities. Normally we want an algorithm which is as efficient as possible and maximizes the number of accepted moves. 
+Moreover, we know that the acceptance probability has \( 0 \) as its smallest value and \( 1 \) as its largest. 
+If we assume that the largest possible acceptance probability is \( 1 \),  we adjust thereafter the other acceptance probability
+to this constraint.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec41">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+To understand this better, assume that we have two energies, \( E_i \) and \( E_j \), with \( E_i < E_j \). This means that the largest acceptance value must be 
+\( A(j\rightarrow i) \) since we move to a state with lower energy.  It follows from also from the fact that the probability \( w_i \) is larger than \( w_j \). 
+The trick then is to fix this value to \( A(j\rightarrow i)=1 \). It means that 
+the other acceptance probability has to be
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+A(i\rightarrow j)= \exp{(-\beta(E_j-E_i))}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec42">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+One possible way to encode this equation reads
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}       
+A(j\rightarrow i)=\left\{\begin{array}{cc}
+\exp{(-\beta(E_i-E_j))} & E_i-E_j > 0 \\ 1 & else \end{array} \right.,  
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+implying that if we move to a state with a lower energy, we always accept
+this move with acceptance probability \( A(j\rightarrow i)=1 \). If the energy is higher, we need to check
+this acceptance probability with the ratio between the probabilities  from our PDF.  From a practical point of view, 
+the above ratio is compared with a random number.
+If the ratio is smaller than a given random number we accept the move to a higher energy, else we stay in the same state.
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec43">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Nothing hinders us obviously in choosing another acceptance ratio, like a weighting  of the two energies via
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+A(j\rightarrow i)=\exp{(-\frac{1}{2}\beta(E_i-E_j))}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+However, it is easy to see that such an acceptance ratio would result in 
+fewer accepted moves.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec44">Brief Summary </h2>
+
+<p>
+The Monte Carlo approach, combined with the theory for Markov chains can be summarized as follows:
+A Markov chain Monte Carlo method for the simulation of a distribution \( w \) is any method producing an 
+ergodic Markov chain of events \( x \) whose stationary distribution is \( w \). The Metropolis algorithm can be phrased as
+
+<ul>
+
+<p><li> Generate an initial value \( x^{(i)} \).</li>
+
+<p><li> Generate a trial value \( y_t \) with probability \( T(y_t|x^{(i)}) \). The latter quantity represents the probability of generating \( y_t \) given \( x^{(i)} \).</li>
+
+<p><li> Take a new value</li>   
+</ul>
+<p>&nbsp;<br>
+$$
+\begin{equation*}  
+x^{(i+1)}= \left\{\begin{array}{cc} y_t & \mathrm{with\hspace{0.1cm}probability} = A(x^{(i)}\rightarrow y_t) \\                                           x^{(i)}    & \mathrm{with \hspace{0.1cm}probability} = 1-A(x^{(i)}\rightarrow y_t)\end{array}\right .
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+
+<ul>
+
+<p><li> We have defined the transition (acceptance) probability as</li>   
+</ul>
+<p>&nbsp;<br>
+$$
+\begin{equation*}    A(x\rightarrow y)= \mathrm{min}\left\{\frac{w(y)T(x|y)}{w(x)T(y|x)},1\right\}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</section>
+
+
+<section>
+<h2 id="___sec45">Diffusion </h2>
+
+<p>
+Diffusion and the diffusion equation are central topics in both Physics and Mathematics,
+and their ranges of applicability span from stellar dynamics to the diffusion 
+of particles governed by Schroedinger's equation. The latter is, for a free particle, 
+nothing but the diffusion equation in complex time!
+
+<p>
+Let us consider the one-dimensional diffusion equation. We study a large ensemble of particles
+performing Brownian motion along the \( x \)-axis. There is no interaction between the particles.
+
+<p>
+We define \( w(x,t)dx \) as the probability of finding a given number of particles in an
+interval of length \( dx \) in \( x\in [x, x+dx] \) at a time \( t \). This quantity is our probability
+distribution function (PDF).
+</section>
+
+
+<section>
+<h2 id="___sec46">Diffusion Equation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+From experiment there are strong indications that the flux of particles \( j(x,t) \), viz., the number of particles passing \( x \) at a time \( t \) is proportional to the 
+gradient of \( w(x,t) \). This proportionality is expressed mathematically through
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    j(x,t) = -D\frac{\partial w(x,t)}{\partial x},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+where \( D \) is the so-called diffusion constant, with dimensionality length$^2$ per time.
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec47">Diffusion Equation, continuity equation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If the number of particles is conserved, we have the continuity equation
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    \frac{\partial j(x,t)}{\partial x} = -\frac{\partial w(x,t)}{\partial t},
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which leads to
+
+<p>&nbsp;<br>
+$$
+\begin{equation} \tag{5}
+    \frac{\partial w(x,t)}{\partial t} = 
+    D\frac{\partial^2w(x,t)}{\partial x^2},
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+which is the diffusion equation in one dimension.
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec48">Diffusion Equation, expectation values </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+With the probability distribution function \( w(x,t)dx \) we can evaluate expectation values such as  the mean distance
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \langle x(t)\rangle = \int_{-\infty}^{\infty}xw(x,t)dx,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+or
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \langle x^2(t)\rangle = \int_{-\infty}^{\infty}x^2w(x,t)dx, 
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+which allows for the computation of the variance
+\( \sigma^2=\langle x^2(t)\rangle-\langle x(t)\rangle^2 \). Note well that 
+these expectation values are time-dependent.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec49">Diffusion Equation, other expectation values </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In a similar way we can also
+define expectation values of functions \( f(x,t) \) as
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \langle f(x,t)\rangle = \int_{-\infty}^{\infty}f(x,t)w(x,t)dx.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+The normalization condition
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \int_{-\infty}^{\infty}w(x,t)dx=1
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+imposes significant constraints on \( w(x,t) \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec50">Diffusion Equation, normalization condition </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   w(x=\pm \infty,t)=0 \hspace{1cm} 
+   \frac{\partial^{n}w(x,t)}{\partial x^n}|_{x=\pm\infty} = 0,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+implying that when we study the time-derivative
+\( {\partial\langle x(t)\rangle}/{\partial t} \), we obtain after integration by parts and using 
+Eq. <a href="#mjx-eqn-5">(5)</a>
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \frac{\partial \langle x\rangle}{\partial t} = 
+   \int_{-\infty}^{\infty}x\frac{\partial w(x,t)}{\partial t}dx=
+   D\int_{-\infty}^{\infty}x\frac{\partial^2w(x,t)}{\partial x^2}dx,
+ \end{equation*}
+$$
+<p>&nbsp;<br>
+
+leading to
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \frac{\partial \langle x\rangle}{\partial t} = 
+   Dx\frac{\partial w(x,t)}{\partial x}|_{x=\pm\infty}-
+   D\int_{-\infty}^{\infty}\frac{\partial w(x,t)}{\partial x}dx.
+ \end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec51">Diffusion Equation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The result is
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \frac{\partial \langle x\rangle}{\partial t} = 0.
+ \end{equation*}
+$$
+<p>&nbsp;<br>
+
+This means in turn that \( \langle x\rangle \) is independent of time.
+If we choose the initial position \( x(t=0)=0 \),
+the average displacement \( \langle x\rangle= 0 \).
+If we link this discussion to a random walk in one dimension with equal probability
+of jumping to the left or right and with an initial position \( x=0 \), then our probability
+distribution remains centered around \( \langle x\rangle= 0 \) as function of time.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec52">Diffusion Equation, the variance </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The variance is not necessarily 0. Consider first
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \frac{\partial \langle x^2\rangle}{\partial t} = 
+   Dx^2\frac{\partial w(x,t)}{\partial x}|_{x=\pm\infty}-
+   2D\int_{-\infty}^{\infty}x\frac{\partial w(x,t)}{\partial x}dx,
+ \end{equation*}
+$$
+<p>&nbsp;<br>
+
+where we have performed an integration by parts as we did 
+for \( \frac{\partial \langle x\rangle}{\partial t} \).
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec53">Diffusion Equation, final expression for the variance </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Integration by parts 
+results in
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \frac{\partial \langle x^2\rangle}{\partial t} = 
+   -Dxw(x,t)|_{x=\pm\infty}+
+   2D\int_{-\infty}^{\infty}w(x,t)dx=2D,
+ \end{equation*}
+$$
+<p>&nbsp;<br>
+
+leading to
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \langle x^2\rangle = 2Dt,
+ \end{equation*}
+$$
+<p>&nbsp;<br>
+
+and the variance as
+
+<p>&nbsp;<br>
+$$
+\begin{equation} \tag{6}
+   \langle x^2\rangle-\langle x\rangle^2 = 2Dt.
+ \end{equation}
+$$
+<p>&nbsp;<br>
+
+The root mean square displacement after a time \( t \) is then
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \sqrt{\langle x^2\rangle-\langle x\rangle^2} = \sqrt{2Dt}.
+ \end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec54">Diffusion Equation, interpretation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+This should be contrasted to the displacement of a free particle with initial velocity
+\( v_0 \). In that case the distance from the initial position after a time \( t \) is
+\( x(t) = vt \) whereas for a diffusion process the root mean square value is 
+\( \sqrt{\langle x^2\rangle-\langle x\rangle^2} \propto \sqrt{t} \).
+Since diffusion is strongly linked with random walks, we could say that a random walker
+escapes much more slowly from the starting point than would a free particle.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec55">Diffusion Equation, simple illustration </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+    w(x,t)dx = \frac{1}{\sqrt{4\pi Dt}}\exp{(-\frac{x^2}{4Dt})}dx.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+At a time $t=2$s the new variance is $\sigma^2=4D$s, implying that the root mean square value
+is \( \sqrt{\langle x^2\rangle-\langle x\rangle^2} = 2\sqrt{D} \).
+At a further time \( t=8 \) we have \( \sqrt{\langle x^2\rangle-\langle x\rangle^2} = 4\sqrt{D} \).
+While time has elapsed by a factor of \( 4 \), the root mean square has only changed by a factor
+of 2.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec56">Random Walks </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Consider 
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \langle x(n)\rangle = \sum_{i}^{n} \Delta x_i = 0 \hspace{1cm} \Delta x_i=\pm l,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+since we have an equal probability of jumping either to the left or to right.
+The value of \( \langle x(n)^2\rangle \) is
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \langle x(n)^2\rangle = \left(\sum_{i}^{n} \Delta x_i\right)\left(\sum_{j}^{n} \Delta x_j\right)=\sum_{i}^{n} \Delta x_i^2+
+\sum_{i\ne j}^{n} \Delta x_i\Delta x_j=l^2n.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec57">Random Walks </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+For many enough steps the non-diagonal contribution is
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \sum_{i\ne j}^{N} \Delta x_i\Delta x_j=0,
+\end{equation*}
+$$
+<p>&nbsp;<br>
+
+since \( \Delta x_{i,j} = \pm l \).
+The variance is then
+
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   \langle x(n)^2\rangle - \langle x(n)\rangle^2 = l^2n.
+\tag{7}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+It is also rather straightforward to compute the variance for \( L\ne R \). The result is
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   \langle x(n)^2\rangle - \langle x(n)\rangle^2 = 4LRl^2n.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec58">Random Walks </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In Eq. <a href="#mjx-eqn-7">(7)</a> the variable \( n \) represents the number of time
+steps. If we define \( n=t/\Delta t \), we can then couple the variance result 
+from a random walk
+in one dimension with the variance  from the diffusion equation of Eq. <a href="#mjx-eqn-6">(6)</a>
+by defining the diffusion constant as
+
+<p>&nbsp;<br>
+$$
+\begin{equation*}
+   D = \frac{l^2}{\Delta t}.
+\end{equation*}
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec59">Random Walks, simple program </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The main program reads the name of the output file from screen and sets up the arrays
+containing the walker's position after a given number of steps. The corresponding program for a two-dimensional
+random walk (not listed in the main text) is found under programs/chapter12/program2.cpp
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">/*</span>
+<span style="color: #228B22">  1-dim random walk program. </span>
+<span style="color: #228B22">  A walker makes several trials steps with</span>
+<span style="color: #228B22">  a given number of walks per trial</span>
+<span style="color: #228B22">*/</span>
+<span style="color: #1e889b">#include &lt;iostream&gt;</span>
+<span style="color: #1e889b">#include &lt;fstream&gt;</span>
+<span style="color: #1e889b">#include &lt;iomanip&gt;</span>
+<span style="color: #1e889b">#include &quot;lib.h&quot;</span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span>  std;
+
+<span style="color: #228B22">// Function to read in data from screen, note call by reference</span>
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">initialise</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">int</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;) ;
+<span style="color: #228B22">// The Mc sampling for random walks</span>
+<span style="color: #a7a7a7; font-weight: bold">void</span>  <span style="color: #008b45">mc_sampling</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">int</span> *, <span style="color: #a7a7a7; font-weight: bold">int</span> *);
+<span style="color: #228B22">// prints to screen the results of the calculations </span>
+<span style="color: #a7a7a7; font-weight: bold">void</span>  <span style="color: #008b45">output</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span> *, <span style="color: #a7a7a7; font-weight: bold">int</span> *);
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
+{
+  <span style="color: #a7a7a7; font-weight: bold">int</span> max_trials, number_walks; 
+  <span style="color: #a7a7a7; font-weight: bold">double</span> move_probability;
+  <span style="color: #228B22">// Read in data </span>
+  initialise(max_trials, number_walks, move_probability) ;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> *walk_cumulative = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span> [number_walks+<span style="color: #B452CD">1</span>];
+  <span style="color: #a7a7a7; font-weight: bold">int</span> *walk2_cumulative = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span> [number_walks+<span style="color: #B452CD">1</span>];
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> walks = <span style="color: #B452CD">1</span>; walks &lt;= number_walks; walks++){   
+    walk_cumulative[walks] = walk2_cumulative[walks] = <span style="color: #B452CD">0</span>;
+  } <span style="color: #228B22">// end initialization of vectors</span>
+  <span style="color: #228B22">// Do the mc sampling  </span>
+  mc_sampling(max_trials, number_walks, move_probability, 
+              walk_cumulative, walk2_cumulative);
+  <span style="color: #228B22">// Print out results </span>
+  output(max_trials, number_walks, walk_cumulative, 
+         walk2_cumulative);
+  <span style="color: #8B008B; font-weight: bold">delete</span> [] walk_cumulative; <span style="color: #228B22">// free memory</span>
+  <span style="color: #8B008B; font-weight: bold">delete</span> [] walk2_cumulative; 
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>; 
+} <span style="color: #228B22">// end main function</span>
+<span style="color: #a61717; background-color: #e3d2d2">\</span>end{lstlisting}
+The  input and output functions are 
+<span style="color: #a61717; background-color: #e3d2d2">\</span>begin{lstlisting} 
+<span style="color: #a7a7a7; font-weight: bold">void</span> initialise(<span style="color: #a7a7a7; font-weight: bold">int</span>&amp; max_trials, <span style="color: #a7a7a7; font-weight: bold">int</span>&amp; number_walks, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; move_probability) 
+{
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Number of Monte Carlo trials =&quot;</span>; 
+  cin &gt;&gt; max_trials;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Number of attempted walks=&quot;</span>;
+  cin &gt;&gt; number_walks;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Move probability=&quot;</span>;
+  cin &gt;&gt; move_probability;
+}  <span style="color: #228B22">// end of function initialise   </span>
+</pre></div>
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec60">Random walk </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The algorithm tests the probability 
+of moving to the left or to the right by generating a random number.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">mc_sampling</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> max_trials, <span style="color: #a7a7a7; font-weight: bold">int</span> number_walks, 
+                 <span style="color: #a7a7a7; font-weight: bold">double</span> move_probability, <span style="color: #a7a7a7; font-weight: bold">int</span> *walk_cumulative, 
+                 <span style="color: #a7a7a7; font-weight: bold">int</span> *walk2_cumulative)
+{
+  <span style="color: #a7a7a7; font-weight: bold">long</span> idum;
+  idum=-<span style="color: #B452CD">1</span>;  <span style="color: #228B22">// initialise random number generator</span>
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> trial=<span style="color: #B452CD">1</span>; trial &lt;= max_trials; trial++){
+    <span style="color: #a7a7a7; font-weight: bold">int</span> position = <span style="color: #B452CD">0</span>;
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> walks = <span style="color: #B452CD">1</span>; walks &lt;= number_walks; walks++){   
+      <span style="color: #8B008B; font-weight: bold">if</span> (ran0(&amp;idum) &lt;= move_probability) {
+	position += <span style="color: #B452CD">1</span>;
+      } 
+      <span style="color: #8B008B; font-weight: bold">else</span> {
+	position -= <span style="color: #B452CD">1</span>;
+      }
+      walk_cumulative[walks] += position;
+      walk2_cumulative[walks] += position*position;
+    }  <span style="color: #228B22">// end of loop over walks</span>
+  } <span style="color: #228B22">// end of loop over trials</span>
+}   <span style="color: #228B22">// end mc_sampling function  </span>
+</pre></div>
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec61">Simple python code with visualization of one-dimensional random walk </h2>
+The python code here is just a mere rewriting of the above c++ code, with the difference that 
+it employs matplotlib and gives the final plot. 
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+#
+# 1D-randomwalk: A walker makes several steps,
+# with a given number of walks pr. trial
+#
+import numpy, sys
+from  matplotlib import pyplot as plt
+import numpy as np
+
+
+def mc_trial(number_walks,move_probability,walk_cum,walk2_cum):
+    """
+    Do a MonteCarlo trial, that is,
+    random-walk one particle.
+
+    Input:
+    - number_walks:     Number of steps to walk the particle
+    - move_probability: Probability that the particle
+                        will step right when doing a step
+    - walk_cum:         Numpy-array of length number_walks + 1,
+                        containing the sum of the position
+                        of the particles as a function of time
+                        (usefull to calculate mean pos. as a function
+                        of time)
+    - walk2_cum:        Same as walk_cum, but with the sum of the
+                        positions squared
+
+    Output: As walk_cum and walk2_cum are numpy arrays, they are altered.
+    """
+    #Initial pos. As walk_cum[0]=walk2_cum[0] = 0.0
+    #by initialization, it is uneccessary to add this step to
+    #the arrays...
+    pos = 0;
+    
+    for walk in xrange(number_walks+1):
+        if numpy.random.random() <= move_probability:
+            pos += 1
+        else:
+            pos -= 1
+        walk_cum[walk]  += pos
+        walk2_cum[walk] += pos**2
+
+def mc_sample(trials, number_walks, move_probability):
+    """
+    Run as many trials as asked for by input variable trials.
+    Wrapper to mc_trial, split out for easier paralellization
+
+    Output: NumPy arrays walk_cum and walk2_cum, length number_walks + 1
+    """
+
+    walk_cum  = numpy.zeros(number_walks+1)
+    walk2_cum = numpy.zeros(number_walks+1)
+    for trial in xrange(trials):
+        mc_trial(number_walks,move_probability,walk_cum,walk2_cum)
+
+    return (walk_cum,walk2_cum)
+
+#Main program
+
+# initialize, values can easily be changed
+trials           =   10000
+number_walks     =   100
+move_probability = 0.5
+
+#Do the MC
+(walk_cum,walk2_cum) = mc_sample(trials,number_walks, move_probability);
+Dim = len(walk_cum)
+x = np.zeros(Dim)
+xaverage = np.zeros(Dim)
+variance = np.zeros(Dim)
+#Output
+for i in xrange(Dim):
+    x[i] = i
+    #Normalize to number of trials (= number of walkers)
+    xaverage[i]  = walk_cum[i]/float(trials)
+    x2average = walk2_cum[i]/float(trials)
+    variance[i] = x2average - xaverage[i]**2
+plt.figure(1)
+plt.subplot(211)
+plt.xlabel(r'Steps')
+plt.ylabel(r'Average displacement  $\Delta x$')
+plt.plot(x, xaverage, 'b-')
+plt.subplot(212)
+plt.plot(x, variance, 'r-')
+plt.ylabel(r'Variance  $\langle\Delta x)^2\rangle-\langle x\rangle^2$')
+plt.savefig('rw.pdf')
+plt.show()
+
+
+</script></div>
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+    // Display navigation controls in the bottom right corner
+    controls: true,
+
+    // Display progress bar (below the horiz. slider)
+    progress: true,
+
+    // Display the page number of the current slide
+    slideNumber: true,
+
+    // Push each slide change to the browser history
+    history: false,
+
+    // Enable keyboard shortcuts for navigation
+    keyboard: true,
+
+    // Enable the slide overview mode
+    overview: true,
+
+    // Vertical centering of slides
+    //center: true,
+    center: false,
+
+    // Enables touch navigation on devices with touch input
+    touch: true,
+
+    // Loop the presentation
+    loop: false,
+
+    // Change the presentation direction to be RTL
+    rtl: false,
+
+    // Turns fragments on and off globally
+    fragments: true,
+
+    // Flags if the presentation is running in an embedded mode,
+    // i.e. contained within a limited portion of the screen
+    embedded: false,
+
+    // Number of milliseconds between automatically proceeding to the
+    // next slide, disabled when set to 0, this value can be overwritten
+    // by using a data-autoslide attribute on your slides
+    autoSlide: 0,
+
+    // Stop auto-sliding after user input
+    autoSlideStoppable: true,
+
+    // Enable slide navigation via mouse wheel
+    mouseWheel: false,
+
+    // Hides the address bar on mobile devices
+    hideAddressBar: true,
+
+    // Opens links in an iframe preview overlay
+    previewLinks: false,
+
+    // Transition style
+    transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Transition speed
+    transitionSpeed: 'default', // default/fast/slow
+
+    // Transition style for full page slide backgrounds
+    backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+
+    // Number of slides away from the current that are visible
+    viewDistance: 3,
+
+    // Parallax background image
+    //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+    // Parallax background size
+    //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+
+    theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+});
+
+Reveal.initialize({
+    dependencies: [
+        // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+        { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+        // Interpret Markdown in <section> elements
+        { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+        // Syntax highlight for <code> elements
+        { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+        // Zoom in and out with Alt+click
+        { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Speaker notes
+        { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Remote control your reveal.js presentation using a touch device
+        //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // MathJax
+        //{ src: 'reveal.js/plugin/math/math.js', async: true }
+    ]
+});
+
+Reveal.initialize({
+
+    // The "normal" size of the presentation, aspect ratio will be preserved
+    // when the presentation is scaled to fit different resolutions. Can be
+    // specified using percentage units.
+    width: 1170,  // original: 960,
+    height: 700,
+
+    // Factor of the display size that should remain empty around the content
+    margin: 0.1,
+
+    // Bounds for smallest/largest possible scale to apply to content
+    minScale: 0.2,
+    maxScale: 1.0
+
+});
+</script>
+
+<!-- begin footer logo
+<div style="position: absolute; bottom: 0px; left: 0; margin-left: 0px">
+<img src="somelogo.png">
+</div>
+     end footer logo -->
+
+
+
+</body>
+</html>

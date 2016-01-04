@@ -1,0 +1,152 @@
+TITLE: Summary of course and the final exam
+AUTHOR: Morten Hjorth-Jensen  {copyright, 1999-present|CC BY-NC} Email morten.hjorth-jensen@fys.uio.no at Department of Physics and Center of Mathematics for Applications, University of Oslo & National Superconducting Cyclotron Laboratory, Michigan State University
+DATE: Fall 2015
+
+
+!split
+===== Syllabus and  the final exam =====
+
+For the written exam, you can bring with you 2 pages (written on both sides) with own notes. See also the exams 
+from the last four years at the specific "github address of the course":"https://github.com/CompPhysics/ComputationalPhysics1/tree/gh-pages/doc/FormerExams". The written exam counts 1/3 of the final mark. 
+Projects 4 and 5 count 1/3 each for the final mark.
+For the syllabus, see the "official website of the course":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/h15/syllabus.html"
+and the see the discussion below.
+
+_Note: The text of the final written exam is in  English only_, but you can answer in English or Norwegian.
+
+!split
+===== "What did I learn in school this year":"https://www.youtube.com/watch?v=ZTxmDV_njsc" =====
+
+"Our ideal about knowledge on computational science":"http://hplgit.github.io/edu/py_vs_m/computing_competence.html"
+
+Does that match the experiences you have made this semester?
+FIGURE: [figures/exam2.jpg, width=500 frac=0.6]
+
+!split
+===== Topics we have covered this year =====
+* Linear algebra and eigenvalue problems. (Lecture notes chapters 6.1-6.5  and 7.1-7.5 and projects 1 and 2).
+* Numerical integration, standard methods and Monte Carlo methods (Lecture notes chapters 5.1-5.5 and 11 and project 3).
+* Ordinary differential equations (Lecture notes chapter 8  and project 5 )
+* Partial differential equations (Lecture notes chapter 10 and project 5)
+* Monte Carlo methods in physics (Lecture notes chapters 11, 12 and 13, project 4)
+
+!split
+===== Linear algebra and eigenvalue problems, chapters 6.1-6.5 and 7.1-7.5 =====
+* Know Gaussian elimination and LU decomposition   (project 1)
+* How to solve linear equations   (project 1)
+* How to obtain the inverse and the determinant of a real symmetric matrix
+* Cubic spline
+* Tridiagonal matrix decomposition   (project 1)
+* Householder's tridiagonalization technique and finding eigenvalues based on this
+* Jacobi's method for finding eigenvalues (project 2)
+
+!split
+===== Numerical integration, standard methods and Monte Carlo methods (5.1-5.5 and 11) =====
+* Trapezoidal, rectangle  and Simpson's rules
+* Gaussian quadrature, emphasis on Legendre polynomials, but you need to know about other polynomials as well (project 3).  
+* Brute force Monte Carlo integration (project 3)
+* Random numbers (simplest algo, ran0) and probability distribution functions, expectation values
+* Improved Monte Carlo integration and importance sampling (project 3).
+
+!split
+===== Monte Carlo methods in physics (Chapters 11, 12 and 13) =====
+* Random walks and Markov chains
+* Metropolis algorithm (project 4)
+* Applications to statistical physics systems (project 4)
+
+
+!split
+===== Ordinary differential equations (Chapter 8) =====
+
+* Euler's method and improved Euler's method, truncation errors (project 5)
+* Runge Kutta methods, 2nd and 4th order, truncation errors (project 5)
+* Leap-frog and Verlet algoritm (project 5)
+* How to implement and solve a second-order differential equation,  both linear and non-linear.
+* How to make your equations dimensionless.
+
+!split
+===== Partial differential equations, chapter 10 =====
+* Set up diffusion, Poisson and wave equations up to 2 spatial dimensions and time  
+* Set up the mathematical model and algorithms for these equations, with boundary and initial conditions. The stability conditions for the diffusion equation.
+* Explicit, implicit and Crank-Nicolson schemes, and how to solve them. Remember that they result in triangular matrices (project 5).  
+* Diffusion equation in two dimensions.
+* How to compute the Laplacian in Poisson's equation.
+* How to solve the wave equation in one and two dimensions using an explicit scheme.
+
+!split
+===== Solutions to projects 1-3 =====
+Under the "project folder at the github address of the course":"https://github.com/CompPhysics/ComputationalPhysics1/tree/gh-pages/doc/Projects" you will find examples of solutions for projects 1, 2 and 3. Special thanks to Ivar, Henrik, Giovanni, Giulio, Mattia and Alessio.
+
+
+!split
+===== What? Me worry?  =====
+FIGURE: [figures/exam1.jpeg, width=500 frac=0.6]
+FIGURE: [figures/whatmeworry.jpeg, width=500 frac=0.6]
+
+
+!split
+=====  Computational science courses at UiO =====
+* "FYS3150/4150 Computational Physics I":"http://www.uio.no/studier/emner/matnat/fys/FYS4150/index-eng.html"
+* "FYS4411 Computational Physics II, computational quantum mechanics":"http://www.uio.no/studier/emner/matnat/fys/FYS4411/"
+* "FYS4460 Computational Physics III, computational statistical mechanics":"http://www.uio.no/studier/emner/matnat/fys/FYS4460/"
+* "INF5620 Numerical Methods for Partial Differential Equations":"http://www.uio.no/studier/emner/matnat/ifi/INF5620/index-eng.html"
+* "INF5631 Project on Numerical Methods for Partial Differential Equations": "http://www.uio.no/studier/emner/matnat/ifi/INF5631/index-eng.html"
+* "FYS388 Computational Neuroscience":"http://www.nmbu.no/course/FYS388"
+* "STK4520 Laboratory for Finance and Insurance Mathematics":"http://www.uio.no/studier/emner/matnat/math/STK4520/index-eng.html"
+* "STK4021 Applied Bayesian Analysis and Numerical Methods":"http://www.uio.no/studier/emner/matnat/math/STK4021/index-eng.html"
+* "MAT-INF4130  Numerical Linear Algebra":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4130/index-eng.html"
+* "MAT-INF4110 Mathematical Optimization":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4110/index.html"
+* "ECON4240 Equilibrium, welfare and information":"http://www.uio.no/studier/emner/sv/oekonomi/ECON4240/index.html"
+* "MEK4470  Computational Fluid Mechanics":"http://www.uio.no/studier/emner/matnat/math/MEK4470/index-eng.html"
+* "MEK4250 Finite Element Methods in Computational Mechanics":"http://www.uio.no/studier/emner/matnat/math/MEK4250/index-eng.html"
+
+
+
+!split
+===== "New Master of Science program at UiO from Fall 2017":"http://mhjensen.github.io/CPMLS/doc/pub/Masterprogram/html/Masterprogram.html"  =====
+The program aims at offering thesis projects in a variety of fields. The scientists involved in this program can offer thesis
+topics that cover several disciplines. These are
+
+* Computational mathematics
+* Computational mechanics and fluid mechanics 
+* Computational chemistry
+* Computational physics
+* Computational materials science
+* Computational life science
+* Computational informatics
+* Image analysis and signal processing
+* Computational finance and statistics 
+* Computational geoscience
+
+The thesis projects will be tailored to the student's needs, wishes and scientific background. The projects can easily incorporate topics from more than one discipline.
+
+
+
+
+
+
+!split
+===== The program opens up for flexible backgrounds  =====
+
+While discipline-based master's programs tend to introduce very strict
+requirements to courses, we believe in adapting a computational thesis
+topic to the student's background, thereby opening up for
+students with a wide range of bachelor's degrees.
+A very heterogeneous student community is thought to be a strength and
+unique feature of this program.
+
+
+
+
+!split
+=====  Best wishes to you all and thanks so much for your efforts this semester =====
+
+FIGURE: [figures/Nebbdyr2.png, width=500 frac=0.6]
+
+
+
+
+
+
+
+

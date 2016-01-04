@@ -1,0 +1,2643 @@
+<!DOCTYPE html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides from FYS3150/4150 Eigenvalue problems">
+
+<title>Slides from FYS3150/4150 Eigenvalue problems</title>
+
+
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+
+
+
+<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/serif.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/darkgray.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/cbc.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simula.css" id="theme">
+-->
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+<script>
+document.write( '<link rel="stylesheet" href="reveal.js/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+</script>
+
+<style type="text/css">
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .reveal .alert-text-small   { font-size: 80%;  }
+    .reveal .alert-text-large   { font-size: 130%; }
+    .reveal .alert-text-normal  { font-size: 90%;  }
+    .reveal .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:5px solid #bababa;
+             -webkit-border-radius: 14px; -moz-border-radius: 14px;
+             border-radius:14px;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 30px; /* 55px; if icon */
+     }
+     .reveal .alert-block {padding-top:14px; padding-bottom:14px}
+     .reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+     /*.reveal .alert li {margin-top: 1em}*/
+     .reveal .alert-block p+p {margin-top:5px}
+     /*.reveal .alert-notice { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
+     .reveal .alert-summary  { background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
+     .reveal .alert-warning { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
+     .reveal .alert-question {background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+
+</style>
+
+
+
+<!-- Styles for table layout of slides -->
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+
+
+
+<section>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1 style="text-align: center;">Slides from FYS3150/4150 Eigenvalue problems</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Morten Hjorth-Jensen  Email morten.hjorth-jensen@fys.uio.no -->
+
+<center>
+<b>Morten Hjorth-Jensen  Email morten.hjorth-jensen@fys.uio.no</b> [1, 2]
+</center>
+
+<p>&nbsp;<br>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Center of Mathematics for Applications, University of Oslo</b></center>
+<center>[2] <b>National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>&nbsp;<br>
+<center><h4>Fall 2015</h4></center> <!-- date -->
+<br>
+</section>
+
+
+<section>
+<h2 id="___sec0">Overview of eigenvalue discussion </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Eigenvalue problems and project 2.</b>
+<ul>
+ <p><li> Discussion of Jacobi's algorithm, chapters 7.1-7.4</li>
+ <p><li> Presentation of project 2.</li>
+ <p><li> Discussion of Householder's and Francis' algorithms, chapter 7.5</li>
+ <p><li> Power methods, chapter 7.6</li>
+ <p><li> Lanczos' method, chapter 7.7</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec1">Eigenvalue problems, basic definitions </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Let us consider the matrix \( \mathbf{A} \) of dimension \( n \). The eigenvalues of
+\( \mathbf{A} \) are defined through the matrix equation 
+<p>&nbsp;<br>
+$$
+   \mathbf{A}\mathbf{x}^{(\nu)} = \lambda^{(\nu)}\mathbf{x}^{(\nu)},
+$$
+<p>&nbsp;<br>
+
+where \( \lambda^{(\nu)} \) are the eigenvalues and \( \mathbf{x}^{(\nu)} \) the
+corresponding eigenvectors.
+Unless otherwise stated, when we use the wording eigenvector we mean the
+right eigenvector. The left eigenvalue problem is defined as 
+<p>&nbsp;<br>
+$$
+\mathbf{x}^{(\nu)}_L\mathbf{A} = \lambda^{(\nu)}\mathbf{x}^{(\nu)}_L
+$$
+<p>&nbsp;<br>
+
+The above right eigenvector problem is equivalent to a set of \( n \) equations with \( n \) unknowns
+\( x_i \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec2">Eigenvalue problems, basic definitions </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The eigenvalue problem can be rewritten as 
+<p>&nbsp;<br>
+$$
+   \left( \mathbf{A}-\lambda^{(\nu)} \mathbf{I} \right) \mathbf{x}^{(\nu)} = 0,
+$$
+<p>&nbsp;<br>
+
+with \( \mathbf{I} \) being the unity matrix. This equation provides
+a solution to the problem if and only if the determinant
+is zero, namely
+<p>&nbsp;<br>
+$$
+   \left| \mathbf{A}-\lambda^{(\nu)}\mathbf{I}\right| = 0,
+$$
+<p>&nbsp;<br>
+
+which in turn means that the determinant is a polynomial
+of degree \( n \) in \( \lambda \) and in general we will have 
+\( n \) distinct zeros.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec3">Eigenvalue problems, basic definitions </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The eigenvalues of a matrix 
+\( \mathbf{A}\in {\mathbb{C}}^{n\times n} \)
+are thus the \( n \) roots of its characteristic polynomial 
+<p>&nbsp;<br>
+$$
+P(\lambda) = det(\lambda\mathbf{I}-\mathbf{A}),
+$$
+<p>&nbsp;<br>
+
+or 
+<p>&nbsp;<br>
+$$
+  P(\lambda)= \prod_{i=1}^{n}\left(\lambda_i-\lambda\right).
+$$
+<p>&nbsp;<br>
+
+The set of these roots is called the spectrum and is denoted as
+\( \lambda(\mathbf{A}) \).
+If \( \lambda(\mathbf{A})=\left\{\lambda_1,\lambda_2,\dots ,\lambda_n\right\} \) then we have
+<p>&nbsp;<br>
+$$
+   det(\mathbf{A})= \lambda_1\lambda_2\dots\lambda_n, 
+$$
+<p>&nbsp;<br>
+
+and if we define the trace of \( \mathbf{A} \) as
+<p>&nbsp;<br>
+$$
+Tr(\mathbf{A})=\sum_{i=1}^n a_{ii}$$
+<p>&nbsp;<br>
+
+then
+<p>&nbsp;<br>
+$$
+Tr(\mathbf{A})=\lambda_1+\lambda_2+\dots+\lambda_n.
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec4">Abel-Ruffini Impossibility Theorem </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The <em>Abel-Ruffini</em> theorem (also known as Abel's impossibility theorem) 
+states that there is no general solution in radicals to polynomial equations of degree five or higher.
+
+<p>
+The content of this theorem is frequently misunderstood. It does not assert that higher-degree polynomial equations are unsolvable. 
+In fact, if the polynomial has real or complex coefficients, and we allow complex solutions, then every polynomial equation has solutions; this is the fundamental theorem of algebra. Although these solutions cannot always be computed exactly with radicals, they can be computed to any desired degree of accuracy using numerical methods such as the Newton-Raphson method or Laguerre method, and in this way they are no different from solutions to polynomial equations of the second, third, or fourth degrees.
+
+<p>
+The theorem only concerns the form that such a solution must take. The content of the theorem is 
+that the solution of a higher-degree equation cannot in all cases be expressed in terms of the polynomial coefficients with a finite number of operations of addition, subtraction, multiplication, division and root extraction. Some polynomials of arbitrary degree, of which the simplest nontrivial example is the monomial equation \( ax^n = b \), are always solvable with a radical.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec5">Abel-Ruffini Impossibility Theorem </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The <em>Abel-Ruffini</em> theorem says that there are some fifth-degree equations whose solution cannot be so expressed. 
+The equation \( x^5 - x + 1 = 0 \) is an example. Some other fifth degree equations can be solved by radicals, 
+for example \( x^5 - x^4 - x + 1 = 0 \). The precise criterion that distinguishes between those equations that can be solved 
+by radicals and those that cannot was given by Galois and is now part of Galois theory: 
+a polynomial equation can be solved by radicals if and only if its Galois group is a solvable group.
+
+<p>
+Today, in the modern algebraic context, we say that second, third and fourth degree polynomial 
+equations can always be solved by radicals because the symmetric groups \( S_2, S_3 \) and \( S_4 \) are solvable groups, 
+whereas \( S_n \) is not solvable for \( n \ge 5 \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec6">Eigenvalue problems, basic definitions </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In the present discussion we assume that our matrix is real and symmetric, that is 
+\( \mathbf{A}\in {\mathbb{R}}^{n\times n} \).
+The matrix \( \mathbf{A} \) has \( n \) eigenvalues
+\( \lambda_1\dots \lambda_n \) (distinct or not). Let \( \mathbf{D} \) be the
+diagonal matrix with the eigenvalues on the diagonal
+<p>&nbsp;<br>
+$$
+\mathbf{D}=    \left( \begin{array}{ccccccc} \lambda_1 & 0 & 0   & 0    & \dots  &0     & 0 \\
+                                0 & \lambda_2 & 0 & 0    & \dots  &0     &0 \\
+                                0   & 0 & \lambda_3 & 0  &0       &\dots & 0\\
+                                \dots  & \dots & \dots & \dots  &\dots      &\dots & \dots\\
+                                0   & \dots & \dots & \dots  &\dots       &\lambda_{n-1} & \\
+                                0   & \dots & \dots & \dots  &\dots       &0 & \lambda_n
+
+             \end{array} \right).
+$$
+<p>&nbsp;<br>
+
+If \( \mathbf{A} \) is real and symmetric then there exists a real orthogonal matrix \( \mathbf{S} \) such that
+<p>&nbsp;<br>
+$$
+     \mathbf{S}^T \mathbf{A}\mathbf{S}= \mathrm{diag}(\lambda_1,\lambda_2,\dots ,\lambda_n),
+$$
+<p>&nbsp;<br>
+
+and for \( j=1:n \) we have \( \mathbf{A}\mathbf{S}(:,j) = \lambda_j \mathbf{S}(:,j) \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec7">Eigenvalue problems, basic definitions </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+To obtain the eigenvalues of \( \mathbf{A}\in {\mathbb{R}}^{n\times n} \),
+the strategy is to
+perform a series of similarity transformations on the original
+matrix \( \mathbf{A} \), in order to reduce it either into a  diagonal form as above
+or into a  tridiagonal form.
+
+<p>
+We say that a matrix \( \mathbf{B} \) is a similarity
+transform  of  \( \mathbf{A} \) if 
+<p>&nbsp;<br>
+$$
+     \mathbf{B}= \mathbf{S}^T \mathbf{A}\mathbf{S}, \hspace{1cm} \mathrm{where} \hspace{1cm}  \mathbf{S}^T\mathbf{S}=\mathbf{S}^{-1}\mathbf{S} =\mathbf{I}.
+$$
+<p>&nbsp;<br>
+
+The importance of a similarity transformation lies in the fact that
+the resulting matrix has the same
+eigenvalues, but the eigenvectors are in general different.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec8">Eigenvalue problems, basic definitions </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+To prove this we
+start with  the eigenvalue problem and a similarity transformed matrix \( \mathbf{B} \).
+<p>&nbsp;<br>
+$$
+   \mathbf{A}\mathbf{x}=\lambda\mathbf{x} \hspace{1cm} \mathrm{and}\hspace{1cm} 
+    \mathbf{B}= \mathbf{S}^T \mathbf{A}\mathbf{S}.
+$$
+<p>&nbsp;<br>
+
+We multiply the first equation on the left by \( \mathbf{S}^T \) and insert
+\( \mathbf{S}^{T}\mathbf{S} = \mathbf{I} \) between \( \mathbf{A} \) and \( \mathbf{x} \). Then we get
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   (\mathbf{S}^T\mathbf{A}\mathbf{S})(\mathbf{S}^T\mathbf{x})=\lambda\mathbf{S}^T\mathbf{x} ,
+\tag{1}
+\end{equation}  
+$$
+<p>&nbsp;<br>
+
+which is the same as 
+<p>&nbsp;<br>
+$$
+   \mathbf{B} \left ( \mathbf{S}^T\mathbf{x} \right ) = \lambda \left (\mathbf{S}^T\mathbf{x}\right ).
+$$
+<p>&nbsp;<br>
+
+The variable  \( \lambda \) is an eigenvalue of \( \mathbf{B} \) as well, but with
+eigenvector \( \mathbf{S}^T\mathbf{x} \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec9">Eigenvalue problems, basic definitions </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The basic philosophy is to
+
+<ul>
+ <p><li> Either apply subsequent similarity transformations (direct method) so that</li> 
+</ul>
+<p>&nbsp;<br>
+$$
+\begin{equation}
+   \mathbf{S}_N^T\dots \mathbf{S}_1^T\mathbf{A}\mathbf{S}_1\dots \mathbf{S}_N=\mathbf{D} ,
+\tag{2}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+
+<ul>
+ <p><li> Or apply subsequent similarity transformations so that \( \mathbf{A} \) becomes tridiagonal (Householder) or upper/lower triangular (the <em>QR</em> method to be discussed later).</li>
+
+<p><li> Thereafter, techniques for obtaining eigenvalues from tridiagonal matrices can be used.</li>
+ <p><li> Or use so-called power methods</li>
+ <p><li> Or use iterative methods (Krylov, Lanczos, Arnoldi). These methods are popular for huge matrix problems.</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec10">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>The general overview.</b>
+<p>
+One speaks normally of two main approaches to solving the eigenvalue problem.
+
+<ul>
+ <p><li> The first is the formal method, involving determinants and the  characteristic polynomial. This proves how many eigenvalues  there are, and is the way most of you learned about how to solve the eigenvalue problem, but for matrices of dimensions greater than 2 or 3, it is rather impractical.</li>
+ <p><li> The other general approach is to use similarity or unitary tranformations  to reduce a matrix to diagonal form. This is normally done in two steps: first reduce to for example a <em>tridiagonal</em> form, and then to diagonal form. The main algorithms we will discuss in detail, Jacobi's and  Householder's  (so-called direct method) and Lanczos algorithms (an iterative method), follow this methodology.</li> 
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec11">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Direct or non-iterative methods  require for matrices of dimensionality \( n\times n \) typically \( O(n^3) \) operations. These methods are normally called standard methods and are used for dimensionalities
+\( n \sim 10^5 \) or smaller. A brief historical overview
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">Year</th> <td align="center">    \( n \)     </td> <th align="center">                 </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   1950    </td> <td align="center">   \( n=20 \)          </td> <td align="center">   (Wilkinson)          </td> </tr>
+<tr><td align="center">   1965    </td> <td align="center">   \( n=200 \)         </td> <td align="center">   (Forsythe et al.)    </td> </tr>
+<tr><td align="center">   1980    </td> <td align="center">   \( n=2000 \)        </td> <td align="center">   Linpack              </td> </tr>
+<tr><td align="center">   1995    </td> <td align="center">   \( n=20000 \)       </td> <td align="center">   Lapack               </td> </tr>
+<tr><td align="center">   2012    </td> <td align="center">   \( n\sim 10^5 \)    </td> <td align="center">   Lapack               </td> </tr>
+</tbody>
+</table>
+<p>
+shows that in the course of 60 years the dimension that  direct diagonalization methods can handle  has increased by almost a factor of
+\( 10^4 \). However, it pales beside the progress achieved by computer hardware, from flops to petaflops, a factor of almost \( 10^{15} \). We see clearly played out in history the \( O(n^3) \) bottleneck  of direct matrix algorithms.
+
+<p>
+Sloppily speaking, when  \( n\sim 10^4 \) is cubed we have \( O(10^{12}) \) operations, which is smaller than the \( 10^{15} \) increase in flops.
+
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec12">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If the matrix to diagonalize is large and sparse, direct methods simply become impractical, 
+also because
+many of the direct methods tend to destroy sparsity. As a result large dense matrices may arise during the diagonalization procedure.  The idea behind iterative methods is to project the 
+$n-$dimensional problem in smaller spaces, so-called Krylov subspaces. 
+Given a matrix \( \mathbf{A} \) and a vector \( \mathbf{v} \), the associated Krylov sequences of vectors
+(and thereby subspaces) 
+\( \mathbf{v} \), \( \mathbf{A}\mathbf{v} \), \( \mathbf{A}^2\mathbf{v} \), \( \mathbf{A}^3\mathbf{v},\dots \), represent
+successively larger Krylov subspaces.
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">             Matrix             </th> <td align="center">\( \mathbf{A}\mathbf{x}=\mathbf{b} \)</td> <td align="center">\( \mathbf{A}\mathbf{x}=\lambda\mathbf{x} \)</td> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   \( \mathbf{A}=\mathbf{A}^* \)       </td> <td align="left">   Conjugate gradient                       </td> <td align="left">   Lanczos                                         </td> </tr>
+<tr><td align="left">   \( \mathbf{A}\ne \mathbf{A}^* \)    </td> <td align="left">   GMRES etc                                </td> <td align="left">   Arnoldi                                         </td> </tr>
+</tbody>
+</table>
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec13">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The Numerical Recipes codes have been rewritten in Fortran 90/95 and C/C++ by us.
+The original source codes are taken from the widely used software
+package LAPACK, which follows two other popular packages developed in the 1970s, 
+namely EISPACK and LINPACK.
+
+<ul>
+ <p><li> LINPACK: package for linear equations  and least square problems.</li>
+ <p><li> LAPACK:package for solving symmetric, unsymmetric and generalized eigenvalue problems. From LAPACK's website <a href="http://www.netlib.org" target="_blank"><tt>http://www.netlib.org</tt></a>  it is  possible to download for free all source codes from this library. Both C/C++ and Fortran versions are available.</li>
+ <p><li> BLAS (I, II and III): (Basic Linear Algebra Subprograms)  are routines that provide standard building blocks for performing basic vector and matrix operations.   Blas I is vector operations, II vector-matrix operations and III matrix-matrix operations.</li> 
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec14">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Consider an  example of an (\( n\times n \)) orthogonal transformation matrix 
+<p>&nbsp;<br>
+$$
+\mathbf{S}=
+ \left( 
+   \begin{array}{cccccccc}
+   1  &    0  & \dots &   0        &    0  & \dots & 0 &   0       \\
+   0  &    1  & \dots &   0        &    0  & \dots & 0 &   0       \\
+\dots & \dots & \dots & \dots      & \dots & \dots & 0 & \dots     \\ 
+   0  &    0  & \dots & \cos\theta  &    0  & \dots & 0 & \sin\theta \\
+   0  &    0  & \dots &   0        &    1  & \dots & 0 &   0       \\
+\dots & \dots & \dots & \dots      & \dots & \dots & 1 & \dots     \\
+   0  &    0  & \dots &  -\sin\theta        &    0  & \dots & 0 &   \cos\theta   
+   \end{array}
+ \right)
+$$
+<p>&nbsp;<br>
+
+with property \( \mathbf{S^{T}} = \mathbf{S^{-1}} \).
+It performs a plane rotation around an angle \( \theta \) in the Euclidean 
+$n-$dimensional space.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec15">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+It means that its matrix elements that differ
+from zero are given by
+<p>&nbsp;<br>
+$$
+    s_{kk}= s_{ll}=\cos\theta, 
+    s_{kl}=-s_{lk}= -\sin\theta, 
+    s_{ii}=1\hspace{0.5cm} i\ne k \hspace{0.5cm} i \ne l,
+$$
+<p>&nbsp;<br>
+
+A similarity transformation 
+<p>&nbsp;<br>
+$$
+     \mathbf{B}= \mathbf{S}^T \mathbf{A}\mathbf{S},
+$$
+<p>&nbsp;<br>
+
+results in 
+<p>&nbsp;<br>
+$$
+\begin{align*}
+b_{ik} =& a_{ik}\cos\theta - a_{il}\sin\theta , i \ne k, i \ne l \\
+b_{il} =& a_{il}\cos\theta + a_{ik}\sin\theta , i \ne k, i \ne l \nonumber\\
+b_{kk} =& a_{kk}\cos^2\theta - 2a_{kl}\cos\theta \sin\theta +a_{ll}\sin^2\theta\nonumber\\
+b_{ll} =& a_{ll}\cos^2\theta +2a_{kl}\cos\theta sin\theta +a_{kk}\sin^2\theta\nonumber\\
+b_{kl} =& (a_{kk}-a_{ll})\cos\theta \sin\theta +a_{kl}(\cos^2\theta-\sin^2\theta)\nonumber 
+\end{align*}
+$$
+<p>&nbsp;<br>
+
+The angle \( \theta \) is  arbitrary. The recipe is to choose  \( \theta \) so that all
+non-diagonal matrix elements \( b_{kl} \) become zero.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec16">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The main idea is thus to reduce systematically the 
+norm of the 
+off-diagonal matrix elements  of a matrix  \( \mathbf{A} \) 
+<p>&nbsp;<br>
+$$
+\mathrm{off}(\mathbf{A}) = \sqrt{\sum_{i=1}^n\sum_{j=1,j\ne i}^n a_{ij}^2}.
+$$
+<p>&nbsp;<br>
+
+ To demonstrate the algorithm, we consider the  simple \( 2\times 2 \)  similarity transformation
+of the full matrix. The matrix is symmetric, we single out $ 1 \le k < l \le n$  and 
+use the abbreviations \( c=\cos\theta \) and \( s=\sin\theta \) to obtain
+<p>&nbsp;<br>
+$$
+ \left( \begin{array}{cc} b_{kk} & 0 \\
+                          0 & b_{ll} \\\end{array} \right)  =  \left( \begin{array}{cc} c & -s \\
+                          s &c \\\end{array} \right)  \left( \begin{array}{cc} a_{kk} & a_{kl} \\
+                          a_{lk} &a_{ll} \\\end{array} \right) \left( \begin{array}{cc} c & s \\
+                          -s & c \\\end{array} \right).
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec17">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We require that the non-diagonal matrix elements \( b_{kl}=b_{lk}=0 \), implying that 
+<p>&nbsp;<br>
+$$
+a_{kl}(c^2-s^2)+(a_{kk}-a_{ll})cs = b_{kl} = 0.
+$$
+<p>&nbsp;<br>
+
+If \( a_{kl}=0 \) one sees immediately that \( \cos\theta = 1 \) and \( \sin\theta=0 \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec18">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The Frobenius norm of an orthogonal transformation is always preserved. The Frobenius norm is defined
+as 
+<p>&nbsp;<br>
+$$
+ \mathrm{norm}(\mathbf{A})_F =  \sqrt{\sum_{i=1}^n\sum_{j=1}^n |a_{ij}|^2}.
+$$
+<p>&nbsp;<br>
+
+This means that for our \( 2\times 2 \) case  we have
+<p>&nbsp;<br>
+$$
+2a_{kl}^2+a_{kk}^2+a_{ll}^2 = b_{kk}^2+b_{ll}^2,
+$$
+<p>&nbsp;<br>
+
+which leads to
+<p>&nbsp;<br>
+$$
+\mathrm{off}(\mathbf{B})^2 = \mathrm{norm}(\mathbf{B})_F^2-\sum_{i=1}^nb_{ii}^2=\mathrm{off}(\mathbf{A})^2-2a_{kl}^2,
+$$
+<p>&nbsp;<br>
+
+since
+<p>&nbsp;<br>
+$$
+  \mathrm{norm}(\mathbf{B})_F^2-\sum_{i=1}^nb_{ii}^2=\mathrm{norm}(\mathbf{A})_F^2-\sum_{i=1}^na_{ii}^2+(a_{kk}^2+a_{ll}^2 -b_{kk}^2-b_{ll}^2).
+$$
+<p>&nbsp;<br>
+
+This results means that  the matrix \( \mathbf{A} \) moves closer to diagonal form  for each transformation.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec19">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Defining the quantities \( \tan\theta = t= s/c \) and
+<p>&nbsp;<br>
+$$\cot 2\theta=\tau = \frac{a_{ll}-a_{kk}}{2a_{kl}},
+$$
+<p>&nbsp;<br>
+
+we obtain the quadratic equation (using \( \cot 2\theta=1/2(\cot \theta-\tan\theta) \)
+<p>&nbsp;<br>
+$$
+t^2+2\tau t-1= 0,
+$$
+<p>&nbsp;<br>
+
+resulting in 
+<p>&nbsp;<br>
+$$
+  t = -\tau \pm \sqrt{1+\tau^2},
+$$
+<p>&nbsp;<br>
+
+and \( c \) and \( s \) are easily obtained via
+<p>&nbsp;<br>
+$$
+   c = \frac{1}{\sqrt{1+t^2}},
+$$
+<p>&nbsp;<br>
+
+and \( s=tc \).  Convince yourself that we have \( |\theta| \le \pi/4 \). This has the effect  
+of minimizing the difference between the matrices \( \mathbf{B} \) and \( \mathbf{A} \) since
+<p>&nbsp;<br>
+$$
+\mathrm{norm}(\mathbf{B}-\mathbf{A})_F^2=4(1-c)\sum_{i=1,i\ne k,l}^n(a_{ik}^2+a_{il}^2) +\frac{2a_{kl}^2}{c^2}.
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec20">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<ul>
+ <p><li> Choose a tolerance \( \epsilon \), making it a small number, typically \( 10^{-8} \) or smaller.</li>
+ <p><li> Setup a <em>while</em> test  where one compares the norm of the newly computed off-diagonal matrix elements  \[ \mathrm{off}(\mathbf{A}) = \sqrt{\sum_{i=1}^n\sum_{j=1,j\ne i}^n a_{ij}^2}   >  \epsilon. \]</li>
+ <p><li> Now choose the matrix elements \( a_{kl} \) so that we have those with largest value, that is \( |a_{kl}|=\mathrm{max}_{i\ne j} |a_{ij}| \).</li>
+ <p><li> Compute thereafter \( \tau = (a_{ll}-a_{kk})/2a_{kl} \), \( \tan\theta \), \( \cos\theta \) and \( \sin\theta \).</li>
+ <p><li> Compute thereafter the similarity transformation for this set of values \( (k,l) \), obtaining the new matrix \( \mathbf{B}= \mathbf{S}(k,l,\theta)^T \mathbf{A}\mathbf{S}(k,l,\theta) \).</li>
+ <p><li> Compute the new norm of the off-diagonal matrix elements and continue till you have satisfied \( \mathrm{off}(\mathbf{B})  \le  \epsilon \)</li>
+</ul>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec21">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The convergence rate of the Jacobi method is however poor, one needs typically \( 3n^2-5n^2 \) rotations and each rotation 
+requires \( 4n \) operations, resulting in a total of \( 12n^3-20n^3 \) operations in order to zero out non-diagonal matrix elements.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec22">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We specialize to a symmetric \( 3\times 3  \) matrix \( \mathbf{A} \).
+We start the process as follows (assuming that \( a_{23}=a_{32} \) is the largest non-diagonal)
+with \( c=\cos{\theta} \) and \( s=\sin{\theta} \)
+<p>&nbsp;<br>
+$$
+ \mathbf{B} =
+      \left( \begin{array}{ccc} 
+                1 & 0 & 0    \\
+                0 & c & -s     \\
+                0 & s & c
+             \end{array} \right)\left( \begin{array}{ccc} 
+                a_{11} & a_{12} & a_{13}    \\
+                a_{21} & a_{22} & a_{23}     \\
+                a_{31} & a_{32} & a_{33}
+             \end{array} \right)
+              \left( \begin{array}{ccc} 
+                1 & 0 & 0    \\
+                0 & c & s     \\
+                0 & -s & c
+             \end{array} \right).
+$$
+<p>&nbsp;<br>
+
+We will choose the angle \( \theta \) in order to have \( a_{23}=a_{32}=0 \).
+We get (symmetric matrix)
+<p>&nbsp;<br>
+$$
+ \mathbf{B} =\left( \begin{array}{ccc} 
+                a_{11} & a_{12}c -a_{13}s& a_{12}s+a_{13}c    \\
+                a_{12}c -a_{13}s & a_{22}c^2+a_{33}s^2 -2a_{23}sc& (a_{22}-a_{33})sc +a_{23}(c^2-s^2)     \\
+                a_{12}s+a_{13}c & (a_{22}-a_{33})sc +a_{23}(c^2-s^2) & a_{22}s^2+a_{33}c^2 +2a_{23}sc
+             \end{array} \right).
+$$
+<p>&nbsp;<br>
+
+Note that \( a_{11} \) is unchanged! As it should.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec23">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have
+<p>&nbsp;<br>
+$$
+ \mathbf{B} =\left( \begin{array}{ccc} 
+                a_{11} & a_{12}c -a_{13}s& a_{12}s+a_{13}c    \\
+                a_{12}c -a_{13}s & a_{22}c^2+a_{33}s^2 -2a_{23}sc& (a_{22}-a_{33})sc +a_{23}(c^2-s^2)     \\
+                a_{12}s+a_{13}c & (a_{22}-a_{33})sc +a_{23}(c^2-s^2) & a_{22}s^2+a_{33}c^2 +2a_{23}sc
+             \end{array} \right).
+$$
+<p>&nbsp;<br>
+
+or
+<p>&nbsp;<br>
+$$
+\begin{align*}
+b_{11} =& a_{11} \\
+b_{12} =& a_{12}\cos\theta - a_{13}\sin\theta , 1 \ne 2, 1 \ne 3 \\
+b_{13} =& a_{13}\cos\theta + a_{12}\sin\theta , 1 \ne 2, 1 \ne 3 \nonumber\\
+b_{22} =& a_{22}\cos^2\theta - 2a_{23}\cos\theta \sin\theta +a_{33}\sin^2\theta\nonumber\\
+b_{33} =& a_{33}\cos^2\theta +2a_{23}\cos\theta \sin\theta +a_{22}\sin^2\theta\nonumber\\
+b_{23} =& (a_{22}-a_{33})\cos\theta \sin\theta +a_{23}(\cos^2\theta-\sin^2\theta)\nonumber 
+\end{align*}
+$$
+<p>&nbsp;<br>
+
+We will fix the angle \( \theta \) so that \( b_{23}=0 \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec24">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We get then a new matrix
+<p>&nbsp;<br>
+$$
+ \mathbf{B} =\left( \begin{array}{ccc} 
+                b_{11} & b_{12}& b_{13}    \\
+                b_{12}& b_{22}& 0    \\
+                b_{13}& 0& a_{33}
+             \end{array} \right).
+$$
+<p>&nbsp;<br>
+
+We repeat then assuming that \( b_{12} \) is the largest non-diagonal matrix element and get a
+new matrix 
+<p>&nbsp;<br>
+$$
+ \mathbf{C} =
+      \left( \begin{array}{ccc} 
+                c & -s & 0    \\
+                s & c & 0     \\
+                0 & 0 & 1
+             \end{array} \right)\left( \begin{array}{ccc} 
+                b_{11} & b_{12} & b_{13}    \\
+                b_{12} & b_{22} & 0     \\
+                b_{13} & 0 & b_{33}
+             \end{array} \right)
+              \left( \begin{array}{ccc} 
+                c & s & 0    \\
+                -s & c & 0     \\
+                0 & 0 & 1
+             \end{array} \right).
+$$
+<p>&nbsp;<br>
+
+We continue this process till all non-diagonal matrix elements are zero (ideally).
+You will notice that performing the above operations that the matrix element 
+\( b_{23} \) which was previous zero becomes different from zero.  This is one of the problems which slows
+down the jacobi procedure.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec25">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The more general expression for the new matrix elements are
+<p>&nbsp;<br>
+$$
+\begin{align*}
+b_{ii} =& a_{ii}, i \ne k, i \ne l \\
+b_{ik} =& a_{ik}\cos\theta - a_{il}\sin\theta , i \ne k, i \ne l \\
+b_{il} =& a_{il}\cos\theta + a_{ik}\sin\theta , i \ne k, i \ne l \nonumber\\
+b_{kk} =& a_{kk}\cos^2\theta - 2a_{kl}\cos\theta \sin\theta +a_{ll}\sin^2\theta\nonumber\\
+b_{ll} =& a_{ll}\cos^2\theta +2a_{kl}\cos\theta \sin\theta +a_{kk}\sin^2\theta\nonumber\\
+b_{kl} =& (a_{kk}-a_{ll})\cos\theta \sin\theta +a_{kl}(\cos^2\theta-\sin^2\theta)\nonumber 
+\end{align*}
+$$
+<p>&nbsp;<br>
+
+This is what we will need to code.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec26">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Code example.</b>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">//  we have defined a matrix A and a matrix R for the eigenvector, both of dim n x n</span>
+<span style="color: #228B22">//  The final matrix R has the eigenvectors in its row elements, it is set to one</span>
+<span style="color: #228B22">//  for the diagonal elements in the beginning, zero else.</span>
+....
+<span style="color: #a7a7a7; font-weight: bold">double</span> tolerance = <span style="color: #B452CD">1.0E-10</span>; 
+<span style="color: #a7a7a7; font-weight: bold">int</span> iterations = <span style="color: #B452CD">0</span>;
+<span style="color: #8B008B; font-weight: bold">while</span> ( maxnondiag &gt; tolerance &amp;&amp; iterations &lt;= maxiter)
+{
+   <span style="color: #a7a7a7; font-weight: bold">int</span> p, q;
+   maxnondiag  = offdiag(A, p, q, n);
+   Jacobi_rotate(A, R, p, q, n);
+   iterations++;
+}
+...
+</pre></div>
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec27">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Finding the max nondiagonal element
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">//  the offdiag function, using Armadillo</span>
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">offdiag</span>(mat A, <span style="color: #a7a7a7; font-weight: bold">int</span> p, <span style="color: #a7a7a7; font-weight: bold">int</span> q, <span style="color: #a7a7a7; font-weight: bold">int</span> n);
+{
+   <span style="color: #a7a7a7; font-weight: bold">double</span> max;
+   <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; ++i)
+   {
+       <span style="color: #8B008B; font-weight: bold">for</span> ( <span style="color: #a7a7a7; font-weight: bold">int</span> j = i+<span style="color: #B452CD">1</span>; j &lt; n; ++j)
+       {
+           <span style="color: #a7a7a7; font-weight: bold">double</span> aij = fabs(A(i,j));
+           <span style="color: #8B008B; font-weight: bold">if</span> ( aij &gt; max)
+           { 
+              max = aij;  p = i; q = j;
+           }
+       }
+   }
+   <span style="color: #8B008B; font-weight: bold">return</span> max;
+}
+<span style="color: #228B22">// more statements</span>
+</pre></div>
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec28">Discussion of Jacobi's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Finding the new matrix elements
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Jacobi_rotate</span> ( mat A, mat R, <span style="color: #a7a7a7; font-weight: bold">int</span> k, <span style="color: #a7a7a7; font-weight: bold">int</span> l, <span style="color: #a7a7a7; font-weight: bold">int</span> n )
+{
+  <span style="color: #a7a7a7; font-weight: bold">double</span> s, c;
+  <span style="color: #8B008B; font-weight: bold">if</span> ( A(k,l) != <span style="color: #B452CD">0.0</span> ) {
+    <span style="color: #a7a7a7; font-weight: bold">double</span> t, tau;
+    tau = (A(l,l) - A(k,k))/(<span style="color: #B452CD">2</span>*A(k,l));
+    
+    <span style="color: #8B008B; font-weight: bold">if</span> ( tau &gt;= <span style="color: #B452CD">0</span> ) {
+      t = <span style="color: #B452CD">1.0</span>/(tau + sqrt(<span style="color: #B452CD">1.0</span> + tau*tau));
+    } <span style="color: #8B008B; font-weight: bold">else</span> {
+      t = -<span style="color: #B452CD">1.0</span>/(-tau +sqrt(<span style="color: #B452CD">1.0</span> + tau*tau));
+    }
+    
+    c = <span style="color: #B452CD">1</span>/sqrt(<span style="color: #B452CD">1</span>+t*t);
+    s = c*t;
+  } <span style="color: #8B008B; font-weight: bold">else</span> {
+    c = <span style="color: #B452CD">1.0</span>;
+    s = <span style="color: #B452CD">0.0</span>;
+  }
+  <span style="color: #a7a7a7; font-weight: bold">double</span> a_kk, a_ll, a_ik, a_il, r_ik, r_il;
+  a_kk = A(k,k);
+  a_ll = A(l,l);
+  A(k,k) = c*c*a_kk - <span style="color: #B452CD">2.0</span>*c*s*A(k,l) + s*s*a_ll;
+  A(l,l) = s*s*a_kk + <span style="color: #B452CD">2.0</span>*c*s*A(k,l) + c*c*a_ll;
+  A(k,l) = <span style="color: #B452CD">0.0</span>;  <span style="color: #228B22">// hard-coding non-diagonal elements by hand</span>
+  A(l,k) = <span style="color: #B452CD">0.0</span>;  <span style="color: #228B22">// same here</span>
+  <span style="color: #8B008B; font-weight: bold">for</span> ( <span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++ ) {
+    <span style="color: #8B008B; font-weight: bold">if</span> ( i != k &amp;&amp; i != l ) {
+      a_ik = A(i,k);
+      a_il = A(i,l);
+      A(i,k) = c*a_ik - s*a_il;
+      A(k,i) = A(i,k);
+      A(i,l) = c*a_il + s*a_ik;
+      A(l,i) = A(i,l);
+    }
+<span style="color: #228B22">//  And finally the new eigenvectors</span>
+    r_ik = R(i,k);
+    r_il = R(i,l);
+
+    R(i,k) = c*r_ik - s*r_il;
+    R(i,l) = c*r_il + s*r_ik;
+  }
+  <span style="color: #8B008B; font-weight: bold">return</span>;
+} <span style="color: #228B22">// end of function jacobi_rotate</span>
+</pre></div>
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec29">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In project 1 we rewrote our original differential equation in terms of a discretized equation with approximations to the 
+derivatives as
+<p>&nbsp;<br>
+$$
+    -\frac{u_{i+1} -2u_i +u_{i-i}}{h^2}=f(x_i,u(x_i)),
+$$
+<p>&nbsp;<br>
+
+with \( i=1,2,\dots, n \). We need to add to this system the two boundary conditions \( u(a) =u_0 \) and \( u(b) = u_{n+1} \).
+If we define a matrix
+<p>&nbsp;<br>
+$$
+    \mathbf{A} = \frac{1}{h^2}\left(\begin{array}{cccccc}
+                          2 & -1 &  &   &  & \\
+                          -1 & 2 & -1 & & & \\
+                           & -1 & 2 & -1 & &  \\
+                           & \dots   & \dots &\dots   &\dots & \dots \\
+                           &   &  &-1  &2& -1 \\
+                           &    &  &   &-1 & 2 \\
+                      \end{array} \right)
+$$
+<p>&nbsp;<br>
+
+and the corresponding vectors \( \mathbf{u} = (u_1, u_2, \dots,u_n)^T \) and 
+\( \mathbf{f}(\mathbf{u}) = f(x_1,x_2,\dots, x_n,u_1, u_2, \dots,u_n)^T \)  we can rewrite the differential equation
+including the boundary conditions as a system of linear equations with  a large number of unknowns 
+<p>&nbsp;<br>
+$$
+   \mathbf{A}\mathbf{u} = \mathbf{f}(\mathbf{u}).
+ $$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec30">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We are first interested in the solution of the radial part of Schroedinger's equation for one electron. This equation reads
+<p>&nbsp;<br>
+$$
+  -\frac{\hbar^2}{2 m} \left ( \frac{1}{r^2} \frac{d}{dr} r^2
+  \frac{d}{dr} - \frac{l (l + 1)}{r^2} \right )R(r) 
+     + V(r) R(r) = E R(r).
+$$
+<p>&nbsp;<br>
+
+In our case \( V(r) \) is the harmonic oscillator potential \( (1/2)kr^2 \) with
+\( k=m\omega^2 \) and \( E \) is
+the energy of the harmonic oscillator in three dimensions.
+The oscillator frequency is \( \omega \) and the energies are
+<p>&nbsp;<br>
+$$
+E_{nl}=  \hbar \omega \left(2n+l+\frac{3}{2}\right),
+$$
+<p>&nbsp;<br>
+
+with \( n=0,1,2,\dots \) and \( l=0,1,2,\dots \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec31">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Since we have made a transformation to spherical coordinates it means that 
+\( r\in [0,\infty) \).  
+The quantum number
+\( l \) is the orbital momentum of the electron.   Then we substitute \( R(r) = (1/r) u(r) \) and obtain
+<p>&nbsp;<br>
+$$
+  -\frac{\hbar^2}{2 m} \frac{d^2}{dr^2} u(r) 
+       + \left ( V(r) + \frac{l (l + 1)}{r^2}\frac{\hbar^2}{2 m}
+                                    \right ) u(r)  = E u(r) .
+$$
+<p>&nbsp;<br>
+
+The boundary conditions are \( u(0)=0 \) and \( u(\infty)=0 \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec32">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We introduce a dimensionless variable \( \rho = (1/\alpha) r \)
+where \( \alpha \) is a constant with dimension length and get
+<p>&nbsp;<br>
+$$
+  -\frac{\hbar^2}{2 m \alpha^2} \frac{d^2}{d\rho^2} u(\rho) 
+       + \left ( V(\rho) + \frac{l (l + 1)}{\rho^2}
+         \frac{\hbar^2}{2 m\alpha^2} \right ) u(\rho)  = E u(\rho) .
+$$
+<p>&nbsp;<br>
+
+In project 2 we choose \( l=0 \).
+Inserting \( V(\rho) = (1/2) k \alpha^2\rho^2 \) we end up with
+<p>&nbsp;<br>
+$$
+  -\frac{\hbar^2}{2 m \alpha^2} \frac{d^2}{d\rho^2} u(\rho) 
+       + \frac{k}{2} \alpha^2\rho^2u(\rho)  = E u(\rho) .
+$$
+<p>&nbsp;<br>
+
+We multiply thereafter with \( 2m\alpha^2/\hbar^2 \) on both sides and obtain
+<p>&nbsp;<br>
+$$
+  -\frac{d^2}{d\rho^2} u(\rho) 
+       + \frac{mk}{\hbar^2} \alpha^4\rho^2u(\rho)  = \frac{2m\alpha^2}{\hbar^2}E u(\rho) .
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec33">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have thus
+<p>&nbsp;<br>
+$$
+  -\frac{d^2}{d\rho^2} u(\rho) 
+       + \frac{mk}{\hbar^2} \alpha^4\rho^2u(\rho)  = \frac{2m\alpha^2}{\hbar^2}E u(\rho) .
+$$
+<p>&nbsp;<br>
+
+The constant \( \alpha \) can now be fixed
+so that
+<p>&nbsp;<br>
+$$
+\frac{mk}{\hbar^2} \alpha^4 = 1,
+$$
+<p>&nbsp;<br>
+
+or 
+<p>&nbsp;<br>
+$$
+\alpha = \left(\frac{\hbar^2}{mk}\right)^{1/4}.
+$$
+<p>&nbsp;<br>
+
+Defining
+<p>&nbsp;<br>
+$$
+\lambda = \frac{2m\alpha^2}{\hbar^2}E,
+$$
+<p>&nbsp;<br>
+
+we can rewrite Schroedinger's equation as
+<p>&nbsp;<br>
+$$
+  -\frac{d^2}{d\rho^2} u(\rho) + \rho^2u(\rho)  = \lambda u(\rho) .
+$$
+<p>&nbsp;<br>
+
+This is the first equation to solve numerically. In three dimensions 
+the eigenvalues for \( l=0 \) are 
+\( \lambda_0=3,\lambda_1=7,\lambda_2=11,\dots . \)
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec34">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We use the by now standard
+expression for the second derivative of a function \( u \)
+<p>&nbsp;<br>
+$$
+\begin{equation}
+    u''=\frac{u(\rho+h) -2u(\rho) +u(\rho-h)}{h^2} +O(h^2),
+\tag{3}
+\end{equation} 
+$$
+<p>&nbsp;<br>
+
+where \( h \) is our step.
+Next we define minimum and maximum values for the variable \( \rho \),
+\( \rho_{\mathrm{min}}=0 \)  and \( \rho_{\mathrm{max}} \), respectively.
+You need to check your results for the energies against different values
+\( \rho_{\mathrm{max}} \), since we cannot set
+\( \rho_{\mathrm{max}}=\infty \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec35">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+With a given number of steps, \( n_{\mathrm{step}} \), we then 
+define the step \( h \) as
+<p>&nbsp;<br>
+$$
+  h=\frac{\rho_{\mathrm{max}}-\rho_{\mathrm{min}} }{n_{\mathrm{step}}}.
+$$
+<p>&nbsp;<br>
+
+Define an arbitrary value of \( \rho \) as 
+<p>&nbsp;<br>
+$$
+    \rho_i= \rho_{\mathrm{min}} + ih \hspace{1cm} i=0,1,2,\dots , n_{\mathrm{step}}
+$$
+<p>&nbsp;<br>
+
+we can rewrite the Schr\"odinger equation for \( \rho_i \) as
+<p>&nbsp;<br>
+$$
+-\frac{u(\rho_i+h) -2u(\rho_i) +u(\rho_i-h)}{h^2}+\rho_i^2u(\rho_i)  = \lambda u(\rho_i),
+$$
+<p>&nbsp;<br>
+
+or in  a more compact way
+<p>&nbsp;<br>
+$$
+-\frac{u_{i+1} -2u_i +u_{i-1}}{h^2}+\rho_i^2u_i=-\frac{u_{i+1} -2u_i +u_{i-1} }{h^2}+V_iu_i  = \lambda u_i,
+$$
+<p>&nbsp;<br>
+
+where \( V_i=\rho_i^2 \) is the harmonic oscillator potential.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec36">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Define first the diagonal matrix element
+<p>&nbsp;<br>
+$$
+   d_i=\frac{2}{h^2}+V_i,
+$$
+<p>&nbsp;<br>
+
+and the non-diagonal matrix element 
+<p>&nbsp;<br>
+$$
+   e_i=-\frac{1}{h^2}.
+$$
+<p>&nbsp;<br>
+
+In this case the non-diagonal matrix elements are given by a mere constant. <em>All non-diagonal matrix elements are equal</em>.
+
+<p>
+With these definitions the Schroedinger equation takes the following form
+<p>&nbsp;<br>
+$$
+d_iu_i+e_{i-1}u_{i-1}+e_{i+1}u_{i+1}  = \lambda u_i,
+$$
+<p>&nbsp;<br>
+
+where \( u_i \) is unknown. We can write the 
+latter equation as a matrix eigenvalue problem 
+<p>&nbsp;<br>
+$$
+\begin{equation}
+    \left( \begin{array}{ccccccc} d_1 & e_1 & 0   & 0    & \dots  &0     & 0 \\
+                                e_1 & d_2 & e_2 & 0    & \dots  &0     &0 \\
+                                0   & e_2 & d_3 & e_3  &0       &\dots & 0\\
+                                \dots  & \dots & \dots & \dots  &\dots      &\dots & \dots\\
+                                0   & \dots & \dots & \dots  &\dots       &d_{n_{\mathrm{step}}-2} & e_{n_{\mathrm{step}}-1}\\
+                                0   & \dots & \dots & \dots  &\dots       &e_{n_{\mathrm{step}}-1} & d_{n_{\mathrm{step}}-1}
+
+             \end{array} \right)      \left( \begin{array}{c} u_{1} \\
+                                                              u_{2} \\
+                                                              \dots\\ \dots\\ \dots\\
+                                                              u_{n_{\mathrm{step}}-1}
+             \end{array} \right)=\lambda \left( \begin{array}{c} u_{1} \\
+                                                              u_{2} \\
+                                                              \dots\\ \dots\\ \dots\\
+                                                              u_{n_{\mathrm{step}}-1}
+             \end{array} \right) 
+\tag{4}
+\end{equation} 
+$$
+<p>&nbsp;<br>
+
+or if we wish to be more detailed, we can write the tridiagonal matrix as
+<p>&nbsp;<br>
+$$
+\begin{equation}
+    \left( \begin{array}{ccccccc} \frac{2}{h^2}+V_1 & -\frac{1}{h^2} & 0   & 0    & \dots  &0     & 0 \\
+                                -\frac{1}{h^2} & \frac{2}{h^2}+V_2 & -\frac{1}{h^2} & 0    & \dots  &0     &0 \\
+                                0   & -\frac{1}{h^2} & \frac{2}{h^2}+V_3 & -\frac{1}{h^2}  &0       &\dots & 0\\
+                                \dots  & \dots & \dots & \dots  &\dots      &\dots & \dots\\
+                                0   & \dots & \dots & \dots  &\dots       &\frac{2}{h^2}+V_{n_{\mathrm{step}}-2} & -\frac{1}{h^2}\\
+                                0   & \dots & \dots & \dots  &\dots       &-\frac{1}{h^2} & \frac{2}{h^2}+V_{n_{\mathrm{step}}-1}
+
+             \end{array} \right)  
+\tag{5} 
+\end{equation} 
+$$
+<p>&nbsp;<br>
+
+Recall that the solutions are known via the boundary conditions at
+\( i=n_{\mathrm{step}} \) and at the other end point, that is for  \( \rho_0 \).
+The solution is zero in both cases.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec37">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We are going to study two electrons in a harmonic oscillator well which
+also interact via a repulsive Coulomb interaction.
+Let us start with the single-electron equation written as
+<p>&nbsp;<br>
+$$
+  -\frac{\hbar^2}{2 m} \frac{d^2}{dr^2} u(r) 
+       + \frac{1}{2}k r^2u(r)  = E^{(1)} u(r),
+$$
+<p>&nbsp;<br>
+
+where \( E^{(1)} \) stands for the energy with one electron only.
+For two electrons with no repulsive Coulomb interaction, we have the following 
+Schroedinger equation
+<p>&nbsp;<br>
+$$
+\left(  -\frac{\hbar^2}{2 m} \frac{d^2}{dr_1^2} -\frac{\hbar^2}{2 m} \frac{d^2}{dr_2^2}+ \frac{1}{2}k r_1^2+ \frac{1}{2}k r_2^2\right)u(r_1,r_2)  = E^{(2)} u(r_1,r_2) .
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec38">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Note that we deal with a two-electron wave function \( u(r_1,r_2) \) and 
+two-electron energy \( E^{(2)} \).
+
+<p>
+With no interaction this can be written out as the product of two
+single-electron wave functions, that is we have a solution on closed form.
+
+<p>
+We introduce the relative coordinate \( \mathbf{r} = \mathbf{r}_1-\mathbf{r}_2 \)
+and the center-of-mass coordinate \( \mathbf{R} = 1/2(\mathbf{r}_1+\mathbf{r}_2) \).
+With these new coordinates, the radial Schroedinger equation reads
+<p>&nbsp;<br>
+$$
+\left(  -\frac{\hbar^2}{m} \frac{d^2}{dr^2} -\frac{\hbar^2}{4 m} \frac{d^2}{dR^2}+ \frac{1}{4} k r^2+  kR^2\right)u(r,R)  = E^{(2)} u(r,R).
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec39">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The equations for \( r \) and \( R \) can be separated via the ansatz for the 
+wave function \( u(r,R) = \psi(r)\phi(R) \) and the energy is given by the sum
+of the relative energy \( E_r \) and the center-of-mass energy \( E_R \), that
+is
+<p>&nbsp;<br>
+$$
+E^{(2)}=E_r+E_R.
+$$
+<p>&nbsp;<br>
+
+We add then the repulsive Coulomb interaction between two electrons,
+namely a term 
+<p>&nbsp;<br>
+$$
+V(r_1,r_2) = \frac{\beta e^2}{|\mathbf{r}_1-\mathbf{r}_2|}=\frac{\beta e^2}{r},
+$$
+<p>&nbsp;<br>
+
+with \( \beta e^2=1.44 \) eVnm.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec40">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Adding this term, the \( r \)-dependent Schroedinger equation becomes
+<p>&nbsp;<br>
+$$
+\left(  -\frac{\hbar^2}{m} \frac{d^2}{dr^2}+ \frac{1}{4}k r^2+\frac{\beta e^2}{r}\right)\psi(r)  = E_r \psi(r).
+$$
+<p>&nbsp;<br>
+
+This equation is similar to the one we had previously in parts (a) and (b) 
+and we introduce
+again a dimensionless variable \( \rho = r/\alpha \). Repeating the same
+steps, we arrive at 
+<p>&nbsp;<br>
+$$
+  -\frac{d^2}{d\rho^2} \psi(\rho) 
+       + \frac{mk}{4\hbar^2} \alpha^4\rho^2\psi(\rho)+\frac{m\alpha \beta e^2}{\rho\hbar^2}\psi(\rho)  = 
+\frac{m\alpha^2}{\hbar^2}E_r \psi(\rho) .
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec41">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We want to manipulate this equation further to make it as similar to that in (a)
+as possible. We define a 'frequency' 
+<p>&nbsp;<br>
+$$
+\omega_r^2=\frac{1}{4}\frac{mk}{\hbar^2} \alpha^4,
+$$
+<p>&nbsp;<br>
+
+and fix the constant \( \alpha \) by requiring 
+<p>&nbsp;<br>
+$$
+\frac{m\alpha \beta e^2}{\hbar^2}=1
+$$
+<p>&nbsp;<br>
+
+or 
+<p>&nbsp;<br>
+$$
+\alpha = \frac{\hbar^2}{m\beta e^2}.
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec42">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Defining 
+<p>&nbsp;<br>
+$$
+\lambda = \frac{m\alpha^2}{\hbar^2}E,
+$$
+<p>&nbsp;<br>
+
+we can rewrite Schroedinger's equation as
+<p>&nbsp;<br>
+$$
+  -\frac{d^2}{d\rho^2} \psi(\rho) + \omega_r^2\rho^2\psi(\rho) +\frac{1}{\rho}\psi(\rho) = \lambda \psi(\rho).
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec43">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We treat \( \omega_r \) as a parameter which reflects the strength of the oscillator potential.
+
+<p>
+Here we will study the cases \( \omega_r = 0.01 \), \( \omega_r = 0.5 \), \( \omega_r =1 \),
+and \( \omega_r = 5 \)   
+for the ground state only, that is the lowest-lying state.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec44">Discussion of project 2 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+With no repulsive Coulomb interaction 
+you should get a result which corresponds to 
+the relative energy of a non-interacting system.   
+Make sure your results are 
+stable as functions of \( \rho_{\mathrm{max}} \) and the number of steps.
+
+<p>
+We are only interested in the ground state with \( l=0 \). We omit the 
+center-of-mass energy.
+
+<p>
+For specific oscillator frequencies, the above equation has analytic answers,
+see the article by M.&nbsp;Taut, Phys. Rev. A 48, 3561 - 3566 (1993).
+The article can be retrieved from the following web address <a href="http://prola.aps.org/abstract/PRA/v48/i5/p3561_1" target="_blank"><tt>http://prola.aps.org/abstract/PRA/v48/i5/p3561_1</tt></a>.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec45">Discussion of project 2, simple program for one particle in a harmonic oscillator trap </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The following program uses the eigenvalue solver provided by Armadillo and returns the eigenvalues for the lowest states. You can run this code interactively if you use ipython notebook. 
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+%install_ext https://raw.github.com/dragly/cppmagic/master/cppmagic.py
+%load_ext cppmagic
+%%cpp -I/usr/local/include -L/usr/local/lib -llapack -lblas -larmadillo
+/*
+  Solves the one-particle Schrodinger equation
+  for a potential specified in function
+  potential(). This example is for the harmonic oscillator in 3d
+*/
+#include <cmath>
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <armadillo>
+
+using namespace  std;
+using namespace  arma;
+
+double potential(double);
+void output(double, double, int, vec& );
+
+
+// Begin of main program   
+
+int main(int argc, char* argv[])
+{
+  int       i, j, Dim, lOrbital;
+  double    RMin, RMax, Step, DiagConst, NondiagConst, OrbitalFactor; 
+  // With spherical coordinates RMin = 0 always
+  RMin = 0.0;
+
+  RMax = 8.0;  lOrbital = 0;  Dim =2000;  
+  mat Hamiltonian = zeros<mat>(Dim,Dim);
+  // Integration step length
+  Step    = RMax/ Dim;
+  DiagConst = 2.0 / (Step*Step);
+  NondiagConst =  -1.0 / (Step*Step);
+  OrbitalFactor = lOrbital * (lOrbital + 1.0);
+  
+  // local memory for r and the potential w[r] 
+  vec r(Dim); vec w(Dim);
+  for(i = 0; i < Dim; i++) {
+    r(i) = RMin + (i+1) * Step;
+    w(i) = potential(r(i)) + OrbitalFactor/(r(i) * r(i));
+  }
+
+
+  // Setting up tridiagonal matrix and brute diagonalization using Armadillo
+  Hamiltonian(0,0) = DiagConst + w(0);
+  Hamiltonian(0,1) = NondiagConst;
+  for(i = 1; i < Dim-1; i++) {
+    Hamiltonian(i,i-1)    = NondiagConst;
+    Hamiltonian(i,i)    = DiagConst + w(i);
+    Hamiltonian(i,i+1)    = NondiagConst;
+  }
+  Hamiltonian(Dim-1,Dim-2) = NondiagConst;
+  Hamiltonian(Dim-1,Dim-1) = DiagConst + w(Dim-1);
+  // diagonalize and obtain eigenvalues
+  vec Eigval(Dim);
+  eig_sym(Eigval, Hamiltonian);
+  output(RMin , RMax, Dim, Eigval);
+
+  return 0;
+}  //  end of main function
+
+
+/*
+  The function potential()
+  calculates and return the value of the 
+  potential for a given argument x.
+  The potential here is for the hydrogen atom
+*/        
+
+double potential(double x)
+{
+  return x*x;
+
+} // End: function potential()  
+
+
+void output(double RMin , double RMax, int Dim, vec& d)
+{
+  int i;
+  cout << "RESULTS:" << endl;
+  cout << setiosflags(ios::showpoint | ios::uppercase);
+  cout <<"Rmin = " << setw(15) << setprecision(8) << RMin << endl;  
+  cout <<"Rmax = " << setw(15) << setprecision(8) << RMax << endl;  
+  cout <<"Number of steps = " << setw(15) << Dim << endl;  
+  cout << "Five lowest eigenvalues:" << endl;
+  for(i = 0; i < 5; i++) {
+    cout << setw(15) << setprecision(8) << d[i] << endl;
+  }
+}  // end of function output         
+
+</script></div>
+
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec46">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The drawbacks with Jacobi's method are rather obvious, with perhaps the most negative feature being the fact that we cannot tell * a priori* how many transformations are needed. Can we do better?  
+The answer to this is yes and is given by a clever algorithm outlined by Householder. It was ranked among the top ten algorithms in the previous century.  We will discuss this algorithm in more detail below.
+
+<p>
+The first step  consists in finding
+an orthogonal  matrix \( \mathbf{S} \) which is the product of \( (n-2) \) orthogonal matrices 
+<p>&nbsp;<br>
+$$ 
+   \mathbf{S}=\mathbf{S}_1\mathbf{S}_2\dots\mathbf{S}_{n-2},
+$$
+<p>&nbsp;<br>
+
+each of which successively transforms one row and one column of \( \mathbf{A} \) into the 
+required tridiagonal form. Only \( n-2 \) transformations are required, since the last two
+elements are already in tridiagonal form.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec47">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In order to determine each \( \mathbf{S_i} \) let us
+see what happens after the first multiplication, namely,
+<p>&nbsp;<br>
+$$
+    \mathbf{S}_1^T\mathbf{A}\mathbf{S}_1=    \left( \begin{array}{ccccccc} a_{11} & e_1 & 0   & 0    & \dots  &0     & 0 \\
+                                e_1 & a'_{22} &a'_{23}  & \dots    & \dots  &\dots &a'_{2n} \\
+                                0   & a'_{32} &a'_{33}  & \dots    & \dots  &\dots &a'_{3n} \\
+                                0   & \dots &\dots & \dots    & \dots  &\dots & \\
+                                0   & a'_{n2} &a'_{n3}  & \dots    & \dots  &\dots &a'_{nn} \\
+
+             \end{array} \right) 
+$$
+<p>&nbsp;<br>
+
+where the primed quantities represent a matrix \( \mathbf{A}' \) of dimension
+\( n-1 \) which will subsequentely be transformed by \( \mathbf{S_2} \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec48">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The factor  \( e_1 \) is a possibly non-vanishing element. The next
+transformation produced by \( \mathbf{S_2} \) has the same effect as  \( \mathbf{S}_} \) but now on the submatirx \( \mathbf{A^{'}} \) only
+<p>&nbsp;<br>
+$$
+   \left (\mathbf{S}_{1}\mathbf{S}_{2} \right )^{T} \mathbf{A}\mathbf{S}_{1} \mathbf{S}_{2}
+ = \left( \begin{array}{ccccccc} a_{11} & e_1 & 0   & 0    & \dots  &0     & 0 \\
+                                e_1 & a'_{22} &e_2  & 0   & \dots  &\dots &0 \\
+                                0   & e_2 &a''_{33}  & \dots    & \dots  &\dots &a''_{3n} \\
+                                0   & \dots &\dots & \dots    & \dots  &\dots & \\
+                                0   & 0 &a''_{n3}  & \dots    & \dots  &\dots &a''_{nn} \\
+
+             \end{array} \right) 
+$$
+<p>&nbsp;<br>
+
+<em>Note that the effective size of the matrix on which we apply the transformation reduces for every new step. In the previous Jacobi method each similarity transformation is in principle performed on the full size of the original matrix</em>.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec49">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+After a series of such transformations, we end with a set of diagonal
+matrix elements
+<p>&nbsp;<br>
+$$
+  a_{11}, a'_{22}, a''_{33}\dots a^{n-1}_{nn},
+$$
+<p>&nbsp;<br>
+
+and off-diagonal matrix elements 
+<p>&nbsp;<br>
+$$
+   e_1, e_2,e_3,  \dots, e_{n-1}.
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec50">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The resulting matrix reads
+<p>&nbsp;<br>
+$$
+\mathbf{S}^{T} \mathbf{A} \mathbf{S} = 
+    \left( \begin{array}{ccccccc} a_{11} & e_1 & 0   & 0    & \dots  &0     & 0 \\
+                                e_1 & a'_{22} & e_2 & 0    & \dots  &0     &0 \\
+                                0   & e_2 & a''_{33} & e_3  &0       &\dots & 0\\
+                                \dots  & \dots & \dots & \dots  &\dots      &\dots & \dots\\
+                                0   & \dots & \dots & \dots  &\dots       &a^{(n-1)}_{n-2} & e_{n-1}\\
+                                0   & \dots & \dots & \dots  &\dots       &e_{n-1} & a^{(n-1)}_{nn}
+
+             \end{array} \right) .
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec51">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+It remains to find a recipe for determining the transformation \( \mathbf{S}_n \).
+We illustrate the method for \( \mathbf{S}_1 \) which we assume takes the form
+<p>&nbsp;<br>
+$$
+    \mathbf{S_{1}} = \left( \begin{array}{cc} 1 & \mathbf{0^{T}} \\
+                              \mathbf{0}& \mathbf{P} \end{array} \right),
+$$
+<p>&nbsp;<br>
+
+with \( \mathbf{0^{T}} \) being a zero row vector, \( \mathbf{0^{T}} = \{0,0,\cdots\} \)
+of dimension \( (n-1) \). The matrix \( \mathbf{P} \)  is symmetric 
+with dimension (\( (n-1) \times (n-1) \)) satisfying
+\( \mathbf{P}^2=\mathbf{I} \)  and \( \mathbf{P}^T=\mathbf{P} \). 
+A possible choice which fullfils the latter two requirements is 
+<p>&nbsp;<br>
+$$
+    \mathbf{P}=\mathbf{I}-2\mathbf{u}\mathbf{u}^T,
+$$
+<p>&nbsp;<br>
+
+where \( \mathbf{I} \) is the \( (n-1) \) unity matrix and \( \mathbf{u} \) is an \( n-1 \)
+column vector with norm \( \mathbf{u}^T\mathbf{u} \) (inner product).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec52">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+ Note that \( \mathbf{u}\mathbf{u}^T \) is an outer product giving a
+matrix of dimension (\( (n-1) \times (n-1) \)). 
+Each matrix element of \( \mathbf{P} \) then reads
+<p>&nbsp;<br>
+$$
+   P_{ij}=\delta_{ij}-2u_iu_j,
+$$
+<p>&nbsp;<br>
+
+where \( i \) and \( j \) range from \( 1 \) to \( n-1 \). Applying the transformation  
+\( \mathbf{S}_1 \) results in 
+<p>&nbsp;<br>
+$$
+   \mathbf{S}_1^T\mathbf{A}\mathbf{S}_1 =  \left( \begin{array}{cc} a_{11} & (\mathbf{Pv})^T \\
+                              \mathbf{Pv}& \mathbf{A}' \end{array} \right) ,
+$$
+<p>&nbsp;<br>
+
+where \( \mathbf{v^{T}} = \{a_{21}, a_{31},\cdots, a_{n1}\} \) and \mathbf{P}
+must satisfy (\( \mathbf{Pv})^{T} = \{k, 0, 0,\cdots \} \). Then
+<p>&nbsp;<br>
+$$
+\begin{equation}
+    \mathbf{Pv} = \mathbf{v} -2\mathbf{u}( \mathbf{u}^T\mathbf{v})= k \mathbf{e},
+\tag{6}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+with \( \mathbf{e^{T}} = \{1,0,0,\dots 0\} \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec53">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Solving the latter equation gives us \( \mathbf{u} \) and thus the needed transformation
+\( \mathbf{P} \). We do first however need to compute the scalar \( k \) by taking the scalar
+product of the last equation with its transpose and using the fact that \( \mathbf{P}^2=\mathbf{I} \).
+We get then
+<p>&nbsp;<br>
+$$
+   (\mathbf{Pv})^T\mathbf{Pv} = k^{2} = \mathbf{v}^T\mathbf{v}=
+   |v|^2 = \sum_{i=2}^{n}a_{i1}^2,
+$$
+<p>&nbsp;<br>
+
+which determines the constant $ k = \pm v$.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec54">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+ Now we can rewrite Eq.&nbsp;<a href="#mjx-eqn-6">(6)</a>
+as 
+<p>&nbsp;<br>
+$$
+    \mathbf{v} - k\mathbf{e} = 2\mathbf{u}( \mathbf{u}^T\mathbf{v}),
+$$
+<p>&nbsp;<br>
+
+and taking the scalar product of this equation with itself and obtain
+<p>&nbsp;<br>
+$$
+\begin{equation}
+    2( \mathbf{u}^T\mathbf{v})^2=(v^2\pm a_{21}v),
+\tag{7}
+\end{equation}
+$$
+<p>&nbsp;<br>
+
+which finally determines 
+<p>&nbsp;<br>
+$$
+    \mathbf{u}=\frac{\mathbf{v}-k\mathbf{e}}{2( \mathbf{u}^T\mathbf{v})}.
+$$
+<p>&nbsp;<br>
+
+In solving Eq.&nbsp;<a href="#mjx-eqn-7">(7)</a> great care has to be exercised so as to choose
+those values which make the right-hand largest in order to avoid loss of numerical
+precision. 
+The above steps are then repeated for every transformations till we have a 
+tridiagonal matrix suitable for obtaining the eigenvalues.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec55">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Our Householder transformation has given us a tridiagonal matrix. We discuss here how one can use
+Householder's iterative procedure to obtain the eigenvalues. 
+Let us specialize to a \( 4\times 4  \) matrix.
+The tridiagonal matrix takes the form
+<p>&nbsp;<br>
+$$
+ \mathbf{A} =
+      \left( \begin{array}{cccc} 
+                d_{1} & e_{1} & 0     &  0    \\
+                e_{1} & d_{2} & e_{2} &  0    \\
+                 0    & e_{2} & d_{3} & e_{3} \\
+                 0    &   0   & e_{3} & d_{4} 
+             \end{array} \right).
+$$
+<p>&nbsp;<br>
+
+As a first observation, if any of the elements \( e_{i} \) are zero the
+matrix can be separated into smaller pieces before
+diagonalization. Specifically, if \( e_{1} = 0 \) then \( d_{1} \) is an
+eigenvalue.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec56">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+ Thus, let us introduce  a transformation \( \mathbf{S_{1}} \) which operates like
+<p>&nbsp;<br>
+$$
+ \mathbf{S_{1}} =
+      \left( \begin{array}{cccc} 
+                \cos \theta & 0 & 0 & \sin \theta\\
+                 0       & 0 & 0 &      0      \\
+                   0        & 0 & 0 &      0      \\
+               \cos \theta & 0 & 0 & \cos \theta 
+             \end{array} \right)
+$$
+<p>&nbsp;<br>
+
+<p>
+Then the similarity transformation 
+<p>&nbsp;<br>
+$$
+\mathbf{S_{1}^{T} A  S_{1}} = \mathbf{A'} = 
+      \left( \begin{array}{cccc}
+              d'_{1} & e'_{1} &   0    &   0   \\
+              e'_{1}  & d_{2}  & e_{2}  &   0   \\
+                0    & e_{2}  & d_{3}  & e'{3} \\
+                0    &   0    & e'_{3} & d'_{4}
+             \end{array} \right)
+$$
+<p>&nbsp;<br>
+
+produces a matrix where the primed elements in \( \mathbf{A'} \) have been
+changed by the transformation whereas the unprimed elements are unchanged.
+If we now choose \( \theta \) to
+give the element \( a_{21}^{'} = e^{'}= 0 \) then we have the first
+eigenvalue  \( = a_{11}^{'} = d_{1}^{'} \).
+(This is actually what you are doing in project 2!!)
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec57">Discussion of Householder's method for eigenvalues </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+This procedure can be continued on the remaining three-dimensional
+submatrix for the next eigenvalue. Thus after few transformations    
+we have the wanted diagonal form.
+
+<p>
+What we see here is just a special case of the more general procedure 
+developed by Francis in two articles in 1961 and 1962.
+
+<p>
+The algorithm is based on the so-called <em>QR</em> method (or just <em>QR</em>-algorithm). It follows from a theorem by Schur which states that any square matrix can be written out in terms of an orthogonal matrix \( \mathbf{Q} \) and an upper triangular matrix \( \mathbf{U} \). Historically <em>R</em> was used instead of 
+<em>U</em> since the wording right triangular matrix was first used.
+The method is based on an iterative procedure similar to Jacobi's method, by a succession of
+planar rotations. For a tridiagonal matrix it is simple to carry out in principle, but complicated in detail! We will discuss this in more detail during week 38.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec58">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Our Householder transformation has given us a tridiagonal matrix. We discuss here how one can use
+Jacobi's iterative procedure to obtain the eigenvalues, although it may not be the best approach. 
+Let us specialize to a \( 4\times 4  \) matrix.
+The tridiagonal matrix takes the form
+<p>&nbsp;<br>
+$$
+ \mathbf{A} =
+      \left( \begin{array}{cccc} 
+                d_{1} & e_{1} & 0     &  0    \\
+                e_{1} & d_{2} & e_{2} &  0    \\
+                 0    & e_{2} & d_{3} & e_{3} \\
+                 0    &   0   & e_{3} & d_{4} 
+             \end{array} \right).
+$$
+<p>&nbsp;<br>
+
+As a first observation, if any of the elements \( e_{i} \) are zero the
+matrix can be separated into smaller pieces before
+diagonalization. Specifically, if \( e_{1} = 0 \) then \( d_{1} \) is an
+eigenvalue.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec59">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Thus, let us introduce  a transformation \( \mathbf{S_{1}} \) which operates like
+<p>&nbsp;<br>
+$$
+ \mathbf{S_{1}} =
+      \left( \begin{array}{cccc} 
+                \cos \theta & 0 & 0 & \sin \theta\\
+                 0       & 0 & 0 &      0      \\
+                   0        & 0 & 0 &      0      \\
+               \cos \theta & 0 & 0 & \cos \theta 
+             \end{array} \right)
+$$
+<p>&nbsp;<br>
+
+Then the similarity transformation 
+<p>&nbsp;<br>
+$$
+\mathbf{S_{1}^{T} A  S_{1}} = \mathbf{A'} = 
+      \left( \begin{array}{cccc}
+              d'_{1} & e'_{1} &   0    &   0   \\
+              e'_{1}  & d_{2}  & e_{2}  &   0   \\
+                0    & e_{2}  & d_{3}  & e'{3} \\
+                0    &   0    & e'_{3} & d'_{4}
+             \end{array} \right)
+$$
+<p>&nbsp;<br>
+
+produces a matrix where the primed elements in \( \mathbf{A'} \) have been
+changed by the transformation whereas the unprimed elements are unchanged.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec60">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If we now choose \( \theta \) to
+give the element \( a_{21}^{'} = e^{'}= 0 \) then we have the first
+eigenvalue  \( = a_{11}^{'} = d_{1}^{'} \).
+
+<p>
+This procedure can be continued on the remaining three-dimensional
+submatrix for the next eigenvalue. Thus after few transformations    
+we have the wanted diagonal form.
+
+<p>
+What we see here is just a special case of the more general procedure 
+developed by Francis in two articles in 1961 and 1962. Using Jacobi's method is not very efficient ether.
+
+<p>
+The algorithm is based on the so-called \mathbf{QR} method (or just \mathbf{QR}-algorithm). It follows from a theorem by Schur which states that any square matrix can be written out in terms of an orthogonal matrix \( \hat{Q} \) and an upper triangular matrix \( \hat{U} \). Historically \( R \) was used instead of 
+\( U \) since the wording right triangular matrix was first used.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec61">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The method is based on an iterative procedure similar to Jacobi's method, by a succession of
+planar rotations. For a tridiagonal matrix it is simple to carry out in principle, but complicated in detail!
+
+<p>
+Schur's theorem
+<p>&nbsp;<br>
+$$
+\hat{A} = \hat{Q}\hat{U},
+$$
+<p>&nbsp;<br>
+
+is used to rewrite any square matrix into a unitary matrix times an upper triangular matrix.
+We say that a square matrix is similar to a triangular matrix.
+
+<p>
+Householder's algorithm which we have derived is just a special case of the general Householder algorithm. For a symmetric square matrix we obtain a tridiagonal matrix.
+
+<p>
+There is a corollary to Schur's theorem which states that every Hermitian matrix is unitarily similar to a diagonal matrix.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec62">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+It follows that we can define a new matrix
+<p>&nbsp;<br>
+$$
+\hat{A}\hat{Q} = \hat{Q}\hat{U}\hat{Q},
+$$
+<p>&nbsp;<br>
+
+and multiply from the left with \( \hat{Q}^{-1} \) we get
+<p>&nbsp;<br>
+$$
+\hat{Q}^{-1}\hat{A}\hat{Q} = \hat{B}=\hat{U}\hat{Q},
+$$
+<p>&nbsp;<br>
+
+where the matrix \( \hat{B} \) is a similarity transformation of \( \hat{A} \) and has the same eigenvalues
+as \( \hat{B} \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec63">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Suppose \( \hat{A} \) is the triangular matrix we obtained after the Householder  transformation,
+<p>&nbsp;<br>
+$$
+\hat{A} = \hat{Q}\hat{U},
+$$
+<p>&nbsp;<br>
+
+and multiply from the left with \( \hat{Q}^{-1} \) resulting in
+<p>&nbsp;<br>
+$$
+\hat{Q}^{-1}\hat{A} = \hat{U}.
+$$
+<p>&nbsp;<br>
+
+Suppose that \( \hat{Q} \) consists of a series of planar Jacobi like rotations acting on sub blocks
+of \( \hat{A} \) so that all elements below the diagonal are zeroed out
+<p>&nbsp;<br>
+$$
+\hat{Q}=\hat{R}_{12}\hat{R}_{23}\dots\hat{R}_{n-1,n}.
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec64">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+A transformation of the type \( \hat{R}_{12} \) looks like
+<p>&nbsp;<br>
+$$
+ \hat{R}_{12} =
+      \left( \begin{array}{ccccccccc} 
+                 c&s &0 &0 &0 &  \dots &0 & 0 & 0\\
+                 -s&c &0 &0 &0 &   \dots &0 & 0 & 0\\
+                 0&0 &1 &0 &0 &   \dots &0 & 0 & 0\\
+                 \dots&\dots &\dots &\dots &\dots &\dots      \\
+                 0&0 &0 & 0 & 0 & \dots &1 &0 &0      \\
+                 0&0 &0 & 0 & 0 & \dots &0 &1 &0      \\
+                 0&0 &0 & 0 & 0 & \dots &0 &0 & 1  
+             \end{array} \right)
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec65">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The matrix \( \hat{U} \) takes then the form
+<p>&nbsp;<br>
+$$
+ \hat{U} =
+      \left( \begin{array}{ccccccccc} 
+                 x&x &x &0 &0 &  \dots &0 & 0 & 0\\
+                 0&x &x &x &0 &   \dots &0 & 0 & 0\\
+                 0&0 &x &x &x &   \dots &0 & 0 & 0\\
+                 \dots&\dots &\dots &\dots &\dots &\dots      \\
+                 0&0 &0 & 0 & 0 & \dots &x &x &x      \\
+                 0&0 &0 & 0 & 0 & \dots &0 &x &x      \\
+                 0&0 &0 & 0 & 0 & \dots &0 &0 & x  
+             \end{array} \right)
+$$
+<p>&nbsp;<br>
+
+which has a second superdiagonal.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec66">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have now found \( \hat{Q} \) and \( \hat{U} \) and this allows us to find the matrix \( \hat{B} \)
+which is, due to Schur's theorem,  unitarily similar to a triangular matrix (upper in our case) 
+since we have that 
+<p>&nbsp;<br>
+$$
+\hat{Q}^{-1}\hat{A}\hat{Q} = \hat{B}, 
+$$
+<p>&nbsp;<br>
+
+from Schur's theorem the  matrix \( \hat{B} \) is triangular and the eigenvalues the same as those of 
+\( \hat{A} \) and are given by the diagonal matrix elements of 
+\( \hat{B} \). Why?
+
+<p>
+Our matrix \( \hat{B}=\hat{U}\hat{Q} \).
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec67">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The matrix \( \hat{A} \) is transformed into a tridiagonal form and the last
+step is to transform it into a diagonal matrix giving the eigenvalues
+on the diagonal.
+
+<p>
+The eigenvalues of a  matrix can be obtained using the characteristic polynomial 
+<p>&nbsp;<br>
+$$
+P(\lambda) = det(\lambda\mathbf{I}-\mathbf{A})= \prod_{i=1}^{n}\left(\lambda_i-\lambda\right),
+$$
+<p>&nbsp;<br>
+
+which rewritten in matrix form reads 
+<p>&nbsp;<br>
+$$
+P(\lambda)= \left( \begin{array}{ccccccc} d_1-\lambda & e_1 & 0   & 0    & \dots  &0     & 0 \\
+                                e_1 & d_2-\lambda & e_2 & 0    & \dots  &0     &0 \\
+                                0   & e_2 & d_3-\lambda & e_3  &0       &\dots & 0\\
+                                \dots  & \dots & \dots & \dots  &\dots      &\dots & \dots\\
+                                0   & \dots & \dots & \dots  &\dots       &d_{N_{\mathrm{step}}-2}-\lambda & e_{N_{\mathrm{step}}-1}\\
+                                0   & \dots & \dots & \dots  &\dots       &e_{N_{\mathrm{step}}-1} & d_{N_{\mathrm{step}}-1}-\lambda
+
+             \end{array} \right)
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec68">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We can solve this equation in an iterative manner. 
+We let \( P_k(\lambda) \) be the value of \( k \) subdeterminant of the above matrix of dimension
+\( n\times n \). The polynomial \( P_k(\lambda) \) is clearly a polynomial of degree \( k \).
+Starting with \( P_1(\lambda) \) we have \( P_1(\lambda)=d_1-\lambda \). The next polynomial reads
+\( P_2(\lambda)=(d_2-\lambda)P_1(\lambda)-e_1^2 \). By expanding the determinant for \( P_k(\lambda) \) 
+in terms of the minors of the $n$th column we arrive at the recursion relation
+\[ 
+   P_k(\lambda)=(d_k-\lambda)P_{k-1}(\lambda)-e_{k-1}^2P_{k-2}(\lambda).
+\]
+Together with the starting values \( P_1(\lambda) \) and \( P_2(\lambda) \) and good root searching methods
+we arrive at an efficient computational scheme for finding the roots of \( P_n(\lambda) \). 
+However, for large matrices this algorithm is rather inefficient and time-consuming.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec69">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Basic features with a real symmetric matrix (and normally huge \( n> 10^6 \) and sparse) 
+\( \hat{A} \) of dimension \( n\times n \):
+
+<ul>
+<p><li> Lanczos' algorithm generates a sequence of real tridiagonal matrices \( T_k \) of dimension \( k\times k \) with \( k\le n \), with the property that the extremal eigenvalues of \( T_k \) are progressively better estimates of \( \hat{A} \)' extremal eigenvalues.* The method converges to the extremal eigenvalues.</li>
+<p><li> The similarity transformation is</li> 
+</ul>
+<p>&nbsp;<br>
+$$
+\hat{T}= \hat{Q}^{T}\hat{A}\hat{Q},
+$$
+<p>&nbsp;<br>
+
+with the first vector \( \hat{Q}\hat{e}_1=\hat{q}_1 \).
+
+<p>
+We are going to solve iteratively
+<p>&nbsp;<br>
+$$
+\hat{T}= \hat{Q}^{T}\hat{A}\hat{Q},
+$$
+<p>&nbsp;<br>
+
+with the first vector \( \hat{Q}\hat{e}_1=\hat{q}_1 \).
+We can write out the matrix \( \hat{Q} \) in terms of its column vectors 
+<p>&nbsp;<br>
+$$
+\hat{Q}=\left[\hat{q}_1\hat{q}_2\dots\hat{q}_n\right].
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec70">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The matrix
+<p>&nbsp;<br>
+$$
+\hat{T}= \hat{Q}^{T}\hat{A}\hat{Q},
+$$
+<p>&nbsp;<br>
+
+can be written as 
+<p>&nbsp;<br>
+$$
+    \hat{T} = \left(\begin{array}{cccccc}
+                           \alpha_1& \beta_1 & 0 &\dots   & \dots &0 \\
+                           \beta_1 & \alpha_2 & \beta_2 &0 &\dots &0 \\
+                           0& \beta_2 & \alpha_3 & \beta_3 & \dots &0 \\
+                           \dots& \dots   & \dots &\dots   &\dots & 0 \\
+                           \dots&   &  &\beta_{n-2}  &\alpha_{n-1}& \beta_{n-1} \\
+                           0&  \dots  &\dots  &0   &\beta_{n-1} & \alpha_{n} \\
+                      \end{array} \right)
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec71">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Using the fact that 
+<p>&nbsp;<br>
+$$
+\hat{Q}\hat{Q}^T=\hat{I}, 
+$$
+<p>&nbsp;<br>
+
+we can rewrite 
+<p>&nbsp;<br>
+$$
+\hat{T}= \hat{Q}^{T}\hat{A}\hat{Q},
+$$
+<p>&nbsp;<br>
+
+as 
+<p>&nbsp;<br>
+$$
+\hat{Q}\hat{T}= \hat{A}\hat{Q}.
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec72">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If we equate columns 
+<p>&nbsp;<br>
+$$
+\hat{T} = \left(\begin{array}{cccccc}
+        \alpha_1& \beta_1 & 0 &\dots   & \dots &0 \\
+        \beta_1 & \alpha_2 & \beta_2 &0 &\dots &0 \\
+        0& \beta_2 & \alpha_3 & \beta_3 & \dots &0 \\
+        \dots& \dots   & \dots &\dots   &\dots & 0 \\
+        \dots&   &  &\beta_{n-2}  &\alpha_{n-1}& \beta_{n-1} \\
+        0&  \dots  &\dots  &0   &\beta_{n-1} & \alpha_{n} \\
+        \end{array} \right)
+$$
+<p>&nbsp;<br>
+
+we obtain
+<p>&nbsp;<br>
+$$
+\hat{A}\hat{q}_k=\beta_{k-1}\hat{q}_{k-1}+\alpha_k\hat{q}_k+\beta_k\hat{q}_{k+1}.
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec73">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have thus
+<p>&nbsp;<br>
+$$
+\hat{A}\hat{q}_k=\beta_{k-1}\hat{q}_{k-1}+\alpha_k\hat{q}_k+\beta_k\hat{q}_{k+1},
+$$
+<p>&nbsp;<br>
+
+with \( \beta_0\hat{q}_0=0 \) for \( k=1:n-1 \). Remember that the vectors \( \hat{q}_k \)  are orthornormal and this implies
+<p>&nbsp;<br>
+$$
+\alpha_k=\hat{q}_k^T\hat{A}\hat{q}_k,
+$$
+<p>&nbsp;<br>
+
+and these vectors are called Lanczos vectors.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec74">Eigenvalues with the <em>QR</em> and Lanczos methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have thus
+<p>&nbsp;<br>
+$$
+\hat{A}\hat{q}_k=\beta_{k-1}\hat{q}_{k-1}+\alpha_k\hat{q}_k+\beta_k\hat{q}_{k+1},
+$$
+<p>&nbsp;<br>
+
+with \( \beta_0\hat{q}_0=0 \) for \( k=1:n-1 \) and 
+<p>&nbsp;<br>
+$$
+\alpha_k=\hat{q}_k^T\hat{A}\hat{q}_k.
+$$
+<p>&nbsp;<br>
+
+If 
+<p>&nbsp;<br>
+$$
+\hat{r}_k=(\hat{A}-\alpha_k\hat{I})\hat{q}_k-\beta_{k-1}\hat{q}_{k-1},
+$$
+<p>&nbsp;<br>
+
+is non-zero, then 
+<p>&nbsp;<br>
+$$
+\hat{q}_{k+1}=\hat{r}_{k}/\beta_k,
+$$
+<p>&nbsp;<br>
+
+with \( \beta_k=\pm ||\hat{r}_{k}||_2 \).
+</div>
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.min.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+    // Display navigation controls in the bottom right corner
+    controls: true,
+
+    // Display progress bar (below the horiz. slider)
+    progress: true,
+
+    // Display the page number of the current slide
+    slideNumber: true,
+
+    // Push each slide change to the browser history
+    history: false,
+
+    // Enable keyboard shortcuts for navigation
+    keyboard: true,
+
+    // Enable the slide overview mode
+    overview: true,
+
+    // Vertical centering of slides
+    //center: true,
+    center: false,
+
+    // Enables touch navigation on devices with touch input
+    touch: true,
+
+    // Loop the presentation
+    loop: false,
+
+    // Change the presentation direction to be RTL
+    rtl: false,
+
+    // Turns fragments on and off globally
+    fragments: true,
+
+    // Flags if the presentation is running in an embedded mode,
+    // i.e. contained within a limited portion of the screen
+    embedded: false,
+
+    // Number of milliseconds between automatically proceeding to the
+    // next slide, disabled when set to 0, this value can be overwritten
+    // by using a data-autoslide attribute on your slides
+    autoSlide: 0,
+
+    // Stop auto-sliding after user input
+    autoSlideStoppable: true,
+
+    // Enable slide navigation via mouse wheel
+    mouseWheel: false,
+
+    // Hides the address bar on mobile devices
+    hideAddressBar: true,
+
+    // Opens links in an iframe preview overlay
+    previewLinks: false,
+
+    // Transition style
+    transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Transition speed
+    transitionSpeed: 'default', // default/fast/slow
+
+    // Transition style for full page slide backgrounds
+    backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+
+    // Number of slides away from the current that are visible
+    viewDistance: 3,
+
+    // Parallax background image
+    //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+    // Parallax background size
+    //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+
+    theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+});
+
+Reveal.initialize({
+    dependencies: [
+        // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+        { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+        // Interpret Markdown in <section> elements
+        { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+        // Syntax highlight for <code> elements
+        { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+        // Zoom in and out with Alt+click
+        { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Speaker notes
+        { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Remote control your reveal.js presentation using a touch device
+        //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // MathJax
+        //{ src: 'reveal.js/plugin/math/math.js', async: true }
+    ]
+});
+
+Reveal.initialize({
+
+    // The "normal" size of the presentation, aspect ratio will be preserved
+    // when the presentation is scaled to fit different resolutions. Can be
+    // specified using percentage units.
+    width: 1170,  // original: 960,
+    height: 700,
+
+    // Factor of the display size that should remain empty around the content
+    margin: 0.1,
+
+    // Bounds for smallest/largest possible scale to apply to content
+    minScale: 0.2,
+    maxScale: 1.0
+
+});
+</script>
+
+<!-- begin footer logo
+<div style="position: absolute; bottom: 0px; left: 0; margin-left: 0px">
+<img src="somelogo.png">
+</div>
+     end footer logo -->
+
+
+
+</body>
+</html>

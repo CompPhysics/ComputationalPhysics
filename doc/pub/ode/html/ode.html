@@ -1,0 +1,1930 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Ordinary differential equations">
+
+<title>Slides PHY 480 and PHY 905  Lectures: Ordinary differential equations</title>
+
+
+<style type="text/css">
+/* bloodish style */
+
+body {
+  font-family: Helvetica, Verdana, Arial, Sans-serif;
+  color: #404040;
+  background: #ffffff;
+}
+h1 { font-size: 1.8em;  color: #8A0808; }
+h2 { font-size: 1.6em;  color: #8A0808; }
+h3 { font-size: 1.4em;  color: #8A0808; }
+h4 { color: #8A0808; }
+a { color: #8A0808; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+/* pre style removed because it will interfer with pygments */
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.alert-text-small   { font-size: 80%;  }
+.alert-text-large   { font-size: 130%; }
+.alert-text-normal  { font-size: 90%;  }
+.alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:1px solid #bababa;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #555;
+  background-color: #f8f8f8;
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 55px;
+  width: 75%;
+ }
+.alert-block {padding-top:14px; padding-bottom:14px}
+.alert-block > p, .alert-block > ul {margin-bottom:1em}
+.alert li {margin-top: 1em}
+.alert-block p+p {margin-top:5px}
+.alert-notice { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_notice.png); }
+.alert-summary  { background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_summary.png); }
+.alert-warning { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_warning.png); }
+.alert-question {background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_question.png); }
+
+div { text-align: justify; text-justify: inter-word; }
+</style>
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Differential equations program', 2, None, '___sec0'),
+              ('Differential Equations, chapter 8', 2, None, '___sec1'),
+              ('Differential Equations', 2, None, '___sec2'),
+              ('Differential Equations', 2, None, '___sec3'),
+              ('Differential Equations', 2, None, '___sec4'),
+              ('Differential Equations', 2, None, '___sec5'),
+              ('Differential Equations, Finite Difference',
+               2,
+               None,
+               '___sec6'),
+              ('Differential Equations', 2, None, '___sec7'),
+              ('Differential Equations', 2, None, '___sec8'),
+              ('Differential Equations', 2, None, '___sec9'),
+              ('Differential Equations', 2, None, '___sec10'),
+              ('Differential Equations', 2, None, '___sec11'),
+              ('Differential Equations', 2, None, '___sec12'),
+              ('Differential Equations', 2, None, '___sec13'),
+              ('Differential Equations', 2, None, '___sec14'),
+              ('Differential Equations', 2, None, '___sec15'),
+              ('Differential Equations, Runge-Kutta methods',
+               2,
+               None,
+               '___sec16'),
+              ('Differential Equations, Runge-Kutta methods',
+               2,
+               None,
+               '___sec17'),
+              ('Differential Equations, Runge-Kutta methods',
+               2,
+               None,
+               '___sec18'),
+              ('Differential Equations, Runge-Kutta methods',
+               2,
+               None,
+               '___sec19'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec20'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec21'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec22'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec23'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec24'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec25'),
+              ('The classical pendulum', 2, None, '___sec26'),
+              ('More on the Pendulum', 2, None, '___sec27'),
+              ('More on the Pendulum', 2, None, '___sec28'),
+              ('More on the Pendulum', 2, None, '___sec29'),
+              ('Adaptive methods', 2, None, '___sec30'),
+              ('Adaptive methods', 2, None, '___sec31'),
+              ('Adaptive methods', 2, None, '___sec32'),
+              ('Adaptive methods', 2, None, '___sec33'),
+              ('Adaptive methods, RKF45', 2, None, '___sec34'),
+              ('Adaptive methods, RKF45', 2, None, '___sec35'),
+              ('Solar system code, main program', 2, None, '___sec36'),
+              ('Solar system code, planet class, header file',
+               2,
+               None,
+               '___sec37'),
+              ('Solar system code, planet class', 2, None, '___sec38'),
+              ('Solar system code, solver class', 2, None, '___sec39'),
+              ('Solar system code, solver code', 2, None, '___sec40')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1>Slides PHY 480 and PHY 905  Lectures: Ordinary differential equations</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Phil Duxbury, and Morten Hjorth-Jensen -->
+
+<center>
+<b>Phil Duxbury</b> [1]
+</center>
+
+<center>
+<b>Morten Hjorth-Jensen</b> [2, 3]
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Astronomy, Michigan State University</b></center>
+<center>[2] <b>Department of Physics, University of Oslo</b></center>
+<center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>
+<center><h4>Spring 2016</h4></center> <!-- date -->
+<br>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec0">Differential equations program </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+ <li> Ordinary differential equations, Runge-Kutta method,chapter 8</li>
+ <li> Ordinary differential equations with boundary conditions: one-variable equations to be solved by shooting and Green's function methods, chapter 9</li>
+ <li> We can solve such equations by a finite difference scheme as well, turning the equation into an eigenvalue problem. Still one variable. Done in projects 1 and 2.</li>
+ <li> If we have more than one variable, we need to solve  partial differential equations, see Chapter 10</li>
+</ul>
+
+The material on differential equations is covered by chapters 8, 9 and 10.
+One of the final projects, project 5, deals with ordinary differential equations.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec1">Differential Equations, chapter 8 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The order of the ODE refers to the order of the derivative 
+on the left-hand side in the equation
+$$
+\begin{equation} 
+   \frac{dy}{dt}=f(t,y).
+\label{_auto1}
+\end{equation}
+$$
+
+This equation is of first order and \( f \) is an arbitrary function.
+A second-order equation goes typically like
+$$
+\begin{equation} 
+   \frac{d^2y}{dt^2}=f(t,\frac{dy}{dt},y).
+\label{_auto2}
+\end{equation}
+$$
+
+A well-known second-order equation is Newton's second law
+$$
+\begin{equation} 
+   m\frac{d^2x}{dt^2}=-kx,
+\label{eq:newton}
+\end{equation}
+$$
+
+where \( k \) is the force constant. ODE depend only on one
+variable
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec2">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+partial differential equations like the time-dependent Schr\"odinger
+equation 
+$$
+\begin{equation}
+   i\hbar\frac{\partial \psi({\bf x},t)}{\partial t}=
+   -\frac{\hbar^2}{2m}\left( \frac{\partial^2 \psi({\bf r},t)}{\partial x^2} +
+                            \frac{\partial^2 \psi({\bf r},t)}{\partial y^2}+
+                            \frac{\partial^2 \psi({\bf r},t)}{\partial z^2}\right) + V({\bf x})\psi({\bf x},t),
+\label{_auto3}
+\end{equation}
+$$
+
+may depend on several variables. In certain cases, like the above
+equation, the wave function can be factorized in functions of the separate
+variables, so that the Schroedinger equation 
+can be rewritten in terms of sets of ordinary differential equations.
+These equations are discussed in chapter 10. Involve boundary conditions in addition to initial conditions.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec3">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We distinguish also between linear and non-linear differential
+equation where for example
+$$
+\begin{equation} 
+   \frac{dy}{dt}=g^3(t)y(t),
+\label{_auto4}
+\end{equation}
+$$
+
+is an example of a linear equation, while 
+$$
+\begin{equation} 
+   \frac{dy}{dt}=g^3(t)y(t)-g(t)y^2(t),
+\label{_auto5}
+\end{equation}
+$$
+
+is a non-linear ODE.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec4">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Another concept which dictates the numerical method chosen
+for solving an ODE, is that of initial and boundary conditions.
+To give an example, if we study white dwarf stars or neutron stars
+we will need to solve two coupled first-order differential
+equations, one for the total mass \( m \) and one for the 
+pressure \( P \) as functions of 
+\( \rho \) 
+$$
+\frac{dm}{dr}=4\pi r^{2}\rho (r)/c^2,
+$$
+
+and
+$$
+\frac{dP}{dr}=-\frac{Gm(r)}{r^{2}}\rho (r)/c^2.
+$$
+
+where \( \rho \) is the mass-energy density.
+The initial conditions are dictated by the mass being
+zero at the center of the star, i.e., when \( r=0 \),
+yielding \( m(r=0)=0 \). The other condition is that
+the pressure vanishes at the surface of the star.
+
+<p>
+In the solution of the Schroedinger equation for a particle
+in a potential, we may need to apply boundary conditions as well,
+such as demanding continuity of the wave function and its derivative.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec5">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In many cases it is possible to rewrite a second-order
+differential equation in terms of two first-order differential
+equations. Consider again the case of Newton's second law in Eq.&nbsp;\eqref{eq:newton}. If we define the position \( x(t)=y^{(1)}(t) \) 
+and the velocity \( v(t)=y^{(2)}(t) \) as its derivative 
+$$
+\begin{equation} 
+   \frac{dy^{(1)}(t)}{dt}=\frac{dx(t)}{dt}=y^{(2)}(t),
+\label{_auto6}
+\end{equation}
+$$
+
+we can rewrite Newton's second law as two coupled first-order
+differential equations
+$$
+\begin{equation} 
+   m\frac{dy^{(2)}(t)}{dt}=-kx(t)=-ky^{(1)}(t),
+\label{eq:n1}
+\end{equation}
+$$
+
+and 
+$$
+\begin{equation}
+\frac{dy^{(1)}(t)}{dt}=y^{(2)}(t). \label{eq:n2}
+\end{equation}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec6">Differential Equations, Finite Difference </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+These methods fall under the general class of one-step methods.
+The algoritm is rather simple. 
+Suppose we have an initial value for the function \( y(t) \) given by
+$$
+\begin{equation}
+  y_0=y(t=t_0).
+\label{_auto7}
+\end{equation}
+$$
+
+We are interested in solving a differential equation in a region
+in space \( [a,b] \). We define a step \( h \) by splitting the interval
+in \( N \) sub intervals, so that we have
+$$
+\begin{equation}
+  h=\frac{b-a}{N}.
+\label{_auto8}
+\end{equation}
+$$
+
+With this step and the derivative of \( y \) we can construct the
+next value of the function \( y \) at
+$$
+\begin{equation}
+   y_1=y(t_1=t_0+h),
+\label{_auto9}
+\end{equation}
+$$
+
+and so forth.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec7">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If the function is rather well-behaved in the domain
+\( [a,b] \), we can use a fixed step size. If not, adaptive steps 
+may be needed. Here we concentrate on fixed-step
+methods only. 
+Let us try to generalize the above procedure by writing the 
+step \( y_{i+1} \) in terms of the previous step \( y_i \)
+$$
+\begin{equation}
+  y_{i+1}=y(t=t_i+h)=y(t_i) + h\Delta(t_i,y_i(t_i)) + O(h^{p+1}),
+\label{_auto10}
+\end{equation}
+$$
+
+where \( O(h^{p+1}) \) represents the truncation error. To determine 
+\( \Delta \), we Taylor expand our function \( y \)
+$$
+\begin{equation}
+     y_{i+1}=y(t=t_i+h)=y(t_i) + h(y'(t_i)+\dots +y^{(p)}(t_i)\frac{h^{p-1}}{p!}) + O(h^{p+1}), \label{eq:taylor}
+\end{equation}
+$$
+
+where we will associate the derivatives in the parenthesis with
+$$
+\begin{equation}
+\Delta(t_i,y_i(t_i))=(y'(t_i)+\dots +y^{(p)}(t_i)\frac{h^{p-1}}{p!}). \label{eq:delta}
+\end{equation}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec8">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We define 
+$$
+\begin{equation}
+  y'(t_i)=f(t_i,y_i)   
+\label{_auto11}
+\end{equation}
+$$
+
+and if we truncate \( \Delta \) at the first derivative, we have
+$$
+\begin{equation}
+   y_{i+1}=y(t_i) + hf(t_i,y_i) + O(h^2), \label{eq:euler}
+\end{equation}
+$$
+
+which when complemented with \( t_{i+1}=t_i+h \) forms
+the algorithm for the well-known Euler method. 
+Note that at every step we make an approximation error
+of the order of \( O(h^2) \), however the total error is the sum over all
+steps \( N=(b-a)/h \), yielding thus a global error which goes like
+\( NO(h^2)\approx O(h) \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec9">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+To make Euler's method more precise we can obviously
+decrease \( h \) (increase \( N \)). However, if we are computing the 
+derivative \( f \) numerically  
+by for example the two-steps formula
+$$
+    f'_{2c}(x)= \frac{f(x+h)-f(x)}{h}+O(h),
+$$
+
+we can enter into roundoff error problems when we subtract 
+two almost equal numbers \( f(x+h)-f(x)\approx 0 \). 
+Euler's method is not recommended for precision calculation,
+although it is handy to use in order to get a first
+view on how a solution may look like. As an example,
+consider Newton's equation rewritten in Eqs.&nbsp;\eqref{eq:n1} and \eqref{eq:n2}. We define \( y_0=y^{(1)}(t=0) \)
+an \( v_0=y^{(2)}(t=0) \). The first steps in Newton's equations
+are then
+$$
+\begin{equation} 
+   y^{(1)}_1=y_0+hv_0+O(h^2)
+\label{_auto12}
+\end{equation}
+$$
+
+and 
+$$
+\begin{equation}
+      y^{(2)}_1=v_0-hy_0k/m+O(h^2).
+\label{_auto13}
+\end{equation}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec10">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The Euler method is asymmetric in time, since it uses information about the derivative at the beginning
+of the time interval. This means that we evaluate the position at \( y^{(1)}_1 \) using the velocity
+at \( y^{(2)}_0=v_0 \). A simple variation is to determine \( y^{(1)}_{n+1} \) using the velocity at
+\( y^{(2)}_{n+1} \), that is (in a slightly more generalized form)
+$$
+\begin{equation} 
+   y^{(1)}_{n+1}=y^{(1)}_{n}+h y^{(2)}_{n+1}+O(h^2)
+\label{_auto14}
+\end{equation}
+$$
+
+and 
+$$
+\begin{equation}
+   y^{(2)}_{n+1}=y^{(2)}_{n}+h a_{n}+O(h^2).
+\label{_auto15}
+\end{equation}
+$$
+
+The acceleration \( a_n \) is a function of \( a_n(y^{(1)}_{n}, y^{(2)}_{n},t) \) and needs to be evaluated
+as well. This is the Euler-Cromer method.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec11">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Let us then include the second derivative in our Taylor expansion. 
+We have then
+$$
+\begin{equation}
+ \Delta(t_i,y_i(t_i))=f(t_i)+\frac{h}{2}\frac{df(t_i,y_i)}{dt}+O(h^3).
+\label{_auto16}
+\end{equation}
+$$
+
+The second derivative can be rewritten as
+$$
+\begin{equation}
+  y''=f'=\frac{df}{dt}=\frac{\partial f}{\partial t}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial t}=\frac{\partial f}{\partial t}+\frac{\partial f}{\partial y}f \label{eq:derivatives}
+\end{equation}
+$$
+
+and we can rewrite Eq.\ \eqref{eq:taylor} as 
+$$
+\begin{equation}
+     y_{i+1}=y(t=t_i+h)=y(t_i) +hf(t_i)+
+     \frac{h^2}{2}\left(\frac{\partial f}{\partial t}+\frac{\partial f}{\partial y}f\right) + O(h^{3  }),
+\label{_auto17}
+\end{equation}
+$$
+
+which has a local approximation error \( O(h^{3  }) \) and a global
+error \( O(h^{2}) \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec12">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+These approximations can be generalized by using the derivative \( f \) to
+arbitrary order so that we have
+$$
+\begin{equation}
+     y_{i+1}=y(t=t_i+h)=y(t_i) + h(f(t_i,y_i)+\dots f^{(p-1)}(t_i,y_i)
+     \frac{h^{p-1}}{p!}) + O(h^{p+1}).
+\label{_auto18}
+\end{equation}
+$$
+
+These methods, based on higher-order derivatives, are in general not used
+in numerical computation, since they rely on evaluating 
+derivatives several times. Unless one has analytical expressions
+for these, the risk of roundoff errors is large.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec13">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The most obvious improvements to Euler's and Euler-Cromer's algorithms, 
+avoiding in addition the need for computing a
+second derivative, is the so-called midpoint method. We have then
+$$
+\begin{equation} 
+   y^{(1)}_{n+1}=y^{(1)}_{n}+\frac{h}{2}\left(y^{(2)}_{n+1}+y^{(2)}_{n}\right)+O(h^2)
+\label{_auto19}
+\end{equation}
+$$
+
+and 
+$$
+\begin{equation}
+   y^{(2)}_{n+1}=y^{(2)}_{n}+h a_{n}+O(h^2),
+\label{_auto20}
+\end{equation}
+$$
+
+yielding
+$$
+\begin{equation} 
+   y^{(1)}_{n+1}=y^{(1)}_{n}+hy^{(2)}_{n}+\frac{h^2}{2}a_n+O(h^3)
+\label{_auto21}
+\end{equation}
+$$
+
+implying that the local truncation error in the position is now \( O(h^3) \), whereas Euler's or Euler-Cromer's
+methods have a local error of  \( O(h^2) \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec14">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Thus, the midpoint method yields a global error with 
+second-order accuracy for
+the position and first-order accuracy for the velocity. However, although these methods yield exact results for
+constant accelerations, the error increases in general with each time step.
+
+<p>
+One method that avoids this is the so-called half-step method. Here we define
+$$
+\begin{equation}
+   y^{(2)}_{n+1/2}=y^{(2)}_{n-1/2}+h a_{n}+O(h^2),
+\label{_auto22}
+\end{equation}
+$$
+
+and 
+$$
+\begin{equation}
+   y^{(1)}_{n+1}=y^{(1)}_{n}+hy^{(2)}_{n+1/2} +O(h^2).
+\label{_auto23}
+\end{equation}
+$$
+
+Note that this method needs the calculation of \( y^{(2)}_{1/2} \). This is done using 
+e.g., Euler's method
+$$
+\begin{equation}
+   y^{(2)}_{1/2}=y^{(2)}_{0}+h a_{0}+O(h^2).
+\label{_auto24}
+\end{equation}
+$$
+
+As this method is numerically stable, it is often used instead of Euler's method.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec15">Differential Equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Another method which one may encounter is the Euler-Richardson method
+with
+$$
+\begin{equation}
+   y^{(2)}_{n+1}=y^{(2)}_{n}+h a_{n+1/2}+O(h^2),
+\label{eq:er1}
+\end{equation}
+$$
+
+and 
+$$
+\begin{equation}
+\label{eq:er2}
+   y^{(1)}_{n+1}=y^{(1)}_{n}+hy^{(2)}_{n+1/2} +O(h^2).
+\end{equation}
+$$
+
+The program program2.cpp includes all of the above methods.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec16">Differential Equations, Runge-Kutta methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Runge-Kutta (RK) methods are based on Taylor expansion formulae, but yield
+in general better algorithms for solutions of an ODE.
+The basic philosophy is that it provides an intermediate step in the computation of \( y_{i+1} \).
+
+<p>
+To see this, consider first the following definitions
+$$
+\begin{equation}
+   \frac{dy}{dt}=f(t,y),  
+\label{_auto25}
+\end{equation} 
+$$
+
+and 
+$$
+\begin{equation}
+   y(t)=\int f(t,y) dt,  
+\label{_auto26}
+\end{equation} 
+$$
+
+and 
+$$
+\begin{equation}
+  y_{i+1}=y_i+ \int_{t_i}^{t_{i+1}} f(t,y) dt.
+\label{_auto27}
+\end{equation}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec17">Differential Equations, Runge-Kutta methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+To demonstrate the philosophy behind RK methods, let us consider
+the second-order RK method, RK2.
+The first approximation consists in Taylor expanding \( f(t,y) \)
+around the center of the integration interval \( t_i \) to \( t_{i+1} \),
+that is, at \( t_i+h/2 \), \( h \) being the step.
+Using the midpoint formula for an integral, 
+defining \( y(t_i+h/2) = y_{i+1/2} \) and   
+\( t_i+h/2 = t_{i+1/2} \), we obtain
+$$
+\begin{equation}
+    \int_{t_i}^{t_{i+1}} f(t,y) dt \approx hf(t_{i+1/2},y_{i+1/2}) +O(h^3).
+\label{_auto28}
+\end{equation} 
+$$
+
+This means in turn that we have
+$$
+\begin{equation}
+     y_{i+1}=y_i + hf(t_{i+1/2},y_{i+1/2}) +O(h^3).
+\label{_auto29}
+\end{equation}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec18">Differential Equations, Runge-Kutta methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+However, we do not know the value of   \( y_{i+1/2} \). Here comes thus the next approximation, namely, we use Euler's
+method to approximate \( y_{i+1/2} \). We have then
+$$
+\begin{equation}
+   y_{(i+1/2)}=y_i + \frac{h}{2}\frac{dy}{dt} =
+   y(t_i) + \frac{h}{2}f(t_i,y_i).
+\label{_auto30}
+\end{equation}
+$$
+
+This means that we can define the following algorithm for 
+the second-order Runge-Kutta method, RK2.
+$$
+\begin{equation} 
+  k_1=hf(t_i,y_i),
+\label{_auto31}
+\end{equation} 
+$$
+
+$$
+\begin{equation}
+  k_2=hf(t_{i+1/2},y_i+k_1/2),
+\label{_auto32}
+\end{equation}
+$$
+
+with the final value
+$$
+\begin{equation} 
+  y_{i+i}\approx y_i + k_2 +O(h^3). 
+\label{_auto33}
+\end{equation}
+$$
+
+<p>
+The difference between the previous one-step methods 
+is that we now need an intermediate step in our evaluation,
+namely \( t_i+h/2 = t_{(i+1/2)} \) where we evaluate the derivative \( f \). 
+This involves more operations, but the gain is a better stability
+in the solution.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec19">Differential Equations, Runge-Kutta methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The fourth-order Runge-Kutta, RK4, which we will employ in the solution of various differential equations below, has the following algorithm
+$$
+  k_1=hf(t_i,y_i) \hspace{0.5cm}   k_2=hf(t_i+h/2,y_i+k_1/2)
+$$
+
+$$
+  k_3=hf(t_i+h/2,y_i+k_2/2)\hspace{0.5cm}   k_4=hf(t_i+h,y_i+k_3)
+$$
+
+with the final result
+$$
+  y_{i+1}=y_i +\frac{1}{6}\left( k_1 +2k_2+2k_3+k_4\right).
+$$
+
+Thus, the algorithm consists in first calculating \( k_1 \) 
+with \( t_i \), \( y_1 \) and \( f \) as inputs. Thereafter, we increase the step
+size by \( h/2 \) and calculate \( k_2 \), then \( k_3 \) and finally \( k_4 \). The global error goes as \( O(h^4) \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec20">Simple Example, Block tied to a Wall </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Our first example is the classical case of simple harmonic oscillations, namely a block sliding on a horizontal frictionless surface. The block is tied to a wall with a spring. If the spring is not compressed or stretched too far, the force on the block at a given position \( x \) is 
+$$
+      F=-kx.
+  $$
+
+The negative sign means that the force acts to restore the object to an equilibrium position. Newton's equation of motion for this idealized system is then 
+$$
+    m\frac{d^2x}{dt^2}=-kx,
+  $$
+
+or we could rephrase it as
+$$
+   \frac{d^2x}{dt^2}=-\frac{k}{m}x=-\omega_0^2x,
+\label{eq:newton1}
+  $$
+
+with the angular frequency \( \omega_0^2=k/m \).
+
+<p>
+The above differential equation has the advantage that it can be solved  analytically with solutions on the form
+$$
+     x(t)=Acos(\omega_0t+\nu),
+  $$
+
+where \( A \) is the amplitude and \( \nu \) the phase constant.   This provides in turn an important test for the numerical
+solution and the development of a program for more complicated cases which cannot be solved analytically.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec21">Simple Example, Block tied to a Wall </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+With the position \( x(t) \) and the velocity  \( v(t)=dx/dt \) we can reformulate Newton's equation in the following way
+$$
+      \frac{dx(t)}{dt}=v(t),
+  $$
+
+  and
+$$
+      \frac{dv(t)}{dt}=-\omega_0^2x(t).
+  $$
+
+  We are now going to solve these equations using the Runge-Kutta method
+  to fourth order discussed previously.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec22">Simple Example, Block tied to a Wall </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Before proceeding however, it is important to note that in addition to the exact solution, we have at least two further tests which can be used to check our solution.
+
+<p>
+Since functions like \( cos \) are periodic with a period \( 2\pi \), then the solution \( x(t) \) has also to be periodic. This means that
+$$
+     x(t+T)=x(t),
+$$
+
+with \( T \) the period defined as 
+$$
+     T=\frac{2\pi}{\omega_0}=\frac{2\pi}{\sqrt{k/m}}.
+$$
+
+Observe that \( T \) depends only on \( k/m \) and not on the amplitude of the solution.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec23">Simple Example, Block tied to a Wall </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In addition to the periodicity test, the total energy has also to be conserved.
+
+<p>
+Suppose we choose the initial conditions 
+$$
+     x(t=0)=1\hspace{0.1cm} \mathrm{m}\hspace{1cm} v(t=0)=0\hspace{0.1cm}\mathrm{m/s},
+$$
+
+meaning that block is at rest at \( t=0 \) but with a potential energy
+$$
+    E_0=\frac{1}{2}kx(t=0)^2=\frac{1}{2}k.
+$$
+
+The total energy at any time \( t \) has however to be conserved, meaning that our solution has to fulfil the condition
+$$
+    E_0=\frac{1}{2}kx(t)^2+\frac{1}{2}mv(t)^2.
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec24">Simple Example, Block tied to a Wall </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+An algorithm which implements these equations is included below.
+
+<ul>
+ <li> Choose the initial position and speed, with the most common choice \( v(t=0)=0 \) and some fixed value for the position.</li> 
+ <li> Choose the method you wish to employ in solving the problem.</li>
+ <li> Subdivide the time interval \( [t_i,t_f]  \) into a grid with step size</li>
+</ul>
+
+$$
+	  h=\frac{t_f-t_i}{N},
+      $$
+
+where \( N \) is the number of mesh points. 
+
+<ul>
+ <li> Calculate now the total energy given by</li> 
+</ul>
+
+$$
+    E_0=\frac{1}{2}kx(t=0)^2=\frac{1}{2}k.
+  $$
+
+
+<ul>
+ <li> The Runge-Kutta method is used to obtain \( x_{i+1} \) and \( v_{i+1} \) starting from the previous values \( x_i \) and \( v_i \).</li>
+ <li> When we have computed \( x(v)_{i+1} \) we upgrade  \( t_{i+1}=t_i+h \).</li>
+ <li> This iterative  process continues till we reach the maximum time \( t_f \).</li>
+ <li> The results are checked against the exact solution. Furthermore, one has to check the stability of the numerical solution against the chosen number of mesh points \( N \).</li>      
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec25">Simple Example, Block tied to a Wall </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+To run a c++ program using ipython notebook, you can use the following statements.
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+%%install_ext https://raw.github.com/dragly/cppmagic/master/cppmagic.py
+%%load_ext cppmagic
+
+</script></div>
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+%%cpp 
+/*    This program solves Newton's equation for a block
+      sliding on a horizontal frictionless surface. The block
+      is tied  to a wall with a spring, and Newton's equation
+      takes the form
+           m d^2x/dt^2 =-kx
+      with k the spring tension and m the mass of the block.
+      The angular frequency is omega^2 = k/m and we set it equal
+      1 in this example program. 
+
+      Newton's equation is rewritten as two coupled differential
+      equations, one for the position x  and one for the velocity v
+           dx/dt = v    and
+           dv/dt = -x   when we set k/m=1
+
+      We use therefore a two-dimensional array to represent x and v
+      as functions of t
+      y[0] == x
+      y[1] == v
+      dy[0]/dt = v
+      dy[1]/dt = -x
+
+      The derivatives are calculated by the user defined function 
+      derivatives.
+
+      The user has to specify the initial velocity (usually v_0=0)
+      the number of steps and the initial position. In the programme
+      below we fix the time interval [a,b] to [0,2*pi].
+
+*/ 
+#include <cmath>
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+//#include "lib.h"
+using namespace  std;
+// output file as global variable
+ofstream ofile;
+// function declarations
+void derivatives(double, double *, double *);
+void initialise ( double&, double&, int&);
+void output( double, double *, double);
+void runge_kutta_4(double *, double *, int, double, double, 
+                   double *, void (*)(double, double *, double *));
+
+int main(int argc, char* argv[])
+{
+//  declarations of variables
+  double *y, *dydt, *yout, t, h, tmax, E0;
+  double initial_x, initial_v;
+  int i, number_of_steps, n;
+  char *outfilename;
+  // Read in output file, abort if there are too few command-line arguments
+  if( argc <= 1 ){
+    cout << "Bad Usage: " << argv[0] <<
+      " read also output file on same line" << endl;
+    //    exit(1);
+  }
+  else{
+    outfilename=argv[1];
+  }
+  ofile.open(outfilename);
+  //  this is the number of differential equations  
+  n = 2;     
+  //  allocate space in memory for the arrays containing the derivatives 
+  dydt = new double[n];
+  y = new double[n];
+  yout = new double[n];
+  // read in the initial position, velocity and number of steps 
+  initialise (initial_x, initial_v, number_of_steps);
+  //  setting initial values, step size and max time tmax  
+  h = 4.*acos(-1.)/( (double) number_of_steps);   // the step size     
+  tmax = h*number_of_steps;               // the final time    
+  y[0] = initial_x;                       // initial position  
+  y[1] = initial_v;                       // initial velocity  
+  t=0.;                                   // initial time      
+  E0 = 0.5*y[0]*y[0]+0.5*y[1]*y[1];       // the initial total energy
+  // now we start solving the differential equations using the RK4 method 
+  while (t <= tmax){
+    derivatives(t, y, dydt);   // initial derivatives              
+    runge_kutta_4(y, dydt, n, t, h, yout, derivatives); 
+    for (i = 0; i < n; i++) {
+      y[i] = yout[i];  
+    }
+    t += h;
+    output(t, y, E0);   // write to file 
+  }
+  delete [] y; delete [] dydt; delete [] yout;
+  ofile.close();  // close output file
+  return 0;
+}   //  End of main function 
+
+//     Read in from screen the number of steps,
+//     initial position and initial speed 
+void initialise (double& initial_x, double& initial_v, int& number_of_steps)
+{
+ cout << "Initial position = ";
+ cin >> initial_x;
+ cout << "Initial speed = ";
+ cin >> initial_v;
+ cout << "Number of steps = ";
+ cin >> number_of_steps;
+}  // end of function initialise  
+
+//   this function sets up the derivatives for this special case  
+void derivatives(double t, double *y, double *dydt)
+{
+  dydt[0]=y[1];    // derivative of x 
+  dydt[1]=-y[0]; // derivative of v 
+} // end of function derivatives  
+
+//    function to write out the final results
+void output(double t, double *y, double E0)
+{
+  ofile << setiosflags(ios::showpoint | ios::uppercase);
+  Ofile << setw(15) << setprecision(8) << t;
+  ofile << setw(15) << setprecision(8) << y[0];
+  ofile << setw(15) << setprecision(8) << y[1];
+  ofile << setw(15) << setprecision(8) << cos(t);
+  ofile << setw(15) << setprecision(8) << 
+    0.5*y[0]*y[0]+0.5*y[1]*y[1]-E0 << endl;
+}  // end of function output
+
+/*   This function upgrades a function y (input as a pointer)
+     and returns the result yout, also as a pointer. Note that
+     these variables are declared as arrays.  It also receives as
+     input the starting value for the derivatives in the pointer
+     dydx. It receives also the variable n which represents the 
+     number of differential equations, the step size h and 
+     the initial value of x. It receives also the name of the
+     function *derivs where the given derivative is computed
+*/
+void runge_kutta_4(double *y, double *dydx, int n, double x, double h, 
+                   double *yout, void (*derivs)(double, double *, double *))
+{
+  int i;
+  double      xh,hh,h6; 
+  double *dym, *dyt, *yt;
+  //   allocate space for local vectors   
+  dym = new double [n];
+  dyt =  new double [n];
+  yt =  new double [n];
+  hh = h*0.5;
+  h6 = h/6.;
+  xh = x+hh;
+  for (i = 0; i < n; i++) {
+    yt[i] = y[i]+hh*dydx[i];
+  }
+  (*derivs)(xh,yt,dyt);     // computation of k2, eq. 3.60   
+  for (i = 0; i < n; i++) {
+    yt[i] = y[i]+hh*dyt[i];
+  }
+  (*derivs)(xh,yt,dym); //  computation of k3, eq. 3.61   
+  for (i=0; i < n; i++) {
+    yt[i] = y[i]+h*dym[i];
+    dym[i] += dyt[i];
+  }
+  (*derivs)(x+h,yt,dyt);    // computation of k4, eq. 3.62   
+  //      now we upgrade y in the array yout  
+  for (i = 0; i < n; i++){
+    yout[i] = y[i]+h6*(dydx[i]+dyt[i]+2.0*dym[i]);
+  }
+  delete []dym;
+  delete [] dyt;
+  delete [] yt;
+}       //  end of function Runge-kutta 4  
+
+</script></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec26">The classical pendulum </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The angular equation of motion of the pendulum is given by
+Newton's equation and with no external force it reads 
+$$
+\begin{equation}
+  ml\frac{d^2\theta}{dt^2}+mgsin(\theta)=0,
+\label{_auto34}
+\end{equation}
+$$
+
+with an angular velocity and acceleration given by
+$$
+\begin{equation}
+     v=l\frac{d\theta}{dt},
+\label{_auto35}
+\end{equation}
+$$
+
+and 
+$$
+\begin{equation}
+     a=l\frac{d^2\theta}{dt^2}.
+\label{_auto36}
+\end{equation}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec27">More on the Pendulum </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We do however expect that the motion will gradually come to an end due a viscous drag torque acting on the pendulum. 
+In the presence of the drag, the above equation becomes
+$$
+\begin{equation}
+   ml\frac{d^2\theta}{dt^2}+\nu\frac{d\theta}{dt}  +mgsin(\theta)=0, \label{eq:pend1}
+\end{equation}
+$$
+
+where \( \nu \) is now a positive constant parameterizing the viscosity
+of the medium in question. In order to maintain the motion against
+viscosity, it is necessary to add some external driving force. 
+We choose here a periodic driving force. The last equation becomes then
+$$
+\begin{equation}
+   ml\frac{d^2\theta}{dt^2}+\nu\frac{d\theta}{dt}  +mgsin(\theta)=Asin(\omega t), \label{eq:pend2}
+\end{equation}
+$$
+
+with \( A \) and \( \omega \) two constants representing the amplitude and 
+the angular frequency respectively. The latter is called the driving frequency.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec28">More on the Pendulum </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We define 
+$$
+      \omega_0=\sqrt{g/l},
+  $$
+
+the so-called natural frequency and the new dimensionless quantities
+$$
+      \hat{t}=\omega_0t,
+  $$
+
+with the dimensionless driving frequency
+$$
+     \hat{\omega}=\frac{\omega}{\omega_0},
+  $$
+
+and introducing the quantity \( Q \), called the <em>quality factor</em>,
+$$
+     Q=\frac{mg}{\omega_0\nu},
+  $$
+
+  and the dimensionless amplitude 
+$$
+     \hat{A}=\frac{A}{mg}
+  $$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec29">More on the Pendulum </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have 
+$$
+    \frac{d^2\theta}{d\hat{t}^2}+\frac{1}{Q}\frac{d\theta}{d\hat{t}}  
+     +sin(\theta)=\hat{A}cos(\hat{\omega}\hat{t}).
+$$
+
+This equation can in turn be recast in terms of two coupled first-order differential equations as follows
+$$
+     \frac{d\theta}{d\hat{t}}=\hat{v},
+$$
+
+and
+$$
+     \frac{d\hat{v}}{d\hat{t}}=-\frac{\hat{v}}{Q}-sin(\theta)+\hat{A}cos(\hat{\omega}\hat{t}).
+$$
+
+These are the equations to be solved.  The factor \( Q \) represents the number of oscillations of the undriven system that must occur before  its energy is significantly reduced due to the viscous drag. The  amplitude \( \hat{A} \) is measured in units of the maximum possible  gravitational torque while \( \hat{\omega} \) is the angular frequency of the external torque measured in units of the pendulum's natural frequency.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec30">Adaptive methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In case the function to integrate varies slowly or fast in different integration domains, adaptive methods are normally used. One strategy is always to decrease the step size. As we have seen earlier, this leads to more CPU cycles and may lead to loss or numerical precision. An alternative is to use higher-order RK methods for example. However, this leads again to more cycles, furthermore, there is no guarantee that higher-order leads to an improved error.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec31">Adaptive methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Assume the exact result is \( \tilde{x} \) and that we are using an RKM method. Suppose we run two calculations, one with \( h \) (called \( x_1 \)) and one with \( h/2 \) (called \( x_2 \)). Then
+$$
+\tilde{x}=x_1+Ch^{M+1}+O(h^{M+2}),
+$$
+
+and
+$$
+\tilde{x}=x_2+2C(h/2)^{M+1}+O(h^{M+2}),
+$$
+
+with \( C \) a constant. Note that we calculate two halves in the last equation. We get then
+$$
+|x_1-x_2| = Ch^{M+1}(1-\frac{1}{2^M}).
+$$
+
+yielding
+$$
+C=\frac{|x_1-x_2|}{(1-2^{-M})h^{M+1}}.
+$$
+
+We rewrite
+$$
+\tilde{x}=x_2+\epsilon+O((h)^{M+2}),
+$$
+
+with 
+$$
+\epsilon = \frac{|x_1-x_2|}{2^M-1}.
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec32">Adaptive methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+With RK4 the expressions become
+$$
+\tilde{x}=x_2+\epsilon+O((h)^{6}),
+$$
+
+with
+$$
+\epsilon = \frac{|x_1-x_2|}{15}.
+$$
+
+The estimate is one order higher than the original RK4. But this method is normally rather inefficient since it requires a lot of computations. We solve typically the equation three times at each time step. 
+However, we can compare the estimate \( \epsilon \) with some by us given accuracy \( \xi \). 
+We can then ask the question: what is, with a given \( x_j \) and \( t_j \), the largest possible step size \( \tilde{h} \) that leads to a truncation error below \( \xi \)?
+We want
+$$
+C\tilde{h} \le \xi,
+$$
+
+which leads to 
+$$
+\left(\frac{\tilde{h}}{h}\right)^{M+1}\frac{|x_1-x_2|}{(1-2^{-M})}\le \xi, 
+$$
+
+meaning that
+$$
+\tilde{h}=h\left(\frac{\xi}{\epsilon}\right)^{1+1/M}. 
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec33">Adaptive methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+With 
+$$
+\tilde{h}=h\left(\frac{\xi}{\epsilon}\right)^{1+1/M}. 
+$$
+
+we can design the following algorithm:
+
+<ul>
+ <li> If the two answers are close, keep the approximation to \( h \).</li>
+ <li> If \( \epsilon > \xi \) we need to decrease the step size in the next time step.</li>
+ <li> If \( \epsilon < \xi \) we need to increase the step size in the next time step.</li>
+</ul>
+
+A much used algorithm is the so-called RKF45 which uses a combination of fourth and fifth order RK methods.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec34">Adaptive methods, RKF45 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+At each step, two different approximations for the solution are made and compared. If the
+two answers are in close agreement, the approximation is accepted. If the two answers
+do not agree to a specified accuracy, the step size is reduced. If the answers agree to
+more significant digits than required, the step size is increased.
+Each step requires the use of the following six values:
+$$
+k_1 = h f (t_k , y_k ),
+$$
+
+$$
+k_2 = h f (t_k + \frac{1}{4}h, y_k + \frac{1}{4}k_1) ,
+$$
+
+$$
+k_3 = h f (t_k + \frac{3}{8}h, y_k + \frac{3}{32}k_1 + \frac{9}{32}k_2) ,
+$$
+
+$$
+k_4 = h f (t_k + \frac{12}{13}h, y_k + \frac{1932}{2197}k_1 + \frac{7200}{2197}k_2+\frac{7296}{2197}k_3),
+$$
+
+$$
+k_5 = h f (t_k + h, y_k + \frac{439}{216}k_1 -8k_2+ \frac{3680}{513}k_3+\frac{845}{4104}k_4),
+$$
+
+$$
+k_6 = h f (t_k + \frac{1}{2}h, y_k - \frac{8}{27}k_1 + 2k_2-\frac{3544}{2565}k_2+\frac{1859}{4104}k_4-+\frac{11}{40}k_5).
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec35">Adaptive methods, RKF45 </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+An approximation to the solution of the ODE is made using a Runge-Kutta method of order 4:
+$$
+y_{k+1} = y_k  + \frac{25}{216}k_1+\frac{1408}{2565}k_3 +\frac{2197}{4101}k_4-\frac{1}{5}k_5,
+$$
+
+where the four function values \( k_1 \) , \( k_3 \) , \( k_4 \) , and \( k_5 \) are used. Notice that \( k_2 \) is not used  here.
+A better value for the solution is determined using a Runge-Kutta
+method of order 5:
+$$
+z_{k+1} = y_k + \frac{16}{135}k_1+\frac{6656}{12825}k_3 +\frac{28561}{56430}k_4-\frac{9}{50}k_5+\frac{2}{55}k_6.
+$$
+
+The optimal time step \( \alpha h \) is then determined by
+$$
+\alpha = \left( \frac{\xi h}{2|z_{k+1}-y_{k+1}|}\right)^{1/4},
+$$
+
+with \( \xi \) our defined tolerance.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec36">Solar system code, main program </h2>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #BC7A00">#include &lt;solarsystem.h&gt;</span>
+<span style="color: #BC7A00">#include &lt;planet.h&gt;</span>
+<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
+<span style="color: #BC7A00">#include &lt;armadillo&gt;</span>
+
+
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+
+
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+{
+    solarsystem mysystem;
+
+planet  Sun(<span style="color: #666666">1</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>);
+planet  Mercury(<span style="color: #666666">1.2e-7</span>, <span style="color: #666666">0.39</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">9.96</span>,<span style="color: #666666">0</span>);
+planet  Venus(<span style="color: #666666">2.4e-6</span>, <span style="color: #666666">0.72</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">7.36</span>,<span style="color: #666666">0</span>);
+planet  Earth(<span style="color: #666666">1.5e-6</span>,<span style="color: #666666">1</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">6.26</span>, <span style="color: #666666">0</span>);
+planet  Mars(<span style="color: #666666">3.3e-7</span>, <span style="color: #666666">1.52</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">5.06</span>,<span style="color: #666666">0</span>);
+planet  Jupiter(<span style="color: #666666">9.5e-4</span>, <span style="color: #666666">5.20</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">2.75</span>,<span style="color: #666666">0</span>);
+planet  Saturn(<span style="color: #666666">2.75e-4</span>, <span style="color: #666666">9.54</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">2.04</span>,<span style="color: #666666">0</span>);
+planet  Uranus(<span style="color: #666666">4.4e-5</span>, <span style="color: #666666">19.19</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">1.43</span>,<span style="color: #666666">0</span>);
+planet  Neptune(<span style="color: #666666">5.1e-5</span>, <span style="color: #666666">30.06</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">1.14</span>,<span style="color: #666666">0</span>);
+planet  Pluto(<span style="color: #666666">5.6e-9</span>, <span style="color: #666666">39.53</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0.99</span>,<span style="color: #666666">0</span>);
+
+   mysystem.add(Sun);
+   mysystem.add(Mercury);
+   mysystem.add(Venus);
+   mysystem.add(Earth);
+   mysystem.add(Mars);
+   mysystem.add(Jupiter);
+   mysystem.add(Saturn);
+   mysystem.add(Uranus);
+   mysystem.add(Neptune);
+   mysystem.add(Pluto);
+
+    <span style="color: #B00040">int</span> elements <span style="color: #666666">=</span> mysystem.number_planets;
+    cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;number of element&quot;</span> <span style="color: #666666">&lt;&lt;</span> elements<span style="color: #666666">&lt;&lt;</span> endl;
+
+
+    mysystem.solverRK4(mysystem.all_planets, <span style="color: #666666">0.001</span>, <span style="color: #666666">100</span> );
+
+}
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec37">Solar system code, planet class, header file </h2>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#ifndef PLANET_H</span>
+<span style="color: #BC7A00">#define PLANET_H</span>
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">planet</span>
+{
+<span style="color: #008000; font-weight: bold">public</span><span style="color: #666666">:</span>
+
+    <span style="color: #B00040">double</span> position[<span style="color: #666666">3</span>];
+    <span style="color: #B00040">double</span> velocity[<span style="color: #666666">3</span>];
+    <span style="color: #B00040">double</span> mass;
+
+    planet(<span style="color: #B00040">double</span> mas, <span style="color: #B00040">double</span> x,<span style="color: #B00040">double</span> y, <span style="color: #B00040">double</span> z, <span style="color: #B00040">double</span> vx, <span style="color: #B00040">double</span> vy, <span style="color: #B00040">double</span> vz);
+    planet();
+
+};
+
+<span style="color: #BC7A00">#endif </span><span style="color: #408080; font-style: italic">// PLANET_H</span>
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec38">Solar system code, planet class </h2>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &quot;planet.h&quot;</span>
+
+planet<span style="color: #666666">::</span>planet()
+{
+};
+
+planet<span style="color: #666666">::</span>planet(<span style="color: #B00040">double</span> mas, <span style="color: #B00040">double</span> x,<span style="color: #B00040">double</span> y, <span style="color: #B00040">double</span> z, <span style="color: #B00040">double</span> vx, <span style="color: #B00040">double</span> vy, <span style="color: #B00040">double</span> vz){
+mass <span style="color: #666666">=</span> mas;
+position[<span style="color: #666666">0</span>] <span style="color: #666666">=</span> x;
+position[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> y;
+position[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> z;
+
+velocity[<span style="color: #666666">0</span>] <span style="color: #666666">=</span> vx;
+velocity[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> vy;
+velocity[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> vz;
+};
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec39">Solar system code, solver class </h2>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#ifndef SOLARSYSTEM_H</span>
+<span style="color: #BC7A00">#define SOLARSYSTEM_H</span>
+<span style="color: #BC7A00">#include &lt;armadillo&gt;</span>
+<span style="color: #BC7A00">#include &quot;planet.h&quot;</span>
+<span style="color: #BC7A00">#include &lt;vector&gt;</span>
+
+<span style="color: #008000; font-weight: bold">using</span> std<span style="color: #666666">::</span>vector;
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
+
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">solarsystem</span>
+{
+<span style="color: #008000; font-weight: bold">public</span><span style="color: #666666">:</span>
+
+    <span style="color: #B00040">int</span> number_planets<span style="color: #666666">=0</span>;
+
+    solarsystem();
+    vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> all_planets;
+    <span style="color: #B00040">void</span> <span style="color: #0000FF">add</span>(planet n);
+    <span style="color: #B00040">void</span> <span style="color: #0000FF">print_position</span>(std<span style="color: #666666">::</span>ofstream <span style="color: #666666">&amp;</span>output, std<span style="color: #666666">::</span>ofstream <span style="color: #666666">&amp;</span>output2, vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec);
+    <span style="color: #B00040">void</span> <span style="color: #0000FF">print_position</span>(std<span style="color: #666666">::</span>ofstream <span style="color: #666666">&amp;</span>output, std<span style="color: #666666">::</span>ofstream <span style="color: #666666">&amp;</span>output2, vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec, <span style="color: #B00040">int</span> n);
+    <span style="color: #B00040">void</span> <span style="color: #0000FF">synctroniz</span>(vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec, arma<span style="color: #666666">::</span>mat <span style="color: #666666">&amp;</span>ma);
+    <span style="color: #B00040">void</span> <span style="color: #0000FF">insert_data</span>(vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec, arma<span style="color: #666666">::</span>mat <span style="color: #666666">&amp;</span>ma);
+    <span style="color: #B00040">void</span> <span style="color: #0000FF">solverRK4</span>(vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec, <span style="color: #B00040">double</span> h, <span style="color: #B00040">double</span> tmax);
+
+    <span style="color: #B00040">void</span> <span style="color: #0000FF">solverVERLET</span>(vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec, <span style="color: #B00040">double</span> h, <span style="color: #B00040">double</span> tmax);
+    <span style="color: #408080; font-style: italic">//da main</span>
+
+    <span style="color: #B00040">void</span> <span style="color: #0000FF">sum_matrix</span>(mat <span style="color: #666666">&amp;</span>result, <span style="color: #B00040">double</span> coeff_one, mat <span style="color: #666666">&amp;</span>first, <span style="color: #B00040">double</span> coeff_two, mat <span style="color: #666666">&amp;</span>second, <span style="color: #B00040">int</span> n);
+    <span style="color: #B00040">void</span> <span style="color: #0000FF">printmat</span>(mat <span style="color: #666666">&amp;</span>ma, <span style="color: #B00040">int</span> n);
+    <span style="color: #B00040">double</span> <span style="color: #0000FF">force</span>(<span style="color: #B00040">double</span> x, <span style="color: #B00040">double</span> y, <span style="color: #B00040">double</span> z, <span style="color: #B00040">double</span> Mothers);
+    <span style="color: #B00040">void</span> <span style="color: #0000FF">derivate</span>(mat <span style="color: #666666">&amp;</span>dat, mat <span style="color: #666666">&amp;</span>de, <span style="color: #B00040">int</span> n);
+
+};
+
+<span style="color: #BC7A00">#endif </span><span style="color: #408080; font-style: italic">// SOLARSYSTEM_H</span>
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec40">Solar system code, solver code </h2>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &quot;solarsystem.h&quot;</span>
+<span style="color: #BC7A00">#include &quot;planet.h&quot;</span>
+<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #BC7A00">#include &lt;armadillo&gt;</span>
+<span style="color: #BC7A00">#include &lt;stdio.h&gt;</span>
+<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+
+
+solarsystem<span style="color: #666666">::</span>solarsystem()
+{
+}
+<span style="color: #B00040">void</span> solarsystem<span style="color: #666666">::</span>add(planet n){
+     number_planets<span style="color: #666666">++</span>;
+     all_planets.push_back(n);
+ }
+<span style="color: #B00040">void</span> solarsystem<span style="color: #666666">::</span>print_position(ofstream <span style="color: #666666">&amp;</span>output, ofstream <span style="color: #666666">&amp;</span>output2, vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec){
+    print_position(output, output2, vec, <span style="color: #666666">3</span>);
+}
+
+<span style="color: #B00040">void</span> solarsystem<span style="color: #666666">::</span>print_position(ofstream <span style="color: #666666">&amp;</span>output, ofstream <span style="color: #666666">&amp;</span>output2, vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec, <span style="color: #B00040">int</span> n){
+    <span style="color: #008000; font-weight: bold">if</span>(n<span style="color: #666666">&gt;3</span> <span style="color: #666666">||</span> n<span style="color: #666666">&lt;=0</span>) n<span style="color: #666666">=3</span>;
+    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>vec.size(); i<span style="color: #666666">++</span>){
+        planet <span style="color: #666666">&amp;</span><span style="color: #008000; font-weight: bold">this</span> <span style="color: #666666">=</span> vec[i];
+        std<span style="color: #666666">::</span>cout <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>scientific;
+        <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> j<span style="color: #666666">=0</span>; j<span style="color: #666666">&lt;</span>n;j<span style="color: #666666">++</span>){
+        std<span style="color: #666666">::</span>cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #008000; font-weight: bold">this</span>.position[j] <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;   &quot;</span>;
+        output <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>scientific <span style="color: #666666">&lt;&lt;</span> <span style="color: #008000; font-weight: bold">this</span>.position[j] <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;   &quot;</span>;
+        output2 <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>scientific <span style="color: #666666">&lt;&lt;</span> <span style="color: #008000; font-weight: bold">this</span>.velocity[j] <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;   &quot;</span>;
+        }
+        std<span style="color: #666666">::</span>cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;         &quot;</span>;
+        output  <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;         &quot;</span>;
+        output2  <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;         &quot;</span>;
+       }
+    std<span style="color: #666666">::</span>cout <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>endl;
+    output <span style="color: #666666">&lt;&lt;</span> endl;
+    output2 <span style="color: #666666">&lt;&lt;</span> endl;
+}
+
+<span style="color: #B00040">void</span> solarsystem<span style="color: #666666">::</span>insert_data(vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec, mat <span style="color: #666666">&amp;</span>ma){
+    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>vec.size(); i<span style="color: #666666">++</span>){
+        planet <span style="color: #666666">&amp;</span><span style="color: #008000; font-weight: bold">this</span> <span style="color: #666666">=</span> vec[i];
+        ma(i,<span style="color: #666666">6</span>)<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">this</span>.mass;
+
+        <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> k<span style="color: #666666">=0</span>; k<span style="color: #666666">&lt;3</span>;k<span style="color: #666666">++</span>){
+            ma(i,k)<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">this</span>.position[k];
+            ma(i,k<span style="color: #666666">+3</span>)<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">this</span>.velocity[k];
+        }
+    }
+}
+
+<span style="color: #B00040">void</span> solarsystem<span style="color: #666666">::</span>synctroniz(vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec, mat <span style="color: #666666">&amp;</span>ma){
+    <span style="color: #B00040">int</span> n <span style="color: #666666">=</span> vec.size();
+
+    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> j<span style="color: #666666">=0</span>; j<span style="color: #666666">&lt;</span>n;j<span style="color: #666666">++</span>){
+        planet <span style="color: #666666">&amp;</span><span style="color: #008000; font-weight: bold">this</span> <span style="color: #666666">=</span> vec[j];
+    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> <span style="color: #666666">3</span>; <span style="color: #666666">++</span>i){
+       <span style="color: #008000; font-weight: bold">this</span>.position[i] <span style="color: #666666">=</span>  ma(j,i);
+       <span style="color: #008000; font-weight: bold">this</span>.velocity[i] <span style="color: #666666">=</span> ma(j,i<span style="color: #666666">+3</span>);
+}
+}
+
+}
+
+<span style="color: #B00040">void</span> solarsystem<span style="color: #666666">::</span>solverRK4(vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec, <span style="color: #B00040">double</span> h, <span style="color: #B00040">double</span> tmax){
+
+    mat y_i(number_planets,<span style="color: #666666">7</span>);
+    mat <span style="color: #0000FF">y_i_temp</span>(number_planets,<span style="color: #666666">7</span>);
+    mat <span style="color: #0000FF">k1</span>(number_planets,<span style="color: #666666">7</span>);
+    mat <span style="color: #0000FF">k2</span>(number_planets,<span style="color: #666666">7</span>);
+    mat <span style="color: #0000FF">k3</span>(number_planets,<span style="color: #666666">7</span>);
+    mat <span style="color: #0000FF">k4</span>(number_planets,<span style="color: #666666">7</span>);
+
+    insert_data(vec , y_i);
+    <span style="color: #B00040">double</span> t<span style="color: #666666">=0</span>;
+
+    <span style="color: #408080; font-style: italic">//for print file_________</span>
+    <span style="color: #B00040">char</span> <span style="color: #666666">*</span>filename <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">char</span>[<span style="color: #666666">1000</span>];
+    <span style="color: #B00040">char</span> <span style="color: #666666">*</span>filename2 <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">char</span>[<span style="color: #666666">1000</span>];
+        sprintf(filename, <span style="color: #BA2121">&quot;Planet_position_RK4_%f.dat&quot;</span>, h);
+        sprintf(filename2, <span style="color: #BA2121">&quot;Planet_velocity_RK4_%f.dat&quot;</span>, h);
+
+        ofstream <span style="color: #0000FF">output</span> (filename);
+        ofstream <span style="color: #0000FF">output2</span> (filename2);
+
+        <span style="color: #008000; font-weight: bold">if</span> (output.is_open()){
+            output.precision(<span style="color: #666666">5</span>);
+            output2.precision(<span style="color: #666666">5</span>);
+    <span style="color: #008000; font-weight: bold">while</span>(t<span style="color: #666666">&lt;</span>tmax){
+
+        derivative(y_i, k1, number_planets);
+
+        sum_matrix(y_i_temp, <span style="color: #666666">1</span>, y_i, <span style="color: #666666">0.5*</span>h, k1, number_planets);
+        derivative(y_i_temp, k2, number_planets);
+
+        sum_matrix( y_i_temp, <span style="color: #666666">1</span>,  y_i, <span style="color: #666666">0.5*</span>h,  k2, number_planets);
+
+        derivative( y_i_temp,  k3, number_planets);
+
+        sum_matrix( y_i_temp, <span style="color: #666666">1</span>,  y_i, h,  k3, number_planets);
+
+        derivative( y_i_temp,  k4, number_planets);
+
+        <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> j<span style="color: #666666">=1</span>; j<span style="color: #666666">&lt;</span>number_planets; j<span style="color: #666666">++</span>){
+
+             <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;6</span>; i<span style="color: #666666">++</span>){
+                 y_i(j,i) <span style="color: #666666">=</span> y_i(j,i) <span style="color: #666666">+</span> h<span style="color: #666666">*</span>(k1(j,i) <span style="color: #666666">+</span> <span style="color: #666666">2*</span>k2(j,i) <span style="color: #666666">+</span> <span style="color: #666666">2*</span>k3(j,i) <span style="color: #666666">+</span> k4(j,i))<span style="color: #666666">/6</span>;
+             }
+
+             <span style="color: #408080; font-style: italic">//Syncroniz position and velocity with the classes</span>
+             planet <span style="color: #666666">&amp;</span><span style="color: #008000; font-weight: bold">this</span> <span style="color: #666666">=</span> vec[j];
+             <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;3</span>; i<span style="color: #666666">++</span>){
+             <span style="color: #008000; font-weight: bold">this</span>.position[i] <span style="color: #666666">=</span> y_i(j,i);
+             <span style="color: #008000; font-weight: bold">this</span>.velocity[i] <span style="color: #666666">=</span> y_i(j,i<span style="color: #666666">+3</span>);
+             }
+
+        }
+
+print_position(output, output2, vec, <span style="color: #666666">3</span>);
+
+t<span style="color: #666666">+=</span>h;
+
+}
+
+output.close();
+}
+}
+
+<span style="color: #B00040">void</span> solarsystem<span style="color: #666666">::</span>solverVERLET(vector<span style="color: #666666">&lt;</span>planet<span style="color: #666666">&gt;</span> vec, <span style="color: #B00040">double</span> h, <span style="color: #B00040">double</span> tmax){
+
+    mat y_i(number_planets,<span style="color: #666666">7</span>);
+    mat <span style="color: #0000FF">r_i_dt</span>(number_planets,<span style="color: #666666">7</span>);
+    mat <span style="color: #0000FF">a_dt</span>(number_planets,<span style="color: #666666">7</span>);
+    mat <span style="color: #0000FF">v_dt</span>(number_planets,<span style="color: #666666">7</span>);
+    mat <span style="color: #0000FF">v_dt_2</span>(number_planets,<span style="color: #666666">7</span>);
+
+    insert_data(vec , y_i);
+
+    <span style="color: #B00040">double</span> t<span style="color: #666666">=0</span>,zz <span style="color: #666666">=1</span>;
+
+    <span style="color: #408080; font-style: italic">//print file___________________</span>
+    <span style="color: #B00040">char</span> <span style="color: #666666">*</span>filename <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">char</span>[<span style="color: #666666">1000</span>];
+    <span style="color: #B00040">char</span> <span style="color: #666666">*</span>filename2 <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">char</span>[<span style="color: #666666">1000</span>];
+        sprintf(filename, <span style="color: #BA2121">&quot;Planet_position_Verlet_%f.dat&quot;</span>, h);
+        sprintf(filename2, <span style="color: #BA2121">&quot;Planet_velocity_Verlet_%f.dat&quot;</span>, h);
+
+            ofstream <span style="color: #0000FF">output</span> (filename);
+            ofstream <span style="color: #0000FF">output2</span> (filename2);
+
+            <span style="color: #008000; font-weight: bold">if</span> (output.is_open()){
+            output.precision(<span style="color: #666666">5</span>);
+            output2.precision(<span style="color: #666666">5</span>);
+    <span style="color: #408080; font-style: italic">// end for print</span>
+
+
+    <span style="color: #008000; font-weight: bold">while</span>(t<span style="color: #666666">&lt;</span>tmax){
+
+        derivative(y_i, a_dt, number_planets);
+
+        <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> j<span style="color: #666666">=0</span>; j<span style="color: #666666">&lt;</span>number_planets; j<span style="color: #666666">++</span>){
+
+             <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;3</span>; i<span style="color: #666666">++</span>){
+                 y_i(j,i) <span style="color: #666666">=</span> y_i(j,i) <span style="color: #666666">+</span> h<span style="color: #666666">*</span>y_i(j,i<span style="color: #666666">+3</span>) <span style="color: #666666">+</span> <span style="color: #666666">0.5*</span>h<span style="color: #666666">*</span>h<span style="color: #666666">*</span>a_dt(j,i<span style="color: #666666">+3</span>);
+                 v_dt_2(j,i<span style="color: #666666">+3</span>) <span style="color: #666666">=</span> y_i(j,i<span style="color: #666666">+3</span>) <span style="color: #666666">+</span> <span style="color: #666666">0.5*</span>h<span style="color: #666666">*</span>a_dt(j,i<span style="color: #666666">+3</span>);
+             }
+        }
+
+        derivative(y_i, a_dt, number_planets);
+
+        <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> j<span style="color: #666666">=0</span>; j<span style="color: #666666">&lt;</span>number_planets; j<span style="color: #666666">++</span>){
+
+             <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=3</span>; i<span style="color: #666666">&lt;6</span>; i<span style="color: #666666">++</span>){
+
+                 y_i(j,i) <span style="color: #666666">=</span> v_dt_2(j,i) <span style="color: #666666">+</span> <span style="color: #666666">0.5*</span>h<span style="color: #666666">*</span>a_dt(j,i);
+
+             }
+
+             planet <span style="color: #666666">&amp;</span><span style="color: #008000; font-weight: bold">this</span> <span style="color: #666666">=</span> vec[j];
+             <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;3</span>; i<span style="color: #666666">++</span>){
+             <span style="color: #008000; font-weight: bold">this</span>.position[i] <span style="color: #666666">=</span> y_i(j,i);
+             <span style="color: #008000; font-weight: bold">this</span>.velocity[i] <span style="color: #666666">=</span> y_i(j,i<span style="color: #666666">+3</span>);
+             }
+        }
+print_position(output, output2, vec,<span style="color: #666666">3</span>);
+
+t<span style="color: #666666">+=</span>h;
+
+}
+output.close();
+}
+
+
+}
+<span style="color: #B00040">void</span> solarsystem<span style="color: #666666">::</span>sum_matrix(mat <span style="color: #666666">&amp;</span>result, <span style="color: #B00040">double</span> coeff_one, mat <span style="color: #666666">&amp;</span>first,<span style="color: #B00040">double</span> coeff_two, mat <span style="color: #666666">&amp;</span>second, <span style="color: #B00040">int</span> n){
+    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> j<span style="color: #666666">=0</span>; j<span style="color: #666666">&lt;</span>n; j<span style="color: #666666">++</span>){
+         <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;6</span>; i<span style="color: #666666">++</span>){
+            result(j,i) <span style="color: #666666">=</span> coeff_one<span style="color: #666666">*</span>first(j,i) <span style="color: #666666">+</span> coeff_two<span style="color: #666666">*</span>second(j,i);
+         }
+         result(j,<span style="color: #666666">6</span>) <span style="color: #666666">=</span> first(j,<span style="color: #666666">6</span>);
+
+    }
+}
+<span style="color: #B00040">void</span> solarsystem<span style="color: #666666">::</span>printmat(mat <span style="color: #666666">&amp;</span>ma, <span style="color: #B00040">int</span> n){
+    cout <span style="color: #666666">&lt;&lt;</span> endl;
+    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;7</span>; i<span style="color: #666666">++</span>){
+
+        <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> k<span style="color: #666666">=0</span>; k<span style="color: #666666">&lt;</span>n;k<span style="color: #666666">++</span>){
+            cout <span style="color: #666666">&lt;&lt;</span>  ma(k,i)<span style="color: #666666">&lt;&lt;</span><span style="color: #BA2121">&quot; &quot;</span> ;
+        } cout <span style="color: #666666">&lt;&lt;</span> endl;}
+}
+<span style="color: #B00040">double</span> solarsystem<span style="color: #666666">::</span>force(<span style="color: #B00040">double</span> x, <span style="color: #B00040">double</span> y, <span style="color: #B00040">double</span> z, <span style="color: #B00040">double</span> Mothers){
+    <span style="color: #B00040">double</span> G<span style="color: #666666">=</span>  <span style="color: #666666">4*</span>M_PI<span style="color: #666666">*</span>M_PI;
+    <span style="color: #B00040">double</span> force<span style="color: #666666">=0</span>;
+    <span style="color: #B00040">double</span> distance<span style="color: #666666">=0</span>;
+
+    distance <span style="color: #666666">=</span> x<span style="color: #666666">*</span>x <span style="color: #666666">+</span> y<span style="color: #666666">*</span>y <span style="color: #666666">+</span> z<span style="color: #666666">*</span>z;
+
+    force <span style="color: #666666">=</span> G<span style="color: #666666">*</span>Mothers<span style="color: #666666">/</span>pow(distance, <span style="color: #666666">1.5</span>);
+
+    <span style="color: #008000; font-weight: bold">return</span> force;
+}
+<span style="color: #B00040">void</span> solarsystem<span style="color: #666666">::</span>derivative(mat <span style="color: #666666">&amp;</span>dat, mat <span style="color: #666666">&amp;</span>de, <span style="color: #B00040">int</span> n){
+
+    <span style="color: #B00040">double</span> accelleration_x<span style="color: #666666">=0</span>,accelleration_y<span style="color: #666666">=0</span>,accelleration_z<span style="color: #666666">=0</span>, mod_force;
+    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>){
+
+        accelleration_x<span style="color: #666666">=0</span>,accelleration_y<span style="color: #666666">=0</span>,accelleration_z<span style="color: #666666">=0</span>;
+        <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> j<span style="color: #666666">=0</span>; j<span style="color: #666666">&lt;</span>n; j<span style="color: #666666">++</span>){
+            <span style="color: #008000; font-weight: bold">if</span>(i<span style="color: #666666">!=</span>j){
+
+mod_force <span style="color: #666666">=</span> force(dat(j,<span style="color: #666666">0</span>)<span style="color: #666666">-</span>dat(i,<span style="color: #666666">0</span>),dat(j,<span style="color: #666666">1</span>)<span style="color: #666666">-</span>dat(i,<span style="color: #666666">1</span>) ,dat(j,<span style="color: #666666">2</span>)<span style="color: #666666">-</span>dat(i,<span style="color: #666666">2</span>),  dat(j,<span style="color: #666666">6</span>));
+
+
+accelleration_x <span style="color: #666666">+=</span> mod_force<span style="color: #666666">*</span>(dat(j,<span style="color: #666666">0</span>)<span style="color: #666666">-</span>dat(i,<span style="color: #666666">0</span>));
+accelleration_y <span style="color: #666666">+=</span> mod_force<span style="color: #666666">*</span>(dat(j,<span style="color: #666666">1</span>)<span style="color: #666666">-</span>dat(i,<span style="color: #666666">1</span>));
+accelleration_z <span style="color: #666666">+=</span> mod_force<span style="color: #666666">*</span>(dat(j,<span style="color: #666666">2</span>)<span style="color: #666666">-</span>dat(i,<span style="color: #666666">2</span>));
+}
+}
+        de(i,<span style="color: #666666">3</span>) <span style="color: #666666">=</span> accelleration_x;
+        de(i,<span style="color: #666666">4</span>) <span style="color: #666666">=</span> accelleration_y;
+        de(i,<span style="color: #666666">5</span>) <span style="color: #666666">=</span> accelleration_z;
+
+    }
+
+
+    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>){
+        de(i,<span style="color: #666666">0</span>) <span style="color: #666666">=</span> dat(i,<span style="color: #666666">3</span>); <span style="color: #408080; font-style: italic">//velx</span>
+        de(i,<span style="color: #666666">1</span>) <span style="color: #666666">=</span> dat(i,<span style="color: #666666">4</span>); <span style="color: #408080; font-style: italic">//vely</span>
+        de(i,<span style="color: #666666">2</span>) <span style="color: #666666">=</span> dat(i,<span style="color: #666666">5</span>); <span style="color: #408080; font-style: italic">//velz</span>
+    }
+}
+</pre></div>
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+

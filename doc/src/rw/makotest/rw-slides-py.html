@@ -1,0 +1,329 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Random walks, Brownian motion and the Metropolis algorithm">
+
+<title>Random walks, Brownian motion and the Metropolis algorithm</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 4, 'sections': []}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="rw-slides-py.html">Random walks, Brownian motion and the Metropolis algorithm</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Random walks, Brownian motion and the Metropolis algorithm</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Morten Hjorth-Jensen   Email morten.hjorth-jensen@fys.uio.no -->
+
+<center>
+<b>Morten Hjorth-Jensen   Email morten.hjorth-jensen@fys.uio.no</b> [1, 2]
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Center of Mathematics for Applications, University of Oslo</b></center>
+<center>[2] <b>National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>
+<center><h4>Fall 2015</h4></center> <!-- date -->
+<br>
+<p>
+<!-- potential-jumbotron-button -->
+</div> <!-- end jumbotron -->
+
+<!-- !split -->
+
+<p>
+Include a complete program in the language Python:
+
+<p>
+
+<!-- code=python (!bc pypro) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic"># Demo program</span>
+a <span style="color: #666666">=</span> <span style="color: #666666">1</span>
+b <span style="color: #666666">=</span> <span style="color: #666666">2</span>
+<span style="color: #008000; font-weight: bold">print</span> a <span style="color: #666666">+</span> b
+</pre></div>
+<p>
+Include a portion:
+
+<p>
+<!-- Recall that + is reserved char in regex, must be escaped -->
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">a <span style="color: #666666">=</span> <span style="color: #666666">1</span>
+b <span style="color: #666666">=</span> <span style="color: #666666">2</span>
+</pre></div>
+<p>
+<!-- !split -->
+
+<p>
+Include a C++ program:
+
+<p>
+
+<!-- code=c++ (!bc cpppro) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #BC7A00">#include &quot;armadillo&quot;</span>
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+{
+  <span style="color: #B00040">int</span> dim <span style="color: #666666">=</span> <span style="color: #666666">5</span>;
+  mat W <span style="color: #666666">=</span> zeros<span style="color: #666666">&lt;</span>mat<span style="color: #666666">&gt;</span>(dim,dim);
+  vec wold <span style="color: #666666">=</span> zeros<span style="color: #666666">&lt;</span>mat<span style="color: #666666">&gt;</span>(dim);
+  vec wnew <span style="color: #666666">=</span> zeros<span style="color: #666666">&lt;</span>mat<span style="color: #666666">&gt;</span>(dim);
+  vec eigenvector <span style="color: #666666">=</span> zeros<span style="color: #666666">&lt;</span>mat<span style="color: #666666">&gt;</span>(dim);
+  <span style="color: #408080; font-style: italic">// Initializing the first vector</span>
+  wold(<span style="color: #666666">0</span>) <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>;
+  <span style="color: #408080; font-style: italic">// Setting up the stochastic matrix W</span>
+  W(<span style="color: #666666">0</span>,<span style="color: #666666">0</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>; W(<span style="color: #666666">0</span>,<span style="color: #666666">1</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>; W(<span style="color: #666666">0</span>,<span style="color: #666666">2</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.25</span>; W(<span style="color: #666666">0</span>,<span style="color: #666666">3</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;   W(<span style="color: #666666">0</span>,<span style="color: #666666">4</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;
+  W(<span style="color: #666666">1</span>,<span style="color: #666666">0</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>; W(<span style="color: #666666">1</span>,<span style="color: #666666">1</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>; W(<span style="color: #666666">1</span>,<span style="color: #666666">2</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.25</span>; W(<span style="color: #666666">1</span>,<span style="color: #666666">3</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>; W(<span style="color: #666666">1</span>,<span style="color: #666666">4</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+  W(<span style="color: #666666">2</span>,<span style="color: #666666">0</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>; W(<span style="color: #666666">2</span>,<span style="color: #666666">1</span>) <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>; W(<span style="color: #666666">2</span>,<span style="color: #666666">2</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>; W(<span style="color: #666666">2</span>,<span style="color: #666666">3</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>; W(<span style="color: #666666">2</span>,<span style="color: #666666">4</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;
+  W(<span style="color: #666666">3</span>,<span style="color: #666666">0</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>; W(<span style="color: #666666">3</span>,<span style="color: #666666">1</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>; W(<span style="color: #666666">3</span>,<span style="color: #666666">2</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.25</span>; W(<span style="color: #666666">3</span>,<span style="color: #666666">3</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;  W(<span style="color: #666666">3</span>,<span style="color: #666666">4</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;
+  W(<span style="color: #666666">4</span>,<span style="color: #666666">0</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>; W(<span style="color: #666666">4</span>,<span style="color: #666666">1</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.</span>; W(<span style="color: #666666">4</span>,<span style="color: #666666">2</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.25</span>; W(<span style="color: #666666">4</span>,<span style="color: #666666">3</span>) <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>;  W(<span style="color: #666666">4</span>,<span style="color: #666666">4</span>) <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>;
+  <span style="color: #B00040">double</span> eps <span style="color: #666666">=</span> <span style="color: #666666">1.0E-10</span>;
+  W.print(<span style="color: #BA2121">&quot;W =&quot;</span>);
+  <span style="color: #B00040">double</span> difference  <span style="color: #666666">=</span> norm(wold<span style="color: #666666">-</span>wnew, <span style="color: #666666">2</span>);
+  <span style="color: #B00040">int</span> count <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+  <span style="color: #008000; font-weight: bold">do</span>{
+    <span style="color: #408080; font-style: italic">// Multiplying the old vector with the transition probability</span>
+    count <span style="color: #666666">+=</span> <span style="color: #666666">1</span>;
+    wnew <span style="color: #666666">=</span> W<span style="color: #666666">*</span>wold;
+    difference  <span style="color: #666666">=</span> norm(wold<span style="color: #666666">-</span>wnew, <span style="color: #666666">2</span>);
+    wold <span style="color: #666666">=</span> wnew;
+    cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Iteration number = &quot;</span> <span style="color: #666666">&lt;&lt;</span> count <span style="color: #666666">&lt;&lt;</span> endl;
+    wnew.print(<span style="color: #BA2121">&quot;New vector =&quot;</span>);
+  } <span style="color: #008000; font-weight: bold">while</span>(difference <span style="color: #666666">&gt;</span> eps);
+
+  <span style="color: #408080; font-style: italic">// Getting the eigenvectors and eigenvalues of the stochastic matrix</span>
+  cx_vec eigval;
+  eig_gen(eigval, W);
+  eigval.print(<span style="color: #BA2121">&quot;Eigenvalues=&quot;</span>);
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre></div>
+<p>
+<!-- !split -->
+
+<p>
+Include a C++ program:
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+{
+  a <span style="color: #666666">=</span> <span style="color: #666666">1</span>;
+  b <span style="color: #666666">=</span> <span style="color: #666666">2</span>;
+  cout <span style="color: #666666">&lt;&lt;</span> a <span style="color: #666666">+</span> b;
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre></div>
+<p>
+<!-- !split -->
+
+<p>
+We want to study a physical system which evolves towards equilibrium, from som given  initial conditions.
+Recall the simple example of particles in a box. At an initial time \( t_0 \) all particles are in the left half of the box. Thereafter they are allowed to diffuse into the two halves of the box.
+
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+#!/usr/bin/env python
+from  matplotlib import pyplot as plt
+from math import exp
+import numpy as np
+import random
+
+# initial number of particles
+N0 = 1000
+MaxTime = 10*N0
+values = np.zeros(MaxTime)
+time = np.zeros(MaxTime)
+random.seed()
+# initial number of particles in left half
+nleft = N0
+for t in range (0, MaxTime, 1):
+    if N0*random.random() <= nleft:
+       nleft -= 1
+    else:
+       nleft += 1
+    time[t] = t
+    values[t] = nleft
+
+# Finally we plot the results
+plt.plot(time, values,'b-')
+plt.axis([0,MaxTime, N0/4, N0])
+plt.xlabel('$t$')
+plt.ylabel('$N$')
+plt.title('Number of particles in left half')
+plt.savefig('box.pdf')
+plt.show()
+
+</script></div>
+<p>
+<!-- !split -->
+
+<ul>
+<li> We want to study a physical system which evolves towards equilibrium, from given  initial conditions.</li>
+<li> We start with a PDF \( w(x_0,t_0) \)  and we want to understand how the system evolves with time.</li>
+<li> We want to reach a situation where after a given number of time steps we obtain a steady state. This means that the system reaches its most likely state (equilibrium situation)</li>
+<li> Our PDF is normally a multidimensional object whose normalization constant is impossible to find.</li>
+<li> Analytical calculations from \( w(x,t) \) are not possible.</li>
+<li> To sample directly from from \( w(x,t) \) is not possible/difficult.</li>
+<li> The transition probability \( W \) is also not  known.</li>
+<li> How can we establish that we have reached a steady state?   Sounds impossible!</li>
+</ul>
+
+<b>Use Markov chain Monte Carlo</b>
+
+<p>
+<!-- !split -->
+
+<p>
+A Markov process is a random walk with a selected probability for making a
+move. The new move is independent of the previous history of the system.
+
+<p>
+The Markov process is used repeatedly in Monte Carlo simulations in order to generate
+new random states.
+
+<p>
+The reason for choosing a Markov process is that when it is run for a
+long enough time starting with a random state, we will eventually reach the most likely state of the system.
+
+<p>
+In thermodynamics, this means that after a certain number of Markov processes
+we reach an equilibrium distribution.
+
+<p>
+This mimicks the way a real system reaches
+its most likely state at a given temperature of the surroundings.
+
+<p>
+<!-- !split -->
+
+<p>
+To reach this distribution, the Markov process needs to obey two important conditions, that of
+<b>ergodicity</b> and <b>detailed balance</b>. These conditions impose then constraints on our algorithms
+for accepting or rejecting new random states.
+
+<p>
+The Metropolis algorithm discussed here
+abides to both these constraints.
+
+<p>
+The Metropolis algorithm is widely used in Monte Carlo
+simulations and the understanding of it rests within
+the interpretation of random walks and Markov processes.
+
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2015, Morten Hjorth-Jensen   Email morten.hjorth-jensen@fys.uio.no. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+

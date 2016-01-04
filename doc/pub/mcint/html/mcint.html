@@ -1,0 +1,4382 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Introduction to Monte Carlo methods">
+
+<title>Slides PHY 480 and PHY 905  Lectures: Introduction to Monte Carlo methods</title>
+
+
+<style type="text/css">
+/* bloodish style */
+
+body {
+  font-family: Helvetica, Verdana, Arial, Sans-serif;
+  color: #404040;
+  background: #ffffff;
+}
+h1 { font-size: 1.8em;  color: #8A0808; }
+h2 { font-size: 1.6em;  color: #8A0808; }
+h3 { font-size: 1.4em;  color: #8A0808; }
+h4 { color: #8A0808; }
+a { color: #8A0808; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+/* pre style removed because it will interfer with pygments */
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+.alert-text-small   { font-size: 80%;  }
+.alert-text-large   { font-size: 130%; }
+.alert-text-normal  { font-size: 90%;  }
+.alert {
+  padding:8px 35px 8px 14px; margin-bottom:18px;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  border:1px solid #bababa;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #555;
+  background-color: #f8f8f8;
+  background-position: 10px 5px;
+  background-repeat: no-repeat;
+  background-size: 38px;
+  padding-left: 55px;
+  width: 75%;
+ }
+.alert-block {padding-top:14px; padding-bottom:14px}
+.alert-block > p, .alert-block > ul {margin-bottom:1em}
+.alert li {margin-top: 1em}
+.alert-block p+p {margin-top:5px}
+.alert-notice { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_notice.png); }
+.alert-summary  { background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_summary.png); }
+.alert-warning { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_warning.png); }
+.alert-question {background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_question.png); }
+
+div { text-align: justify; text-justify: inter-word; }
+</style>
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 1,
+ 'sections': [('Monte Carlo methods, plan for the lectures',
+               2,
+               None,
+               '___sec0'),
+              ('Monte Carlo: Enhances algorithmic thinking!',
+               2,
+               None,
+               '___sec1'),
+              ('Domains and probabilities', 2, None, '___sec2'),
+              ('Monte Carlo methods, tossing a dice', 2, None, '___sec3'),
+              ('Stochastic variables', 2, None, '___sec4'),
+              ('Stochastic variables and the main concepts, the discrete case',
+               2,
+               None,
+               '___sec5'),
+              ('Stochastic variables and the main concepts, the continuous case',
+               2,
+               None,
+               '___sec6'),
+              ('The cumulative probability', 2, None, '___sec7'),
+              ('Properties of PDFs', 2, None, '___sec8'),
+              ('Important distributions, the uniform distribution',
+               2,
+               None,
+               '___sec9'),
+              ('Gaussian distribution', 2, None, '___sec10'),
+              ('Exponential distribution', 2, None, '___sec11'),
+              ('Expectation values', 2, None, '___sec12'),
+              ('Stochastic variables and the main concepts, mean values',
+               2,
+               None,
+               '___sec13'),
+              ('Stochastic variables and the main concepts, central moments, the variance',
+               2,
+               None,
+               '___sec14'),
+              ('First Illustration of the Use of Monte-Carlo Methods, integration',
+               2,
+               None,
+               '___sec15'),
+              ('First Illustration of the Use of Monte-Carlo Methods, integration',
+               2,
+               None,
+               '___sec16'),
+              ('First Illustration of the Use of Monte-Carlo Methods, variance in integration',
+               2,
+               None,
+               '___sec17'),
+              ('Monte-Carlo integration, meaning of variance',
+               2,
+               None,
+               '___sec18'),
+              ('First Illustration of the Use of Monte-Carlo Methods, integration',
+               2,
+               None,
+               '___sec19'),
+              ('Important aspects of Monte-Carlo Methods',
+               2,
+               None,
+               '___sec20'),
+              ('Why Monte Carlo integration?', 2, None, '___sec21'),
+              ('Why Monte Carlo integration?', 2, None, '___sec22'),
+              ('Why Monte Carlo integration? Example', 2, None, '___sec23'),
+              ('Monte Carlo integration, simple  example',
+               2,
+               None,
+               '___sec24'),
+              ('Monte Carlo integration, simple  example',
+               2,
+               None,
+               '___sec25'),
+              ('Monte Carlo integration, simple  example',
+               2,
+               None,
+               '___sec26'),
+              ('Monte Carlo integration, simple  example',
+               2,
+               None,
+               '___sec27'),
+              ('Monte Carlo integration, algorithm', 2, None, '___sec28'),
+              ('Monte Carlo integration, simple  example, the program',
+               2,
+               None,
+               '___sec29'),
+              ('Monte Carlo integration, simple  example and the results',
+               2,
+               None,
+               '___sec30'),
+              ('Testing against the trapezoidal rule for a one-dimensional integral',
+               2,
+               None,
+               '___sec31'),
+              ('Second example, particles in a box', 2, None, '___sec32'),
+              ('Second example, particles in a box', 2, None, '___sec33'),
+              ('Second example, particles in a box', 2, None, '___sec34'),
+              ('Second example, particles in a box, discussion',
+               2,
+               None,
+               '___sec35'),
+              ('Second example, particles in a box, discussion',
+               2,
+               None,
+               '___sec36'),
+              ('Simple demonstration using python', 2, None, '___sec37'),
+              ('Brief Summary', 2, None, '___sec38'),
+              ('Probability Distribution Functions', 2, None, '___sec39'),
+              ('Probability Distribution Functions', 2, None, '___sec40'),
+              ('The three famous Probability Distribution Functions',
+               2,
+               None,
+               '___sec41'),
+              ('Probability Distribution Functions, the normal distribution',
+               2,
+               None,
+               '___sec42'),
+              ('Probability Distribution Functions, the normal distribution',
+               2,
+               None,
+               '___sec43'),
+              ('Probability Distribution Functions, the cumulative distribution',
+               2,
+               None,
+               '___sec44'),
+              ('Probability Distribution Functions, other important distribution',
+               2,
+               None,
+               '___sec45'),
+              ('Probability Distribution Functions, the binomial distribution',
+               2,
+               None,
+               '___sec46'),
+              ("Probability Distribution Functions, Poisson's  distribution",
+               2,
+               None,
+               '___sec47'),
+              ("Probability Distribution Functions, Poisson's  distribution",
+               2,
+               None,
+               '___sec48'),
+              ('Meet the  covariance!', 2, None, '___sec49'),
+              ('Meet the  covariance in matrix disguise',
+               2,
+               None,
+               '___sec50'),
+              ('Meet the  covariance, uncorrelated events',
+               2,
+               None,
+               '___sec51'),
+              ('Numerical experiments and the covariance',
+               2,
+               None,
+               '___sec52'),
+              ('Numerical experiments and the covariance',
+               2,
+               None,
+               '___sec53'),
+              ('Numerical experiments and the covariance, actual situations',
+               2,
+               None,
+               '___sec54'),
+              ('Numerical experiments and the covariance, our observables',
+               2,
+               None,
+               '___sec55'),
+              ('Numerical experiments and the covariance, the sample variance',
+               2,
+               None,
+               '___sec56'),
+              ('Numerical experiments and the covariance, central limit theorem',
+               2,
+               None,
+               '___sec57'),
+              ('Definition of Correlation Functions and Standard Deviation',
+               2,
+               None,
+               '___sec58'),
+              ('Definition of Correlation Functions and Standard Deviation',
+               2,
+               None,
+               '___sec59'),
+              ('Definition of Correlation Functions and Standard Deviation',
+               2,
+               None,
+               '___sec60'),
+              ('Definition of Correlation Functions and Standard Deviation',
+               2,
+               None,
+               '___sec61'),
+              ('Definition of Correlation Functions and Standard Deviation, sample variance',
+               2,
+               None,
+               '___sec62'),
+              ('Definition of Correlation Functions and Standard Deviation',
+               2,
+               None,
+               '___sec63'),
+              ('Random Numbers', 1, None, '___sec64'),
+              ('Random Numbers, better name: pseudo random numbers',
+               1,
+               None,
+               '___sec65'),
+              ('Random number generator RNG', 1, None, '___sec66'),
+              ('Random number generator RNG and periodic outputs',
+               1,
+               None,
+               '___sec67'),
+              ('Random number generator RNG and its period',
+               1,
+               None,
+               '___sec68'),
+              ('Random number generator RNG, other examples',
+               1,
+               None,
+               '___sec69'),
+              ('Random number generator RNG, other examples',
+               1,
+               None,
+               '___sec70'),
+              ('Random number generator RNG, RAN0', 1, None, '___sec71'),
+              ('Random number generator RNG, RAN0', 1, None, '___sec72'),
+              ('Random number generator RNG, RAN0', 1, None, '___sec73'),
+              ('Random number generator RNG, RAN0', 1, None, '___sec74'),
+              ('Random number generator RNG, RAN0 code', 1, None, '___sec75'),
+              ('Properties of Selected Random Number Generators',
+               2,
+               None,
+               '___sec76'),
+              ('Properties of Selected Random Number Generators',
+               2,
+               None,
+               '___sec77'),
+              ('Properties of Selected Random Number Generators',
+               2,
+               None,
+               '___sec78'),
+              ('Simple demonstration of RNGs using python',
+               2,
+               None,
+               '___sec79'),
+              ('Properties of Selected Random Number Generators',
+               2,
+               None,
+               '___sec80'),
+              ('Correlation function and which random number generators should I use',
+               2,
+               None,
+               '___sec81'),
+              ('Correlation function and which random number generators should I use',
+               2,
+               None,
+               '___sec82'),
+              ('Which RNG should I use?', 1, None, '___sec83'),
+              ('Improved Monte Carlo Integration', 1, None, '___sec84'),
+              ('Change of Variables', 2, None, '___sec85'),
+              ('Change of Variables', 2, None, '___sec86'),
+              ('Transformed Uniform Distribution', 2, None, '___sec87'),
+              ('Exponential Distribution', 2, None, '___sec88'),
+              ('Exponential Distribution', 2, None, '___sec89'),
+              ('Exponential Distribution', 2, None, '___sec90'),
+              ('Normal Distribution', 2, None, '___sec91'),
+              ('Normal Distribution', 2, None, '___sec92'),
+              ('Normal Distribution', 2, None, '___sec93'),
+              ('Normal Distribution', 2, None, '___sec94'),
+              ('Normal Distribution', 2, None, '___sec95'),
+              ('Importance Sampling', 2, None, '___sec96'),
+              ('Importance Sampling', 2, None, '___sec97'),
+              ('Importance Sampling', 2, None, '___sec98'),
+              ('Importance Sampling', 2, None, '___sec99'),
+              ('Importance Sampling', 2, None, '___sec100'),
+              ('Importance Sampling', 2, None, '___sec101'),
+              ('Importance Sampling, a simple example', 2, None, '___sec102'),
+              ('Importance Sampling, a simple example, a simple plot',
+               2,
+               None,
+               '___sec103'),
+              ('Importance Sampling, a simple example, the code part',
+               2,
+               None,
+               '___sec104'),
+              ('Importance Sampling, a simple example, and the results',
+               2,
+               None,
+               '___sec105'),
+              ('Acceptance-Rejection Method', 2, None, '___sec106'),
+              ('Acceptance-Rejection Method', 2, None, '___sec107'),
+              ('Acceptance-Rejection Method', 2, None, '___sec108'),
+              ('Monte Carlo Integration of Multidimensional Integrals',
+               2,
+               None,
+               '___sec109'),
+              ('Monte Carlo Integration of Multidimensional Integrals',
+               2,
+               None,
+               '___sec110'),
+              ('Monte Carlo Integration of Multidimensional Integrals',
+               2,
+               None,
+               '___sec111'),
+              ('Monte Carlo Integration of Multidimensional Integrals',
+               2,
+               None,
+               '___sec112'),
+              ('Monte Carlo Integration of Multidimensional Integrals',
+               2,
+               None,
+               '___sec113'),
+              ('Brute Force Integration', 2, None, '___sec114'),
+              ('Importance Sampling', 2, None, '___sec115'),
+              ('Python codes', 2, None, '___sec116'),
+              ('Python codes, importance sampling', 2, None, '___sec117'),
+              ('Results', 2, None, '___sec118')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1>Slides PHY 480 and PHY 905  Lectures: Introduction to Monte Carlo methods</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Phil Duxbury, and Morten Hjorth-Jensen -->
+
+<center>
+<b>Phil Duxbury</b> [1]
+</center>
+
+<center>
+<b>Morten Hjorth-Jensen</b> [2, 3]
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Astronomy, Michigan State University</b></center>
+<center>[2] <b>Department of Physics, University of Oslo</b></center>
+<center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>
+<center><h4>Spring 2016</h4></center> <!-- date -->
+<br>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec0">Monte Carlo methods, plan for the lectures </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ol>
+<li> Intro, MC integration and probability distribution functions (PDFs)</li>
+<li> More on integration, PDFs, MC integration and random walks.</li>
+<li> Random walks and statistical physics.</li>
+<li> Statistical physics and the Ising and Potts models</li>
+<li> Quantum Monte Carlo</li>
+</ol>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec1">Monte Carlo: Enhances algorithmic thinking! </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> Be able to generate random variables following a given probability distribution function PDF</li>
+<li> Find a probability distribution function (PDF)</li>
+<li> Sampling rule for accepting a move</li>
+<li> Compute standard deviation and other expectation values</li>
+<li> Techniques for improving errors</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec2">Domains and probabilities  </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Consider the following simple example, namely the tossing of a dice, resulting in  the following possible values
+$$
+\begin{equation*}
+\{2,3,4,5,6,7,8,9,10,11,12\}. 
+\end{equation*}
+$$
+
+These values are called the <em>domain</em>. 
+To this domain we have the corresponding <em>probabilities</em>
+$$
+\begin{equation*}
+\{1/36,2/36/3/36,4/36,5/36,6/36,5/36,4/36,3/36,2/36,1/36\}.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec3">Monte Carlo methods, tossing a dice </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The numbers in the domain are the outcomes of the physical process tossing the dice.
+We cannot tell beforehand whether the outcome is 3 or 5 or any other number in this domain.
+This defines the randomness of the outcome, or unexpectedness or any other synonimous word which
+encompasses the uncertitude of the final outcome.
+
+<p>
+The only thing we can tell beforehand
+is that say the outcome 2 has a certain probability.  
+If our favorite hobby is to  spend an hour every evening throwing dice and 
+registering the sequence of outcomes, we will note that the numbers in the above domain
+$$
+\begin{equation*}
+\{2,3,4,5,6,7,8,9,10,11,12\},
+\end{equation*}
+$$
+
+appear in a random order. After 11 throws the results may look like
+
+$$
+\begin{equation*}
+\{10,8,6,3,6,9,11,8,12,4,5\}. 
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec4">Stochastic variables </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+<b>Random variables are characterized by a domain which contains all possible values that the random value may take. This domain has a corresponding PDF</b>.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec5">Stochastic variables and the main concepts, the discrete case </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+There are two main concepts associated with a stochastic variable. The
+<em>domain</em> is the set \( \mathbb D = \{x\} \) of all accessible values
+the variable can assume, so that \( X \in \mathbb D \). An example of a
+discrete domain is the set of six different numbers that we may get by
+throwing of a dice, \( x\in\{1,\,2,\,3,\,4,\,5,\,6\} \).
+
+<p>
+The <em>probability distribution function (PDF)</em> is a function
+\( p(x) \) on the domain which, in the discrete case, gives us the
+probability or relative frequency with which these values of \( X \)
+occur
+$$
+\begin{equation*}
+p(x) = \mathrm{Prob}(X=x).
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec6">Stochastic variables and the main concepts, the continuous case </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In the continuous case, the PDF does not directly depict the
+actual probability. Instead we define the probability for the
+stochastic variable to assume any value on an infinitesimal interval
+around \( x \) to be \( p(x)dx \). The continuous function \( p(x) \) then gives us
+the <em>density</em> of the probability rather than the probability
+itself. The probability for a stochastic variable to assume any value
+on a non-infinitesimal interval \( [a,\,b] \) is then just the integral
+
+$$
+\begin{equation*}
+\mathrm{Prob}(a\leq X\leq b) = \int_a^b p(x)dx.
+\end{equation*}
+$$
+
+Qualitatively speaking, a stochastic variable represents the values of
+numbers chosen as if by chance from some specified PDF so that the
+selection of a large set of these numbers reproduces this PDF.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec7">The cumulative probability </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Of interest to us is the <em>cumulative probability
+distribution function</em> (<b>CDF</b>), \( P(x) \), which is just the probability
+for a stochastic variable \( X \) to assume any value less than \( x \)
+$$
+\begin{equation*}
+P(x)=\mathrm{Prob(}X\leq x\mathrm{)} =
+\int_{-\infty}^x p(x^{\prime})dx^{\prime}.
+\end{equation*}
+$$
+
+The relation between a CDF and its corresponding PDF is then
+
+$$
+\begin{equation*}
+p(x) = \frac{d}{dx}P(x).
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec8">Properties of PDFs </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+There are two properties that all PDFs must satisfy. The first one is
+positivity (assuming that the PDF is normalized)
+
+$$
+\begin{equation*}
+0 \leq p(x) \leq 1.
+\end{equation*}
+$$
+
+Naturally, it would be nonsensical for any of the values of the domain
+to occur with a probability greater than \( 1 \) or less than \( 0 \). Also,
+the PDF must be normalized. That is, all the probabilities must add up
+to unity.  The probability of &quot;anything&quot; to happen is always unity. For
+both discrete and continuous PDFs, this condition is
+$$
+\begin{align*}
+\sum_{x_i\in\mathbb D} p(x_i) & =  1,\\
+\int_{x\in\mathbb D} p(x)\,dx & =  1.
+\end{align*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec9">Important distributions, the uniform distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The first one
+is the most basic PDF; namely the uniform distribution
+$$
+\begin{equation}
+p(x) = \frac{1}{b-a}\theta(x-a)\theta(b-x),
+\label{eq:unifromPDF}
+\end{equation}
+$$
+
+with
+$$
+\begin{equation*}
+\begin{array}{ll}
+\theta(x)=0 & x < 0 \\
+\theta(x)=\frac{1}{b-a} & \in [a,b].
+\end{array}
+\end{equation*}
+$$
+
+The normal distribution with \( b=1 \) and \( a=0 \) is used to generate random numbers.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec10">Gaussian distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The second one is the Gaussian Distribution
+$$
+\begin{equation*}
+p(x) = \frac{1}{\sigma\sqrt{2\pi}} \exp{(-\frac{(x-\mu)^2}{2\sigma^2})},
+\end{equation*}
+$$
+
+with mean value \( \mu \) and standard deviation \( \sigma \). If \( \mu=0 \) and \( \sigma=1 \), it is normally called the <b>standard normal distribution</b>
+$$
+\begin{equation*}
+p(x) = \frac{1}{\sqrt{2\pi}} \exp{(-\frac{x^2}{2})},
+\end{equation*}
+$$
+
+<p>
+The following simple Python code plots the above distribution for different values of \( \mu \) and \( \sigma \). 
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+import numpy as np
+from math import acos, exp, sqrt
+from  matplotlib import pyplot as plt
+from matplotlib import rc, rcParams
+import matplotlib.units as units
+import matplotlib.ticker as ticker
+rc('text',usetex=True)
+rc('font',**{'family':'serif','serif':['Gaussian distribution']})
+font = {'family' : 'serif',
+        'color'  : 'darkred',
+        'weight' : 'normal',
+        'size'   : 16,
+        }
+pi = acos(-1.0)
+mu0 = 0.0
+sigma0 = 1.0
+mu1= 1.0
+sigma1 = 2.0
+mu2 = 2.0
+sigma2 = 4.0
+
+x = np.linspace(-20.0, 20.0)
+v0 = np.exp(-(x*x-2*x*mu0+mu0*mu0)/(2*sigma0*sigma0))/sqrt(2*pi*sigma0*sigma0)
+v1 = np.exp(-(x*x-2*x*mu1+mu1*mu1)/(2*sigma1*sigma1))/sqrt(2*pi*sigma1*sigma1)
+v2 = np.exp(-(x*x-2*x*mu2+mu2*mu2)/(2*sigma2*sigma2))/sqrt(2*pi*sigma2*sigma2)
+plt.plot(x, v0, 'b-', x, v1, 'r-', x, v2, 'g-')
+plt.title(r'{\bf Gaussian distributions}', fontsize=20)
+plt.text(-19, 0.3, r'Parameters: $\mu = 0$, $\sigma = 1$', fontdict=font)
+plt.text(-19, 0.18, r'Parameters: $\mu = 1$, $\sigma = 2$', fontdict=font)
+plt.text(-19, 0.08, r'Parameters: $\mu = 2$, $\sigma = 4$', fontdict=font)
+plt.xlabel(r'$x$',fontsize=20)
+plt.ylabel(r'$p(x)$ [MeV]',fontsize=20)
+
+# Tweak spacing to prevent clipping of ylabel                                                                       
+plt.subplots_adjust(left=0.15)
+plt.savefig('gaussian.pdf', format='pdf')
+plt.show()
+
+</script></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec11">Exponential distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Another important distribution in science is the exponential distribution
+$$
+\begin{equation*}
+p(x) = \alpha\exp{-(\alpha x)}.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec12">Expectation values </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Let \( h(x) \) be an arbitrary continuous function on the domain of the stochastic
+variable \( X \) whose PDF is \( p(x) \). We define the <em>expectation value</em>
+of \( h \) with respect to \( p \) as follows
+
+$$
+\begin{equation}
+\langle h \rangle_X \equiv \int\! h(x)p(x)\,dx
+\label{eq:expectation_value_of_h_wrt_p}
+\end{equation}
+$$
+
+Whenever the PDF is known implicitly, like in this case, we will drop
+the index \( X \) for clarity.  
+A particularly useful class of special expectation values are the
+<em>moments</em>. The \( n \)-th moment of the PDF \( p \) is defined as
+follows
+$$
+\begin{equation*}
+\langle x^n \rangle \equiv \int\! x^n p(x)\,dx
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec13">Stochastic variables and the main concepts, mean values </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The zero-th moment \( \langle 1\rangle \) is just the normalization condition of
+\( p \). The first moment, \( \langle x\rangle \), is called the <em>mean</em> of \( p \)
+and often denoted by the letter \( \mu \)
+$$
+\begin{equation*}
+\langle x\rangle  = \mu \equiv \int x p(x)dx,
+\end{equation*}
+$$
+
+for a continuous distribution and 
+$$
+\begin{equation*}
+\langle x\rangle  = \mu \equiv \frac{1}{N}\sum_{i=1}^N x_i p(x_i),
+\end{equation*}
+$$
+
+for a discrete distribution. 
+Qualitatively it represents the centroid or the average value of the
+PDF and is therefore simply called the expectation value of \( p(x) \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec14">Stochastic variables and the main concepts, central moments, the variance </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+A special version of the moments is the set of <em>central moments</em>, the n-th central moment defined as
+$$
+\begin{equation*}
+\langle (x-\langle x\rangle )^n\rangle  \equiv \int\! (x-\langle x\rangle)^n p(x)\,dx
+\end{equation*}
+$$
+
+The zero-th and first central moments are both trivial, equal \( 1 \) and
+\( 0 \), respectively. But the second central moment, known as the
+<em>variance</em> of \( p \), is of particular interest. For the stochastic
+variable \( X \), the variance is denoted as \( \sigma^2_X \) or \( \mathrm{Var}(X) \)
+$$
+\begin{align*}
+\sigma^2_X &=\mathrm{Var}(X) =  \langle (x-\langle x\rangle)^2\rangle  =
+\int (x-\langle x\rangle)^2 p(x)dx\\
+& =  \int\left(x^2 - 2 x \langle x\rangle^{2} +\langle x\rangle^2\right)p(x)dx\\
+& =  \langle x^2\rangle\rangle - 2 \langle x\rangle\langle x\rangle + \langle x\rangle^2\\
+& =  \langle x^2 \rangle - \langle x\rangle^2
+\end{align*}
+$$
+
+The square root of the variance, \( \sigma =\sqrt{\langle (x-\langle x\rangle)^2\rangle} \) is called the 
+<b>standard deviation</b> of \( p \). It is the RMS (root-mean-square)
+value of the deviation of the PDF from its mean value, interpreted
+qualitatively as the &quot;spread&quot; of \( p \) around its mean.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec15">First Illustration of the Use of Monte-Carlo Methods, integration </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+With this definition of a random variable and its associated PDF, 
+we attempt now a clarification of the Monte-Carlo strategy by using the 
+evaluation of an integral
+as our example.
+
+<p>
+In discussion on numerical integration  we went through standard methods for evaluating an integral like
+
+$$
+\begin{equation*}
+   I=\int_0^1 f(x)dx\approx \sum_{i=1}^N\omega_if(x_i),
+\end{equation*}
+$$
+
+where \( \omega_i \) are the weights determined by the specific integration method  
+(like Simpson's method) with \( x_i \) the given mesh points. 
+To give you a feeling of how we are to evaluate the above integral using Monte-Carlo,
+we employ here the crudest possible approach. Later on we will present
+slightly more refined approaches.
+This crude approach consists in setting all weights equal 1, \( \omega_i=1 \).  That corresponds to the 
+rectangle method
+$$
+\begin{equation*}
+   I=\int_a^bf(x) dx \approx  h\sum_{i=1}^N f(x_{i-1/2}), 
+\end{equation*}
+$$
+
+where \( f(x_{i-1/2}) \) is the midpoint value of \( f \) for a  given value \( x_{i-1/2} \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec16">First Illustration of the Use of Monte-Carlo Methods, integration </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Setting \( h=(b-a)/N \) where \( b=1 \), \( a=0 \), we can then rewrite the above integral as
+$$
+\begin{equation*}
+   I=\int_0^1 f(x)dx\approx \frac{1}{N}\sum_{i=1}^Nf(x_{i-1/2}),
+\end{equation*}
+$$
+
+where \( x_{i-1/2} \) are the midpoint values of \( x \).
+Introducing the concept of the average of the function \( f \) for a given PDF \( p(x) \) as
+$$
+\begin{equation*}
+   \langle f \rangle = \frac{1}{N}\sum_{i=1}^Nf(x_i)p(x_i),
+\end{equation*}
+$$
+
+and identify \( p(x) \) with the uniform distribution, viz
+$ p(x)=1$ when \( x\in [0,1] \) and zero for all other values of \( x \).
+The integral is 
+is then  the average of \( f \) over the interval \( x \in [0,1] \)
+
+$$
+\begin{equation*}
+      I=\int_0^1 f(x)dx\approx \langle f \rangle. 
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec17">First Illustration of the Use of Monte-Carlo Methods, variance in integration </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In addition to the average value \( \langle f \rangle \) the other 
+important quantity in a  
+Monte-Carlo calculation is the variance \( \sigma^2 \) and 
+the standard deviation \( \sigma \). We define first the variance
+of the integral with \( f \) for a uniform distribution in the interval 
+\( x \in [0,1] \) to be
+$$
+\begin{equation*}
+  \sigma^2_f=\frac{1}{N}\sum_{i=1}^N(f(x_i)-\langle f\rangle)^2p(x_i), 
+\end{equation*}
+$$
+
+and inserting the uniform distribution this yields
+$$
+\begin{equation*}
+  \sigma^2_f=\frac{1}{N}\sum_{i=1}^Nf(x_i)^2- 
+  \left(\frac{1}{N}\sum_{i=1}^Nf(x_i)\right)^2,
+\end{equation*}
+$$
+
+or
+$$
+\begin{equation*}
+  \sigma^2_f=\left(\langle f^2\rangle - 
+                                 \langle f \rangle^2\right).
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec18">Monte-Carlo integration, meaning of variance </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The variance  is nothing but a measure of the extent to
+which \( f \) deviates from its average over the region of integration. 
+The standard deviation is defined as the square root of the variance.
+If we consider the above results for 
+a fixed value of \( N \) as a measurement, 
+we could recalculate the 
+above average and variance for a series of different measurements.
+If each such measumerent produces a set of averages for the 
+integral \( I \) denoted \( \langle f\rangle_l \), we have for \( M \) measurements
+that the integral is given by
+$$
+\begin{equation*}
+   \langle I \rangle_M=\frac{1}{M}\sum_{l=1}^{M}\langle f\rangle_l.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec19">First Illustration of the Use of Monte-Carlo Methods, integration </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If we can consider the probability of 
+correlated events to be zero, we can rewrite
+the variance of these series of measurements as (equating \( M=N \))
+$$
+\begin{equation}
+  \sigma^2_N\approx \frac{1}{N}\left(\langle f^2\rangle - 
+                                 \langle f \rangle^2\right)=\frac{\sigma^2_f}{N}.
+\label{eq:sigmaN}
+\end{equation}
+$$
+
+We note that the standard deviation is proportional to the inverse square root of 
+the number of measurements
+$$
+\begin{equation*}
+   \sigma_N \sim \frac{1}{\sqrt{N}}.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec20">Important aspects of Monte-Carlo Methods </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<em>The aim of Monte Carlo calculations is to have \( \sigma_N \) as small as possible after \( N \) samples. </em>
+The results from one  sample represents, 
+since we are using concepts from statistics,
+a 'measurement'.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec21">Why Monte Carlo integration? </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The scaling in the previous equation 
+is clearly unfavorable compared even with the 
+trapezoidal rule. We saw that the trapezoidal
+rule carries a truncation error 
+$$
+\mathrm{error}\sim O(h^2),
+$$
+
+with \( h \) the step length.
+In general, methods based on a Taylor expansion such as the trapezoidal
+rule or Simpson's rule have a truncation
+error which goes like \( \sim O(h^k) \), with \( k \ge 1 \). 
+Recalling that the step size is defined as \( h=(b-a)/N \), we have an
+error which goes like 
+$$
+\mathrm{error}\sim N^{-k}.  
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec22">Why Monte Carlo integration? </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Monte Carlo integration is more efficient in higher dimensions.
+To see this, let us assume that our integration volume is a hypercube 
+with side \( L \) and dimension \( d \). This cube contains hence 
+\( N=(L/h)^d \) points and therefore the error in the result scales as
+\( N^{-k/d} \) for the traditional methods.
+
+<p>
+The error in the Monte carlo integration is 
+however independent of \( d \) and scales as 
+$$
+\mathrm{error}\sim 1/\sqrt{N}. 
+$$
+
+<b>Always</b>!
+
+<p>
+Comparing this error with that of the traditional methods, shows that
+Monte Carlo integration is more efficient than an  algorithm with error in powers of \( k \)
+when 
+$$
+d>2k.
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec23">Why Monte Carlo integration? Example </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In order to expose this, consider the definition of the quantum mechanical energy
+of a system consisting of 10 particles in three dimensions. The energy is the expectation value 
+of the Hamiltonian \( H \) and reads
+$$
+\begin{equation*}
+    E=\frac{\int d\mathbf{R}_1d\mathbf{R}_2\dots d\mathbf{R}_N
+          \Psi^{\ast}(\mathbf{R_1},\mathbf{R}_2,\dots,\mathbf{R}_N)
+           H(\mathbf{R_1},\mathbf{R}_2,\dots,\mathbf{R}_N)
+           \Psi(\mathbf{R_1},\mathbf{R}_2,\dots,\mathbf{R}_N)}
+         {\int d\mathbf{R}_1d\mathbf{R}_2\dots d\mathbf{R}_N
+         \Psi^{\ast}(\mathbf{R_1},\mathbf{R}_2,\dots,\mathbf{R}_N)
+         \Psi(\mathbf{R_1},\mathbf{R}_2,\dots,\mathbf{R}_N)},
+ \end{equation*}
+$$
+
+where \( \Psi \) is the wave function of the system and \( \mathbf{R}_i \) are the coordinates
+of each particle. If we want to compute the above integral 
+using for example Gaussian quadrature and use for example ten mesh
+points for the ten particles, we need to compute a ten-dimensional integral with a total of \( 10^{30} \) mesh points.
+As an amusing exercise, assume that you have access to today's fastest computer with a theoretical peak 
+capacity of more than one Petaflops, that is \( 10^{15} \) floating point operations per second. Assume also that every mesh point
+corresponds to one floating operation per second. Estimate then the time needed to compute this integral with
+a traditional method like Gaussian quadrature and compare this number with the estimated lifetime of the
+universe, $T\approx 4.7 \times 10^{17}$s. Do you have the patience to wait?
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec24">Monte Carlo integration, simple  example </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We end this first part with a discussion of 
+a brute force Monte Carlo program which integrates
+$$
+\begin{equation*}
+   \int_0^1dx\frac{4}{1+x^2} = \pi,
+\end{equation*}
+$$
+
+where the input is the desired number of Monte Carlo samples.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec25">Monte Carlo integration, simple  example </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+What we are doing is to employ a random number generator to obtain numbers
+\( x_i \) in the interval \( [0,1] \) through a call to one of the 
+library functions
+\( ran0 \), \( ran1 \), \( ran2 \) or \( ran3 \) which generate random numbers in the 
+interval \( x\in [0,1] \). 
+These functions will be discussed in the next section. 
+Here we simply employ these functions in order
+to generate a random variable.
+All random number generators produce pseudo-random  
+numbers in the interval \( [0,1] \) using the so-called uniform
+probability distribution  
+\( p(x) \) defined as
+
+$$
+\begin{equation*}
+  p(x)=\frac{1}{b-a}\Theta(x-a)\Theta(b-x),
+\end{equation*}
+$$
+
+with  \( a=0 \) og \( b=1 \) and where \( \Theta \) is the standard Heaviside 
+function or simply the step function.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec26">Monte Carlo integration, simple  example </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If we have a general  interval  \( [a,b] \), we can still
+use these random number generators through a change of variables
+
+$$
+\begin{equation*}
+   z=a+(b-a)x,
+\end{equation*}
+$$
+
+with \( x \) in the interval  \( x\in [0,1] \).
+</div>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec27">Monte Carlo integration, simple  example </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The present  approach to the above integral is often called 'crude' or 
+'Brute-Force' Monte-Carlo. 
+Later on in this chapter we will study refinements to this
+simple approach. The reason is that a random generator 
+produces 
+points that are distributed
+in a homogenous way in the interval \( [0,1] \).  
+If our function is peaked around certain values of \( x \),  
+we may end 
+up sampling function values where 
+\( f(x) \) is small or near zero. Better schemes which reflect the 
+properties of the function to be integrated are thence needed.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec28">Monte Carlo integration, algorithm </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The algorithm is as follows
+
+<ul>
+  <li> Choose the number of Monte Carlo samples \( N \).</li>
+  <li> Perform a loop over \( N \) and for each step generate a random number \( x_i \) in the interval \( [0,1] \) through a call  to a random number generator.</li>
+  <li> Use this number to evaluate \( f(x_i) \).</li>
+  <li> Evaluate the contributions to the mean value and the standard  deviation for each loop.</li>
+  <li> After \( N \) samples calculate the final mean value and the standard deviation.</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec29">Monte Carlo integration, simple  example, the program </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+
+<span style="color: #408080; font-style: italic">//     Here we define various functions called by the main program  </span>
+<span style="color: #408080; font-style: italic">//     this function defines the function to integrate  </span>
+
+<span style="color: #B00040">double</span> <span style="color: #0000FF">func</span>(<span style="color: #B00040">double</span> x);
+
+<span style="color: #408080; font-style: italic">//     Main function begins here     </span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+{
+     <span style="color: #B00040">int</span> n;
+     <span style="color: #B00040">double</span> MCint, MCintsqr2, fx, Variance; 
+     cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Read in the number of Monte-Carlo samples&quot;</span> <span style="color: #666666">&lt;&lt;</span> endl;
+     cin <span style="color: #666666">&gt;&gt;</span> n;
+     MCint <span style="color: #666666">=</span> MCintsqr2<span style="color: #666666">=0.</span>;
+     <span style="color: #B00040">double</span> invers_period <span style="color: #666666">=</span> <span style="color: #666666">1./</span>RAND_MAX; <span style="color: #408080; font-style: italic">// initialise the random number generator</span>
+     srand(time(<span style="color: #008000">NULL</span>));  <span style="color: #408080; font-style: italic">// This produces the so-called seed in MC jargon</span>
+<span style="color: #408080; font-style: italic">//   evaluate the integral with the a crude Monte-Carlo method    </span>
+     <span style="color: #008000; font-weight: bold">for</span> ( <span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">1</span>;  i <span style="color: #666666">&lt;=</span> n; i<span style="color: #666666">++</span>){
+  <span style="color: #408080; font-style: italic">// obtain a floating number x in [0,1]</span>
+           <span style="color: #B00040">double</span> x <span style="color: #666666">=</span> <span style="color: #B00040">double</span>(rand())<span style="color: #666666">*</span>invers_period; 
+           fx <span style="color: #666666">=</span> func(x);
+           MCint <span style="color: #666666">+=</span> fx;
+           MCintsqr2 <span style="color: #666666">+=</span> fx<span style="color: #666666">*</span>fx;
+     }
+     MCint <span style="color: #666666">=</span> MCint<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n );
+     MCintsqr2 <span style="color: #666666">=</span> MCintsqr2<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n );
+     <span style="color: #B00040">double</span> variance<span style="color: #666666">=</span>MCintsqr2<span style="color: #666666">-</span>MCint<span style="color: #666666">*</span>MCint;
+<span style="color: #408080; font-style: italic">//   final output </span>
+     cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot; variance= &quot;</span> <span style="color: #666666">&lt;&lt;</span> variance <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot; Integral = &quot;</span> <span style="color: #666666">&lt;&lt;</span> MCint <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot; Exact= &quot;</span> <span style="color: #666666">&lt;&lt;</span> M_PI <span style="color: #666666">&lt;&lt;</span> endl;
+}  <span style="color: #408080; font-style: italic">// end of main program </span>
+<span style="color: #408080; font-style: italic">// this function defines the function to integrate </span>
+<span style="color: #B00040">double</span> <span style="color: #0000FF">func</span>(<span style="color: #B00040">double</span> x)
+{
+  <span style="color: #B00040">double</span> value;
+  value <span style="color: #666666">=</span> <span style="color: #666666">4/</span>(<span style="color: #666666">1.+</span>x<span style="color: #666666">*</span>x);
+  <span style="color: #008000; font-weight: bold">return</span> value;
+} <span style="color: #408080; font-style: italic">// end of function to evaluate </span>
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec30">Monte Carlo integration, simple  example and the results </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+<table border="1">
+<thead>
+<tr><td align="center">  \( N \)   </td> <td align="center">  \( I \)  </td> <td align="center">\( \sigma_N \)</td> </tr>
+</thead>
+<tbody>
+<tr><td align="right">   10              </td> <td align="left">   3.10263E+00    </td> <td align="left">   3.98802E-01       </td> </tr>
+<tr><td align="right">   100             </td> <td align="left">   3.02933E+00    </td> <td align="left">   4.04822E-01       </td> </tr>
+<tr><td align="right">   1000            </td> <td align="left">   3.13395E+00    </td> <td align="left">   4.22881E-01       </td> </tr>
+<tr><td align="right">   10000           </td> <td align="left">   3.14195E+00    </td> <td align="left">   4.11195E-01       </td> </tr>
+<tr><td align="right">   100000          </td> <td align="left">   3.14003E+00    </td> <td align="left">   4.14114E-01       </td> </tr>
+<tr><td align="right">   1000000         </td> <td align="left">   3.14213E+00    </td> <td align="left">   4.13838E-01       </td> </tr>
+<tr><td align="right">   10000000        </td> <td align="left">   3.14177E+00    </td> <td align="left">   4.13523E-01       </td> </tr>
+<tr><td align="right">   \( 10^{9} \)    </td> <td align="left">   3.14162E+00    </td> <td align="left">   4.13581E-01       </td> </tr>
+</tbody>
+</table>
+<p>
+We note that as \( N \) increases, the integral itself never reaches more than an agreement 
+to the fourth or fifth digit. The variance also oscillates around its exact value
+\( 4.13581E-01 \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec31">Testing against the trapezoidal rule for a one-dimensional integral </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The following simple Python code, with pertaining plot shows the relative error for the above integral using a brute force Monte Carlo approach and the trapezoidal rule. Running the python code shows that the trapezoidal rule is clearly superior in this case. With importance sampling and multi-dimensional integrals, the Monte Carl method takes over again.
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+from  matplotlib import pyplot as plt
+from math import exp, acos, log10
+import numpy as np
+import random
+
+# function for the trapezoidal rule
+def TrapezoidalRule(a,b,f,n):
+   h = (b-a)/float(n)
+   s = 0
+   x = a
+   for i in range(1,n,1):
+       x = x+h
+       s = s+ f(x)
+   s = 0.5*(f(a)+f(b))+s
+   return h*s
+# function to perform the Monte Carlo calculations
+def MonteCarloIntegration(f,n):
+    sum = 0
+# Define the seed for the rng
+    random.seed()    
+    for i in range (1, n, 1):
+        x = random.random()
+        sum = sum +f(x)
+    return sum/n
+
+#  function to compute
+def function(x):
+    return 4/(1+x*x)
+
+# Integration limits for the Trapezoidal rule
+a = 0.0; b = 1.0
+exact = acos(-1.0)
+# set up the arrays for plotting the relative error
+log10n = np.zeros(6); Trapez = np.zeros(6); MCint = np.zeros(6);
+# find the relative error as function of integration points
+for i in range(1, 6):
+    npts = 10**(i+1)
+    log10n[i] = log10(npts)
+    Trapez[i] = log10(abs((TrapezoidalRule(a,b,function,npts)-exact)/exact))
+    MCint[i] = log10(abs((MonteCarloIntegration(function,npts)-exact)/exact))
+plt.plot(log10n, Trapez ,'b-',log10n, MCint,'g-')
+plt.axis([1,6,-14.0, 0.0])
+plt.xlabel('$\log_{10}(n)$')
+plt.ylabel('Relative error')
+plt.title('Relative errors for Monte Carlo integration and Trapezoidal rule')
+plt.legend(['Trapezoidal rule', 'Brute force Monte Carlo integration'], loc='best') 
+plt.savefig('mcintegration.pdf')
+plt.show()
+
+
+</script></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec32">Second example, particles in a box </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+We give here an example of how a system evolves towards 
+a well defined equilibrium state.
+
+<p>
+Consider a box divided into two equal halves separated by a wall.
+At the beginning, time \( t=0 \), there are \( N \) particles on the left
+side. A small hole in the wall is then opened and one particle
+can pass through the hole per unit time.
+
+<p>
+After some time the system reaches its equilibrium state with
+equally many particles in both halves, \( N/2 \). 
+Instead of determining complicated initial conditions for a system 
+of \( N \) particles, we model the system by a simple statistical model. 
+In order to simulate this system, which may consist of \( N \gg 1 \) particles,
+we assume that all particles in the left half have equal probabilities
+of going to the right half. 
+We introduce the label \( n_l \) to denote the 
+ number of particles at every time on the left side, and \( n_r=N-n_l \) for those
+on the right side.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec33">Second example, particles in a box </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The probability for a move to the right during a time step  \( \Delta t \)
+is \( n_l/N \). The algorithm for simulating this problem may then look
+like this
+
+<ul>
+  <li> Choose the number of particles \( N \).</li>
+</ul>
+
+  b* Make a loop over time, where the maximum time (or maximum number of steps) should be larger than the number of particles \( N \).
+
+<ul>
+  <li> For every time step \( \Delta t \) there is a probability \( n_l/N \)  for a move to the right. Compare this probability with a random number \( x \).</li>
+  <li> If $ x \le n_l/N$, decrease the number of particles in the left half by one, i.e., \( n_l=n_l-1 \). Else, move a particle from the  right half to the left, i.e., \( n_l=n_l+1 \).</li>
+  <li> Increase the time by one unit (the external loop).</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec34">Second example, particles in a box </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In this case, a Monte Carlo sample corresponds to one time unit
+\( \Delta t \).
+
+<p>
+The following simple C/C++-program illustrates this model.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// Particles in a box</span>
+<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #BC7A00">#include &lt;fstream&gt;</span>
+<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
+<span style="color: #BC7A00">#include &quot;lib.h&quot;</span>
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span>  std;
+
+ofstream ofile;
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
+{
+  <span style="color: #B00040">char</span> <span style="color: #666666">*</span>outfilename;
+  <span style="color: #B00040">int</span> initial_n_particles, max_time, time, random_n, nleft; 
+  <span style="color: #B00040">long</span> idum;
+  <span style="color: #408080; font-style: italic">// Read in output file, abort if there are too few command-line arguments</span>
+  <span style="color: #008000; font-weight: bold">if</span>( argc <span style="color: #666666">&lt;=</span> <span style="color: #666666">1</span> ){
+    cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Bad Usage: &quot;</span> <span style="color: #666666">&lt;&lt;</span> argv[<span style="color: #666666">0</span>] <span style="color: #666666">&lt;&lt;</span>
+      <span style="color: #BA2121">&quot; read also output file on same line&quot;</span> <span style="color: #666666">&lt;&lt;</span> endl;
+    exit(<span style="color: #666666">1</span>);
+  }
+  <span style="color: #008000; font-weight: bold">else</span>{
+    outfilename<span style="color: #666666">=</span>argv[<span style="color: #666666">1</span>];
+  }
+  ofile.open(outfilename);
+  <span style="color: #408080; font-style: italic">// Read in data </span>
+  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Initial number of particles = &quot;</span> <span style="color: #666666">&lt;&lt;</span> endl ;
+  cin <span style="color: #666666">&gt;&gt;</span> initial_n_particles;
+  <span style="color: #408080; font-style: italic">// setup of initial conditions</span>
+  nleft <span style="color: #666666">=</span> initial_n_particles;
+  max_time <span style="color: #666666">=</span> <span style="color: #666666">10*</span>initial_n_particles;
+  idum <span style="color: #666666">=</span> <span style="color: #666666">-1</span>;
+  <span style="color: #408080; font-style: italic">// sampling over number of particles</span>
+  <span style="color: #008000; font-weight: bold">for</span>( time<span style="color: #666666">=0</span>; time <span style="color: #666666">&lt;=</span> max_time; time<span style="color: #666666">++</span>){
+    random_n <span style="color: #666666">=</span> ((<span style="color: #B00040">int</span>) initial_n_particles<span style="color: #666666">*</span>ran0(<span style="color: #666666">&amp;</span>idum));
+    <span style="color: #008000; font-weight: bold">if</span> ( random_n <span style="color: #666666">&lt;=</span> nleft){
+      nleft <span style="color: #666666">-=</span> <span style="color: #666666">1</span>;
+    }
+    <span style="color: #008000; font-weight: bold">else</span>{
+      nleft <span style="color: #666666">+=</span> <span style="color: #666666">1</span>;
+    }
+    ofile <span style="color: #666666">&lt;&lt;</span> setiosflags(ios<span style="color: #666666">::</span>showpoint <span style="color: #666666">|</span> ios<span style="color: #666666">::</span>uppercase);
+    ofile <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">15</span>) <span style="color: #666666">&lt;&lt;</span> time;
+    ofile <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">15</span>) <span style="color: #666666">&lt;&lt;</span> nleft <span style="color: #666666">&lt;&lt;</span> endl;
+  }
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>; 
+} <span style="color: #408080; font-style: italic">// end main function</span>
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec35">Second example, particles in a box, discussion </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If we denote \( \langle n_l \rangle  \) as the number of particles in the left 
+half as a time average after <em>equilibrium is reached</em>, 
+we can define the standard 
+deviation as
+
+$$
+\begin{equation}
+   \sigma =\sqrt{\langle n_l^2 \rangle-\langle n_l \rangle^2}.
+\label{_auto1}
+\end{equation}
+$$
+
+<p>
+This problem has also an analytic solution to which we can compare
+our numerical simulation.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec36">Second example, particles in a box, discussion </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If \( n_l(t) \) is the number of particles in the left half after 
+\( t \) moves, the change in \( n_l(t) \) in the time interval \( \Delta t \)
+is
+
+$$
+\begin{equation*}
+    \Delta n=\left(\frac{N-n_l(t)}{N}-\frac{n_l(t)}{N}\right)\Delta t,
+\end{equation*}
+$$
+
+and assuming that \( n_l \) and \( t \) are continuous variables we arrive at
+$$
+\begin{equation*}
+\frac{dn_l(t)}{dt}=1-\frac{2n_l(t)}{N},
+\end{equation*}
+$$
+
+whose solution is
+$$
+\begin{equation*}
+   n_l(t)=\frac{N}{2}\left(1+e^{-2t/N}\right),
+\end{equation*}
+$$
+
+with the initial condition \( n_l(t=0)=N \). Note that we have assumed \( n \) to be a continuous variable. Obviously, particles are discrete objects.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec37">Simple demonstration using python </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The following simple Python code implements the above algorithm for particles in a box and plots the final number of particles in each part of the box.
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+#!/usr/bin/env python
+from  matplotlib import pyplot as plt
+from math import exp
+import numpy as np
+import random
+
+# initial number of particles
+N0 = 1000
+MaxTime = 10*N0
+values = np.zeros(MaxTime)   
+time = np.zeros(MaxTime)   
+random.seed() 
+# initial number of particles in left half
+nleft = N0
+for t in range (0, MaxTime, 1):
+    if N0*random.random() <= nleft: 
+       nleft -= 1
+    else: 
+       nleft += 1
+    time[t] = t
+    values[t] = nleft
+
+# Finally we plot the results
+plt.plot(time, values,'b-')
+plt.axis([0,MaxTime, N0/4, N0])
+plt.xlabel('$t$')
+plt.ylabel('$N$')
+plt.title('Number of particles in left half')
+plt.savefig('box.pdf')
+plt.show()
+
+</script></div>
+<p>
+The produced figure  shows the development of this system as 
+function of time steps. We note that for \( N=1000 \) 
+after roughly \( 2000 \) time steps,
+the system has reached the equilibrium state. There are however noteworthy
+fluctuations around equilibrium.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec38">Brief Summary </h2>
+
+<p>
+In essence the Monte Carlo method  contains the following ingredients
+
+<ul>
+  <li> A PDF which characterizes the system</li>
+  <li> Random numbers which are generated so as to cover in an as uniform as  possible way on the unity interval [0,1].</li>
+  <li> A sampling rule</li>
+  <li> An error estimation</li>
+  <li> Techniques for improving the errors</li>
+</ul>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec39">Probability Distribution Functions </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+The following table collects properties of probability distribution functions.
+In our notation we reserve the label \( p(x) \) for the probability of a certain event,
+while \( P(x) \) is the cumulative probability.
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">             </th> <th align="center">                 Discrete PDF                 </th> <th align="center">               Continuous PDF               </th> </tr>
+</thead>
+<tbody>
+<tr><td align="left">   Domain           </td> <td align="center">   \( \left\{x_1, x_2, x_3, \dots, x_N\right\} \)    </td> <td align="center">   \( [a,b] \)                                     </td> </tr>
+<tr><td align="left">   Probability      </td> <td align="center">   \( p(x_i) \)                                      </td> <td align="center">   \( p(x)dx \)                                    </td> </tr>
+<tr><td align="left">   Cumulative       </td> <td align="center">   \( P_i=\sum_{l=1}^ip(x_l) \)                      </td> <td align="center">   \( P(x)=\int_a^xp(t)dt \)                       </td> </tr>
+<tr><td align="left">   Positivity       </td> <td align="center">   $ 0 \le p(x_i) \le 1$                             </td> <td align="center">   $ p(x) \ge 0$                                   </td> </tr>
+<tr><td align="left">   Positivity       </td> <td align="center">   $ 0 \le P_i \le 1$                                </td> <td align="center">   $ 0 \le P(x) \le 1$                             </td> </tr>
+<tr><td align="left">   Monotonic        </td> <td align="center">   \( P_i \ge P_j \) if \( x_i \ge x_j \)            </td> <td align="center">   \( P(x_i) \ge P(x_j) \) if \( x_i \ge x_j \)    </td> </tr>
+<tr><td align="left">   Normalization    </td> <td align="center">   \( P_N=1 \)                                       </td> <td align="center">   \( P(b)=1 \)                                    </td> </tr>
+</tbody>
+</table>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec40">Probability Distribution Functions </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+With a PDF we can compute expectation values of selected quantities such as
+
+$$
+\begin{equation*}
+    \langle x^k\rangle=\frac{1}{N}\sum_{i=1}^{N}x_i^kp(x_i),
+\end{equation*}
+$$
+
+if we have a discrete PDF or
+
+$$
+\begin{equation*}
+    \langle x^k\rangle=\int_a^b x^kp(x)dx,
+\end{equation*}
+$$
+
+in the case of a continuous PDF. We have already defined the mean value \( \mu \)
+and the variance \( \sigma^2 \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec41">The three famous Probability Distribution Functions </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+There are at least three PDFs which one may encounter. These are the
+
+<p>
+<b>Uniform distribution</b>  
+$$
+\begin{equation*}   
+p(x)=\frac{1}{b-a}\Theta(x-a)\Theta(b-x),
+\end{equation*}
+$$
+
+yielding probabilities different from zero in the interval \( [a,b] \).
+
+<p>
+<b>The exponential distribution</b>
+$$
+\begin{equation*}   
+p(x)=\alpha \exp{(-\alpha x)},
+\end{equation*}
+$$
+
+yielding probabilities different from zero in the interval \( [0,\infty) \) and with mean value
+$$
+\begin{equation*} 
+\mu = \int_0^{\infty}xp(x)dx=\int_0^{\infty}x\alpha \exp{(-\alpha x)}dx=\frac{1}{\alpha},
+\end{equation*}
+$$
+</div>
+
+with variance
+$$
+\begin{equation*}
+\sigma^2=\int_0^{\infty}x^2p(x)dx-\mu^2 = \frac{1}{\alpha^2}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec42">Probability Distribution Functions, the normal distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Finally, we have the so-called univariate normal  distribution, or just the <b>normal distribution</b>
+$$
+\begin{equation*}    
+p(x)=\frac{1}{b\sqrt{2\pi}}\exp{\left(-\frac{(x-a)^2}{2b^2}\right)}
+\end{equation*}
+$$
+
+with probabilities different from zero in the interval \( (-\infty,\infty) \).
+The integral \( \int_{-\infty}^{\infty}\exp{\left(-(x^2\right)}dx \) appears in many calculations, its value
+is \( \sqrt{\pi} \),  a result we will need when we compute the mean value and the variance.
+The mean value is
+$$
+\begin{equation*}  
+ \mu = \int_0^{\infty}xp(x)dx=\frac{1}{b\sqrt{2\pi}}\int_{-\infty}^{\infty}x \exp{\left(-\frac{(x-a)^2}{2b^2}\right)}dx,
+\end{equation*}
+$$
+
+which becomes with a suitable change of variables
+$$
+\begin{equation*}  
+ \mu =\frac{1}{b\sqrt{2\pi}}\int_{-\infty}^{\infty}b\sqrt{2}(a+b\sqrt{2}y)\exp{-y^2}dy=a.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec43">Probability Distribution Functions, the normal distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Similarly, the variance becomes
+$$
+\begin{equation*}  
+ \sigma^2 = \frac{1}{b\sqrt{2\pi}}\int_{-\infty}^{\infty}(x-\mu)^2 \exp{\left(-\frac{(x-a)^2}{2b^2}\right)}dx,
+\end{equation*}
+$$
+
+and inserting the mean value and performing a variable change we obtain
+
+$$
+\begin{equation*}  
+ \sigma^2 = \frac{1}{b\sqrt{2\pi}}\int_{-\infty}^{\infty}b\sqrt{2}(b\sqrt{2}y)^2\exp{\left(-y^2\right)}dy=
+\frac{2b^2}{\sqrt{\pi}}\int_{-\infty}^{\infty}y^2\exp{\left(-y^2\right)}dy,
+\end{equation*}
+$$
+
+and performing a final integration by parts we obtain the well-known result \( \sigma^2=b^2 \).
+It is useful to introduce the standard normal distribution as well, defined by \( \mu=a=0 \), viz. a distribution
+centered around zero and with a variance \( \sigma^2=1 \), leading to
+
+$$
+\begin{equation}
+   p(x)=\frac{1}{\sqrt{2\pi}}\exp{\left(-\frac{x^2}{2}\right)}.
+\label{_auto2}
+\end{equation}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec44">Probability Distribution Functions, the cumulative distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+The exponential and uniform distributions have simple cumulative functions,
+whereas the normal distribution does not, being proportional to the so-called
+error function \( erf(x) \), given by
+
+$$
+\begin{equation*} 
+P(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x\exp{\left(-\frac{t^2}{2}\right)}dt,
+\end{equation*}
+$$
+
+which is difficult to evaluate in a quick way.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec45">Probability Distribution Functions, other important distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+Some other PDFs which one encounters often in the natural sciences are the binomial distribution
+$$
+\begin{equation*}
+   p(x) = \left(\begin{array}{c} n \\ x\end{array}\right)y^x(1-y)^{n-x} \hspace{0.5cm}x=0,1,\dots,n,
+\end{equation*}
+$$
+
+where \( y \) is the probability for a specific event, such as the tossing of a coin or moving left or right
+in case of a random walker. Note that \( x \) is a discrete stochastic variable.
+
+<p>
+The sequence of binomial trials is characterized by the following definitions
+
+<ul>
+  <li> Every experiment is thought to consist of \( N \) independent trials.</li>
+  <li> In every independent trial one registers if a specific situation happens or not, such as the  jump to the left or right of a random walker.</li>
+  <li> The probability for every outcome in a single trial has the same value, for example the outcome of tossing (either heads or tails) a coin is always \( 1/2 \).</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec46">Probability Distribution Functions, the binomial distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+In order to compute the mean and variance we need to recall Newton's binomial
+formula
+$$
+\begin{equation*}
+   (a+b)^m=\sum_{n=0}^m \left(\begin{array}{c} m \\ n\end{array}\right)a^nb^{m-n},
+\end{equation*}
+$$
+
+which can be used to show that
+
+$$
+\begin{equation*}
+\sum_{x=0}^n\left(\begin{array}{c} n \\ x\end{array}\right)y^x(1-y)^{n-x} = (y+1-y)^n = 1,
+\end{equation*}
+$$
+
+the PDF is normalized to one. 
+The mean value is
+$$
+\begin{equation*}
+\mu = \sum_{x=0}^n x\left(\begin{array}{c} n \\ x\end{array}\right)y^x(1-y)^{n-x} =
+\sum_{x=0}^n x\frac{n!}{x!(n-x)!}y^x(1-y)^{n-x}, 
+\end{equation*}
+$$
+
+resulting in
+$$
+\begin{equation*}
+\mu = 
+\sum_{x=0}^n x\frac{(n-1)!}{(x-1)!(n-1-(x-1))!}y^{x-1}(1-y)^{n-1-(x-1)},
+\end{equation*}
+$$
+
+which we rewrite as
+
+$$
+\begin{equation*}
+\mu=ny\sum_{\nu=0}^n\left(\begin{array}{c} n-1 \\ \nu\end{array}\right)y^{\nu}(1-y)^{n-1-\nu} =ny(y+1-y)^{n-1}=ny. 
+\end{equation*}
+$$
+</div>
+
+The variance is slightly trickier to get. It reads \( \sigma^2=ny(1-y) \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec47">Probability Distribution Functions, Poisson's  distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+Another important distribution with discrete stochastic variables \( x \) is  
+the Poisson model, which resembles the exponential distribution and reads
+$$
+\begin{equation*}
+    p(x) = \frac{\lambda^x}{x!} e^{-\lambda} \hspace{0.5cm}x=0,1,\dots,;\lambda > 0.
+\end{equation*}
+$$
+
+In this case both the mean value and the variance are easier to calculate,
+
+$$
+\begin{equation*}
+\mu = \sum_{x=0}^{\infty} x \frac{\lambda^x}{x!} e^{-\lambda} = \lambda e^{-\lambda}\sum_{x=1}^{\infty}
+\frac{\lambda^{x-1}}{(x-1)!}=\lambda,
+\end{equation*}
+$$
+
+and the variance is \( \sigma^2=\lambda \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec48">Probability Distribution Functions, Poisson's  distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+An example of applications of the Poisson distribution could be the counting
+of the number of \( \alpha \)-particles emitted from a radioactive source in a given time interval.
+In the limit of \( n\rightarrow \infty \) and for small probabilities \( y \), the binomial distribution
+approaches the Poisson distribution. Setting \( \lambda = ny \), with \( y \) the probability for an event in
+the binomial distribution we can show that
+
+$$
+\begin{equation*} 
+\lim_{n\rightarrow \infty}\left(\begin{array}{c} n \\ x\end{array}\right)y^x(1-y)^{n-x} e^{-\lambda}=\sum_{x=1}^{\infty}\frac{\lambda^x}{x!} e^{-\lambda}.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec49">Meet the  covariance! </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+An important quantity in a statistical analysis is the so-called covariance.
+
+<p>
+Consider the set \( \{X_i\} \) of \( n \)
+stochastic variables (not necessarily uncorrelated) with the
+multivariate PDF \( P(x_1,\dots,x_n) \). The <em>covariance</em> of two
+of the stochastic variables, \( X_i \) and \( X_j \), is defined as follows
+
+$$
+\begin{align}
+\mathrm{Cov}(X_i,\,X_j) & = \langle (x_i-\langle x_i\rangle)(x_j-\langle x_j\rangle)\rangle 
+\label{_auto3}\\
+&=\int\cdots\int (x_i-\langle x_i\rangle)(x_j-\langle x_j\rangle)P(x_1,\dots,x_n)\,dx_1\dots dx_n,
+\label{eq:def_covariance}
+\end{align}
+$$
+
+with
+$$
+\begin{equation*}
+\langle x_i\rangle =
+\int\cdots\int x_i P(x_1,\dots,x_n)\,dx_1\dots dx_n.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec50">Meet the  covariance in matrix disguise </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If we consider the above covariance as a matrix 
+$$
+C_{ij} =\mathrm{Cov}(X_i,\,X_j), 
+$$
+
+then the diagonal elements are just the familiar
+variances, \( C_{ii} = \mathrm{Cov}(X_i,\,X_i) = \mathrm{Var}(X_i) \). It turns out that
+all the off-diagonal elements are zero if the stochastic variables are
+uncorrelated.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec51">Meet the  covariance, uncorrelated events </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+This is easy to show, keeping in mind the linearity of
+the expectation value. Consider the stochastic variables \( X_i \) and
+\( X_j \), (\( i\neq j \))
+$$
+\begin{align*}
+\mathrm{Cov}(X_i,\,X_j) &= \langle (x_i-\langle x_i\rangle)(x_j-\langle x_j\rangle)\rangle\\
+&=\langle x_i x_j - x_i\langle x_j\rangle - \langle x_i\rangle x_j + \langle x_i\rangle\langle x_j\rangle\rangle\\
+&=\langle x_i x_j\rangle - \langle x_i\langle x_j\rangle\rangle - \langle \langle x_i\rangle x_j \rangle +
+\langle \langle x_i\rangle\langle x_j\rangle\rangle\\
+&=\langle x_i x_j\rangle - \langle x_i\rangle\langle x_j\rangle - \langle x_i\rangle\langle x_j\rangle +
+\langle x_i\rangle\langle x_j\rangle\\
+&=\langle x_i x_j\rangle - \langle x_i\rangle\langle x_j\rangle
+\end{align*}
+$$
+
+If \( X_i \) and \( X_j \) are independent, we get 
+$$
+\langle x_i x_j\rangle =
+\langle x_i\rangle\langle x_j\rangle=\mathrm{Cov}(X_i, X_j) = 0\ \ (i\neq j).
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec52">Numerical experiments and the covariance </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+Now that we have constructed an idealized mathematical framework, let
+us try to apply it to empirical observations. Examples of relevant
+physical phenomena may be spontaneous decays of nuclei, or a purely
+mathematical set of numbers produced by some deterministic
+mechanism. It is the latter we will deal with, using so-called pseudo-random
+number generators.  In general our observations will contain only a limited set of
+observables. We remind the reader that
+a <em>stochastic process</em> is a process that produces sequentially a
+chain of values
+$$
+\begin{equation*}
+\{x_1, x_2,\dots\,x_k,\dots\}.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec53">Numerical experiments and the covariance </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We will call these
+values our <em>measurements</em> and the entire set as our measured
+<em>sample</em>.  The action of measuring all the elements of a sample
+we will call a stochastic <em>experiment</em> (since, operationally,
+they are often associated with results of empirical observation of
+some physical or mathematical phenomena; precisely an experiment). We
+assume that these values are distributed according to some 
+PDF \( p_X^{\phantom X}(x) \), where \( X \) is just the formal symbol for the
+stochastic variable whose PDF is \( p_X^{\phantom X}(x) \). Instead of
+trying to determine the full distribution \( p \) we are often only
+interested in finding the few lowest moments, like the mean
+\( \mu_X^{\phantom X} \) and the variance \( \sigma_X^{\phantom X} \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec54">Numerical experiments and the covariance, actual situations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In practical situations however, a sample is always of finite size. Let that
+size be \( n \). The expectation value of a sample \( \alpha \), the <b>sample mean</b>, is then defined as follows
+$$
+\begin{equation*}
+\langle x_{\alpha} \rangle \equiv \frac{1}{n}\sum_{k=1}^n x_{\alpha,k}.
+\end{equation*}
+$$
+
+The <em>sample variance</em> is:
+$$
+\begin{equation*}
+\mathrm{Var}(x) \equiv \frac{1}{n}\sum_{k=1}^n (x_{\alpha,k} - \langle x_{\alpha} \rangle)^2,
+\end{equation*}
+$$
+
+with its square root being the <em>standard deviation of the sample</em>.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec55">Numerical experiments and the covariance, our observables </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+You can think of the above observables as a set of quantities which define
+a given experiment. This experiment is then repeated several times, say \( m \) times.
+The total average is then
+$$
+\begin{equation}
+\langle X_m \rangle= \frac{1}{m}\sum_{\alpha=1}^mx_{\alpha}=\frac{1}{mn}\sum_{\alpha, k} x_{\alpha,k},
+\label{eq:exptmean}
+\end{equation}
+$$
+
+where the last sums end at \( m \) and \( n \).
+The total variance is
+$$
+\begin{equation*}
+\sigma^2_m= \frac{1}{mn^2}\sum_{\alpha=1}^m(\langle x_{\alpha} \rangle-\langle X_m \rangle)^2,
+\end{equation*}
+$$
+
+which we rewrite as
+$$
+\begin{equation}
+\sigma^2_m=\frac{1}{m}\sum_{\alpha=1}^m\sum_{kl=1}^n (x_{\alpha,k}-\langle X_m \rangle)(x_{\alpha,l}-\langle X_m \rangle).
+\label{eq:exptvariance}
+\end{equation}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec56">Numerical experiments and the covariance, the sample variance </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+We define also the sample variance \( \sigma^2 \) of all \( mn \) individual experiments as
+$$
+\begin{equation}
+\sigma^2=\frac{1}{mn}\sum_{\alpha=1}^m\sum_{k=1}^n (x_{\alpha,k}-\langle X_m \rangle)^2.
+\label{eq:sampleexptvariance}
+\end{equation}
+$$
+
+<p>
+These quantities, being known experimental values or the results from our calculations, 
+may differ, in some cases
+significantly,  from the similarly named
+exact values for the mean value \( \mu_X \), the variance \( \mathrm{Var}(X) \)
+and the covariance \( \mathrm{Cov}(X,Y) \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec57">Numerical experiments and the covariance, central limit theorem </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+The central limit theorem states that the PDF \( \tilde{p}(z) \) of
+the average of \( m \) random values corresponding to a PDF \( p(x) \) 
+is a normal distribution whose mean is the 
+mean value of the PDF \( p(x) \) and whose variance is the variance
+of the PDF \( p(x) \) divided by \( m \), the number of values used to compute \( z \).
+
+<p>
+The central limit theorem leads then to the well-known expression for the
+standard deviation, given by
+$$
+\begin{equation*}
+    \sigma_m=
+\frac{\sigma}{\sqrt{m}}.
+\end{equation*}
+$$
+
+<p>
+In many cases the above estimate for the standard deviation, in particular if correlations are strong, may be too simplistic.  We need therefore a more precise defintion of the error and the variance in our results.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec58">Definition of Correlation Functions and Standard Deviation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Our estimate of the true average \( \mu_{X} \) is the sample mean \( \langle X_m \rangle \)
+
+$$
+\begin{equation*}
+\mu_{X}^{\phantom X} \approx X_m=\frac{1}{mn}\sum_{\alpha=1}^m\sum_{k=1}^n x_{\alpha,k}.
+\end{equation*}
+$$
+
+<p>
+We can then use Eq. \eqref{eq:exptvariance}
+$$
+\begin{equation*}
+\sigma^2_m=\frac{1}{mn^2}\sum_{\alpha=1}^m\sum_{kl=1}^n (x_{\alpha,k}-\langle X_m \rangle)(x_{\alpha,l}-\langle X_m \rangle),
+\end{equation*}
+$$
+
+and rewrite it as
+$$
+\begin{equation*}
+\sigma^2_m=\frac{\sigma^2}{n}+\frac{2}{mn^2}\sum_{\alpha=1}^m\sum_{k < l}^n (x_{\alpha,k}-\langle X_m \rangle)(x_{\alpha,l}-\langle X_m \rangle),
+\end{equation*}
+$$
+
+where the first term is the sample variance of all \( mn \) experiments divided by \( n \)
+and the last term is nothing but the covariance which arises when \( k\ne l \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec59">Definition of Correlation Functions and Standard Deviation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Our estimate of the true average \( \mu_{X} \) is the sample mean \( \langle X_m \rangle \)
+
+<p>
+If the 
+observables are uncorrelated, then the covariance is zero and we obtain a total variance
+which agrees with the central limit theorem. Correlations may often be present in our data set, resulting in a non-zero covariance.  The first term is normally called the uncorrelated 
+contribution.
+Computationally the uncorrelated first term is much easier to treat
+efficiently than the second.
+We just accumulate separately the values \( x^2 \) and \( x \) for every
+measurement \( x \) we receive. The correlation term, though, has to be
+calculated at the end of the experiment since we need all the
+measurements to calculate the cross terms. Therefore, all measurements
+have to be stored throughout the experiment.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec60">Definition of Correlation Functions and Standard Deviation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+Let us analyze the problem by splitting up the correlation term into
+partial sums of the form
+
+$$
+\begin{equation*}
+f_d = \frac{1}{nm}\sum_{\alpha=1}^m\sum_{k=1}^{n-d}(x_{\alpha,k}-\langle X_m \rangle)(x_{\alpha,k+d}-\langle X_m \rangle),
+\end{equation*}
+$$
+
+The correlation term of the total variance can now be rewritten in terms of
+\( f_d \)
+
+$$
+\begin{equation*}
+\frac{2}{mn^2}\sum_{\alpha=1}^m\sum_{k < l}^n (x_{\alpha,k}-\langle X_m \rangle)(x_{\alpha,l}-\langle X_m \rangle)=
+\frac{2}{n}\sum_{d=1}^{n-1} f_d
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec61">Definition of Correlation Functions and Standard Deviation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The value of \( f_d \) reflects the correlation between measurements
+separated by the distance \( d \) in the samples.  Notice that for
+\( d=0 \), \( f \) is just the sample variance, \( \sigma^2 \). If we divide \( f_d \)
+by \( \sigma^2 \), we arrive at the so called <b>autocorrelation function</b>
+
+$$
+\begin{equation}
+\kappa_d = \frac{f_d}{\sigma^2}
+\label{eq:autocorrelformal}
+\end{equation}
+$$
+
+which gives us a useful measure of the correlation pair correlation
+starting always at \( 1 \) for \( d=0 \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec62">Definition of Correlation Functions and Standard Deviation, sample variance </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+The sample variance of the \( mn \) experiments can now be
+written in terms of the autocorrelation function
+
+$$
+\begin{equation}
+\sigma_m^2=\frac{\sigma^2}{n}+\frac{2}{n}\cdot\sigma^2\sum_{d=1}^{n-1}
+\frac{f_d}{\sigma^2}=\left(1+2\sum_{d=1}^{n-1}\kappa_d\right)\frac{1}{n}\sigma^2=\frac{\tau}{n}\cdot\sigma^2
+\label{eq:error_estimate_corr_time}
+\end{equation}
+$$
+
+and we see that \( \sigma_m \) can be expressed in terms of the
+uncorrelated sample variance times a correction factor \( \tau \) which
+accounts for the correlation between measurements. We call this
+correction factor the <em>autocorrelation time</em>
+
+$$
+\begin{equation}
+\tau = 1+2\sum_{d=1}^{n-1}\kappa_d
+\label{eq:autocorrelation_time}
+\end{equation}
+$$
+
+<!-- It is closely related to the area under the graph of the -->
+<!-- autocorrelation function. -->
+For a correlation free experiment, \( \tau \)
+equals 1.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec63">Definition of Correlation Functions and Standard Deviation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+From the point of view of
+Eq. \eqref{eq:error_estimate_corr_time} we can interpret a sequential
+correlation as an effective reduction of the number of measurements by
+a factor \( \tau \). The effective number of measurements becomes
+$$
+\begin{equation*}
+n_\mathrm{eff} = \frac{n}{\tau}
+\end{equation*}
+$$
+
+To neglect the autocorrelation time \( \tau \) will always cause our
+simple uncorrelated estimate of \( \sigma_m^2\approx \sigma^2/n \) to
+be less than the true sample error. The estimate of the error will be
+too &quot;good&quot;. On the other hand, the calculation of the full
+autocorrelation time poses an efficiency problem if the set of
+measurements is very large.  The solution to this problem is given by 
+more practically oriented methods like the blocking technique.
+<!-- add ref here to flybjerg -->
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec64">Random Numbers </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+Uniform deviates are just random numbers that lie within a specified range
+(typically 0 to 1), with any one number in the range just as likely as any other. They
+are, in other words, what you probably think random numbers are. However,
+we want to distinguish uniform deviates from other sorts of random numbers, for
+example numbers drawn from a normal (Gaussian) distribution of specified mean
+and standard deviation. These other sorts of deviates are almost always generated by
+performing appropriate operations on one or more uniform deviates, as we will see
+in subsequent sections. So, a reliable source of random uniform deviates, the subject
+of this section, is an essential building block for any sort of stochastic modeling
+or Monte Carlo computer work.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec65">Random Numbers, better name: pseudo random numbers  </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+A disclaimer is however appropriate. It should be fairly obvious that 
+something as deterministic as a computer cannot generate purely random numbers.
+
+<p>
+Numbers generated by any of the standard algorithms are in reality pseudo random
+numbers, hopefully abiding to the following criteria:
+
+<ul>
+  <li> they produce a uniform distribution in the interval [0,1].</li>
+  <li> correlations between random numbers are negligible</li>
+  <li> the period before the same sequence of random numbers is repeated   is as large as possible and finally</li>
+  <li> the algorithm should be fast.</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec66">Random number generator RNG  </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+ The most common random number generators are based on so-called
+Linear congruential relations of the type
+
+$$
+\begin{equation*}
+  N_i=(aN_{i-1}+c) \mathrm{MOD} (M),
+\end{equation*}
+$$
+
+which yield a number in the interval [0,1] through
+
+$$
+\begin{equation*}
+  x_i=N_i/M
+\end{equation*}
+$$
+
+<p>
+The number 
+\( M \) is called the period and it should be as large as possible 
+ and 
+\( N_0 \) is the starting value, or seed. The function \( \mathrm{MOD} \) means the remainder,
+that is if we were to evaluate \( (13)\mathrm{MOD}(9) \), the outcome is the remainder
+of the division \( 13/9 \), namely \( 4 \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec67">Random number generator RNG and periodic outputs </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+The problem with such generators is that their outputs are periodic;
+they 
+will start to repeat themselves with a period that is at most \( M \). If however
+the parameters \( a \) and \( c \) are badly chosen, the period may be even shorter.
+
+<p>
+Consider the following example
+
+$$
+\begin{equation*}
+  N_i=(6N_{i-1}+7) \mathrm{MOD} (5),
+\end{equation*}
+$$
+
+with a seed \( N_0=2 \). This generator produces the sequence
+\( 4,1,3,0,2,4,1,3,0,2,...\dots \), i.e., a sequence with period \( 5 \).
+However, increasing \( M \) may not guarantee a larger period as the following
+example shows
+
+$$
+\begin{equation*}
+  N_i=(27N_{i-1}+11) \mathrm{MOD} (54),
+\end{equation*}
+$$
+
+which still, with \( N_0=2 \), results in \( 11,38,11,38,11,38,\dots \), a period of
+just \( 2 \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec68">Random number generator RNG and its period  </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Typical periods for the random generators provided in the program library 
+are of the order of \( \sim 10^9 \) or larger. Other random number generators which have
+become increasingly popular are so-called shift-register generators.
+In these generators each successive number depends on many preceding
+values (rather than the last values as in the linear congruential
+generator).
+For example, you could make a shift register generator whose $l$th 
+number is the sum of the $l-i$th and $l-j$th values with modulo \( M \),
+$$
+\begin{equation*}
+   N_l=(aN_{l-i}+cN_{l-j})\mathrm{MOD}(M).
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec69">Random number generator RNG, other examples </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Such a generator again produces a sequence of pseudorandom numbers
+but this time with a period much larger than \( M \).
+It is also possible to construct more elaborate algorithms by including
+more than two past terms in the sum of each iteration.
+One example is the generator of <a href="http://dl.acm.org/citation.cfm?id=187154" target="_blank">Marsaglia and Zaman</a>
+which consists of two congruential relations
+
+$$
+\begin{equation}
+   N_l=(N_{l-3}-N_{l-1})\mathrm{MOD}(2^{31}-69),
+\label{eq:mz1}
+\end{equation}
+$$
+
+followed by
+$$
+\begin{equation}
+   N_l=(69069N_{l-1}+1013904243)\mathrm{MOD}(2^{32}),
+\label{eq:mz2}
+\end{equation}
+$$
+
+which according to the authors has a period larger than \( 2^{94} \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec70">Random number generator RNG, other examples </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Instead of  using modular addition, we could use the bitwise
+exclusive-OR (\( \oplus \)) operation so that
+
+$$
+\begin{equation*}
+   N_l=(N_{l-i})\oplus (N_{l-j})
+\end{equation*}
+$$
+
+where the bitwise action of \( \oplus \) means that if \( N_{l-i}=N_{l-j} \) the result is
+\( 0 \) whereas if \( N_{l-i}\ne N_{l-j} \) the result is
+\( 1 \). As an example, consider the case where  \( N_{l-i}=6 \) and \( N_{l-j}=11 \). The first
+one has a bit representation (using 4 bits only) which reads \( 0110 \) whereas the 
+second number is \( 1011 \). Employing the \( \oplus \) operator yields 
+\( 1101 \), or \( 2^3+2^2+2^0=13 \).
+
+<p>
+In Fortran90, the bitwise \( \oplus \) operation is coded through the intrinsic
+function \( \mathrm{IEOR}(m,n) \) where \( m \) and \( n \) are the input numbers, while in \( C \)
+it is given by \( m\wedge n \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec71">Random number generator RNG, RAN0 </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+We show here how the linear congruential algorithm can be implemented, namely
+$$
+\begin{equation*}
+  N_i=(aN_{i-1}) \mathrm{MOD} (M).
+\end{equation*}
+$$
+
+However, since \( a \) and \( N_{i-1} \) are integers and their multiplication 
+could become greater than the standard 32 bit integer, there is a trick via 
+Schrage's algorithm which approximates the multiplication
+of large integers through the factorization
+$$
+\begin{equation*}
+  M=aq+r,
+\end{equation*}
+$$
+
+where we have defined
+
+$$
+\begin{equation*}
+   q=[M/a],
+\end{equation*}
+$$
+
+and
+$$
+\begin{equation*}
+  r = M\hspace{0.1cm}\mathrm{MOD} \hspace{0.1cm}a.
+\end{equation*}
+$$
+
+where the brackets denote integer division. In the code below the numbers 
+\( q \) and \( r \) are chosen so that \( r < q \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec72">Random number generator RNG, RAN0 </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+To see how this works we note first that
+$$
+\begin{equation}
+(aN_{i-1}) \mathrm{MOD} (M)= (aN_{i-1}-[N_{i-1}/q]M)\mathrm{MOD} (M),
+\label{eq:rntrick1}
+\end{equation}
+$$
+
+since we can add or subtract any integer multiple of \( M \) from \( aN_{i-1} \).
+The last term $ [N_{i-1}/q]M \mathrm{MOD} (M)$ is zero since the integer division 
+\( [N_{i-1}/q] \) just yields a constant which is multiplied with \( M \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec73">Random number generator RNG, RAN0 </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We can now rewrite Eq. \eqref{eq:rntrick1} as
+
+$$
+\begin{equation}
+(aN_{i-1}) \mathrm{MOD} (M)= (aN_{i-1}-[N_{i-1}/q](aq+r))\mathrm{MOD} (M),
+\label{eq:rntrick2}
+\end{equation}
+$$
+
+which results
+in
+
+$$
+\begin{equation}
+(aN_{i-1}) \mathrm{MOD} (M)= \left(a(N_{i-1}-[N_{i-1}/q]q)-[N_{i-1}/q]r)\right)\mathrm{MOD} (M),
+\label{eq:rntrick3}
+\end{equation}
+$$
+
+yielding
+$$
+\begin{equation}
+(aN_{i-1}) \mathrm{MOD} (M)= \left(a(N_{i-1}\mathrm{MOD} (q)) -[N_{i-1}/q]r)\right)\mathrm{MOD} (M).
+\label{eq:rntrick4}
+\end{equation}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec74">Random number generator RNG, RAN0 </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The term \( [N_{i-1}/q]r \) is always smaller or equal \( N_{i-1}(r/q) \) and with \( r < q \) we obtain always a 
+number smaller than \( N_{i-1} \), which is smaller than \( M \). 
+And since the number \( N_{i-1}\mathrm{MOD} (q) \) is between zero and \( q-1 \) then
+\( a(N_{i-1}\mathrm{MOD} (q)) < aq \). Combined with our definition of \( q=[M/a] \) ensures that 
+this term is also smaller than \( M \) meaning that both terms fit into a
+32-bit signed integer. None of these two terms can be negative, but their difference could.
+The algorithm below adds \( M \) if their difference is negative.
+Note that the program uses the bitwise \( \oplus \) operator to generate
+the starting point for each generation of a random number. The period
+of \( ran0 \) is \( \sim 2.1\times 10^{9} \). A special feature of this
+algorithm is that is should never be called with the initial seed 
+set to \( 0 \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec75">Random number generator RNG, RAN0 code </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    <span style="color: #408080; font-style: italic">/*</span>
+<span style="color: #408080; font-style: italic">     ** The function</span>
+<span style="color: #408080; font-style: italic">     **           ran0()</span>
+<span style="color: #408080; font-style: italic">     ** is an &quot;Minimal&quot; random number generator of Park and Miller</span>
+<span style="color: #408080; font-style: italic">     ** Set or reset the input value</span>
+<span style="color: #408080; font-style: italic">     ** idum to any integer value (except the unlikely value MASK)</span>
+<span style="color: #408080; font-style: italic">     ** to initialize the sequence; idum must not be altered between</span>
+<span style="color: #408080; font-style: italic">     ** calls for sucessive deviates in a sequence.</span>
+<span style="color: #408080; font-style: italic">     ** The function returns a uniform deviate between 0.0 and 1.0.</span>
+<span style="color: #408080; font-style: italic">     */</span>
+<span style="color: #B00040">double</span> <span style="color: #0000FF">ran0</span>(<span style="color: #B00040">long</span> <span style="color: #666666">&amp;</span>idum)
+{
+   <span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> a <span style="color: #666666">=</span> <span style="color: #666666">16807</span>, m <span style="color: #666666">=</span> <span style="color: #666666">2147483647</span>, q <span style="color: #666666">=</span> <span style="color: #666666">127773</span>;
+   <span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> r <span style="color: #666666">=</span> <span style="color: #666666">2836</span>, MASK <span style="color: #666666">=</span> <span style="color: #666666">123459876</span>;
+   <span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">double</span> am <span style="color: #666666">=</span> <span style="color: #666666">1./</span>m;
+   <span style="color: #B00040">long</span>     k;
+   <span style="color: #B00040">double</span>   ans;
+   idum <span style="color: #666666">^=</span> MASK;
+   k <span style="color: #666666">=</span> (<span style="color: #666666">*</span>idum)<span style="color: #666666">/</span>q;
+   idum <span style="color: #666666">=</span> a<span style="color: #666666">*</span>(idum <span style="color: #666666">-</span> k<span style="color: #666666">*</span>q) <span style="color: #666666">-</span> r<span style="color: #666666">*</span>k;
+   <span style="color: #408080; font-style: italic">// add m if negative difference</span>
+   <span style="color: #008000; font-weight: bold">if</span>(idum <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) idum <span style="color: #666666">+=</span> m;
+   ans<span style="color: #666666">=</span>am<span style="color: #666666">*</span>(idum);
+   idum <span style="color: #666666">^=</span> MASK;
+   <span style="color: #008000; font-weight: bold">return</span> ans;
+} <span style="color: #408080; font-style: italic">// End: function ran0() </span>
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec76">Properties of Selected Random Number Generators </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+As mentioned previously, the underlying PDF for the generation of
+random numbers is the uniform distribution, meaning that the 
+probability for finding a number \( x \) in the interval [0,1] is \( p(x)=1 \).
+
+<p>
+A random number generator should produce numbers which are uniformly distributed
+in this interval. The table  shows the distribution of \( N=10000 \) random
+numbers generated by the functions in the program library.
+We note in this table that the number of points in the various
+intervals \( 0.0-0.1 \), \( 0.1-0.2 \) etc are fairly close to \( 1000 \), with some minor
+deviations.
+
+<p>
+Two additional measures are the standard deviation \( \sigma \) and the mean
+\( \mu=\langle x\rangle \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec77">Properties of Selected Random Number Generators </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+For the uniform distribution, the mean value \( \mu \) is then
+
+$$
+\begin{equation*}
+  \mu=\langle x\rangle=\frac{1}{2}
+\end{equation*}
+$$
+
+while the standard deviation is
+
+$$
+\begin{equation*}
+   \sigma=\sqrt{\langle x^2\rangle-\mu^2}=\frac{1}{\sqrt{12}}=0.2886.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec78">Properties of Selected Random Number Generators </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The various random number generators produce results which agree rather well with
+these limiting values.
+
+<p>
+<table border="1">
+<thead>
+<tr><td align="center">\( x \)-bin </td> <th align="center"> ran0 </th> <th align="center"> ran1 </th> <th align="center"> ran2 </th> <th align="center"> ran3 </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   0.0-0.1         </td> <td align="right">   1013      </td> <td align="right">   991       </td> <td align="right">   938       </td> <td align="right">   1047      </td> </tr>
+<tr><td align="center">   0.1-0.2         </td> <td align="right">   1002      </td> <td align="right">   1009      </td> <td align="right">   1040      </td> <td align="right">   1030      </td> </tr>
+<tr><td align="center">   0.2-0.3         </td> <td align="right">   989       </td> <td align="right">   999       </td> <td align="right">   1030      </td> <td align="right">   993       </td> </tr>
+<tr><td align="center">   0.3-0.4         </td> <td align="right">   939       </td> <td align="right">   960       </td> <td align="right">   1023      </td> <td align="right">   937       </td> </tr>
+<tr><td align="center">   0.4-0.5         </td> <td align="right">   1038      </td> <td align="right">   1001      </td> <td align="right">   1002      </td> <td align="right">   992       </td> </tr>
+<tr><td align="center">   0.5-0.6         </td> <td align="right">   1037      </td> <td align="right">   1047      </td> <td align="right">   1009      </td> <td align="right">   1009      </td> </tr>
+<tr><td align="center">   0.6-0.7         </td> <td align="right">   1005      </td> <td align="right">   989       </td> <td align="right">   1003      </td> <td align="right">   989       </td> </tr>
+<tr><td align="center">   0.7-0.8         </td> <td align="right">   986       </td> <td align="right">   962       </td> <td align="right">   985       </td> <td align="right">   954       </td> </tr>
+<tr><td align="center">   0.8-0.9         </td> <td align="right">   1000      </td> <td align="right">   1027      </td> <td align="right">   1009      </td> <td align="right">   1023      </td> </tr>
+<tr><td align="center">   0.9-1.0         </td> <td align="right">   991       </td> <td align="right">   1015      </td> <td align="right">   961       </td> <td align="right">   1026      </td> </tr>
+<tr><td align="center">   \( \mu \)       </td> <td align="right">   0.4997    </td> <td align="right">   0.5018    </td> <td align="right">   0.4992    </td> <td align="right">   0.4990    </td> </tr>
+<tr><td align="center">   \( \sigma \)    </td> <td align="right">   0.2882    </td> <td align="right">   0.2892    </td> <td align="right">   0.2861    </td> <td align="right">   0.2915    </td> </tr>
+</tbody>
+</table>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec79">Simple demonstration of RNGs using python </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The following simple Python code plots the distribution of the produced random numbers using the linear congruential RNG employed by Python. The trend displayed in the previous table is seen rather clearly.
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+#!/usr/bin/env python
+import numpy as np
+import matplotlib.mlab as mlab
+import matplotlib.pyplot as plt
+import random
+
+# initialize the rng with a seed
+random.seed() 
+counts = 10000
+values = np.zeros(counts)   
+for i in range (1, counts, 1):
+    values[i] = random.random()
+
+# the histogram of the data
+n, bins, patches = plt.hist(values, 10, facecolor='green')
+
+plt.xlabel('$x$')
+plt.ylabel('Number of counts')
+plt.title(r'Test of uniform distribution')
+plt.axis([0, 1, 0, 1100])
+plt.grid(True)
+plt.show()
+
+</script></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec80">Properties of Selected Random Number Generators </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Since our random numbers, which are typically generated via a linear congruential algorithm,
+are never fully independent, we can then define 
+an important test which measures the degree of correlation, namely the  so-called  
+auto-correlation function defined previously, see again Eq. \eqref{eq:autocorrelformal}.
+We rewrite it here as
+$$
+\begin{equation*}
+    C_k=\frac{f_d}
+             {\sigma^2},
+\end{equation*}
+$$
+
+with \( C_0=1 \). Recall that 
+\( \sigma^2=\langle x_i^2\rangle-\langle x_i\rangle^2 \) and that
+$$
+\begin{equation*}
+f_d = \frac{1}{nm}\sum_{\alpha=1}^m\sum_{k=1}^{n-d}(x_{\alpha,k}-\langle X_m \rangle)(x_{\alpha,k+d}-\langle X_m \rangle),
+\end{equation*}
+$$
+
+<p>
+The non-vanishing of \( C_k \) for \( k\ne 0 \) means that the random
+numbers are not independent. The independence of the random numbers is crucial 
+in the evaluation of other expectation values. If they are not independent, our
+assumption for approximating \( \sigma_N \) in Eq. \eqref{eq:sigmaN} is no longer valid.
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec81">Correlation function and which random number generators should I use </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The program here computes the correlation function for one of the standard functions included with the c++ compiler. 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//  This function computes the autocorrelation function for </span>
+<span style="color: #408080; font-style: italic">//  the standard c++ random number generator</span>
+
+<span style="color: #BC7A00">#include &lt;fstream&gt;</span>
+<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
+<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+<span style="color: #408080; font-style: italic">// output file as global variable</span>
+ofstream ofile;  
+
+<span style="color: #408080; font-style: italic">//     Main function begins here     </span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
+{
+     <span style="color: #B00040">int</span> n;
+     <span style="color: #B00040">char</span> <span style="color: #666666">*</span>outfilename;
+
+     cin <span style="color: #666666">&gt;&gt;</span> n;
+     <span style="color: #B00040">double</span> MCint <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;      <span style="color: #B00040">double</span> MCintsqr2<span style="color: #666666">=0.</span>;
+     <span style="color: #B00040">double</span> invers_period <span style="color: #666666">=</span> <span style="color: #666666">1./</span>RAND_MAX; <span style="color: #408080; font-style: italic">// initialise the random number generator</span>
+     srand(time(<span style="color: #008000">NULL</span>));  <span style="color: #408080; font-style: italic">// This produces the so-called seed in MC jargon</span>
+     <span style="color: #408080; font-style: italic">// Compute the variance and the mean value of the uniform distribution</span>
+     <span style="color: #408080; font-style: italic">// Compute also the specific values x for each cycle in order to be able to</span>
+     <span style="color: #408080; font-style: italic">// the covariance and the correlation function  </span>
+     <span style="color: #408080; font-style: italic">// Read in output file, abort if there are too few command-line arguments</span>
+     <span style="color: #008000; font-weight: bold">if</span>( argc <span style="color: #666666">&lt;=</span> <span style="color: #666666">2</span> ){
+       cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Bad Usage: &quot;</span> <span style="color: #666666">&lt;&lt;</span> argv[<span style="color: #666666">0</span>] <span style="color: #666666">&lt;&lt;</span> 
+	 <span style="color: #BA2121">&quot; read also output file and number of cycles on same line&quot;</span> <span style="color: #666666">&lt;&lt;</span> endl;
+       exit(<span style="color: #666666">1</span>);
+     }
+     <span style="color: #008000; font-weight: bold">else</span>{
+       outfilename<span style="color: #666666">=</span>argv[<span style="color: #666666">1</span>];
+     }
+     ofile.open(outfilename); 
+     <span style="color: #408080; font-style: italic">// Get  the number of Monte-Carlo samples</span>
+     n <span style="color: #666666">=</span> atoi(argv[<span style="color: #666666">2</span>]);
+     <span style="color: #B00040">double</span> <span style="color: #666666">*</span>X;  
+     X <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[n];
+     <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>;  i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+           <span style="color: #B00040">double</span> x <span style="color: #666666">=</span> <span style="color: #B00040">double</span>(rand())<span style="color: #666666">*</span>invers_period; 
+           X[i] <span style="color: #666666">=</span> x;
+           MCint <span style="color: #666666">+=</span> x;
+           MCintsqr2 <span style="color: #666666">+=</span> x<span style="color: #666666">*</span>x;
+     }
+     <span style="color: #B00040">double</span> Mean <span style="color: #666666">=</span> MCint<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n );
+     MCintsqr2 <span style="color: #666666">=</span> MCintsqr2<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n );
+     <span style="color: #B00040">double</span> STDev <span style="color: #666666">=</span> sqrt(MCintsqr2<span style="color: #666666">-</span>Mean<span style="color: #666666">*</span>Mean);
+     <span style="color: #B00040">double</span> Variance <span style="color: #666666">=</span> MCintsqr2<span style="color: #666666">-</span>Mean<span style="color: #666666">*</span>Mean;
+<span style="color: #408080; font-style: italic">//   Write mean value and standard deviation </span>
+     cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot; Standard deviation= &quot;</span> <span style="color: #666666">&lt;&lt;</span> STDev <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot; Integral = &quot;</span> <span style="color: #666666">&lt;&lt;</span> Mean <span style="color: #666666">&lt;&lt;</span> endl;
+
+     <span style="color: #408080; font-style: italic">// Now we compute the autocorrelation function</span>
+     <span style="color: #B00040">double</span> <span style="color: #666666">*</span>autocor;  autocor <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[n];
+     <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>){
+       <span style="color: #B00040">double</span> sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+       <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> k <span style="color: #666666">=</span> <span style="color: #666666">0</span>; k <span style="color: #666666">&lt;</span> (n<span style="color: #666666">-</span>j); k<span style="color: #666666">++</span>){
+	 sum  <span style="color: #666666">+=</span> (X[k]<span style="color: #666666">-</span>Mean)<span style="color: #666666">*</span>(X[k<span style="color: #666666">+</span>j]<span style="color: #666666">-</span>Mean); 
+       }
+       autocor[j] <span style="color: #666666">=</span> sum<span style="color: #666666">/</span>Variance<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n );
+       ofile <span style="color: #666666">&lt;&lt;</span> setiosflags(ios<span style="color: #666666">::</span>showpoint <span style="color: #666666">|</span> ios<span style="color: #666666">::</span>uppercase);
+       ofile <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">15</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> j;
+       ofile <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">15</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> autocor[j] <span style="color: #666666">&lt;&lt;</span> endl;
+     }
+     ofile.close();  <span style="color: #408080; font-style: italic">// close output file</span>
+     <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}  <span style="color: #408080; font-style: italic">// end of main program </span>
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec82">Correlation function and which random number generators should I use </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The following Python code plots the results for the correlation function from the above program.
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+import numpy as np
+from  matplotlib import pyplot as plt
+# Load in data file
+data = np.loadtxt("datafiles/autocor.dat")
+# Make arrays containing x-axis and binding energies as function of A
+x = data[:,0]
+corr = data[:,1]
+plt.plot(x, corr ,'ro')
+plt.axis([0,1000,-0.2, 1.1])
+plt.xlabel(r'$d$')
+plt.ylabel(r'$C_d$')
+plt.title(r'autocorrelation function for RNG')
+plt.savefig('autocorr.pdf')
+plt.show()
+
+
+</script></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec83">Which RNG should I use?  </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<ul>
+<li> In the library files lib.cpp and lib.h we have included four popular RNGs taken from the widely used textbook <a href="http://numerical.recipes/" target="_blank">Numerical Recipes</a>. These are called ran0, ran1, ran2 and ran3.</li>
+<li> C++ has a class called <b>random</b>. The <a href="http://www.cplusplus.com/reference/random/" target="_blank">random class</a> contains a large selection of RNGs and is highly recommended. Some of these RNGs have very large periods making it thereby very safe to use these RNGs in case one is performing large calculations. In particular, the <a href="http://www.cplusplus.com/reference/random/mersenne_twister_engine/" target="_blank">Mersenne twister random number engine</a> has a period of \( 2^{19937} \).</li> 
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec84">Improved Monte Carlo Integration </h1>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have presented a simple brute force approach 
+to integration with the Monte Carlo method. There we sampled
+over a given number of points distributed uniformly in the interval
+\( [0,1] \)
+$$
+\begin{equation*}
+   I=\int_0^1 f(x)dx=\langle f\rangle.
+\end{equation*}
+$$
+
+Here we introduce two important steps which in most cases improve
+upon the above simple brute force approach with the uniform distribution, namely
+
+<ul>
+<li> change of variables and</li>
+<li> importance sampling</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec85">Change of Variables </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The starting point is always the uniform distribution
+
+$$
+\begin{equation*}
+p(x)dx=\left\{\begin{array}{cc} dx & 0 \le x \le 1\\
+                                0  & else\end{array}\right.
+\end{equation*}
+$$
+
+with \( p(x)=1 \) and 
+satisfying
+
+$$
+\begin{equation*}
+  \int_{-\infty}^{\infty}p(x)dx=1.
+\end{equation*}
+$$
+
+All random number generators  use the uniform distribution to generate numbers \( x\in [0,1] \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec86">Change of Variables </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+When we attempt a 
+transformation to a new variable 
+\( x\rightarrow y \) 
+we have to conserve the probability
+$$
+\begin{equation*}
+   p(y)dy=p(x)dx,
+\end{equation*}
+$$
+
+which for the uniform distribution implies
+
+$$
+\begin{equation*}
+   p(y)dy=dx.  
+\end{equation*}
+$$
+
+Let us assume that \( p(y) \) is a  PDF different from the uniform
+PDF \( p(x)=1 \) with \( x \in [0,1] \).
+If we integrate the last expression we arrive at
+
+$$
+\begin{equation*}
+   x(y)=\int_0^y p(y')dy',
+\end{equation*}
+$$
+
+which is nothing but the cumulative distribution of \( p(y) \), i.e.,
+$$
+\begin{equation*}
+   x(y)=P(y)=\int_0^y p(y')dy'.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec87">Transformed Uniform Distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Suppose we have the general uniform distribution
+
+$$
+\begin{equation*}
+p(y)dy=\left\{\begin{array}{cc} \frac{dy}{b-a} & a \le y \le b\\
+                                0  & else\end{array}\right.
+\end{equation*}
+$$
+
+If we wish to relate this distribution to the one in the interval
+\( x \in [0,1] \)
+we have
+$$
+\begin{equation*}
+   p(y)dy=\frac{dy}{b-a}=dx,  
+\end{equation*}
+$$
+
+and integrating we obtain the cumulative function
+
+$$
+\begin{equation*}
+   x(y)=\int_a^y \frac{dy'}{b-a}, 
+\end{equation*}
+$$
+
+yielding
+
+$$
+\begin{equation*}
+    y=a+(b-a)x,
+\end{equation*}
+$$
+
+a well-known result!
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec88">Exponential Distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Assume that
+
+$$
+\begin{equation*}
+  p(y)=\exp{(-y)},
+\end{equation*}
+$$
+
+which is the exponential distribution, important for the analysis
+of e.g., radioactive decay. Again, 
+\( p(x) \) is given by the uniform distribution with 
+\( x \in [0,1] \), and 
+with the assumption that the probability is conserved we have
+
+$$
+\begin{equation*}
+   p(y)dy=\exp{(-y)}dy=dx,  
+\end{equation*}
+$$
+
+which yields after integration
+
+$$
+\begin{equation*}
+   x(y)=P(y)=\int_0^y \exp{(-y')}dy'=1-\exp{(-y)},
+\end{equation*}
+$$
+
+or
+
+$$
+\begin{equation*}
+   y(x)=-\ln{(1-x)}.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec89">Exponential Distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+This gives us the new random variable \( y \) in the domain
+\( y \in [0,\infty) \)
+determined through the random variable \( x \in [0,1] \) generated by
+functions like \( ran0 \).
+
+<p>
+This means that if we can factor out 
+\( \exp{(-y)} \) from an integrand we may have
+
+$$
+\begin{equation*}
+   I=\int_0^{\infty}F(y)dy=\int_0^{\infty}\exp{(-y)}G(y)dy   
+\end{equation*}
+$$
+
+which we rewrite as
+
+$$
+\begin{equation*}
+  \int_0^{\infty}\exp{(-y)}G(y)dy=
+   \int_0^{1}G(y(x))dx\approx 
+   \frac{1}{N}\sum_{i=1}^NG(y(x_i)),
+\end{equation*}
+$$
+
+where \( x_i \) is a random number in the interval \( [0,1] \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec90">Exponential Distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have changed the integration limits in the second integral, since we have performed a change of variables.  Since we have used the uniform distribution defined for \( x\in [0,1] \), the integration limits change to \( 0 \) and \( 1 \). The variable \( y \) is now a function of \( x \).
+Note also that in practical implementations, our random number generators for the 
+uniform distribution never return exactly 0 or 1, but we may come very close.
+
+<p>
+The algorithm for the last example is rather simple. 
+In the function which sets up the integral, we simply need
+to call one of the random number generators 
+like \( ran0 \), \( ran1 \), \( ran2 \) or \( ran3 \) in order to obtain numbers 
+in the interval [0,1]. We obtain \( y \) by the taking the logarithm of
+\( (1-x) \). Our calling function which sets up the new random
+variable \( y \) may then include statements like
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">.....
+idum<span style="color: #666666">=-1</span>;
+x<span style="color: #666666">=</span>ran0(<span style="color: #666666">&amp;</span>idum);
+y<span style="color: #666666">=-</span>log(<span style="color: #666666">1.-</span>x);
+.....
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec91">Normal Distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+For the normal distribution, expressed here as
+$$
+\begin{equation*}
+  g(x,y)=\exp{(-(x^2+y^2)/2)}dxdy.
+\end{equation*}
+$$
+
+it is rather difficult to find an inverse since the cumulative
+distribution is given by the error function \( erf(x) \)  % add reference
+
+$$
+\begin{equation*}
+    \mathrm{erf}(x) = \frac{2}{\sqrt{\pi}}\int_{0}^x e^{-t^2} dt. 
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec92">Normal Distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We obviously would like to avoid computing an integral everytime we need a random variable.
+If we however switch to polar coordinates, we have
+for \( x \) and \( y \)
+
+$$
+\begin{equation*}
+   r=\left(x^2+y^2\right)^{1/2} \hspace{1cm}
+   \theta =tan^{-1}\frac{x}{y},
+\end{equation*}
+$$
+
+resulting in
+
+$$
+\begin{equation*}
+  g(r,\theta)=r\exp{(-r^2/2)}drd\theta,
+\end{equation*}
+$$
+
+where the angle \( \theta \) could be given by a uniform 
+distribution in the region \( [0,2\pi] \).
+Following example 1 above, this implies simply 
+multiplying random numbers 
+\( x\in [0,1] \) by \( 2\pi \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec93">Normal Distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The variable 
+\( r \), defined for \( r \in [0,\infty) \) needs to be related to
+to random numbers \( x'\in [0,1] \). To achieve that, we introduce a new variable
+
+$$
+\begin{equation*}
+   u=\frac{1}{2}r^2,
+\end{equation*}
+$$
+
+and define a PDF
+$$
+\begin{equation*}
+  \exp{(-u)}du,
+\end{equation*}
+$$
+
+with \( u\in [0,\infty) \). 
+Using the results from example 2 for the exponential distribution, we have
+
+$$
+\begin{equation*}
+   u=-\ln{(1-x')},
+\end{equation*}
+$$
+
+where \( x' \) is a random number generated for \( x'\in [0,1] \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec94">Normal Distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+With
+$$
+\begin{equation*}
+  x=r\cos{(\theta)}=\sqrt{2u}\cos{(\theta)},
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+  y=r\sin{(\theta)}=\sqrt{2u}\sin{(\theta)},
+\end{equation*}
+$$
+
+we can obtain new random numbers \( x,y \) through
+$$
+\begin{equation*}
+  x=\sqrt{-2\ln{(1-x')}}\cos{(\theta)},
+\end{equation*}
+$$
+
+and
+$$
+\begin{equation*}
+  y=\sqrt{-2\ln{(1-x')}}\sin{(\theta)},
+\end{equation*}
+$$
+
+with \( x'\in [0,1] \) and \( \theta \in 2\pi [0,1] \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec95">Normal Distribution </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+A function which yields such random numbers for the normal
+distribution would include statements like 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">.....
+idum<span style="color: #666666">=-1</span>;
+radius<span style="color: #666666">=</span>sqrt(<span style="color: #666666">-2*</span>ln(<span style="color: #666666">1.-</span>ran0(idum)));
+theta<span style="color: #666666">=2*</span>pi<span style="color: #666666">*</span>ran0(idum);
+x<span style="color: #666666">=</span>radius<span style="color: #666666">*</span>cos(theta);
+y<span style="color: #666666">=</span>radius<span style="color: #666666">*</span>sin(theta);
+.....
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec96">Importance Sampling </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+With the aid of the above variable transformations we address now
+one of the most widely used approaches to Monte Carlo integration,
+namely importance sampling.
+
+<p>
+Let us assume that  \( p(y) \) is a PDF whose behavior resembles that of a function
+\( F \) defined in a certain interval \( [a,b] \). The normalization condition is
+
+$$
+\begin{equation*}
+   \int_a^bp(y)dy=1.
+\end{equation*}
+$$
+
+We can rewrite our integral as
+
+$$
+\begin{equation*}
+   I=\int_a^b F(y) dy =\int_a^b p(y)\frac{F(y)}{p(y)} dy.
+\label{eq:impsampl1}
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec97">Importance Sampling </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Since random numbers are generated for the uniform distribution \( p(x) \)
+with \( x\in [0,1] \), we need to perform a change of variables \( x\rightarrow y \)
+through
+$$
+\begin{equation*}
+     x(y)=\int_a^y p(y')dy',
+\end{equation*}
+$$
+
+where we used
+$$
+\begin{equation*}
+   p(x)dx=dx=p(y)dy. 
+\end{equation*}
+$$
+
+If we can invert \( x(y) \), we find \( y(x) \) as well.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec98">Importance Sampling </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+With this change of variables we can express the integral of 
+Eq. \eqref{eq:impsampl1} as
+$$
+\begin{equation*}
+   I=\int_a^b p(y)\frac{F(y)}{p(y)} dy=\int_{\tilde{a}}^{\tilde{b}}\frac{F(y(x))}{p(y(x))} dx,
+\end{equation*}
+$$
+
+meaning that a Monte Carlo evaluation of the above integral gives
+$$
+\begin{equation*}
+\int_{\tilde{a}}^{\tilde{b}}\frac{F(y(x))}{p(y(x))} dx=
+\frac{1}{N}\sum_{i=1}^N\frac{F(y(x_i))}{p(y(x_i))}.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec99">Importance Sampling </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Note the change in integration limits from \( a \) and \( b \) to \( \tilde{a} \) and 
+\( \tilde{b} \).
+The advantage of such a change of variables in case \( p(y) \) follows
+closely \( F \) is that the integrand becomes smooth and we can sample
+over relevant values for the integrand. It is however not trivial
+to find such a function \( p \).
+The conditions on \( p \) which allow us to perform these transformations
+are
+
+<ul>
+  <li> \( p \) is normalizable and positive definite,</li>
+  <li> it is analytically integrable and</li>
+  <li> the integral is invertible, allowing us thereby to express a new variable in terms of the old one.</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec100">Importance Sampling </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The variance  is now with the definition
+$$
+\begin{equation*}
+ \tilde{F}=\frac{F(y(x))}{p(y(x))},
+\end{equation*}
+$$
+
+given by
+$$
+\begin{equation*}
+  \sigma^2=\frac{1}{N}\sum_{i=1}^N\left(\tilde{F}\right)^2-
+\left(\frac{1}{N}\sum_{i=1}^N\tilde{F}\right)^2.
+\label{eq:standard_is}
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec101">Importance Sampling </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The algorithm for this procedure is 
+
+<ul>
+<li> Use the uniform distribution to find the random variable   \( y \) in the interval [0,1]. The function \( p(x) \) is a user provided PDF.</li>
+<li> Evaluate thereafter</li>   
+</ul>
+
+$$
+\begin{equation*}    
+I=\int_a^b F(x) dx =\int_a^b p(x)\frac{F(x)}{p(x)} dx,
+\end{equation*}
+$$
+
+ by rewriting
+$$
+\begin{equation*}
+   \int_a^b p(x)\frac{F(x)}{p(x)} dx =   
+   \int_{\tilde{a}}^{\tilde{b}}\frac{F(x(y))}{p(x(y))} dy,
+\end{equation*}
+$$
+
+since
+
+$$
+\begin{equation*}
+   \frac{dy}{dx}=p(x).
+\end{equation*}
+$$
+
+
+<ul>
+ <li> Perform then a Monte Carlo sampling for</li>  
+</ul>
+
+$$
+\begin{equation*} 
+\int_{\tilde{a}}^{\tilde{b}}\frac{F(x(y))}{p(x(y))} dy,\approx  \frac{1}{N}\sum_{i=1}^N\frac{F(x(y_i))}{p(x(y_i))},
+\end{equation*}
+$$
+
+with \( y_i\in [0,1] \),
+
+<ul>
+<li> and evaluate the variance as well.</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec102">Importance Sampling, a simple example </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Let us look again at the integral
+$$
+   I=\int_0^1 F(x) dx = \int_0^1 \frac{1}{1+x^2} dx = \frac{\pi}{4}.
+$$
+
+We choose the following PDF (which follows closely the function to
+integrate)
+$$
+   p(x)=\frac{1}{3}\left(4-2x\right) \hspace{1cm} \int_0^1p(x)dx=1,
+$$
+
+resulting in
+$$
+   \frac{F(0)}{p(0)}=\frac{F(1)}{p(1)}=\frac{3}{4}.
+$$
+
+Check that it fullfils the requirements of a PDF!
+We perform then the change of variables (via the Cumulative function) 
+$$
+     y(x)=\int_0^x p(x')dx'=\frac{1}{3}x\left(4-x\right),
+$$
+
+or
+$$
+   x=2-\left(4-3y\right)^{1/2}
+$$
+
+We have that when \( y=0 \) then  \( x=0 \) and when  \( y=1 \) we have \( x=1 \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec103">Importance Sampling, a simple example, a simple plot </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+from  matplotlib import pyplot as plt
+from math import exp, acos, log10
+import numpy as np
+
+#  function to integrate                                                                                     
+def function(x):
+    return 1.0/(1+x*x)
+
+#  new probability                                                                                           
+def newfunction(x):
+    return 0.3333333*(4.0-2*x)
+
+Dim = 100
+x = np.linspace(0.0,1.0,Dim)
+f = np.zeros(Dim)
+g = np.zeros(Dim)
+for i in xrange(Dim):
+    f[i] = function(x[i])
+    g[i] = newfunction(x[i])
+
+plt.plot(x, f ,'b-',x, g,'g-')
+plt.axis([0,1,0.5, 1.5])
+plt.xlabel('$x$')
+plt.ylabel('Functions')
+plt.title('Similarities between functions')
+plt.legend(['Integrand', 'New integrand'], loc='best')
+plt.savefig('newprobability.pdf')
+plt.show()
+
+
+</script></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec104">Importance Sampling, a simple example, the code part </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//   evaluate the integral with importance sampling</span>
+     <span style="color: #008000; font-weight: bold">for</span> ( <span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">1</span>;  i <span style="color: #666666">&lt;=</span> n; i<span style="color: #666666">++</span>){
+       x <span style="color: #666666">=</span> ran0(<span style="color: #666666">&amp;</span>idum);  <span style="color: #408080; font-style: italic">// random numbers in [0,1]</span>
+       y <span style="color: #666666">=</span> <span style="color: #666666">2</span> <span style="color: #666666">-</span> sqrt(<span style="color: #666666">4-3*</span>x);  <span style="color: #408080; font-style: italic">// new random numbers</span>
+       fy<span style="color: #666666">=3*</span>func(y)<span style="color: #666666">/</span>(<span style="color: #666666">4-2*</span>y); <span style="color: #408080; font-style: italic">// weighted function</span>
+       int_mc <span style="color: #666666">+=</span> fy;
+       sum_sigma <span style="color: #666666">+=</span> fy<span style="color: #666666">*</span>fy;
+     }
+     int_mc <span style="color: #666666">=</span> int_mc<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n );
+     sum_sigma <span style="color: #666666">=</span> sum_sigma<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n );
+     variance<span style="color: #666666">=</span>(sum_sigma<span style="color: #666666">-</span>int_mc<span style="color: #666666">*</span>int_mc);
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec105">Importance Sampling, a simple example, and the results </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The suffix \( cr \) stands for the brute force approach 
+while \( is \) stands for the use of importance sampling.
+All calculations use ran0 as function to generate the uniform distribution.
+
+<p>
+<table border="1">
+<thead>
+<tr><td align="center">\( N \) </td> <td align="center">\( I_{cr} \)</td> <td align="center">\( \sigma_{cr} \)</td> <td align="center">\( I_{is} \)</td> <td align="center">\( \sigma_{is} \)</td> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   10000       </td> <td align="center">   3.13395E+00     </td> <td align="center">   4.22881E-01          </td> <td align="center">   3.14163E+00     </td> <td align="center">   6.49921E-03          </td> </tr>
+<tr><td align="center">   100000      </td> <td align="center">   3.14195E+00     </td> <td align="center">   4.11195E-01          </td> <td align="center">   3.14163E+00     </td> <td align="center">   6.36837E-03          </td> </tr>
+<tr><td align="center">   1000000     </td> <td align="center">   3.14003E+00     </td> <td align="center">   4.14114E-01          </td> <td align="center">   3.14128E+00     </td> <td align="center">   6.39217E-03          </td> </tr>
+<tr><td align="center">   10000000    </td> <td align="center">   3.14213E+00     </td> <td align="center">   4.13838E-01          </td> <td align="center">   3.14160E+00     </td> <td align="center">   6.40784E-03          </td> </tr>
+</tbody>
+</table>
+<p>
+However, it is unfair to study one-dimensional integrals with MC methods!
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec106">Acceptance-Rejection Method </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<!-- add ref -->
+This is a rather simple and appealing
+method after von Neumann. Assume that we are looking at an interval
+\( x\in [a,b] \), this being the domain of the PDF \( p(x) \). Suppose also that
+the largest value our distribution function takes in this interval
+is \( M \), that is
+$$
+\begin{equation*}
+    p(x) \le M \hspace{1cm}  x\in [a,b].
+\end{equation*}
+$$
+
+Then we generate a random number \( x \) from the uniform distribution
+for \( x\in [a,b] \) and a corresponding number \( s \) for the uniform
+distribution between \( [0,M] \). If
+$$
+\begin{equation*}
+p(x) \ge s,
+\end{equation*}
+$$
+
+we accept the new value of \( x \), else we generate
+again two new random numbers \( x \) and \( s \) and perform the test
+in the latter equation again.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec107">Acceptance-Rejection Method </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+As an example, consider the evaluation of the integral
+
+$$
+\begin{equation*}
+   I=\int_0^3\exp{(x)}dx.
+\end{equation*}
+$$
+
+Obviously to derive a closed-form expression is much easier, however the integrand could pose some more
+difficult challenges. The aim here is simply to show how to implent the acceptance-rejection algorithm.
+The integral is the area below the curve \( f(x)=\exp{(x)} \). If we uniformly fill the rectangle
+spanned by \( x\in [0,3] \) and \( y\in [0,\exp{(3)}] \), the fraction below the curve obtained from a uniform distribution, and
+multiplied by the area of the rectangle, should approximate the chosen integral.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec108">Acceptance-Rejection Method </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+It is rather
+easy to implement this numerically, as shown in the following code.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//   Loop over Monte Carlo trials n</span>
+     integral <span style="color: #666666">=0.</span>;
+     <span style="color: #008000; font-weight: bold">for</span> ( <span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">1</span>;  i <span style="color: #666666">&lt;=</span> n; i<span style="color: #666666">++</span>){
+<span style="color: #408080; font-style: italic">//   Finds a random value for x in the interval [0,3]</span>
+          x <span style="color: #666666">=</span> <span style="color: #666666">3*</span>ran0(<span style="color: #666666">&amp;</span>idum);
+<span style="color: #408080; font-style: italic">//   Finds y-value between [0,exp(3)]</span>
+          y <span style="color: #666666">=</span> exp(<span style="color: #666666">3.0</span>)<span style="color: #666666">*</span>ran0(<span style="color: #666666">&amp;</span>idum);
+<span style="color: #408080; font-style: italic">//   if the value of y at exp(x) is below the curve, we accept</span>
+          <span style="color: #008000; font-weight: bold">if</span> ( y  <span style="color: #666666">&lt;</span> exp(x)) s <span style="color: #666666">=</span> s<span style="color: #666666">+</span> <span style="color: #666666">1.0</span>;
+<span style="color: #408080; font-style: italic">//   The integral is area enclosed below the line f(x)=exp(x)</span>
+    }
+<span style="color: #408080; font-style: italic">//  Then we multiply with the area of the rectangle and divide by the number of cycles </span>
+    Integral <span style="color: #666666">=</span> <span style="color: #666666">3.*</span>exp(<span style="color: #666666">3.</span>)<span style="color: #666666">*</span>s<span style="color: #666666">/</span>n
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec109">Monte Carlo Integration of Multidimensional Integrals </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+When we deal with multidimensional integrals of the form
+
+$$
+\begin{equation*} 
+   I=\int_{a_1}^{b_1}dx_1\int_{a_2}^{b_2}dx_2\dots \int_{a_d}^{b_d}dx_d g(x_1,\dots,x_d),
+\end{equation*}
+$$
+
+with 
+\( x_i \) defined in the interval  \( [a_i,b_i] \) we would typically
+need a transformation
+of variables of the form
+
+$$
+\begin{equation*}
+   x_i=a_i+(b_i-a_i)t_i,
+\end{equation*}
+$$
+
+if we were to use the uniform distribution on the interval \( [0,1] \).
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec110">Monte Carlo Integration of Multidimensional Integrals </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+In this case, we need a 
+Jacobi determinant
+
+$$
+\begin{equation*}
+  \prod_{i=1}^d (b_i-a_i),
+\end{equation*}
+$$
+
+and to convert the function \( g(x_1,\dots,x_d) \) to
+
+$$
+\begin{equation*}
+   g(x_1,\dots,x_d)\rightarrow 
+   g(a_1+(b_1-a_1)t_1,\dots,a_d+(b_d-a_d)t_d).
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec111">Monte Carlo Integration of Multidimensional Integrals </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+As an example, consider the following six-dimensional
+integral
+$$
+\begin{equation*}
+   \int_{-\infty}^{\infty}\mathbf{dxdy}g(\mathbf{x, y}),
+\end{equation*}
+$$
+
+where
+
+$$
+\begin{equation*}
+  g(\mathbf{x, y})=\exp{(-\mathbf{x}^2-\mathbf{y}^2)}(\mathbf{x}-\mathbf{y})^2
+\end{equation*}
+$$
+
+with  \( d=6 \).
+</div>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec112">Monte Carlo Integration of Multidimensional Integrals </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We can solve this integral by employing our brute force scheme,
+or using importance sampling and random variables distributed 
+according to a gaussian PDF. For the latter, if we set
+the mean value 
+\( \mu=0 \) and the standard deviation  \( \sigma=1/\sqrt{2} \), we have
+$$
+\begin{equation*}
+   \frac{1}{\sqrt{\pi}}\exp{(-x^2)},
+\end{equation*}
+$$
+
+and using this normal distribution we rewrite our integral as
+$$
+\begin{equation*}
+   \pi^3\int\prod_{i=1}^6\left(
+    \frac{1}{\sqrt{\pi}}\exp{(-x_i^2)}\right)
+    (\mathbf{x}-\mathbf{y})^2dx_1.\dots dx_6.
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec113">Monte Carlo Integration of Multidimensional Integrals </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+
+<p>
+We  rewrite it in a more compact form as
+$$
+\begin{equation*}
+   \int f(x_1,\dots,x_d)F(x_1,\dots,x_d)\prod_{i=1}^6dx_i,
+\end{equation*}
+$$
+
+where \( f \) is the above normal distribution
+and
+$$
+\begin{equation*}
+  F(x_1,\dots,x_6)=F(\mathbf{x, y})=(\mathbf{x}-\mathbf{y})^2,
+\end{equation*}
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec114">Brute Force Integration </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Below we list two codes, one for the brute force integration
+and the other employing importance sampling with a gaussian distribution.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #BC7A00">#include &lt;fstream&gt;</span>
+<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
+<span style="color: #BC7A00">#include &quot;lib.h&quot;</span>
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+
+<span style="color: #B00040">double</span> <span style="color: #0000FF">brute_force_MC</span>(<span style="color: #B00040">double</span> <span style="color: #666666">*</span>);
+<span style="color: #408080; font-style: italic">//     Main function begins here     </span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+{
+     <span style="color: #B00040">int</span> n;
+     <span style="color: #B00040">double</span> x[<span style="color: #666666">6</span>], y, fx; 
+     <span style="color: #B00040">double</span> int_mc <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;  <span style="color: #B00040">double</span> variance <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;
+     <span style="color: #B00040">double</span> sum_sigma<span style="color: #666666">=</span> <span style="color: #666666">0.</span> ; <span style="color: #B00040">long</span> idum<span style="color: #666666">=-1</span> ;  
+     <span style="color: #B00040">double</span> length <span style="color: #666666">=</span> <span style="color: #666666">5.</span>; <span style="color: #408080; font-style: italic">// we fix the max size of the box to L=5</span>
+     <span style="color: #B00040">double</span> jacobidet <span style="color: #666666">=</span> pow((<span style="color: #666666">2*</span>length),<span style="color: #666666">6</span>);
+     cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Read in the number of Monte-Carlo samples&quot;</span> <span style="color: #666666">&lt;&lt;</span> endl;
+     cin <span style="color: #666666">&gt;&gt;</span> n;
+<span style="color: #408080; font-style: italic">//   evaluate the integral with importance sampling    </span>
+     <span style="color: #008000; font-weight: bold">for</span> ( <span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">1</span>;  i <span style="color: #666666">&lt;=</span> n; i<span style="color: #666666">++</span>){
+<span style="color: #408080; font-style: italic">//   x[] contains the random numbers for all dimensions</span>
+       <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j<span style="color: #666666">&lt;</span> <span style="color: #666666">6</span>; j<span style="color: #666666">++</span>) {
+           x[j]<span style="color: #666666">=-</span>length<span style="color: #666666">+2*</span>length<span style="color: #666666">*</span>ran0(<span style="color: #666666">&amp;</span>idum);
+       }
+       fx<span style="color: #666666">=</span>brute_force_MC(x); 
+       int_mc <span style="color: #666666">+=</span> fx;
+       sum_sigma <span style="color: #666666">+=</span> fx<span style="color: #666666">*</span>fx;
+     }
+     int_mc <span style="color: #666666">=</span> int_mc<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n );
+     sum_sigma <span style="color: #666666">=</span> sum_sigma<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n );
+     variance<span style="color: #666666">=</span>sum_sigma<span style="color: #666666">-</span>int_mc<span style="color: #666666">*</span>int_mc;
+<span style="color: #408080; font-style: italic">//   final output </span>
+      cout <span style="color: #666666">&lt;&lt;</span> setiosflags(ios<span style="color: #666666">::</span>showpoint <span style="color: #666666">|</span> ios<span style="color: #666666">::</span>uppercase);
+      cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot; Monte carlo result= &quot;</span> <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">10</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> jacobidet<span style="color: #666666">*</span>int_mc;
+      cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot; Sigma= &quot;</span> <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">10</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> volume<span style="color: #666666">*</span>sqrt(variance<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n )) <span style="color: #666666">&lt;&lt;</span> endl;
+     <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}  <span style="color: #408080; font-style: italic">// end of main program </span>
+
+<span style="color: #408080; font-style: italic">// this function defines the integrand to integrate </span>
+ 
+<span style="color: #B00040">double</span>  <span style="color: #0000FF">brute_force_MC</span>(<span style="color: #B00040">double</span> <span style="color: #666666">*</span>x) 
+{
+<span style="color: #408080; font-style: italic">// evaluate the different terms of the exponential</span>
+   <span style="color: #B00040">double</span> xx<span style="color: #666666">=</span>x[<span style="color: #666666">0</span>]<span style="color: #666666">*</span>x[<span style="color: #666666">0</span>]<span style="color: #666666">+</span>x[<span style="color: #666666">1</span>]<span style="color: #666666">*</span>x[<span style="color: #666666">1</span>]<span style="color: #666666">+</span>x[<span style="color: #666666">2</span>]<span style="color: #666666">*</span>x[<span style="color: #666666">2</span>];
+   <span style="color: #B00040">double</span> yy<span style="color: #666666">=</span>x[<span style="color: #666666">3</span>]<span style="color: #666666">*</span>x[<span style="color: #666666">3</span>]<span style="color: #666666">+</span>x[<span style="color: #666666">4</span>]<span style="color: #666666">*</span>x[<span style="color: #666666">4</span>]<span style="color: #666666">+</span>x[<span style="color: #666666">5</span>]<span style="color: #666666">*</span>x[<span style="color: #666666">5</span>];
+   <span style="color: #B00040">double</span> xy<span style="color: #666666">=</span>pow((x[<span style="color: #666666">0</span>]<span style="color: #666666">-</span>x[<span style="color: #666666">3</span>]),<span style="color: #666666">2</span>)<span style="color: #666666">+</span>pow((x[<span style="color: #666666">1</span>]<span style="color: #666666">-</span>x[<span style="color: #666666">4</span>]),<span style="color: #666666">2</span>)<span style="color: #666666">+</span>pow((x[<span style="color: #666666">2</span>]<span style="color: #666666">-</span>x[<span style="color: #666666">5</span>]),<span style="color: #666666">2</span>);
+   <span style="color: #008000; font-weight: bold">return</span> exp(<span style="color: #666666">-</span>xx<span style="color: #666666">-</span>yy)<span style="color: #666666">*</span>xy;
+} <span style="color: #408080; font-style: italic">// end function for the integrand</span>
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec115">Importance Sampling </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+This code includes a call to the function \( normal_random \), which produces
+random numbers from a gaussian distribution. 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// importance sampling with gaussian deviates</span>
+<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #BC7A00">#include &lt;fstream&gt;</span>
+<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
+<span style="color: #BC7A00">#include &quot;lib.h&quot;</span>
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+
+<span style="color: #B00040">double</span> <span style="color: #0000FF">gaussian_MC</span>(<span style="color: #B00040">double</span> <span style="color: #666666">*</span>);
+<span style="color: #B00040">double</span> <span style="color: #0000FF">gaussian_deviate</span>(<span style="color: #B00040">long</span> <span style="color: #666666">*</span>);
+<span style="color: #408080; font-style: italic">//     Main function begins here     </span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+{
+     <span style="color: #B00040">int</span> n;
+     <span style="color: #B00040">double</span> x[<span style="color: #666666">6</span>], y, fx; 
+     cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Read in the number of Monte-Carlo samples&quot;</span> <span style="color: #666666">&lt;&lt;</span> endl;
+     cin <span style="color: #666666">&gt;&gt;</span> n;
+     <span style="color: #B00040">double</span> int_mc <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;  <span style="color: #B00040">double</span> variance <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;
+     <span style="color: #B00040">double</span> sum_sigma<span style="color: #666666">=</span> <span style="color: #666666">0.</span> ; <span style="color: #B00040">long</span> idum<span style="color: #666666">=-1</span> ;  
+     <span style="color: #B00040">double</span> jacobidet <span style="color: #666666">=</span> pow(acos(<span style="color: #666666">-1.</span>),<span style="color: #666666">3.</span>);
+     <span style="color: #B00040">double</span> sqrt2 <span style="color: #666666">=</span> <span style="color: #666666">1./</span>sqrt(<span style="color: #666666">2.</span>);
+<span style="color: #408080; font-style: italic">//   evaluate the integral with importance sampling    </span>
+     <span style="color: #008000; font-weight: bold">for</span> ( <span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">1</span>;  i <span style="color: #666666">&lt;=</span> n; i<span style="color: #666666">++</span>){
+<span style="color: #408080; font-style: italic">//   x[] contains the random numbers for all dimensions</span>
+       <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> <span style="color: #666666">6</span>; j<span style="color: #666666">++</span>) {
+	 x[j] <span style="color: #666666">=</span> gaussian_deviate(<span style="color: #666666">&amp;</span>idum)<span style="color: #666666">*</span>sqrt2;
+       }
+       fx<span style="color: #666666">=</span>gaussian_MC(x); 
+       int_mc <span style="color: #666666">+=</span> fx;
+       sum_sigma <span style="color: #666666">+=</span> fx<span style="color: #666666">*</span>fx;
+     }
+     int_mc <span style="color: #666666">=</span> int_mc<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n );
+     sum_sigma <span style="color: #666666">=</span> sum_sigma<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n );
+     variance<span style="color: #666666">=</span>sum_sigma<span style="color: #666666">-</span>int_mc<span style="color: #666666">*</span>int_mc;
+<span style="color: #408080; font-style: italic">//   final output </span>
+      cout <span style="color: #666666">&lt;&lt;</span> setiosflags(ios<span style="color: #666666">::</span>showpoint <span style="color: #666666">|</span> ios<span style="color: #666666">::</span>uppercase);
+      cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot; Monte carlo result= &quot;</span> <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">10</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> jacobidet<span style="color: #666666">*</span>int_mc;
+      cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot; Sigma= &quot;</span> <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">10</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> volume<span style="color: #666666">*</span>sqrt(variance<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n )) <span style="color: #666666">&lt;&lt;</span> endl;
+     <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}  <span style="color: #408080; font-style: italic">// end of main program </span>
+
+<span style="color: #408080; font-style: italic">// this function defines the integrand to integrate </span>
+ 
+<span style="color: #B00040">double</span>  <span style="color: #0000FF">gaussian_MC</span>(<span style="color: #B00040">double</span> <span style="color: #666666">*</span>x) 
+{
+<span style="color: #408080; font-style: italic">// evaluate the different terms of the exponential</span>
+   <span style="color: #B00040">double</span> xy<span style="color: #666666">=</span>pow((x[<span style="color: #666666">0</span>]<span style="color: #666666">-</span>x[<span style="color: #666666">3</span>]),<span style="color: #666666">2</span>)<span style="color: #666666">+</span>pow((x[<span style="color: #666666">1</span>]<span style="color: #666666">-</span>x[<span style="color: #666666">4</span>]),<span style="color: #666666">2</span>)<span style="color: #666666">+</span>pow((x[<span style="color: #666666">2</span>]<span style="color: #666666">-</span>x[<span style="color: #666666">5</span>]),<span style="color: #666666">2</span>);
+   <span style="color: #008000; font-weight: bold">return</span> xy;
+} <span style="color: #408080; font-style: italic">// end function for the integrand</span>
+
+<span style="color: #408080; font-style: italic">// random numbers with gaussian distribution</span>
+<span style="color: #B00040">double</span> <span style="color: #0000FF">gaussian_deviate</span>(<span style="color: #B00040">long</span> <span style="color: #666666">*</span> idum)
+{
+  <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">int</span> iset <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+  <span style="color: #008000; font-weight: bold">static</span> <span style="color: #B00040">double</span> gset;
+  <span style="color: #B00040">double</span> fac, rsq, v1, v2;
+
+  <span style="color: #008000; font-weight: bold">if</span> ( idum <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>) iset <span style="color: #666666">=0</span>;
+  <span style="color: #008000; font-weight: bold">if</span> (iset <span style="color: #666666">==</span> <span style="color: #666666">0</span>) {
+    <span style="color: #008000; font-weight: bold">do</span> {
+      v1 <span style="color: #666666">=</span> <span style="color: #666666">2.*</span>ran0(idum) <span style="color: #666666">-1.0</span>;
+      v2 <span style="color: #666666">=</span> <span style="color: #666666">2.*</span>ran0(idum) <span style="color: #666666">-1.0</span>;
+      rsq <span style="color: #666666">=</span> v1<span style="color: #666666">*</span>v1<span style="color: #666666">+</span>v2<span style="color: #666666">*</span>v2;
+    } <span style="color: #008000; font-weight: bold">while</span> (rsq <span style="color: #666666">&gt;=</span> <span style="color: #666666">1.0</span> <span style="color: #666666">||</span> rsq <span style="color: #666666">==</span> <span style="color: #666666">0.</span>);
+    fac <span style="color: #666666">=</span> sqrt(<span style="color: #666666">-2.*</span>log(rsq)<span style="color: #666666">/</span>rsq);
+    gset <span style="color: #666666">=</span> v1<span style="color: #666666">*</span>fac;
+    iset <span style="color: #666666">=</span> <span style="color: #666666">1</span>;
+    <span style="color: #008000; font-weight: bold">return</span> v2<span style="color: #666666">*</span>fac;
+  } <span style="color: #008000; font-weight: bold">else</span> {
+    iset <span style="color: #666666">=0</span>;
+    <span style="color: #008000; font-weight: bold">return</span> gset;
+  }
+} <span style="color: #408080; font-style: italic">// end function for gaussian deviates</span>
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec116">Python codes </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The first code here is an example of a python which computes the above integral using 
+the brute force approach
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+#Monte Carlo integration in 6 dimensions
+
+import numpy,math
+import sys
+
+def integrand(x):
+    """Calculates the integrand
+    exp(-a*(x1^2+x2^2+...+x6^2)-b*[(x1-x4)^2+...+(x3-x6)^2])
+    from the values in the 6-dimensional array x."""
+    a = 1.0
+    b = 0.5
+
+    x2 = numpy.sum(x**2)
+    xy = (x[0]-x[3])**2 + (x[1]-x[4])**2 + (x[2]-x[5])**2
+    
+    return numpy.exp(-a*x2-b*xy)
+
+#Main program
+
+#Integration limits: x[i] in (-5, 5)
+L      = 5.0
+jacobi = (2*L)**6
+
+N = 100000
+
+#Evaluate the integral
+sum  = 0.0
+sum2 = 0.0
+for i in xrange(N):
+    #Generate random coordinates to sample at
+    x = numpy.array([-L+2*L*numpy.random.random() for j in xrange(6)])
+
+    fx         = integrand(x)
+    sum       += fx
+    sum2      += fx**2
+#Calculate expt. values for fx and fx^2
+sum /=float(N)
+sum2/=float(N)
+
+#Result
+int_mc  = jacobi*sum;
+#Gaussian standard deviation
+sigma   = jacobi*math.sqrt((sum2-sum**2)/float(N))
+
+#Output
+print "Montecarlo result = %10.8E" % int_mc
+print "Sigma             = %10.8E" % sigma
+
+
+</script></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec117">Python codes, importance sampling </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The first code here is an example of a python which computes the above integral using 
+the brute force approach
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+#Monte Carlo integration with importance sampling
+
+import numpy,math
+import sys
+
+def integrand(x):
+    """Calculates the integrand
+    exp(-b*[(x1-x4)^2+...+(x3-x6)^2])
+    from the values in the 6-dimensional array x."""
+    a = 1.0
+    b = 0.5
+
+    xy = (x[0]-x[3])**2 + (x[1]-x[4])**2 + (x[2]-x[5])**2
+    return numpy.exp(-b*xy)
+
+#Main program
+
+#Integration limits: x[i] in (-5, 5)
+L      = 5.0
+jacobi = math.acos(-1.0)**3
+sqrt2  = 1.0/math.sqrt(2)
+
+N = 100000
+
+#Evaluate the integral
+sum  = 0.0
+sum2 = 0.0
+for i in xrange(N):
+    #Generate random, gaussian distributed coordinates to sample at
+    x = numpy.array([numpy.random.normal()*sqrt2 for j in xrange(6)])
+
+    fx         = integrand(x)
+    sum       += fx
+    sum2      += fx**2
+#Calculate expt. values for fx and fx^2
+sum /=float(N)
+sum2/=float(N)
+
+#Result
+int_mc  = jacobi*sum;
+#Gaussian standard deviation
+sigma   = jacobi*math.sqrt((sum2-sum**2)/float(N))
+
+#Output
+print "Montecarlo result = %10.8E" % int_mc
+print "Sigma             = %10.8E" % sigma
+
+</script></div>
+
+</div>
+
+
+<p>
+<!-- !split  -->
+
+<h2 id="___sec118">Results </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The following table lists the results from the above two programs written in c++
+as function of the number of Monte Carlo samples. The suffix \( cr \) stands for the brute force approach 
+while \( gd \) stands for the use of a Gaussian distribution function. One sees clearly that the approachwith a Gaussian distribution function yields a much improved numerical result, with fewer samples.
+
+<p>
+<table border="1">
+<thead>
+<tr><td align="center">\( N \) </td> <td align="center">\( I_{cr} \)</td> <td align="center">\( I_{gd} \)</td> </tr>
+</thead>
+<tbody>
+<tr><td align="right">   10000       </td> <td align="left">   9.92072E+01     </td> <td align="left">   9.33225E+01     </td> </tr>
+<tr><td align="right">   100000      </td> <td align="left">   8.75039E+01     </td> <td align="left">   9.30042E+01     </td> </tr>
+<tr><td align="right">   1000000     </td> <td align="left">   9.56759E+01     </td> <td align="left">   9.29988E+01     </td> </tr>
+<tr><td align="right">   10000000    </td> <td align="left">   9.15446E+01     </td> <td align="left">   9.30203E+01     </td> </tr>
+</tbody>
+</table>
+
+</div>
+
+
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+

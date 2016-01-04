@@ -1,0 +1,2957 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Partial differential equations">
+
+<title>Slides PHY 480 and PHY 905  Lectures: Partial differential equations</title>
+
+
+<style type="text/css">
+/* bloodish style */
+
+body {
+  font-family: Helvetica, Verdana, Arial, Sans-serif;
+  color: #404040;
+  background: #ffffff;
+}
+h1 { font-size: 1.8em;  color: #8A0808; }
+h2 { font-size: 1.6em;  color: #8A0808; }
+h3 { font-size: 1.4em;  color: #8A0808; }
+h4 { color: #8A0808; }
+a { color: #8A0808; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+/* pre style removed because it will interfer with pygments */
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+div { text-align: justify; text-justify: inter-word; }
+</style>
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Famous PDEs', 2, None, '___sec0'),
+              ('Famous PDEs, two dimension', 2, None, '___sec1'),
+              ('Famous PDEs, diffusion equation', 2, None, '___sec2'),
+              ("Famous PDEs, Laplace's equation", 2, None, '___sec3'),
+              ("Famous PDEs, Helmholtz' equation", 2, None, '___sec4'),
+              ("Famous PDEs, Schroedinger's equation in two dimensions",
+               2,
+               None,
+               '___sec5'),
+              ("Famous PDEs, Maxwell's equations", 2, None, '___sec6'),
+              ("Famous PDEs, Euler's equations", 2, None, '___sec7'),
+              ("Famous PDEs, the Navier-Stokes' equations",
+               2,
+               None,
+               '___sec8'),
+              ('Famous PDEs, general equation in two dimensions',
+               2,
+               None,
+               '___sec9'),
+              ('Diffusion equation', 2, None, '___sec10'),
+              ('Diffusion equation', 2, None, '___sec11'),
+              ('Diffusion equation, famous laws', 2, None, '___sec12'),
+              ('Diffusion equation, heat equation', 2, None, '___sec13'),
+              ('Diffusion equation, heat equation in one dimension',
+               2,
+               None,
+               '___sec14'),
+              ('Diffusion equation, dimensionless form', 2, None, '___sec15'),
+              ('Explicit Scheme', 2, None, '___sec16'),
+              ('Explicit Scheme, boundary conditions', 2, None, '___sec17'),
+              ('Explicit Scheme, algorithm', 2, None, '___sec18'),
+              ('Explicit Scheme, simplifications', 2, None, '___sec19'),
+              ('Explicit Scheme, solving the equations', 2, None, '___sec20'),
+              ('Explicit Scheme, simple case', 2, None, '___sec21'),
+              ('Explicit Scheme, matrix-vector formulation',
+               2,
+               None,
+               '___sec22'),
+              ('Explicit Scheme, sketch of code', 2, None, '___sec23'),
+              ('Explicit Scheme, stability condition', 2, None, '___sec24'),
+              ('Explicit Scheme, spectral radius and stability',
+               2,
+               None,
+               '___sec25'),
+              ('Explicit Scheme, eigenvalues and stability',
+               2,
+               None,
+               '___sec26'),
+              ('Explicit Scheme, final stability analysis',
+               2,
+               None,
+               '___sec27'),
+              ('Explicit Scheme, stability condition', 2, None, '___sec28'),
+              ('Explicit Scheme, general tridiagonal matrix',
+               2,
+               None,
+               '___sec29'),
+              ('Implicit Scheme', 2, None, '___sec30'),
+              ('Implicit Scheme', 2, None, '___sec31'),
+              ('Implicit Scheme', 2, None, '___sec32'),
+              ('Implicit Scheme', 2, None, '___sec33'),
+              ('Implicit Scheme', 2, None, '___sec34'),
+              ('Program Example for Implicit Equation', 3, None, '___sec35'),
+              ('Crank-Nicolson scheme', 2, None, '___sec36'),
+              ('Derivation of CN scheme', 2, None, '___sec37'),
+              ('Taylor expansions', 2, None, '___sec38'),
+              ('Error in CN scheme', 2, None, '___sec39'),
+              ('Truncation errors and stability', 2, None, '___sec40'),
+              ('Rewrite of CN scheme', 2, None, '___sec41'),
+              ('Final CN equations', 2, None, '___sec42'),
+              ('Parts of Code for the Crank-Nicolson Scheme',
+               2,
+               None,
+               '___sec43'),
+              ('Parts of Code for the Crank-Nicolson Scheme',
+               2,
+               None,
+               '___sec44'),
+              ('Python code for solving the one-dimensional diffusion equation',
+               2,
+               None,
+               '___sec45'),
+              ('Solution for the One-dimensional Diffusion Equation',
+               2,
+               None,
+               '___sec46'),
+              ('Solution for the One-dimensional Diffusion Equation',
+               2,
+               None,
+               '___sec47'),
+              ('Solution for the One-dimensional Diffusion Equation',
+               2,
+               None,
+               '___sec48'),
+              ('Solution for the One-dimensional Diffusion Equation',
+               2,
+               None,
+               '___sec49'),
+              ('Solution for the One-dimensional Diffusion Equation',
+               2,
+               None,
+               '___sec50'),
+              ('Explict scheme for the diffusion equation in two dimensions',
+               2,
+               None,
+               '___sec51'),
+              ('Explict scheme for the diffusion equation in two dimensions',
+               2,
+               None,
+               '___sec52'),
+              ("Laplace's and Poisson's Equations", 2, None, '___sec53'),
+              ("Laplace's and Poisson's Equations, discretized version",
+               2,
+               None,
+               '___sec54'),
+              ("Laplace's and Poisson's Equations, final discretized version",
+               2,
+               None,
+               '___sec55'),
+              ("Laplace's and Poisson's Equations, boundary conditions",
+               2,
+               None,
+               '___sec56'),
+              ("Scheme for solving Laplace's (Poisson's) equation",
+               2,
+               None,
+               '___sec57'),
+              ("Scheme for solving Laplace's (Poisson's) equation",
+               2,
+               None,
+               '___sec58'),
+              ("Scheme for solving Laplace's (Poisson's) equation",
+               2,
+               None,
+               '___sec59'),
+              ("Scheme for solving Laplace's (Poisson's) equation",
+               2,
+               None,
+               '___sec60'),
+              ("Scheme for solving Laplace's (Poisson's) equation using Jacobi's iterative method",
+               2,
+               None,
+               '___sec61'),
+              ("Scheme for solving Laplace's (Poisson's) equation, with Jacobi's method",
+               2,
+               None,
+               '___sec62'),
+              ("Scheme for solving Laplace's (Poisson's) equation, final rewrite",
+               2,
+               None,
+               '___sec63'),
+              ("Jacobi Algorithm for solving Laplace's Equation",
+               2,
+               None,
+               '___sec64'),
+              ("Jacobi Algorithm for solving Laplace's Equation",
+               2,
+               None,
+               '___sec65'),
+              ("Jacobi Algorithm for solving Laplace's Equation, the algorithm",
+               2,
+               None,
+               '___sec66'),
+              ("Jacobi Algorithm for solving Laplace's Equation, simple example",
+               2,
+               None,
+               '___sec67'),
+              ("Jacobi Algorithm for solving Laplace's Equation, to observe",
+               2,
+               None,
+               '___sec68'),
+              ('Python code for solving the two-dimensional Laplace equation',
+               2,
+               None,
+               '___sec69'),
+              ("Jacobi's algorithm extended to the diffusion equation in two dimensions",
+               2,
+               None,
+               '___sec70'),
+              ("Jacobi's algorithm extended to the diffusion equation in two dimensions",
+               2,
+               None,
+               '___sec71'),
+              ("Jacobi's algorithm extended to the diffusion equation in two dimensions, discretizing",
+               2,
+               None,
+               '___sec72'),
+              ("Jacobi's algorithm extended to the diffusion equation in two dimensions, the second derivative",
+               2,
+               None,
+               '___sec73'),
+              ("Jacobi's algorithm extended to the diffusion equation in two dimensions",
+               2,
+               None,
+               '___sec74'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec75'),
+              ('Wave Equation in two Dimensions, discretizing',
+               2,
+               None,
+               '___sec76'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec77'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec78'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec79'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec80'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec81'),
+              ('Analytical  Solution for the two-dimensional wave equation',
+               2,
+               None,
+               '___sec82'),
+              ('Analytical  Solution for the two-dimensional wave equation, first step',
+               2,
+               None,
+               '___sec83'),
+              ('Analytical  Solution for the two-dimensional wave equation,',
+               2,
+               None,
+               '___sec84'),
+              ('Analytical  Solution for the two-dimensional wave equation, separation of variables',
+               2,
+               None,
+               '___sec85'),
+              ('Analytical  Solution for the two-dimensional wave equation, separation of variables',
+               2,
+               None,
+               '___sec86'),
+              ('Analytical  Solution for the two-dimensional wave equation, boundary conditions',
+               2,
+               None,
+               '___sec87'),
+              ('Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions',
+               2,
+               None,
+               '___sec88'),
+              ('Analytical  Solution for the two-dimensional wave equation, final steps',
+               2,
+               None,
+               '___sec89'),
+              ('Python code for solving the two-dimensional wave equation',
+               2,
+               None,
+               '___sec90')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1>Slides PHY 480 and PHY 905  Lectures: Partial differential equations</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Phil Duxbury, and Morten Hjorth-Jensen -->
+
+<center>
+<b>Phil Duxbury</b> [1]
+</center>
+
+<center>
+<b>Morten Hjorth-Jensen</b> [2, 3]
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics and Astronomy, Michigan State University</b></center>
+<center>[2] <b>Department of Physics, University of Oslo</b></center>
+<center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>
+<center><h4>Spring 2016</h4></center> <!-- date -->
+<br>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec0">Famous PDEs </h2>
+In the Natural Sciences we often encounter problems with many variables
+constrained by boundary conditions and initial values. Many of these problems
+can be modelled as partial differential equations. One case which arises 
+in many situations is the so-called wave equation whose one-dimensional form
+reads
+$$
+\begin{equation}
+\label{eq:waveeqpde}
+ \frac{\partial^2 u}{\partial x^2}=A\frac{\partial^2 u}{\partial t^2},
+\end{equation}
+$$
+
+where \( A \) is a constant. The solution \( u \) depends on both spatial and temporal variables, viz. \( u=u(x,t) \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec1">Famous PDEs, two dimension </h2>
+In two dimension we have \( u=u(x,y,t) \).  We will, unless otherwise stated, simply use \( u \) in our discussion below.
+Familiar situations which this equation can model
+are waves on a string, pressure waves, waves on the surface of a fjord or a 
+lake, electromagnetic waves and sound waves to mention a few. For e.g., electromagnetic
+waves we have the constant \( A=c^2 \), with \( c \) the speed of light. It is rather
+straightforward to extend this equation to two or three dimension. In two dimensions
+we have
+$$
+\begin{equation*}
+ \frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=A\frac{\partial^2 u}{\partial t^2},
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec2">Famous PDEs, diffusion equation </h2>
+The diffusion equation whose one-dimensional version   reads
+
+$$
+\begin{equation}
+\label{eq:diffusionpde}
+ \frac{\partial^2 u}{\partial x^2}=A\frac{\partial u}{\partial t},
+\end{equation}
+$$
+
+and  \( A \) is in this case called the diffusion constant. It can be used to model
+a wide selection of diffusion processes, from molecules to the diffusion of heat
+in a given material.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec3">Famous PDEs, Laplace's equation </h2>
+Another familiar equation from electrostatics is Laplace's equation, which looks similar
+to the wave equation in Eq. \eqref{eq:waveeqpde} except that we have set \( A=0 \)
+
+$$
+\begin{equation}
+\label{eq:laplacepde}
+ \frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=0,
+\end{equation}
+$$
+
+or if we have a finite electric charge represented by a charge density 
+\( \rho(\mathbf{x}) \) we have the familiar Poisson equation
+
+$$
+\begin{equation}
+\label{eq:poissonpde}
+ \frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}=-4\pi \rho(\mathbf{x}).
+\end{equation}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec4">Famous PDEs, Helmholtz' equation </h2>
+Other famous partial differential equations  are the Helmholtz (or eigenvalue) equation, here specialized to two 
+dimensions only
+
+$$
+\begin{equation}
+\label{eq:helmholtz}
+ -\frac{\partial^2 u}{\partial x^2}-\frac{\partial^2 u}{\partial y^2}=\lambda u,
+\end{equation}
+$$
+
+the linear transport equation  (in \( 2+1 \) dimensions) familiar from Brownian motion as well
+
+$$
+\begin{equation}
+\label{eq:transport}
+\frac{\partial u}{\partial t} +\frac{\partial u}{\partial x}+\frac{\partial u}{\partial y }=0,
+\end{equation}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec5">Famous PDEs, Schroedinger's equation in two dimensions </h2>
+Schroedinger's equation
+
+$$
+\begin{equation*}
+ -\frac{\partial^2 u}{\partial x^2}-\frac{\partial^2 u}{\partial y^2}+f(x,y)u = \imath\frac{\partial u}{\partial t}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec6">Famous PDEs, Maxwell's equations </h2>
+Important systems of linear partial differential equations are the famous Maxwell equations
+
+$$
+ \frac{\partial \mathbf{E}}{\partial t} =  \mathrm{curl}\mathbf{B},
+$$
+
+and
+$$
+-\mathrm{curl} \mathbf{E} =  \mathbf{B} 
+$$
+
+and
+$$
+\mathrm{div} \mathbf{E} =   \mathrm{div}\mathbf{B}  = 0.
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec7">Famous PDEs, Euler's equations </h2>
+Similarly, famous systems of non-linear partial differential equations are for example Euler's equations for 
+incompressible, inviscid flow
+$$
+\begin{equation*}
+ \frac{\partial \mathbf{u}}{\partial t} +\mathbf{u}\nabla\mathbf{u}=  -Dp; \hspace{1cm} \mathrm{div} \mathbf{u} =  0,
+\end{equation*}
+$$
+
+with \( p \) being the pressure and
+$$
+\begin{equation*}
+\nabla = \frac{\partial}{\partial x}e_x+\frac{\partial}{\partial y}e_y,
+\end{equation*}
+$$
+
+in the two dimensions. The unit vectors are \( e_x \) and \( e_y \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec8">Famous PDEs, the Navier-Stokes' equations </h2>
+Another example is the set of   
+Navier-Stokes equations for incompressible, viscous flow
+
+$$
+\begin{equation*}
+ \frac{\partial \mathbf{u}}{\partial t} +\mathbf{u}\nabla\mathbf{u}-\Delta \mathbf{u}=  -Dp; \hspace{1cm} \mathrm{div} \mathbf{u} =  0.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec9">Famous PDEs, general equation in two dimensions </h2>
+A general partial differential equation with two given dimensions
+reads
+
+$$
+\begin{equation*}
+A(x,y)\frac{\partial^2 u}{\partial x^2}+B(x,y)\frac{\partial^2 u}{\partial x\partial y}
++C(x,y)\frac{\partial^2 u}{\partial y^2}=F(x,y,u,\frac{\partial u}{\partial x}, \frac{\partial u}{\partial y}),
+\end{equation*}
+$$
+
+and if we set
+
+$$
+\begin{equation*}
+  B=C=0,
+\end{equation*}
+$$
+
+we recover the \( 1+1 \)-dimensional diffusion equation which is an example
+of a so-called parabolic partial differential equation.
+With
+
+$$
+\begin{equation*}
+  B=0, \hspace{1cm} AC < 0
+\end{equation*}
+$$
+
+we get the \( 2+1 \)-dim wave equation which is an example of a so-called 
+elliptic PDE, where more generally we have
+\( B^2 > AC \).
+For \( B^2 <  AC \) 
+we obtain a so-called hyperbolic PDE, with the Laplace equation in 
+Eq. \eqref{eq:laplacepde} as one of the 
+classical examples.
+These equations can all be easily extended to non-linear partial differential
+equations and \( 3+1 \) dimensional cases.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec10">Diffusion equation </h2>
+The diffusion equation describes in typical applications the evolution in time of the density \( u \) of a quantity like
+the particle density, energy density, temperature gradient, chemical concentrations etc.
+
+<p>
+The basis is the assumption that the flux density \( \mathbf{\rho} \) obeys the Gauss-Green theorem
+
+$$
+\begin{equation*}
+\int_V \mathrm{div}\mathbf{\rho} dx = \int_{\partial V} \mathbf{\rho}\mathbf{n}dS,
+\end{equation*}
+$$
+
+where \( n \) is the unit outer normal field and \( V \) is a smooth region with the space where
+we seek a solution.  
+The Gauss-Green theorem leads to
+
+$$
+\begin{equation*} 
+ \mathrm{div} \mathbf{\rho} = 0.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec11">Diffusion equation </h2>
+Assuming that the flux is proportional to the gradient \( \mathbf{\nabla} u \) but pointing in the opposite direction
+since the flow is from regions  of high concetration to lower concentrations, we obtain
+
+$$
+\begin{equation*}
+\mathbf{\rho} = -D\mathbf{\nabla} u,
+\end{equation*}
+$$
+
+resulting in
+
+$$
+\begin{equation*} 
+\mathrm{div} \mathbf{\nabla} u  = D\Delta u = 0,
+\end{equation*}
+$$
+
+which is Laplace's equation. The constant \( D \) can be coupled with various physical 
+constants, such as the diffusion constant or the specific heat and thermal conductivity discussed below.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec12">Diffusion equation, famous laws </h2>
+If we let \( u \) denote the concetration of a particle species, this results in Fick's law of diffusion. 
+If it denotes the temperature gradient, we have Fourier'slaw of heat conduction and if it refers to the 
+electrostatic potential we have Ohm's law of electrical conduction.
+
+<p>
+Coupling the rate of change (temporal dependence) of \( u \) with the flux density we have
+
+$$
+\begin{equation*}   
+\frac{\partial u}{\partial t} = -\mathrm{div}\mathbf{\rho}, 
+\end{equation*}
+$$
+
+which results in
+
+$$
+\begin{equation*} 
+\frac{\partial u}{\partial t}= D \mathrm{div} \mathbf{\nabla} u  = D \Delta u,
+\end{equation*}
+$$
+
+the diffusion equation, or heat equation.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec13">Diffusion equation, heat equation </h2>
+If we specialize to the heat equation, 
+we assume that the diffusion of heat through some 
+material is proportional with the temperature gradient \( T(\mathbf{x},t) \)
+and using 
+conservation of energy we arrive at the diffusion equation
+
+$$
+\begin{equation*}
+ \frac{\kappa}{C\rho}\nabla^2 T(\mathbf{x},t) =\frac{\partial T(\mathbf{x},t)}{\partial t}
+\end{equation*}
+$$
+
+where \( C \) is the specific heat and  \( \rho \) 
+the density of the material. 
+Here we let the density be represented by a 
+constant, but there is no problem introducing  an explicit spatial dependence, viz.,
+
+$$
+\begin{equation*}
+ \frac{\kappa}{C\rho(\mathbf{x},t)}\nabla^2 T(\mathbf{x},t) =
+\frac{\partial T(\mathbf{x},t)}{\partial t}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec14">Diffusion equation, heat equation in one dimension </h2>
+Setting all constants equal to the diffusion constant \( D \), i.e.,
+
+$$
+\begin{equation*}
+    D=\frac{C\rho}{\kappa},
+\end{equation*}
+$$
+
+we arrive at
+
+$$
+\begin{equation*}
+ \nabla^2 T(\mathbf{x},t) =
+D\frac{\partial T(\mathbf{x},t)}{\partial t}.
+\end{equation*}
+$$
+
+Specializing to the \( 1+1 \)-dimensional case we have
+
+$$
+\begin{equation*}
+ \frac{\partial^2 T(x,t)}{\partial x^2}=D\frac{\partial T(x,t)}{\partial t}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec15">Diffusion equation, dimensionless form </h2>
+We note that the dimension of \( D \) is time/length$^2$.
+Introducing the dimensionless variables \( \alpha\hat{x}=x \)
+we get
+
+$$
+\begin{equation*}
+ \frac{\partial^2 T(x,t)}{\alpha^2\partial \hat{x}^2}=
+D\frac{\partial T(x,t)}{\partial t},
+\end{equation*}
+$$
+
+and since \( \alpha \) is just a constant we could define
+\( \alpha^2D= 1 \) or use the last expression to define a dimensionless time-variable 
+\( \hat{t} \). This yields a simplified diffusion equation
+
+$$
+\begin{equation*}
+ \frac{\partial^2 T(\hat{x},\hat{t})}{\partial \hat{x}^2}=
+\frac{\partial T(\hat{x},\hat{t})}{\partial \hat{t}}.
+\end{equation*}
+$$
+
+It is now a partial differential equation in terms of dimensionless
+variables. In the discussion below, we will however, for the sake
+of notational simplicity replace \( \hat{x}\rightarrow x \) and 
+\( \hat{t}\rightarrow t \). Moreover, the solution to the \( 1+1 \)-dimensional
+partial differential equation is replaced by \( T(\hat{x},\hat{t})\rightarrow u(x,t) \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec16">Explicit Scheme </h2>
+In one dimension we have the following equation
+
+$$
+\begin{equation*}
+ \nabla^2 u(x,t) =\frac{\partial u(x,t)}{\partial t},
+\end{equation*}
+$$
+
+or
+
+$$
+\begin{equation*}
+u_{xx} = u_t,
+\end{equation*}
+$$
+
+with initial conditions, i.e., the conditions at \( t=0 \),
+
+$$
+\begin{equation*}
+u(x,0)= g(x) \hspace{0.5cm} 0 < x < L
+\end{equation*}
+$$
+
+with \( L=1 \) the length of the \( x \)-region of interest.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec17">Explicit Scheme, boundary conditions </h2>
+The  boundary conditions are
+
+$$
+\begin{equation*}
+u(0,t)= a(t) \hspace{0.5cm} t \ge 0,
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+u(L,t)= b(t) \hspace{0.5cm} t \ge 0,
+\end{equation*}
+$$
+
+where \( a(t) \) and \( b(t) \) are two functions which depend on time only, while
+\( g(x) \) depends only on the position \( x \).
+Our next step is to find a numerical algorithm for solving this equation. Here we recur
+to our familiar equal-step methods
+and introduce different step lengths for the space-variable \( x \) and time \( t \) through
+the  step length for \( x \)
+
+$$
+\begin{equation*}
+\Delta x=\frac{1}{n+1}
+\end{equation*}
+$$
+
+and the time step length \( \Delta t \). The position after \( i \) steps and
+time at time-step \( j \) are now given by
+
+$$
+\begin{equation*}
+\begin{array}{cc} t_j=j\Delta t & j \ge 0 \\
+                  x_i=i\Delta x & 0 \le i \le n+1\end{array} 
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec18">Explicit Scheme, algorithm </h2>
+If we use standard approximations for the derivatives we obtain
+
+$$
+\begin{equation*}
+u_t\approx \frac{u(x,t+\Delta t)-u(x,t)}{\Delta t}=\frac{u(x_i,t_j+\Delta t)-u(x_i,t_j)}{\Delta t}
+\end{equation*}
+$$
+
+with a local approximation error \( O(\Delta t) \)  
+and
+
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u(x+\Delta x,t)-2u(x,t)+u(x-\Delta x,t)}{\Delta x^2},
+\end{equation*}
+$$
+
+or
+
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u(x_i+\Delta x,t_j)-2u(x_i,t_j)+u(x_i-\Delta x,t_j)}{\Delta x^2},
+\end{equation*}
+$$
+
+with a local approximation error \( O(\Delta x^2) \). Our approximation is to higher order
+in coordinate space. This can be justified since in most cases it is the spatial
+dependence which causes numerical problems.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec19">Explicit Scheme, simplifications </h2>
+These equations can be further simplified as
+
+$$
+\begin{equation*}
+u_t\approx \frac{u_{i,j+1}-u_{i,j}}{\Delta t}, 
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u_{i+1,j}-2u_{i,j}+u_{i-1,j}}{\Delta x^2}.
+\end{equation*}
+$$
+
+The one-dimensional diffusion equation can then be rewritten in its
+discretized version as
+
+$$
+\begin{equation*}
+\frac{u_{i,j+1}-u_{i,j}}{\Delta t}=\frac{u_{i+1,j}-2u_{i,j}+u_{i-1,j}}{\Delta x^2}.
+\end{equation*}
+$$
+
+Defining \( \alpha = \Delta t/\Delta x^2 \) results in the explicit scheme
+
+$$
+\begin{equation}
+\label{eq:explicitpde}
+ u_{i,j+1}= \alpha u_{i-1,j}+(1-2\alpha)u_{i,j}+\alpha u_{i+1,j}.
+\end{equation}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec20">Explicit Scheme, solving the equations </h2>
+Since all the discretized initial values
+
+$$
+\begin{equation*}
+   u_{i,0} = g(x_i),
+\end{equation*}
+$$
+
+are known, then after one time-step the only unknown quantity is
+\( u_{i,1} \) which is given by
+
+$$
+\begin{equation*}
+ u_{i,1}= \alpha u_{i-1,0}+(1-2\alpha)u_{i,0}+\alpha u_{i+1,0}=
+\alpha g(x_{i-1})+(1-2\alpha)g(x_{i})+\alpha g(x_{i+1}).
+\end{equation*}
+$$
+
+We can then obtain \( u_{i,2} \) using the previously calculated values \( u_{i,1} \)
+and the boundary conditions \( a(t) \) and \( b(t) \). 
+This algorithm results in a so-called explicit scheme, since the next functions
+\( u_{i,j+1} \) are explicitely given by Eq. \eqref{eq:explicitpde}.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec21">Explicit Scheme, simple case </h2>
+We specialize to the case
+\( a(t)=b(t)=0 \) which results in  \( u_{0,j}=u_{n+1,j}=0 \).
+We can then reformulate our partial differential equation through the vector 
+\( V_j \) at the time  \( t_j=j\Delta t \)
+
+$$
+\begin{equation*}
+ V_j=\begin{bmatrix}u_{1,j}\\ u_{2,j} \\ \dots \\ u_{n,j}\end{bmatrix}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec22">Explicit Scheme, matrix-vector formulation </h2>
+This results in a matrix-vector multiplication
+$$
+\begin{equation*}
+   V_{j+1} = \mathbf{A}V_{j}
+\end{equation*}
+$$
+
+with the matrix \( \mathbf{A} \) given by
+$$
+\begin{equation*}
+ \mathbf{A}=\begin{bmatrix}1-2\alpha&\alpha&0& 0\dots\\ 
+                            \alpha&1-2\alpha&\alpha & 0\dots \\ 
+                            \dots & \dots & \dots & \dots \\
+                      0\dots & 0\dots &\alpha& 1-2\alpha\end{bmatrix}
+\end{equation*}
+$$
+
+which means we can rewrite the original partial differential equation as
+a set of matrix-vector multiplications
+$$
+\begin{equation*}
+   V_{j+1} = \mathbf{A}V_{j}=\dots = \mathbf{A}^{j+1}V_0,
+\end{equation*}
+$$
+
+where \( V_0 \) is the initial vector at time \( t=0 \) defined by the initial value
+\( g(x) \). 
+In the numerical implementation 
+one should avoid to treat this problem as a matrix vector multiplication
+since the matrix is triangular and at most three elements in each row are different from zero.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec23">Explicit Scheme, sketch of code </h2>
+It is rather easy to implement this matrix-vector multiplication as seen in the following piece of code
+
+<p>
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">//  First we set initialise the new and old vectors
+//  Here we have chosen the boundary conditions to be zero.
+//  n+1 is the number of mesh points in x
+//  Armadillo notation for vectors
+    u(0) = unew(0) = u(n) = unew(n) = 0.0;
+    for (int i = 1; i &lt; n; i++) {
+      x =  i*step;
+      //  initial condition
+      u(i) =  func(x);
+      //  intitialise the new vector 
+      unew(i) = 0;
+    }
+   // Time integration
+   for (int t = 1; t &lt;= tsteps; t++) {
+      for (int i = 1; i &lt; n; i++) {
+         // Discretized diff eq
+         unew(i) = alpha * u(i-1) + (1 - 2*alpha) * u(i) + alpha * u(i+1);
+      }
+   //  note that the boundaries are not changed.
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec24">Explicit Scheme, stability condition </h2>
+However, although the explicit scheme is easy to implement, it has a very weak 
+stability condition,  given by
+
+$$
+\begin{equation*}
+  \Delta t/\Delta x^2 \le 1/2.
+\end{equation*}
+$$
+
+This means that if \( \Delta x = 0.01 \) (a rather frequent choice), then \( \Delta t= 5\times 10^{-5} \). This has obviously 
+bad consequences if our time interval is large.
+In order to derive this relation we need some results from studies of iterative schemes. 
+If we require that our solution approaches a definite value after 
+a certain amount of time steps we need to require that the so-called
+spectral radius \( \rho(\mathbf{A}) \) of our matrix \( \mathbf{A} \) satisfies the condition
+
+$$
+\begin{equation}
+\label{eq:rhoconverge}
+   \rho(\mathbf{A}) < 1.
+\end{equation}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec25">Explicit Scheme, spectral radius and stability </h2>
+The spectral radius is defined 
+as
+
+$$
+\begin{equation*}
+    \rho(\mathbf{A}) = \hspace{0.1cm}\mathrm{max}\left\{|\lambda|:\mathrm{det}(\mathbf{A}-\lambda\hat{I})=0\right\},
+\end{equation*}
+$$
+
+which is interpreted as the smallest number such that a circle  with radius centered at zero in the complex plane
+contains all eigenvalues of \( \mathbf{A} \). If the matrix is positive definite, the condition in 
+Eq. \eqref{eq:rhoconverge} is always satisfied.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec26">Explicit Scheme, eigenvalues and stability </h2>
+We can obtain closed-form expressions for the  eigenvalues of \( \mathbf{A} \). To achieve this it is convenient
+to rewrite the matrix as
+
+$$
+\begin{equation*}
+ \mathbf{A}=\hat{I}-\alpha\hat{B},
+\end{equation*}
+$$
+
+with
+
+$$
+\begin{equation*}
+\hat{B} =\begin{bmatrix}2&-1&0& 0 &\dots\\ 
+                           -1&2&-1& 0&\dots \\ 
+                            \dots & \dots & \dots & \dots & -1 \\
+                      0 & 0 &\dots &-1&2\end{bmatrix}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec27">Explicit Scheme, final stability analysis </h2>
+The eigenvalues of \( \mathbf{A} \) are \( \lambda_i=1-\alpha\mu_i \), with \( \mu_i \) being the
+eigenvalues of \( \hat{B} \). To find \( \mu_i \) we note that the matrix elements of \( \hat{B} \) are
+
+$$
+\begin{equation*}
+b_{ij} = 2\delta_{ij}-\delta_{i+1j}-\delta_{i-1j},
+\end{equation*}
+$$
+
+meaning that we 
+have the following set of eigenequations for component \( i \)
+
+$$
+\begin{equation*}
+(\hat{B}\hat{x})_i = \mu_ix_i, 
+\end{equation*}
+$$
+
+resulting in
+
+$$
+\begin{equation*}
+(\hat{B}\hat{x})_i=\sum_{j=1}^n\left(2\delta_{ij}-\delta_{i+1j}-\delta_{i-1j}\right)x_j =
+2x_i-x_{i+1}-x_{i-1}=\mu_ix_i.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec28">Explicit Scheme, stability condition </h2>
+If we assume that \( x \) can be expanded in a basis of \( x=(\sin{(\theta)}, \sin{(2\theta)},\dots, \sin{(n\theta)}) \)
+with \( \theta = l\pi/n+1 \), where we have the endpoints given by \( x_0 = 0 \) and \( x_{n+1}=0 \), we can rewrite the 
+last equation as
+
+$$
+\begin{equation*}
+2\sin{(i\theta)}-\sin{((i+1)\theta)}-\sin{((i-1)\theta)}=\mu_i\sin{(i\theta)},
+\end{equation*}
+$$
+
+or
+
+$$
+\begin{equation*}
+2\left(1-\cos{(\theta)}\right)\sin{(i\theta)}=\mu_i\sin{(i\theta)},
+\end{equation*}
+$$
+
+which is nothing but
+
+$$
+\begin{equation*}
+2\left(1-\cos{(\theta)}\right)x_i=\mu_ix_i,
+\end{equation*}
+$$
+
+with eigenvalues \( \mu_i = 2-2\cos{(\theta)} \).
+
+<p>
+Our requirement in 
+Eq. \eqref{eq:rhoconverge} results in
+
+$$
+\begin{equation*}
+-1 < 1-\alpha2\left(1-\cos{(\theta)}\right) < 1,
+\end{equation*}
+$$
+
+which is satisfied only if \( \alpha < \left(1-\cos{(\theta)}\right)^{-1} \) resulting in
+\( \alpha \le 1/2 \) or \( \Delta t/\Delta x^2 \le 1/2 \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec29">Explicit Scheme, general tridiagonal matrix </h2>
+A more general tridiagonal matrix
+$$
+\begin{equation*}
+\mathbf{A} =\begin{bmatrix}a&b&0& 0 &\dots\\ 
+                           c&a&b& 0&\dots \\ 
+                            \dots & \dots & \dots & \dots & b \\
+                      0 & 0 &\dots &c&a\end{bmatrix},
+\end{equation*}
+$$
+
+has eigenvalues \( \mu_i=a+s\sqrt{bc}\cos{(i\pi/n+1)} \) with \( i=1:n \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec30">Implicit Scheme </h2>
+In deriving the equations for the explicit scheme we started with the so-called 
+forward formula for the first derivative, i.e., we used the discrete approximation
+
+$$
+\begin{equation*}
+u_t\approx \frac{u(x_i,t_j+\Delta t)-u(x_i,t_j)}{\Delta t}.
+\end{equation*}
+$$
+
+However, there is nothing which hinders us from using the backward formula
+
+$$
+\begin{equation*}
+u_t\approx \frac{u(x_i,t_j)-u(x_i,t_j-\Delta t)}{\Delta t},
+\end{equation*}
+$$
+
+still with a truncation error which goes like \( O(\Delta t) \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec31">Implicit Scheme </h2>
+We could also have used a midpoint approximation for the first derivative, resulting in
+
+$$
+\begin{equation*}
+u_t\approx \frac{u(x_i,t_j+\Delta t)-u(x_i,t_j-\Delta t)}{2\Delta t},
+\end{equation*}
+$$
+
+with a truncation error \( O(\Delta t^2) \). 
+Here we will stick to the backward formula and come back to the latter below. 
+For the second derivative we use however
+
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u(x_i+\Delta x,t_j)-2u(x_i,t_j)+u(x_i-\Delta x,t_j)}{\Delta x^2},
+\end{equation*}
+$$
+
+and define again \( \alpha = \Delta t/\Delta x^2 \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec32">Implicit Scheme </h2>
+We obtain now
+$$
+\begin{equation*}
+ u_{i,j-1}= -\alpha u_{i-1,j}+(1-2\alpha)u_{i,j}-\alpha u_{i+1,j}.
+\end{equation*}
+$$
+
+Here \( u_{i,j-1} \) is the only unknown quantity. 
+Defining the matrix 
+\( \mathbf{A} \)
+$$
+\begin{equation*}
+ \mathbf{A}=\begin{bmatrix}1+2\alpha&-\alpha&0& 0 &\dots\\ 
+                            -\alpha&1+2\alpha&-\alpha & 0 & \dots \\ 
+                            \dots & \dots & \dots & \dots &\dots  \\
+                            \dots & \dots & \dots & \dots & -\alpha \\
+                      0 & 0 &\dots &-\alpha& 1+2\alpha\end{bmatrix},
+\end{equation*}
+$$
+
+we can reformulate again the problem as a matrix-vector multiplication
+$$
+\begin{equation*}
+   \mathbf{A}V_{j} = V_{j-1}
+\end{equation*}
+$$
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec33">Implicit Scheme </h2>
+It means that we can rewrite the problem as
+$$
+\begin{equation*}
+   V_{j} = \mathbf{A}^{-1}V_{j-1}=\mathbf{A}^{-1}\left(\mathbf{A}^{-1}V_{j-2}\right)=\dots = \mathbf{A}^{-j}V_0.
+\end{equation*}
+$$
+
+This is an implicit scheme since it relies on determining the vector
+\( u_{i,j-1} \) instead of \( u_{i,j+1} \).
+If \( \alpha \) does not depend on time \( t \), we need 
+to invert a matrix only once. Alternatively we can solve this system of equations using our methods
+from linear algebra.
+These are however very cumbersome ways of solving since they involve \( \sim O(N^3) \) operations 
+for  a \( N\times N \) matrix. 
+It is much faster to solve these linear equations using methods for tridiagonal matrices,
+since these involve only \( \sim O(N) \) operations.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec34">Implicit Scheme </h2>
+The implicit scheme is always stable since the spectral radius satisfies \( \rho(\mathbf{A}) < 1  \). We could have inferred this by noting that 
+the matrix is positive definite, viz. all eigenvalues are larger than zero. We see this from
+the fact that \( \mathbf{A}=\hat{I}+\alpha\hat{B} \) has eigenvalues
+\( \lambda_i = 1+\alpha(2-2cos(\theta)) \) which satisfy \( \lambda_i > 1 \). Since it is the inverse which stands
+to the right of our iterative equation, we have \( \rho(\mathbf{A}^{-1}) < 1  \) 
+and the method is stable for all combinations
+of \( \Delta t \) and \( \Delta x \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h3 id="___sec35">Program Example for Implicit Equation </h3>
+
+We show here parts of a  simple example of how to solve the one-dimensional diffusion equation using the implicit
+scheme discussed above. The program uses the function to solve linear equations with a tridiagonal 
+matrix.
+
+<p>
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">//  parts of the function for backward Euler
+void backward_euler(int n, int tsteps, double delta_x, double alpha)
+{
+   double a, b, c;
+   vec u(n+1); // This is u  of Au = y
+   vec y(n+1); // Right side of matrix equation Au=y, the solution at a previous step
+   
+   // Initial conditions
+   for (int i = 1; i &lt; n; i++) {
+      y(i) = u(i) = func(delta_x*i);
+   }
+   // Boundary conditions (zero here)
+   y(n) = u(n) = u(0) = y(0);
+   // Matrix A, only constants
+   a = c = - alpha;
+   b = 1 + 2*alpha;
+   // Time iteration
+   for (int t = 1; t &lt;= tsteps; t++) {
+      //  here we solve the tridiagonal linear set of equations, 
+      tridag(a, b, c, y, u, n+1);
+      // boundary conditions
+      u(0) = 0;
+      u(n) = 0;
+      // replace previous time solution with new
+      for (int i = 0; i &lt;= n; i++) {
+	 y(i) = u(i);
+      }
+      //  You may consider printing the solution at regular time intervals
+      ....   // print statements
+   }  // end time iteration
+   ...
+}
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec36">Crank-Nicolson scheme </h2>
+It is possible to combine the implicit and explicit methods in a slightly more general
+approach. Introducing a parameter \( \theta \) (the so-called \( \theta \)-rule) we can set up 
+an equation
+$$
+\begin{equation}
+\label{eq:cranknicolson}
+  \frac{\theta}{\Delta x^2}\left(u_{i-1,j}-2u_{i,j}+u_{i+1,j}\right)+
+  \frac{1-\theta}{\Delta x^2}\left(u_{i+1,j-1}-2u_{i,j-1}+u_{i-1,j-1}\right)=
+  \frac{1}{\Delta t}\left(u_{i,j}-u_{i,j-1}\right),
+\end{equation}
+$$
+
+which for \( \theta=0 \) yields the forward formula for the first derivative and
+the explicit scheme, while \( \theta=1 \) yields the backward formula and the implicit
+scheme. These two schemes are called the backward and forward Euler schemes, respectively.
+For \( \theta = 1/2 \) we obtain a new scheme after its inventors, Crank and Nicolson.
+This scheme yields a truncation in time which goes like \( O(\Delta t^2) \) and it is stable 
+for all possible combinations of \( \Delta t \) and \( \Delta x \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec37">Derivation of CN scheme </h2>
+To derive the Crank-Nicolson equation, 
+we start with the forward Euler scheme and Taylor expand \( u(x,t+\Delta t) \),
+\( u(x+\Delta x, t) \) and \( u(x-\Delta x,t) \)
+$$
+\begin{align}
+u(x+\Delta x,t)&=u(x,t)+\frac{\partial u(x,t)}{\partial x} \Delta x+\frac{\partial^2 u(x,t)}{2\partial x^2}\Delta x^2+\mathcal{O}(\Delta x^3),
+\label{_auto1}\\ \nonumber
+u(x-\Delta x,t)&=u(x,t)-\frac{\partial u(x,t)}{\partial x}\Delta x+\frac{\partial^2 u(x,t)}{2\partial x^2} \Delta x^2+\mathcal{O}(\Delta x^3),\\ \nonumber
+u(x,t+\Delta t)&=u(x,t)+\frac{\partial u(x,t)}{\partial t}\Delta t+  \mathcal{O}(\Delta t^2).
+\label{eq:deltat0}
+\end{align}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec38">Taylor expansions </h2>
+With these Taylor expansions the approximations for the derivatives takes the form
+$$
+\begin{align}
+&\left[\frac{\partial u(x,t)}{\partial t}\right]_{\text{approx}} =\frac{\partial u(x,t)}{\partial t}+\mathcal{O}(\Delta t) , 
+\label{_auto2}\\ \nonumber
+&\left[\frac{\partial^2 u(x,t)}{\partial x^2}\right]_{\text{approx}}=\frac{\partial^2 u(x,t)}{\partial x^2}+\mathcal{O}(\Delta x^2).
+\end{align}
+$$
+
+It is easy to convince oneself that the backward Euler method must have the same truncation errors as the forward Euler scheme.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec39">Error in CN scheme </h2>
+For the Crank-Nicolson scheme we also need to Taylor expand \( u(x+\Delta x, t+\Delta t) \) and \( u(x-\Delta x, t+\Delta t) \) around \( t'=t+\Delta t/2 \).
+$$
+\begin{align}
+u(x+\Delta x, t+\Delta t)&=u(x,t')+\frac{\partial u(x,t')}{\partial x}\Delta x+\frac{\partial u(x,t')}{\partial t} \frac{\Delta t}{2} +\frac{\partial^2 u(x,t')}{2\partial x^2}\Delta x^2+\frac{\partial^2 u(x,t')}{2\partial t^2}\frac{\Delta t^2}{4} +\notag 
+\label{_auto3}\\  \nonumber
+&\frac{\partial^2 u(x,t')}{\partial x\partial t}\frac{\Delta t}{2} \Delta x+ \mathcal{O}(\Delta t^3)\\ \nonumber
+u(x-\Delta x, t+\Delta t)&=u(x,t')-\frac{\partial u(x,t')}{\partial x}\Delta x+\frac{\partial u(x,t')}{\partial t} \frac{\Delta t}{2} +\frac{\partial^2 u(x,t')}{2\partial x^2}\Delta x^2+\frac{\partial^2 u(x,t')}{2\partial t^2}\frac{\Delta t^2}{4} - \notag\\  \nonumber
+&\frac{\partial^2 u(x,t')}{\partial x\partial t}\frac{\Delta t}{2} \Delta x+ \mathcal{O}(\Delta t^3)\\
+u(x+\Delta x,t)&=u(x,t')+\frac{\partial u(x,t')}{\partial x}\Delta x-\frac{\partial u(x,t')}{\partial t} \frac{\Delta t}{2} +\frac{\partial^2 u(x,t')}{2\partial x^2}\Delta x^2+\frac{\partial^2 u(x,t')}{2\partial t^2}\frac{\Delta t^2}{4} -\notag 
+\label{_auto4}\\  \nonumber
+&\frac{\partial^2 u(x,t')}{\partial x\partial t}\frac{\Delta t}{2} \Delta x+ \mathcal{O}(\Delta t^3)\\  \nonumber
+u(x-\Delta x,t)&=u(x,t')-\frac{\partial u(x,t')}{\partial x}\Delta x-\frac{\partial u(x,t')}{\partial t} \frac{\Delta t}{2} +\frac{\partial^2 u(x,t')}{2\partial x^2}\Delta x^2+\frac{\partial^2 u(x,t')}{2\partial t^2}\frac{\Delta t^2}{4} +\notag \\  \nonumber
+&\frac{\partial^2 u(x,t')}{\partial x\partial t}\frac{\Delta t}{2} \Delta x+ \mathcal{O}(\Delta t^3)\\  \nonumber
+u(x,t+\Delta t)&=u(x,t')+\frac{\partial u(x,t')}{\partial t}\frac{\Delta_t}{2} +\frac{\partial ^2 u(x,t')}{2\partial t^2}\Delta t^2 + \mathcal{O}(\Delta t^3)\\  \nonumber
+u(x,t)&=u(x,t')-\frac{\partial u(x,t')}{\partial t}\frac{\Delta t}{2}+\frac{\partial ^2 u(x,t')}{2\partial t^2}\Delta t^2 + \mathcal{O}(\Delta t^3)
+\label{eq:deltat}
+\end{align}
+$$
+
+We now insert these expansions in the approximations for the derivatives to find
+$$
+\begin{align}
+&\left[\frac{\partial u(x,t')}{\partial t}\right]_{\text{approx}} =\frac{\partial u(x,t')}{\partial t}+\mathcal{O}(\Delta t^2) , 
+\label{_auto5}\\ \nonumber
+&\left[\frac{\partial^2 u(x,t')}{\partial x^2}\right]_{\text{approx}}=\frac{\partial^2 u(x,t')}{\partial x^2}+\mathcal{O}(\Delta x^2).
+\end{align}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec40">Truncation errors and stability </h2>
+
+<p>
+The following table summarizes the three methods.
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center"><em>Scheme:</em></th> <th align="center">                   <em>Truncation Error:</em>                  </th> <th align="center">         <em>Stability requirements:</em>        </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   Crank-Nicolson      </td> <td align="center">   \( \mathcal{O}(\Delta x^2) \) and \( \mathcal{O}(\Delta t^2) \)    </td> <td align="center">   Stable for all \( \Delta t \) and \( \Delta x \).    </td> </tr>
+<tr><td align="center">   Backward Euler      </td> <td align="center">   \( \mathcal{O}(\Delta x^2) \) and \( \mathcal{O}(\Delta t) \)      </td> <td align="center">   Stable for all \( \Delta t \) and \( \Delta x \).    </td> </tr>
+<tr><td align="center">   Forward Euler       </td> <td align="center">   \( \mathcal{O}(\Delta x^2) \) and \( \mathcal{O}(\Delta t) \)      </td> <td align="center">   \( \Delta t\leq \frac{1}{2}\Delta x^2 \)             </td> </tr>
+</tbody>
+</table>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec41">Rewrite of CN scheme </h2>
+Using our previous definition of \( \alpha=\Delta t/\Delta x^2 \) we can rewrite Eq. \eqref{eq:cranknicolson} as
+
+$$
+\begin{equation*}
+  -\alpha u_{i-1,j}+\left(2+2\alpha\right)u_{i,j}-\alpha u_{i+1,j}=
+  \alpha u_{i-1,j-1}+\left(2-2\alpha\right)u_{i,j-1}+\alpha u_{i+1,j-1},
+\end{equation*}
+$$
+
+or in matrix-vector form as
+
+$$
+\begin{equation*}
+  \left(2\hat{I}+\alpha\hat{B}\right)V_{j}=
+  \left(2\hat{I}-\alpha\hat{B}\right)V_{j-1},
+\end{equation*}
+$$
+
+ where the vector \( V_{j} \) is the same as defined in the implicit case while the matrix
+\( \hat{B} \) is
+
+$$
+\begin{equation*}
+ \hat{B}=\begin{bmatrix}2&-1&0&0 & \dots\\ 
+                                -1&      2&    -1 &     0 &\dots \\ 
+                            \dots & \dots & \dots & \dots & \dots \\
+                            \dots & \dots & \dots &  \dots &-1 \\
+                              0& 0 & \dots &-1& 2\end{bmatrix}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec42">Final CN equations </h2>
+We can rewrite the Crank-Nicolson scheme as follows
+
+$$
+\begin{equation*}
+  V_{j}=
+  \left(2\hat{I}+\alpha\hat{B}\right)^{-1}\left(2\hat{I}-\alpha\hat{B}\right)V_{j-1}.
+\end{equation*}
+$$
+
+We have already obtained the eigenvalues for the two matrices 
+\( \left(2\hat{I}+\alpha\hat{B}\right) \) and \( \left(2\hat{I}-\alpha\hat{B}\right) \). 
+This means that the spectral function has to satisfy
+
+$$
+\begin{equation*}
+\rho(\left(2\hat{I}+\alpha\hat{B}\right)^{-1}\left(2\hat{I}-\alpha\hat{B}\right)) < 1,
+\end{equation*}
+$$
+
+meaning that
+
+$$
+\begin{equation*}
+\left|(\left(2+\alpha\mu_i\right)^{-1}\left(2-\alpha\mu_i\right)\right| < 1,
+\end{equation*}
+$$
+
+and since \( \mu_i = 2-2cos(\theta) \) we have \( 0 < \mu_i <  4 \). A little algebra shows that
+the algorithm is stable for all possible values of \( \Delta t \) and \( \Delta x \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec43">Parts of Code for the Crank-Nicolson Scheme </h2>
+We can code in an efficient way the Crank-Nicolson algortihm by first multplying the matrix
+$$
+\begin{equation*}
+  \tilde{V}_{j-1}=\left(2\hat{I}-\alpha\hat{B}\right)V_{j-1},
+\end{equation*}
+$$
+
+with our previous vector \( V_{j-1} \) using the matrix-vector multiplication algorithm for a 
+tridiagonal matrix, as done in the forward-Euler scheme. Thereafter we can solve the equation
+
+$$
+\begin{equation*}
+ \left(2\hat{I}+\alpha\hat{B}\right) V_{j}=
+  \tilde{V}_{j-1},
+\end{equation*}
+$$
+
+using our method for systems of linear equations with a tridiagonal matrix, as done for the backward Euler scheme.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec44">Parts of Code for the Crank-Nicolson Scheme </h2>
+We illustrate this in the following part of our program.
+<p>
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">void crank_nicolson(int n, int tsteps, double delta_x, double alpha)
+{
+   double a, b, c;
+   vec u(n+1); // This is u in Au = r
+   vec r(n+1); // Right side of matrix equation Au=r
+   ....
+   // setting up the matrix 
+   a = c = - alpha;
+   b = 2 + 2*alpha;
+
+   // Time iteration
+   for (int t = 1; t &lt;= tsteps; t++) {
+      // Calculate r for use in tridag, right hand side of the Crank Nicolson method
+      for (int i = 1; i &lt; n; i++) {
+	 r(i) = alpha*u(i-1) + (2 - 2*alpha)*u(i) + alpha*u(i+1);
+      }
+      r(0) = 0;
+      r(n) = 0;
+      //  Then solve the tridiagonal matrix
+      tridiag(a, b, c, r, u, xsteps+1);
+      u(0) = 0;
+      u(n) = 0;
+      //  Eventual print statements etc
+      ....
+}
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec45">Python code for solving the one-dimensional diffusion equation </h2>
+The following Python code sets up and solves the diffusion equation for all three methods discussed.
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+# Code for solving the 1+1 dimensional diffusion equation
+# du/dt = ddu/ddx on a rectangular grid of size L x (T*dt),
+# with with L = 1, u(x,0) = g(x), u(0,t) = u(L,t) = 0
+
+import numpy, sys, math
+from  matplotlib import pyplot as plt
+import numpy as np
+
+def forward_step(alpha,u,uPrev,N):
+    """
+    Steps forward-euler algo one step ahead.
+    Implemented in a separate function for code-reuse from crank_nicolson()
+    """
+    
+    for x in xrange(1,N+1): #loop from i=1 to i=N
+        u[x] = alpha*uPrev[x-1] + (1.0-2*alpha)*uPrev[x] + alpha*uPrev[x+1]
+
+def forward_euler(alpha,u,N,T):
+    """
+    Implements the forward Euler sheme, results saved to
+    array u
+    """
+
+    #Skip boundary elements
+    for t in xrange(1,T):
+        forward_step(alpha,u[t],u[t-1],N)
+
+def tridiag(alpha,u,N):
+    """
+    Tridiagonal gaus-eliminator, specialized to diagonal = 1+2*alpha,
+    super- and sub- diagonal = - alpha
+    """
+    d = numpy.zeros(N) + (1+2*alpha)
+    b = numpy.zeros(N-1) - alpha
+
+    #Forward eliminate
+    for i in xrange(1,N):
+        #Normalize row i (i in u convention):
+        b[i-1] /= d[i-1];
+        u[i] /= d[i-1] #Note: row i in u = row i-1 in the matrix
+        d[i-1] = 1.0
+        #Eliminate
+        u[i+1] += u[i]*alpha
+        d[i] += b[i-1]*alpha
+    #Normalize bottom row
+    u[N] /= d[N-1]
+    d[N-1] = 1.0
+
+    #Backward substitute
+    for i in xrange(N,1,-1): #loop from i=N to i=2
+        u[i-1] -= u[i]*b[i-2]
+        #b[i-2] = 0.0 #This is never read, why bother...
+        
+def backward_euler(alpha,u,N,T):
+    """
+    Implements backward euler scheme by gaus-elimination of tridiagonal matrix.
+    Results are saved to u.
+    """
+    for t in xrange(1,T):
+        u[t] = u[t-1].copy()
+        tridiag(alpha,u[t],N) #Note: Passing a pointer to row t, which is modified in-place
+
+def crank_nicolson(alpha,u,N,T):
+    """
+    Implents crank-nicolson scheme, reusing code from forward- and backward euler
+    """
+    for t in xrange(1,T):
+        forward_step(alpha/2,u[t],u[t-1],N)
+        tridiag(alpha/2,u[t],N)
+
+def g(x):
+    """Initial condition u(x,0) = g(x), x \in [0,1]"""
+    return numpy.sin(math.pi*x)
+
+# Number of integration points along x-axis
+N       =   100
+# Step length in time
+dt      =   0.01
+# Number of time steps till final time 
+T       =   100
+# Define method to use 1 = explicit scheme, 2= implicit scheme, 3 = Crank-Nicolson
+method  =   2
+
+#dx = 1/float(N+1)
+u = numpy.zeros((T,N+2),numpy.double)
+(x,dx) = numpy.linspace (0,1,N+2, retstep=True)
+alpha = dt/(dx**2)
+
+#Initial codition
+u[0,:] = g(x)
+u[0,0] = u[0,N+1] = 0.0 #Implement boundaries rigidly
+
+if   method == 1:
+    forward_euler(alpha,u,N,T)
+elif method == 2:
+    backward_euler(alpha,u,N,T)
+elif method == 3:
+    crank_nicolson(alpha,u,N,T)
+else:
+    print "Please select method 1,2, or 3!"
+    import sys
+    sys.exit(0)
+# To do: add movie
+
+</script></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec46">Solution for the One-dimensional Diffusion Equation </h2>
+
+<p>
+It cannot be repeated enough, it is always useful to find cases where one can compare the numerical results
+and the developed algorithms and codes with closed-form solutions.  
+The above case is also particularly simple. 
+We have the following partial differential equation
+
+$$
+\begin{equation*}
+ \nabla^2 u(x,t) =\frac{\partial u(x,t)}{\partial t},
+\end{equation*}
+$$
+
+with initial conditions
+
+$$
+\begin{equation*}
+u(x,0)= g(x) \hspace{0.5cm} 0 < x < L.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec47">Solution for the One-dimensional Diffusion Equation </h2>
+The  boundary conditions are
+
+$$
+\begin{equation*}
+u(0,t)= 0 \hspace{0.5cm} t \ge 0,  \hspace{1cm}  u(L,t)= 0 \hspace{0.5cm} t \ge 0,
+\end{equation*}
+$$
+
+We assume that we have solutions of the form (separation of variable)
+
+$$
+\begin{equation*}
+u(x,t)=F(x)G(t).
+\end{equation*}
+$$
+
+which inserted in the partial differential equation results in
+
+$$
+\begin{equation*}
+\frac{F''}{F}=\frac{G'}{G},
+\end{equation*}
+$$
+
+where the derivative is with respect to \( x \) on the left hand side and with respect to \( t \) on right hand side.
+This equation  should hold for all \( x \) and \( t \). We must require the rhs and lhs to be equal to a constant.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec48">Solution for the One-dimensional Diffusion Equation </h2>
+We call this constant \( -\lambda^2 \). This gives us the two differential equations,
+
+$$
+\begin{equation*}
+F''+\lambda^2F=0;  \hspace{1cm} G'=-\lambda^2G,
+\end{equation*}
+$$
+
+with general solutions
+
+$$
+\begin{equation*}
+F(x)=A\sin(\lambda x)+B\cos(\lambda x); \hspace{1cm} G(t)=Ce^{-\lambda^2t}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec49">Solution for the One-dimensional Diffusion Equation </h2>
+To satisfy the boundary conditions we require \( B=0 \) and \( \lambda=n\pi/L \). One solution is therefore found to be
+$$
+\begin{equation*}
+u(x,t)=A_n\sin(n\pi x/L)e^{-n^2\pi^2 t/L^2}.
+\end{equation*}
+$$
+
+But there are infinitely many  possible \( n \) values (infinite number of solutions). Moreover, 
+the diffusion equation is linear and because of this we know that a superposition of solutions 
+will also be a solution of the equation. We may therefore write
+
+$$
+\begin{equation*}
+u(x,t)=\sum_{n=1}^{\infty} A_n \sin(n\pi x/L) e^{-n^2\pi^2 t/L^2}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec50">Solution for the One-dimensional Diffusion Equation </h2>
+The coefficient \( A_n \) is in turn determined from the initial condition. We require
+
+$$
+\begin{equation*}
+u(x,0)=g(x)=\sum_{n=1}^{\infty} A_n \sin(n\pi x/L).
+\end{equation*}
+$$
+
+The coefficient \( A_n \) is the Fourier coefficients for the function \( g(x) \). Because of this, \( A_n \) is given by (from the theory on Fourier series)
+
+$$
+\begin{equation*}
+A_n=\frac{2}{L}\int_0^L g(x)\sin(n\pi x/L) \mathrm{d}x.
+\end{equation*}
+$$
+
+Different \( g(x) \) functions will obviously result in different results for \( A_n \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec51">Explict scheme for the diffusion equation in two dimensions </h2>
+The \( 2+1 \)-dimensional diffusion equation, with the diffusion constant \( D=1 \), is given by
+$$
+\begin{equation*}
+\frac{\partial u}{\partial t}=\left(\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}\right),
+\end{equation*}
+$$
+
+where we have \( u=u(x,y,t) \).
+We assume that we have a square lattice of length \( L \) with equally
+many mesh points in the \( x \) and \( y \) directions.
+
+<p>
+We discretize again position and time using now
+
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u(x+h,y,t)-2u(x,y,t)+u(x-h,y,t)}{h^2},
+\end{equation*}
+$$
+
+which we rewrite as, in its discretized version,
+
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u^{l}_{i+1,j}-2u^{l}_{i,j}+u^{l}_{i-1,j}}{h^2},
+\end{equation*}
+$$
+
+where \( x_i=x_0+ih \), \( y_j=y_0+jh \) and \( t_l=t_0+l\Delta t \), with \( h=L/(n+1) \) and \( \Delta t \) the time step.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec52">Explict scheme for the diffusion equation in two dimensions </h2>
+We have defined our domain to start \( x(y)=0 \) and end at \( X(y)=L \).  
+The second derivative with respect to \( y \) reads
+
+$$
+\begin{equation*}
+u_{yy}\approx \frac{u^{l}_{i,j+1}-2u^{l}_{i,j}+u^{l}_{i,j-1}}{h^2}.
+\end{equation*}
+$$
+
+We use again the so-called forward-going Euler formula for the first derivative in time. In its discretized form we have
+
+$$
+\begin{equation*}
+u_{t}\approx \frac{u^{l+1}_{i,j}-u^{l}_{i,j}}{\Delta t},
+\end{equation*}
+$$
+
+resulting in
+$$
+\begin{equation*}
+u^{l+1}_{i,j}= u^{l}_{i,j} + \alpha\left[u^{l}_{i+1,j}+u^{l}_{i-1,j}+u^{l}_{i,j+1}+u^{l}_{i,j-1}-4u^{l}_{i,j}\right],
+\end{equation*}
+$$
+
+where the left hand side, with the solution at the new time step, is the only unknown term, since starting with \( t=t_0 \), the right hand side is entirely 
+determined by the boundary and initial conditions.  We have \( \alpha=\Delta t/h^2 \). 
+This scheme can be implemented using essentially the same approach as we used in Eq. \eqref{eq:explicitpde}.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec53">Laplace's and Poisson's Equations </h2>
+Laplace's equation reads
+$$
+\begin{equation*}
+ \nabla^2 u(\mathbf{x})=u_{xx}+u_{yy}=0.
+\end{equation*}
+$$
+
+with possible boundary conditions
+\( u(x,y) = g(x,y)  \) on the border \( \delta\Omega \). There is no time-dependence.
+We seek a solution in the region \( \Omega \) and we choose a quadratic mesh
+with equally many steps in both directions.  We could choose the grid to be rectangular or following
+polar coordinates \( r,\theta \) as well. Here we choose equal steps lengths in the \( x \) and
+the \( y \) directions. We set
+
+$$
+\begin{equation*} h=\Delta x = \Delta y =  \frac{L}{n+1},\end{equation*}
+$$
+
+where \( L \) is the length of the sides and we have \( n+1 \) points in both directions.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec54">Laplace's and Poisson's Equations, discretized version </h2>
+The discretized version  reads
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u(x+h,y)-2u(x,y)+u(x-h,y)}{h^2},
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+u_{yy}\approx \frac{u(x,y+h)-2u(x,y)+u(x,y-h)}{h^2},
+\end{equation*}
+$$
+
+which we rewrite as
+
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u_{i+1,j}-2u_{i,j}+u_{i-1,j}}{h^2},
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+u_{yy}\approx \frac{u_{i,j+1}-2u_{i,j}+u_{i,j-1}}{h^2}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec55">Laplace's and Poisson's Equations, final discretized version </h2>
+Inserting in Laplace's equation we obtain
+$$
+\begin{equation}
+\label{eq:laplacescheme}
+  u_{i,j}= \frac{1}{4}\left[u_{i,j+1}+u_{i,j-1}+u_{i+1,j}+u_{i-1,j}\right].
+\end{equation}
+$$
+
+<p>
+This is our final numerical scheme for solving Laplace's equation.
+Poisson's equation adds only a minor complication 
+to the above equation since in this case we have
+
+$$
+\begin{equation*}
+    u_{xx}+u_{yy}=-\rho(x,y),
+\end{equation*}
+$$
+
+and we need only to add a discretized version of \( \rho(\mathbf{x}) \)
+resulting in
+
+$$
+\begin{equation}
+\label{eq:poissonscheme}
+  u_{i,j}= \frac{1}{4}\left[u_{i,j+1}+u_{i,j-1}+u_{i+1,j}+u_{i-1,j}\right]
+           +\frac{h^2}{4}\rho_{i,j}.
+\end{equation}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec56">Laplace's and Poisson's Equations, boundary conditions </h2>
+The boundary condtions read
+
+$$
+\begin{equation*}
+u_{i,0} = g_{i,0} \hspace{0.5cm} 0\le i \le n+1,
+\end{equation*}
+$$
+
+
+$$
+\begin{equation*}
+u_{i,L} = g_{i,0} \hspace{0.5cm} 0\le i \le n+1,
+\end{equation*}
+$$
+
+
+$$
+\begin{equation*}
+u_{0,j} = g_{0,j} \hspace{0.5cm} 0\le j \le n+1,
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+u_{L,j} = g_{L,j} \hspace{0.5cm} 0\le j \le n+1.
+\end{equation*}
+$$
+
+<p>
+With \( n+1 \) mesh points the equations for \( u \) result in a system of \( (n+1)^2 \) linear equations in the \( (n+1)^2 \) unknown \( u_{i,j} \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec57">Scheme for solving Laplace's (Poisson's) equation </h2>
+We rewrite Eq. (ref{eq:poissonscheme}
+
+$$
+\begin{equation} 
+\label{eq:poissonrewritten}
+  4u_{i,j}= \left[u_{i,j+1}+u_{i,j-1}+u_{i+1,j}+u_{i-1,j}\right]
+           -h^2\rho_{i,j}=\Delta_{ij}-\tilde{\rho}_{ij},
+\end{equation}
+$$
+
+where we have defined
+
+$$
+\begin{equation*}
+ \Delta_{ij}= \left[u_{i,j+1}+u_{i,j-1}+u_{i+1,j}+u_{i-1,j}\right],
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+\tilde{\rho}_{ij}=h^2\rho_{i,j}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec58">Scheme for solving Laplace's (Poisson's) equation </h2>
+In order to illustrate how we can transform the last equations into a
+linear algebra problem of the type \( \mathbf{A}\mathbf{x}=\mathbf{w} \), with
+\( \mathbf{A} \) a matrix and \( \mathbf{x} \) and \( \mathbf{w} \) unknown and known
+vectors respectively, let us also for the sake of simplicity assume
+that the number of points \( n=3 \). We assume also that \( u(x,y) = g(x,y)
+ \) on the border \( \delta\Omega \).
+
+<p>
+The inner values of the function \( u \)  are then
+given by
+$$
+\begin{align}
+ 4u_{11} -u_{21} -u_{01} - u_{12}- u_{10}=&-\tilde{\rho}_{11} \nonumber \\
+4u_{12} - u_{02} - u_{22} - u_{13}- u_{11}=&-\tilde{\rho}_{12} \nonumber \\
+4u_{21} - u_{11} - u_{31} - u_{22}- u_{20}=&-\tilde{\rho}_{21} \nonumber \\
+4u_{22} - u_{12} - u_{32} - u_{23}- u_{21}=&-\tilde{\rho}_{22}. \nonumber
+\end{align}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec59">Scheme for solving Laplace's (Poisson's) equation </h2>
+If we  isolate on the left-hand side the unknown quantities \( u_{11} \), \( u_{12} \), \( u_{21} \) and \( u_{22} \), that is
+the inner points not constrained by the boundary conditions, we can
+rewrite the above equations as a matrix \( \mathbf{A} \) times an unknown vector \( \mathbf{x} \), that is
+$$
+\begin{equation*}
+   Ax = b,
+\end{equation*}
+$$
+
+or in more detail
+$$
+\begin{equation*}
+\begin{bmatrix} 4&-1 &-1 &0 \\
+                           -1& 4 &0 &-1 \\
+                           -1& 0 &4 &-1 \\
+                           0& -1 &-1 &4 \\
+                      \end{bmatrix}\begin{bmatrix}
+                           u_{11}\\
+                           u_{12}\\
+                           u_{21} \\
+                           u_{22}  \\
+                      \end{bmatrix}=\begin{bmatrix}
+                           u_{01}+u_{10}-\tilde{\rho}_{11}\\
+                           u_{13}+u_{02}-\tilde{\rho}_{12}\\
+                           u_{31}+u_{20}-\tilde{\rho}_{21} \\
+                           u_{32}+u_{23}-\tilde{\rho}_{22}\\
+                      \end{bmatrix}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec60">Scheme for solving Laplace's (Poisson's) equation </h2>
+The right hand side is constrained by the values at the boundary plus the known function \( \tilde{\rho} \). 
+For a two-dimensional equation it is easy to convince oneself that for larger sets of mesh points, 
+we will not have more than five function values for every row of the above matrix. For a problem with \( n+1 \)
+mesh points, our matrix \( \mathbf{A}\in {\mathbb{R}}^{(n+1)\times (n+1)} \) leads to \( (n-1)\times (n-1) \) unknown function
+values \( u_{ij} \). 
+This means that, if we fix the endpoints for the two-dimensional case (with a square lattice) at \( i(j)=0 \) 
+and \( i(j)=n+1 \), we have to solve the equations for \( 1 \ge i(j) le n \).
+
+<p>
+Since the matrix is rather sparse but is not on a tridiagonal form, elimination methods like the LU decomposition discussed, are not very practical. Rather, iterative schemes like Jacobi's method or the Gauss-Seidel are preferred. 
+The above matrix is also always diagonally dominant, a necessary condition
+for these iterative solvers to converge.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec61">Scheme for solving Laplace's (Poisson's) equation using Jacobi's iterative method </h2>
+In setting up for example Jacobi's method, it is useful to rewrite the matrix \( \mathbf{A} \) as
+
+$$
+\begin{equation*}
+\mathbf{A}=\mathbf{D}+\mathbf{U}+\mathbf{L}, 
+\end{equation*}
+$$
+
+with \( \mathbf{D} \) being a diagonal matrix with \( 4 \) as the only value, \( \mathbf{U} \) is an upper triangular matrix and \( \mathbf{L} \) 
+a  lower triangular matrix. In our case we have
+
+$$
+\begin{equation*}
+\mathbf{D}=\begin{bmatrix}4&0 &0 &0 \\
+                           0& 4 &0 &0 \\
+                           0& 0 &4 &0 \\
+                           0& 0 &0 &4 \\
+                      \end{bmatrix}, 
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+\mathbf{L}=\begin{bmatrix} 0&0 &0 &0 \\
+                           -1& 0 &0 &0 \\
+                           -1& 0 &0 &0 \\
+                           0& -1 &-1 &0 \\
+                      \end{bmatrix} \hspace{1cm} \mathbf{U}= \begin{bmatrix}
+                           0&-1 &-1 &0 \\
+                           0& 0 &0 &-1 \\
+                           0& 0 &0 &-1 \\
+                           0& 0 &0 &0 \\
+                      \end{bmatrix}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec62">Scheme for solving Laplace's (Poisson's) equation, with Jacobi's method </h2>
+
+<p>
+We assume now that we have an estimate for the unknown functions \( u_{11} \), \( u_{12} \), \( u_{21} \) and \( u_{22} \). We will call this
+the zeroth value and label it as
+\( u^{(0)}_{11} \), \( u^{(0)}_{12} \), \( u^{(0)}_{21} \) and \( u^{(0)}_{22} \). We can then set up an iterative scheme where the next solution
+is defined in terms of the previous one as
+$$
+\begin{align}
+ u^{(1)}_{11} =&\frac{1}{4}(b_1-u^{(0)}_{12} -u^{(0)}_{21}) \nonumber \\
+ u^{(1)}_{12} =&\frac{1}{4}(b_2-u^{(0)}_{11}-u^{(0)}_{22}) \nonumber \\
+ u^{(1)}_{21} =&\frac{1}{4}(b_3-u^{(0)}_{11}-u^{(0)}_{22}) \nonumber \\
+ u^{(1)}_{22}=&\frac{1}{4}(b_4-u^{(0)}_{12}-u^{(0)}_{21}),  \nonumber
+\end{align}
+$$
+
+where we have defined the vector
+
+$$
+\begin{equation*}
+\mathbf{b}= \begin{bmatrix} u_{01}+u_{10}-\tilde{\rho}_{11}\\
+                           u_{13}+u_{02}-\tilde{\rho}_{12}\\
+                           u_{31}+u_{20}-\tilde{\rho}_{21} \\
+                           u_{32}+u_{23}-\tilde{\rho}_{22}\\
+                      \end{bmatrix}.
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec63">Scheme for solving Laplace's (Poisson's) equation, final rewrite </h2>
+We can rewrite the equations in a more compact form in terms of the matrices \( \mathbf{D} \), \( \mathbf{L} \) and \( \mathbf{U} \) as,
+after \( r+1 \) iterations,
+
+$$
+\begin{equation} \label{eq:jacobisolverpoisson}
+\mathbf{x}^{(r+1)}= \mathbf{D}^{-1}\left(\mathbf{b} - (\mathbf{L}+\mathbf{U})\mathbf{x}^{(r)}\right),
+\end{equation}
+$$
+
+where the unknown functions are now defined in terms of
+
+$$
+\begin{equation*}
+\mathbf{x}= \begin{bmatrix} u_{11}\\
+                           u_{12}\\
+                           u_{21}\\
+                           u_{22}\\
+                      \end{bmatrix}.
+\end{equation*}
+$$
+
+If we wish to implement Gauss-Seidel's algorithm,
+the set of equations to solve are then given by
+
+$$
+\begin{equation} \label{eq:gausseidelsolverpoisson}
+\mathbf{x}^{(r+1)}= -(\mathbf{D}+\mathbf{L})^{-1}\left(\mathbf{b} -\mathbf{U}\mathbf{x}^{(r)}\right),
+\end{equation}
+$$
+
+or alternatively as
+
+$$
+\begin{equation*}
+\mathbf{x}^{(r+1)}= \mathbf{D}^{-1}\left(\mathbf{b} -\mathbf{L}\mathbf{x}^{(r+1)}-\mathbf{U}\mathbf{x}^{(r)}\right). 
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec64">Jacobi Algorithm for solving Laplace's Equation </h2>
+It is thus fairly straightforward to extend this equation to the 
+three-dimensional case. Whether we solve Eq. \eqref{eq:laplacescheme}
+or Eq. \eqref{eq:poissonscheme}, the solution strategy remains the same.
+We know the values of \( u \) at \( i=0 \) or \( i=n+1 \)  and at \( j=0 \) or
+\( j=n+1 \) but we cannot start at one of the boundaries and work our way into and
+across the system since Eq. \eqref{eq:laplacescheme} requires the knowledge
+of \( u \) at all of the neighbouring points in order to calculate \( u \) at any
+given point.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec65">Jacobi Algorithm for solving Laplace's Equation </h2>
+The way we solve these equations is based on an iterative scheme based on the Jacobi method or
+the Gauss-Seidel method or the relaxation methods.
+
+<p>
+Implementing Jacobi's method is rather simple. We start with an initial guess
+for \( u_{i,j}^{(0)} \) where all values are known. To obtain a new solution we
+solve Eq. \eqref{eq:laplacescheme} or Eq. \eqref{eq:poissonscheme}
+in order to obtain a new solution \( u_{i,j}^{(1)} \). 
+Most likely this solution will not be a solution to 
+Eq. \eqref{eq:laplacescheme}. This solution is in turn
+used to obtain a new and improved \( u_{i,j}^{(2)} \). We continue this process
+till we obtain a result which satisfies some specific convergence criterion.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec66">Jacobi Algorithm for solving Laplace's Equation, the algorithm </h2>
+Summarized, this algorithm reads
+
+<ol>
+ <li> Make an initial guess for \( u_{i,j} \) at all interior points \( (i,j) \) for all \( i=1:n \) and \( j=1:n \)</li>
+ <li> Use Eq. \eqref{eq:laplacescheme} to compute \( u^{m} \) at all interior points \( (i,j) \).  The index \( m \) stands for  iteration number \( m \).</li>
+ <li> Stop if prescribed convergence threshold is reached, otherwise continue to the next step.</li>
+ <li> Update the new value of \( u \) for the given iteration</li>
+ <li> Go to step 2</li>
+</ol>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec67">Jacobi Algorithm for solving Laplace's Equation, simple example </h2>
+A simple example may help in understanding this method.
+We consider a condensator with parallel 
+plates separated at a distance \( L \) resulting in for example the voltage differences
+\( u(x,0)=200sin(2\pi x/L) \) and
+\( u(x,1)=-200sin(2\pi x/L) \). These are our boundary conditions and we ask 
+what is the voltage \( u \) between the plates?
+To solve this problem numerically we provide below a C++ program
+which solves iteratively Eq. \eqref{eq:laplacescheme} using Jacobi's method. Only the part which computes 
+Eq. \eqref{eq:laplacescheme} is included here.
+
+<p>
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">....
+//  We define the step size for a square lattice with n+1 points
+       double h = (xmax-xmin)/(n+1);
+       double L = xmax-xmin;   // The length of the lattice
+//  We allocate space for the vector u and the temporary vector to
+//  be upgraded in every iteration
+       mat  u( n+1, n+1);  // using Armadillo to define matrices
+       mat  u_temp( n+1, n+1);  // This is the temporary value
+       u = 0.  //  This is also our initial guess for all unknown values
+//  We need to set up the  boundary conditions.  Specify for various cases
+    .....
+//  The iteration algorithm starts here
+       iterations = 0;
+       while( (iterations &lt;= max_iter) &amp;&amp; ( diff &gt; 0.00001) ){
+          u_temp = u; diff = 0.;
+          for (j = 1; j&lt;= n,j++){
+              for(l = 1; l &lt;= n; l++){
+                 u(j,l) = 0.25*(u_temp(j+1,l)+u_temp(j-1,l)+ &amp;
+                               u_temp(j,l+1)+u_temp(j,l-1));
+                 diff += fabs(u_temp(i,j)-u(i,j));
+              }
+          }
+          iterations++;
+          diff /= pow((n),2.0); 
+       }   // end while loop
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec68">Jacobi Algorithm for solving Laplace's Equation, to observe  </h2>
+The important part of the algorithm is applied in the function which
+sets up the two-dimensional Laplace equation. There we have a while
+statement which tests the difference between the temporary vector and
+the solution \( u_{i,j} \). Moreover, we have fixed the number of
+iterations to a given maximum. We need also to provide a convergence
+tolerance. In the above program example we have fixed this to be
+\( 0.00001 \). Depending on the type of applications one may have to
+change both the number of maximum iterations and the tolerance.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec69">Python code for solving the two-dimensional Laplace equation </h2>
+The following Python code sets up and solves the Laplace equation in two dimensions.
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+# Solves the 2d Laplace equation using relaxation method
+
+import numpy, math
+
+def relax(A, maxsteps, convergence):
+    """
+    Relaxes the matrix A until the sum of the absolute differences
+    between the previous step and the next step (divided by the number of
+    elements in A) is below convergence, or maxsteps is reached.
+
+    Input:
+     - A: matrix to relax
+     - maxsteps, convergence: Convergence criterions
+
+    Output:
+     - A is relaxed when this method returns
+    """
+
+    iterations = 0
+    diff = convergence +1
+
+    Nx = A.shape[1]
+    Ny = A.shape[0]
+    
+    while iterations < maxsteps and diff > convergence:
+        #Loop over all *INNER* points and relax
+        Atemp = A.copy()
+        diff = 0.0
+        
+        for y in xrange(1,Ny-1):
+            for x in xrange(1,Ny-1):
+                A[y,x] = 0.25*(Atemp[y,x+1]+Atemp[y,x-1]+Atemp[y+1,x]+Atemp[y-1,x])
+                diff  += math.fabs(A[y,x] - Atemp[y,x])
+
+        diff /=(Nx*Ny)
+        iterations += 1
+        print "Iteration #", iterations, ", diff =", diff;
+
+
+def boundary(A,x,y):
+    """
+    Set up boundary conditions
+
+    Input:
+     - A: Matrix to set boundaries on
+     - x: Array where x[i] = hx*i, x[last_element] = Lx
+     - y: Eqivalent array for y
+
+    Output:
+     - A is initialized in-place (when this method returns)
+    """
+
+    #Boundaries implemented (condensator with plates at y={0,Lx}, DeltaV = 200):
+    # A(x,0)  =  100*sin(2*pi*x/Lx)
+    # A(x,Ly) = -100*sin(2*pi*x/Lx)
+    # A(0,y)  = 0
+    # A(Lx,y) = 0
+
+    Nx = A.shape[1]
+    Ny = A.shape[0]
+    Lx = x[Nx-1] #They *SHOULD* have same sizes!
+    Ly = x[Nx-1]
+
+
+    A[:,0]    =   100*numpy.sin(math.pi*x/Lx)
+    A[:,Nx-1] = - 100*numpy.sin(math.pi*x/Lx)
+    A[0,:]    = 0.0
+    A[Ny-1,:] = 0.0
+
+
+#Main program
+
+import sys
+
+# Input parameters
+Nx      = 100
+Ny      = 100
+maxiter = 1000
+
+x = numpy.linspace(0,1,num=Nx+2) #Also include edges
+y = numpy.linspace(0,1,num=Ny+2)
+A = numpy.zeros((Nx+2,Ny+2))
+
+boundary(A,x,y)
+#Remember: as solution "creeps" in from the edges,
+#number of steps MUST AT LEAST be equal to
+#number of inner meshpoints/2 (unless you have a better
+#estimate for the solution than zeros() )
+relax(A,maxiter,0.00001)
+
+# To do: add visualization
+
+</script></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec70">Jacobi's algorithm extended to the diffusion equation in two dimensions </h2>
+
+<p>
+Let us know implement the implicit scheme and show how we can extend the previous algorithm for solving
+Laplace's or Poisson's equations to the diffusion equation as well. As the reader will notice, this simply implies a
+slight redefinition of the vector \( \mathbf{b} \) defined in Eq. \eqref{eq:jacobisolverpoisson}.
+
+<p>
+To see this, let us first set up the diffusion in two spatial dimensions, with boundary and initial conditions.
+The \( 2+1 \)-dimensional diffusion equation (with dimensionless variables) reads for a function
+\( u=u(x,y,t) \)
+
+$$
+\begin{equation*}
+\frac{\partial u}{\partial t}= D\left(\frac{\partial^2 u}{\partial x^2}+\frac{\partial^2 u}{\partial y^2}\right).
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec71">Jacobi's algorithm extended to the diffusion equation in two dimensions </h2>
+We assume that we have a square lattice of length \( L \) with equally
+many mesh points in the \( x \) and \( y \) directions.  Setting the diffusion
+constant \( D=1 \) and using the shorthand notation
+\( u_{xx}={\partial^2 u}/{\partial x^2} \) etc for the second
+derivatives and \( u_t={\partial u}/{\partial t} \) for the time
+derivative, we have, with a given set of boundary and initial
+conditions,
+
+$$
+\begin{equation*}
+ \begin{array}{cc}u_t= u_{xx}+u_{yy}& x, y\in(0,L), t>0 \\
+                         u(x,y,0) = g(x,y)& x, y\in (0,L) \\
+                         u(0,y,t)=u(L,y,t)=u(x,0,t)=u(x,L,t)0 & t > 0\\
+                       \end{array} 
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec72">Jacobi's algorithm extended to the diffusion equation in two dimensions, discretizing </h2>
+We discretize again position and time, and use the following approximation for the second derivatives
+
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u(x+h,y,t)-2u(x,y,t)+u(x-h,y,t)}{h^2},
+\end{equation*}
+$$
+
+which we rewrite as, in its discretized version,
+
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u^{l}_{i+1,j}-2u^{l}_{i,j}+u^{l}_{i-1,j}}{h^2},
+\end{equation*}
+$$
+
+where \( x_i=x_0+ih \), \( y_j=y_0+jh \) and \( t_l=t_0+l\Delta t \), with \( h=L/(n+1) \) and \( \Delta t \) the time step.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec73">Jacobi's algorithm extended to the diffusion equation in two dimensions, the second derivative </h2>
+The second derivative with respect to \( y \) reads
+
+$$
+\begin{equation*}
+u_{yy}\approx \frac{u^{l}_{i,j+1}-2u^{l}_{i,j}+u^{l}_{i,j-1}}{h^2}.
+\end{equation*}
+$$
+
+We use now the so-called backward going Euler formula for the first derivative in time. In its discretized form we have
+
+$$
+\begin{equation*}
+u_{t}\approx \frac{u^{l}_{i,j}-u^{l-1}_{i,j}}{\Delta t},
+\end{equation*}
+$$
+
+resulting in
+
+$$
+\begin{equation*}
+u^{l}_{i,j}+4\alpha u^{l}_{i,j}- \alpha\left[u^{l}_{i+1,j}+u^{l}_{i-1,j}+u^{l}_{i,j+1}+u^{l}_{i,j-1}\right] = u^{l-1}_{i,j},
+\end{equation*}
+$$
+
+where the right hand side is the only known term, since starting with \( t=t_0 \), the right hand side is entirely 
+determined by the boundary and initial conditions.  We have \( \alpha=\Delta t/h^2 \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec74">Jacobi's algorithm extended to the diffusion equation in two dimensions </h2>
+For future time steps, only the boundary values are determined 
+and we need to solve the equations for the interior part in an iterative way similar to what was done for Laplace's or Poisson's equations.
+To see this, we rewrite the previous equation as
+
+$$
+\begin{equation*}
+u^{l}_{i,j}= \frac{1}{1+4\alpha}\left[\alpha(u^{l}_{i+1,j}+u^{l}_{i-1,j}+u^{l}_{i,j+1}+u^{l}_{i,j-1})+u^{l-1}_{i,j}\right], 
+\end{equation*}
+$$
+
+or in a more compact form as
+$$
+\begin{equation}
+\label{eq:implicitdiff2dim}
+u^{l}_{i,j}= \frac{1}{1+4\alpha}\left[\alpha\Delta^l_{ij}+u^{l-1}_{i,j}\right],
+\end{equation}
+$$
+
+with \( \Delta^l_{ij}= \left[u^l_{i,j+1}+u^l_{i,j-1}+u^l_{i+1,j}+u^l_{i-1,j}\right] \).
+This equation has essentially the same structure as Eq. \eqref{eq:poissonrewritten}, except that 
+the function \( \rho_{ij} \) is replaced by the solution at a previous time step \( l-1 \). Furthermore, the diagonal matrix elements
+are now given by \( 1+4\alpha \), while the non-zero non-diagonal matrix elements equal \( \alpha \). This matrix is also positive definite, meaning in turn that
+iterative schemes like the Jacobi or the Gauss-Seidel methods will converge to the desired solution after a given number of iterations.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec75">Wave Equation in two Dimensions </h2>
+
+<p>
+The \( 1+1 \)-dimensional wave equation reads
+
+$$
+\begin{equation*}
+ \frac{\partial^2 u}{\partial x^2}=\frac{\partial^2 u}{\partial t^2},
+\end{equation*}
+$$
+
+with \( u=u(x,t) \) and we have assumed that we operate with 
+dimensionless variables. Possible boundary and initial conditions
+with \( L=1 \)  are
+
+$$
+\begin{equation*}
+ \begin{array}{cc} u_{xx} = u_{tt}& x\in(0,1), t>0 \\
+                         u(x,0) = g(x)& x\in (0,1) \\
+                         u(0,t)=u(1,t)=0 & t > 0\\
+                         \partial u/\partial t|_{t=0}=0 & x\in (0,1)\\
+                       \end{array} . 
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec76">Wave Equation in two Dimensions, discretizing </h2>
+We discretize again time and position,
+
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u(x+\Delta x,t)-2u(x,t)+u(x-\Delta x,t)}{\Delta x^2},
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+u_{tt}\approx \frac{u(x,t+\Delta t)-2u(x,t)+u(x,t-\Delta t)}{\Delta t^2},
+\end{equation*}
+$$
+
+which we rewrite as
+
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u_{i+1,j}-2u_{i,j}+u_{i-1,j}}{\Delta x^2},
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+u_{tt}\approx \frac{u_{i,j+1}-2u_{i,j}+u_{i,j-1}}{\Delta t^2},
+\end{equation*}
+$$
+
+resulting in
+
+$$
+\begin{equation}
+\label{eq:wavescheme}
+u_{i,j+1}=2u_{i,j}-u_{i,j-1}+\frac{\Delta t^2}{\Delta x^2}\left(u_{i+1,j}-2u_{i,j}+u_{i-1,j}\right).
+\end{equation}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec77">Wave Equation in two Dimensions </h2>
+If we assume that all values at times \( t=j \) and \( t=j-1 \) are known, the only unknown variable is \( u_{i,j+1} \) and the last equation yields thus an explicit
+scheme for updating this quantity. We have thus an explicit finite difference
+scheme for computing the wave function \( u \). The only additional complication
+in our case is the initial condition given by the first derivative in time,
+namely \( \partial u/\partial t|_{t=0}=0 \). 
+The discretized version of this first derivative is given by
+
+$$
+\begin{equation*}
+u_t\approx \frac{u(x_i,t_j+\Delta t)-u(x_i,t_j-\Delta t)}{2\Delta t},
+\end{equation*}
+$$
+
+and at \( t=0 \) it reduces to
+
+$$
+\begin{equation*}
+u_t\approx \frac{u_{i,+1}-u_{i,-1}}{2\Delta t}=0,
+\end{equation*}
+$$
+
+implying that \( u_{i,+1}=u_{i,-1} \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec78">Wave Equation in two Dimensions </h2>
+If we insert this condition in Eq. \eqref{eq:wavescheme} we arrive at a
+special formula for the first time step
+
+$$
+\begin{equation}
+\label{eq:firstwavescheme}
+u_{i,1}=u_{i,0}+\frac{\Delta t^2}{2\Delta x^2}\left(u_{i+1,0}-2u_{i,0}+u_{i-1,0}\right).
+\end{equation}
+$$
+
+We need seemingly two different equations, one for the first time step
+given by Eq. \eqref{eq:firstwavescheme} and one for all other time-steps
+given by Eq. \eqref{eq:wavescheme}. However, it suffices to use
+Eq. \eqref{eq:wavescheme} for all times as long as we 
+provide \( u(i,-1) \) using
+
+$$
+\begin{equation*}
+u_{i,-1}=u_{i,0}+\frac{\Delta t^2}{2\Delta x^2}\left(u_{i+1,0}-2u_{i,0}+u_{i-1,0}\right),
+\end{equation*}
+$$
+
+in our setup of the initial conditions.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec79">Wave Equation in two Dimensions </h2>
+The situation is rather similar for the \( 2+1 \)-dimensional case, 
+except that we now need to discretize the spatial \( y \)-coordinate as well.
+Our equations will now depend on three variables whose discretized versions
+are now
+
+$$
+\begin{equation*}
+ \begin{array}{cc} t_l=l\Delta t& l \ge 0 \\
+                          x_i=i\Delta x& 0 \le i \le n_x\\
+                          y_j=j\Delta y& 0 \le j \le n_y\end{array} , 
+\end{equation*}
+$$
+
+and we will let \( \Delta x=\Delta y = h \) and \( n_x=n_y \) for the sake of 
+simplicity.
+The equation with initial and boundary conditions reads now
+
+$$
+\begin{equation*}
+\begin{array}{cc} u_{xx}+u_{yy} = u_{tt}& x,y\in(0,1), t>0 \\
+                         u(x,y,0) = g(x,y)& x,y\in (0,1) \\
+                         u(0,0,t)=u(1,1,t)=0 & t > 0\\
+                         \partial u/\partial t|_{t=0}=0 & x,y\in (0,1)\\
+                       \end{array}. 
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec80">Wave Equation in two Dimensions </h2>
+We have now the following discretized partial derivatives
+$$
+\begin{equation*}
+u_{xx}\approx \frac{u_{i+1,j}^l-2u_{i,j}^l+u_{i-1,j}^l}{h^2},
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+u_{yy}\approx \frac{u_{i,j+1}^l-2u_{i,j}^l+u_{i,j-1}^l}{h^2},
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+u_{tt}\approx \frac{u_{i,j}^{l+1}-2u_{i,j}^{l}+u_{i,j}^{l-1}}{\Delta t^2},
+\end{equation*}
+$$
+
+which we merge into the discretized \( 2+1 \)-dimensional wave equation
+as
+
+$$
+\begin{equation}
+\label{eq:21wavescheme}
+u_{i,j}^{l+1}
+=2u_{i,j}^{l}-u_{i,j}^{l-1}+\frac{\Delta t^2}{h^2}\left(u_{i+1,j}^l-4u_{i,j}^l+u_{i-1,j}^l+u_{i,j+1}^l+u_{i,j-1}^l\right),
+\end{equation}
+$$
+
+where again we have an explicit scheme with \( u_{i,j}^{l+1} \) as the only
+unknown quantity.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec81">Wave Equation in two Dimensions </h2>
+It is easy to account for different step lengths for \( x \) and \( y \).
+The partial derivative is treated in much the same way
+as for the one-dimensional case, except that we now have an additional
+index due to the extra spatial dimension, viz., we need to compute 
+\( u_{i,j}^{-1} \) through
+
+$$
+\begin{equation*}
+u_{i,j}^{-1}=u_{i,j}^0+\frac{\Delta t}{2h^2}\left(u_{i+1,j}^0-4u_{i,j}^0+u_{i-1,j}^0+u_{i,j+1}^0+u_{i,j-1}^0\right),
+\end{equation*}
+$$
+
+in our setup of the initial conditions.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec82">Analytical  Solution for the two-dimensional wave equation </h2>
+We develop here the closed-form solution for the \( 2+1 \) dimensional wave equation with the following boundary and initial conditions
+
+$$
+\begin{equation*}
+ \begin{array}{cc} c^2(u_{xx}+u_{yy}) = u_{tt}& x,y\in(0,L), t>0 \\
+                         u(x,y,0) = f(x,y) & x,y\in (0,L) \\
+                         u(0,0,t)=u(L,L,t)=0 & t > 0\\
+                         \partial u/\partial t|_{t=0}= g(x,y) & x,y\in (0,L)\\
+                       \end{array} . 
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec83">Analytical  Solution for the two-dimensional wave equation, first step </h2>
+Our first step is to make the ansatz
+
+$$
+\begin{equation*}
+   u(x,y,t) = F(x,y) G(t),
+\end{equation*}
+$$
+
+resulting  in the equation
+
+$$
+\begin{equation*}
+   FG_{tt}= c^2(F_{xx}G+F_{yy}G),
+ \end{equation*}
+$$
+
+or
+
+$$
+\begin{equation*}
+   \frac{G_{tt}}{c^2G} =  \frac{1}{F}(F_{xx}+F_{yy}) = -\nu^2.
+ \end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec84">Analytical  Solution for the two-dimensional wave equation, </h2>
+The lhs and rhs are independent of each other and we obtain two differential equations
+$$
+\begin{equation*}
+   F_{xx}+F_{yy}+F\nu^2=0,
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*} 
+   G_{tt} + Gc^2\nu^2 =    G_{tt} + G\lambda^2 =  0,
+\end{equation*}
+$$
+
+with \( \lambda = c\nu \). 
+We can in turn make the following ansatz for the \( x \)  and \( y \) dependent part
+
+$$
+\begin{equation*}
+    F(x,y) = H(x)Q(y),
+\end{equation*}
+$$
+
+which results in
+
+$$
+\begin{equation*}
+   \frac{1}{H}H_{xx} =  -\frac{1}{Q}(Q_{yy}+Q\nu^2)= -\kappa^2.
+ \end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec85">Analytical  Solution for the two-dimensional wave equation, separation of variables </h2>
+Since the lhs and rhs are again independent of each other, we can separate the latter equation into two independent 
+equations, one for \( x \) and one for \( y \), namely
+
+$$
+\begin{equation*} 
+   H_{xx} + \kappa^2H =  0,
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*} 
+   Q_{yy} + \rho^2Q = 0,
+\end{equation*}
+$$
+
+with \( \rho^2= \nu^2-\kappa^2 \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec86">Analytical  Solution for the two-dimensional wave equation, separation of variables </h2>
+The second step is to solve these differential equations, which all have trigonometric functions as solutions, viz.
+$$
+\begin{equation*}
+H(x) = A\cos(\kappa x)+B\sin(\kappa x),
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+Q(y) = C\cos(\rho y)+D\sin(\rho y).
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec87">Analytical  Solution for the two-dimensional wave equation, boundary conditions </h2>
+The boundary conditions require that \( F(x,y) = H(x)Q(y) \) are zero at the boundaries, meaning that
+\( H(0)=H(L)=Q(0)=Q(L)=0 \).  This yields the solutions
+
+$$
+\begin{equation*}
+  H_m(x) = \sin(\frac{m\pi x}{L}) \hspace{1cm} Q_n(y) = \sin(\frac{n\pi y}{L}),
+\end{equation*}
+$$
+
+or
+
+$$
+\begin{equation*}
+  F_{mn}(x,y) = \sin(\frac{m\pi x}{L})\sin(\frac{n\pi y}{L}).
+\end{equation*}
+$$
+
+With \( \rho^2= \nu^2-\kappa^2 \) and \( \lambda = c\nu \) we have an eigenspectrum \( \lambda=c\sqrt{\kappa^2+\rho^2} \) 
+or \( \lambda_{mn}= c\pi/L\sqrt{m^2+n^2} \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec88">Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions </h2>
+The solution for \( G \) is
+
+$$
+\begin{equation*}
+G_{mn}(t) = B_{mn}\cos(\lambda_{mn} t)+D_{mn}\sin(\lambda_{mn} t),
+\end{equation*}
+$$
+
+with the general solution of the form
+
+$$
+\begin{equation*}
+u(x,y,t) = \sum_{mn=1}^{\infty} u_{mn}(x,y,t) = \sum_{mn=1}^{\infty}F_{mn}(x,y)G_{mn}(t).
+\end{equation*}
+$$
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec89">Analytical  Solution for the two-dimensional wave equation, final steps </h2>
+The final step is to determine the coefficients \( B_{mn} \) and \( D_{mn} \) from the Fourier coefficients.
+The equations for these  are determined by the initial conditions \( u(x,y,0) = f(x,y) \) and 
+\( \partial u/\partial t|_{t=0}= g(x,y) \). 
+The final expressions are
+
+$$
+\begin{equation*}
+B_{mn} = \frac{2}{L}\int_0^L\int_0^L dxdy f(x,y) \sin(\frac{m\pi x}{L})\sin(\frac{n\pi y}{L}),
+\end{equation*}
+$$
+
+and
+
+$$
+\begin{equation*}
+D_{mn} = \frac{2}{L}\int_0^L\int_0^L dxdy g(x,y) \sin(\frac{m\pi x}{L})\sin(\frac{n\pi y}{L}).
+\end{equation*}
+$$
+
+Inserting the particular functional forms of \( f(x,y) \) and \( g(x,y) \) one obtains the final closed-form expressions.
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec90">Python code for solving the two-dimensional wave equation </h2>
+The following Python code sets up and solves the two-dimensional  wave equation for all three methods discussed.
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+#Program which solves the 2+1-dimensional wave equation by a finite difference scheme
+
+from numpy import *
+#Define the grid
+N = 31
+h = 1.0 / (N-1)
+dt = .0005
+t_steps = 10000
+x,y = ndgrid(linspace(0,1,N),linspace(0,1,N),sparse=False)
+
+alpha = dt**2 / h**2
+
+#Initial conditions with du/dt = 0
+u = sin(x*pi)*cos(y*pi-pi/2)
+u_old = zeros(u.shape,type(u[0,0]))
+for i in xrange(1,N-1):
+    for j in xrange(1,N-1):
+        u_old[i,j] = u[i,j] + (alpha/2)*(u[i+1,j] - 4*u[i,j] + u[i-1,j] + u[i,j+1] + u[i,j-1])
+u_new = zeros(u.shape,type(u[0,0]))
+
+#We don't necessarily want to plot every time step. We plot every n'th step where
+n = 100
+plotnr = 0
+
+#Iteration over time steps
+for k in xrange(t_steps):
+    for i in xrange(1,N-1): #1 - N-2 because we don't want to change the boundaries
+        for j in xrange(1,N-1):
+            u_new[i,j] = 2*u[i,j] - u_old[i,j] + alpha*(u[i+1,j] - 4*u[i,j] + u[i-1,j] + u[i,j+1] + u[i,j-1])
+
+    #Prepare for next time step by manipulating pointers
+    temp = u_new
+    u_new = u_old
+    u_old = u
+    u = temp
+#To do: Make movie
+
+</script></div>
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+

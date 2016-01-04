@@ -1,0 +1,28 @@
+TITLE: PHY 480 and PHY 905 Computational Physics,  Syllabus/achievement requirements 
+AUTHOR: Department of Physics and Astronomy, Michigan State University
+DATE: Spring 2016
+
+
+===== Basic Syllabus =====
+
+The syllabus for this course consists of the lecture notes on the webpage (chapters 2-15) and 4 compulsory projects. The projects will be graded and count xxx each of the final mark. A final oral exam/presentation which counts xxx is also part of the total evaluation.
+
+ * Monte Carlo methods in physics ("Lecture notes chapters 12 and 13":"https://github.com/CompPhysics/ComputationalPhysics1/tree/master/doc/Lectures")
+
+ * Partial differential equations ("Lecture notes chapter 10":"https://github.com/CompPhysics/ComputationalPhysics1/tree/master/doc/Lectures")
+
+ * Ordinary differential equations ("Lecture notes chapter 8":"https://github.com/CompPhysics/ComputationalPhysics1/tree/master/doc/Lectures")
+
+ * Numerical integration, standard methods and Monte Carlo methods ("Lecture notes chapters 5.1-5.5 and 11":"https://github.com/CompPhysics/ComputationalPhysics1/tree/master/doc/Lectures")
+
+ * Linear algebra and eigenvalue problems. ("Lecture notes chapters 6 and 7":"https://github.com/CompPhysics/ComputationalPhysics1/tree/master/doc/Lectures")
+
+A good text that can be used (with more math plus much material on parallelization) is "Parallel Scientific Computing in C++ and MPI, of Karniadakis and Kirby III":"http://www.cambridge.org/us/academic/subjects/computer-science/scientific-computing-scientific-software/parallel-scientific-computing-c-and-mpi-seamless-approach-parallel-algorithms-and-their-implementation".
+
+ 
+
+===== Additional literature =====
+In addition we recommend highly the texts on Numerical Recipes in C++ or Fortran90 by Press et al. The C, F77 and
+Fortran90 can be downloaded down for free, follow the links at "Numerical Recipes":"http://www.nr.com/".
+
+The program library in C++ and Fortran2008 used in this course is a rewritten version of the Numerical Recipes codes.

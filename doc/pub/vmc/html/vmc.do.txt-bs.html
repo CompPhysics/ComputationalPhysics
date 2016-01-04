@@ -1,0 +1,510 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Variational Monte Carlo methods">
+
+<title>Variational Monte Carlo methods</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [(' Quantum Monte Carlo Motivation ', 2, None, '___sec0'),
+              (' Quantum Monte Carlo Motivation ', 2, None, '___sec1'),
+              (' Quantum Monte Carlo Motivation ', 2, None, '___sec2'),
+              (' Quantum Monte Carlo Motivation ', 2, None, '___sec3'),
+              (' Quantum Monte Carlo Motivation ', 2, None, '___sec4'),
+              (' Quantum Monte Carlo Motivation ', 2, None, '___sec5'),
+              (' Quantum Monte Carlo Motivation ', 2, None, '___sec6'),
+              (' Quantum Monte Carlo ', 2, None, '___sec7'),
+              (' Quantum Monte Carlo: hydrogen atom ', 2, None, '___sec8'),
+              (' Quantum Monte Carlo: hydrogen atom ', 2, None, '___sec9'),
+              (' Quantum Monte Carlo: hydrogen atom ', 2, None, '___sec10'),
+              (' Quantum Monte Carlo: the helium atom ', 2, None, '___sec11'),
+              (' Quantum Monte Carlo: the helium atom ', 2, None, '___sec12'),
+              (' Quantum Monte Carlo: the helium atom ', 2, None, '___sec13'),
+              (' Quantum Monte Carlo: the helium atom ', 2, None, '___sec14'),
+              (' The first attempt at solving the helium atom ',
+               2,
+               None,
+               '___sec15'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec16'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec17'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec18'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec19'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec20'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec21'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec22'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec23'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec24'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec25'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec26'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec27'),
+              (' The first attempt at solving the Helium atom ',
+               2,
+               None,
+               '___sec28'),
+              (' The Metropolis algorithm ', 2, None, '___sec29'),
+              (' The Metropolis algorithm ', 2, None, '___sec30'),
+              (' The Metropolis algorithm ', 2, None, '___sec31'),
+              (' The Metropolis algorithm ', 2, None, '___sec32'),
+              (' The Metropolis algorithm ', 2, None, '___sec33'),
+              (' The Metropolis algorithm ', 2, None, '___sec34'),
+              (' The Metropolis algorithm ', 2, None, '___sec35'),
+              (' Why blocking? ', 2, None, '___sec36'),
+              (' Why blocking? ', 2, None, '___sec37'),
+              (' Statistics and blocking ', 2, None, '___sec38'),
+              (' Statistics and blocking ', 2, None, '___sec39'),
+              (' Statistics and blocking ', 2, None, '___sec40'),
+              (' Statistics and blocking ', 2, None, '___sec41'),
+              (' Statistics and blocking ', 2, None, '___sec42'),
+              (' Statistics and blocking ', 2, None, '___sec43'),
+              (' Statistics and blocking ', 2, None, '___sec44'),
+              (' Statistics and blocking ', 2, None, '___sec45'),
+              (' Statistics and blocking ', 2, None, '___sec46'),
+              (' Statistics and blocking ', 2, None, '___sec47'),
+              (' Statistics and blocking ', 2, None, '___sec48'),
+              (' Statistics and blocking ', 2, None, '___sec49'),
+              (' Statistics and blocking ', 2, None, '___sec50'),
+              (' Statistics and blocking ', 2, None, '___sec51'),
+              (' Statistics and blocking ', 2, None, '___sec52'),
+              (' Statistics and blocking ', 2, None, '___sec53'),
+              (' Statistics and blocking ', 2, None, '___sec54'),
+              (' Statistics and blocking ', 2, None, '___sec55'),
+              (' Statistics and blocking ', 2, None, '___sec56'),
+              (' Statistics and blocking ', 2, None, '___sec57'),
+              (' Statistics and blocking ', 2, None, '___sec58'),
+              (' Statistics and blocking ', 2, None, '___sec59'),
+              (' Statistics and blocking ', 2, None, '___sec60'),
+              (' Statistics and blocking ', 2, None, '___sec61'),
+              (' Statistics and blocking ', 2, None, '___sec62'),
+              (' Can we understand this? Time Auto-correlation Function ',
+               2,
+               None,
+               '___sec63'),
+              (' Time Auto-correlation Function ', 2, None, '___sec64'),
+              (' Time Auto-correlation Function ', 2, None, '___sec65'),
+              (' Time Auto-correlation Function ', 2, None, '___sec66'),
+              (' Time Auto-correlation Function ', 2, None, '___sec67'),
+              (' Time Auto-correlation Function ', 2, None, '___sec68'),
+              (' Correlation Time ', 2, None, '___sec69'),
+              (' What is blocking? ', 2, None, '___sec70'),
+              (' What is blocking? ', 2, None, '___sec71'),
+              (' What is blocking? ', 2, None, '___sec72'),
+              (' Implementation ', 2, None, '___sec73'),
+              (' Importance sampling ', 2, None, '___sec74'),
+              (' Importance sampling ', 2, None, '___sec75'),
+              (' Importance sampling ', 2, None, '___sec76'),
+              (' Importance sampling ', 2, None, '___sec77'),
+              (' Importance sampling ', 2, None, '___sec78'),
+              (' Importance sampling, program elements ',
+               2,
+               None,
+               '___sec79'),
+              (' Importance sampling, program elements ',
+               2,
+               None,
+               '___sec80'),
+              (' Importance sampling, program elements ',
+               2,
+               None,
+               '___sec81'),
+              (' Importance sampling, program elements ',
+               2,
+               None,
+               '___sec82'),
+              (' Importance sampling, program elements ',
+               2,
+               None,
+               '___sec83'),
+              (' Importance sampling, program elements ',
+               2,
+               None,
+               '___sec84'),
+              (' Importance sampling ', 2, None, '___sec85'),
+              (' Importance sampling ', 2, None, '___sec86'),
+              (' Importance sampling ', 2, None, '___sec87'),
+              (' Importance sampling ', 2, None, '___sec88'),
+              (' Importance sampling ', 2, None, '___sec89'),
+              (' Importance sampling ', 2, None, '___sec90'),
+              (' Importance sampling ', 2, None, '___sec91'),
+              (' Importance sampling ', 2, None, '___sec92'),
+              (' Importance sampling ', 2, None, '___sec93'),
+              (' Importance sampling ', 2, None, '___sec94'),
+              (' Importance sampling ', 2, None, '___sec95'),
+              (' Importance sampling ', 2, None, '___sec96'),
+              (' Importance sampling ', 2, None, '___sec97'),
+              (' Importance sampling ', 2, None, '___sec98'),
+              (' Importance sampling ', 2, None, '___sec99'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec100'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec101'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec102'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec103'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec104'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec105'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec106'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec107'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec108'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec109'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec110'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec111'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec112'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec113'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec114'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec115'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec116'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec117'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec118'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec119'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec120'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec121'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec122'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec123'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec124'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec125'),
+              (' Importance sampling, Fokker-Planck and Langevin equations ',
+               2,
+               None,
+               '___sec126'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec127'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec128'),
+              (' Matrix elements of Slater determinants ',
+               2,
+               None,
+               '___sec129'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec130'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec131'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec132'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec133'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec134'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec135'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec136'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec137'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec138'),
+              (' Efficient calculation of Slater determinants ',
+               2,
+               None,
+               '___sec139'),
+              (' The gradient and the Laplacian ', 2, None, '___sec140'),
+              (' How to compute the derivates of the Slater determinant ',
+               2,
+               None,
+               '___sec141'),
+              (' The Slater determinant  ', 2, None, '___sec142'),
+              (' Rewriting the Slater determinant ', 2, None, '___sec143'),
+              (' Splitting the Slater determinant ', 2, None, '___sec144'),
+              (' Spin up and spin down parts ', 2, None, '___sec145'),
+              (' Factorization ', 2, None, '___sec146'),
+              (' Number of operations ', 2, None, '___sec147'),
+              (' Counting the number of FLOPS ', 2, None, '___sec148'),
+              (' Computation of ratios ', 2, None, '___sec149'),
+              (' Scaling properties ', 2, None, '___sec150'),
+              (' How to get the determinant ', 2, None, '___sec151'),
+              (' LU decomposition and determinant ', 2, None, '___sec152'),
+              (' Determinant of a matrix ', 2, None, '___sec153'),
+              (' Expectation value of the kinetic energy ',
+               2,
+               None,
+               '___sec154'),
+              (' Second derivative of the Jastrow factor ',
+               2,
+               None,
+               '___sec155'),
+              (' Functional form ', 2, None, '___sec156'),
+              (' Second derivative of the Jastrow factor ',
+               2,
+               None,
+               '___sec157'),
+              (' Gradient and Laplacian ', 2, None, '___sec158'),
+              (' The gradient for the determinant  ', 2, None, '___sec159'),
+              (' Jastrow gradient in quantum force ', 2, None, '___sec160'),
+              (' Metropolis Hastings part ', 2, None, '___sec161'),
+              (' Single-particle states ', 2, None, '___sec162'),
+              (' Single-particle states ', 2, None, '___sec163'),
+              (' Problems with neon states for VMC ', 2, None, '___sec164'),
+              (' Problems with neon states for VMC ', 2, None, '___sec165'),
+              (' Spherical harmonics ', 2, None, '___sec166'),
+              (' Examples of spherical harmonics ', 2, None, '___sec167'),
+              (' Problems with spherical harmonics ', 2, None, '___sec168'),
+              (' Real solid harmonics ', 2, None, '___sec169'),
+              (' Solid harmonics ', 2, None, '___sec170'),
+              (' Relation between solid harmonics and spherical harmonics ',
+               2,
+               None,
+               '___sec171'),
+              (' The lowest-order real solid harmonics ',
+               2,
+               None,
+               '___sec172')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="vmc.do.txt-bs.html">Variational Monte Carlo methods</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0000"></a>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Variational Monte Carlo methods</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Morten Hjorth-Jensen -->
+
+<center>
+<b>Morten Hjorth-Jensen</b> [1, 2]
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<center>[1] <b>National Superconducting Cyclotron Laboratory and Department of Physics and Astronomy, Michigan State University, East Lansing, MI 48824, USA</b></center>
+<center>[2] <b>Department of Physics, University of Oslo, Oslo, Norway</b></center>
+<p>
+<center><h4>Fall 2015</h4></center> <!-- date -->
+<p>
+
+
+<p><a href="._vmc.do.txt-bs001.html" class="btn btn-primary btn-lg">Read &raquo;</a></p>
+
+
+</div> <!-- end jumbotron -->
+
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+  <li class="active"><a href="._vmc.do.txt-bs000.html">1</a></li>
+  <li><a href="._vmc.do.txt-bs001.html">2</a></li>
+  <li><a href="._vmc.do.txt-bs002.html">3</a></li>
+  <li><a href="._vmc.do.txt-bs003.html">4</a></li>
+  <li><a href="._vmc.do.txt-bs004.html">5</a></li>
+  <li><a href="._vmc.do.txt-bs005.html">6</a></li>
+  <li><a href="._vmc.do.txt-bs006.html">7</a></li>
+  <li><a href="._vmc.do.txt-bs007.html">8</a></li>
+  <li><a href="._vmc.do.txt-bs008.html">9</a></li>
+  <li><a href="._vmc.do.txt-bs009.html">10</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._vmc.do.txt-bs173.html">174</a></li>
+  <li><a href="._vmc.do.txt-bs001.html">&raquo;</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+</body>
+</html>
+    
+
