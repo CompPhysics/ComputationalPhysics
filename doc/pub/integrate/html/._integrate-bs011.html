@@ -1,0 +1,450 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Numerical integration, from Newton-Cotes quadrature to Gaussian quadrature">
+
+<title>Slides PHY 480 and PHY 905  Lectures: Numerical integration, from Newton-Cotes quadrature to Gaussian quadrature</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+</style>
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Numerical Integration', 2, None, '___sec0'),
+              ('Newton-Cotes Quadrature or equal-step methods',
+               2,
+               None,
+               '___sec1'),
+              ('Basic philosophy of equal-step methods', 2, None, '___sec2'),
+              ('Simple algorithm for equal step methods', 2, None, '___sec3'),
+              ('Simple algorithm for equal step methods', 2, None, '___sec4'),
+              ("Lagrange's interpolation formula", 2, None, '___sec5'),
+              ('Polynomial approximation', 2, None, '___sec6'),
+              ('Simplifying the integral', 2, None, '___sec7'),
+              ('The trapezoidal rule', 2, None, '___sec8'),
+              ('Global error', 2, None, '___sec9'),
+              ('Error in the trapezoidal rule', 2, None, '___sec10'),
+              ('Algorithm for the trapezoidal rule', 2, None, '___sec11'),
+              ('Code example', 2, None, '___sec12'),
+              ('Transfer of  function names', 2, None, '___sec13'),
+              ('Going back to Python, why?', 2, None, '___sec14'),
+              ('Error analysis', 2, None, '___sec15'),
+              ('Integrating numerical mathematics with calculus',
+               2,
+               None,
+               '___sec16'),
+              ('The rectangle method', 2, None, '___sec17'),
+              ('Truncation error for the rectangular rule',
+               2,
+               None,
+               '___sec18'),
+              ('Second-order polynomial', 2, None, '___sec19'),
+              ("Simpson's rule", 2, None, '___sec20'),
+              ('Mathematical expressions for the truncation error',
+               2,
+               None,
+               '___sec21'),
+              ("Algorithm for Simpson's rule", 2, None, '___sec22'),
+              ('Summary for equal-step methods', 2, None, '___sec23'),
+              ("Lagrange's polynomial", 2, None, '___sec24'),
+              ('Polynomial approximation', 2, None, '___sec25'),
+              ('Gaussian Quadrature', 2, None, '___sec26'),
+              ('Gaussian Quadrature, main idea', 2, None, '___sec27'),
+              ('Gaussian Quadrature', 2, None, '___sec28'),
+              ('Gaussian Quadrature, weight function', 2, None, '___sec29'),
+              ('Gaussian Quadrature weights and integration points',
+               2,
+               None,
+               '___sec30'),
+              ('Gaussian Quadrature', 2, None, '___sec31'),
+              ('Error in Gaussian Quadrature', 2, None, '___sec32'),
+              ('Important polynomials in Gaussian Quadrature',
+               2,
+               None,
+               '___sec33'),
+              ('Gaussian Quadrature, win-win situation', 2, None, '___sec34'),
+              ('Gaussian Quadrature, determining mesh points and weights',
+               2,
+               None,
+               '___sec35'),
+              ('Orthogonal polynomials, Legendre', 2, None, '___sec36'),
+              ('Orthogonal polynomials, Legendre', 2, None, '___sec37'),
+              ('Orthogonal polynomials, Legendre', 2, None, '___sec38'),
+              ('Orthogonal polynomials, Legendre', 2, None, '___sec39'),
+              ('Orthogonal polynomials, Legendre', 2, None, '___sec40'),
+              ('Orthogonal polynomials, Legendre', 2, None, '___sec41'),
+              ('Orthogonal polynomials, Legendre', 2, None, '___sec42'),
+              ('Orthogonal polynomials, Legendre', 2, None, '___sec43'),
+              ('Orthogonal polynomials, simple code for Legendre polynomials',
+               2,
+               None,
+               '___sec44'),
+              ('Integration points and weights with orthogonal polynomials',
+               2,
+               None,
+               '___sec45'),
+              ('Integration points and weights with orthogonal polynomials',
+               2,
+               None,
+               '___sec46'),
+              ('Integration points and weights with orthogonal polynomials',
+               2,
+               None,
+               '___sec47'),
+              ('Integration points and weights with orthogonal polynomials',
+               2,
+               None,
+               '___sec48'),
+              ('Integration points and weights with orthogonal polynomials',
+               2,
+               None,
+               '___sec49'),
+              ('Integration points and weights with orthogonal polynomials',
+               2,
+               None,
+               '___sec50'),
+              ('Integration points and weights with orthogonal polynomials',
+               2,
+               None,
+               '___sec51'),
+              ('Integration points and weights with orthogonal polynomials',
+               2,
+               None,
+               '___sec52'),
+              ('Integration points and weights with orthogonal polynomials',
+               2,
+               None,
+               '___sec53'),
+              ('Application to the case $N=2$', 2, None, '___sec54'),
+              ('Application to the case $N=2$', 2, None, '___sec55'),
+              ('Application to the case $N=2$', 2, None, '___sec56'),
+              ('Application to the case $N=2$', 2, None, '___sec57'),
+              ('Application to the case $N=2$', 2, None, '___sec58'),
+              ('General integration intervals for Gauss-Legendre',
+               2,
+               None,
+               '___sec59'),
+              ('Mapping integration points and weights', 2, None, '___sec60'),
+              ('Mapping integration points and weights', 2, None, '___sec61'),
+              ('Other orthogonal polynomials, Laguerre polynomials',
+               2,
+               None,
+               '___sec62'),
+              ('Other orthogonal polynomials, Laguerre polynomials',
+               2,
+               None,
+               '___sec63'),
+              ('Other orthogonal polynomials, Laguerre polynomials',
+               2,
+               None,
+               '___sec64'),
+              ('Other orthogonal polynomials, Laguerre polynomials',
+               2,
+               None,
+               '___sec65'),
+              ('Other orthogonal polynomials, Hermite polynomials',
+               2,
+               None,
+               '___sec66'),
+              ('Other orthogonal polynomials, Hermite polynomials',
+               2,
+               None,
+               '___sec67'),
+              ('Demonstration of Gaussian Quadrature', 2, None, '___sec68'),
+              ('Demonstration of Gaussian Quadrature, simple program',
+               2,
+               None,
+               '___sec69'),
+              ('Demonstration of Gaussian Quadrature', 2, None, '___sec70'),
+              ('Demonstration of Gaussian Quadrature', 2, None, '___sec71'),
+              ('Comparing methods and using symbolic Python',
+               2,
+               None,
+               '___sec72'),
+              ('Treatment of Singular Integrals', 2, None, '___sec73'),
+              ('Treatment of Singular Integrals', 2, None, '___sec74'),
+              ('Treatment of Singular Integrals, change of variables',
+               2,
+               None,
+               '___sec75'),
+              ('Treatment of Singular Integrals, higher-order derivatives',
+               2,
+               None,
+               '___sec76'),
+              ('Treatment of Singular Integrals', 2, None, '___sec77'),
+              ('Treatment of Singular Integrals', 2, None, '___sec78'),
+              ('Treatment of Singular Integrals', 2, None, '___sec79'),
+              ('Treatment of Singular Integrals', 2, None, '___sec80'),
+              ('Treatment of Singular Integrals', 2, None, '___sec81'),
+              ('Treatment of Singular Integrals', 2, None, '___sec82'),
+              ('Treatment of Singular Integrals', 2, None, '___sec83'),
+              ('Treatment of Singular Integrals', 2, None, '___sec84'),
+              ('Hints concerning project 3', 2, None, '___sec85'),
+              ('Hints concerning project 3, parts of code',
+               2,
+               None,
+               '___sec86'),
+              ('Hints concerning project 3, the function to integrate',
+               2,
+               None,
+               '___sec87'),
+              ('Hints concerning project 3, Laguerre polynomials',
+               2,
+               None,
+               '___sec88'),
+              ('Hints concerning project 3, Laguerre polynomials, the new integrand',
+               2,
+               None,
+               '___sec89')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="integrate-bs.html">Slides PHY 480 and PHY 905  Lectures: Numerical integration, from Newton-Cotes quadrature to Gaussian quadrature</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._integrate-bs001.html#___sec0" style="font-size: 80%;">Numerical Integration</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs002.html#___sec1" style="font-size: 80%;">Newton-Cotes Quadrature or equal-step methods</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs003.html#___sec2" style="font-size: 80%;">Basic philosophy of equal-step methods</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs004.html#___sec3" style="font-size: 80%;">Simple algorithm for equal step methods</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs005.html#___sec4" style="font-size: 80%;">Simple algorithm for equal step methods</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs006.html#___sec5" style="font-size: 80%;">Lagrange's interpolation formula</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs007.html#___sec6" style="font-size: 80%;">Polynomial approximation</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs008.html#___sec7" style="font-size: 80%;">Simplifying the integral</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs009.html#___sec8" style="font-size: 80%;">The trapezoidal rule</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs010.html#___sec9" style="font-size: 80%;">Global error</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;">Error in the trapezoidal rule</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs012.html#___sec11" style="font-size: 80%;">Algorithm for the trapezoidal rule</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs013.html#___sec12" style="font-size: 80%;">Code example</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs014.html#___sec13" style="font-size: 80%;">Transfer of  function names</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs015.html#___sec14" style="font-size: 80%;">Going back to Python, why?</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs016.html#___sec15" style="font-size: 80%;">Error analysis</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs017.html#___sec16" style="font-size: 80%;">Integrating numerical mathematics with calculus</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs018.html#___sec17" style="font-size: 80%;">The rectangle method</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs019.html#___sec18" style="font-size: 80%;">Truncation error for the rectangular rule</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs020.html#___sec19" style="font-size: 80%;">Second-order polynomial</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs021.html#___sec20" style="font-size: 80%;">Simpson's rule</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs022.html#___sec21" style="font-size: 80%;">Mathematical expressions for the truncation error</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs023.html#___sec22" style="font-size: 80%;">Algorithm for Simpson's rule</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs024.html#___sec23" style="font-size: 80%;">Summary for equal-step methods</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs025.html#___sec24" style="font-size: 80%;">Lagrange's polynomial</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs026.html#___sec25" style="font-size: 80%;">Polynomial approximation</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs027.html#___sec26" style="font-size: 80%;">Gaussian Quadrature</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs028.html#___sec27" style="font-size: 80%;">Gaussian Quadrature, main idea</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs029.html#___sec28" style="font-size: 80%;">Gaussian Quadrature</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs030.html#___sec29" style="font-size: 80%;">Gaussian Quadrature, weight function</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs031.html#___sec30" style="font-size: 80%;">Gaussian Quadrature weights and integration points</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs032.html#___sec31" style="font-size: 80%;">Gaussian Quadrature</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs033.html#___sec32" style="font-size: 80%;">Error in Gaussian Quadrature</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs034.html#___sec33" style="font-size: 80%;">Important polynomials in Gaussian Quadrature</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs035.html#___sec34" style="font-size: 80%;">Gaussian Quadrature, win-win situation</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs036.html#___sec35" style="font-size: 80%;">Gaussian Quadrature, determining mesh points and weights</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs037.html#___sec36" style="font-size: 80%;">Orthogonal polynomials, Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs038.html#___sec37" style="font-size: 80%;">Orthogonal polynomials, Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs039.html#___sec38" style="font-size: 80%;">Orthogonal polynomials, Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs040.html#___sec39" style="font-size: 80%;">Orthogonal polynomials, Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs041.html#___sec40" style="font-size: 80%;">Orthogonal polynomials, Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs042.html#___sec41" style="font-size: 80%;">Orthogonal polynomials, Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs043.html#___sec42" style="font-size: 80%;">Orthogonal polynomials, Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs044.html#___sec43" style="font-size: 80%;">Orthogonal polynomials, Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs045.html#___sec44" style="font-size: 80%;">Orthogonal polynomials, simple code for Legendre polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs046.html#___sec45" style="font-size: 80%;">Integration points and weights with orthogonal polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs047.html#___sec46" style="font-size: 80%;">Integration points and weights with orthogonal polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs048.html#___sec47" style="font-size: 80%;">Integration points and weights with orthogonal polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs049.html#___sec48" style="font-size: 80%;">Integration points and weights with orthogonal polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs050.html#___sec49" style="font-size: 80%;">Integration points and weights with orthogonal polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs051.html#___sec50" style="font-size: 80%;">Integration points and weights with orthogonal polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs052.html#___sec51" style="font-size: 80%;">Integration points and weights with orthogonal polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs053.html#___sec52" style="font-size: 80%;">Integration points and weights with orthogonal polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs054.html#___sec53" style="font-size: 80%;">Integration points and weights with orthogonal polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs055.html#___sec54" style="font-size: 80%;">Application to the case \( N=2 \)</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs056.html#___sec55" style="font-size: 80%;">Application to the case \( N=2 \)</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs057.html#___sec56" style="font-size: 80%;">Application to the case \( N=2 \)</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs058.html#___sec57" style="font-size: 80%;">Application to the case \( N=2 \)</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs059.html#___sec58" style="font-size: 80%;">Application to the case \( N=2 \)</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs060.html#___sec59" style="font-size: 80%;">General integration intervals for Gauss-Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs061.html#___sec60" style="font-size: 80%;">Mapping integration points and weights</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs062.html#___sec61" style="font-size: 80%;">Mapping integration points and weights</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs063.html#___sec62" style="font-size: 80%;">Other orthogonal polynomials, Laguerre polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs064.html#___sec63" style="font-size: 80%;">Other orthogonal polynomials, Laguerre polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs065.html#___sec64" style="font-size: 80%;">Other orthogonal polynomials, Laguerre polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs066.html#___sec65" style="font-size: 80%;">Other orthogonal polynomials, Laguerre polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs067.html#___sec66" style="font-size: 80%;">Other orthogonal polynomials, Hermite polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs068.html#___sec67" style="font-size: 80%;">Other orthogonal polynomials, Hermite polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs069.html#___sec68" style="font-size: 80%;">Demonstration of Gaussian Quadrature</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs070.html#___sec69" style="font-size: 80%;">Demonstration of Gaussian Quadrature, simple program</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs071.html#___sec70" style="font-size: 80%;">Demonstration of Gaussian Quadrature</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs072.html#___sec71" style="font-size: 80%;">Demonstration of Gaussian Quadrature</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs073.html#___sec72" style="font-size: 80%;">Comparing methods and using symbolic Python</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs074.html#___sec73" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs075.html#___sec74" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs076.html#___sec75" style="font-size: 80%;">Treatment of Singular Integrals, change of variables</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs077.html#___sec76" style="font-size: 80%;">Treatment of Singular Integrals, higher-order derivatives</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs078.html#___sec77" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs079.html#___sec78" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs080.html#___sec79" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs081.html#___sec80" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs082.html#___sec81" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs083.html#___sec82" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs084.html#___sec83" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs085.html#___sec84" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs086.html#___sec85" style="font-size: 80%;">Hints concerning project 3</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs087.html#___sec86" style="font-size: 80%;">Hints concerning project 3, parts of code</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs088.html#___sec87" style="font-size: 80%;">Hints concerning project 3, the function to integrate</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs089.html#___sec88" style="font-size: 80%;">Hints concerning project 3, Laguerre polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs090.html#___sec89" style="font-size: 80%;">Hints concerning project 3, Laguerre polynomials, the new integrand</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0011"></a>
+<!-- !split  -->
+
+<h2 id="___sec10">Error in the trapezoidal rule </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+The correct mathematical expression for the local error for the trapezoidal rule is
+$$
+\begin{equation*}
+\int_a^bf(x)dx -\frac{b-a}{2}\left[f(a)+f(b)\right]=-\frac{h^3}{12}f^{(2)}(\xi),
+\end{equation*}
+$$
+
+and the global error reads
+$$
+\begin{equation*}
+\int_a^bf(x)dx -T_h(f)=-\frac{b-a}{12}h^2f^{(2)}(\xi),
+\end{equation*}
+$$
+
+where \( T_h \) is the trapezoidal result and \( \xi \in [a,b] \).
+</div>
+</div>
+
+
+<p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+<li><a href="._integrate-bs010.html">&laquo;</a></li>
+  <li><a href="._integrate-bs000.html">1</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._integrate-bs003.html">4</a></li>
+  <li><a href="._integrate-bs004.html">5</a></li>
+  <li><a href="._integrate-bs005.html">6</a></li>
+  <li><a href="._integrate-bs006.html">7</a></li>
+  <li><a href="._integrate-bs007.html">8</a></li>
+  <li><a href="._integrate-bs008.html">9</a></li>
+  <li><a href="._integrate-bs009.html">10</a></li>
+  <li><a href="._integrate-bs010.html">11</a></li>
+  <li class="active"><a href="._integrate-bs011.html">12</a></li>
+  <li><a href="._integrate-bs012.html">13</a></li>
+  <li><a href="._integrate-bs013.html">14</a></li>
+  <li><a href="._integrate-bs014.html">15</a></li>
+  <li><a href="._integrate-bs015.html">16</a></li>
+  <li><a href="._integrate-bs016.html">17</a></li>
+  <li><a href="._integrate-bs017.html">18</a></li>
+  <li><a href="._integrate-bs018.html">19</a></li>
+  <li><a href="._integrate-bs019.html">20</a></li>
+  <li><a href="._integrate-bs020.html">21</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._integrate-bs090.html">91</a></li>
+  <li><a href="._integrate-bs012.html">&raquo;</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright only on the titlepage -->
+</center>
+
+
+</body>
+</html>
+    
+
