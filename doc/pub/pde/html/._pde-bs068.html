@@ -1,0 +1,524 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Partial differential equations">
+
+<title>Slides PHY 480 and PHY 905  Lectures: Partial differential equations</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+</style>
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Famous PDEs', 2, None, '___sec0'),
+              ('Famous PDEs, two dimension', 2, None, '___sec1'),
+              ('Famous PDEs, diffusion equation', 2, None, '___sec2'),
+              ("Famous PDEs, Laplace's equation", 2, None, '___sec3'),
+              ("Famous PDEs, Helmholtz' equation", 2, None, '___sec4'),
+              ("Famous PDEs, Schroedinger's equation in two dimensions",
+               2,
+               None,
+               '___sec5'),
+              ("Famous PDEs, Maxwell's equations", 2, None, '___sec6'),
+              ("Famous PDEs, Euler's equations", 2, None, '___sec7'),
+              ("Famous PDEs, the Navier-Stokes' equations",
+               2,
+               None,
+               '___sec8'),
+              ('Famous PDEs, general equation in two dimensions',
+               2,
+               None,
+               '___sec9'),
+              ('Diffusion equation', 2, None, '___sec10'),
+              ('Diffusion equation', 2, None, '___sec11'),
+              ('Diffusion equation, famous laws', 2, None, '___sec12'),
+              ('Diffusion equation, heat equation', 2, None, '___sec13'),
+              ('Diffusion equation, heat equation in one dimension',
+               2,
+               None,
+               '___sec14'),
+              ('Diffusion equation, dimensionless form', 2, None, '___sec15'),
+              ('Explicit Scheme', 2, None, '___sec16'),
+              ('Explicit Scheme, boundary conditions', 2, None, '___sec17'),
+              ('Explicit Scheme, algorithm', 2, None, '___sec18'),
+              ('Explicit Scheme, simplifications', 2, None, '___sec19'),
+              ('Explicit Scheme, solving the equations', 2, None, '___sec20'),
+              ('Explicit Scheme, simple case', 2, None, '___sec21'),
+              ('Explicit Scheme, matrix-vector formulation',
+               2,
+               None,
+               '___sec22'),
+              ('Explicit Scheme, sketch of code', 2, None, '___sec23'),
+              ('Explicit Scheme, stability condition', 2, None, '___sec24'),
+              ('Explicit Scheme, spectral radius and stability',
+               2,
+               None,
+               '___sec25'),
+              ('Explicit Scheme, eigenvalues and stability',
+               2,
+               None,
+               '___sec26'),
+              ('Explicit Scheme, final stability analysis',
+               2,
+               None,
+               '___sec27'),
+              ('Explicit Scheme, stability condition', 2, None, '___sec28'),
+              ('Explicit Scheme, general tridiagonal matrix',
+               2,
+               None,
+               '___sec29'),
+              ('Implicit Scheme', 2, None, '___sec30'),
+              ('Implicit Scheme', 2, None, '___sec31'),
+              ('Implicit Scheme', 2, None, '___sec32'),
+              ('Implicit Scheme', 2, None, '___sec33'),
+              ('Implicit Scheme', 2, None, '___sec34'),
+              ('Program Example for Implicit Equation', 3, None, '___sec35'),
+              ('Crank-Nicolson scheme', 2, None, '___sec36'),
+              ('Derivation of CN scheme', 2, None, '___sec37'),
+              ('Taylor expansions', 2, None, '___sec38'),
+              ('Error in CN scheme', 2, None, '___sec39'),
+              ('Truncation errors and stability', 2, None, '___sec40'),
+              ('Rewrite of CN scheme', 2, None, '___sec41'),
+              ('Final CN equations', 2, None, '___sec42'),
+              ('Parts of Code for the Crank-Nicolson Scheme',
+               2,
+               None,
+               '___sec43'),
+              ('Parts of Code for the Crank-Nicolson Scheme',
+               2,
+               None,
+               '___sec44'),
+              ('Python code for solving the one-dimensional diffusion equation',
+               2,
+               None,
+               '___sec45'),
+              ('Solution for the One-dimensional Diffusion Equation',
+               2,
+               None,
+               '___sec46'),
+              ('Solution for the One-dimensional Diffusion Equation',
+               2,
+               None,
+               '___sec47'),
+              ('Solution for the One-dimensional Diffusion Equation',
+               2,
+               None,
+               '___sec48'),
+              ('Solution for the One-dimensional Diffusion Equation',
+               2,
+               None,
+               '___sec49'),
+              ('Solution for the One-dimensional Diffusion Equation',
+               2,
+               None,
+               '___sec50'),
+              ('Explict scheme for the diffusion equation in two dimensions',
+               2,
+               None,
+               '___sec51'),
+              ('Explict scheme for the diffusion equation in two dimensions',
+               2,
+               None,
+               '___sec52'),
+              ("Laplace's and Poisson's Equations", 2, None, '___sec53'),
+              ("Laplace's and Poisson's Equations, discretized version",
+               2,
+               None,
+               '___sec54'),
+              ("Laplace's and Poisson's Equations, final discretized version",
+               2,
+               None,
+               '___sec55'),
+              ("Laplace's and Poisson's Equations, boundary conditions",
+               2,
+               None,
+               '___sec56'),
+              ("Scheme for solving Laplace's (Poisson's) equation",
+               2,
+               None,
+               '___sec57'),
+              ("Scheme for solving Laplace's (Poisson's) equation",
+               2,
+               None,
+               '___sec58'),
+              ("Scheme for solving Laplace's (Poisson's) equation",
+               2,
+               None,
+               '___sec59'),
+              ("Scheme for solving Laplace's (Poisson's) equation",
+               2,
+               None,
+               '___sec60'),
+              ("Scheme for solving Laplace's (Poisson's) equation using Jacobi's iterative method",
+               2,
+               None,
+               '___sec61'),
+              ("Scheme for solving Laplace's (Poisson's) equation, with Jacobi's method",
+               2,
+               None,
+               '___sec62'),
+              ("Scheme for solving Laplace's (Poisson's) equation, final rewrite",
+               2,
+               None,
+               '___sec63'),
+              ("Jacobi Algorithm for solving Laplace's Equation",
+               2,
+               None,
+               '___sec64'),
+              ("Jacobi Algorithm for solving Laplace's Equation",
+               2,
+               None,
+               '___sec65'),
+              ("Jacobi Algorithm for solving Laplace's Equation, the algorithm",
+               2,
+               None,
+               '___sec66'),
+              ("Jacobi Algorithm for solving Laplace's Equation, simple example",
+               2,
+               None,
+               '___sec67'),
+              ("Jacobi Algorithm for solving Laplace's Equation, to observe",
+               2,
+               None,
+               '___sec68'),
+              ('Python code for solving the two-dimensional Laplace equation',
+               2,
+               None,
+               '___sec69'),
+              ("Jacobi's algorithm extended to the diffusion equation in two dimensions",
+               2,
+               None,
+               '___sec70'),
+              ("Jacobi's algorithm extended to the diffusion equation in two dimensions",
+               2,
+               None,
+               '___sec71'),
+              ("Jacobi's algorithm extended to the diffusion equation in two dimensions, discretizing",
+               2,
+               None,
+               '___sec72'),
+              ("Jacobi's algorithm extended to the diffusion equation in two dimensions, the second derivative",
+               2,
+               None,
+               '___sec73'),
+              ("Jacobi's algorithm extended to the diffusion equation in two dimensions",
+               2,
+               None,
+               '___sec74'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec75'),
+              ('Wave Equation in two Dimensions, discretizing',
+               2,
+               None,
+               '___sec76'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec77'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec78'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec79'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec80'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec81'),
+              ('Analytical  Solution for the two-dimensional wave equation',
+               2,
+               None,
+               '___sec82'),
+              ('Analytical  Solution for the two-dimensional wave equation, first step',
+               2,
+               None,
+               '___sec83'),
+              ('Analytical  Solution for the two-dimensional wave equation,',
+               2,
+               None,
+               '___sec84'),
+              ('Analytical  Solution for the two-dimensional wave equation, separation of variables',
+               2,
+               None,
+               '___sec85'),
+              ('Analytical  Solution for the two-dimensional wave equation, separation of variables',
+               2,
+               None,
+               '___sec86'),
+              ('Analytical  Solution for the two-dimensional wave equation, boundary conditions',
+               2,
+               None,
+               '___sec87'),
+              ('Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions',
+               2,
+               None,
+               '___sec88'),
+              ('Analytical  Solution for the two-dimensional wave equation, final steps',
+               2,
+               None,
+               '___sec89'),
+              ('Python code for solving the two-dimensional wave equation',
+               2,
+               None,
+               '___sec90')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="pde-bs.html">Slides PHY 480 and PHY 905  Lectures: Partial differential equations</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._pde-bs001.html#___sec0" style="font-size: 80%;"><b>Famous PDEs</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs002.html#___sec1" style="font-size: 80%;"><b>Famous PDEs, two dimension</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs003.html#___sec2" style="font-size: 80%;"><b>Famous PDEs, diffusion equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs004.html#___sec3" style="font-size: 80%;"><b>Famous PDEs, Laplace's equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs005.html#___sec4" style="font-size: 80%;"><b>Famous PDEs, Helmholtz' equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs006.html#___sec5" style="font-size: 80%;"><b>Famous PDEs, Schroedinger's equation in two dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs007.html#___sec6" style="font-size: 80%;"><b>Famous PDEs, Maxwell's equations</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs008.html#___sec7" style="font-size: 80%;"><b>Famous PDEs, Euler's equations</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs009.html#___sec8" style="font-size: 80%;"><b>Famous PDEs, the Navier-Stokes' equations</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs010.html#___sec9" style="font-size: 80%;"><b>Famous PDEs, general equation in two dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs011.html#___sec10" style="font-size: 80%;"><b>Diffusion equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs012.html#___sec11" style="font-size: 80%;"><b>Diffusion equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs013.html#___sec12" style="font-size: 80%;"><b>Diffusion equation, famous laws</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs014.html#___sec13" style="font-size: 80%;"><b>Diffusion equation, heat equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs015.html#___sec14" style="font-size: 80%;"><b>Diffusion equation, heat equation in one dimension</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs016.html#___sec15" style="font-size: 80%;"><b>Diffusion equation, dimensionless form</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs017.html#___sec16" style="font-size: 80%;"><b>Explicit Scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs018.html#___sec17" style="font-size: 80%;"><b>Explicit Scheme, boundary conditions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs019.html#___sec18" style="font-size: 80%;"><b>Explicit Scheme, algorithm</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs020.html#___sec19" style="font-size: 80%;"><b>Explicit Scheme, simplifications</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs021.html#___sec20" style="font-size: 80%;"><b>Explicit Scheme, solving the equations</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs022.html#___sec21" style="font-size: 80%;"><b>Explicit Scheme, simple case</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs023.html#___sec22" style="font-size: 80%;"><b>Explicit Scheme, matrix-vector formulation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs024.html#___sec23" style="font-size: 80%;"><b>Explicit Scheme, sketch of code</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs025.html#___sec24" style="font-size: 80%;"><b>Explicit Scheme, stability condition</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs026.html#___sec25" style="font-size: 80%;"><b>Explicit Scheme, spectral radius and stability</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs027.html#___sec26" style="font-size: 80%;"><b>Explicit Scheme, eigenvalues and stability</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs028.html#___sec27" style="font-size: 80%;"><b>Explicit Scheme, final stability analysis</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs029.html#___sec28" style="font-size: 80%;"><b>Explicit Scheme, stability condition</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs030.html#___sec29" style="font-size: 80%;"><b>Explicit Scheme, general tridiagonal matrix</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs031.html#___sec30" style="font-size: 80%;"><b>Implicit Scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs032.html#___sec31" style="font-size: 80%;"><b>Implicit Scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs033.html#___sec32" style="font-size: 80%;"><b>Implicit Scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs034.html#___sec33" style="font-size: 80%;"><b>Implicit Scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs035.html#___sec34" style="font-size: 80%;"><b>Implicit Scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs036.html#___sec35" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Program Example for Implicit Equation</a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs037.html#___sec36" style="font-size: 80%;"><b>Crank-Nicolson scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs038.html#___sec37" style="font-size: 80%;"><b>Derivation of CN scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs039.html#___sec38" style="font-size: 80%;"><b>Taylor expansions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs040.html#___sec39" style="font-size: 80%;"><b>Error in CN scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs041.html#___sec40" style="font-size: 80%;"><b>Truncation errors and stability</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs042.html#___sec41" style="font-size: 80%;"><b>Rewrite of CN scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs043.html#___sec42" style="font-size: 80%;"><b>Final CN equations</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs044.html#___sec43" style="font-size: 80%;"><b>Parts of Code for the Crank-Nicolson Scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs045.html#___sec44" style="font-size: 80%;"><b>Parts of Code for the Crank-Nicolson Scheme</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs046.html#___sec45" style="font-size: 80%;"><b>Python code for solving the one-dimensional diffusion equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs047.html#___sec46" style="font-size: 80%;"><b>Solution for the One-dimensional Diffusion Equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs048.html#___sec47" style="font-size: 80%;"><b>Solution for the One-dimensional Diffusion Equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs049.html#___sec48" style="font-size: 80%;"><b>Solution for the One-dimensional Diffusion Equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs050.html#___sec49" style="font-size: 80%;"><b>Solution for the One-dimensional Diffusion Equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs051.html#___sec50" style="font-size: 80%;"><b>Solution for the One-dimensional Diffusion Equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs052.html#___sec51" style="font-size: 80%;"><b>Explict scheme for the diffusion equation in two dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs053.html#___sec52" style="font-size: 80%;"><b>Explict scheme for the diffusion equation in two dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs054.html#___sec53" style="font-size: 80%;"><b>Laplace's and Poisson's Equations</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs055.html#___sec54" style="font-size: 80%;"><b>Laplace's and Poisson's Equations, discretized version</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs056.html#___sec55" style="font-size: 80%;"><b>Laplace's and Poisson's Equations, final discretized version</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs057.html#___sec56" style="font-size: 80%;"><b>Laplace's and Poisson's Equations, boundary conditions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs058.html#___sec57" style="font-size: 80%;"><b>Scheme for solving Laplace's (Poisson's) equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs059.html#___sec58" style="font-size: 80%;"><b>Scheme for solving Laplace's (Poisson's) equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs060.html#___sec59" style="font-size: 80%;"><b>Scheme for solving Laplace's (Poisson's) equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs061.html#___sec60" style="font-size: 80%;"><b>Scheme for solving Laplace's (Poisson's) equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs062.html#___sec61" style="font-size: 80%;"><b>Scheme for solving Laplace's (Poisson's) equation using Jacobi's iterative method</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs063.html#___sec62" style="font-size: 80%;"><b>Scheme for solving Laplace's (Poisson's) equation, with Jacobi's method</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs064.html#___sec63" style="font-size: 80%;"><b>Scheme for solving Laplace's (Poisson's) equation, final rewrite</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs065.html#___sec64" style="font-size: 80%;"><b>Jacobi Algorithm for solving Laplace's Equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs066.html#___sec65" style="font-size: 80%;"><b>Jacobi Algorithm for solving Laplace's Equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs067.html#___sec66" style="font-size: 80%;"><b>Jacobi Algorithm for solving Laplace's Equation, the algorithm</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec67" style="font-size: 80%;"><b>Jacobi Algorithm for solving Laplace's Equation, simple example</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs069.html#___sec68" style="font-size: 80%;"><b>Jacobi Algorithm for solving Laplace's Equation, to observe</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs070.html#___sec69" style="font-size: 80%;"><b>Python code for solving the two-dimensional Laplace equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs071.html#___sec70" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs072.html#___sec71" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs073.html#___sec72" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions, discretizing</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs074.html#___sec73" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions, the second derivative</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs075.html#___sec74" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs076.html#___sec75" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs077.html#___sec76" style="font-size: 80%;"><b>Wave Equation in two Dimensions, discretizing</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs078.html#___sec77" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs079.html#___sec78" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs080.html#___sec79" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs081.html#___sec80" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs082.html#___sec81" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs083.html#___sec82" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs084.html#___sec83" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, first step</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs085.html#___sec84" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation,</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs086.html#___sec85" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs087.html#___sec86" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs088.html#___sec87" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, boundary conditions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs089.html#___sec88" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs090.html#___sec89" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, final steps</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs091.html#___sec90" style="font-size: 80%;"><b>Python code for solving the two-dimensional wave equation</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0068"></a>
+<!-- !split -->
+
+<h2 id="___sec67">Jacobi Algorithm for solving Laplace's Equation, simple example </h2>
+A simple example may help in understanding this method.
+We consider a condensator with parallel 
+plates separated at a distance \( L \) resulting in for example the voltage differences
+\( u(x,0)=200sin(2\pi x/L) \) and
+\( u(x,1)=-200sin(2\pi x/L) \). These are our boundary conditions and we ask 
+what is the voltage \( u \) between the plates?
+To solve this problem numerically we provide below a C++ program
+which solves iteratively Eq. <a href="._pde-bs056.html#mjx-eqn-17">(17)</a> using Jacobi's method. Only the part which computes 
+Eq. <a href="._pde-bs056.html#mjx-eqn-17">(17)</a> is included here.
+
+<p>
+
+<!-- code=text typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">....
+//  We define the step size for a square lattice with n+1 points
+       double h = (xmax-xmin)/(n+1);
+       double L = xmax-xmin;   // The length of the lattice
+//  We allocate space for the vector u and the temporary vector to
+//  be upgraded in every iteration
+       mat  u( n+1, n+1);  // using Armadillo to define matrices
+       mat  u_temp( n+1, n+1);  // This is the temporary value
+       u = 0.  //  This is also our initial guess for all unknown values
+//  We need to set up the  boundary conditions.  Specify for various cases
+    .....
+//  The iteration algorithm starts here
+       iterations = 0;
+       while( (iterations &lt;= max_iter) &amp;&amp; ( diff &gt; 0.00001) ){
+          u_temp = u; diff = 0.;
+          for (j = 1; j&lt;= n,j++){
+              for(l = 1; l &lt;= n; l++){
+                 u(j,l) = 0.25*(u_temp(j+1,l)+u_temp(j-1,l)+ &amp;
+                               u_temp(j,l+1)+u_temp(j,l-1));
+                 diff += fabs(u_temp(i,j)-u(i,j));
+              }
+          }
+          iterations++;
+          diff /= pow((n),2.0); 
+       }   // end while loop
+</pre></div>
+<p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+<li><a href="._pde-bs067.html">&laquo;</a></li>
+  <li><a href="._pde-bs000.html">1</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._pde-bs060.html">61</a></li>
+  <li><a href="._pde-bs061.html">62</a></li>
+  <li><a href="._pde-bs062.html">63</a></li>
+  <li><a href="._pde-bs063.html">64</a></li>
+  <li><a href="._pde-bs064.html">65</a></li>
+  <li><a href="._pde-bs065.html">66</a></li>
+  <li><a href="._pde-bs066.html">67</a></li>
+  <li><a href="._pde-bs067.html">68</a></li>
+  <li class="active"><a href="._pde-bs068.html">69</a></li>
+  <li><a href="._pde-bs069.html">70</a></li>
+  <li><a href="._pde-bs070.html">71</a></li>
+  <li><a href="._pde-bs071.html">72</a></li>
+  <li><a href="._pde-bs072.html">73</a></li>
+  <li><a href="._pde-bs073.html">74</a></li>
+  <li><a href="._pde-bs074.html">75</a></li>
+  <li><a href="._pde-bs075.html">76</a></li>
+  <li><a href="._pde-bs076.html">77</a></li>
+  <li><a href="._pde-bs077.html">78</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._pde-bs091.html">92</a></li>
+  <li><a href="._pde-bs069.html">&raquo;</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright only on the titlepage -->
+</center>
+
+
+</body>
+</html>
+    
+
