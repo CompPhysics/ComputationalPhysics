@@ -1,0 +1,210 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905. How to write a scientific project, with examples">
+
+<title>Slides PHY 480 and PHY 905. How to write a scientific project, with examples</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+</style>
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Overarching aims first', 2, None, '___sec0'),
+              ('What do we mean with computing?', 2, None, '___sec1'),
+              ('The standard situation we meet on a daily basis',
+               2,
+               None,
+               '___sec2'),
+              ('Practicalities', 2, None, '___sec3'),
+              ('Programming languages', 2, None, '___sec4'),
+              ('Some basic ingredients for a successful numerical project',
+               2,
+               None,
+               '___sec5'),
+              ('More basic ingredients', 2, None, '___sec6'),
+              ('The report: how to write a good scienfitic/technical report',
+               2,
+               None,
+               '___sec7'),
+              ('The report, the introduction', 2, None, '___sec8'),
+              ('The report, discussion of methods', 2, None, '___sec9'),
+              ('The report, results part', 2, None, '___sec10'),
+              ('The report, conclusions and perspectives',
+               2,
+               None,
+               '___sec11'),
+              ('The report, appendices', 2, None, '___sec12'),
+              ('The report, references', 2, None, '___sec13'),
+              ('How can I use Python and _matplotlib_ to make figures for my report',
+               2,
+               None,
+               '___sec14'),
+              ('The Python code', 2, None, '___sec15')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="projectwriting-bs.html">Slides PHY 480 and PHY 905. How to write a scientific project, with examples</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs001.html#___sec0" style="font-size: 80%;">Overarching aims first</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs002.html#___sec1" style="font-size: 80%;">What do we mean with computing?</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">The standard situation we meet on a daily basis</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs004.html#___sec3" style="font-size: 80%;">Practicalities</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs005.html#___sec4" style="font-size: 80%;">Programming languages</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs006.html#___sec5" style="font-size: 80%;">Some basic ingredients for a successful numerical project</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs007.html#___sec6" style="font-size: 80%;">More basic ingredients</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs008.html#___sec7" style="font-size: 80%;">The report: how to write a good scienfitic/technical report</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs009.html#___sec8" style="font-size: 80%;">The report, the introduction</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs010.html#___sec9" style="font-size: 80%;">The report, discussion of methods</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs011.html#___sec10" style="font-size: 80%;">The report, results part</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs012.html#___sec11" style="font-size: 80%;">The report, conclusions and perspectives</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs013.html#___sec12" style="font-size: 80%;">The report, appendices</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs014.html#___sec13" style="font-size: 80%;">The report, references</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs015.html#___sec14" style="font-size: 80%;">How can I use Python and <b>matplotlib</b> to make figures for my report</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs016.html#___sec15" style="font-size: 80%;">The Python code</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0003"></a>
+<!-- !split -->
+
+<h2 id="___sec2">The standard situation we meet on a daily basis </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+The standard situation we meet at an almost daily basis:
+
+<ul>
+<li> Theory+experiment+simulation is almost the norm in research and industry</li>
+<li> To be able to model complex systems with no simple answers. Solve real problems.</li>
+<li> Emphasis on insight and understanding of fundamental principles and laws in the Sciences.</li>
+<li> Be able to visualize, present, discuss, interpret and come with a critical analysis of the results, and develop a sound ethical attitude to own and other's work.</li>
+<li> Enhance reasoning about the scientific method</li>
+</ul>
+
+Again, a proper presentation of obtained results via good  scientic reports, aids in including all the above aspects.
+</div>
+</div>
+
+
+<p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+<li><a href="._projectwriting-bs002.html">&laquo;</a></li>
+  <li><a href="._projectwriting-bs000.html">1</a></li>
+  <li><a href="._projectwriting-bs001.html">2</a></li>
+  <li><a href="._projectwriting-bs002.html">3</a></li>
+  <li class="active"><a href="._projectwriting-bs003.html">4</a></li>
+  <li><a href="._projectwriting-bs004.html">5</a></li>
+  <li><a href="._projectwriting-bs005.html">6</a></li>
+  <li><a href="._projectwriting-bs006.html">7</a></li>
+  <li><a href="._projectwriting-bs007.html">8</a></li>
+  <li><a href="._projectwriting-bs008.html">9</a></li>
+  <li><a href="._projectwriting-bs009.html">10</a></li>
+  <li><a href="._projectwriting-bs010.html">11</a></li>
+  <li><a href="._projectwriting-bs011.html">12</a></li>
+  <li><a href="._projectwriting-bs012.html">13</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._projectwriting-bs016.html">17</a></li>
+  <li><a href="._projectwriting-bs004.html">&raquo;</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright only on the titlepage -->
+</center>
+
+
+</body>
+</html>
+    
+

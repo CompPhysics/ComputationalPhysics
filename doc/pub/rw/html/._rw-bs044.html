@@ -1,0 +1,418 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm">
+
+<title>Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+</style>
+
+
+<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+<script>
+$(function () {
+    // Make the div with id 'mycell' a Sage cell
+    sagecell.makeSagecell({inputLocation:  '#mycell',
+                           template:       sagecell.templates.minimal,
+                           evalButtonText: 'Activate'});
+    // Make *any* div with class 'compute' a Sage cell
+    sagecell.makeSagecell({inputLocation: 'div.compute',
+                           evalButtonText: 'Evaluate'});
+});
+</script>
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Why Markov chains, Brownian motion and the Metropolis algorithm',
+               2,
+               None,
+               '___sec0'),
+              ('Why Markov chains, Brownian motion and the Metropolis algorithm',
+               2,
+               None,
+               '___sec1'),
+              ('Brownian motion and Markov processes', 2, None, '___sec2'),
+              ('Brownian motion and Markov processes, Ergodicity and Detailed balance',
+               2,
+               None,
+               '___sec3'),
+              ('Brownian motion and Markov processes, jargon',
+               2,
+               None,
+               '___sec4'),
+              ('Brownian motion and Markov processes, sequence of ingredients',
+               2,
+               None,
+               '___sec5'),
+              ('Applications: almost every field in science',
+               2,
+               None,
+               '___sec6'),
+              ('A simple example (close to project 4) and some more jargon',
+               2,
+               None,
+               '___sec7'),
+              ('Markov processes', 2, None, '___sec8'),
+              ('Markov processes', 2, None, '___sec9'),
+              ('Markov processes, the probabilities', 2, None, '___sec10'),
+              ('Markov processes', 2, None, '___sec11'),
+              ('An Illustrative Example', 2, None, '___sec12'),
+              ('An Illustrative Example', 2, None, '___sec13'),
+              ('An Illustrative Example, next step', 2, None, '___sec14'),
+              ('An Illustrative Example, the steady state',
+               2,
+               None,
+               '___sec15'),
+              ('An Illustrative Example, iterative steps',
+               2,
+               None,
+               '___sec16'),
+              ('An Illustrative Example, what does it mean?',
+               2,
+               None,
+               '___sec17'),
+              ('An Illustrative Example, understanding the basics',
+               2,
+               None,
+               '___sec18'),
+              ('Simple c++ program to perform the above calculations',
+               2,
+               None,
+               '___sec19'),
+              ('Entropy and the most likely state', 2, None, '___sec20'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec21'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec22'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec23'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec24'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec25'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec26'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec27'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec28'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec29'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec30'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec31'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec32'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec33'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec34'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec35'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec36'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec37'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec38'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec39'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec40'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec41'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec42'),
+              ('The Metropolis Algorithm and Detailed Balance',
+               2,
+               None,
+               '___sec43'),
+              ('Brief Summary', 2, None, '___sec44'),
+              ('Diffusion', 2, None, '___sec45'),
+              ('Diffusion Equation', 2, None, '___sec46'),
+              ('Diffusion Equation, continuity equation',
+               2,
+               None,
+               '___sec47'),
+              ('Diffusion Equation, expectation values', 2, None, '___sec48'),
+              ('Diffusion Equation, other expectation values',
+               2,
+               None,
+               '___sec49'),
+              ('Diffusion Equation, normalization condition',
+               2,
+               None,
+               '___sec50'),
+              ('Diffusion Equation', 2, None, '___sec51'),
+              ('Diffusion Equation, the variance', 2, None, '___sec52'),
+              ('Diffusion Equation, final expression for the variance',
+               2,
+               None,
+               '___sec53'),
+              ('Diffusion Equation, interpretation', 2, None, '___sec54'),
+              ('Diffusion Equation, simple illustration',
+               2,
+               None,
+               '___sec55'),
+              ('Random Walks', 2, None, '___sec56'),
+              ('Random Walks', 2, None, '___sec57'),
+              ('Random Walks', 2, None, '___sec58'),
+              ('Random Walks, simple program', 2, None, '___sec59'),
+              ('Random walk', 2, None, '___sec60'),
+              ('Simple python code with visualization of one-dimensional random walk',
+               2,
+               None,
+               '___sec61')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="rw-bs.html">Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._rw-bs001.html#___sec0" style="font-size: 80%;">Why Markov chains, Brownian motion and the Metropolis algorithm</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs002.html#___sec1" style="font-size: 80%;">Why Markov chains, Brownian motion and the Metropolis algorithm</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs003.html#___sec2" style="font-size: 80%;">Brownian motion and Markov processes</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs004.html#___sec3" style="font-size: 80%;">Brownian motion and Markov processes, Ergodicity and Detailed balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs005.html#___sec4" style="font-size: 80%;">Brownian motion and Markov processes, jargon</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs006.html#___sec5" style="font-size: 80%;">Brownian motion and Markov processes, sequence of ingredients</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs007.html#___sec6" style="font-size: 80%;">Applications: almost every field in science</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs008.html#___sec7" style="font-size: 80%;">A simple example (close to project 4) and some more jargon</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs009.html#___sec8" style="font-size: 80%;">Markov processes</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs010.html#___sec9" style="font-size: 80%;">Markov processes</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs011.html#___sec10" style="font-size: 80%;">Markov processes, the probabilities</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs012.html#___sec11" style="font-size: 80%;">Markov processes</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs013.html#___sec12" style="font-size: 80%;">An Illustrative Example</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs014.html#___sec13" style="font-size: 80%;">An Illustrative Example</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs015.html#___sec14" style="font-size: 80%;">An Illustrative Example, next step</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs016.html#___sec15" style="font-size: 80%;">An Illustrative Example, the steady state</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs017.html#___sec16" style="font-size: 80%;">An Illustrative Example, iterative steps</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs018.html#___sec17" style="font-size: 80%;">An Illustrative Example, what does it mean?</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs019.html#___sec18" style="font-size: 80%;">An Illustrative Example, understanding the basics</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs020.html#___sec19" style="font-size: 80%;">Simple c++ program to perform the above calculations</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs021.html#___sec20" style="font-size: 80%;">Entropy and the most likely state</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs022.html#___sec21" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs023.html#___sec22" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs024.html#___sec23" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs025.html#___sec24" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs026.html#___sec25" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs027.html#___sec26" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs028.html#___sec27" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs029.html#___sec28" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs030.html#___sec29" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs031.html#___sec30" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs032.html#___sec31" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs033.html#___sec32" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs034.html#___sec33" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs035.html#___sec34" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs036.html#___sec35" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs037.html#___sec36" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs038.html#___sec37" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs039.html#___sec38" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs040.html#___sec39" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs041.html#___sec40" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs042.html#___sec41" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs043.html#___sec42" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec43" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs045.html#___sec44" style="font-size: 80%;">Brief Summary</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs046.html#___sec45" style="font-size: 80%;">Diffusion</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs047.html#___sec46" style="font-size: 80%;">Diffusion Equation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs048.html#___sec47" style="font-size: 80%;">Diffusion Equation, continuity equation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs049.html#___sec48" style="font-size: 80%;">Diffusion Equation, expectation values</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs050.html#___sec49" style="font-size: 80%;">Diffusion Equation, other expectation values</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs051.html#___sec50" style="font-size: 80%;">Diffusion Equation, normalization condition</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs052.html#___sec51" style="font-size: 80%;">Diffusion Equation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs053.html#___sec52" style="font-size: 80%;">Diffusion Equation, the variance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs054.html#___sec53" style="font-size: 80%;">Diffusion Equation, final expression for the variance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs055.html#___sec54" style="font-size: 80%;">Diffusion Equation, interpretation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs056.html#___sec55" style="font-size: 80%;">Diffusion Equation, simple illustration</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs057.html#___sec56" style="font-size: 80%;">Random Walks</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs058.html#___sec57" style="font-size: 80%;">Random Walks</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs059.html#___sec58" style="font-size: 80%;">Random Walks</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs060.html#___sec59" style="font-size: 80%;">Random Walks, simple program</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs061.html#___sec60" style="font-size: 80%;">Random walk</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs062.html#___sec61" style="font-size: 80%;">Simple python code with visualization of one-dimensional random walk</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0044"></a>
+<!-- !split -->
+
+<h2 id="___sec43">The Metropolis Algorithm and Detailed Balance  </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+
+<p>
+Nothing hinders us obviously in choosing another acceptance ratio, like a weighting  of the two energies via
+
+$$
+\begin{equation*}
+A(j\rightarrow i)=\exp{(-\frac{1}{2}\beta(E_i-E_j))}.
+\end{equation*}
+$$
+
+However, it is easy to see that such an acceptance ratio would result in 
+fewer accepted moves.
+</div>
+</div>
+
+
+<p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+<li><a href="._rw-bs043.html">&laquo;</a></li>
+  <li><a href="._rw-bs000.html">1</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._rw-bs036.html">37</a></li>
+  <li><a href="._rw-bs037.html">38</a></li>
+  <li><a href="._rw-bs038.html">39</a></li>
+  <li><a href="._rw-bs039.html">40</a></li>
+  <li><a href="._rw-bs040.html">41</a></li>
+  <li><a href="._rw-bs041.html">42</a></li>
+  <li><a href="._rw-bs042.html">43</a></li>
+  <li><a href="._rw-bs043.html">44</a></li>
+  <li class="active"><a href="._rw-bs044.html">45</a></li>
+  <li><a href="._rw-bs045.html">46</a></li>
+  <li><a href="._rw-bs046.html">47</a></li>
+  <li><a href="._rw-bs047.html">48</a></li>
+  <li><a href="._rw-bs048.html">49</a></li>
+  <li><a href="._rw-bs049.html">50</a></li>
+  <li><a href="._rw-bs050.html">51</a></li>
+  <li><a href="._rw-bs051.html">52</a></li>
+  <li><a href="._rw-bs052.html">53</a></li>
+  <li><a href="._rw-bs053.html">54</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._rw-bs062.html">63</a></li>
+  <li><a href="._rw-bs045.html">&raquo;</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright only on the titlepage -->
+</center>
+
+
+</body>
+</html>
+    
+
