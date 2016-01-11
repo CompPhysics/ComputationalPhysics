@@ -5,58 +5,58 @@ DATE: Spring 2016
 
 ===== Teaching schedule Spring 2016 =====
 
-Lectures are in room xxx while exercises are at the computer lab, room yyy at the Department of Physics and Astronomy. 
+Lectures are in room TBD while exercises are at the computer lab, room TBD at the Department of Physics and Astronomy. 
 
 
 |----------------------------------------------------------------------------------------------------------------------------|
-|  Week and days  |  Topics to be covered | Exercises and projects | Reading assignments|  Additional activities             |
+|  Week and days  |  Topics to be covered | Exercises and projects | Reading assignments|  Additional activities at lab             |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 2 January 11-15|           |                       |                    |                                  |
+| Week 2 January 11-15| Introduction   to the course       |  Setting up git    |              |                       |
 |                      |           |                       |                    |                                  |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 3 January 18-22|           |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 3 January 18-22| Introduction to programming  | Warm-up exercise   | Sections 2.1-2.5 and 3.1 of lecture notes  | How to write a scientific report  |
+|                      | Numerical derivation        |  Presentation of project 1 |                    |                                 |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 4 January 25-29|            |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 4 January 25-29|  Linear algebra           |  Work on project 1  |  Sections  6.1-6.4                  |   Discussion of Armadillo as library  |    
+|                      | Gaussian elimination and LU decomposition      |                       |                    |      |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 5 February 1-5|            |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 5 February 1-5 | Linear algebra           | Work on project 1   |  Sections 6.4-6.5|  Presentation of Qt creator as IDE    |
+|                      | Determinant, inverse of matrix and cubic spline |                       |       |               |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 6 February 8-12 |            |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 6 February 8-12 | Linear algebra, iterative methods  | Project 1 deadline  February 12  |  Section 6.6  | More on Qt creator|
+|                      | Eigenvalue problems          |  Presentation of project 2   | Sections  7.1-7.4    |               |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 7 February 15-19 |          |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 7 February 15-19 | Eigenvalue problems         | Work on project 2     |   Section 7.4           |   Classes in C++ |
+|                      |  Jacobi's method and project 2         |                       |                    |             |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 8 February 22-26|           |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 8 February 22-26|  Eigenvalue         | Work on project 2     |  Sections 7.5-7.7 |    Classes in C++ and Fortran|
+|                      |  Householder's and Francis' algorithms. Lanczos' algorithm   |                       |   |          |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 9 February 29 -March 4|           |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 9 February 29 -March 4|  Monte Carlo methods         |  Project 2 deadline March 4  |                    |            |
+|                      | PDFs and random walks          |  Sections 11.1-11.3                     |   Presentation of project 3  |       |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 10 March 7-11 |  Spring break            |                       |                    |                                  |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 11 March 14-18 |         |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 11 March 14-18  | Monte Carlo methods        |    Work on project 3  | Sections 12.1-12.2 | Vectorization    |
+|                      | Metropolis algorithm and Ising model          |                       | Sections 12.5 and 13.1-13.2 |       |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 12 March 21-25 |         |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 12 March 21-25 |  Monte Carlo methods       |    Work on project 3 |  Sections 13.2-13.6  | Parallelization using OpenMP  |
+|                      | Statistical physics and Ising model          |                       |                    |         |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 13 March 28 -April 1|         |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 13 March 28 -April 1 | Monte Carlo methods        |   Project 3 deadline April 1       | Chapter 13     |   Parallelization using OpenMP|
+|                      | Ordinary differential equations (ODE)         |   Presentation of possible projects 4  | Sections 8.1-8.3  |       |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 14 April 4-8|          |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 14 April 4-8|  ODEs        | Work on project 4  | Sections 8.3-8.6    |                  Parallelization using MPI                |     
+|                      | Runge-Kutta methods and Verlet method           |                       |                    |      |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 15 April 11-15|         |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 15 April 11-15| ODEs, adaptive methods and stiff equations        |   Work on project 4    | Section 8.5    | Parallelization using MPI   |
+|                      | Partial differential equations (PDE), diffusion in 1-dim |       |  Sections 10.1-10.2   |                     |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 16 April 18-22|         |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 16 April 18-22| PDEs, diffusion and Laplace/Poisson        |  Work on project 4 |  Sections 10.2-10.3        |                          |
+|                      |           |                       |                    |                                            |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 17 April 25-29|           |                       |                    |                                  |
-|                      |           |                       |                    |                                  |
+| Week 17 April 25-29 | PDEs wave equation           |  Project 4 deadline April 29 |      Section 10.4              |                 |
+|                      |  Summary of course         |                       |                    |                          |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 18  May 2-6| Finals week              |                       |                    |                                  |
+| Week 18  May 2-6| Finals week              |  Oral exam, presentation of chosen project |    |                     |
 |----------------------------------------------------------------------------------------------------------------------------|
