@@ -1,11 +1,13 @@
 # Strange way of testing for vortex...
 # #ifdef NON_VORTEX
-TITLE: Overview of course material: FYS3150/4150 Computational Physics 1
+TITLE: Overview of course material: PHY 480 and 905, Computational Physics
 
 TOC: off
 # #else
-TITLE: Overview of course material: FYS3150/4150 Computational Physics 1
-AUTHOR: Morten Hjorth-Jensen  Email:morten.hjorth-jensen@fys.uio.no
+TITLE: Overview of course material: PHY 480 and 905, Computational Physics
+AUTHOR: "Phil Duxbury":"http://www.pa.msu.edu/~duxbury/" at Department of Physics and Astronomy, Michigan State University
+AUTHOR: "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/" at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University &  Department of Physics, University of Oslo
+AUTHOR: "Xukun Xiang":"https://www.pa.msu.edu/profile/xiangxuk" at Department of Physics and Astronomy, Michigan State University
 # #endif
 
 <%
@@ -110,7 +112,7 @@ Lectures are in room TBD while exercises are at the computer lab, room TBD at th
 |                      |  Householder's and Francis' algorithms. Lanczos' algorithm   |                       |   |          |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 9 February 29 -March 4|  Monte Carlo methods         |  Project 2 deadline March 4  |                    |            |
-|                      | "PDFs and random walks":http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/mcint/html/mcint-bs.html"          |  Sections 11.1-11.3                     |   "Presentation of project 3":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Projects/2016/Project3"  |       |
+|                      | "PDFs and random walks":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/mcint/html/mcint-bs.html"          |  Sections 11.1-11.3                     |   "Presentation of project 3":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Projects/2016/Project3"  |       |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 10 March 7-11 |  Spring break            |                       |                    |                                  |
 |----------------------------------------------------------------------------------------------------------------------------|

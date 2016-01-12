@@ -6,37 +6,45 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
-<meta name="description" content="Overview of course material: FYS3150/4150 Computational Physics 1">
+<meta name="description" content="Overview of course material: PHY 480 and 905, Computational Physics">
 
-<title>Overview of course material: FYS3150/4150 Computational Physics 1</title>
+<title>Overview of course material: PHY 480 and 905, Computational Physics</title>
 
 
-<link href="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_styles/style_solarized_box/css/solarized_light_code.css" rel="stylesheet" type="text/css" title="light"/>
-<script src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
-
-<link href="http://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet">
 <style type="text/css">
-h1 {color: #b58900;}  /* yellow */
-/* h1 {color: #cb4b16;}  orange */
-/* h1 {color: #d33682;}  magenta, the original choice of thomasf */
-code { padding: 0px; background-color: inherit; }
-pre {
-  border: 0pt solid #93a1a1;
-  box-shadow: none;
+/* blueish style */
+
+/* Color definitions:  http://www.december.com/html/spec/color0.html
+   CSS examples:       http://www.w3schools.com/css/css_examples.asp */
+
+body {
+  margin-top: 1.0em;
+  background-color: #ffffff;
+  font-family: Helvetica, Arial, FreeSans, san-serif;
+  color: #000000;
 }
+h1 { font-size: 1.8em; color: #1e36ce; }
+h2 { font-size: 1.6em; color: #1e36ce; }
+h3 { font-size: 1.4em; color: #1e36ce; }
+a { color: #1e36ce; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+/* pre style removed because it will interfer with pygments */
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 .alert-text-small   { font-size: 80%;  }
 .alert-text-large   { font-size: 130%; }
 .alert-text-normal  { font-size: 90%;  }
 .alert {
   padding:8px 35px 8px 14px; margin-bottom:18px;
   text-shadow:0 1px 0 rgba(255,255,255,0.5);
-  border:1px solid #93a1a1;
+  border:1px solid #bababa;
   border-radius: 4px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   color: #555;
-  background-color: #eee8d5;
+  background-color: #f8f8f8;
   background-position: 10px 5px;
   background-repeat: no-repeat;
   background-size: 38px;
@@ -47,10 +55,10 @@ pre {
 .alert-block > p, .alert-block > ul {margin-bottom:1em}
 .alert li {margin-top: 1em}
 .alert-block p+p {margin-top:5px}
-.alert-notice { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_yellow_notice.png); }
-.alert-summary  { background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_yellow_summary.png); }
-.alert-warning { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_yellow_warning.png); }
-.alert-question {background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_yellow_question.png); }
+.alert-notice { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_notice.png); }
+.alert-summary  { background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_summary.png); }
+.alert-warning { background-image: url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_warning.png); }
+.alert-question {background-image:url(https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_images/small_gray_question.png); }
 
 div { text-align: justify; text-justify: inter-word; }
 </style>
@@ -99,18 +107,29 @@ end of tocinfo -->
 <!-- Strange way of testing for vortex... -->
 
 
-<center><h1>Overview of course material: FYS3150/4150 Computational Physics 1</h1></center>  <!-- document title -->
+<center><h1>Overview of course material: PHY 480 and 905, Computational Physics</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s): Morten Hjorth-Jensen -->
+<!-- author(s): <a href="http://www.pa.msu.edu/~duxbury/" target="_self">Phil Duxbury</a>, <a href="http://mhjgit.github.io/info/" target="_self">Morten Hjorth-Jensen</a>, and <a href="https://www.pa.msu.edu/profile/xiangxuk" target="_self">Xukun Xiang</a> -->
 
 <center>
-<b>Morten Hjorth-Jensen</b>  (<tt>morten.hjorth-jensen at fys.uio.no</tt>)
+<b><a href="http://www.pa.msu.edu/~duxbury/" target="_self">Phil Duxbury</a></b> [1]
+</center>
+
+<center>
+<b><a href="http://mhjgit.github.io/info/" target="_self">Morten Hjorth-Jensen</a></b> [2, 3]
+</center>
+
+<center>
+<b><a href="https://www.pa.msu.edu/profile/xiangxuk" target="_self">Xukun Xiang</a></b> [1]
 </center>
 
 <p>
 <!-- institution(s) -->
 
+<center>[1] <b>Department of Physics and Astronomy, Michigan State University</b></center>
+<center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<center>[3] <b>Department of Physics, University of Oslo</b></center>
 <br>
 
 <p>
@@ -653,7 +672,7 @@ Lectures are in room TBD while exercises are at the computer lab, room TBD at th
 <tr><td align="center">   Week 8 February 22-26          </td> <td align="center">   Eigenvalue                                                                                                                                                                                                                                                                         </td> <td align="center">   Work on project 2                                                                                                                                                 </td> <td align="center">   Sections 7.5-7.7                                                                                                                                          </td> <td align="center">   <a href="http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/oo/html/oo-bs.html" target="_self">Classes in C++ and Fortran</a>                                       </td> </tr>
 <tr><td align="center">                                  </td> <td align="center">   Householder's and Francis' algorithms. Lanczos' algorithm                                                                                                                                                                                                                          </td> <td align="center">                                                                                                                                                                     </td> <td align="center">                                                                                                                                                             </td> <td align="center">                                                                                                                                                                                 </td> </tr>
 <tr><td align="center">   Week 9 February 29 -March 4    </td> <td align="center">   Monte Carlo methods                                                                                                                                                                                                                                                                </td> <td align="center">   Project 2 deadline March 4                                                                                                                                        </td> <td align="center">                                                                                                                                                             </td> <td align="center">                                                                                                                                                                                 </td> </tr>
-<tr><td align="center">                                  </td> <td align="center">   "PDFs and random walks":http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/mcint/html/mcint-bs.html"                                                                                                                                                                     </td> <td align="center">   Sections 11.1-11.3                                                                                                                                                </td> <td align="center">   <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Projects/2016/Project3" target="_self">Presentation of project 3</a>      </td> <td align="center">                                                                                                                                                                                 </td> </tr>
+<tr><td align="center">                                  </td> <td align="center">   <a href="http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/mcint/html/mcint-bs.html" target="_self">PDFs and random walks</a>                                                                                                                                           </td> <td align="center">   Sections 11.1-11.3                                                                                                                                                </td> <td align="center">   <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Projects/2016/Project3" target="_self">Presentation of project 3</a>      </td> <td align="center">                                                                                                                                                                                 </td> </tr>
 <tr><td align="center">   Week 10 March 7-11             </td> <td align="center">   Spring break                                                                                                                                                                                                                                                                       </td> <td align="center">                                                                                                                                                                     </td> <td align="center">                                                                                                                                                             </td> <td align="center">                                                                                                                                                                                 </td> </tr>
 <tr><td align="center">   Week 11 March 14-18            </td> <td align="center">   Monte Carlo methods                                                                                                                                                                                                                                                                </td> <td align="center">   Work on project 3                                                                                                                                                 </td> <td align="center">   Sections 12.1-12.2                                                                                                                                        </td> <td align="center">   <a href="http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/codeoptimization/html/._codeoptimization-bs000.html" target="_self">Vectorization</a>                   </td> </tr>
 <tr><td align="center">                                  </td> <td align="center">   <a href="http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/rw/html/rw-bs.html" target="_self">Metropolis algorithm</a> and <a href="http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/statphys/html/._statphys-bs000.html" target="_self">Ising model</a>    </td> <td align="center">                                                                                                                                                                     </td> <td align="center">   Sections 12.5 and 13.1-13.2                                                                                                                               </td> <td align="center">                                                                                                                                                                                 </td> </tr>
