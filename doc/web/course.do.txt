@@ -11,7 +11,7 @@ AUTHOR: "Xukun Xiang":"https://www.pa.msu.edu/profile/xiangxuk" at Department of
 # #endif
 
 <%
-pub_url = 'http://compphysics.github.io/ComputationalPhysics1/doc/pub'
+pub_url = 'http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub'
 published = ['intro', 'languages', 'projectwriting', 'linalg', 'eigvalues', 'codeoptimization', 'oo', 'integrate', 'mcint', 'rw', 'statphys', 'vmc', 'ode', 'pde', ]
 chapters = {
  'intro': 'Introduction to computational physics',
