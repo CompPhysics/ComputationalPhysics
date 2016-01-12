@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#module load mpich2
+mpicxx -o VMC.x VMC.cpp

@@ -1,0 +1,12 @@
+XLF= ifort -O3 -static
+
+program1.x :   f90lib.o program1.o
+	       ${XLF} -o  program1.x  f90lib.o program1.o 
+
+f90lib.o :   f90lib.f90
+		${XLF} -c  f90lib.f90
+
+
+program1.o :   program1.f90
+		${XLF} -c program1.f90
+

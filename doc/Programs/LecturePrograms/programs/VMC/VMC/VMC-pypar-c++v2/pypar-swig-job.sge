@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+#Project
+#$ -P uio
+#Number of cpus
+#$ -pe mpi 6
+# name of job
+#$ -N VMC
+#Walltime
+#$ -l s_rt=0:10:0
+
+source /site/bin/jobsetup
+
+module load scampi
+module load compython
+
+# copy data file to work area
+# $SGE_O_WORKDIR is the directory you ran qsub from
+
+# spreadfile $SGE_O_WORKDIR/input.dat $SCRATCH
+
+# dir $HOME/myextension contains the .py and .so files created by swig and g++
+export PYTHONPATH=$HOME/sommerjobb/VMC/VMC-pypar-c++v2:$PYTHONPATH
+export LD_LIBRARY_PATH=$HOME/sommerjobb/VMC/VMC-pypar-c++v2:$LD_LIBRARY_PATH
+
+# chkfile data
+cd $SCRATCH
+
+time /site/bin/mpiexec `which python` ~/sommerjobb/VMC/VMC-pypar-c++v2/VMC.py
+
+cp $SCRATCH/data ~/sommerjobb/VMC/VMC-pypar-c++v2/
+
+# dsh rsync -a $SCRATCH ~/mydata/
+
+# end of script
