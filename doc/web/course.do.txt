@@ -68,7 +68,7 @@ formulas in HTML or ipython notebook files.
 
 
 
-======= FYS3150/4150 Computational Physics 1 Notes =======
+======= PHY 480 and 905  Computational Physics  Notes =======
 
 % for ch in published:
 ===== ${chapters[ch]} =====
@@ -76,5 +76,104 @@ formulas in HTML or ipython notebook files.
 ${text_types(ch)}
 
 % endfor
+
+
+
+!split
+===== Teaching schedule Spring 2016 =====
+
+Lectures are in room TBD while exercises are at the computer lab, room TBD at the Department of Physics and Astronomy. 
+
+
+|----------------------------------------------------------------------------------------------------------------------------|
+|  Week and days  |  Topics to be covered | Exercises and projects | Reading assignments|  Additional activities at lab             |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 2 January 11-15| "Introduction to the course":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/intro/html/intro-bs.html"       |  Setting up git    |              |                       |
+|                      |           |                       |                    |                                  |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 3 January 18-22| "Introduction to programming":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/languages/html/languages-bs.html"  | "Warm-up exercise":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Projects/2016/WarmUpExercise"   | Sections 2.1-2.5 and 3.1 of "lecture notes":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Lectures"  | "How to write a scientific report":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/projectwriting/html/projectwriting-bs.html"  |
+|                      | Numerical derivation        |  "Presentation of project 1":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Projects/2016/Project1" |                    |                                 |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 4 January 25-29|  "Linear algebra":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/linalg/html/linalg-bs.html"           |  Work on project 1  |  Sections  6.1-6.4                  |   Discussion of Armadillo as library  |    
+|                      | Gaussian elimination and LU decomposition      |                       |                    |      |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 5 February 1-5 | Linear algebra           | Work on project 1   |  Sections 6.4-6.5|  Presentation of Qt creator as IDE    |
+|                      | Determinant, inverse of matrix and cubic spline |                       |       |               |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 6 February 8-12 | Linear algebra, iterative methods  | Project 1 deadline  February 12  |  Section 6.6  | More on Qt creator|
+|                      | "Eigenvalue problems":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/eigvalues/html/eigvalues-bs.html"          |  "Presentation of project 2":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Projects/2016/Project2"   | Sections  7.1-7.4    |               |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 7 February 15-19 | Eigenvalue problems         | Work on project 2     |   Section 7.4           | "Classes in C++":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/oo/html/oo-bs.html" |
+|                      |  Jacobi's method and project 2         |                       |                    |             |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 8 February 22-26|  Eigenvalue         | Work on project 2     |  Sections 7.5-7.7 |    "Classes in C++ and Fortran":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/oo/html/oo-bs.html"|
+|                      |  Householder's and Francis' algorithms. Lanczos' algorithm   |                       |   |          |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 9 February 29 -March 4|  Monte Carlo methods         |  Project 2 deadline March 4  |                    |            |
+|                      | "PDFs and random walks":http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/mcint/html/mcint-bs.html"          |  Sections 11.1-11.3                     |   "Presentation of project 3":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Projects/2016/Project3"  |       |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 10 March 7-11 |  Spring break            |                       |                    |                                  |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 11 March 14-18  | Monte Carlo methods        |    Work on project 3  | Sections 12.1-12.2 | "Vectorization":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/codeoptimization/html/._codeoptimization-bs000.html"    |
+|                      | "Metropolis algorithm":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/rw/html/rw-bs.html" and "Ising model":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/statphys/html/._statphys-bs000.html"          |                       | Sections 12.5 and 13.1-13.2 |       |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 12 March 21-25 |  Monte Carlo methods       |    Work on project 3 |  Sections 13.2-13.6  | "Parallelization using OpenMP":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/codeoptimization/html/._codeoptimization-bs000.html"  |
+|                      | "Statistical physics and Ising model":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/statphys/html/._statphys-bs000.html"          |                       |                    |         |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 13 March 28 -April 1 | Monte Carlo methods        |   Project 3 deadline April 1       | Chapter 13     |   "Parallelization using OpenMP":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/codeoptimization/html/._codeoptimization-bs000.html"|
+|                      | "Ordinary differential equations":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/ode/html/ode-bs.html" (ODE)         |   "Presentation of possible projects 4":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Projects/2016/Project4"  | Sections 8.1-8.3  |       |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 14 April 4-8|  ODEs        | Work on project 4  | Sections 8.3-8.6    |  "Parallelization using MPI":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/codeoptimization/html/._codeoptimization-bs000.html"                |     
+|                      | Runge-Kutta methods and Verlet method           |                       |                    |      |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 15 April 11-15| ODEs, adaptive methods and stiff equations        |   Work on project 4    | Section 8.5    | "Parallelization using MPI":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/codeoptimization/html/._codeoptimization-bs000.html"   |
+|                      | "Partial differential equations":"http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub/pde/html/pde-bs.html" (PDE), diffusion in 1-dim |       |  Sections 10.1-10.2   |                     |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 16 April 18-22| PDEs, diffusion and Laplace/Poisson        |  Work on project 4 |  Sections 10.2-10.3        |                          |
+|                      |           |                       |                    |                                            |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 17 April 25-29 | PDEs wave equation           |  Project 4 deadline April 29 |      Section 10.4              |                 |
+|                      |  Summary of course         |                       |                    |                          |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 18  May 2-6| Finals week              |  Oral exam, presentation of chosen project |    |                     |
+|----------------------------------------------------------------------------------------------------------------------------|
+
+!split
+===== Basic Syllabus =====
+!bblock
+The syllabus for this course consists of the lecture notes on the webpage (chapters 2-15) and 4 compulsory projects. The projects will be graded and count 20% each of the final mark. A final oral exam/presentation which counts 20% is also part of the total evaluation.
+
+ * Monte Carlo methods in physics ("Lecture notes chapters 12 and 13":"https://github.com/CompPhysics/ComputationalPhysics1/tree/master/doc/Lectures")
+
+ * Partial differential equations ("Lecture notes chapter 10":"https://github.com/CompPhysics/ComputationalPhysics1/tree/master/doc/Lectures")
+
+ * Ordinary differential equations ("Lecture notes chapter 8":"https://github.com/CompPhysics/ComputationalPhysics1/tree/master/doc/Lectures")
+
+ * Numerical integration, standard methods and Monte Carlo methods ("Lecture notes chapters 5.1-5.5 and 11":"https://github.com/CompPhysics/ComputationalPhysics1/tree/master/doc/Lectures")
+
+ * Linear algebra and eigenvalue problems. ("Lecture notes chapters 6 and 7":"https://github.com/CompPhysics/ComputationalPhysics1/tree/master/doc/Lectures")
+
+A good text that can be used (with more math plus much material on parallelization) is "Parallel Scientific Computing in C++ and MPI, of Karniadakis and Kirby III":"http://www.cambridge.org/us/academic/subjects/computer-science/scientific-computing-scientific-software/parallel-scientific-computing-c-and-mpi-seamless-approach-parallel-algorithms-and-their-implementation".
+!eblock
+ 
+
+===== Additional literature =====
+!bblock
+In addition we recommend highly the texts on Numerical Recipes in C++ or Fortran90 by Press et al. The C, F77 and
+Fortran90 can be downloaded down for free, follow the links at "Numerical Recipes":"http://www.nr.com/".
+
+The program library in C++ and Fortran2008 used in this course is a rewritten version of the Numerical Recipes codes.
+!eblock
+
+!split
+===== Programs in C++, Fortran and Python discussed in lecture notes =====
+!bblock
+All programs are available at the github address of the "course":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs"
+!eblock
+
+===== Projects =====
+!bblock
+Similarly, the pdf and latex files for the various are also available at the github address of the "course":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Projects/2016"
+!eblock
 
 
