@@ -1,6 +1,6 @@
 TITLE: Slides PHY 480 and PHY 905  Lectures, introduction to the course
 AUTHOR: "Phil Duxbury":"http://www.pa.msu.edu/~duxbury/" at Department of Physics and Astronomy, Michigan State University
-AUTHOR: "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/"  {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
+AUTHOR: Morten Hjorth-Jensen  {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
 AUTHOR: "Xukun Xiang":"https://www.pa.msu.edu/profile/xiangxuk"  at Department of Physics and Astronomy, Michigan State University
 DATE: Spring 2016
 
