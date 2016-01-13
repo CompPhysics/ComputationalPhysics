@@ -9,7 +9,7 @@ DATE: Spring 2016
 ===== Overview of first two weeks =====
 
 !bblock
-  * First lecture: Presentation of the course, aims and content. Introduction to "github":"https://github.com/" with "tutorial":":https://github.com/XukunXiang/ComputationalPhysicsMSU/tree/master/Notes".
+  * First lecture: Presentation of the course, aims and content. Introduction to "github":"https://github.com/" with "tutorial":"https://github.com/XukunXiang/ComputationalPhysicsMSU/tree/master/Notes".
   * Second week (read sections 2.1-2.5 and 3.1-3.2 of lecture notes): 
    * Introduction to C++ programming
    * Numerical precision and C++ programming (chapter 2 of lecture notes)
@@ -21,7 +21,8 @@ DATE: Spring 2016
 ===== Lectures and ComputerLab =====
 
 !bblock
-  * Lectures: 
+  * Lectures: time and place to be determined
+  * Lab: time and place to be determined
   * Weekly reading assignments needed to solve projects.
   * First part of a lab session may be used to discuss technicalities and issues related to additional software
   * Detailed lecture notes, exercises, all programs presented, projects etc can be found at the homepage of the course.
@@ -124,7 +125,6 @@ DATE: Spring 2016
 
 !split
 ===== Additional learning outcomes =====
-
 !bblock 
  * has a thorough understanding of how computing is used to solve scientific problems
  * knows some central  algorithms used in science
@@ -142,23 +142,23 @@ DATE: Spring 2016
 
 !split
 ===== Overarching aims of this course =====
-
+!bblock
   * Develop a critical approach to all steps in a project, which methods are most relevant, which natural laws and physical processes are important. Sort out initial conditions and boundary conditions etc.
   * This means to teach you structured scientific computing, learn to structure a project.
   * A critical understanding of central mathematical algorithms and methods from numerical analysis. In particular their limits and stability criteria.
   * Always try to find good checks of your codes (like solutions on closed/analytical form)
   * To enable you to develop a critical view on the mathematical model and the physics.
-
+!eblock
 !split
 
 !split
 ===== Computing knowledge =====
-
+!bblock
 "Our ideal about knowledge on computational science":"http://hplgit.github.io/edu/py_vs_m/computing_competence.html"
 
 Hopefully this is not what you will feel towards the end of the semester!
-FIGURE: [fig-intro/exam2.jpg, width=500 frac=0.6]
-
+FIGURE: [fig-intro/exam2.jpg, width=600 frac=0.7]
+!eblock
 
 
 !split
