@@ -14,7 +14,7 @@ DATE: Spring 2016
    * Introduction to C++ programming
    * Numerical precision and C++ programming (chapter 2 of lecture notes)
    * Numerical differentiation and loss of numerical precision (chapter 3 lecture notes)
-   * Work on warm up exercise to demonstrate this issues
+   * Work on warm up exercise to demonstrate several programming elements
 !eblock
 
 !split
@@ -149,7 +149,6 @@ DATE: Spring 2016
   * Always try to find good checks of your codes (like solutions on closed/analytical form)
   * To enable you to develop a critical view on the mathematical model and the physics.
 !eblock
-!split
 
 !split
 ===== Computing knowledge =====
