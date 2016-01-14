@@ -85,10 +85,10 @@ If you name your file for `makefile`, simply type the command
 makefile. Note that C++ files have the extension `.cpp`.
 
 !split
-===== Hello world =====
+===== "Hello world":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program1.cpp" =====
 
 !bblock The C encounter
-Here we present first the C version.
+Here we present first the C version. 
 
 !bc cppcod
 /* comments in C begin like this and end with */
@@ -165,20 +165,19 @@ in many C-inspired languages (Perl, Python, Awk, partly C++).
 
 !bblock Now in C++
 Here we present first the C++ version.
-
 !bc cpppro
 // A comment line begins like this in C++ programs
 // Standard ANSI-C++ include files
-using namespace std
-#include <iostream>  // input and output
+#include <iostream>   // input and output
+#include <cmath>      // math functions
+using namespace std;
 int main (int argc, char* argv[])
 {
   // convert the text argv[1] to double using atof:
-  double r = atof(argv[1]);
+  double r = atof(argv[1]);  /* convert the text argv[1] to double */
   double s = sin(r);
-  cout << "Hello, World! sin(" << r << ")=" << s << '\n';
-  // success
-  return 0;
+  cout << "Hello, World! sin(" << r << ") =" << s << endl;
+  return 0;           /* success execution of the program */
 }
 !ec
 !eblock
@@ -297,36 +296,41 @@ To see this, we have performed the following divisions by 2
 !eblock
 
 !split
-===== From decimal to binary representation =====
+===== "From decimal to binary representation":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program2.cpp" =====
 
 !bblock Integer numbers
 !bc cppcod
-using namespace std;
 #include <iostream>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+using namespace std;
 int main (int argc, char* argv[])
 {
-  int i;
+  int i; 
   int terms[32]; // storage of a0, a1, etc, up to 32 bits
-  int number = atoi(argv[1]);
+  int save;
+  int number = atoi(argv[1]); 
+  save = number;
   // initialise the term a0, a1 etc
   for (i=0; i < 32 ; i++){ terms[i] = 0;}
-  for (i=0; i < 32 ; i++){
+  for (i=0; i < 32 ; i++){ 
     terms[i] = number%2;
     number /= 2;
-
+  }
   // write out results
   cout << "Number of bytes used= " << sizeof(number) << endl;
-  for (i=0; i < 32 ; i++){
+  for (i=0; i < 32 ; i++){ 
     cout << " Term nr: " << i << "Value= " << terms[i];
     cout << endl;
-
-  return 0;
-
+  }
+  return 0;  
+}
 !ec
 !eblock
 
 !split
-===== From decimal to binary representation =====
+===== "From decimal to binary representation":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/Fortran/program2.f90" =====
 
 !bblock Integer numbers, Fortran
 !bc fcod
@@ -354,28 +358,28 @@ END PROGRAM binary_integer
 !eblock
 
 !split
-===== Integer Numbers =====
+===== "Representing Integer Numbers":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program3.cpp" =====
 
 !bblock Possible Overflow for Integers
 !bc cppcod
 // A comment line begins like this in C++ programs
 // Program to calculate 2**n
 // Standard ANSI-C++ include files */
-using namespace std
 #include <iostream>
 #include <cmath>
+using namespace std
 int main()
 {
    int  int1, int2, int3;
 // print to screen
-   cout << "Read in the exponential N for 2^N =\n";
+   cout << "Read in the exponential N for 2^N =" << endl;
 // read from screen
    cin >> int2;
    int1 = (int) pow(2., (double) int2);
-   cout << " 2^N * 2^N = " << int1*int1 << "\n";
+   cout << " 2^N * 2^N = " << int1*int1 << endl;
    int3 = int1 - 1;
-   cout << " 2^N*(2^N - 1) = " << int1 * int3  << "\n";
-   cout << " 2^N- 1 = " << int3  << "\n";
+   cout << " 2^N*(2^N - 1) = " << int1 * int3  << endl;
+   cout << " 2^N- 1 = " << int3  << endl;
    return 0;
 
 // End: program main()
@@ -704,7 +708,7 @@ is an understanding of the fact that a machine cannot represent
 correctly *all* numbers.
 
 !split
-===== Loss of precision can cuae serious problems =====
+===== Loss of precision can cause serious problems =====
 
 !bblock Real Numbers
 
@@ -776,7 +780,7 @@ Recursion relation for
 !eblock
 
 !split
-===== Program to compute $\exp{(-x)}$ =====
+===== "Program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program4.cpp" to compute $\exp{(-x)}$ =====
 
 !bblock Brute Force
 !bc cppcod
@@ -869,7 +873,7 @@ TYPE factorial(int n)
 
 
 !split
-===== Program to compute $\exp{(-x)}$ =====
+===== "Program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program5.cpp" to compute $\exp{(-x)}$ =====
 
 !bblock
 !bc cppcod
@@ -904,10 +908,10 @@ int main()
 	 n++;
        } // end while loop
      cout << "x = " << x   << " exp = " << exp(-x) <<"series = "
-          << sum  << " number of terms =" << n << "\n";
+          << sum  << " number of terms =" << n << endl;
    } // end of for() loop
 
-   cout << "\n";           // a final line shift on output
+   cout << endl;           // a final line shift on output
 
 }  /*    End: function main() */
 !ec
@@ -1122,19 +1126,6 @@ The results for $x=10$ are shown in the Table
 !eblock
 
 !split
-===== Overview of second week =====
-
-!bblock
-  * Thursday: Repetition from last week
-  * Numerical differentiation
-  * C/C++ programming details, pointers, read/write to/from file
-  * Friday: Intro to linear Algebra and presentation of project 1.
-  * Matrices in C++ and Fortran2008
-  * Gaussian elimination and discussion of project 1.
-  * Computer-Lab: Exercises 2.2 and 3.1. Presentation of QT. Start project 1. Reading asssignments and preparation for project 1: sections 2.5 and 3.1 for general C++ and Fortran features. Sections 6.1-6.4 (till page 182) are relevant for project 1.
-!eblock
-
-!split
 ===== Technical Matter in C/C++: Pointers =====
 
 !bblock
@@ -1160,7 +1151,7 @@ Simple example declarations:
 !eblock
 
 !split
-===== Technical Matter in C/C++: Pointer example I =====
+===== Technical Matter in C/C++: "Pointer example I":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program7.cpp" =====
 
 !bblock
 !bc cppcod
@@ -1206,7 +1197,7 @@ int main()
 !eblock
 
 !split
-===== Pointer example II =====
+===== "Pointer example II":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program8.cpp" =====
 
 !bblock
 !bc cppcod
