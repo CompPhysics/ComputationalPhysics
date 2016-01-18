@@ -84,7 +84,11 @@ ${text_types(ch)}
 !split
 ===== Teaching schedule Spring 2016 =====
 
-Lectures are in room TBD while exercises are at the computer lab, room TBD at the Department of Physics and Astronomy. 
+Lectures are 1-3pm Wednesdays (BPS4270) and  7-9pm Wednesdays (BPS1300) while exercises and projects are 2-4pm Thursdays and 1-3pm Fridays in BPS1240. 
+
+
+
+
 
 
 |----------------------------------------------------------------------------------------------------------------------------|

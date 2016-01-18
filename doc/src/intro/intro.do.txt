@@ -21,8 +21,8 @@ DATE: Spring 2016
 ===== Lectures and ComputerLab =====
 
 !bblock
-  * Lectures: time and place to be determined
-  * Lab: time and place to be determined
+  * Lectures: 1-3pm Wednesdays (BPS4270) and  7-9pm Wednesdays (BPS1300).
+  * Lab: 2-4pm Thursdays and 1-3pm Fridays in BPS1240.
   * Weekly reading assignments needed to solve projects.
   * First part of a lab session may be used to discuss technicalities and issues related to additional software
   * Detailed lecture notes, exercises, all programs presented, projects etc can be found at the homepage of the course.
