@@ -25,7 +25,7 @@ void func( int x, int *y)
   // a becomes locally x  and it can be changed locally
   x+=7;
   //  func gets the address of the first element of y (b)
-  // it changes y[0] to 10 and when returning control to main
+   // it changes y[0] to 10 and when returning control to main
   // it changes also b[0]. Call by reference
   *y += 10;  //  *y = *y+10;
   //  explicit element
