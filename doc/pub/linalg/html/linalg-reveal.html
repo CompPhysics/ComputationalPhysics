@@ -1457,7 +1457,138 @@ for \( k=2,\dots,n \).
 
 
 <section>
-<h2 id="___sec43">Linear Algebra Methods </h2>
+<h2 id="___sec43"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/C++CodesLectures/MatrixTest" target="_blank">Program example</a> </h2>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">/*</span>
+<span style="color: #228B22">**     Project1: a) and b)</span>
+<span style="color: #228B22">**     The algorithm for solving the tridiagonal matrix</span>
+<span style="color: #228B22">**     equation is implemented (requiering O(8n) FLOPS).</span>
+<span style="color: #228B22">*/</span>
+<span style="color: #1e889b"># include &lt;iostream&gt;</span>
+<span style="color: #1e889b"># include &lt;fstream&gt;</span>
+<span style="color: #1e889b"># include &lt;iomanip&gt;</span>
+<span style="color: #1e889b"># include &lt;cmath&gt;</span>
+
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+ofstream ofile;
+
+<span style="color: #228B22">// Declaring two functions that will be used:</span>
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">Solution</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x) {<span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">1.0</span>-(<span style="color: #B452CD">1</span>-exp(-<span style="color: #B452CD">10</span>))*x-exp(-<span style="color: #B452CD">10</span>*x);}
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">f</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x) {<span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">100</span>*exp(-<span style="color: #B452CD">10</span>*x);}
+
+<span style="color: #228B22">// Main program reads filename and n from command line:</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[]) {
+
+    <span style="color: #228B22">// Declaration of initial variables:</span>
+    <span style="color: #a7a7a7; font-weight: bold">char</span> *outfilename;
+    <span style="color: #a7a7a7; font-weight: bold">int</span> n;
+
+    <span style="color: #228B22">// Read in output file and n,</span>
+    <span style="color: #228B22">// abort if there are too few command-line arguments:</span>
+    <span style="color: #8B008B; font-weight: bold">if</span>( argc &lt;= <span style="color: #B452CD">2</span> ){
+      cout &lt;&lt; <span style="color: #CD5555">&quot;Bad Usage: &quot;</span> &lt;&lt; argv[<span style="color: #B452CD">0</span>] &lt;&lt;
+          <span style="color: #CD5555">&quot; read also output file and n (int) on same line&quot;</span> &lt;&lt; endl;
+      exit(<span style="color: #B452CD">1</span>);
+    }
+    <span style="color: #8B008B; font-weight: bold">else</span>{
+      outfilename = argv[<span style="color: #B452CD">1</span>]; <span style="color: #228B22">// first command line argument.</span>
+      n = atoi(argv[<span style="color: #B452CD">2</span>]);  <span style="color: #228B22">// second command line argument.</span>
+    }
+
+    <span style="color: #228B22">// Constants of the problem:</span>
+    <span style="color: #a7a7a7; font-weight: bold">double</span> h = <span style="color: #B452CD">1.0</span>/(n+<span style="color: #B452CD">1.0</span>);
+    <span style="color: #a7a7a7; font-weight: bold">double</span> *x = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">2</span>];
+    <span style="color: #a7a7a7; font-weight: bold">double</span> *b_twidd = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">1</span>]; <span style="color: #228B22">// construction with n+1 points to make</span>
+                                       <span style="color: #228B22">// indexing close to mathematics.</span>
+    b_twidd[<span style="color: #B452CD">0</span>] = <span style="color: #B452CD">0</span>;
+
+    <span style="color: #228B22">// The constituents of the tridiagonal matrix A:</span>
+    <span style="color: #228B22">// Zeroth element not needed, but included to make indexing easy:</span>
+    <span style="color: #a7a7a7; font-weight: bold">int</span> *a = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[n+<span style="color: #B452CD">1</span>];
+    <span style="color: #a7a7a7; font-weight: bold">int</span> *b = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[n+<span style="color: #B452CD">1</span>];
+    <span style="color: #a7a7a7; font-weight: bold">int</span> *c = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[n+<span style="color: #B452CD">1</span>];
+
+    <span style="color: #228B22">// Temporal variabel in Gaussian elimination:</span>
+    <span style="color: #a7a7a7; font-weight: bold">double</span> *diag_temp = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">1</span>];
+
+    <span style="color: #228B22">// Real solution and approximated one:</span>
+    <span style="color: #a7a7a7; font-weight: bold">double</span> *u = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">2</span>]; <span style="color: #228B22">// Analytical solution</span>
+    <span style="color: #a7a7a7; font-weight: bold">double</span> *v = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">2</span>]; <span style="color: #228B22">// Numerical solution</span>
+    <span style="color: #228B22">// Including extra points to make the indexing easy:</span>
+    u[<span style="color: #B452CD">0</span>] = <span style="color: #B452CD">0</span>;
+    v[<span style="color: #B452CD">0</span>] = <span style="color: #B452CD">0</span>;
+
+    <span style="color: #228B22">// Filling up x-array, making x[0] = 0 and x[n+1] = 1:</span>
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;=n+<span style="color: #B452CD">1</span>; i++) {
+        x[i] = i*h;
+        <span style="color: #228B22">// Could print results to check:</span>
+        <span style="color: #228B22">//cout &lt;&lt; &quot;x = &quot; &lt;&lt; x[i] &lt;&lt; &quot; and &quot; &lt;&lt; &quot;h^2*f(x) = &quot; &lt;&lt; h*h*f(x[i]) &lt;&lt; endl;</span>
+    }
+
+    <span style="color: #228B22">// Filling up b_twiddle array, i.e. right hand side of equation:</span>
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>; i&lt;=n; i++) {
+        b_twidd[i] = h*h*f(x[i]);
+        <span style="color: #228B22">// Could print here to check:</span>
+        <span style="color: #228B22">//cout &lt;&lt; &quot;b_twidd = &quot; &lt;&lt; b_twidd[i] &lt;&lt; &quot;for x = &quot; &lt;&lt; x[i] &lt;&lt; endl;</span>
+        u[i] = Solution(x[i]);
+        <span style="color: #228B22">//cout &lt;&lt; &quot;u = &quot; &lt;&lt; u[i] &lt;&lt; &quot; for x = &quot; &lt;&lt; x[i] &lt;&lt;  endl;</span>
+        b[i] = <span style="color: #B452CD">2</span>;
+        a[i] = -<span style="color: #B452CD">1</span>;
+        c[i] = -<span style="color: #B452CD">1</span>;
+    }
+    c[n] = <span style="color: #B452CD">0</span>;
+    a[<span style="color: #B452CD">1</span>] = <span style="color: #B452CD">0</span>;
+
+    <span style="color: #228B22">// Algorithm for finding v:</span>
+    <span style="color: #228B22">// a(i)*v(i-1) + b(i)*v(i) + c(i)*v(i+1) = b_twidd(i)</span>
+    <span style="color: #228B22">// Row reduction; forward substitution:</span>
+    <span style="color: #a7a7a7; font-weight: bold">double</span> b_temp = b[<span style="color: #B452CD">1</span>];
+    v[<span style="color: #B452CD">1</span>] = b_twidd[<span style="color: #B452CD">1</span>]/b_temp;
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">2</span>;i&lt;=n;i++) {
+       <span style="color: #228B22">// Temporary value needed also in next loop:</span>
+       diag_temp[i] = c[i-<span style="color: #B452CD">1</span>]/b_temp;
+       <span style="color: #228B22">// Temporary diagonal element:</span>
+       b_temp = b[i] - a[i]*diag_temp[i];
+       <span style="color: #228B22">// Updating right hand side of matrix equation:</span>
+       v[i] = (b_twidd[i]-v[i-<span style="color: #B452CD">1</span>]*a[i])/b_temp;
+    }
+
+    <span style="color: #228B22">// Row reduction; backward substition:</span>
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=n-<span style="color: #B452CD">1</span>;i&gt;=<span style="color: #B452CD">1</span>;i--) {
+        v[i] -= diag_temp[i+<span style="color: #B452CD">1</span>]*v[i+<span style="color: #B452CD">1</span>];
+    }
+
+    <span style="color: #228B22">// Open file and write results to file:</span>
+    ofile.open(outfilename);
+    ofile &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
+    ofile &lt;&lt; <span style="color: #CD5555">&quot;       x:             u(x):          v(x):  &quot;</span> &lt;&lt; endl;
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>;i&lt;=n;i++) {
+       ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; x[i];
+       ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; u[i];
+       ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; v[i] &lt;&lt; endl;
+    }
+    ofile.close();
+
+    <span style="color: #8B008B; font-weight: bold">delete</span> [] x;
+    <span style="color: #8B008B; font-weight: bold">delete</span> [] b_twidd;
+    <span style="color: #8B008B; font-weight: bold">delete</span> [] a;
+    <span style="color: #8B008B; font-weight: bold">delete</span> [] b;
+    <span style="color: #8B008B; font-weight: bold">delete</span> [] c;
+    <span style="color: #8B008B; font-weight: bold">delete</span> [] u;
+    <span style="color: #8B008B; font-weight: bold">delete</span> [] v;
+
+    <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+}
+</pre></div>
+</section>
+
+
+<section>
+<h2 id="___sec44">Linear Algebra Methods </h2>
 
 <ul>
 
@@ -1477,7 +1608,7 @@ for \( k=2,\dots,n \).
 
 
 <section>
-<h2 id="___sec44">LU Decomposition </h2>
+<h2 id="___sec45">LU Decomposition </h2>
 
 <p>
 The LU decomposition method means that we can rewrite
@@ -1511,7 +1642,7 @@ $$
 
 
 <section>
-<h2 id="___sec45">LU Decomposition </h2>
+<h2 id="___sec46">LU Decomposition </h2>
 
 <p>
 LU decomposition forms the backbone of other algorithms in linear algebra, such as the
@@ -1544,7 +1675,7 @@ $$
 
 
 <section>
-<h2 id="___sec46">LU Decomposition, why? </h2>
+<h2 id="___sec47">LU Decomposition, why? </h2>
 
 <p>
 There are at least three main advantages with LU decomposition compared with standard Gaussian elimination:
@@ -1561,7 +1692,7 @@ There are at least three main advantages with LU decomposition compared with sta
 
 
 <section>
-<h2 id="___sec47">LU Decomposition, linear equations </h2>
+<h2 id="___sec48">LU Decomposition, linear equations </h2>
 
 <p>
 With the LU decomposition it is rather
@@ -1596,7 +1727,7 @@ $$ \mathbf{A} \mathbf{x} \equiv \mathbf{L} \mathbf{U} \mathbf{x} =\mathbf{w}. $$
 
 
 <section>
-<h2 id="___sec48">LU Decomposition, linear equations </h2>
+<h2 id="___sec49">LU Decomposition, linear equations </h2>
 
 <p>
 The previous equation can be calculated in two steps
@@ -1637,7 +1768,7 @@ through \( \mathbf{Ux}=\mathbf{y} \).
 
 
 <section>
-<h2 id="___sec49">LU Decomposition, why? </h2>
+<h2 id="___sec50">LU Decomposition, why? </h2>
 
 <p>
 For our four-dimentional example this takes the form
@@ -1674,7 +1805,7 @@ needed to solve the set of \( n \) linear equations.
 
 
 <section>
-<h2 id="___sec50">LU Decomposition, linear equations </h2>
+<h2 id="___sec51">LU Decomposition, linear equations </h2>
 
 <p>
 The algorithm goes as follows
@@ -1691,7 +1822,7 @@ The algorithm goes as follows
 
 
 <section>
-<h2 id="___sec51">LU Decomposition, the inverse of a matrix </h2>
+<h2 id="___sec52">LU Decomposition, the inverse of a matrix </h2>
 
 <p>
 If the inverse exists then
@@ -1713,7 +1844,7 @@ $$
 
 
 <section>
-<h2 id="___sec52">LU Decomposition, the inverse of a matrix </h2>
+<h2 id="___sec53">LU Decomposition, the inverse of a matrix </h2>
 
 <p>
 If we assume that the first column (that is column 1) of the inverse matrix
@@ -1751,7 +1882,7 @@ $$
 
 
 <section>
-<h2 id="___sec53">LU Decomposition, the inverse </h2>
+<h2 id="___sec54">LU Decomposition, the inverse </h2>
 
 <p>
 In a similar way we can compute the unknow entries of the second column,
@@ -1777,12 +1908,11 @@ and continue till we have solved all \( n \) sets of linear equations.
 
 
 <section>
-<h2 id="___sec54">How to use the Library functions </h2>
+<h2 id="___sec55"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_blank">How to use the Library functions</a> </h2>
 
 <p>
 Standard C/C++: fetch the files <code>lib.cpp</code> and <code>lib.h</code>. You can make a directory where you store
-these files, and eventually its compiled version lib.o. The example here is program1.cpp from
-chapter 6 and performs the matrix inversion.
+these files, and eventually its compiled version lib.o. The example here is <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/LinAlgebra/cpp/program1.cpp" target="_blank">program1.cpp from chapter 6</a> and performs the matrix inversion.
 
 <p>
 
@@ -1806,7 +1936,7 @@ chapter 6 and performs the matrix inversion.
 
 
 <section>
-<h2 id="___sec55">How to use the Library functions </h2>
+<h2 id="___sec56"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_blank">How to use the Library functions</a> </h2>
 
 <p>
 
@@ -1830,7 +1960,7 @@ chapter 6 and performs the matrix inversion.
 
 
 <section>
-<h2 id="___sec56">How to use the Library functions </h2>
+<h2 id="___sec57"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_blank">How to use the Library functions</a> </h2>
 
 <p>
 
@@ -1857,7 +1987,7 @@ chapter 6 and performs the matrix inversion.
 
 
 <section>
-<h2 id="___sec57">How to use the Library functions </h2>
+<h2 id="___sec58"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary" target="_blank">How to use the Library functions</a> </h2>
 
 <p>
 For Fortran users:
@@ -1883,7 +2013,7 @@ For Fortran users:
 
 
 <section>
-<h2 id="___sec58">How to use the Library functions </h2>
+<h2 id="___sec59"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary" target="_blank">How to use the Library functions</a> </h2>
 
 <p>
 For Fortran users:
@@ -1908,7 +2038,7 @@ For Fortran users:
 
 
 <section>
-<h2 id="___sec59">Using Armadillo to perform an LU decomposition </h2>
+<h2 id="___sec60"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/C++CodesLectures/MatrixTest/main.cpp" target="_blank">Using Armadillo to perform an LU decomposition</a> </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
@@ -1944,7 +2074,7 @@ For Fortran users:
 
 
 <section>
-<h2 id="___sec60">Iterative methods, Chapter 6 </h2>
+<h2 id="___sec61">Iterative methods, Chapter 6 </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <ul>
@@ -1957,7 +2087,7 @@ For Fortran users:
 
 
 <section>
-<h2 id="___sec61">Iterative methods, Jacobi's method </h2>
+<h2 id="___sec62">Iterative methods, Jacobi's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1992,7 +2122,7 @@ If the matrix \( \hat{A} \) is positive definite or diagonally dominant, one can
 
 
 <section>
-<h2 id="___sec62">Iterative methods, Jacobi's method </h2>
+<h2 id="___sec63">Iterative methods, Jacobi's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2026,7 +2156,7 @@ $$
 
 
 <section>
-<h2 id="___sec63">Iterative methods, Jacobi's method </h2>
+<h2 id="___sec64">Iterative methods, Jacobi's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2051,7 +2181,7 @@ matrix.
 
 
 <section>
-<h2 id="___sec64">Iterative methods, Gauss-Seidel's method </h2>
+<h2 id="___sec65">Iterative methods, Gauss-Seidel's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2086,7 +2216,7 @@ behavior and leads to the Gauss-Seidel method!
 
 
 <section>
-<h2 id="___sec65">Iterative methods, Gauss-Seidel's method </h2>
+<h2 id="___sec66">Iterative methods, Gauss-Seidel's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2121,7 +2251,7 @@ Both methods sometimes converge even if these conditions are not satisfied.
 
 
 <section>
-<h2 id="___sec66">Iterative methods, Successive over-relaxation </h2>
+<h2 id="___sec67">Iterative methods, Successive over-relaxation </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2143,7 +2273,7 @@ $$
 
 
 <section>
-<h2 id="___sec67">Iterative methods, Successive over-relaxation </h2>
+<h2 id="___sec68">Iterative methods, Successive over-relaxation </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2174,7 +2304,7 @@ for a constant \( \omega > 1 \).
 
 
 <section>
-<h2 id="___sec68">Iterative methods, Successive over-relaxation </h2>
+<h2 id="___sec69">Iterative methods, Successive over-relaxation </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2198,7 +2328,7 @@ The choice of relaxation factor is not necessarily easy, and depends upon the pr
 
 
 <section>
-<h2 id="___sec69">Cubic Splines, Chapter 6 </h2>
+<h2 id="___sec70">Cubic Splines, Chapter 6 </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2228,7 +2358,7 @@ as follows
 
 
 <section>
-<h2 id="___sec70">Splines </h2>
+<h2 id="___sec71">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2254,7 +2384,7 @@ function values.
 
 
 <section>
-<h2 id="___sec71">Splines </h2>
+<h2 id="___sec72">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2284,7 +2414,7 @@ yielding \( 4n \) coefficients to determine.
 
 
 <section>
-<h2 id="___sec72">Splines </h2>
+<h2 id="___sec73">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2325,7 +2455,7 @@ freedom to be determined.
 
 
 <section>
-<h2 id="___sec73">Splines </h2>
+<h2 id="___sec74">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2364,7 +2494,7 @@ $$
 
 
 <section>
-<h2 id="___sec74">Splines </h2>
+<h2 id="___sec75">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2387,7 +2517,7 @@ $$
 
 
 <section>
-<h2 id="___sec75">Splines </h2>
+<h2 id="___sec76">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2418,7 +2548,7 @@ solved  through e.g., Gaussian elemination
 
 
 <section>
-<h2 id="___sec76">Splines </h2>
+<h2 id="___sec77">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2453,7 +2583,7 @@ through only \( O(n) \) operations.
 
 
 <section>
-<h2 id="___sec77">Splines </h2>
+<h2 id="___sec78">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2480,7 +2610,7 @@ and is called only once.
 
 
 <section>
-<h2 id="___sec78">Splines </h2>
+<h2 id="___sec79">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
