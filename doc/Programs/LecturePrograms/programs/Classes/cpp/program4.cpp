@@ -9,6 +9,7 @@ int main (int argc, char* argv[])
   //  You can use double *a = new double[i];  or
   double *a;
   a = new double[i];
+  //  double a[10];
   // the first of element of a, a[0], and its address is the
   // value of the pointer.
   /* This is a longer comment
