@@ -274,7 +274,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._linalg-bs049.html#___sec48" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs050.html#___sec49" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs051.html#___sec50" style="font-size: 80%;">LU Decomposition, why?</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec51" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs052.html#___sec51" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs053.html#___sec52" style="font-size: 80%;">LU Decomposition, the inverse of a matrix</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs054.html#___sec53" style="font-size: 80%;">LU Decomposition, the inverse of a matrix</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs055.html#___sec54" style="font-size: 80%;">LU Decomposition, the inverse</a></li>
@@ -302,7 +302,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._linalg-bs077.html#___sec76" style="font-size: 80%;">Splines</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs078.html#___sec77" style="font-size: 80%;">Splines</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs079.html#___sec78" style="font-size: 80%;">Splines</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs080.html#___sec79" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec79" style="font-size: 80%;">Splines</a></li>
 
         </ul>
       </li>
@@ -315,47 +315,42 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0052"></a>
+<a name="part0080"></a>
 <!-- !split -->
 
-<h2 id="___sec51">LU Decomposition, linear equations </h2>
-
+<h2 id="___sec79">Splines </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+Thereafter, if you wish to make  various interpolations, you need to call the function 
 <p>
-The algorithm goes as follows
 
-<ul>
-  <li> Set up the matrix \( \bf A \) and the vector \( \bf w \) with their correct dimensions. This determines the dimensionality of the unknown vector \( \bf x \).</li>
-  <li> Then LU decompose the matrix \( \bf A \) through a call to the function <code>ludcmp(double a, int n, int indx, double &d)</code>. This functions returns the LU decomposed matrix \( \bf A \), its determinant and the vector indx which keeps track of the number of interchanges of rows. If the determinant is zero, the solution is malconditioned.</li>
-  <li> Thereafter you call the function  <code>lubksb(double a, int n, int indx, double w)</code> which uses the LU decomposed matrix \( \bf A \) and the vector \( \bf w \) and returns \( \bf x \) in the same place as \( \bf w \). Upon exit the original content in \( \bf w \) is destroyed. If you wish to keep this information, you should make a backup of it in your calling function.</li>
-</ul>
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">splint(<span style="color: #B00040">double</span> x[], <span style="color: #B00040">double</span> y[], <span style="color: #B00040">double</span> y2a[], <span style="color: #B00040">int</span> n, <span style="color: #B00040">double</span> x, <span style="color: #B00040">double</span> <span style="color: #666666">*</span>y)
+</pre></div>
+<p>
+which takes as input
+the tabulated values \( x[0,..,n - 1] \) and \( y[0,..,n - 1] \) and the output 
+y2a[0,..,n - 1] from <em>spline</em>. It returns the value \( y \) corresponding
+to the point \( x \).
+</div>
+</div>
+
 
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
-<li><a href="._linalg-bs051.html">&laquo;</a></li>
+<li><a href="._linalg-bs079.html">&laquo;</a></li>
   <li><a href="._linalg-bs000.html">1</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._linalg-bs044.html">45</a></li>
-  <li><a href="._linalg-bs045.html">46</a></li>
-  <li><a href="._linalg-bs046.html">47</a></li>
-  <li><a href="._linalg-bs047.html">48</a></li>
-  <li><a href="._linalg-bs048.html">49</a></li>
-  <li><a href="._linalg-bs049.html">50</a></li>
-  <li><a href="._linalg-bs050.html">51</a></li>
-  <li><a href="._linalg-bs051.html">52</a></li>
-  <li class="active"><a href="._linalg-bs052.html">53</a></li>
-  <li><a href="._linalg-bs053.html">54</a></li>
-  <li><a href="._linalg-bs054.html">55</a></li>
-  <li><a href="._linalg-bs055.html">56</a></li>
-  <li><a href="._linalg-bs056.html">57</a></li>
-  <li><a href="._linalg-bs057.html">58</a></li>
-  <li><a href="._linalg-bs058.html">59</a></li>
-  <li><a href="._linalg-bs059.html">60</a></li>
-  <li><a href="._linalg-bs060.html">61</a></li>
-  <li><a href="._linalg-bs061.html">62</a></li>
-  <li><a href="">...</a></li>
-  <li><a href="._linalg-bs080.html">81</a></li>
-  <li><a href="._linalg-bs053.html">&raquo;</a></li>
+  <li><a href="._linalg-bs072.html">73</a></li>
+  <li><a href="._linalg-bs073.html">74</a></li>
+  <li><a href="._linalg-bs074.html">75</a></li>
+  <li><a href="._linalg-bs075.html">76</a></li>
+  <li><a href="._linalg-bs076.html">77</a></li>
+  <li><a href="._linalg-bs077.html">78</a></li>
+  <li><a href="._linalg-bs078.html">79</a></li>
+  <li><a href="._linalg-bs079.html">80</a></li>
+  <li class="active"><a href="._linalg-bs080.html">81</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 
