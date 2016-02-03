@@ -1012,7 +1012,7 @@ for $k=2,\dots,n$.
 
 
 !split
-===== "Program example":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/CppCodesLectures/MatrixTest" =====
+===== "Program example":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/CppQtCodesLectures/MatrixTest" =====
 
 !bc cppcod
 /*
@@ -1505,7 +1505,7 @@ END PROGRAM matrix
 
 
 !split
-===== "Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppCodesLectures/MatrixTest/main.cpp" =====
+===== "Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp" =====
 !bc cppcod
 #include <iostream>
 #include "armadillo"
