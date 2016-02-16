@@ -1,7 +1,7 @@
 **  Template for evaluating and grading projects **
 
 **Evaluation of project number: ** 
-**Candidate number: **
+**Name: **
 
 *Abstract: accurate and informative? Total number of possible points: 5*
 
