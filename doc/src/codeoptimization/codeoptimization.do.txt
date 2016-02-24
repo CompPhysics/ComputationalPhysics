@@ -253,7 +253,7 @@ displayed here as
 Four additions are now done in a single step.
 
 !split
-===== A simple test case with and without vectorization =====
+===== "A simple test case with and without vectorization":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" =====
 We implement these operations in a simple c++ program as 
 
 !bc cppcode
