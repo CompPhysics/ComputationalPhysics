@@ -110,30 +110,54 @@ $(function () {
                2,
                None,
                '___sec19'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec20'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec21'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec22'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec23'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec24'),
+              ("Building a code for the solar system and testing Kepler's laws",
+               2,
+               None,
+               '___sec20'),
+              ("Building a code for the solar system and testing Kepler's laws",
+               2,
+               None,
+               '___sec21'),
+              ("Building a code for the solar system and testing Kepler's laws",
+               2,
+               None,
+               '___sec22'),
+              ("Building a code for the solar system and testing Kepler's laws",
+               2,
+               None,
+               '___sec23'),
+              ("Building a code for the solar system and testing Kepler's laws",
+               2,
+               None,
+               '___sec24'),
               ('Simple Example, Block tied to a Wall', 2, None, '___sec25'),
-              ('The classical pendulum', 2, None, '___sec26'),
-              ('More on the Pendulum', 2, None, '___sec27'),
-              ('More on the Pendulum', 2, None, '___sec28'),
-              ('More on the Pendulum', 2, None, '___sec29'),
-              ('Adaptive methods', 2, None, '___sec30'),
-              ('Adaptive methods', 2, None, '___sec31'),
-              ('Adaptive methods', 2, None, '___sec32'),
-              ('Adaptive methods', 2, None, '___sec33'),
-              ('Adaptive methods, RKF45', 2, None, '___sec34'),
-              ('Adaptive methods, RKF45', 2, None, '___sec35'),
-              ('Solar system code, main program', 2, None, '___sec36'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec26'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec27'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec28'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec29'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec30'),
+              ('Simple Example, Block tied to a Wall, python code',
+               2,
+               None,
+               '___sec31'),
+              ('The classical pendulum', 2, None, '___sec32'),
+              ('More on the Pendulum', 2, None, '___sec33'),
+              ('More on the Pendulum', 2, None, '___sec34'),
+              ('More on the Pendulum', 2, None, '___sec35'),
+              ('Adaptive methods', 2, None, '___sec36'),
+              ('Adaptive methods', 2, None, '___sec37'),
+              ('Adaptive methods', 2, None, '___sec38'),
+              ('Adaptive methods', 2, None, '___sec39'),
+              ('Adaptive methods, RKF45', 2, None, '___sec40'),
+              ('Adaptive methods, RKF45', 2, None, '___sec41'),
+              ('Solar system code, main program', 2, None, '___sec42'),
               ('Solar system code, planet class, header file',
                2,
                None,
-               '___sec37'),
-              ('Solar system code, planet class', 2, None, '___sec38'),
-              ('Solar system code, solver class', 2, None, '___sec39'),
-              ('Solar system code, solver code', 2, None, '___sec40')]}
+               '___sec43'),
+              ('Solar system code, planet class', 2, None, '___sec44'),
+              ('Solar system code, solver class', 2, None, '___sec45'),
+              ('Solar system code, solver code', 2, None, '___sec46')]}
 end of tocinfo -->
 
 <body>
@@ -198,7 +222,7 @@ MathJax.Hub.Config({
 </ul>
 
 The material on differential equations is covered by chapters 8, 9 and 10.
-One of the final projects, project 5, deals with ordinary differential equations.
+Two of  the final projects deal with ordinary differential equations.
 </div>
 
 
@@ -865,7 +889,170 @@ size by \( h/2 \) and calculate \( k_2 \), then \( k_3 \) and finally \( k_4 \).
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec20">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec20">Building a code for the solar system and testing Kepler's laws </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We start with a simpler case first, the earth-sun system  in two dimensions only.  The gravitational force \( F_G \) is  
+$$
+      F=\frac{GM_{\odot}M_E}{r^2},
+  $$
+
+where \( G \) is the gravitational constant, $M_E=6\times 10^{24}$Kg 
+the mass of the earth, $M_{\odot}=2\times 10^{30}$Kg the mass of the sun and $r=1.5\times 10^{11}$m is the distance between earth and the sun. The latter defines what we call an astronomical unit <b>AU</b>.
+From Newton's second law we have then for the \( x \) direction
+$$
+   \frac{d^2x}{dt^2}=\frac{F_{x}}{M_E},
+  $$
+
+and
+$$
+   \frac{d^2y}{dt^2}=\frac{F_{y}}{M_E},
+  $$
+
+for the \( y \) direction.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec21">Building a code for the solar system and testing Kepler's laws </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Introducing \( x=r\cos{(\theta)} \), \( y=r\sin{(\theta)} \) and
+$$
+r \sqrt{x^2+y^2},
+$$
+
+we can rewrite 
+$$
+   F_{x}=-\frac{GM_{\odot}M_E}{r^2}\cos{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}x,
+  $$
+
+and
+$$
+     F_{y}=-\frac{GM_{\odot}M_E}{r^2}\sin{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}y,
+  $$
+
+for the \( y \) direction.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec22">Building a code for the solar system and testing Kepler's laws </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We can rewrite these two equations
+$$
+   F_{x}=-\frac{GM_{\odot}M_E}{r^2}\cos{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}x,
+  $$
+
+and
+$$
+     F_{y}=-\frac{GM_{\odot}M_E}{r^2}\sin{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}y,
+  $$
+
+as four first-order coupled differential equations
+$$
+   \frac{dv_x}{dt}=-\frac{GM_{\odot}}{r^3}x,
+$$
+
+$$
+   \frac{dx}{dt}=v_x,
+$$
+
+$$
+   \frac{dv_y}{dt}=-\frac{GM_{\odot}}{r^3}y,
+$$
+
+$$
+   \frac{dy}{dt}=v_y.
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec23">Building a code for the solar system and testing Kepler's laws </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The four coupled differential equations
+$$
+   \frac{dv_x}{dt}=-\frac{GM_{\odot}}{r^3}x,
+$$
+
+$$
+   \frac{dx}{dt}=v_x,
+$$
+
+$$
+   \frac{dv_y}{dt}=-\frac{GM_{\odot}}{r^3}y,
+$$
+
+$$
+   \frac{dy}{dt}=v_y,
+$$
+
+can be turned into dimensionless equations (as we did in project 2) or we can introduce astronomical units with \( 1 \) AU = \( 1.5\times 10^{11} \).
+
+<p>
+Using the equations from circular motion (with \( r =1\mathrm{AU} \)) 
+$$
+\frac{M_E v^2}{r} = F = \frac{GM_{\odot}M_E}{r^2},
+$$
+
+we have
+$$
+GM_{\odot}=v^2r,
+$$
+
+and using that the velocity of earth (assuming circular motion) is
+\( v = 2\pi r/\mathrm{yr}=2\pi\mathrm{AU}/\mathrm{yr} \), we have
+$$
+GM_{\odot}= v^2r = 4\pi^2 \frac{(\mathrm{AU})^3}{\mathrm{yr}^2}.
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec24">Building a code for the solar system and testing Kepler's laws </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The four coupled differential equations can then be discretized using Euler's method as (with step length \( h \))
+$$
+   v_{x,i+1}=v_{x,i}-h\frac{4\pi^2}{r_i^3}x_i,
+$$
+
+$$
+   x_{i+1}=x_i+hv_{x,i},
+$$
+
+$$
+   v_{y,i+1}=v_{y,i}-h\frac{4\pi^2}{r_i^3}y_i,
+$$
+
+$$
+   y_{i+1}=y_i+hv_{y,i},
+$$
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec25">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -901,7 +1088,7 @@ solution and the development of a program for more complicated cases which canno
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec21">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec26">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -923,7 +1110,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec22">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec27">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -947,7 +1134,7 @@ Observe that \( T \) depends only on \( k/m \) and not on the amplitude of the s
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec23">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec28">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -974,7 +1161,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec24">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec29">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1013,7 +1200,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec25">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec30">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1205,7 +1392,109 @@ void runge_kutta_4(double *y, double *dydx, int n, double x, double h,
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec26">The classical pendulum </h2>
+<h2 id="___sec31">Simple Example, Block tied to a Wall, python code </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The following python program performs essentially the same calculations as the previous c++ code.
+<p>
+
+
+<div class="compute"><script type="text/x-sage">
+#
+# This program solves Newtons equation for a block sliding on
+# an horizontal frictionless surface.
+# The block is tied to the wall with a spring, so N's eq takes the form:
+#
+#  m d^2x/dt^2 = - kx
+#
+# In order to make the solution dimless, we set k/m = 1.
+# This results in two coupled diff. eq's that may be written as:
+#
+#  dx/dt = v
+#  dv/dt = -x
+#
+# The user has to specify the initial velocity and position,
+# and the number of steps. The time interval is fixed to
+# t \in [0, 4\pi) (two periods)
+#
+# Note that this is a highly simplifyed rk4 code, intended
+# for conceptual understanding and experimentation.
+
+import sys
+import numpy, math
+
+#Global variables
+ofile = None;
+E0    = 0.0
+
+def sim(x_0, v_0, N):
+    ts = 0.0
+    te = 4*math.pi
+    h = (te-ts)/float(N)
+
+    t = ts;
+    x = x_0
+    v = v_0
+    while (t < te):
+        kv1 = -h*x
+        kx1 = h*v
+
+        kv2 = -h*(x+kx1/2)
+        kx2 =  h*(v+kv1/2)
+
+        kv3 = -h*(x+kx2/2)
+        kx3 =  h*(v+kv2/2)
+
+        kv4 = -h*(x+kx3/2)
+        kx4 =  h*(v+kv3/2)
+
+        #Write the old values to file
+        output(t,x,v)
+
+        #Update
+        x = x + (kx1 + 2*(kx2+kx3) + kx4)/6
+        v = v + (kv1 + 2*(kv2+kv3) + kv4)/6
+        t = t+h
+        
+def output(t,x,v):
+    de = 0.5*x**2+0.5*v**2 - E0;
+    ofile.write("%15.8E %15.8E %15.8E %15.8E %15.8E\n"\
+                %(t, x, v, math.cos(t),de));
+
+
+#MAIN PROGRAM:
+
+#Get input
+if len(sys.argv) == 5:
+    ofilename =       sys.argv[1];
+    x_0       = float(sys.argv[2])
+    v_0       = float(sys.argv[3])
+    N         =   int(sys.argv[4])
+else:
+    print "Usage:", sys.argv[0], "ofilename x0 v0 N"
+    sys.exit(0)
+
+#Setup
+ofile = open(ofilename, 'w')
+E0    = 0.5*x_0**2+0.5*v_0**2
+
+#Run simulation
+sim(x_0,v_0,N)
+
+#Cleanup
+ofile.close() 
+
+
+</script></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec32">The classical pendulum </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1239,7 +1528,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec27">More on the Pendulum </h2>
+<h2 id="___sec33">More on the Pendulum </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1269,7 +1558,7 @@ the angular frequency respectively. The latter is called the driving frequency.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec28">More on the Pendulum </h2>
+<h2 id="___sec34">More on the Pendulum </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1303,7 +1592,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec29">More on the Pendulum </h2>
+<h2 id="___sec35">More on the Pendulum </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1330,7 +1619,7 @@ These are the equations to be solved.  The factor \( Q \) represents the number 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec30">Adaptive methods </h2>
+<h2 id="___sec36">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1341,7 +1630,7 @@ In case the function to integrate varies slowly or fast in different integration
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec31">Adaptive methods </h2>
+<h2 id="___sec37">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1380,7 +1669,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec32">Adaptive methods </h2>
+<h2 id="___sec38">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1417,7 +1706,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec33">Adaptive methods </h2>
+<h2 id="___sec39">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1441,7 +1730,7 @@ A much used algorithm is the so-called RKF45 which uses a combination of fourth 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec34">Adaptive methods, RKF45 </h2>
+<h2 id="___sec40">Adaptive methods, RKF45 </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1479,7 +1768,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec35">Adaptive methods, RKF45 </h2>
+<h2 id="___sec41">Adaptive methods, RKF45 </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1507,7 +1796,7 @@ with \( \xi \) our defined tolerance.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec36">Solar system code, main program </h2>
+<h2 id="___sec42">Solar system code, main program </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
@@ -1560,7 +1849,7 @@ planet  Pluto(<span style="color: #B452CD">5.6e-9</span>, <span style="color: #B
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec37">Solar system code, planet class, header file </h2>
+<h2 id="___sec43">Solar system code, planet class, header file </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
@@ -1585,7 +1874,7 @@ planet  Pluto(<span style="color: #B452CD">5.6e-9</span>, <span style="color: #B
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec38">Solar system code, planet class </h2>
+<h2 id="___sec44">Solar system code, planet class </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
@@ -1609,7 +1898,7 @@ velocity[<span style="color: #B452CD">2</span>] = vz;
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec39">Solar system code, solver class </h2>
+<h2 id="___sec45">Solar system code, solver class </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
@@ -1652,7 +1941,7 @@ velocity[<span style="color: #B452CD">2</span>] = vz;
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec40">Solar system code, solver code </h2>
+<h2 id="___sec46">Solar system code, solver code </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->

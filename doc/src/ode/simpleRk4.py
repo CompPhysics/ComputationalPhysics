@@ -1,4 +1,3 @@
-# coding=utf-8
 #
 # This program solves Newtons equation for a block sliding on
 # an horizontal frictionless surface.
@@ -18,9 +17,6 @@
 #
 # Note that this is a highly simplifyed rk4 code, intended
 # for conceptual understanding and experimentation.
-# A more generalized code is also aviable.
-#
-#Written by Kyrre Ness Sjøbæk
 
 import sys
 import numpy, math
