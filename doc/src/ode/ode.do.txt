@@ -527,16 +527,33 @@ size by $h/2$ and calculate $k_2$, then $k_3$ and finally $k_4$. The global erro
 !eblock
 
 !split
-===== Building a code for the solar system and testing Kepler's laws =====
+===== Building a code for the solar system, gravitational force and constants =====
 !bblock
-We start with a simpler case first, the earth-sun system  in two dimensions only.  The gravitational force $F_G$ is  
+We start with a simpler case first, the Earth-Sun system  in two dimensions only.  The gravitational force $F_G$ is  
 !bt
   \[
       F=\frac{GM_{\odot}M_E}{r^2},
   \]
 !et
-where $G$ is the gravitational constant, $M_E=6\times 10^{24}$Kg 
-the mass of the earth, $M_{\odot}=2\times 10^{30}$Kg the mass of the sun and $r=1.5\times 10^{11}$m is the distance between earth and the sun. The latter defines what we call an astronomical unit _AU_.
+where $G$ is the gravitational constant, 
+!bt
+\[
+M_E=6\times 10^{24}\mathrm{Kg},
+\]
+!et 
+the mass of Earth, 
+!bt
+\[
+M_{\odot}=2\times 10^{30}\mathrm{Kg}, 
+\]
+!et
+the mass of the Sun and 
+!bt
+\[
+r=1.5\times 10^{11}\mathrm{m}, 
+\]
+!et
+is the distance between Earth and the Sun. The latter defines what we call an astronomical unit _AU_.
 From Newton's second law we have then for the $x$ direction
 !bt
   \[
@@ -554,7 +571,7 @@ for the $y$ direction.
 
 
 !split
-===== Building a code for the solar system and testing Kepler's laws =====
+===== Building a code for the solar system, force equations =====
 !bblock
 Introducing $x=r\cos{(\theta)}$, $y=r\sin{(\theta)}$ and
 !bt
@@ -579,7 +596,7 @@ for the $y$ direction.
 
 
 !split
-===== Building a code for the solar system and testing Kepler's laws =====
+===== Building a code for the solar system, coupled equations =====
 !bblock
 We can rewrite these two equations
 !bt
@@ -618,7 +635,7 @@ as four first-order coupled differential equations
 
 
 !split
-===== Building a code for the solar system and testing Kepler's laws =====
+===== Building a code for the solar system, final coupled equations =====
 !bblock
 The four coupled differential equations
 !bt
@@ -655,7 +672,7 @@ we have
 GM_{\odot}=v^2r,
 \]
 !et  
-and using that the velocity of earth (assuming circular motion) is
+and using that the velocity of Earth (assuming circular motion) is
 $v = 2\pi r/\mathrm{yr}=2\pi\mathrm{AU}/\mathrm{yr}$, we have
 !bt
 \[
@@ -666,7 +683,7 @@ GM_{\odot}= v^2r = 4\pi^2 \frac{(\mathrm{AU})^3}{\mathrm{yr}^2}.
 
 
 !split
-===== Building a code for the solar system and testing Kepler's laws =====
+===== Building a code for the solar system, discretized equations =====
 !bblock
 The four coupled differential equations can then be discretized using Euler's method as (with step length $h$)
 !bt
@@ -687,6 +704,65 @@ The four coupled differential equations can then be discretized using Euler's me
 !bt
 \[
    y_{i+1}=y_i+hv_{y,i},
+\]
+!et
+
+!eblock
+
+
+!split
+===== Building a code for the solar system, adding Jupiter =====
+!bblock
+It is rather straightforward to add a new planet, say Jupiter.
+Jupiter has mass
+!bt
+\[
+M_J=1.9\times 10^{27}\mathrm{kg},
+\]
+!et
+and distance to the Sun of $5.2$ AU. 
+The additional gravitational force the Earth feels from Jupiter in the $x$-direction is
+!bt
+  \[
+   F_{x}^{EJ}=-\frac{GM_JM_E}{r_{EJ}^3}(x_E-x_J),
+  \]
+!et
+where $E$ stands for Earth, $J$ for Jupiter, $r_{EJ}$ is distance between Earth and Jupiter
+!bt
+\[
+r_{EJ} = \sqrt{(x_E-x_J)^2+(y_E-y_J)^2},
+\]
+!et
+and $x_E$ and $y_E$ are the $x$ and $y$ coordinates of Earth, respectively, and 
+$x_J$ and $y_J$ are the $x$ and $y$ coordinates of Jupiter, respectively.
+The $x$-component of the velocity of Earth changes thus to
+!bt
+\[
+   \frac{dv_x^E}{dt}=-\frac{GM_{\odot}}{r^3}x_E-\frac{GM_J}{r_{EJ}^3}(x_E-x_J).
+\]
+!et
+!eblock
+
+
+!split
+===== Building a code for the solar system, adding Jupiter =====
+!bblock
+We can rewrite 
+!bt
+\[
+   \frac{dv_x^E}{dt}=-\frac{GM_{\odot}}{r^3}x_E-\frac{GM_J}{r_{EJ}^3}(x_E-x_J).
+\]
+!et
+to
+!bt
+\[
+   \frac{dv_x^E}{dt}=-\frac{4\pi^2}{r^3}x_E-\frac{4\pi^2M_J/M_{\odot}}{r_{EJ}^3}(x_E-x_J),
+\]
+!et
+where we used 
+!bt
+\[
+GM_J = GM_{\odot}(\frac{M_J}{M_{\odot}}=\frac{4\pi^2 M_J/M_{\odot}}.
 \]
 !et
 
