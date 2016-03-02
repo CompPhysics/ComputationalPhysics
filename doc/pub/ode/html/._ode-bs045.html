@@ -178,7 +178,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._ode-bs010.html#___sec9" style="font-size: 80%;">Differential Equations</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs011.html#___sec10" style="font-size: 80%;">Differential Equations</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs012.html#___sec11" style="font-size: 80%;">Differential Equations</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;">Differential Equations</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs013.html#___sec12" style="font-size: 80%;">Differential Equations</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs014.html#___sec13" style="font-size: 80%;">Differential Equations</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs015.html#___sec14" style="font-size: 80%;">Differential Equations</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs016.html#___sec15" style="font-size: 80%;">Differential Equations</a></li>
@@ -210,7 +210,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._ode-bs042.html#___sec41" style="font-size: 80%;">Adaptive methods, RKF45</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs043.html#___sec42" style="font-size: 80%;">Solar system code, main program</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs044.html#___sec43" style="font-size: 80%;">Solar system code, planet class, header file</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs045.html#___sec44" style="font-size: 80%;">Solar system code, planet class</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec44" style="font-size: 80%;">Solar system code, planet class</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs046.html#___sec45" style="font-size: 80%;">Solar system code, solver class</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs047.html#___sec46" style="font-size: 80%;">Solar system code, solver code</a></li>
 
@@ -225,58 +225,49 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0013"></a>
+<a name="part0045"></a>
 <!-- !split -->
 
-<h2 id="___sec12">Differential Equations </h2>
-<div class="panel panel-default">
-<div class="panel-body">
-These approximations can be generalized by using the derivative \( f \) to
-arbitrary order so that we have
-$$
-\begin{equation}
-     y_{i+1}=y(t=t_i+h)=y(t_i) + h(f(t_i,y_i)+\dots f^{(p-1)}(t_i,y_i)
-     \frac{h^{p-1}}{p!}) + O(h^{p+1}).
-\tag{25}
-\end{equation}
-$$
+<h2 id="___sec44">Solar system code, planet class </h2>
+<p>
 
-These methods, based on higher-order derivatives, are in general not used
-in numerical computation, since they rely on evaluating 
-derivatives several times. Unless one has analytical expressions
-for these, the risk of roundoff errors is large.
-</div>
-</div>
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &quot;planet.h&quot;</span>
 
+planet<span style="color: #666666">::</span>planet()
+{
+};
 
+planet<span style="color: #666666">::</span>planet(<span style="color: #B00040">double</span> mas, <span style="color: #B00040">double</span> x,<span style="color: #B00040">double</span> y, <span style="color: #B00040">double</span> z, <span style="color: #B00040">double</span> vx, <span style="color: #B00040">double</span> vy, <span style="color: #B00040">double</span> vz){
+mass <span style="color: #666666">=</span> mas;
+position[<span style="color: #666666">0</span>] <span style="color: #666666">=</span> x;
+position[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> y;
+position[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> z;
+
+velocity[<span style="color: #666666">0</span>] <span style="color: #666666">=</span> vx;
+velocity[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> vy;
+velocity[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> vz;
+};
+</pre></div>
 <p>
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
-<li><a href="._ode-bs012.html">&laquo;</a></li>
+<li><a href="._ode-bs044.html">&laquo;</a></li>
   <li><a href="._ode-bs000.html">1</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._ode-bs005.html">6</a></li>
-  <li><a href="._ode-bs006.html">7</a></li>
-  <li><a href="._ode-bs007.html">8</a></li>
-  <li><a href="._ode-bs008.html">9</a></li>
-  <li><a href="._ode-bs009.html">10</a></li>
-  <li><a href="._ode-bs010.html">11</a></li>
-  <li><a href="._ode-bs011.html">12</a></li>
-  <li><a href="._ode-bs012.html">13</a></li>
-  <li class="active"><a href="._ode-bs013.html">14</a></li>
-  <li><a href="._ode-bs014.html">15</a></li>
-  <li><a href="._ode-bs015.html">16</a></li>
-  <li><a href="._ode-bs016.html">17</a></li>
-  <li><a href="._ode-bs017.html">18</a></li>
-  <li><a href="._ode-bs018.html">19</a></li>
-  <li><a href="._ode-bs019.html">20</a></li>
-  <li><a href="._ode-bs020.html">21</a></li>
-  <li><a href="._ode-bs021.html">22</a></li>
-  <li><a href="._ode-bs022.html">23</a></li>
-  <li><a href="">...</a></li>
+  <li><a href="._ode-bs037.html">38</a></li>
+  <li><a href="._ode-bs038.html">39</a></li>
+  <li><a href="._ode-bs039.html">40</a></li>
+  <li><a href="._ode-bs040.html">41</a></li>
+  <li><a href="._ode-bs041.html">42</a></li>
+  <li><a href="._ode-bs042.html">43</a></li>
+  <li><a href="._ode-bs043.html">44</a></li>
+  <li><a href="._ode-bs044.html">45</a></li>
+  <li class="active"><a href="._ode-bs045.html">46</a></li>
+  <li><a href="._ode-bs046.html">47</a></li>
   <li><a href="._ode-bs047.html">48</a></li>
-  <li><a href="._ode-bs014.html">&raquo;</a></li>
+  <li><a href="._ode-bs046.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 
