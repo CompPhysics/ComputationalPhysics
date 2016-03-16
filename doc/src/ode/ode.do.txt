@@ -576,7 +576,7 @@ for the $y$ direction.
 Introducing $x=r\cos{(\theta)}$, $y=r\sin{(\theta)}$ and
 !bt
 \[
-r \sqrt{x^2+y^2},
+r = \sqrt{x^2+y^2},
 \]
 !et 
 we can rewrite 
@@ -774,6 +774,20 @@ Similarly, for the velocity in $y$-direction we have
 Similar expressions apply for Jupiter. The equations for $x$ and $y$ 
 derivatives are unchanged. This equations are similar for all other planets and as we will see later, it will be convenient to object orient this part when we program the full solar system.
 !eblock
+
+
+!split
+===== How can I get the initial velocities and positions of the planets =====
+!bblock
+"NASA":"http://www.nasa.gov/index.html" has an excellent site at URL:"http://www.nasa.gov/index.html".
+From there you can extract initial conditions in order to start your differential equation solver.
+
+For the first simple system involving the Earth and the Sun, you could just initialize the position with say $x=1$ AU
+and $y=0$ AU. 
+!eblock
+
+
+
 
 
 
