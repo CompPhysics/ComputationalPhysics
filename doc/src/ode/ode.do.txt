@@ -407,7 +407,6 @@ and
    y^{(1)}_{n+1}=y^{(1)}_{n}+hy^{(2)}_{n+1/2} +O(h^2).
 \end{equation}
 !et
-The program program2.cpp includes all of the above methods.
 !eblock
 
 
