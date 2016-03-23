@@ -205,7 +205,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._ode-bs019.html#___sec18" style="font-size: 80%;">The velocity Verlet method</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs020.html#___sec19" style="font-size: 80%;">The velocity Verlet method</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs021.html#___sec20" style="font-size: 80%;">The velocity Verlet method</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec21" style="font-size: 80%;">The velocity Verlet method</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs022.html#___sec21" style="font-size: 80%;">The velocity Verlet method</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs023.html#___sec22" style="font-size: 80%;">Differential Equations, Runge-Kutta methods</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs024.html#___sec23" style="font-size: 80%;">Differential Equations, Runge-Kutta methods</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs025.html#___sec24" style="font-size: 80%;">Differential Equations, Runge-Kutta methods</a></li>
@@ -236,7 +236,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._ode-bs050.html#___sec49" style="font-size: 80%;">Adaptive methods, RKF45</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs051.html#___sec50" style="font-size: 80%;">Adaptive methods, RKF45</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs052.html#___sec51" style="font-size: 80%;">Solar system code, main program</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs053.html#___sec52" style="font-size: 80%;">Solar system code, planet class, header file</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec52" style="font-size: 80%;">Solar system code, planet class, header file</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs054.html#___sec53" style="font-size: 80%;">Solar system code, planet class</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs055.html#___sec54" style="font-size: 80%;">Solar system code, solver class</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs056.html#___sec55" style="font-size: 80%;">Solar system code, solver code</a></li>
@@ -252,57 +252,51 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0022"></a>
+<a name="part0053"></a>
 <!-- !split -->
 
-<h2 id="___sec21">The velocity Verlet method </h2>
-<div class="panel panel-default">
-<div class="panel-body">
-Our final equations for the position and the velocity become then 
-$$
-x_{i+1} = x_i+hv_i+\frac{h^2}{2}v^{(1)}_{i}+O(h^3),
-$$
+<h2 id="___sec52">Solar system code, planet class, header file </h2>
+<p>
 
-and
-$$
-v_{i+1} = v_i+\frac{h}{2}\left( v^{(1)}_{i+1}+v^{(1)}_{i}\right)+O(h^3). 
-$$
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#ifndef PLANET_H</span>
+<span style="color: #BC7A00">#define PLANET_H</span>
 
-Note well that the term \( v^{(1)}_{i+1} \) depends on the position at \( x_{i+1} \). This means that you need to calculate 
-the position at the updated time \( t_{i+1} \) before the computing the next velocity.  Note also that the derivative of the velocity at the time
-\( t_i \) used in the updating of the position can be reused in the calculation of the velocity update as well.
-</div>
-</div>
+<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">planet</span>
+{
+<span style="color: #008000; font-weight: bold">public</span><span style="color: #666666">:</span>
 
+    <span style="color: #B00040">double</span> position[<span style="color: #666666">3</span>];
+    <span style="color: #B00040">double</span> velocity[<span style="color: #666666">3</span>];
+    <span style="color: #B00040">double</span> mass;
 
+    planet(<span style="color: #B00040">double</span> mas, <span style="color: #B00040">double</span> x,<span style="color: #B00040">double</span> y, <span style="color: #B00040">double</span> z, <span style="color: #B00040">double</span> vx, <span style="color: #B00040">double</span> vy, <span style="color: #B00040">double</span> vz);
+    planet();
+
+};
+
+<span style="color: #BC7A00">#endif </span><span style="color: #408080; font-style: italic">// PLANET_H</span>
+</pre></div>
 <p>
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
-<li><a href="._ode-bs021.html">&laquo;</a></li>
+<li><a href="._ode-bs052.html">&laquo;</a></li>
   <li><a href="._ode-bs000.html">1</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._ode-bs014.html">15</a></li>
-  <li><a href="._ode-bs015.html">16</a></li>
-  <li><a href="._ode-bs016.html">17</a></li>
-  <li><a href="._ode-bs017.html">18</a></li>
-  <li><a href="._ode-bs018.html">19</a></li>
-  <li><a href="._ode-bs019.html">20</a></li>
-  <li><a href="._ode-bs020.html">21</a></li>
-  <li><a href="._ode-bs021.html">22</a></li>
-  <li class="active"><a href="._ode-bs022.html">23</a></li>
-  <li><a href="._ode-bs023.html">24</a></li>
-  <li><a href="._ode-bs024.html">25</a></li>
-  <li><a href="._ode-bs025.html">26</a></li>
-  <li><a href="._ode-bs026.html">27</a></li>
-  <li><a href="._ode-bs027.html">28</a></li>
-  <li><a href="._ode-bs028.html">29</a></li>
-  <li><a href="._ode-bs029.html">30</a></li>
-  <li><a href="._ode-bs030.html">31</a></li>
-  <li><a href="._ode-bs031.html">32</a></li>
-  <li><a href="">...</a></li>
+  <li><a href="._ode-bs045.html">46</a></li>
+  <li><a href="._ode-bs046.html">47</a></li>
+  <li><a href="._ode-bs047.html">48</a></li>
+  <li><a href="._ode-bs048.html">49</a></li>
+  <li><a href="._ode-bs049.html">50</a></li>
+  <li><a href="._ode-bs050.html">51</a></li>
+  <li><a href="._ode-bs051.html">52</a></li>
+  <li><a href="._ode-bs052.html">53</a></li>
+  <li class="active"><a href="._ode-bs053.html">54</a></li>
+  <li><a href="._ode-bs054.html">55</a></li>
+  <li><a href="._ode-bs055.html">56</a></li>
   <li><a href="._ode-bs056.html">57</a></li>
-  <li><a href="._ode-bs023.html">&raquo;</a></li>
+  <li><a href="._ode-bs054.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 

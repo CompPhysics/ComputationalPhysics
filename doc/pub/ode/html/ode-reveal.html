@@ -764,7 +764,176 @@ $$
 
 
 <section>
-<h2 id="___sec16">Differential Equations, Runge-Kutta methods </h2>
+<h2 id="___sec16">The Verlet method </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Another set of popular algorithms, which are both numerically stable and easy to implement are the
+Verlet algorithms, with the velocity Verlet method as widely used in for example Molecular dynamics calculations. 
+Consider again a second-order differential equation  like Newton's second law, whose one-dimensional
+version reads
+<p>&nbsp;<br>
+$$
+m\frac{d^2 x}{dt^2}= F(x,t),
+$$
+<p>&nbsp;<br>
+
+which we rewrite in terms of two coupled differential equations
+<p>&nbsp;<br>
+$$
+\frac{dx}{dt}=v(x,t) \hspace{1cm}\mathrm{and}\hspace{1cm} \frac{dv}{dt}=F(x,t)/m=a(x,t).
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec17">The Verlet method </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If we now perform a Taylor expansion
+<p>&nbsp;<br>
+$$
+x(t+h) = x(t)+hx^{(1)}(t)+\frac{h^2}{2}x^{(2)}(t)+O(h^3).
+$$
+<p>&nbsp;<br>
+
+In our case the second derivative is known via Newton's second law, namely \( x^{(2)}(t)=a(x,t) \).
+If we add to the above equation the corresponding Taylor expansion for \( x(t-h) \), we obtain, using the
+discretized expressions
+<p>&nbsp;<br>
+$$
+x(t_i\pm h) = x_{i\pm 1} \hspace{1cm}\mathrm{and}\hspace{1cm} x_i=x(t_i),
+$$
+<p>&nbsp;<br>
+
+we arrive at 
+<p>&nbsp;<br>
+$$
+x_{i+1} = 2x_i - x_{i-1} +h^2x^{(2)}_i+O(h^4).
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec18">The velocity Verlet method </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We note that the truncation error goes like \( O(h^4) \) since all the odd terms cancel when we add the two Taylor expansions.
+We see also that the velocity is not directly included in the equation since the function
+\( x^{(2)}=a(x,t) \) is supposed to be known. If we need the velocity however, we can compute it using the well-known
+formula
+<p>&nbsp;<br>
+$$
+x^{(1)}_i=\frac{x_{i+1}-x_{i-1}}{2h}+O(h^2).
+$$
+<p>&nbsp;<br>
+
+We note that the velocity has a truncation error which goes like \( O(h^2) \). In for example so-called Molecular dynamics calculations,
+since the acceleration is normally known via Newton's second law, there is seldomly a need for computing the velocity.
+
+<p>
+We note also that the algorithm for the position is not self-starting since, for \( i=0 \) it depends on the value of \( x \) 
+at the fictitious value \( x_{-1} \).
+
+<p>
+We can amend this by introducing the velocity Verlet method.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec19">The velocity Verlet method </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We have the Taylor expansion for the position given by
+<p>&nbsp;<br>
+$$
+x_{i+1} = x_i+hx^{(1)}_i+\frac{h^2}{2}x^{(2)}_i+O(h^3).
+$$
+<p>&nbsp;<br>
+
+The corresponding expansion for the velocity is 
+<p>&nbsp;<br>
+$$
+v_{i+1} = v_i+hv^{(1)}_i+\frac{h^2}{2}v^{(2)}_i+O(h^3).
+$$
+<p>&nbsp;<br>
+
+Via Newton's second law we have normally an analytical expression for the derivative of the velocity, namely
+<p>&nbsp;<br>
+$$
+v^{(1)}_i = \frac{d^2 x}{dt^2}\vert_{i}= \frac{F(x_i,t_i)}{m},
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec20">The velocity Verlet method </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+If we add to this the corresponding expansion for the derivative of the velocity 
+<p>&nbsp;<br>
+$$
+v^{(1)}_{i+1} = v^{(1)}_i+hv^{(2)}_i+O(h^2), 
+$$
+<p>&nbsp;<br>
+
+and retain only terms up to the second derivative of the velocity since our error goes as \( O(h^3) \), we have
+<p>&nbsp;<br>
+$$
+hv^{(2)}_i\approx v^{(1)}_{i+1}-v^{(1)}_i.
+$$
+<p>&nbsp;<br>
+
+We can then rewrite the Taylor expansion for the velocity as
+
+<p>&nbsp;<br>
+$$
+v_{i+1} = v_i+\frac{h}{2}\left( v^{(1)}_{i+1}+v^{(1)}_{i}\right)+O(h^3).
+$$
+<p>&nbsp;<br>
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec21">The velocity Verlet method </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Our final equations for the position and the velocity become then 
+<p>&nbsp;<br>
+$$
+x_{i+1} = x_i+hv_i+\frac{h^2}{2}v^{(1)}_{i}+O(h^3),
+$$
+<p>&nbsp;<br>
+
+and
+<p>&nbsp;<br>
+$$
+v_{i+1} = v_i+\frac{h}{2}\left( v^{(1)}_{i+1}+v^{(1)}_{i}\right)+O(h^3). 
+$$
+<p>&nbsp;<br>
+
+Note well that the term \( v^{(1)}_{i+1} \) depends on the position at \( x_{i+1} \). This means that you need to calculate 
+the position at the updated time \( t_{i+1} \) before the computing the next velocity.  Note also that the derivative of the velocity at the time
+\( t_i \) used in the updating of the position can be reused in the calculation of the velocity update as well.
+</div>
+</section>
+
+
+<section>
+<h2 id="___sec22">Differential Equations, Runge-Kutta methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -807,7 +976,7 @@ $$
 
 
 <section>
-<h2 id="___sec17">Differential Equations, Runge-Kutta methods </h2>
+<h2 id="___sec23">Differential Equations, Runge-Kutta methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -842,7 +1011,7 @@ $$
 
 
 <section>
-<h2 id="___sec18">Differential Equations, Runge-Kutta methods </h2>
+<h2 id="___sec24">Differential Equations, Runge-Kutta methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -899,7 +1068,7 @@ in the solution.
 
 
 <section>
-<h2 id="___sec19">Differential Equations, Runge-Kutta methods </h2>
+<h2 id="___sec25">Differential Equations, Runge-Kutta methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -931,7 +1100,7 @@ size by \( h/2 \) and calculate \( k_2 \), then \( k_3 \) and finally \( k_4 \).
 
 
 <section>
-<h2 id="___sec20">Building a code for the solar system, gravitational force and constants </h2>
+<h2 id="___sec26">Building a code for the solar system, gravitational force and constants </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -985,7 +1154,7 @@ for the \( y \) direction.
 
 
 <section>
-<h2 id="___sec21">Building a code for the solar system, force equations </h2>
+<h2 id="___sec27">Building a code for the solar system, force equations </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1016,7 +1185,7 @@ for the \( y \) direction.
 
 
 <section>
-<h2 id="___sec22">Building a code for the solar system, coupled equations </h2>
+<h2 id="___sec28">Building a code for the solar system, coupled equations </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1063,7 +1232,7 @@ $$
 
 
 <section>
-<h2 id="___sec23">Building a code for the solar system, final coupled equations </h2>
+<h2 id="___sec29">Building a code for the solar system, final coupled equations </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1121,7 +1290,7 @@ $$
 
 
 <section>
-<h2 id="___sec24">Building a code for the solar system, discretized equations </h2>
+<h2 id="___sec30">Building a code for the solar system, discretized equations </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1156,7 +1325,7 @@ $$
 
 
 <section>
-<h2 id="___sec25">Building a code for the solar system, adding Jupiter </h2>
+<h2 id="___sec31">Building a code for the solar system, adding Jupiter </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1196,7 +1365,7 @@ $$
 
 
 <section>
-<h2 id="___sec26">Building a code for the solar system, adding Jupiter </h2>
+<h2 id="___sec32">Building a code for the solar system, adding Jupiter </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1235,7 +1404,7 @@ derivatives are unchanged. This equations are similar for all other planets and 
 
 
 <section>
-<h2 id="___sec27">How can I get the initial velocities and positions of the planets </h2>
+<h2 id="___sec33">How can I get the initial velocities and positions of the planets </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1250,7 +1419,7 @@ and \( y=0 \) AU.
 
 
 <section>
-<h2 id="___sec28">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec34">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1293,7 +1462,7 @@ solution and the development of a program for more complicated cases which canno
 
 
 <section>
-<h2 id="___sec29">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec35">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1318,7 +1487,7 @@ $$
 
 
 <section>
-<h2 id="___sec30">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec36">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1345,7 +1514,7 @@ Observe that \( T \) depends only on \( k/m \) and not on the amplitude of the s
 
 
 <section>
-<h2 id="___sec31">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec37">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1377,7 +1546,7 @@ $$
 
 
 <section>
-<h2 id="___sec32">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec38">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1418,7 +1587,7 @@ $$
 
 
 <section>
-<h2 id="___sec33">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec39">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1609,7 +1778,7 @@ void runge_kutta_4(double *y, double *dydx, int n, double x, double h,
 
 
 <section>
-<h2 id="___sec34">Simple Example, Block tied to a Wall, python code </h2>
+<h2 id="___sec40">Simple Example, Block tied to a Wall, python code </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1710,7 +1879,7 @@ ofile.close()
 
 
 <section>
-<h2 id="___sec35">The classical pendulum </h2>
+<h2 id="___sec41">The classical pendulum </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1749,7 +1918,7 @@ $$
 
 
 <section>
-<h2 id="___sec36">More on the Pendulum </h2>
+<h2 id="___sec42">More on the Pendulum </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1782,7 +1951,7 @@ the angular frequency respectively. The latter is called the driving frequency.
 
 
 <section>
-<h2 id="___sec37">More on the Pendulum </h2>
+<h2 id="___sec43">More on the Pendulum </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1825,7 +1994,7 @@ $$
 
 
 <section>
-<h2 id="___sec38">More on the Pendulum </h2>
+<h2 id="___sec44">More on the Pendulum </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1857,7 +2026,7 @@ These are the equations to be solved.  The factor \( Q \) represents the number 
 
 
 <section>
-<h2 id="___sec39">Adaptive methods </h2>
+<h2 id="___sec45">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1867,7 +2036,7 @@ In case the function to integrate varies slowly or fast in different integration
 
 
 <section>
-<h2 id="___sec40">Adaptive methods </h2>
+<h2 id="___sec46">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1917,7 +2086,7 @@ $$
 
 
 <section>
-<h2 id="___sec41">Adaptive methods </h2>
+<h2 id="___sec47">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1963,7 +2132,7 @@ $$
 
 
 <section>
-<h2 id="___sec42">Adaptive methods </h2>
+<h2 id="___sec48">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1989,7 +2158,7 @@ A much used algorithm is the so-called RKF45 which uses a combination of fourth 
 
 
 <section>
-<h2 id="___sec43">Adaptive methods, RKF45 </h2>
+<h2 id="___sec49">Adaptive methods, RKF45 </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2038,7 +2207,7 @@ $$
 
 
 <section>
-<h2 id="___sec44">Adaptive methods, RKF45 </h2>
+<h2 id="___sec50">Adaptive methods, RKF45 </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2071,7 +2240,7 @@ with \( \xi \) our defined tolerance.
 
 
 <section>
-<h2 id="___sec45">Solar system code, main program </h2>
+<h2 id="___sec51">Solar system code, main program </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
@@ -2125,7 +2294,7 @@ planet  Pluto(<span style="color: #B452CD">5.6e-9</span>, <span style="color: #B
 
 
 <section>
-<h2 id="___sec46">Solar system code, planet class, header file </h2>
+<h2 id="___sec52">Solar system code, planet class, header file </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
@@ -2151,7 +2320,7 @@ planet  Pluto(<span style="color: #B452CD">5.6e-9</span>, <span style="color: #B
 
 
 <section>
-<h2 id="___sec47">Solar system code, planet class </h2>
+<h2 id="___sec53">Solar system code, planet class </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
@@ -2176,7 +2345,7 @@ velocity[<span style="color: #B452CD">2</span>] = vz;
 
 
 <section>
-<h2 id="___sec48">Solar system code, solver class </h2>
+<h2 id="___sec54">Solar system code, solver class </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
@@ -2220,7 +2389,7 @@ velocity[<span style="color: #B452CD">2</span>] = vz;
 
 
 <section>
-<h2 id="___sec49">Solar system code, solver code </h2>
+<h2 id="___sec55">Solar system code, solver code </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
