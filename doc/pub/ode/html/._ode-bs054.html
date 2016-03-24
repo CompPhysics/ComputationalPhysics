@@ -139,20 +139,18 @@ $(function () {
               ('Adaptive methods', 2, None, '___sec48'),
               ('Adaptive methods, RKF45', 2, None, '___sec49'),
               ('Adaptive methods, RKF45', 2, None, '___sec50'),
-              ('Solar system code, main program', 2, None, '___sec51'),
-              ('Solar system code, planet class, header file',
+              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples"',
+               2,
+               None,
+               '___sec51'),
+              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file',
                2,
                None,
                '___sec52'),
-              ('Solar system code, planet class, the explicit code part',
+              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file, cpp file for planet class, simple example',
                2,
                None,
-               '___sec53'),
-              ('Solar system code, solver class, header file',
-               2,
-               None,
-               '___sec54'),
-              ('Solar system code, solver code', 2, None, '___sec55')]}
+               '___sec53')]}
 end of tocinfo -->
 
 <body>
@@ -241,11 +239,9 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._ode-bs049.html#___sec48" style="font-size: 80%;">Adaptive methods</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs050.html#___sec49" style="font-size: 80%;">Adaptive methods, RKF45</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs051.html#___sec50" style="font-size: 80%;">Adaptive methods, RKF45</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs052.html#___sec51" style="font-size: 80%;">Solar system code, main program</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs053.html#___sec52" style="font-size: 80%;">Solar system code, planet class, header file</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec53" style="font-size: 80%;">Solar system code, planet class, the explicit code part</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs055.html#___sec54" style="font-size: 80%;">Solar system code, solver class, header file</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs056.html#___sec55" style="font-size: 80%;">Solar system code, solver code</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs052.html#___sec51" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples"</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs053.html#___sec52" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec53" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file, cpp file for planet class, simple example</a></li>
 
         </ul>
       </li>
@@ -261,18 +257,18 @@ MathJax.Hub.Config({
 <a name="part0054"></a>
 <!-- !split -->
 
-<h2 id="___sec53">Solar system code, planet class, the explicit code part </h2>
+<h2 id="___sec53"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples" target="_self">Solar system code, main program</a>, header file, cpp file for planet class, simple example </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &quot;planet.h&quot;</span>
-
+<span style="color: #408080; font-style: italic">// Simple constructor</span>
 planet<span style="color: #666666">::</span>planet()
 {
 };
-
-planet<span style="color: #666666">::</span>planet(<span style="color: #B00040">double</span> mas, <span style="color: #B00040">double</span> x,<span style="color: #B00040">double</span> y, <span style="color: #B00040">double</span> z, <span style="color: #B00040">double</span> vx, <span style="color: #B00040">double</span> vy, <span style="color: #B00040">double</span> vz){
-mass <span style="color: #666666">=</span> mas;
+<span style="color: #408080; font-style: italic">// Improved constructor</span>
+planet<span style="color: #666666">::</span>planet(<span style="color: #B00040">double</span> M, <span style="color: #B00040">double</span> x,<span style="color: #B00040">double</span> y, <span style="color: #B00040">double</span> z, <span style="color: #B00040">double</span> vx, <span style="color: #B00040">double</span> vy, <span style="color: #B00040">double</span> vz){
+mass <span style="color: #666666">=</span> M;
 position[<span style="color: #666666">0</span>] <span style="color: #666666">=</span> x;
 position[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> y;
 position[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> z;
@@ -283,6 +279,7 @@ velocity[<span style="color: #666666">2</span>] <span style="color: #666666">=</
 };
 </pre></div>
 <p>
+
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
@@ -298,9 +295,6 @@ velocity[<span style="color: #666666">2</span>] <span style="color: #666666">=</
   <li><a href="._ode-bs052.html">53</a></li>
   <li><a href="._ode-bs053.html">54</a></li>
   <li class="active"><a href="._ode-bs054.html">55</a></li>
-  <li><a href="._ode-bs055.html">56</a></li>
-  <li><a href="._ode-bs056.html">57</a></li>
-  <li><a href="._ode-bs055.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 

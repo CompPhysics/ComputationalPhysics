@@ -139,20 +139,18 @@ $(function () {
               ('Adaptive methods', 2, None, '___sec48'),
               ('Adaptive methods, RKF45', 2, None, '___sec49'),
               ('Adaptive methods, RKF45', 2, None, '___sec50'),
-              ('Solar system code, main program', 2, None, '___sec51'),
-              ('Solar system code, planet class, header file',
+              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples"',
+               2,
+               None,
+               '___sec51'),
+              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file',
                2,
                None,
                '___sec52'),
-              ('Solar system code, planet class, the explicit code part',
+              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file, cpp file for planet class, simple example',
                2,
                None,
-               '___sec53'),
-              ('Solar system code, solver class, header file',
-               2,
-               None,
-               '___sec54'),
-              ('Solar system code, solver code', 2, None, '___sec55')]}
+               '___sec53')]}
 end of tocinfo -->
 
 <body>
@@ -241,11 +239,9 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._ode-bs049.html#___sec48" style="font-size: 80%;">Adaptive methods</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs050.html#___sec49" style="font-size: 80%;">Adaptive methods, RKF45</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs051.html#___sec50" style="font-size: 80%;">Adaptive methods, RKF45</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec51" style="font-size: 80%;">Solar system code, main program</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs053.html#___sec52" style="font-size: 80%;">Solar system code, planet class, header file</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs054.html#___sec53" style="font-size: 80%;">Solar system code, planet class, the explicit code part</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs055.html#___sec54" style="font-size: 80%;">Solar system code, solver class, header file</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs056.html#___sec55" style="font-size: 80%;">Solar system code, solver code</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec51" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples"</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs053.html#___sec52" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs054.html#___sec53" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file, cpp file for planet class, simple example</a></li>
 
         </ul>
       </li>
@@ -261,56 +257,54 @@ MathJax.Hub.Config({
 <a name="part0052"></a>
 <!-- !split -->
 
-<h2 id="___sec51">Solar system code, main program </h2>
+<h2 id="___sec51"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples" target="_self">Solar system code, main program</a> </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;solarsystem.h&gt;</span>
+<span style="color: #BC7A00">#include &lt;solver.h&gt;</span>
 <span style="color: #BC7A00">#include &lt;planet.h&gt;</span>
 <span style="color: #BC7A00">#include &lt;cmath&gt;</span>
 <span style="color: #BC7A00">#include &lt;armadillo&gt;</span>
-
-
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 
-
-
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
 {
-    solarsystem mysystem;
+<span style="color: #408080; font-style: italic">//  The solarsystem object inherits all functionality of the solver class</span>
+   solver solarsystem;
+<span style="color: #408080; font-style: italic">// Here we initialize all elements in the solar system (planets)</span>
+   planet  Sun(<span style="color: #666666">1</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>);
+   planet  Mercury(<span style="color: #666666">1.2e-7</span>, <span style="color: #666666">0.39</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">9.96</span>,<span style="color: #666666">0</span>);
+   planet  Venus(<span style="color: #666666">2.4e-6</span>, <span style="color: #666666">0.72</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">7.36</span>,<span style="color: #666666">0</span>);
+   planet  Earth(<span style="color: #666666">1.5e-6</span>,<span style="color: #666666">1</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">6.26</span>, <span style="color: #666666">0</span>);
+   planet  Mars(<span style="color: #666666">3.3e-7</span>, <span style="color: #666666">1.52</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">5.06</span>,<span style="color: #666666">0</span>);
+   planet  Jupiter(<span style="color: #666666">9.5e-4</span>, <span style="color: #666666">5.20</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">2.75</span>,<span style="color: #666666">0</span>);
+   planet  Saturn(<span style="color: #666666">2.75e-4</span>, <span style="color: #666666">9.54</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">2.04</span>,<span style="color: #666666">0</span>);
+   planet  Uranus(<span style="color: #666666">4.4e-5</span>, <span style="color: #666666">19.19</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">1.43</span>,<span style="color: #666666">0</span>);
+   planet  Neptune(<span style="color: #666666">5.1e-5</span>, <span style="color: #666666">30.06</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">1.14</span>,<span style="color: #666666">0</span>);
+   planet  Pluto(<span style="color: #666666">5.6e-9</span>, <span style="color: #666666">39.53</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0.99</span>,<span style="color: #666666">0</span>);
+<span style="color: #408080; font-style: italic">// Now we add all planets</span>
+   solarsystem.add(Sun);
+   solarsystem.add(Mercury);
+   solarsystem.add(Venus);
+   solarsystem.add(Earth);
+   solarsystem.add(Mars);
+   solarsystem.add(Jupiter);
+   solarsystem.add(Saturn);
+   solarsystem.add(Uranus);
+   solarsystem.add(Neptune);
+   solarsystem.add(Pluto);
 
-planet  Sun(<span style="color: #666666">1</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>);
-planet  Mercury(<span style="color: #666666">1.2e-7</span>, <span style="color: #666666">0.39</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">9.96</span>,<span style="color: #666666">0</span>);
-planet  Venus(<span style="color: #666666">2.4e-6</span>, <span style="color: #666666">0.72</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">7.36</span>,<span style="color: #666666">0</span>);
-planet  Earth(<span style="color: #666666">1.5e-6</span>,<span style="color: #666666">1</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">6.26</span>, <span style="color: #666666">0</span>);
-planet  Mars(<span style="color: #666666">3.3e-7</span>, <span style="color: #666666">1.52</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">5.06</span>,<span style="color: #666666">0</span>);
-planet  Jupiter(<span style="color: #666666">9.5e-4</span>, <span style="color: #666666">5.20</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">2.75</span>,<span style="color: #666666">0</span>);
-planet  Saturn(<span style="color: #666666">2.75e-4</span>, <span style="color: #666666">9.54</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">2.04</span>,<span style="color: #666666">0</span>);
-planet  Uranus(<span style="color: #666666">4.4e-5</span>, <span style="color: #666666">19.19</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">1.43</span>,<span style="color: #666666">0</span>);
-planet  Neptune(<span style="color: #666666">5.1e-5</span>, <span style="color: #666666">30.06</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">1.14</span>,<span style="color: #666666">0</span>);
-planet  Pluto(<span style="color: #666666">5.6e-9</span>, <span style="color: #666666">39.53</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0.99</span>,<span style="color: #666666">0</span>);
-
-   mysystem.add(Sun);
-   mysystem.add(Mercury);
-   mysystem.add(Venus);
-   mysystem.add(Earth);
-   mysystem.add(Mars);
-   mysystem.add(Jupiter);
-   mysystem.add(Saturn);
-   mysystem.add(Uranus);
-   mysystem.add(Neptune);
-   mysystem.add(Pluto);
-
-    <span style="color: #B00040">int</span> elements <span style="color: #666666">=</span> mysystem.number_planets;
-    cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;number of element&quot;</span> <span style="color: #666666">&lt;&lt;</span> elements<span style="color: #666666">&lt;&lt;</span> endl;
-
-
-    mysystem.solverRK4(mysystem.all_planets, <span style="color: #666666">0.001</span>, <span style="color: #666666">100</span> );
+   <span style="color: #B00040">int</span> elements <span style="color: #666666">=</span> solarsystem.number_planets;
+   cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;number of element&quot;</span> <span style="color: #666666">&lt;&lt;</span> elements<span style="color: #666666">&lt;&lt;</span> endl;
+   solarsystem.solverRK4(solarsystem.all_planets, <span style="color: #666666">0.001</span>, <span style="color: #666666">100</span> );
 
 }
 </pre></div>
+<p>
+The full code, with cpp files and header files,  is at <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples" target="_self"><tt>https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples</tt></a>.
+
 <p>
 <p>
 <!-- navigation buttons at the bottom of the page -->
@@ -329,8 +323,6 @@ planet  Pluto(<span style="color: #666666">5.6e-9</span>, <span style="color: #6
   <li class="active"><a href="._ode-bs052.html">53</a></li>
   <li><a href="._ode-bs053.html">54</a></li>
   <li><a href="._ode-bs054.html">55</a></li>
-  <li><a href="._ode-bs055.html">56</a></li>
-  <li><a href="._ode-bs056.html">57</a></li>
   <li><a href="._ode-bs053.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->

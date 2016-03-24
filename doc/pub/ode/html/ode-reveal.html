@@ -2235,61 +2235,58 @@ with \( \xi \) our defined tolerance.
 
 
 <section>
-<h2 id="___sec51">Solar system code, main program </h2>
+<h2 id="___sec51"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples" target="_blank">Solar system code, main program</a> </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #1e889b">#include &lt;iostream&gt;</span>
-<span style="color: #1e889b">#include &lt;solarsystem.h&gt;</span>
+<span style="color: #1e889b">#include &lt;solver.h&gt;</span>
 <span style="color: #1e889b">#include &lt;planet.h&gt;</span>
 <span style="color: #1e889b">#include &lt;cmath&gt;</span>
 <span style="color: #1e889b">#include &lt;armadillo&gt;</span>
-
-
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 
-
-
 <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
 {
-    solarsystem mysystem;
+<span style="color: #228B22">//  The solarsystem object inherits all functionality of the solver class</span>
+   solver solarsystem;
+<span style="color: #228B22">// Here we initialize all elements in the solar system (planets)</span>
+   planet  Sun(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>);
+   planet  Mercury(<span style="color: #B452CD">1.2e-7</span>, <span style="color: #B452CD">0.39</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">9.96</span>,<span style="color: #B452CD">0</span>);
+   planet  Venus(<span style="color: #B452CD">2.4e-6</span>, <span style="color: #B452CD">0.72</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">7.36</span>,<span style="color: #B452CD">0</span>);
+   planet  Earth(<span style="color: #B452CD">1.5e-6</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">6.26</span>, <span style="color: #B452CD">0</span>);
+   planet  Mars(<span style="color: #B452CD">3.3e-7</span>, <span style="color: #B452CD">1.52</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">5.06</span>,<span style="color: #B452CD">0</span>);
+   planet  Jupiter(<span style="color: #B452CD">9.5e-4</span>, <span style="color: #B452CD">5.20</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">2.75</span>,<span style="color: #B452CD">0</span>);
+   planet  Saturn(<span style="color: #B452CD">2.75e-4</span>, <span style="color: #B452CD">9.54</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">2.04</span>,<span style="color: #B452CD">0</span>);
+   planet  Uranus(<span style="color: #B452CD">4.4e-5</span>, <span style="color: #B452CD">19.19</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1.43</span>,<span style="color: #B452CD">0</span>);
+   planet  Neptune(<span style="color: #B452CD">5.1e-5</span>, <span style="color: #B452CD">30.06</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1.14</span>,<span style="color: #B452CD">0</span>);
+   planet  Pluto(<span style="color: #B452CD">5.6e-9</span>, <span style="color: #B452CD">39.53</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0.99</span>,<span style="color: #B452CD">0</span>);
+<span style="color: #228B22">// Now we add all planets</span>
+   solarsystem.add(Sun);
+   solarsystem.add(Mercury);
+   solarsystem.add(Venus);
+   solarsystem.add(Earth);
+   solarsystem.add(Mars);
+   solarsystem.add(Jupiter);
+   solarsystem.add(Saturn);
+   solarsystem.add(Uranus);
+   solarsystem.add(Neptune);
+   solarsystem.add(Pluto);
 
-planet  Sun(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>);
-planet  Mercury(<span style="color: #B452CD">1.2e-7</span>, <span style="color: #B452CD">0.39</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">9.96</span>,<span style="color: #B452CD">0</span>);
-planet  Venus(<span style="color: #B452CD">2.4e-6</span>, <span style="color: #B452CD">0.72</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">7.36</span>,<span style="color: #B452CD">0</span>);
-planet  Earth(<span style="color: #B452CD">1.5e-6</span>,<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">6.26</span>, <span style="color: #B452CD">0</span>);
-planet  Mars(<span style="color: #B452CD">3.3e-7</span>, <span style="color: #B452CD">1.52</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">5.06</span>,<span style="color: #B452CD">0</span>);
-planet  Jupiter(<span style="color: #B452CD">9.5e-4</span>, <span style="color: #B452CD">5.20</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">2.75</span>,<span style="color: #B452CD">0</span>);
-planet  Saturn(<span style="color: #B452CD">2.75e-4</span>, <span style="color: #B452CD">9.54</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">2.04</span>,<span style="color: #B452CD">0</span>);
-planet  Uranus(<span style="color: #B452CD">4.4e-5</span>, <span style="color: #B452CD">19.19</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1.43</span>,<span style="color: #B452CD">0</span>);
-planet  Neptune(<span style="color: #B452CD">5.1e-5</span>, <span style="color: #B452CD">30.06</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1.14</span>,<span style="color: #B452CD">0</span>);
-planet  Pluto(<span style="color: #B452CD">5.6e-9</span>, <span style="color: #B452CD">39.53</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0.99</span>,<span style="color: #B452CD">0</span>);
-
-   mysystem.add(Sun);
-   mysystem.add(Mercury);
-   mysystem.add(Venus);
-   mysystem.add(Earth);
-   mysystem.add(Mars);
-   mysystem.add(Jupiter);
-   mysystem.add(Saturn);
-   mysystem.add(Uranus);
-   mysystem.add(Neptune);
-   mysystem.add(Pluto);
-
-    <span style="color: #a7a7a7; font-weight: bold">int</span> elements = mysystem.number_planets;
-    cout &lt;&lt; <span style="color: #CD5555">&quot;number of element&quot;</span> &lt;&lt; elements&lt;&lt; endl;
-
-
-    mysystem.solverRK4(mysystem.all_planets, <span style="color: #B452CD">0.001</span>, <span style="color: #B452CD">100</span> );
+   <span style="color: #a7a7a7; font-weight: bold">int</span> elements = solarsystem.number_planets;
+   cout &lt;&lt; <span style="color: #CD5555">&quot;number of element&quot;</span> &lt;&lt; elements&lt;&lt; endl;
+   solarsystem.solverRK4(solarsystem.all_planets, <span style="color: #B452CD">0.001</span>, <span style="color: #B452CD">100</span> );
 
 }
 </pre></div>
+<p>
+The full code, with cpp files and header files,  is at <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples" target="_blank"><tt>https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples</tt></a>.
 </section>
 
 
 <section>
-<h2 id="___sec52">Solar system code, planet class, header file </h2>
+<h2 id="___sec52"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples" target="_blank">Solar system code, main program</a>, header file </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
@@ -2303,8 +2300,7 @@ planet  Pluto(<span style="color: #B452CD">5.6e-9</span>, <span style="color: #B
     <span style="color: #a7a7a7; font-weight: bold">double</span> position[<span style="color: #B452CD">3</span>];
     <span style="color: #a7a7a7; font-weight: bold">double</span> velocity[<span style="color: #B452CD">3</span>];
     <span style="color: #a7a7a7; font-weight: bold">double</span> mass;
-
-    planet(<span style="color: #a7a7a7; font-weight: bold">double</span> mas, <span style="color: #a7a7a7; font-weight: bold">double</span> x,<span style="color: #a7a7a7; font-weight: bold">double</span> y, <span style="color: #a7a7a7; font-weight: bold">double</span> z, <span style="color: #a7a7a7; font-weight: bold">double</span> vx, <span style="color: #a7a7a7; font-weight: bold">double</span> vy, <span style="color: #a7a7a7; font-weight: bold">double</span> vz);
+    planet(<span style="color: #a7a7a7; font-weight: bold">double</span> M, <span style="color: #a7a7a7; font-weight: bold">double</span> x,<span style="color: #a7a7a7; font-weight: bold">double</span> y, <span style="color: #a7a7a7; font-weight: bold">double</span> z, <span style="color: #a7a7a7; font-weight: bold">double</span> vx, <span style="color: #a7a7a7; font-weight: bold">double</span> vy, <span style="color: #a7a7a7; font-weight: bold">double</span> vz);
     planet();
 
 };
@@ -2315,18 +2311,18 @@ planet  Pluto(<span style="color: #B452CD">5.6e-9</span>, <span style="color: #B
 
 
 <section>
-<h2 id="___sec53">Solar system code, planet class, the explicit code part </h2>
+<h2 id="___sec53"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples" target="_blank">Solar system code, main program</a>, header file, cpp file for planet class, simple example </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #1e889b">#include &quot;planet.h&quot;</span>
-
+<span style="color: #228B22">// Simple constructor</span>
 planet::planet()
 {
 };
-
-planet::planet(<span style="color: #a7a7a7; font-weight: bold">double</span> mas, <span style="color: #a7a7a7; font-weight: bold">double</span> x,<span style="color: #a7a7a7; font-weight: bold">double</span> y, <span style="color: #a7a7a7; font-weight: bold">double</span> z, <span style="color: #a7a7a7; font-weight: bold">double</span> vx, <span style="color: #a7a7a7; font-weight: bold">double</span> vy, <span style="color: #a7a7a7; font-weight: bold">double</span> vz){
-mass = mas;
+<span style="color: #228B22">// Improved constructor</span>
+planet::planet(<span style="color: #a7a7a7; font-weight: bold">double</span> M, <span style="color: #a7a7a7; font-weight: bold">double</span> x,<span style="color: #a7a7a7; font-weight: bold">double</span> y, <span style="color: #a7a7a7; font-weight: bold">double</span> z, <span style="color: #a7a7a7; font-weight: bold">double</span> vx, <span style="color: #a7a7a7; font-weight: bold">double</span> vy, <span style="color: #a7a7a7; font-weight: bold">double</span> vz){
+mass = M;
 position[<span style="color: #B452CD">0</span>] = x;
 position[<span style="color: #B452CD">1</span>] = y;
 position[<span style="color: #B452CD">2</span>] = z;
@@ -2335,311 +2331,6 @@ velocity[<span style="color: #B452CD">0</span>] = vx;
 velocity[<span style="color: #B452CD">1</span>] = vy;
 velocity[<span style="color: #B452CD">2</span>] = vz;
 };
-</pre></div>
-</section>
-
-
-<section>
-<h2 id="___sec54">Solar system code, solver class, header file  </h2>
-<p>
-
-<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #1e889b">#ifndef SOLARSYSTEM_H</span>
-<span style="color: #1e889b">#define SOLARSYSTEM_H</span>
-<span style="color: #1e889b">#include &lt;armadillo&gt;</span>
-<span style="color: #1e889b">#include &quot;planet.h&quot;</span>
-<span style="color: #1e889b">#include &lt;vector&gt;</span>
-
-<span style="color: #8B008B; font-weight: bold">using</span> std::vector;
-<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
-
-<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">solarsystem</span>
-{
-<span style="color: #8B008B; font-weight: bold">public</span>:
-
-    <span style="color: #a7a7a7; font-weight: bold">int</span> number_planets=<span style="color: #B452CD">0</span>;
-
-    solarsystem();
-    vector&lt;planet&gt; all_planets;
-    <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">add</span>(planet n);
-    <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">print_position</span>(std::ofstream &amp;output, std::ofstream &amp;output2, vector&lt;planet&gt; vec);
-    <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">print_position</span>(std::ofstream &amp;output, std::ofstream &amp;output2, vector&lt;planet&gt; vec, <span style="color: #a7a7a7; font-weight: bold">int</span> n);
-    <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">synctroniz</span>(vector&lt;planet&gt; vec, arma::mat &amp;ma);
-    <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">insert_data</span>(vector&lt;planet&gt; vec, arma::mat &amp;ma);
-    <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">solverRK4</span>(vector&lt;planet&gt; vec, <span style="color: #a7a7a7; font-weight: bold">double</span> h, <span style="color: #a7a7a7; font-weight: bold">double</span> tmax);
-
-    <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">solverVERLET</span>(vector&lt;planet&gt; vec, <span style="color: #a7a7a7; font-weight: bold">double</span> h, <span style="color: #a7a7a7; font-weight: bold">double</span> tmax);
-    <span style="color: #228B22">//da main</span>
-
-    <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">sum_matrix</span>(mat &amp;result, <span style="color: #a7a7a7; font-weight: bold">double</span> coeff_one, mat &amp;first, <span style="color: #a7a7a7; font-weight: bold">double</span> coeff_two, mat &amp;second, <span style="color: #a7a7a7; font-weight: bold">int</span> n);
-    <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">printmat</span>(mat &amp;ma, <span style="color: #a7a7a7; font-weight: bold">int</span> n);
-    <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">force</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x, <span style="color: #a7a7a7; font-weight: bold">double</span> y, <span style="color: #a7a7a7; font-weight: bold">double</span> z, <span style="color: #a7a7a7; font-weight: bold">double</span> Mothers);
-    <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">derivate</span>(mat &amp;dat, mat &amp;de, <span style="color: #a7a7a7; font-weight: bold">int</span> n);
-
-};
-
-<span style="color: #1e889b">#endif </span><span style="color: #228B22">// SOLARSYSTEM_H</span>
-</pre></div>
-</section>
-
-
-<section>
-<h2 id="___sec55">Solar system code, solver code </h2>
-<p>
-
-<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #1e889b">#include &quot;solarsystem.h&quot;</span>
-<span style="color: #1e889b">#include &quot;planet.h&quot;</span>
-<span style="color: #1e889b">#include &lt;iostream&gt;</span>
-<span style="color: #1e889b">#include &lt;armadillo&gt;</span>
-<span style="color: #1e889b">#include &lt;stdio.h&gt;</span>
-<span style="color: #1e889b">#include &lt;iomanip&gt;</span>
-<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
-<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
-
-
-solarsystem::solarsystem()
-{
-}
-<span style="color: #a7a7a7; font-weight: bold">void</span> solarsystem::add(planet n){
-     number_planets++;
-     all_planets.push_back(n);
- }
-<span style="color: #a7a7a7; font-weight: bold">void</span> solarsystem::print_position(ofstream &amp;output, ofstream &amp;output2, vector&lt;planet&gt; vec){
-    print_position(output, output2, vec, <span style="color: #B452CD">3</span>);
-}
-
-<span style="color: #a7a7a7; font-weight: bold">void</span> solarsystem::print_position(ofstream &amp;output, ofstream &amp;output2, vector&lt;planet&gt; vec, <span style="color: #a7a7a7; font-weight: bold">int</span> n){
-    <span style="color: #8B008B; font-weight: bold">if</span>(n&gt;<span style="color: #B452CD">3</span> || n&lt;=<span style="color: #B452CD">0</span>) n=<span style="color: #B452CD">3</span>;
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;vec.size(); i++){
-        planet &amp;<span style="color: #8B008B; font-weight: bold">this</span> = vec[i];
-        std::cout &lt;&lt; std::scientific;
-        <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>; j&lt;n;j++){
-        std::cout &lt;&lt; <span style="color: #8B008B; font-weight: bold">this</span>.position[j] &lt;&lt; <span style="color: #CD5555">&quot;   &quot;</span>;
-        output &lt;&lt; std::scientific &lt;&lt; <span style="color: #8B008B; font-weight: bold">this</span>.position[j] &lt;&lt; <span style="color: #CD5555">&quot;   &quot;</span>;
-        output2 &lt;&lt; std::scientific &lt;&lt; <span style="color: #8B008B; font-weight: bold">this</span>.velocity[j] &lt;&lt; <span style="color: #CD5555">&quot;   &quot;</span>;
-        }
-        std::cout &lt;&lt; <span style="color: #CD5555">&quot;         &quot;</span>;
-        output  &lt;&lt; <span style="color: #CD5555">&quot;         &quot;</span>;
-        output2  &lt;&lt; <span style="color: #CD5555">&quot;         &quot;</span>;
-       }
-    std::cout &lt;&lt; std::endl;
-    output &lt;&lt; endl;
-    output2 &lt;&lt; endl;
-}
-
-<span style="color: #a7a7a7; font-weight: bold">void</span> solarsystem::insert_data(vector&lt;planet&gt; vec, mat &amp;ma){
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;vec.size(); i++){
-        planet &amp;<span style="color: #8B008B; font-weight: bold">this</span> = vec[i];
-        ma(i,<span style="color: #B452CD">6</span>)=<span style="color: #8B008B; font-weight: bold">this</span>.mass;
-
-        <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> k=<span style="color: #B452CD">0</span>; k&lt;<span style="color: #B452CD">3</span>;k++){
-            ma(i,k)=<span style="color: #8B008B; font-weight: bold">this</span>.position[k];
-            ma(i,k+<span style="color: #B452CD">3</span>)=<span style="color: #8B008B; font-weight: bold">this</span>.velocity[k];
-        }
-    }
-}
-
-<span style="color: #a7a7a7; font-weight: bold">void</span> solarsystem::synctroniz(vector&lt;planet&gt; vec, mat &amp;ma){
-    <span style="color: #a7a7a7; font-weight: bold">int</span> n = vec.size();
-
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>; j&lt;n;j++){
-        planet &amp;<span style="color: #8B008B; font-weight: bold">this</span> = vec[j];
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; <span style="color: #B452CD">3</span>; ++i){
-       <span style="color: #8B008B; font-weight: bold">this</span>.position[i] =  ma(j,i);
-       <span style="color: #8B008B; font-weight: bold">this</span>.velocity[i] = ma(j,i+<span style="color: #B452CD">3</span>);
-}
-}
-
-}
-
-<span style="color: #a7a7a7; font-weight: bold">void</span> solarsystem::solverRK4(vector&lt;planet&gt; vec, <span style="color: #a7a7a7; font-weight: bold">double</span> h, <span style="color: #a7a7a7; font-weight: bold">double</span> tmax){
-
-    mat y_i(number_planets,<span style="color: #B452CD">7</span>);
-    mat <span style="color: #008b45">y_i_temp</span>(number_planets,<span style="color: #B452CD">7</span>);
-    mat <span style="color: #008b45">k1</span>(number_planets,<span style="color: #B452CD">7</span>);
-    mat <span style="color: #008b45">k2</span>(number_planets,<span style="color: #B452CD">7</span>);
-    mat <span style="color: #008b45">k3</span>(number_planets,<span style="color: #B452CD">7</span>);
-    mat <span style="color: #008b45">k4</span>(number_planets,<span style="color: #B452CD">7</span>);
-
-    insert_data(vec , y_i);
-    <span style="color: #a7a7a7; font-weight: bold">double</span> t=<span style="color: #B452CD">0</span>;
-
-    <span style="color: #228B22">//for print file_________</span>
-    <span style="color: #a7a7a7; font-weight: bold">char</span> *filename = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">char</span>[<span style="color: #B452CD">1000</span>];
-    <span style="color: #a7a7a7; font-weight: bold">char</span> *filename2 = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">char</span>[<span style="color: #B452CD">1000</span>];
-        sprintf(filename, <span style="color: #CD5555">&quot;Planet_position_RK4_%f.dat&quot;</span>, h);
-        sprintf(filename2, <span style="color: #CD5555">&quot;Planet_velocity_RK4_%f.dat&quot;</span>, h);
-
-        ofstream <span style="color: #008b45">output</span> (filename);
-        ofstream <span style="color: #008b45">output2</span> (filename2);
-
-        <span style="color: #8B008B; font-weight: bold">if</span> (output.is_open()){
-            output.precision(<span style="color: #B452CD">5</span>);
-            output2.precision(<span style="color: #B452CD">5</span>);
-    <span style="color: #8B008B; font-weight: bold">while</span>(t&lt;tmax){
-
-        derivative(y_i, k1, number_planets);
-
-        sum_matrix(y_i_temp, <span style="color: #B452CD">1</span>, y_i, <span style="color: #B452CD">0.5</span>*h, k1, number_planets);
-        derivative(y_i_temp, k2, number_planets);
-
-        sum_matrix( y_i_temp, <span style="color: #B452CD">1</span>,  y_i, <span style="color: #B452CD">0.5</span>*h,  k2, number_planets);
-
-        derivative( y_i_temp,  k3, number_planets);
-
-        sum_matrix( y_i_temp, <span style="color: #B452CD">1</span>,  y_i, h,  k3, number_planets);
-
-        derivative( y_i_temp,  k4, number_planets);
-
-        <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">1</span>; j&lt;number_planets; j++){
-
-             <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;<span style="color: #B452CD">6</span>; i++){
-                 y_i(j,i) = y_i(j,i) + h*(k1(j,i) + <span style="color: #B452CD">2</span>*k2(j,i) + <span style="color: #B452CD">2</span>*k3(j,i) + k4(j,i))/<span style="color: #B452CD">6</span>;
-             }
-
-             <span style="color: #228B22">//Syncroniz position and velocity with the classes</span>
-             planet &amp;<span style="color: #8B008B; font-weight: bold">this</span> = vec[j];
-             <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;<span style="color: #B452CD">3</span>; i++){
-             <span style="color: #8B008B; font-weight: bold">this</span>.position[i] = y_i(j,i);
-             <span style="color: #8B008B; font-weight: bold">this</span>.velocity[i] = y_i(j,i+<span style="color: #B452CD">3</span>);
-             }
-
-        }
-
-print_position(output, output2, vec, <span style="color: #B452CD">3</span>);
-
-t+=h;
-
-}
-
-output.close();
-}
-}
-
-<span style="color: #a7a7a7; font-weight: bold">void</span> solarsystem::solverVERLET(vector&lt;planet&gt; vec, <span style="color: #a7a7a7; font-weight: bold">double</span> h, <span style="color: #a7a7a7; font-weight: bold">double</span> tmax){
-
-    mat y_i(number_planets,<span style="color: #B452CD">7</span>);
-    mat <span style="color: #008b45">r_i_dt</span>(number_planets,<span style="color: #B452CD">7</span>);
-    mat <span style="color: #008b45">a_dt</span>(number_planets,<span style="color: #B452CD">7</span>);
-    mat <span style="color: #008b45">v_dt</span>(number_planets,<span style="color: #B452CD">7</span>);
-    mat <span style="color: #008b45">v_dt_2</span>(number_planets,<span style="color: #B452CD">7</span>);
-
-    insert_data(vec , y_i);
-
-    <span style="color: #a7a7a7; font-weight: bold">double</span> t=<span style="color: #B452CD">0</span>,zz =<span style="color: #B452CD">1</span>;
-
-    <span style="color: #228B22">//print file___________________</span>
-    <span style="color: #a7a7a7; font-weight: bold">char</span> *filename = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">char</span>[<span style="color: #B452CD">1000</span>];
-    <span style="color: #a7a7a7; font-weight: bold">char</span> *filename2 = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">char</span>[<span style="color: #B452CD">1000</span>];
-        sprintf(filename, <span style="color: #CD5555">&quot;Planet_position_Verlet_%f.dat&quot;</span>, h);
-        sprintf(filename2, <span style="color: #CD5555">&quot;Planet_velocity_Verlet_%f.dat&quot;</span>, h);
-
-            ofstream <span style="color: #008b45">output</span> (filename);
-            ofstream <span style="color: #008b45">output2</span> (filename2);
-
-            <span style="color: #8B008B; font-weight: bold">if</span> (output.is_open()){
-            output.precision(<span style="color: #B452CD">5</span>);
-            output2.precision(<span style="color: #B452CD">5</span>);
-    <span style="color: #228B22">// end for print</span>
-
-
-    <span style="color: #8B008B; font-weight: bold">while</span>(t&lt;tmax){
-
-        derivative(y_i, a_dt, number_planets);
-
-        <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>; j&lt;number_planets; j++){
-
-             <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;<span style="color: #B452CD">3</span>; i++){
-                 y_i(j,i) = y_i(j,i) + h*y_i(j,i+<span style="color: #B452CD">3</span>) + <span style="color: #B452CD">0.5</span>*h*h*a_dt(j,i+<span style="color: #B452CD">3</span>);
-                 v_dt_2(j,i+<span style="color: #B452CD">3</span>) = y_i(j,i+<span style="color: #B452CD">3</span>) + <span style="color: #B452CD">0.5</span>*h*a_dt(j,i+<span style="color: #B452CD">3</span>);
-             }
-        }
-
-        derivative(y_i, a_dt, number_planets);
-
-        <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>; j&lt;number_planets; j++){
-
-             <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">3</span>; i&lt;<span style="color: #B452CD">6</span>; i++){
-
-                 y_i(j,i) = v_dt_2(j,i) + <span style="color: #B452CD">0.5</span>*h*a_dt(j,i);
-
-             }
-
-             planet &amp;<span style="color: #8B008B; font-weight: bold">this</span> = vec[j];
-             <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;<span style="color: #B452CD">3</span>; i++){
-             <span style="color: #8B008B; font-weight: bold">this</span>.position[i] = y_i(j,i);
-             <span style="color: #8B008B; font-weight: bold">this</span>.velocity[i] = y_i(j,i+<span style="color: #B452CD">3</span>);
-             }
-        }
-print_position(output, output2, vec,<span style="color: #B452CD">3</span>);
-
-t+=h;
-
-}
-output.close();
-}
-
-
-}
-<span style="color: #a7a7a7; font-weight: bold">void</span> solarsystem::sum_matrix(mat &amp;result, <span style="color: #a7a7a7; font-weight: bold">double</span> coeff_one, mat &amp;first,<span style="color: #a7a7a7; font-weight: bold">double</span> coeff_two, mat &amp;second, <span style="color: #a7a7a7; font-weight: bold">int</span> n){
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>; j&lt;n; j++){
-         <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;<span style="color: #B452CD">6</span>; i++){
-            result(j,i) = coeff_one*first(j,i) + coeff_two*second(j,i);
-         }
-         result(j,<span style="color: #B452CD">6</span>) = first(j,<span style="color: #B452CD">6</span>);
-
-    }
-}
-<span style="color: #a7a7a7; font-weight: bold">void</span> solarsystem::printmat(mat &amp;ma, <span style="color: #a7a7a7; font-weight: bold">int</span> n){
-    cout &lt;&lt; endl;
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;<span style="color: #B452CD">7</span>; i++){
-
-        <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> k=<span style="color: #B452CD">0</span>; k&lt;n;k++){
-            cout &lt;&lt;  ma(k,i)&lt;&lt;<span style="color: #CD5555">&quot; &quot;</span> ;
-        } cout &lt;&lt; endl;}
-}
-<span style="color: #a7a7a7; font-weight: bold">double</span> solarsystem::force(<span style="color: #a7a7a7; font-weight: bold">double</span> x, <span style="color: #a7a7a7; font-weight: bold">double</span> y, <span style="color: #a7a7a7; font-weight: bold">double</span> z, <span style="color: #a7a7a7; font-weight: bold">double</span> Mothers){
-    <span style="color: #a7a7a7; font-weight: bold">double</span> G=  <span style="color: #B452CD">4</span>*M_PI*M_PI;
-    <span style="color: #a7a7a7; font-weight: bold">double</span> force=<span style="color: #B452CD">0</span>;
-    <span style="color: #a7a7a7; font-weight: bold">double</span> distance=<span style="color: #B452CD">0</span>;
-
-    distance = x*x + y*y + z*z;
-
-    force = G*Mothers/pow(distance, <span style="color: #B452CD">1.5</span>);
-
-    <span style="color: #8B008B; font-weight: bold">return</span> force;
-}
-<span style="color: #a7a7a7; font-weight: bold">void</span> solarsystem::derivative(mat &amp;dat, mat &amp;de, <span style="color: #a7a7a7; font-weight: bold">int</span> n){
-
-    <span style="color: #a7a7a7; font-weight: bold">double</span> accelleration_x=<span style="color: #B452CD">0</span>,accelleration_y=<span style="color: #B452CD">0</span>,accelleration_z=<span style="color: #B452CD">0</span>, mod_force;
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;n; i++){
-
-        accelleration_x=<span style="color: #B452CD">0</span>,accelleration_y=<span style="color: #B452CD">0</span>,accelleration_z=<span style="color: #B452CD">0</span>;
-        <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>; j&lt;n; j++){
-            <span style="color: #8B008B; font-weight: bold">if</span>(i!=j){
-
-mod_force = force(dat(j,<span style="color: #B452CD">0</span>)-dat(i,<span style="color: #B452CD">0</span>),dat(j,<span style="color: #B452CD">1</span>)-dat(i,<span style="color: #B452CD">1</span>) ,dat(j,<span style="color: #B452CD">2</span>)-dat(i,<span style="color: #B452CD">2</span>),  dat(j,<span style="color: #B452CD">6</span>));
-
-
-accelleration_x += mod_force*(dat(j,<span style="color: #B452CD">0</span>)-dat(i,<span style="color: #B452CD">0</span>));
-accelleration_y += mod_force*(dat(j,<span style="color: #B452CD">1</span>)-dat(i,<span style="color: #B452CD">1</span>));
-accelleration_z += mod_force*(dat(j,<span style="color: #B452CD">2</span>)-dat(i,<span style="color: #B452CD">2</span>));
-}
-}
-        de(i,<span style="color: #B452CD">3</span>) = accelleration_x;
-        de(i,<span style="color: #B452CD">4</span>) = accelleration_y;
-        de(i,<span style="color: #B452CD">5</span>) = accelleration_z;
-
-    }
-
-
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;n; i++){
-        de(i,<span style="color: #B452CD">0</span>) = dat(i,<span style="color: #B452CD">3</span>); <span style="color: #228B22">//velx</span>
-        de(i,<span style="color: #B452CD">1</span>) = dat(i,<span style="color: #B452CD">4</span>); <span style="color: #228B22">//vely</span>
-        de(i,<span style="color: #B452CD">2</span>) = dat(i,<span style="color: #B452CD">5</span>); <span style="color: #228B22">//velz</span>
-    }
-}
 </pre></div>
 </section>
 
