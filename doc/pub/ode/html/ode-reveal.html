@@ -1403,8 +1403,11 @@ derivatives are unchanged. This equations are similar for all other planets and 
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
-<a href="http://www.nasa.gov/index.html" target="_blank">NASA</a> has an excellent site at <a href="http://www.nasa.gov/index.html" target="_blank"><tt>http://www.nasa.gov/index.html</tt></a>.
+<a href="http://www.nasa.gov/index.html" target="_blank">NASA</a> has an excellent site at <a href="http://ssd.jpl.nasa.gov/horizons.cgi#top" target="_blank"><tt>http://ssd.jpl.nasa.gov/horizons.cgi#top</tt></a>.
 From there you can extract initial conditions in order to start your differential equation solver.
+At the above website you need to change from <b>OBSERVER</b> to <b>VECTOR</b> and then write in the planet you are interested in.
+NThe generated data contain the \( x \), \( y \) and \( z \) values as well as their corresponding velocities. The velocities are in units of AU per day.
+Alternatively they can be obtained in terms of km and km/s.
 
 <p>
 For the first simple system involving the Earth and the Sun, you could just initialize the position with say \( x=1 \) AU

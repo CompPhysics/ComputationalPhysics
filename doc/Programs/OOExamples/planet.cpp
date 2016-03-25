@@ -44,7 +44,7 @@ double planet::distance(planet otherPlanet)
     zz = z1-z2;
 
     return sqrt(xx*xx + yy*yy + zz*zz);
-}
+ }
 
 double planet::GravitationalForce(planet otherPlanet,double Gconst)
 {

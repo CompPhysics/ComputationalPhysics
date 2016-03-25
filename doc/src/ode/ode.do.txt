@@ -916,8 +916,11 @@ derivatives are unchanged. This equations are similar for all other planets and 
 !split
 ===== How can I get the initial velocities and positions of the planets =====
 !bblock
-"NASA":"http://www.nasa.gov/index.html" has an excellent site at URL:"http://www.nasa.gov/index.html".
+"NASA":"http://www.nasa.gov/index.html" has an excellent site at URL:"http://ssd.jpl.nasa.gov/horizons.cgi#top".
 From there you can extract initial conditions in order to start your differential equation solver.
+At the above website you need to change from _OBSERVER_ to _VECTOR_ and then write in the planet you are interested in.
+NThe generated data contain the $x$, $y$ and $z$ values as well as their corresponding velocities. The velocities are in units of AU per day.
+Alternatively they can be obtained in terms of km and km/s. 
 
 For the first simple system involving the Earth and the Sun, you could just initialize the position with say $x=1$ AU
 and $y=0$ AU. 
