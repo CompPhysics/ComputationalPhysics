@@ -1,5 +1,4 @@
 TITLE: Slides PHY 480 and PHY 905  Lectures: Introduction to Monte Carlo methods
-AUTHOR: Phil Duxbury at Department of Physics and Astronomy, Michigan State University
 AUTHOR: Morten Hjorth-Jensen {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
 DATE: Spring 2016
 
@@ -1790,7 +1789,7 @@ label{eq:rntrick1}
 \end{equation}
 !et
 since we can add or subtract any integer multiple of $M$ from $aN_{i-1}$.
-The last term $ [N_{i-1}/q]M \mathrm{MOD} (M)$ is zero since the integer division 
+The last term $[N_{i-1}/q]M\mathrm{MOD}(M)$ is zero since the integer division 
 $[N_{i-1}/q]$ just yields a constant which is multiplied with $M$. 
 !eblock
 
@@ -2569,7 +2568,7 @@ since
  * Perform then a Monte Carlo sampling for  
 !bt 
 \begin{equation*} 
-\int_{\tilde{a}}^{\tilde{b}}\frac{F(x(y))}{p(x(y))} dy,\approx  \frac{1}{N}\sum_{i=1}^N\frac{F(x(y_i))}{p(x(y_i))},
+\int_{\tilde{a}}^{\tilde{b}}\frac{F(x(y))}{p(x(y))} dy\approx  \frac{1}{N}\sum_{i=1}^N\frac{F(x(y_i))}{p(x(y_i))},
 \end{equation*}
 !et
 with $y_i\in [0,1]$,
@@ -3069,7 +3068,7 @@ print "Sigma             = %10.8E" % sigma
 !split
 ===== Python codes, importance sampling =====
 !bblock
-The first code here is an example of a python which computes the above integral using 
+The second code, displayed here, uses importance sampling and random numbers that follow the normal distribution
 the brute force approach
 !bc pyscpro
 #Monte Carlo integration with importance sampling
@@ -3081,7 +3080,6 @@ def integrand(x):
     """Calculates the integrand
     exp(-b*[(x1-x4)^2+...+(x3-x6)^2])
     from the values in the 6-dimensional array x."""
-    a = 1.0
     b = 0.5
 
     xy = (x[0]-x[3])**2 + (x[1]-x[4])**2 + (x[2]-x[5])**2
@@ -3089,8 +3087,7 @@ def integrand(x):
 
 #Main program
 
-#Integration limits: x[i] in (-5, 5)
-L      = 5.0
+#Jacobi determinant
 jacobi = math.acos(-1.0)**3
 sqrt2  = 1.0/math.sqrt(2)
 
