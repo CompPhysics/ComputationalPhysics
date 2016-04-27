@@ -531,7 +531,8 @@ MathJax.Hub.Config({
 <h2 id="___sec117">Python codes, importance sampling </h2>
 <div class="panel panel-default">
 <div class="panel-body">
-The first code here is an example of a python which computes the above integral using 
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+The second code, displayed here, uses importance sampling and random numbers that follow the normal distribution
 the brute force approach
 <p>
 
@@ -546,7 +547,6 @@ def integrand(x):
     """Calculates the integrand
     exp(-b*[(x1-x4)^2+...+(x3-x6)^2])
     from the values in the 6-dimensional array x."""
-    a = 1.0
     b = 0.5
 
     xy = (x[0]-x[3])**2 + (x[1]-x[4])**2 + (x[2]-x[5])**2
@@ -554,8 +554,7 @@ def integrand(x):
 
 #Main program
 
-#Integration limits: x[i] in (-5, 5)
-L      = 5.0
+#Jacobi determinant
 jacobi = math.acos(-1.0)**3
 sqrt2  = 1.0/math.sqrt(2)
 

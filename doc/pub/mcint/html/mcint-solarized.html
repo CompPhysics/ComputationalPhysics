@@ -414,22 +414,17 @@ MathJax.Hub.Config({
 <center><h1>Slides PHY 480 and PHY 905  Lectures: Introduction to Monte Carlo methods</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s): Phil Duxbury, and Morten Hjorth-Jensen -->
+<!-- author(s): Morten Hjorth-Jensen -->
 
 <center>
-<b>Phil Duxbury</b> [1]
-</center>
-
-<center>
-<b>Morten Hjorth-Jensen</b> [2, 3]
+<b>Morten Hjorth-Jensen</b> [1, 2]
 </center>
 
 <p>
 <!-- institution(s) -->
 
-<center>[1] <b>Department of Physics and Astronomy, Michigan State University</b></center>
-<center>[2] <b>Department of Physics, University of Oslo</b></center>
-<center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<center>[1] <b>Department of Physics, University of Oslo</b></center>
+<center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
 <center><h4>Spring 2016</h4></center> <!-- date -->
@@ -2677,7 +2672,7 @@ $$
 $$
 
 since we can add or subtract any integer multiple of \( M \) from \( aN_{i-1} \).
-The last term $ [N_{i-1}/q]M \mathrm{MOD} (M)$ is zero since the integer division 
+The last term \( [N_{i-1}/q]M\mathrm{MOD}(M) \) is zero since the integer division 
 \( [N_{i-1}/q] \) just yields a constant which is multiplied with \( M \).
 </div>
 
@@ -3669,7 +3664,7 @@ $$
 
 $$
 \begin{equation*} 
-\int_{\tilde{a}}^{\tilde{b}}\frac{F(x(y))}{p(x(y))} dy,\approx  \frac{1}{N}\sum_{i=1}^N\frac{F(x(y_i))}{p(x(y_i))},
+\int_{\tilde{a}}^{\tilde{b}}\frac{F(x(y))}{p(x(y))} dy\approx  \frac{1}{N}\sum_{i=1}^N\frac{F(x(y_i))}{p(x(y_i))},
 \end{equation*}
 $$
 
@@ -4276,7 +4271,7 @@ print "Sigma             = %10.8E" % sigma
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
-The first code here is an example of a python which computes the above integral using 
+The second code, displayed here, uses importance sampling and random numbers that follow the normal distribution
 the brute force approach
 <p>
 
@@ -4291,7 +4286,6 @@ def integrand(x):
     """Calculates the integrand
     exp(-b*[(x1-x4)^2+...+(x3-x6)^2])
     from the values in the 6-dimensional array x."""
-    a = 1.0
     b = 0.5
 
     xy = (x[0]-x[3])**2 + (x[1]-x[4])**2 + (x[2]-x[5])**2
@@ -4299,8 +4293,7 @@ def integrand(x):
 
 #Main program
 
-#Integration limits: x[i] in (-5, 5)
-L      = 5.0
+#Jacobi determinant
 jacobi = math.acos(-1.0)**3
 sqrt2  = 1.0/math.sqrt(2)
 
