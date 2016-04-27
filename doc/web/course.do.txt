@@ -5,14 +5,13 @@ TITLE: Overview of course material: PHY 480 and 905, Computational Physics
 TOC: off
 # #else
 TITLE: Overview of course material: PHY 480 and 905, Computational Physics
-AUTHOR: "Phil Duxbury":"http://www.pa.msu.edu/~duxbury/" at Department of Physics and Astronomy, Michigan State University
 AUTHOR: "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/" at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University &  Department of Physics, University of Oslo
 AUTHOR: "Xukun Xiang":"https://www.pa.msu.edu/profile/xiangxuk" at Department of Physics and Astronomy, Michigan State University
 # #endif
 
 <%
 pub_url = 'http://compphysics.github.io/ComputationalPhysicsMSU/doc/pub'
-published = ['intro', 'languages', 'projectwriting', 'linalg', 'eigvalues', 'codeoptimization', 'oo', 'integrate', 'mcint', 'rw', 'statphys', 'vmc', 'ode', 'pde', ]
+published = ['intro', 'languages', 'projectwriting', 'linalg', 'eigvalues', 'codeoptimization', 'oo', 'integrate', 'mcint', 'rw', 'statphys', 'vmc', 'ode', 'pde', 'summary',]
 chapters = {
  'intro': 'Introduction to computational physics',
  'languages': 'Introduction to programming',
@@ -28,6 +27,7 @@ chapters = {
  'vmc': 'Quantum mechanical systems',
  'ode': 'Ordinary differential equations',
  'pde': 'Partial differential equations',
+ 'summary': 'Summary of course',
 }
 %>
 
