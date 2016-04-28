@@ -1,8 +1,6 @@
-TITLE: Slides PHY 480 and PHY 905  Introduction to programming (C++ and Fortran)
-AUTHOR: "Phil Duxbury":"http://www.pa.msu.edu/~duxbury/" at Department of Physics and Astronomy, Michigan State University
+TITLE: Computational Physics Lectures:  Introduction to programming (C++ and Fortran)
 AUTHOR: Morten Hjorth-Jensen  {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
-AUTHOR: "Xukun Xiang":"https://www.pa.msu.edu/profile/xiangxuk"  at Department of Physics and Astronomy, Michigan State University
-DATE: Spring 2016
+DATE: 2016
 
 !split
 ===== Extremely useful tools, strongly recommended =====

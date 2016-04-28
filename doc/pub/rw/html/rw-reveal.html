@@ -2,9 +2,9 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
-<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm">
+<meta name="description" content="Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm">
 
-<title>Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm</title>
+<title>Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm</title>
 
 
 
@@ -146,28 +146,23 @@ MathJax.Hub.Config({
 
 
 
-<center><h1 style="text-align: center;">Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm</h1></center>  <!-- document title -->
+<center><h1 style="text-align: center;">Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s): Phil Duxbury, and Morten Hjorth-Jensen -->
+<!-- author(s): Morten Hjorth-Jensen -->
 
 <center>
-<b>Phil Duxbury</b> [1]
-</center>
-
-<center>
-<b>Morten Hjorth-Jensen</b> [2, 3]
+<b>Morten Hjorth-Jensen</b> [1, 2]
 </center>
 
 <p>&nbsp;<br>
 <!-- institution(s) -->
 
-<center>[1] <b>Department of Physics and Astronomy, Michigan State University</b></center>
-<center>[2] <b>Department of Physics, University of Oslo</b></center>
-<center>[3] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<center>[1] <b>Department of Physics, University of Oslo</b></center>
+<center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>Spring 2016</h4></center> <!-- date -->
+<center><h4>2016</h4></center> <!-- date -->
 <br>
 <p>
 
@@ -1222,8 +1217,7 @@ $$
 <p>&nbsp;<br>
 
 which simply states that the rate at which the systems moves from a state \( j \)
-to a final state \( i \) (the first term on the right-hand side of the last equation) is balanced by the rate at which the system undergoes transitions from the state \( i \) to a state \( j \) (the second term). If we have reached the so-called steady state, then the temporal development is zero since we are now satisfying
-Eq. \eqref{eq:finalstage}. This  means that in equilibrium we have
+to a final state \( i \) (the first term on the right-hand side of the last equation) is balanced by the rate at which the system undergoes transitions from the state \( i \) to a state \( j \) (the second term). If we have reached the so-called steady state, then the temporal development is zero. This  means that in equilibrium we have
 
 <p>&nbsp;<br>
 $$
@@ -1766,9 +1760,7 @@ With the probability distribution function \( w(x,t)dx \) we can evaluate expect
 
 <p>&nbsp;<br>
 $$
-\begin{equation*}
    \langle x(t)\rangle = \int_{-\infty}^{\infty}xw(x,t)dx,
-\end{equation*}
 $$
 <p>&nbsp;<br>
 
@@ -1776,9 +1768,7 @@ or
 
 <p>&nbsp;<br>
 $$
-\begin{equation*}
    \langle x^2(t)\rangle = \int_{-\infty}^{\infty}x^2w(x,t)dx, 
-\end{equation*}
 $$
 <p>&nbsp;<br>
 
@@ -1836,27 +1826,23 @@ $$
 <p>&nbsp;<br>
 
 implying that when we study the time-derivative
-\( {\partial\langle x(t)\rangle}/{\partial t} \), we obtain after integration by parts and using 
+\( \partial\langle x(t)\rangle/\partial t \), we obtain after integration by parts and using 
 Eq. <a href="#mjx-eqn-5">(5)</a>
 
 <p>&nbsp;<br>
 $$
-\begin{equation*}
    \frac{\partial \langle x\rangle}{\partial t} = 
    \int_{-\infty}^{\infty}x\frac{\partial w(x,t)}{\partial t}dx=
    D\int_{-\infty}^{\infty}x\frac{\partial^2w(x,t)}{\partial x^2}dx,
- \end{equation*}
 $$
 <p>&nbsp;<br>
 
 leading to
 <p>&nbsp;<br>
 $$
-\begin{equation*}
    \frac{\partial \langle x\rangle}{\partial t} = 
    Dx\frac{\partial w(x,t)}{\partial x}|_{x=\pm\infty}-
    D\int_{-\infty}^{\infty}\frac{\partial w(x,t)}{\partial x}dx.
- \end{equation*}
 $$
 <p>&nbsp;<br>
 </div>
@@ -1872,9 +1858,7 @@ The result is
 
 <p>&nbsp;<br>
 $$
-\begin{equation*}
    \frac{\partial \langle x\rangle}{\partial t} = 0.
- \end{equation*}
 $$
 <p>&nbsp;<br>
 
@@ -1897,11 +1881,9 @@ The variance is not necessarily 0. Consider first
 
 <p>&nbsp;<br>
 $$
-\begin{equation*}
    \frac{\partial \langle x^2\rangle}{\partial t} = 
    Dx^2\frac{\partial w(x,t)}{\partial x}|_{x=\pm\infty}-
    2D\int_{-\infty}^{\infty}x\frac{\partial w(x,t)}{\partial x}dx,
- \end{equation*}
 $$
 <p>&nbsp;<br>
 
@@ -1923,11 +1905,9 @@ results in
 
 <p>&nbsp;<br>
 $$
-\begin{equation*}
    \frac{\partial \langle x^2\rangle}{\partial t} = 
    -Dxw(x,t)|_{x=\pm\infty}+
    2D\int_{-\infty}^{\infty}w(x,t)dx=2D,
- \end{equation*}
 $$
 <p>&nbsp;<br>
 
@@ -1935,9 +1915,7 @@ leading to
 
 <p>&nbsp;<br>
 $$
-\begin{equation*}
    \langle x^2\rangle = 2Dt,
- \end{equation*}
 $$
 <p>&nbsp;<br>
 
@@ -1947,7 +1925,7 @@ and the variance as
 $$
 \begin{equation} \tag{6}
    \langle x^2\rangle-\langle x\rangle^2 = 2Dt.
- \end{equation}
+\end{equation}
 $$
 <p>&nbsp;<br>
 
@@ -1957,7 +1935,7 @@ The root mean square displacement after a time \( t \) is then
 $$
 \begin{equation*}
    \sqrt{\langle x^2\rangle-\langle x\rangle^2} = \sqrt{2Dt}.
- \end{equation*}
+\end{equation*}
 $$
 <p>&nbsp;<br>
 </div>

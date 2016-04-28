@@ -6,9 +6,9 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
-<meta name="description" content="Slides PHY 480 and PHY 905  Introduction to programming (C++ and Fortran)">
+<meta name="description" content="Computational Physics Lectures:  Introduction to programming (C++ and Fortran)">
 
-<title>Slides PHY 480 and PHY 905  Introduction to programming (C++ and Fortran)</title>
+<title>Computational Physics Lectures:  Introduction to programming (C++ and Fortran)</title>
 
 <!-- Bootstrap style: bootstrap -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -180,7 +180,7 @@ MathJax.Hub.Config({
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="languages-bs.html">Slides PHY 480 and PHY 905  Introduction to programming (C++ and Fortran)</a>
+    <a class="navbar-brand" href="languages-bs.html">Computational Physics Lectures:  Introduction to programming (C++ and Fortran)</a>
   </div>
 
   <div class="navbar-collapse collapse navbar-responsive-collapse">
@@ -280,6 +280,7 @@ MathJax.Hub.Config({
 <p>
 <div class="panel panel-default">
 <div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <ul>
   <li> <b>Loss of precision</b>: When one has to e.g., multiply two large numbers where one suspects that the outcome may be beyond the bonds imposed by the variable declaration, one could represent the numbers by logarithms, or rewrite the equations to be solved in terms of dimensionless variables. When dealing with problems in e.g., particle physics or nuclear physics where distance is measured in fm (\( 10^{-15} \) m), it can be quite convenient to redefine the variables for distance in terms of a dimensionless variable of the order of unity. To give an example, suppose you work with single precision and wish to perform the addition \( 1+10^{-8} \). In this case, the information containing in \( 10^{-8} \) is simply lost in the addition. Typically, when performing the addition, the computer equates first the exponents of the two numbers to be added. For \( 10^{-8} \) this has however catastrophic consequences since in order to obtain an exponent equal to \( 10^0 \), bits in the mantissa are shifted to the right. At the end, all bits in the mantissa are zeros.</li>
