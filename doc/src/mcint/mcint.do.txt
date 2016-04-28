@@ -1,6 +1,6 @@
-TITLE: Slides PHY 480 and PHY 905  Lectures: Introduction to Monte Carlo methods
+TITLE: Computational Physics Lectures: Introduction to Monte Carlo methods
 AUTHOR: Morten Hjorth-Jensen {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
-DATE: Spring 2016
+DATE: 2016
 
 !split
 ===== Monte Carlo methods, plan for the lectures =====

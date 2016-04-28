@@ -57,7 +57,7 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.6]
 ===== Final presentation =====
 * Introduction with motivation
 * Give a short overview of the theory and numerical algorithms employed
-* Discuss the implementation of your algorithm and how you verified it and validiated it
+* Discuss the implementation of your algorithm and how you verified it and validated it
 * Present and discuss your results
 * Summary, conclusions and perspectives
 * Anything else you think is important. Useful to have backup slides

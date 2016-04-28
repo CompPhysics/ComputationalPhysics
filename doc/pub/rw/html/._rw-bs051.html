@@ -6,9 +6,9 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
-<meta name="description" content="Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm">
+<meta name="description" content="Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm">
 
-<title>Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm</title>
+<title>Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm</title>
 
 <!-- Bootstrap style: bootstrap -->
 <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -260,7 +260,7 @@ MathJax.Hub.Config({
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="rw-bs.html">Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm</a>
+    <a class="navbar-brand" href="rw-bs.html">Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm</a>
   </div>
 
   <div class="navbar-collapse collapse navbar-responsive-collapse">
@@ -348,6 +348,7 @@ MathJax.Hub.Config({
 <h2 id="___sec50">Diffusion Equation, normalization condition </h2>
 <div class="panel panel-default">
 <div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We have
@@ -359,24 +360,20 @@ $$
 $$
 
 implying that when we study the time-derivative
-\( {\partial\langle x(t)\rangle}/{\partial t} \), we obtain after integration by parts and using 
+\( \partial\langle x(t)\rangle/\partial t \), we obtain after integration by parts and using 
 Eq. <a href="._rw-bs048.html#mjx-eqn-5">(5)</a>
 
 $$
-\begin{equation*}
    \frac{\partial \langle x\rangle}{\partial t} = 
    \int_{-\infty}^{\infty}x\frac{\partial w(x,t)}{\partial t}dx=
    D\int_{-\infty}^{\infty}x\frac{\partial^2w(x,t)}{\partial x^2}dx,
- \end{equation*}
 $$
 
 leading to
 $$
-\begin{equation*}
    \frac{\partial \langle x\rangle}{\partial t} = 
    Dx\frac{\partial w(x,t)}{\partial x}|_{x=\pm\infty}-
    D\int_{-\infty}^{\infty}\frac{\partial w(x,t)}{\partial x}dx.
- \end{equation*}
 $$
 </div>
 </div>

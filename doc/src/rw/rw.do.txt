@@ -1,7 +1,6 @@
-TITLE: Slides PHY 480 and PHY 905  Lectures: Random walks, Brownian motion and the Metropolis algorithm
-AUTHOR: Phil Duxbury at Department of Physics and Astronomy, Michigan State University
+TITLE: Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm
 AUTHOR: Morten Hjorth-Jensen {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
-DATE: Spring 2016
+DATE: 2016
 
 
 !split
@@ -807,8 +806,7 @@ label{eq:masterequation}
 \end{equation}
 !et
 which simply states that the rate at which the systems moves from a state $j$
-to a final state $i$ (the first term on the right-hand side of the last equation) is balanced by the rate at which the system undergoes transitions from the state $i$ to a state $j$ (the second term). If we have reached the so-called steady state, then the temporal development is zero since we are now satisfying
-Eq. (ref{eq:finalstage}). This  means that in equilibrium we have
+to a final state $i$ (the first term on the right-hand side of the last equation) is balanced by the rate at which the system undergoes transitions from the state $i$ to a state $j$ (the second term). If we have reached the so-called steady state, then the temporal development is zero. This  means that in equilibrium we have
 
 !bt
 \begin{equation*}
@@ -1206,16 +1204,16 @@ which is the diffusion equation in one dimension.
 With the probability distribution function $w(x,t)dx$ we can evaluate expectation values such as  the mean distance
 
 !bt
-\begin{equation*}
+\[
    \langle x(t)\rangle = \int_{-\infty}^{\infty}xw(x,t)dx,
-\end{equation*}
+\]
 !et
 or
 
 !bt
-\begin{equation*}
+\[
    \langle x^2(t)\rangle = \int_{-\infty}^{\infty}x^2w(x,t)dx, 
-\end{equation*}
+\]
 !et
 which allows for the computation of the variance
 $\sigma^2=\langle x^2(t)\rangle-\langle x(t)\rangle^2$. Note well that 
@@ -1257,23 +1255,23 @@ We have
 \end{equation*}
 !et
 implying that when we study the time-derivative
-${\partial\langle x(t)\rangle}/{\partial t}$, we obtain after integration by parts and using 
+$\partial\langle x(t)\rangle/\partial t$, we obtain after integration by parts and using 
 Eq. (ref{eq:diffequation1})
 
 !bt
-\begin{equation*}
+\[
    \frac{\partial \langle x\rangle}{\partial t} = 
    \int_{-\infty}^{\infty}x\frac{\partial w(x,t)}{\partial t}dx=
    D\int_{-\infty}^{\infty}x\frac{\partial^2w(x,t)}{\partial x^2}dx,
- \end{equation*}
+\]
 !et
 leading to
 !bt
-\begin{equation*}
+\[
    \frac{\partial \langle x\rangle}{\partial t} = 
    Dx\frac{\partial w(x,t)}{\partial x}|_{x=\pm\infty}-
    D\int_{-\infty}^{\infty}\frac{\partial w(x,t)}{\partial x}dx.
- \end{equation*}
+\]
 !et
 !eblock
 !split
@@ -1282,9 +1280,9 @@ leading to
 The result is 
 
 !bt
-\begin{equation*}
+\[
    \frac{\partial \langle x\rangle}{\partial t} = 0.
- \end{equation*}
+\]
 !et
 This means in turn that $\langle x\rangle$ is independent of time.
 If we choose the initial position $x(t=0)=0$,
@@ -1301,11 +1299,11 @@ distribution remains centered around $\langle x\rangle= 0$ as function of time.
 The variance is not necessarily 0. Consider first
 
 !bt
-\begin{equation*}
+\[
    \frac{\partial \langle x^2\rangle}{\partial t} = 
    Dx^2\frac{\partial w(x,t)}{\partial x}|_{x=\pm\infty}-
    2D\int_{-\infty}^{\infty}x\frac{\partial w(x,t)}{\partial x}dx,
- \end{equation*}
+\]
 !et
 where we have performed an integration by parts as we did 
 for $\frac{\partial \langle x\rangle}{\partial t}$. 
@@ -1321,32 +1319,32 @@ Integration by parts
 results in
 
 !bt
-\begin{equation*}
+\[
    \frac{\partial \langle x^2\rangle}{\partial t} = 
    -Dxw(x,t)|_{x=\pm\infty}+
    2D\int_{-\infty}^{\infty}w(x,t)dx=2D,
- \end{equation*}
+\]
 !et
 leading to
 
 !bt
-\begin{equation*}
+\[
    \langle x^2\rangle = 2Dt,
- \end{equation*}
+\]
 !et
 and the variance as
 
 !bt
 \begin{equation} label{eq:variancediffeq}
    \langle x^2\rangle-\langle x\rangle^2 = 2Dt.
- \end{equation}
+\end{equation}
 !et
 The root mean square displacement after a time $t$ is then
 
 !bt
 \begin{equation*}
    \sqrt{\langle x^2\rangle-\langle x\rangle^2} = \sqrt{2Dt}.
- \end{equation*}
+\end{equation*}
 !et
 !eblock
 
