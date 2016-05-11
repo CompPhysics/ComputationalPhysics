@@ -25,6 +25,11 @@ int main (int argc, char* argv[])
   for (int j = 0; j < i; j++) {
     c[j] = a[j]+b[j];
   }
+  // Now use the newly computed value of c[]
+  double sum = 0.0;
+  for (int j = 0; j < i; j++) {
+    sum += c[j];
+  }
   finish = clock();
   cout << "end time: " << finish << endl;
   double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );

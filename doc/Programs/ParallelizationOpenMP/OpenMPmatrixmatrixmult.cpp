@@ -1,114 +1,77 @@
-# include <cstdlib>
-# include <iostream>
-# include <cmath>
-# include <ctime>
+//  Matrix-matrix multiplication and Frobenius norm of a matrix with OpenMP
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#include <iomanip>
 #include  <omp.h>
+# include <ctime>
 
-using namespace std;
-
-void timestamp ( );
-
-int main ( )
+using namespace std; // note use of namespace
+int main (int argc, char* argv[])
 {
-  double a[500][500];
-  double angle;
-  double b[500][500];
-  double c[500][500];
-  int i;
-  int j;
-  int k;
-  int n = 500;
-  double pi = 3.141592653589793;
-  double s;
+  // read in dimension of square matrix
+  int n = atoi(argv[1]);
+  double **A, **B, **C;
+  int i, j, k;
   int thread_num;
-  double wtime;
+  double wtime, Fsum, s, angle;
+  cout << "  Compute matrix product C = A * B and Frobenius norm." << endl;
+  omp_set_num_threads(4);
+  thread_num = omp_get_max_threads ();
+  cout << "  The number of processors available = " << omp_get_num_procs () << endl ;
+  cout << "  The number of threads available    = " << thread_num <<  endl;
+  cout << "  The matrix order n                 = " << n << endl;
 
-  timestamp ( );
-
-  cout << "\n";
-  cout << "  C++/OpenMP version\n";
-  cout << "  Compute matrix product C = A * B.\n";
-  thread_num = omp_get_max_threads ( );
-
-  cout << "\n";
-  cout << "  The number of processors available = " << omp_get_num_procs ( ) << "\n";
-  cout << "  The number of threads available    = " << thread_num <<  "\n";
-  cout << "  The matrix order N                 = " << n << "\n";
-//
-//  Loop 1: Evaluate A.
-//
-  s = 1.0 / sqrt ( ( double ) ( n ) );
+  s = 1.0/sqrt( (double) n);
   wtime = omp_get_wtime ( );
-# pragma omp parallel shared ( a, b, c, n, pi, s ) private ( angle, i, j, k )
-{
-  # pragma omp for
-  for ( i = 0; i < n; i++ )
-  {
-    for ( j = 0; j < n; j++ )
-    {
-      angle = 2.0 * pi * i * j / ( double ) n;
-      a[i][j] = s * ( sin ( angle ) + cos ( angle ) );
+  // Allocate space for the two matrices
+  A = new double*[n]; B = new double*[n]; C = new double*[n];
+  for (i = 0; i < n; i++){
+    A[i] = new double[n];
+    B[i] = new double[n];
+    C[i] = new double[n];
+  }
+  // Define parallel region
+# pragma omp parallel for default(shared) private (angle, i, j, k) reduction(+:Fsum)
+  // Set up values for matrix A and B and zero matrix C
+  for (i = 0; i < n; i++){
+    for (j = 0; j < n; j++) {
+      angle = 2.0*M_PI*i*j/ (( double ) n);
+      A[i][j] = s * ( sin ( angle ) + cos ( angle ) );
+      B[j][i] =  A[i][j];
     }
   }
-//
-//  Loop 2: Copy A into B.
-//
-  # pragma omp for
-  for ( i = 0; i < n; i++ )
-  {
-    for ( j = 0; j < n; j++ )
-    {
-      b[i][j] = a[i][j];
+  // Then perform the matrix-matrix multiplication
+  for (i = 0; i < n; i++){
+    for (j = 0; j < n; j++) {
+       C[i][j] =  0.0;    
+       for (k = 0; k < n; k++) {
+            C[i][j] += A[i][k]*B[k][j];
+       }
     }
   }
-//
-//  Loop 3: Compute C = A * B.
-//
-  # pragma omp for
-  for ( i = 0; i < n; i++ )
-  {
-    for ( j = 0; j < n; j++ )
-    {
-      c[i][j] = 0.0;
-      for ( k = 0; k < n; k++ )
-      {
-        c[i][j] = c[i][j] + a[i][k] * b[k][j];
-      }
+  // Compute now the Frobenius norm
+  Fsum = 0.0;
+  for (i = 0; i < n; i++){
+    for (j = 0; j < n; j++) {
+      Fsum += C[i][j]*C[i][j];
     }
   }
-
-}
+  Fsum = sqrt(Fsum);
+// end parallel region and letting only one thread perform I/O
   wtime = omp_get_wtime ( ) - wtime;
-  cout << "  Elapsed seconds = " << wtime << "\n";
-  cout << "  C(100,100)  = " << c[99][99] << "\n";
-//
-//  Terminate.
-//
-  cout << "\n";
-  cout << "  Normal end of execution.\n";
-
-  cout << "\n";
-  timestamp ( );
-
+  cout << setiosflags(ios::showpoint | ios::uppercase);
+  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << wtime  << endl;
+  cout << "  Frobenius norm  = " << Fsum << endl;
+  // Free up space
+  for (int i = 0; i < n; i++){
+    delete[] A[i];
+    delete[] B[i];
+    delete[] C[i];
+  }
+  delete[] A;
+  delete[] B;
+  delete[] C;
   return 0;
 }
 
-void timestamp ( )
-{
-# define TIME_SIZE 40
-
-  static char time_buffer[TIME_SIZE];
-  const struct std::tm *tm_ptr;
-  size_t len;
-  std::time_t now;
-
-  now = std::time ( NULL );
-  tm_ptr = std::localtime ( &now );
-
-  len = std::strftime ( time_buffer, TIME_SIZE, "%d %B %Y %I:%M:%S %p", tm_ptr );
-
-  std::cout << time_buffer << "\n";
-
-  return;
-# undef TIME_SIZE
-}

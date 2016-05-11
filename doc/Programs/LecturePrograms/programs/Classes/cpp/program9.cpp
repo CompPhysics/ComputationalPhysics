@@ -9,7 +9,11 @@ int main (int argc, char* argv[])
 {
   // read in dimension of square matrix
   int n = atoi(argv[1]);
+  double s = 1.0/sqrt( (double) n);
   double **A, **B, **C;
+  // Start timing
+  clock_t start, finish;
+  start = clock();
   // Allocate space for the two matrices
   A = new double*[n]; B = new double*[n]; C = new double*[n];
   for (int i = 0; i < n; i++){
@@ -20,28 +24,34 @@ int main (int argc, char* argv[])
   // Set up values for matrix A and B and zero matrix C
   for (int i = 0; i < n; i++){
     for (int j = 0; j < n; j++) {
-      A[i][j] =  cos(i*1.0)*sin(j*3.0);
-      B[i][j] =  cos(i*5.0)*sin(j*4.0);
-      C[i][j] =  0.0;    
+      double angle = 2.0*M_PI*i*j/ (( double ) n);
+      A[i][j] = s * ( sin ( angle ) + cos ( angle ) );
+      B[j][i] =  A[i][j];
     }
   }
-  clock_t start, finish;
-  start = clock();
   // Then perform the matrix-matrix multiplication
   for (int i = 0; i < n; i++){
     for (int j = 0; j < n; j++) {
-       double sum = 0.0;
-       for (int k = 0; j < n; j++) {
-            sum += B[i][k]*A[k][j];
+      double sum = 0.0;
+       for (int k = 0; k < n; k++) {
+           sum += B[i][k]*A[k][j];
        }
        C[i][j] = sum;
     }
   }
+  // Compute now the Frobenius norm
+  double Fsum = 0.0;
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      Fsum += C[i][j]*C[i][j];
+    }
+  }
+  Fsum = sqrt(Fsum);
   finish = clock();
   double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
   cout << setiosflags(ios::showpoint | ios::uppercase);
   cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << timeused  << endl;
-
+  cout << "  Frobenius norm  = " << Fsum << endl;
   // Free up space
   for (int i = 0; i < n; i++){
     delete[] A[i];
@@ -53,3 +63,6 @@ int main (int argc, char* argv[])
   delete[] C;
   return 0;
 }
+
+
+
