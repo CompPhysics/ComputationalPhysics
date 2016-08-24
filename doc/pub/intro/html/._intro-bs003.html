@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -31,23 +40,33 @@ Automatically generated HTML file from DocOnce source
 
 <!-- tocinfo
 {'highest level': 2,
- 'sections': [('Overview of first two weeks', 2, None, '___sec0'),
-              ('Lectures and ComputerLab', 2, None, '___sec1'),
-              ('Course Format', 2, None, '___sec2'),
-              ('Topics covered in this course', 2, None, '___sec3'),
-              ('Syllabus', 2, None, '___sec4'),
-              ('Syllabus', 2, None, '___sec5'),
+ 'sections': [('Overview of first week', 2, None, '___sec0'),
+              ('Reading suggestions and exercises', 2, None, '___sec1'),
+              ('Lectures and ComputerLab', 2, None, '___sec2'),
+              ('Course Format', 2, None, '___sec3'),
+              ('ComputerLab', 2, None, '___sec4'),
+              ('Topics covered in this course', 2, None, '___sec5'),
               ('Syllabus', 2, None, '___sec6'),
               ('Syllabus', 2, None, '___sec7'),
               ('Syllabus', 2, None, '___sec8'),
               ('Syllabus', 2, None, '___sec9'),
-              ('Additional learning outcomes', 2, None, '___sec10'),
-              ('Overarching aims of this course', 2, None, '___sec11'),
-              ('Computing knowledge', 2, None, '___sec12'),
+              ('Syllabus', 2, None, '___sec10'),
+              ('Syllabus', 2, None, '___sec11'),
+              ('Overarching aims of this course', 2, None, '___sec12'),
+              ('Additional learning outcomes', 2, None, '___sec13'),
+              ('Computing knowledge', 2, None, '___sec14'),
               ('And, there is nothing like a code which gives correct results!!',
                2,
                None,
-               '___sec13')]}
+               '___sec15'),
+              ('Other courses in Computational Science at UiO',
+               2,
+               None,
+               '___sec16'),
+              ('Extremely useful tools, strongly recommended',
+               2,
+               None,
+               '___sec17')]}
 end of tocinfo -->
 
 <body>
@@ -69,20 +88,24 @@ end of tocinfo -->
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
-     <!-- navigation toc: --> <li><a href="._intro-bs001.html#___sec0" style="font-size: 80%;">Overview of first two weeks</a></li>
-     <!-- navigation toc: --> <li><a href="._intro-bs002.html#___sec1" style="font-size: 80%;">Lectures and ComputerLab</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">Course Format</a></li>
-     <!-- navigation toc: --> <li><a href="._intro-bs004.html#___sec3" style="font-size: 80%;">Topics covered in this course</a></li>
-     <!-- navigation toc: --> <li><a href="._intro-bs005.html#___sec4" style="font-size: 80%;">Syllabus</a></li>
-     <!-- navigation toc: --> <li><a href="._intro-bs006.html#___sec5" style="font-size: 80%;">Syllabus</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs001.html#___sec0" style="font-size: 80%;">Overview of first week</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs002.html#___sec1" style="font-size: 80%;">Reading suggestions and exercises</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">Lectures and ComputerLab</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs004.html#___sec3" style="font-size: 80%;">Course Format</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs005.html#___sec4" style="font-size: 80%;">ComputerLab</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs006.html#___sec5" style="font-size: 80%;">Topics covered in this course</a></li>
      <!-- navigation toc: --> <li><a href="._intro-bs007.html#___sec6" style="font-size: 80%;">Syllabus</a></li>
      <!-- navigation toc: --> <li><a href="._intro-bs008.html#___sec7" style="font-size: 80%;">Syllabus</a></li>
      <!-- navigation toc: --> <li><a href="._intro-bs009.html#___sec8" style="font-size: 80%;">Syllabus</a></li>
      <!-- navigation toc: --> <li><a href="._intro-bs010.html#___sec9" style="font-size: 80%;">Syllabus</a></li>
-     <!-- navigation toc: --> <li><a href="._intro-bs011.html#___sec10" style="font-size: 80%;">Additional learning outcomes</a></li>
-     <!-- navigation toc: --> <li><a href="._intro-bs012.html#___sec11" style="font-size: 80%;">Overarching aims of this course</a></li>
-     <!-- navigation toc: --> <li><a href="._intro-bs013.html#___sec12" style="font-size: 80%;">Computing knowledge</a></li>
-     <!-- navigation toc: --> <li><a href="._intro-bs014.html#___sec13" style="font-size: 80%;">And, there is nothing like a code which gives correct results!!</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs011.html#___sec10" style="font-size: 80%;">Syllabus</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs012.html#___sec11" style="font-size: 80%;">Syllabus</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs013.html#___sec12" style="font-size: 80%;">Overarching aims of this course</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs014.html#___sec13" style="font-size: 80%;">Additional learning outcomes</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs015.html#___sec14" style="font-size: 80%;">Computing knowledge</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs016.html#___sec15" style="font-size: 80%;">And, there is nothing like a code which gives correct results!!</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs017.html#___sec16" style="font-size: 80%;">Other courses in Computational Science at UiO</a></li>
+     <!-- navigation toc: --> <li><a href="._intro-bs018.html#___sec17" style="font-size: 80%;">Extremely useful tools, strongly recommended</a></li>
 
         </ul>
       </li>
@@ -98,7 +121,7 @@ end of tocinfo -->
 <a name="part0003"></a>
 <!-- !split -->
 
-<h2 id="___sec2">Course Format </h2>
+<h2 id="___sec2" class="anchor">Lectures and ComputerLab </h2>
 
 <p>
 <div class="panel panel-default">
@@ -106,10 +129,13 @@ end of tocinfo -->
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <ul>
-  <li> Several computer exercises, 4 compulsory projects. Electronic reports only using <a href="https://github.com/" target="_self">Git</a> for repository and all your material.</li>
-  <li> Evaluation and grading: Each project counts 20% of the final mark. The final oral exam counts 20%. A tentative feedback form on projects can be found at the github address of the <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Admin" target="_self">course</a></li>
-  <li> The computer lab consists of 16 Linux PCs, but many prefer own laptops. C/C++ is the default programming language, but Fortran2008 and Python are also used.</li> 
-  <li> All source codes discussed during the lectures and for each chapter can be found at the <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs" target="_self">github address</a> of the course. We recommend either C/C++, Fortran2008 or Python as languages.</li>
+  <li> Lectures: Thursday (8.15am-10am) and Friday (8.15am-10am).</li>
+  <li> Weekly reading assignments needed to solve projects.</li>
+  <li> First hour of each lab session may be used to discuss technicalities, address questions etc linked with projects.</li>
+  <li> Detailed lecture notes, exercises, all programs presented, projects etc can be found at the homepage of the course.</li>
+  <li> Computerlab: Thursday (10am-6pm) and Friday (10am-6pm) room FV329.</li>
+  <li> Weekly plans and all other information are on the official webpage.</li>
+  <li> No final exam, the last three projects are graded.  In total five projects which all have to be approved.</li> 
 </ul>
 </div>
 </div>
@@ -134,7 +160,7 @@ end of tocinfo -->
   <li><a href="._intro-bs011.html">12</a></li>
   <li><a href="._intro-bs012.html">13</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._intro-bs014.html">15</a></li>
+  <li><a href="._intro-bs018.html">19</a></li>
   <li><a href="._intro-bs004.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
