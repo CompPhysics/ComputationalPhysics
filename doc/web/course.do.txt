@@ -82,7 +82,76 @@ ${text_types(ch)}
 
 !split
 ===== Teaching schedule Fall 2016 =====
-To be added
+
+|----------------------------------------------------------------------------------------------------------------------------|
+|  Week and days  |  Topics to be covered | Exercises and projects | Reading assignments|  Additional activities at lab             |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 34| "Introduction to the course":"http://compphysics.github.io/ComputationalPhysics/doc/pub/intro/html/intro-bs.html"       |  Setting up git    |              |                       |
+|                      |           |                       |                    |                                  |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 35 | "Introduction to programming":"http://compphysics.github.io/ComputationalPhysics/doc/pub/languages/html/languages-bs.html"  | "Warm-up exercise":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/WarmUpExercise"   | Sections 2.1-2.5 and 3.1 of "lecture notes":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Lectures"  | "How to write a scientific report":"http://compphysics.github.io/ComputationalPhysics/doc/pub/projectwriting/html/projectwriting-bs.html"  |
+|                      | Numerical derivation        |  "Presentation of project 1":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project1" |                    |                                 |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 36|  "Linear algebra":"http://compphysics.github.io/ComputationalPhysics/doc/pub/linalg/html/linalg-bs.html"           |  Work on project 1  |  Sections  6.1-6.4                  |   Discussion of Armadillo as library  |    
+|                      | Gaussian elimination and LU decomposition      |                       |                    |      |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 37 | Linear algebra           | Work on project 1   |  Sections 6.4-6.5|  Presentation of Qt creator as IDE    |
+|                      | Determinant, inverse of matrix and cubic spline |                       |       |               |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 38  | Linear algebra, iterative methods  |  |  Section 6.6  | More on Qt creator|
+|                      | "Eigenvalue problems":"http://compphysics.github.io/ComputationalPhysics/doc/pub/eigvalues/html/eigvalues-bs.html"          |  "Presentation of project 2":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project2"   | Sections  7.1-7.4    |               |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 39 | Eigenvalue problems         | Work on project 2     |   Section 7.4           | "Classes in C++":"http://compphysics.github.io/ComputationalPhysics/doc/pub/oo/html/oo-bs.html" |
+|                      |  Jacobi's method and project 2         |                       |                    |             |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 40|  Eigenvalue         | Work on project 2     |  Sections 7.5-7.7 |    "Classes in C++ and Fortran":"http://compphysics.github.io/ComputationalPhysics/doc/pub/oo/html/oo-bs.html"|
+|                      |  Householder's and Francis' algorithms. Lanczos' algorithm   |                       |   |          |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 41|  Monte Carlo methods         |    |                    |            |
+|                      | "PDFs and random walks":"http://compphysics.github.io/ComputationalPhysics/doc/pub/mcint/html/mcint-bs.html"          |  Sections 11.1-11.3                     |   "Presentation of project 3":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project3"  |       |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 42  | Monte Carlo methods        |    Work on project 3  | Sections 12.1-12.2 | "Vectorization":"http://compphysics.github.io/ComputationalPhysics/doc/pub/codeoptimization/html/._codeoptimization-bs000.html"    |
+|                      | "Metropolis algorithm":"http://compphysics.github.io/ComputationalPhysics/doc/pub/rw/html/rw-bs.html" and "Ising model":"http://compphysics.github.io/ComputationalPhysics/doc/pub/statphys/html/._statphys-bs000.html"          |                       | Sections 12.5 and 13.1-13.2 |       |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 43  |  Monte Carlo methods       |    Work on project 4 |  Sections 13.2-13.6  | "Parallelization using OpenMP":"http://compphysics.github.io/ComputationalPhysics/doc/pub/codeoptimization/html/._codeoptimization-bs000.html"  |
+|                      | "Statistical physics and Ising model":"http://compphysics.github.io/ComputationalPhysics/doc/pub/statphys/html/._statphys-bs000.html"          |                       |                    |         |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 44 | Monte Carlo methods        |   Project 4       | Chapter 13     |   "Parallelization using OpenMP":"http://compphysics.github.io/ComputationalPhysics/doc/pub/codeoptimization/html/._codeoptimization-bs000.html"|
+|                      | "Ordinary differential equations":"http://compphysics.github.io/ComputationalPhysics/doc/pub/ode/html/ode-bs.html" (ODE)         |   "Presentation of possible projects 4":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project4"  | Sections 8.1-8.3  |       |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 45|  ODEs        | Work on project 4  | Sections 8.3-8.6    |  "Parallelization using MPI":"http://compphysics.github.io/ComputationalPhysics/doc/pub/codeoptimization/html/._codeoptimization-bs000.html"                |     
+|                      | Runge-Kutta methods and Verlet method           |                       |                    |      |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 46| ODEs, adaptive methods and stiff equations        |   Work on project 5    | Section 8.5    | "Parallelization using MPI":"http://compphysics.github.io/ComputationalPhysics/doc/pub/codeoptimization/html/._codeoptimization-bs000.html"   |
+|                      | "Partial differential equations":"http://compphysics.github.io/ComputationalPhysics/doc/pub/pde/html/pde-bs.html" (PDE), diffusion in 1-dim |       |  Sections 10.1-10.2   |                     |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 47| PDEs, diffusion and Laplace/Poisson        |  Work on project 5 |  Sections 10.2-10.3        |                          |
+|                      |           |                       |                    |                                            |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 48 | PDEs wave equation           |  Work on project 5 |      Section 10.4              |                 |
+|                      |  Summary of course         |                       |                    |                          |
+|----------------------------------------------------------------------------------------------------------------------------|
+
+
+!split
+===== Basic Syllabus =====
+!bblock
+The syllabus for this course consists of the lecture notes on the webpage (chapters 2-15) and 5 compulsory projects. The last three projects
+are graded and count 1/3 each of the final mark.
+
+ * Monte Carlo methods in physics ("Lecture notes chapters 11, 12, 13 and 14":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Lectures")
+
+ * Partial differential equations ("Lecture notes chapter 10":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Lectures")
+
+ * Ordinary differential equations ("Lecture notes chapter 8":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Lectures")
+
+ * Numerical integration, standard methods and Monte Carlo methods ("Lecture notes chapters 5.1-5.5 and 11":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Lectures")
+
+ * Linear algebra and eigenvalue problems. ("Lecture notes chapters 6 and 7":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Lectures")
+
+A good text that can be used (with more math plus much material on parallelization) is "Parallel Scientific Computing in C++ and MPI, of Karniadakis and Kirby III":"http://www.cambridge.org/us/academic/subjects/computer-science/scientific-computing-scientific-software/parallel-scientific-computing-c-and-mpi-seamless-approach-parallel-algorithms-and-their-implementation".
+!eblock
+
 
 ===== Additional literature =====
 !bblock
@@ -102,5 +171,10 @@ All programs are available at the github address of the "course":"https://github
 !bblock
 Similarly, the pdf and latex files for the various are also available at the github address of the "course":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016"
 !eblock
+
+
+
+ 
+
 
 
