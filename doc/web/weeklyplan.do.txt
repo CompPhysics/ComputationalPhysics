@@ -5,7 +5,7 @@ TITLE: Overview of course material: Computational Physics
 TOC: off
 # #else
 TITLE: Overview of course material: PHY 480 and 905, Computational Physics
-AUTHOR: "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/doc/web/" at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University, USA &  Department of Physics, University of Oslo, Norway
+AUTHOR: "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/" at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University, USA &  Department of Physics, University of Oslo, Norway
 # #endif
 
 <%
@@ -38,7 +38,7 @@ chapters = {
 
  * LaTeX PDF:
    * For printing:
-     * "Standard one-page format": "${pub_url}/${name}/pdf/${name}-print.pdf", compact: "6 pages per sheet": "${pub_url}/${name}/pdf/${name}-print6.pdf"
+     * "Standard one-page format": "${pub_url}/${name}/pdf/${name}-minted.pdf", compact: "6 pages per sheet": "${pub_url}/${name}/pdf/${name}-beamer-handouts2x3.pdf"
    * For screen viewing:
      * "standard Beamer format": "${pub_url}/${name}/pdf/${name}-beamer.pdf"
  * HTML:
@@ -82,7 +82,9 @@ ${text_types(ch)}
 
 !split
 ===== Teaching schedule Fall 2016 =====
+
 To be added
+
 
 ===== Additional literature =====
 !bblock
