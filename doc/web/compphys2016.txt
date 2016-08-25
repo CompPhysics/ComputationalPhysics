@@ -1,0 +1,84 @@
+Aarsæther	Stine Hammer	stinhaar@student.matnat.uio.no
+Aune	Helene Aleksandra Sæthre	heleneau@student.matnat.uio.no
+Baastad	Camilla Marie	camilmba@student.matnat.uio.no
+Bellavere	Elena	elena.bellavere@fys.uio.no
+Bonten	Niels	nielsbo@math.uio.no
+Brettschneider	Jinci Mari	jincimb@student.matnat.uio.no
+Egenæs	Ole Halvor	oleheg@student.matnat.uio.no
+Eldøy	Reinert Sæbø	reinerte@student.matnat.uio.no
+Eriksen	Kari	karieri@student.matnat.uio.no
+Fauli	Richard Andre	richaraf@student.matnat.uio.no
+Fjeld	Solveig Andrea Devold	solveiaf@student.matnat.uio.no
+Gilberg	Vebjørn Træet	vebjorng@student.matnat.uio.no
+Gjestvang	Dorthea	dortheg@student.matnat.uio.no
+Hein	Kristine Baluka	krisbhei@student.matnat.uio.no
+Heinesen	Daniel	daniehei@student.matnat.uio.no
+Helland	Peder Bjærum	pederbh@student.matnat.uio.no
+Hustad	Kristian Gregorius	krihus@ifi.uio.no
+Jacobsen	Sunniva	sunnivja@student.matnat.uio.no
+Jensen	Live Wang	livewj@student.matnat.uio.no
+Johansen	Trond Wiggo	trondwj@student.matnat.uio.no
+Johansson	Anders	anjohan@student.matnat.uio.no
+Kirkvik	Ann-Silje	annsiljk@student.matnat.uio.no
+Kløvstad	Idun	idunklo@student.matnat.uio.no
+Knudsen	Samuel Korsan	samuelkk@student.matnat.uio.no
+Knutson	Joseph	josephkn@student.matnat.uio.no
+Lange	Gunnar Felix	gunnalan@student.matnat.uio.no
+Lefdalsnes	Andreas Godø	andregl@student.matnat.uio.no
+Levén	Erik Alexander	erikalev@student.matnat.uio.no
+Lie	Henrik Bjoner	henribli@student.matnat.uio.no
+Lunde	Jonas Gahr Sturtzel	jonassl@student.matnat.uio.no
+Magnussen	Fredrik		fredrma@gmail.com
+Millerjord	Simon Aas	simonami@student.matnat.uio.no
+Moholt	Harald	haralmoh@student.matnat.uio.no
+Myrvik	Tommy	tommymy@student.matnat.uio.no
+Nordhagen	Even Marius	evenmn@student.matnat.uio.no
+Pedersen	Line Gaard	linegpe@student.matnat.uio.no
+Persson	Helen	helenper@student.matnat.uio.no
+Raanaas	Tor Viljen	torvr@student.matnat.uio.no
+Skarholt	Kristin Kveim	kristksk@student.matnat.uio.no
+Skeie	Hilde Solesvik	h.s.skeie@usit.uio.no
+Solli	Robert	robersol@student.matnat.uio.no
+Stene	Christoffer	chsten@student.matnat.uio.no
+Storebakken	Tellef	tellefs@student.matnat.uio.no
+Sutterud	Halvard	halvarsu@student.matnat.uio.no
+Tuv	Kristian	kristtuv@student.matnat.uio.no
+Winther-Larsen	Sebastian Gregorius	sebastwi@student.matnat.uio.no
+Østrem	Fredrik	fredost@student.matnat.uio.no
+Øvland	Beate	beateovl@student.matnat.uio.no
+Bakke	Helle Merethe	helle.bakke@astro.uio.no
+Bareid	Magnus Christopher	m.c.bareid@astro.uio.no
+Bastnes	Simen Nyhus	s.n.bastnes@astro.uio.no
+Bilden	Sindre Rannem	s.r.bilden@fys.uio.no
+Brændshøi	Jostein	jostbr@student.geo.uio.no
+Chamandy	Tiffany Marie	t.m.chamandy@astro.uio.no
+Chiem	Kevin Jeu	k.j.chiem@fys.uio.no
+Delto	Carl Ludwig Maximilian	cldelto@student.matnat.uio.no
+Eames	Christopher Solheim	c.s.eames@fys.uio.no
+Fazeli Hossein  hossein.fazeli@geo.uio.no
+Frogner	Lars	lars.frogner@astro.uio.no
+Gribkovskaya	Anna	anna.gribkovskaya@fys.uio.no
+Haraldsrud	Andreas Drolsum	andreadh@student.matnat.uio.no
+Hauge	Eirik Ramsli	e.r.hauge@fys.uio.no
+Ho	Alex	aleh@student.matnat.uio.no
+Holm	Ingrid Angélica Vazquez	ingraho@student.matnat.uio.no
+Hovda	Anne-Marthe	a.m.hovda@fys.uio.no
+Jacobsen	Karl Åge	karlaj@student.matnat.uio.no
+Johannessen	Aina Marie	ainajoh@student.geo.uio.no
+Jonsson	Marius	mariujon@student.matnat.uio.no
+Karzhou	Andrei	andrei.karzhou@fys.uio.no
+Kristensen	Oda Johanne	o.j.kristensen@fys.uio.no
+Kukharenka	Andrei	andrei.kukharenka@fys.uio.no
+Markestad	Ask Juhl	a.j.markestad@fys.uio.no
+Moseid	Kristine Onsum	krisomos@student.matnat.uio.no
+Nafstad	Halvor	halvor.nafstad@astro.uio.no
+Ness	Heine Håland	h.h.ness@fys.uio.no
+Ringnes	Knut Haneborg	knuthane@student.matnat.uio.no
+Spilker	Andri Karoline Lunøe	a.k.l.spilker@fys.uio.no
+Strand	Martin Gjæver	martiped@student.matnat.uio.no
+Surmacz	Waldemar	waldemar.surmacz@astro.uio.no
+Svalheim	Trygve Leithe	t.l.svalheim@astro.uio.no
+Svendsen	Øyvind Brynhildsvoll	o.b.svendsen@astro.uio.no
+Ulvik	Geir Tore	g.t.ulvik@fys.uio.no
+Valberg	Pål	paalval@student.matnat.uio.no
+Yaseen	Anisa	anisay@student.matnat.uio.no
