@@ -86,7 +86,7 @@ AUTHOR: Computational Physics Fall 2016 at Department of Physics, University of 
 |Kristensen	Oda Johanne	o.j.kristensen@fys.uio.no   | Thursday 14-18  |
 |Kukharenka	Andrei	andrei.kukharenka@fys.uio.no    | Friday 10-14  |
 |Markestad	Ask Juhl	a.j.markestad@fys.uio.no    | Thursday 10-14  |
-|Moseid	Kristine Onsum	krisomos@student.matnat.uio.no    |   |
+|Moseid	Kristine Onsum	krisomos@student.matnat.uio.no    |Friday 10-14   |
 |Nafstad	Halvor	halvor.nafstad@astro.uio.no    | Friday 10-14  |
 |Ness	Heine Håland	h.h.ness@fys.uio.no    |   |
 |Ringnes	Knut Haneborg	knuthane@student.matnat.uio.no   |   |
