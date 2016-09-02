@@ -9,17 +9,17 @@ DATE: 2016
 
 !bblock
   * Thursday: First lecture: Presentation of the course, aims and content
-  * Thursday: Second Lecture: Introduction to C++ programming and numerical precision. Exercises for first week. 
+  * Thursday: Second Lecture: Introduction to C++ programming and numerical precision. Exercises for first week.
   * Friday: Numerical precision and C++ programming, continued and exercises for first week (chapter 2 of lecture notes)
   * Numerical differentiation and loss of numerical precision (chapter 3 lecture notes)
-  * Computer lab: Thursday and Friday. First time: Thursday and Friday this week, Presentation of hardware and software at room FV329 first hour of every labgroup and solution of first simple exercises. The first two weeks we focus on simple programming exercises and to set up github and QTcreator. This week we discuss how to set up git and obtain a github account and look at two simple programming exercises. 
+  * Computer lab: Thursday and Friday. First time: Thursday and Friday this week, Presentation of hardware and software at room FV329 first hour of every labgroup and solution of first simple exercises. The first two weeks we focus on simple programming exercises and to set up github and QTcreator. This week we discuss how to set up git and obtain a github account and look at two simple programming exercises.
 !eblock
 
 !split
 ===== Reading suggestions and exercises =====
 
 !bblock
-  * Read sections 2.1-2.5 and 3.1-3.2 of lecture notes: 
+  * Read sections 2.1-2.5 and 3.1-3.2 of lecture notes:
    * Introduction to C++ programming
    * Numerical precision and C++ programming (chapter 2 of lecture notes)
    * Numerical differentiation and loss of numerical precision (chapter 3 lecture notes)
@@ -36,7 +36,7 @@ DATE: 2016
   * Detailed lecture notes, exercises, all programs presented, projects etc can be found at the homepage of the course.
   * Computerlab: Thursday (10am-6pm) and Friday (10am-6pm) room FV329.
   * Weekly plans and all other information are on the official webpage.
-  * No final exam, the last three projects are graded.  In total five projects which all have to be approved. 
+  * No final exam, the last three projects are graded.  In total five projects which all have to be approved.
 !eblock
 
 !split
@@ -164,7 +164,7 @@ DATE: 2016
 
 !split
 ===== Additional learning outcomes =====
-!bblock 
+!bblock
  * has a thorough understanding of how computing is used to solve scientific problems
  * knows some central  algorithms used in science
  * has knowledge of high-performance computing elements: memory usage, vectorization and parallel algorithms
@@ -205,14 +205,14 @@ FIGURE: [fig-intro/Nebbdyr2.pdf, width=500 frac=0.6]
 ===== Other courses in Computational Science at UiO =====
 
 !bblock Bachelor/Master/PhD Courses
-  * INF-MAT4350 Numerical linear algebra
-  * MAT-INF3300/3310, PDEs and Sobolev spaces I and II
-  * INF-MAT3360 PDEs
+  * MAT-INF4130 Numerical linear algebra
+  * MAT-INF4300/4310, PDEs and Sobolev spaces I and II
+  * MAT-INF3360 Intro to PDEs
   * INF5620 Numerical methods for PDEs, finite element method
   * FYS4411 Computational physics II (Parallelization (MPI), object orientation, quantum mechanical systems with many interacting particles), spring semester
   * FYS4460 Computational physics III (Parallelization (MPI), object orientation, classical statistical physics, simulation of phase transitions, spring semester
   * INF3331/4331 Problem solving with high-level languages (Python), fall semester
-  * INF3380/4380 Parallel computing for problems in the Natural Sciences (mostly PDEs), spring semester
+  * INF3380 Parallel computing for problems in the Natural Sciences (mostly PDEs), spring semester
 !eblock
 
 
@@ -227,4 +227,3 @@ FIGURE: [fig-intro/Nebbdyr2.pdf, width=500 frac=0.6]
   * Unit tests, week 37 and later
   * Devilry for handing in projects, next week
 !eblock
-
