@@ -185,7 +185,7 @@ where ${\bf A}$ is an $n\times n$  tridiagonal matrix which we rewrite as
                            & \dots   & \dots &\dots   &\dots & \dots \\
                            0&\dots   &  &-1 &2& -1 \\
                            0&\dots    &  & 0  &-1 & 2 \\
-                      \end{array} \right)
+                      \end{array} \right),
 \end{equation}
 and $\tilde{b}_i=h^2f_i$.
 
@@ -226,13 +226,9 @@ Our linear equation reads
                            \tilde{b}_n\\
                       \end{array} \right).
 \end{equation}
+Note well that we do not include the endpoints since the boundary conditions are used resulting in a fixed value for $v_i$.
 A tridiagonal matrix is a special form of banded matrix where all the elements are zero except for 
 those on and immediately above and below the leading diagonal.
-The above tridiagonal system   can be written as
-\begin{equation}
-  a_iv_{i-1}+b_iv_i+c_iv_{i+1} = \tilde{b}_i,
-\end{equation}
-for $i=1,2,\dots,n$. 
 Develop a general algorithm first which does does not assume that we have a matrix with the same elements along the diagonal and the non-diagonal elements.
 The algorithm for solving this set of equations is rather simple and requires two steps only, a decomposition 
 and forward substitution and finally a backward substitution. 

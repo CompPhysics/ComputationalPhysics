@@ -193,7 +193,16 @@ A = \begin{bmatrix}  &        &        &         &       &      &       &       
   \end{align}
 Recall that the vector ${\bf v}$ is the discretized solution vector. Note: Do \emph{not} worry about the boundary conditions just yet, i.e. just consider the internal points $i=2,3,\dots,n-3,n-2$.
 
-In our case we will assume that the source term is $f(x) = 100e^{−10x}$, and keep the same interval and boundary conditions. Then the above differential equation has a closed-form solution given by $u(x) = 1−(1−e^{−10})x−e^{−10x}$ (convince yourself that this is correct by inserting the solution in the Poisson equation, or solve the equation explicitly by integrating $u''(x)$ twice and use the boundary conditions to determine the resulting two integration constants). We will compare our numerical solution with this result in the next exercise.
+
+In our case we will assume that the source term is $f(x) =100\exp{(−10x)}$, and keep the same interval and boundary conditions. Then the above differential equation has a closed-form solution given by
+\[
+u(x) = 1 -\left(1−\exp{(-10)}\right)x - \exp{(-10x)}.
+\]
+Convince yourself that this is correct by inserting the solution in the Poisson equation, or solve
+the equation explicitly by integrating $u''(x)$ twice and use the
+boundary conditions to determine the resulting two integration
+constants. We will compare our numerical solution with this result in
+the next exercise.
 \end{itemize}
 We will now consider in some detail what happens near the boundaries, i.e. at $x=0$ and $x=1$. Since we know the solution at the points $x_0=0$ and $x_n=1$, we may demand that our equation set adhere to this by inserting the equation 
 \begin{align}
@@ -237,6 +246,9 @@ Next, start from the $n$th row and work your way up, solving for $v_i$ as you go
   Test your implementation by comparing the solution to one obtained by a solver known to be correct (e.g. the built-in solve function in Armadillo, the \textbackslash \ function in Matlab, or the solve function in Numpy, etc.) If the two solutions differ by more than say $~10^{-14}$, your solver is not implemented correctly \emph{or} the matrix $A$ is not set up correctly.
 
   \item[(f)] Use your solver to solve systems with $n$ ranging from $n=10$ to $n=10^6$ (use at least $6$ different $n$ in this range), and compute the maximum value of the absolute error in your approximation for each $n$. Use the known exact solution, $u(x) = 1-(1-e^{-10})x-e^{-10x}$. 
+
+
+
 
   Plot the error as a function of $n$ in a log-log plot. Comment on what you see. What is the slope of the curve in your log-log plot, and what does it tell you? 
 
