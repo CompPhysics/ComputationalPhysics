@@ -100,5 +100,9 @@ AUTHOR: Computational Physics Fall 2016 at Department of Physics, University of 
 |Ulvik	Geir Tore	g.t.ulvik@fys.uio.no   |   |
 |Valberg	Pål	paalval@student.matnat.uio.no   | Friday 10-14  |
 |Yaseen	Anisa	anisay@student.matnat.uio.no   |   |
+| Thorbjørn Vidvei Larsen   thorbjol@student.matnat.uio.no   |   |
+| Erik Fagerås Skaar   erikfsk@student.matnat.uio.no   | Friday 10-14  |
+| Lars Kristian Henriksen larskhe@student.matnat.uio.no   |   |
+| Rastad, Sarah Båvenäs  sarahbra@student.matnat.uio.no   |   |
 |----------------------------------------------------------------------------------------------------------------------------|
 	
