@@ -22,17 +22,17 @@ developed in the 1970s, namely EISPACK and LINPACK.
 !bt
 \[
  \mathbf{A} =
-      \left( \begin{array}{cccc} a_{11} & a_{12} & a_{13} & a_{14} \\
+      \begin{bmatrix} a_{11} & a_{12} & a_{13} & a_{14} \\
                                  a_{21} & a_{22} & a_{23} & a_{24} \\
                                    a_{31} & a_{32} & a_{33} & a_{34} \\
                                   a_{41} & a_{42} & a_{43} & a_{44}
-             \end{array} \right)\qquad
+             \end{bmatrix}\qquad
 \mathbf{I} =
-      \left( \begin{array}{cccc} 1 & 0 & 0 & 0 \\
+      \begin{bmatrix} 1 & 0 & 0 & 0 \\
                                  0 & 1 & 0 & 0 \\
                                  0 & 0 & 1 & 0 \\
                                  0 & 0 & 0 & 1
-             \end{array} \right)
+             \end{bmatrix}
 \]
 !et
 !eblock
@@ -276,7 +276,7 @@ At least three possibilities in this course
 
   * Do it yourself
   * Use the functions provided in the library package lib.cpp
-  * Use Armadillo URL: "http://arma.sourceforgenet" (a C++ linear algebra library, discussion next two weeks, both here and at lab). !split
+  * Use Armadillo URL: "http://arma.sourceforgenet" (a C++ linear algebra library, discussion both here and at lab). 
 
 !split
 ===== Matrix Handling in C/C++, Dynamic Allocation =====
@@ -336,12 +336,17 @@ armadillo from there.
 You may have to install Lapack as well.
 For Mac and Windows users, follow the instructions from the webpage
 URL: "http://arma.sourceforge.net".
-To compile, use for example
+To compile, use for example (linux/ubuntu)
 
 !bc cppcod
 c++ -O2 -o program.x program.cpp  -larmadillo -llapack -lblas
 !ec
 where the `-l` option indicates the library you wish to link to.
+
+For OS X users you may have to declare the paths to the include files and the libraries as
+!bc cppcod
+c++ -O2 -o program.x program.cpp  -L/usr/local/lib -I/usr/local/include -larmadillo -llapack -lblas
+!ec
 
 !split
 ===== Armadillo, simple examples =====
@@ -560,23 +565,23 @@ matrix elements along the diagonal satisfy $a_{ii} \ne 0$. Simple $4\times 4 $ e
 
 !bt
 \[
-\left(\begin{array}{cccc}
+\begin{bmatrix}
                            a_{11}& a_{12} &a_{13}& a_{14}\\
                            a_{21}& a_{22} &a_{23}& a_{24}\\
                            a_{31}& a_{32} &a_{33}& a_{34}\\
                            a_{41}& a_{42} &a_{43}& a_{44}\\
-                      \end{array} \right)\left(\begin{array}{c}
+                      \end{bmatrix} \begin{bmatrix}
                            x_1\\
                            x_2\\
                            x_3 \\
                            x_4  \\
-                      \end{array} \right)
-  =\left(\begin{array}{c}
+                      \end{bmatrix}
+  =\begin{bmatrix}
                            w_1\\
                            w_2\\
                            w_3 \\
                            w_4\\
-                      \end{array} \right).
+                      \end{bmatrix}.
 \]
 !et
 
@@ -634,23 +639,23 @@ Our actual $4\times 4$ example reads after the first operation
 
 !bt
 \[
-\left(\begin{array}{cccc}
+\begin{bmatrix}
                            a_{11}& a_{12} &a_{13}& a_{14}\\
                            0& (a_{22}-\frac{a_{21}a_{12}}{a_{11}}) &(a_{23}-\frac{a_{21}a_{13}}{a_{11}}) & (a_{24}-\frac{a_{21}a_{14}}{a_{11}})\\
 0& (a_{32}-\frac{a_{31}a_{12}}{a_{11}})& (a_{33}-\frac{a_{31}a_{13}}{a_{11}})& (a_{34}-\frac{a_{31}a_{14}}{a_{11}})\\
 0&(a_{42}-\frac{a_{41}a_{12}}{a_{11}}) &(a_{43}-\frac{a_{41}a_{13}}{a_{11}}) & (a_{44}-\frac{a_{41}a_{14}}{a_{11}}) \\
-                      \end{array} \right)\left(\begin{array}{c}
+                      \end{bmatrix} \begin{bmatrix}
                            x_1\\
                            x_2\\
                            x_3 \\
                            x_4  \\
-                      \end{array} \right)
-  =\left(\begin{array}{c}
+                      \end{bmatrix} 
+  =\begin{bmatrix}
                            y_1\\
                            w_2^{(2)}\\
                            w_3^{(2)} \\
                            w_4^{(2)}\\
-                      \end{array} \right),
+                      \end{bmatrix},
 \]
 !et
 or
@@ -776,14 +781,14 @@ If we define a matrix
 
 !bt
 \[
-    \mathbf{A} = \frac{1}{h^2}\left(\begin{array}{cccccc}
+    \mathbf{A} = \frac{1}{h^2}\begin{bmatrix}
                           2 & -1 &  &   &  & \\
                           -1 & 2 & -1 & & & \\
                            & -1 & 2 & -1 & &  \\
                            & \dots   & \dots &\dots   &\dots & \dots \\
                            &   &  &-1  &2& -1 \\
                            &    &  &   &-1 & 2 \\
-                      \end{array} \right)
+                      \end{bmatrix}
 \]
 !et
 and the corresponding vectors $\mathbf{u} = (u_1, u_2, \dots,u_n)^T$ and
@@ -810,14 +815,14 @@ where $\mathbf{A}$ is a tridiagonal matrix which we rewrite as
 
 !bt
 \[
-    \mathbf{A} = \left(\begin{array}{cccccc}
+    \mathbf{A} = \begin{bmatrix}
                            b_1& c_1 & 0 &\dots   & \dots &\dots \\
                            a_2 & b_2 & c_2 &\dots &\dots &\dots \\
                            & a_3 & b_3 & c_3 & \dots & \dots \\
                            & \dots   & \dots &\dots   &\dots & \dots \\
-                           &   &  &a_{n-2}  &b_{n-1}& c_{n-1} \\
+                           &   &  &a_{n-1}  &b_{n-1}& c_{n-1} \\
                            &    &  &   &a_n & b_n \\
-                      \end{array} \right)
+                      \end{bmatrix} 
 \]
 !et
 where $a,b,c$ are one-dimensional arrays of length $1:n$.
@@ -831,29 +836,29 @@ We can rewrite as
 
 !bt
 \[
-    \mathbf{A} = \left(\begin{array}{cccccc}
+    \mathbf{A} = \begin{bmatrix}
                            b_1& c_1 & 0 &\dots   & \dots &\dots \\
                            a_2 & b_2 & c_2 &\dots &\dots &\dots \\
                            & a_3 & b_3 & c_3 & \dots & \dots \\
                            & \dots   & \dots &\dots   &\dots & \dots \\
-                           &   &  &a_{n-2}  &b_{n-1}& c_{n-1} \\
+                           &   &  &a_{n-1}  &b_{n-1}& c_{n-1} \\
                            &    &  &   &a_n & b_n \\
-                      \end{array} \right)\left(\begin{array}{c}
+                      \end{bmatrix} \begin{bmatrix}
                            u_1\\
                            u_2\\
                            \dots \\
                           \dots  \\
                           \dots \\
                            u_n\\
-                      \end{array} \right)
-  =\left(\begin{array}{c}
+                      \end{bmatrix} 
+  =\begin{bmatrix}
                            f_1\\
                            f_2\\
                            \dots \\
                            \dots \\
                           \dots \\
                            f_n\\
-                      \end{array} \right).
+                      \end{bmatrix}.
 \]
 !et
 
@@ -884,56 +889,51 @@ case proportional with $O(n)$ while Gaussian elimination requires $2n^3/3+O(n^2)
 
 In case your system of equations leads to a tridiagonal matrix, it is clearly an overkill to employ
 Gaussian elimination or the standard LU decomposition.
-You will encounter several applications involving tridiagonal matrices in our discussion of
-partial differential equations in chapter 10.
 
-Our algorithm starts with forward substitution with a loop over of the elements $i$ and can be expressed via the
-following piece of code
-
-
-!bc cppcod
-   btemp = b[1];
-   u[1] = f[1]/btemp;
-   for(i=2 ; i <= n ; i++) {
-      temp[i] = c[i-1]/btemp;
-      btemp = b[i]-a[i]*temp[i];
-      u[i] = (f[i] - a[i]*u[i-1])/btemp;
-
-!ec
-
-!split
-===== Gaussian Elimination and Tridiagonal matrices, project 1 =====
-
-Note that you should avoid cases with $b_1=0$. If that is the case, you should rewrite the equations
-as a set of order $n-1$ with $u_2$ eliminated.
-Finally we perform the backsubstitution leading to the following code
-
-!bc cppcod
-   for(i=n-1 ; i >= 1 ; i--) {
-      u[i] -= temp[i+1]*u[i+1];
-
-!ec
-
-!split
-===== Gaussian Elimination and Tridiagonal matrices, project 1 =====
-
-Note that our sums start with $i=1$ and that one  should avoid cases with $b_1=0$. If that is the case, you should rewrite the equations
-as a set of order $n-1$ with $u_2$ eliminated. However, a tridiagonal matrix problem is not a guarantee that we
-can find a solution. The matrix $\mathbf{A}$ which rephrases a second derivative in a discretized form
-
+Our algorithm starts with forward substitution with a loop over of the elements $i$ and gives an update of the diagonal elements $b_i$
+given by the new diagonals $\tilde{b}_i$
 !bt
 \[
-    \mathbf{A} = \left(\begin{array}{cccccc}
+\tilde{b}_i= b_i - \frac{a_ic_{i-1}}{\tilde{b}_{i-1}},
+\]
+!et
+and the new righthand side $\tilde{f}_i$ given by
+!bt
+\[
+\tilde{f}_i= f_i - \frac{a_i\tilde{f}_{i-1}}{\tilde{b}_{i-1}}.
+\]
+!et
+Recall that $\tilde{b}_1=b_1$ and $\tilde{f}_1=f_1$ always.
+
+!split
+===== Backward substitution =====
+
+The backward substitution gives then the final solution
+!bt
+\[
+u_{i-1}= \frac{c_{i-1}u_i-\tilde{f}_{i-1}}{\tilde{b}_{i-1}},
+\]
+!et
+with $u_n=\tilde{f}_{i-1}/\tilde{b}_{i-1}$.
+
+
+!split
+===== Gaussian Elimination and Tridiagonal matrices, project 1 =====
+
+The matrix $\mathbf{A}$ which rephrases a second derivative in a discretized form is much simpler than the general matrix
+!bt
+\[
+    \mathbf{A} = \begin{bmatrix}
                           2 & -1 & 0 & 0  &0  & 0\\
                           -1 & 2 & -1 &0 &0 &0 \\
                           0 & -1 & 2 & -1 & 0& 0 \\
                           0 & \dots   & \dots & \dots   &\dots & \dots \\
                           0 &0   &0  &-1  &2& -1 \\
                           0 &  0  &0  &0   &-1 & 2 \\
-                      \end{array} \right),
+                      \end{bmatrix}.
 \]
 !et
-fulfills the condition of a weak dominance of the diagonal, with
+This matrix fulfills the condition of a weak dominance of the diagonal, with
 $|b_1| > |c_1|$, $|b_n| > |a_n|$ and  $|b_k| \ge |a_k|+|c_k|$ for $k=2,3,\dots,n-1$.
 This is a relevant but not sufficient condition to guarantee that the matrix $\mathbf{A}$ yields a solution to a linear
 equation problem. The matrix needs also to be irreducible. A tridiagonal irreducible matrix means that all the elements $a_i$ and
@@ -944,40 +944,39 @@ $c_i$ are non-zero. If these two conditions are present, then $\mathbf{A}$ is no
 
 When setting up the algo it is useful to note that the different
 operations on the matrix (here as a $4\times 4$ case  with diagonals
-$d_i$ and off-diagonals $e_i$
-
+$d_i$ and off-diagonals $e_i$) give is an extremely simple algorithm, namely
 !bt
 \[
-   \left(\begin{array}{cccc}
+   \begin{bmatrix}
                           d_1 & e_1 & 0 & 0 \\
-                          e_1 & d_2 & e_2 & 0 \\
-                          0 & e_2 & d_3 & e_3 \\
-                          0 & 0 & e_3 & d_4
-                      \end{array} \right)\rightarrow
-   \left(\begin{array}{cccc}
+                          e_2 & d_2 & e_2 & 0 \\
+                          0 & e_3 & d_3 & e_3 \\
+                          0 & 0 & e_4 & d_4
+                      \end{bmatrix}\rightarrow
+                 \begin{bmatrix}
                           d_1 & e_1 & 0 & 0 \\
                           0 & \tilde{d}_2 & e_2 & 0 \\
-                          0 & e_2 & d_3 & e_3 \\
-                          0 & 0 & e_3 & d_4
-                      \end{array} \right)\rightarrow
-   \left(\begin{array}{cccc}
+                          0 & e_3 & d_3 & e_3 \\
+                          0 & 0 & e_4 & d_4
+                      \end{bmatrix}\rightarrow
+                \begin{bmatrix}
                           d_1 & e_1 & 0 & 0 \\
                           0 & \tilde{d}_2 & e_2 & 0 \\
                           0 & 0 & \tilde{d}_3 & e_3 \\
-                          0 & 0 & e_3 & d_4
-                      \end{array} \right)
+                          0 & 0 & e_4 & d_4
+                      \end{bmatrix}
 \]
 !et
 and finally
 
 !bt
 \[
-   \left(\begin{array}{cccc}
+                      \begin{bmatrix}
                           d_1 & e_1 & 0 & 0 \\
                           0 & \tilde{d}_2 & e_2 & 0 \\
                           0 & 0 & \tilde{d}_3 & e_3 \\
                           0 & 0 & 0 & \tilde{d}_4
-                      \end{array} \right)
+                      \end{bmatrix}
 \]
 !et
 
@@ -988,26 +987,42 @@ We notice the sub-blocks which get repeated
 
 !bt
 \[
-   \left(\begin{array}{cccc}
+   \begin{bmatrix}
                           d_1 & e_1 & 0 & 0 \\
                           0 & \tilde{d}_2 & e_2 & 0 \\
                           0 & 0 & \tilde{d}_3 & e_3 \\
                           0 & 0 & 0 & \tilde{d}_4
-                      \end{array} \right)
+                      \end{bmatrix}
 \]
 !et
 The matrices we often end up with in rewriting for for example partial differential equations,
-have the feature that all leading principal submatrices are non-singular. If the matrix
-is symmetric as well it can be rewritten as $A=LDL^T$ with $D$ the diagonal and we have the
-following relations
-$a_{11} = d_1$, $a_{k,k-1}=e_{k-1}d_{k-1}$ for $k=2,\dots,n$ and finally
+have the feature that all leading principal submatrices are non-singular. 
 
+
+!split
+===== Simple expressions for project 1 =====
+For the special matrix we can can actually precalculate the updated matrix elements $\tilde{d}_i$. The non-diagonal elements $e_i$ are unchanged.
+For our particular matrix in project 1 we have 
 !bt
 \[
-a_{kk} = d_k+e_{k-1}^2d_{k-1}=d_k+e_{k-1}a_{k,k-1}
+\tilde{d}_i= 2 - \frac{1}{\tilde{d}_{i-1}}=\frac{i+1}{i},
 \]
 !et
-for $k=2,\dots,n$.
+and the new righthand side $\tilde{f}_i$ given by
+!bt
+\[
+\tilde{f}_i= f_i + \frac{i\tilde{f}_{i-1}}{i+1}.
+\]
+!et
+Recall that $\tilde{d}_1=2$ and $\tilde{f}_1=f_1$.  These arrays can be set up before computing $u$. 
+
+The backward substitution gives then the final solution
+!bt
+\[
+u_{i-1}= -\frac{i}{i+1}\left(u_i-\tilde{f}_{i-1}\right),
+\]
+!et
+with $u_n=\tilde{f}_{i-1}/\tilde{b}_{i-1}$.
 
 
 !split
@@ -1017,7 +1032,7 @@ for $k=2,\dots,n$.
 /*
 **     Project1: a) and b)
 **     The algorithm for solving the tridiagonal matrix
-**     equation is implemented (requiering O(8n) FLOPS).
+**     equation is implemented (O(8n) FLOPS).
 */
 # include <iostream>
 # include <fstream>
@@ -1159,25 +1174,24 @@ where
 
 !bt
 \[
-label{eq3}
-   \left(\begin{array}{cccc}
+   \begin{bmatrix}
                           a_{11} & a_{12} & a_{13} & a_{14} \\
                           a_{21} & a_{22} & a_{23} & a_{24} \\
                           a_{31} & a_{32} & a_{33} & a_{34} \\
                           a_{41} & a_{42} & a_{43} & a_{44}
-                      \end{array} \right)
-                      = \left( \begin{array}{cccc}
+                      \end{bmatrix}
+                      = \begin{bmatrix}
                               1  & 0      & 0      & 0 \\
                           l_{21} & 1      & 0      & 0 \\
                           l_{31} & l_{32} & 1      & 0 \\
                           l_{41} & l_{42} & l_{43} & 1
-                      \end{array} \right)
-                        \left( \begin{array}{cccc}
+                      \end{bmatrix}
+                        \begin{bmatrix}
                           u_{11} & u_{12} & u_{13} & u_{14} \\
                                0 & u_{22} & u_{23} & u_{24} \\
                                0 & 0      & u_{33} & u_{34} \\
                                0 & 0      &  0     & u_{44}
-             \end{array} \right).
+             \end{bmatrix}.
 \]
 !et
 
@@ -1341,31 +1355,31 @@ can be written as a vector with unknown entries
 
 !bt
 \[
-    \mathbf{A}_1^{-1}= \left( \begin{array}{c}
+    \mathbf{A}_1^{-1}= \begin{bmatrix}
 
                               a_{11}^{-1} \\
                               a_{21}^{-1} \\
                               \dots \\
                               a_{n1}^{-1} \\
-                    \end{array} \right),
+                    \end{bmatrix},
 \]
 !et
 then we have a linear set of equations
 
 !bt
 \[
-    \mathbf{LU}\left( \begin{array}{c}
+    \mathbf{LU}\begin{bmatrix}
 
                               a_{11}^{-1} \\
                               a_{21}^{-1} \\
                               \dots \\
                               a_{n1}^{-1} \\
-                    \end{array} \right) =\left( \begin{array}{c}
+                    \end{bmatrix} =\begin{bmatrix}
                                1 \\
                               0 \\
                               \dots \\
                               0 \\
-                    \end{array} \right).
+                    \end{bmatrix}.
 \]
 !et
 
@@ -1376,18 +1390,18 @@ In a similar way we can compute the unknow entries of the second column,
 
 !bt
 \[
-    \mathbf{LU}\left( \begin{array}{c}
+    \mathbf{LU}\begin{bmatrix}
 
                               a_{12}^{-1} \\
                               a_{22}^{-1} \\
                               \dots \\
                               a_{n2}^{-1} \\
-                    \end{array} \right) =\left( \begin{array}{c}
+                    \end{bmatrix}=\begin{bmatrix}
                                 0 \\
                               1 \\
                               \dots \\
                               0 \\
-                    \end{array} \right),
+                    \end{bmatrix},
 \]
 !et
 and continue till we have solved all $n$ sets of linear equations.
@@ -1550,24 +1564,24 @@ int main()
 It is a simple method for solving
 !bt
 \[ 
-\hat{A}\mathbf{x}=\mathbf{b},
+\mathbf{A}\mathbf{x}=\mathbf{b},
 \]
 !et
-where $\hat{A}$ is a matrix and $\mathbf{x}$ and $\mathbf{b}$ are vectors. The vector $\mathbf{x}$ is 
+where $\mathbf{A}$ is a matrix and $\mathbf{x}$ and $\mathbf{b}$ are vectors. The vector $\mathbf{x}$ is 
 the unknown.
 
 It is an iterative scheme where we start with a guess for the unknown, and 
 after $k+1$ iterations we have  
 !bt
 \[ 
-\mathbf{x}^{(k+1)}= \hat{D}^{-1}(\mathbf{b}-(\hat{L}+\hat{U})\mathbf{x}^{(k)}),
+\mathbf{x}^{(k+1)}= \mathbf{D}^{-1}(\mathbf{b}-(\mathbf{L}+\mathbf{U})\mathbf{x}^{(k)}),
 \]
 !et
-with $\hat{A}=\hat{D}+\hat{U}+\hat{L}$ and
-$\hat{D}$ being a diagonal matrix, $\hat{U}$ an upper triangular matrix and $\hat{L}$ a  lower triangular
+with $\mathbf{A}=\mathbf{D}+\mathbf{U}+\mathbf{L}$ and
+$\mathbf{D}$ being a diagonal matrix, $\mathbf{U}$ an upper triangular matrix and $\mathbf{L}$ a  lower triangular
 matrix.
 
-If the matrix $\hat{A}$ is positive definite or diagonally dominant, one can show that this method will always converge to the exact solution. 
+If the matrix $\mathbf{A}$ is positive definite or diagonally dominant, one can show that this method will always converge to the exact solution. 
 !eblock
 
 
@@ -1578,21 +1592,21 @@ We can demonstrate Jacobi's method by this $4\times 4$ matrix problem. We assume
 for the vector elements $x_i^{(0)}$, a guess which represents our first iteration. The new
 values are obtained by substitution
 !bt
-\begin{eqnarray}
+\begin{align}
  x_1^{(1)} =&(b_1-a_{12}x_2^{(0)} -a_{13}x_3^{(0)} - a_{14}x_4^{(0)})/a_{11} \nonumber \\
  x_2^{(1)} =&(b_2-a_{21}x_1^{(0)} - a_{23}x_3^{(0)} - a_{24}x_4^{(0)})/a_{22} \nonumber \\
  x_3^{(1)} =&(b_3- a_{31}x_1^{(0)} -a_{32}x_2^{(0)} -a_{34}x_4^{(0)})/a_{33} \nonumber \\
  x_4^{(1)}=&(b_4-a_{41}x_1^{(0)} -a_{42}x_2^{(0)} - a_{43}x_3^{(0)})/a_{44},  \nonumber
-\end{eqnarray}
+\end{align}
 !et
 which after $k+1$ iterations reads
 !bt
-\begin{eqnarray}
+\begin{align}
  x_1^{(k+1)} =&(b_1-a_{12}x_2^{(k)} -a_{13}x_3^{(k)} - a_{14}x_4^{(k)})/a_{11} \nonumber \\
  x_2^{(k+1)} =&(b_2-a_{21}x_1^{(k)} - a_{23}x_3^{(k)} - a_{24}x_4^{(k)})/a_{22} \nonumber \\
  x_3^{(k+1)} =&(b_3- a_{31}x_1^{(k)} -a_{32}x_2^{(k)} -a_{34}x_4^{(k)})/a_{33} \nonumber \\
  x_4^{(k+1)}=&(b_4-a_{41}x_1^{(k)} -a_{42}x_2^{(k)} - a_{43}x_3^{(k)})/a_{44},  \nonumber
-\end{eqnarray}
+\end{align}
 !et
 !eblock
 
@@ -1608,11 +1622,11 @@ We can generalize the above equations to
 !et
 or in an even more compact form as
 !bt
-\[ \mathbf{x}^{(k+1)}= \hat{D}^{-1}(\mathbf{b}-(\hat{L}+\hat{U})\mathbf{x}^{(k)}),
+\[ \mathbf{x}^{(k+1)}= \mathbf{D}^{-1}(\mathbf{b}-(\mathbf{L}+\mathbf{U})\mathbf{x}^{(k)}),
 \]
 !et
-with $\hat{A}=\hat{D}+\hat{U}+\hat{L}$ and
-$\hat{D}$ being a diagonal matrix, $\hat{U}$ an upper triangular matrix and $\hat{L}$ a  lower triangular
+with $\mathbf{A}=\mathbf{D}+\mathbf{U}+\mathbf{L}$ and
+$\mathbf{D}$ being a diagonal matrix, $\mathbf{U}$ an upper triangular matrix and $\mathbf{L}$ a  lower triangular
 matrix.
 !eblock
 
@@ -1621,21 +1635,21 @@ matrix.
 !bblock
 Our $4\times 4$ matrix problem 
 !bt
-\begin{eqnarray}
+\begin{align}
  x_1^{(k+1)} =&(b_1-a_{12}x_2^{(k)} -a_{13}x_3^{(k)} - a_{14}x_4^{(k)})/a_{11} \nonumber \\
  x_2^{(k+1)} =&(b_2-a_{21}x_1^{(k)} - a_{23}x_3^{(k)} - a_{24}x_4^{(k)})/a_{22} \nonumber \\
  x_3^{(k+1)} =&(b_3- a_{31}x_1^{(k)} -a_{32}x_2^{(k)} -a_{34}x_4^{(k)})/a_{33} \nonumber \\
  x_4^{(k+1)}=&(b_4-a_{41}x_1^{(k)} -a_{42}x_2^{(k)} - a_{43}x_3^{(k)})/a_{44},  \nonumber
-\end{eqnarray}
+\end{align}
 !et
 can be rewritten as 
 !bt
-\begin{eqnarray}
+\begin{align}
  x_1^{(k+1)} =&(b_1-a_{12}x_2^{(k)} -a_{13}x_3^{(k)} - a_{14}x_4^{(k)})/a_{11} \nonumber \\
  x_2^{(k+1)} =&(b_2-a_{21}x_1^{(k+1)} - a_{23}x_3^{(k)} - a_{24}x_4^{(k)})/a_{22} \nonumber \\
  x_3^{(k+1)} =&(b_3- a_{31}x_1^{(k+1)} -a_{32}x_2^{(k+1)} -a_{34}x_4^{(k)})/a_{33} \nonumber \\
  x_4^{(k+1)}=&(b_4-a_{41}x_1^{(k+1)} -a_{42}x_2^{(k+1)} - a_{43}x_3^{(k+1)})/a_{44},  \nonumber
-\end{eqnarray}
+\end{align}
 !et
 which allows us to utilize the preceding solution (forward substitution). This improves normally the convergence
 behavior and leads to the Gauss-Seidel method!
@@ -1646,12 +1660,12 @@ behavior and leads to the Gauss-Seidel method!
 !bblock
 We can generalize 
 !bt
-\begin{eqnarray}
+\begin{align}
  x_1^{(k+1)} =&(b_1-a_{12}x_2^{(k)} -a_{13}x_3^{(k)} - a_{14}x_4^{(k)})/a_{11} \nonumber \\
  x_2^{(k+1)} =&(b_2-a_{21}x_1^{(k+1)} - a_{23}x_3^{(k)} - a_{24}x_4^{(k)})/a_{22} \nonumber \\
  x_3^{(k+1)} =&(b_3- a_{31}x_1^{(k+1)} -a_{32}x_2^{(k+1)} -a_{34}x_4^{(k)})/a_{33} \nonumber \\
  x_4^{(k+1)}=&(b_4-a_{41}x_1^{(k+1)} -a_{42}x_2^{(k+1)} - a_{43}x_3^{(k+1)})/a_{44},  \nonumber
-\end{eqnarray}
+\end{align}
 !et
 to the following form
 !bt
@@ -1662,7 +1676,7 @@ to the following form
 The procedure is generally continued until the changes made by an iteration are below some tolerance.
 
 The convergence properties of the Jacobi method and the 
-Gauss-Seidel method are dependent on the matrix $\hat{A}$. These methods converge when
+Gauss-Seidel method are dependent on the matrix $\mathbf{A}$. These methods converge when
 the matrix is symmetric positive-definite, or is strictly or irreducibly diagonally dominant.
 Both methods sometimes converge even if these conditions are not satisfied.
 !eblock
@@ -1673,13 +1687,13 @@ Both methods sometimes converge even if these conditions are not satisfied.
 Given a square system of n linear equations with unknown $\mathbf x$:
 !bt
 \[
-    \hat{A}\mathbf x = \mathbf b
+    \mathbf{A}\mathbf x = \mathbf b
 \]
 !et
 where
 !bt
 \[
-    \hat{A}=\begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\a_{n1} & a_{n2} & \cdots & a_{nn} \end{bmatrix}, \qquad \mathbf{x} = \begin{bmatrix} x_{1} \\ x_2 \\ \vdots \\ x_n \end{bmatrix} , \qquad \mathbf{b} = \begin{bmatrix} b_{1} \\ b_2 \\ \vdots \\ b_n \end{bmatrix}.
+    \mathbf{A}=\begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\a_{n1} & a_{n2} & \cdots & a_{nn} \end{bmatrix}, \qquad \mathbf{x} = \begin{bmatrix} x_{1} \\ x_2 \\ \vdots \\ x_n \end{bmatrix} , \qquad \mathbf{b} = \begin{bmatrix} b_{1} \\ b_2 \\ \vdots \\ b_n \end{bmatrix}.
 \]
 !et
 !eblock
@@ -1691,7 +1705,7 @@ where
 Then A can be decomposed into a diagonal component D, and strictly lower and upper triangular components L and U:
 !bt
 \[
-    \hat{A} =\hat{D} + \hat{L} + \hat{U},
+    \mathbf{A} =\mathbf{D} + \mathbf{L} + \mathbf{U},
 \]
 !et
 where
@@ -1759,11 +1773,11 @@ as follows
 As an example, consider a spline function of degree $k=1$ defined as follows
 !bt
 \[
-    s(x)=\left\{\begin{array}{cc} s_0(x)=a_0x+b_0 & x\in [x_0, x_1) \\   
+    s(x)=\begin{bmatrix} s_0(x)=a_0x+b_0 & x\in [x_0, x_1) \\   
                              s_1(x)=a_1x+b_1 & x\in [x_1, x_2) \\   
                              \dots & \dots \\
                              s_{n-1}(x)=a_{n-1}x+b_{n-1} & x\in 
-                             [x_{n-1}, x_n] \end{array}\right.
+                             [x_{n-1}, x_n] \end{bmatrix}.
 \]
 !et
 In this case the polynomial consists of series of straight lines 
@@ -1873,14 +1887,14 @@ and integrating twice one obtains
 Using the conditions $s_i(x_i)=y_i$ and $s_i(x_{i+1})=y_{i+1}$ 
 we can in turn determine the constants $c$ and $d$ resulting in
 !bt
-\begin{eqnarray}
+\begin{align}
    s_i(x) =&\frac{f_i}{6(x_{i+1}-x_i)}(x_{i+1}-x)^3+
                \frac{f_{i+1}}{6(x_{i+1}-x_i)}(x-x_i)^3 \nonumber  \\ 
             +&(\frac{y_{i+1}}{x_{i+1}-x_i}-\frac{f_{i+1}(x_{i+1}-x_i)}{6})
               (x-x_i)+
              (\frac{y_{i}}{x_{i+1}-x_i}-\frac{f_{i}(x_{i+1}-x_i)}{6})
              (x_{i+1}-x).
-\end{eqnarray}
+\end{align}
 !et
 !eblock
 
@@ -1917,24 +1931,24 @@ solved  through e.g., Gaussian elemination
 Gaussian elimination
 !bt
 \[
-   \left[\begin{array}{cccccccc} u_1 & h_1 &0 &\dots & & & & \\
+   \begin{bmatrix} u_1 & h_1 &0 &\dots & & & & \\
                                  h_1 & u_2 & h_2 &0 &\dots & & & \\
                                   0   & h_2 & u_3 & h_3 &0 &\dots & & \\
                                \dots& & \dots &\dots &\dots &\dots &\dots & \\
                                  &\dots & & &0 &h_{n-3} &u_{n-2} &h_{n-2} \\
-                                 & && & &0 &h_{n-2} &u_{n-1} \end{array}\right]
-   \left[\begin{array}{c} f_1 \\ 
+                                 & && & &0 &h_{n-2} &u_{n-1} \end{bmatrix}
+   \begin{bmatrix} f_1 \\ 
                           f_2 \\
                           f_3\\
                           \dots \\
                           f_{n-2} \\ 
-                          f_{n-1} \end{array} \right] =
-   \left[\begin{array}{c} v_1 \\ 
+                          f_{n-1} \end{bmatrix} =
+   \begin{bmatrix} v_1 \\ 
                           v_2 \\
                           v_3\\
                           \dots \\
                           v_{n-2}\\
-                          v_{n-1} \end{array} \right].
+                          v_{n-1} \end{bmatrix}.
 \]
 !et
 Note that this is a set of tridiagonal equations and can be solved 

@@ -131,41 +131,35 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                None,
                '___sec38'),
-              ('Gaussian Elimination and Tridiagonal matrices, project 1',
-               2,
-               None,
-               '___sec39'),
+              ('Backward substitution', 2, None, '___sec39'),
               ('Gaussian Elimination and Tridiagonal matrices, project 1',
                2,
                None,
                '___sec40'),
               ('Project 1, hints', 2, None, '___sec41'),
               ('Project 1, hints', 2, None, '___sec42'),
+              ('Simple expressions for project 1', 2, None, '___sec43'),
               ('"Program example":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/CppQtCodesLectures/MatrixTest"',
                2,
                None,
-               '___sec43'),
-              ('Linear Algebra Methods', 2, None, '___sec44'),
-              ('LU Decomposition', 2, None, '___sec45'),
+               '___sec44'),
+              ('Linear Algebra Methods', 2, None, '___sec45'),
               ('LU Decomposition', 2, None, '___sec46'),
-              ('LU Decomposition, why?', 2, None, '___sec47'),
-              ('LU Decomposition, linear equations', 2, None, '___sec48'),
+              ('LU Decomposition', 2, None, '___sec47'),
+              ('LU Decomposition, why?', 2, None, '___sec48'),
               ('LU Decomposition, linear equations', 2, None, '___sec49'),
-              ('LU Decomposition, why?', 2, None, '___sec50'),
-              ('LU Decomposition, linear equations', 2, None, '___sec51'),
-              ('LU Decomposition, the inverse of a matrix',
-               2,
-               None,
-               '___sec52'),
+              ('LU Decomposition, linear equations', 2, None, '___sec50'),
+              ('LU Decomposition, why?', 2, None, '___sec51'),
+              ('LU Decomposition, linear equations', 2, None, '___sec52'),
               ('LU Decomposition, the inverse of a matrix',
                2,
                None,
                '___sec53'),
-              ('LU Decomposition, the inverse', 2, None, '___sec54'),
-              ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"',
+              ('LU Decomposition, the inverse of a matrix',
                2,
                None,
-               '___sec55'),
+               '___sec54'),
+              ('LU Decomposition, the inverse', 2, None, '___sec55'),
               ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"',
                2,
                None,
@@ -174,7 +168,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                None,
                '___sec57'),
-              ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary"',
+              ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"',
                2,
                None,
                '___sec58'),
@@ -182,23 +176,23 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                None,
                '___sec59'),
-              ('"Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"',
+              ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary"',
                2,
                None,
                '___sec60'),
-              ('Iterative methods, Chapter 6', 2, None, '___sec61'),
-              ("Iterative methods, Jacobi's method", 2, None, '___sec62'),
-              ("Iterative methods, Jacobi's method", 2, None, '___sec63'),
-              ("Iterative methods, Jacobi's method", 2, None, '___sec64'),
-              ("Iterative methods, Gauss-Seidel's method",
+              ('"Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"',
                2,
                None,
-               '___sec65'),
+               '___sec61'),
+              ('Iterative methods, Chapter 6', 2, None, '___sec62'),
+              ("Iterative methods, Jacobi's method", 2, None, '___sec63'),
+              ("Iterative methods, Jacobi's method", 2, None, '___sec64'),
+              ("Iterative methods, Jacobi's method", 2, None, '___sec65'),
               ("Iterative methods, Gauss-Seidel's method",
                2,
                None,
                '___sec66'),
-              ('Iterative methods, Successive over-relaxation',
+              ("Iterative methods, Gauss-Seidel's method",
                2,
                None,
                '___sec67'),
@@ -210,8 +204,11 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                None,
                '___sec69'),
-              ('Cubic Splines, Chapter 6', 2, None, '___sec70'),
-              ('Splines', 2, None, '___sec71'),
+              ('Iterative methods, Successive over-relaxation',
+               2,
+               None,
+               '___sec70'),
+              ('Cubic Splines, Chapter 6', 2, None, '___sec71'),
               ('Splines', 2, None, '___sec72'),
               ('Splines', 2, None, '___sec73'),
               ('Splines', 2, None, '___sec74'),
@@ -219,7 +216,8 @@ div { text-align: justify; text-justify: inter-word; }
               ('Splines', 2, None, '___sec76'),
               ('Splines', 2, None, '___sec77'),
               ('Splines', 2, None, '___sec78'),
-              ('Splines', 2, None, '___sec79')]}
+              ('Splines', 2, None, '___sec79'),
+              ('Splines', 2, None, '___sec80')]}
 end of tocinfo -->
 
 <body>
@@ -290,17 +288,17 @@ developed in the 1970s, namely EISPACK and LINPACK.
 <p>
 $$
  \mathbf{A} =
-      \left( \begin{array}{cccc} a_{11} & a_{12} & a_{13} & a_{14} \\
+      \begin{bmatrix} a_{11} & a_{12} & a_{13} & a_{14} \\
                                  a_{21} & a_{22} & a_{23} & a_{24} \\
                                    a_{31} & a_{32} & a_{33} & a_{34} \\
                                   a_{41} & a_{42} & a_{43} & a_{44}
-             \end{array} \right)\qquad
+             \end{bmatrix}\qquad
 \mathbf{I} =
-      \left( \begin{array}{cccc} 1 & 0 & 0 & 0 \\
+      \begin{bmatrix} 1 & 0 & 0 & 0 \\
                                  0 & 1 & 0 & 0 \\
                                  0 & 0 & 1 & 0 \\
                                  0 & 0 & 0 & 1
-             \end{array} \right)
+             \end{bmatrix}
 $$
 </div>
 
@@ -630,7 +628,7 @@ At least three possibilities in this course
 <ul>
   <li> Do it yourself</li>
   <li> Use the functions provided in the library package lib.cpp</li>
-  <li> Use Armadillo <a href="http://arma.sourceforgenet" target="_blank"><tt>http://arma.sourceforgenet</tt></a> (a C++ linear algebra library, discussion next two weeks, both here and at lab). !split</li>
+  <li> Use Armadillo <a href="http://arma.sourceforgenet" target="_blank"><tt>http://arma.sourceforgenet</tt></a> (a C++ linear algebra library, discussion both here and at lab).</li> 
 </ul>
 
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -710,7 +708,7 @@ armadillo from there.
 You may have to install Lapack as well.
 For Mac and Windows users, follow the instructions from the webpage
 <a href="http://arma.sourceforge.net" target="_blank"><tt>http://arma.sourceforge.net</tt></a>.
-To compile, use for example
+To compile, use for example (linux/ubuntu)
 
 <p>
 
@@ -720,6 +718,13 @@ To compile, use for example
 <p>
 where the <code>-l</code> option indicates the library you wish to link to.
 
+<p>
+For OS X users you may have to declare the paths to the include files and the libraries as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span> <span style="color: #666666">-</span>O2 <span style="color: #666666">-</span>o program.x program.cpp  <span style="color: #666666">-</span>L<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>lib <span style="color: #666666">-</span>I<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>include <span style="color: #666666">-</span>larmadillo <span style="color: #666666">-</span>llapack <span style="color: #666666">-</span>lblas
+</pre></div>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
@@ -955,23 +960,23 @@ We assume also that the matrix \( \mathbf{A} \) is non-singular and that the
 matrix elements along the diagonal satisfy \( a_{ii} \ne 0 \). Simple \( 4\times 4  \) example
 
 $$
-\left(\begin{array}{cccc}
+\begin{bmatrix}
                            a_{11}& a_{12} &a_{13}& a_{14}\\
                            a_{21}& a_{22} &a_{23}& a_{24}\\
                            a_{31}& a_{32} &a_{33}& a_{34}\\
                            a_{41}& a_{42} &a_{43}& a_{44}\\
-                      \end{array} \right)\left(\begin{array}{c}
+                      \end{bmatrix} \begin{bmatrix}
                            x_1\\
                            x_2\\
                            x_3 \\
                            x_4  \\
-                      \end{array} \right)
-  =\left(\begin{array}{c}
+                      \end{bmatrix}
+  =\begin{bmatrix}
                            w_1\\
                            w_2\\
                            w_3 \\
                            w_4\\
-                      \end{array} \right).
+                      \end{bmatrix}.
 $$
 
 <p>
@@ -1040,23 +1045,23 @@ the result from the $j$th equation. We assume obviously that \( a_{11}\ne 0 \) a
 Our actual \( 4\times 4 \) example reads after the first operation
 
 $$
-\left(\begin{array}{cccc}
+\begin{bmatrix}
                            a_{11}& a_{12} &a_{13}& a_{14}\\
                            0& (a_{22}-\frac{a_{21}a_{12}}{a_{11}}) &(a_{23}-\frac{a_{21}a_{13}}{a_{11}}) & (a_{24}-\frac{a_{21}a_{14}}{a_{11}})\\
 0& (a_{32}-\frac{a_{31}a_{12}}{a_{11}})& (a_{33}-\frac{a_{31}a_{13}}{a_{11}})& (a_{34}-\frac{a_{31}a_{14}}{a_{11}})\\
 0&(a_{42}-\frac{a_{41}a_{12}}{a_{11}}) &(a_{43}-\frac{a_{41}a_{13}}{a_{11}}) & (a_{44}-\frac{a_{41}a_{14}}{a_{11}}) \\
-                      \end{array} \right)\left(\begin{array}{c}
+                      \end{bmatrix} \begin{bmatrix}
                            x_1\\
                            x_2\\
                            x_3 \\
                            x_4  \\
-                      \end{array} \right)
-  =\left(\begin{array}{c}
+                      \end{bmatrix} 
+  =\begin{bmatrix}
                            y_1\\
                            w_2^{(2)}\\
                            w_3^{(2)} \\
                            w_4^{(2)}\\
-                      \end{array} \right),
+                      \end{bmatrix},
 $$
 
 or
@@ -1199,14 +1204,14 @@ with \( i=1,2,\dots, n \). We need to add to this system the two boundary condit
 If we define a matrix
 
 $$
-    \mathbf{A} = \frac{1}{h^2}\left(\begin{array}{cccccc}
+    \mathbf{A} = \frac{1}{h^2}\begin{bmatrix}
                           2 & -1 &  &   &  & \\
                           -1 & 2 & -1 & & & \\
                            & -1 & 2 & -1 & &  \\
                            & \dots   & \dots &\dots   &\dots & \dots \\
                            &   &  &-1  &2& -1 \\
                            &    &  &   &-1 & 2 \\
-                      \end{array} \right)
+                      \end{bmatrix}
 $$
 
 and the corresponding vectors \( \mathbf{u} = (u_1, u_2, \dots,u_n)^T \) and
@@ -1232,14 +1237,14 @@ $$
 where \( \mathbf{A} \) is a tridiagonal matrix which we rewrite as
 
 $$
-    \mathbf{A} = \left(\begin{array}{cccccc}
+    \mathbf{A} = \begin{bmatrix}
                            b_1& c_1 & 0 &\dots   & \dots &\dots \\
                            a_2 & b_2 & c_2 &\dots &\dots &\dots \\
                            & a_3 & b_3 & c_3 & \dots & \dots \\
                            & \dots   & \dots &\dots   &\dots & \dots \\
-                           &   &  &a_{n-2}  &b_{n-1}& c_{n-1} \\
+                           &   &  &a_{n-1}  &b_{n-1}& c_{n-1} \\
                            &    &  &   &a_n & b_n \\
-                      \end{array} \right)
+                      \end{bmatrix} 
 $$
 
 where \( a,b,c \) are one-dimensional arrays of length \( 1:n \).
@@ -1255,29 +1260,29 @@ The matrix is  also positive definite.
 We can rewrite as
 
 $$
-    \mathbf{A} = \left(\begin{array}{cccccc}
+    \mathbf{A} = \begin{bmatrix}
                            b_1& c_1 & 0 &\dots   & \dots &\dots \\
                            a_2 & b_2 & c_2 &\dots &\dots &\dots \\
                            & a_3 & b_3 & c_3 & \dots & \dots \\
                            & \dots   & \dots &\dots   &\dots & \dots \\
-                           &   &  &a_{n-2}  &b_{n-1}& c_{n-1} \\
+                           &   &  &a_{n-1}  &b_{n-1}& c_{n-1} \\
                            &    &  &   &a_n & b_n \\
-                      \end{array} \right)\left(\begin{array}{c}
+                      \end{bmatrix} \begin{bmatrix}
                            u_1\\
                            u_2\\
                            \dots \\
                           \dots  \\
                           \dots \\
                            u_n\\
-                      \end{array} \right)
-  =\left(\begin{array}{c}
+                      \end{bmatrix} 
+  =\begin{bmatrix}
                            f_1\\
                            f_2\\
                            \dots \\
                            \dots \\
                           \dots \\
                            f_n\\
-                      \end{array} \right).
+                      \end{bmatrix}.
 $$
 
 <p>
@@ -1312,61 +1317,53 @@ case proportional with \( O(n) \) while Gaussian elimination requires \( 2n^3/3+
 <p>
 In case your system of equations leads to a tridiagonal matrix, it is clearly an overkill to employ
 Gaussian elimination or the standard LU decomposition.
-You will encounter several applications involving tridiagonal matrices in our discussion of
-partial differential equations in chapter 10.
 
 <p>
-Our algorithm starts with forward substitution with a loop over of the elements \( i \) and can be expressed via the
-following piece of code
+Our algorithm starts with forward substitution with a loop over of the elements \( i \) and gives an update of the diagonal elements \( b_i \)
+given by the new diagonals \( \tilde{b}_i \)
+$$
+\tilde{b}_i= b_i - \frac{a_ic_{i-1}}{\tilde{b}_{i-1}},
+$$
 
-<p>
+and the new righthand side \( \tilde{f}_i \) given by
+$$
+\tilde{f}_i= f_i - \frac{a_i\tilde{f}_{i-1}}{\tilde{b}_{i-1}}.
+$$
 
-<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   btemp <span style="color: #666666">=</span> b[<span style="color: #666666">1</span>];
-   u[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> f[<span style="color: #666666">1</span>]<span style="color: #666666">/</span>btemp;
-   <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=2</span> ; i <span style="color: #666666">&lt;=</span> n ; i<span style="color: #666666">++</span>) {
-      temp[i] <span style="color: #666666">=</span> c[i<span style="color: #666666">-1</span>]<span style="color: #666666">/</span>btemp;
-      btemp <span style="color: #666666">=</span> b[i]<span style="color: #666666">-</span>a[i]<span style="color: #666666">*</span>temp[i];
-      u[i] <span style="color: #666666">=</span> (f[i] <span style="color: #666666">-</span> a[i]<span style="color: #666666">*</span>u[i<span style="color: #666666">-1</span>])<span style="color: #666666">/</span>btemp;
-</pre></div>
+Recall that \( \tilde{b}_1=b_1 \) and \( \tilde{f}_1=f_1 \) always.
+
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec39">Gaussian Elimination and Tridiagonal matrices, project 1 </h2>
+<h2 id="___sec39">Backward substitution </h2>
 
 <p>
-Note that you should avoid cases with \( b_1=0 \). If that is the case, you should rewrite the equations
-as a set of order \( n-1 \) with \( u_2 \) eliminated.
-Finally we perform the backsubstitution leading to the following code
+The backward substitution gives then the final solution
+$$
+u_{i-1}= \frac{c_{i-1}u_i-\tilde{f}_{i-1}}{\tilde{b}_{i-1}},
+$$
 
-<p>
+with \( u_n=\tilde{f}_{i-1}/\tilde{b}_{i-1} \).
 
-<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=</span>n<span style="color: #666666">-1</span> ; i <span style="color: #666666">&gt;=</span> <span style="color: #666666">1</span> ; i<span style="color: #666666">--</span>) {
-      u[i] <span style="color: #666666">-=</span> temp[i<span style="color: #666666">+1</span>]<span style="color: #666666">*</span>u[i<span style="color: #666666">+1</span>];
-</pre></div>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
 <h2 id="___sec40">Gaussian Elimination and Tridiagonal matrices, project 1 </h2>
 
 <p>
-Note that our sums start with \( i=1 \) and that one  should avoid cases with \( b_1=0 \). If that is the case, you should rewrite the equations
-as a set of order \( n-1 \) with \( u_2 \) eliminated. However, a tridiagonal matrix problem is not a guarantee that we
-can find a solution. The matrix \( \mathbf{A} \) which rephrases a second derivative in a discretized form
-
+The matrix \( \mathbf{A} \) which rephrases a second derivative in a discretized form is much simpler than the general matrix
 $$
-    \mathbf{A} = \left(\begin{array}{cccccc}
+    \mathbf{A} = \begin{bmatrix}
                           2 & -1 & 0 & 0  &0  & 0\\
                           -1 & 2 & -1 &0 &0 &0 \\
                           0 & -1 & 2 & -1 & 0& 0 \\
                           0 & \dots   & \dots & \dots   &\dots & \dots \\
                           0 &0   &0  &-1  &2& -1 \\
                           0 &  0  &0  &0   &-1 & 2 \\
-                      \end{array} \right),
+                      \end{bmatrix}.
 $$
 
-fulfills the condition of a weak dominance of the diagonal, with
+This matrix fulfills the condition of a weak dominance of the diagonal, with
 \( |b_1| > |c_1| \), \( |b_n| > |a_n| \) and  \( |b_k| \ge |a_k|+|c_k| \) for \( k=2,3,\dots,n-1 \).
 This is a relevant but not sufficient condition to guarantee that the matrix \( \mathbf{A} \) yields a solution to a linear
 equation problem. The matrix needs also to be irreducible. A tridiagonal irreducible matrix means that all the elements \( a_i \) and
@@ -1380,38 +1377,37 @@ equation problem. The matrix needs also to be irreducible. A tridiagonal irreduc
 <p>
 When setting up the algo it is useful to note that the different
 operations on the matrix (here as a \( 4\times 4 \) case  with diagonals
-\( d_i \) and off-diagonals \( e_i \)
-
+\( d_i \) and off-diagonals \( e_i \)) give is an extremely simple algorithm, namely
 $$
-   \left(\begin{array}{cccc}
+   \begin{bmatrix}
                           d_1 & e_1 & 0 & 0 \\
-                          e_1 & d_2 & e_2 & 0 \\
-                          0 & e_2 & d_3 & e_3 \\
-                          0 & 0 & e_3 & d_4
-                      \end{array} \right)\rightarrow
-   \left(\begin{array}{cccc}
+                          e_2 & d_2 & e_2 & 0 \\
+                          0 & e_3 & d_3 & e_3 \\
+                          0 & 0 & e_4 & d_4
+                      \end{bmatrix}\rightarrow
+                 \begin{bmatrix}
                           d_1 & e_1 & 0 & 0 \\
                           0 & \tilde{d}_2 & e_2 & 0 \\
-                          0 & e_2 & d_3 & e_3 \\
-                          0 & 0 & e_3 & d_4
-                      \end{array} \right)\rightarrow
-   \left(\begin{array}{cccc}
+                          0 & e_3 & d_3 & e_3 \\
+                          0 & 0 & e_4 & d_4
+                      \end{bmatrix}\rightarrow
+                \begin{bmatrix}
                           d_1 & e_1 & 0 & 0 \\
                           0 & \tilde{d}_2 & e_2 & 0 \\
                           0 & 0 & \tilde{d}_3 & e_3 \\
-                          0 & 0 & e_3 & d_4
-                      \end{array} \right)
+                          0 & 0 & e_4 & d_4
+                      \end{bmatrix}
 $$
 
 and finally
 
 $$
-   \left(\begin{array}{cccc}
+                      \begin{bmatrix}
                           d_1 & e_1 & 0 & 0 \\
                           0 & \tilde{d}_2 & e_2 & 0 \\
                           0 & 0 & \tilde{d}_3 & e_3 \\
                           0 & 0 & 0 & \tilde{d}_4
-                      \end{array} \right)
+                      \end{bmatrix}
 $$
 
 <p>
@@ -1423,30 +1419,46 @@ $$
 We notice the sub-blocks which get repeated
 
 $$
-   \left(\begin{array}{cccc}
+   \begin{bmatrix}
                           d_1 & e_1 & 0 & 0 \\
                           0 & \tilde{d}_2 & e_2 & 0 \\
                           0 & 0 & \tilde{d}_3 & e_3 \\
                           0 & 0 & 0 & \tilde{d}_4
-                      \end{array} \right)
+                      \end{bmatrix}
 $$
 
 The matrices we often end up with in rewriting for for example partial differential equations,
-have the feature that all leading principal submatrices are non-singular. If the matrix
-is symmetric as well it can be rewritten as \( A=LDL^T \) with \( D \) the diagonal and we have the
-following relations
-\( a_{11} = d_1 \), \( a_{k,k-1}=e_{k-1}d_{k-1} \) for \( k=2,\dots,n \) and finally
-
-$$
-a_{kk} = d_k+e_{k-1}^2d_{k-1}=d_k+e_{k-1}a_{k,k-1}
-$$
-
-for \( k=2,\dots,n \).
+have the feature that all leading principal submatrices are non-singular.
 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec43"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/CppQtCodesLectures/MatrixTest" target="_blank">Program example</a> </h2>
+<h2 id="___sec43">Simple expressions for project 1 </h2>
+For the special matrix we can can actually precalculate the updated matrix elements \( \tilde{d}_i \). The non-diagonal elements \( e_i \) are unchanged.
+For our particular matrix in project 1 we have 
+$$
+\tilde{d}_i= 2 - \frac{1}{\tilde{d}_{i-1}}=\frac{i+1}{i},
+$$
+
+and the new righthand side \( \tilde{f}_i \) given by
+$$
+\tilde{f}_i= f_i + \frac{i\tilde{f}_{i-1}}{i+1}.
+$$
+
+Recall that \( \tilde{d}_1=2 \) and \( \tilde{f}_1=f_1 \).  These arrays can be set up before computing \( u \).
+
+<p>
+The backward substitution gives then the final solution
+$$
+u_{i-1}= -\frac{i}{i+1}\left(u_i-\tilde{f}_{i-1}\right),
+$$
+
+with \( u_n=\tilde{f}_{i-1}/\tilde{b}_{i-1} \).
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec44"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/CppQtCodesLectures/MatrixTest" target="_blank">Program example</a> </h2>
 
 <p>
 
@@ -1454,7 +1466,7 @@ for \( k=2,\dots,n \).
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/*</span>
 <span style="color: #408080; font-style: italic">**     Project1: a) and b)</span>
 <span style="color: #408080; font-style: italic">**     The algorithm for solving the tridiagonal matrix</span>
-<span style="color: #408080; font-style: italic">**     equation is implemented (requiering O(8n) FLOPS).</span>
+<span style="color: #408080; font-style: italic">**     equation is implemented (O(8n) FLOPS).</span>
 <span style="color: #408080; font-style: italic">*/</span>
 <span style="color: #BC7A00"># include &lt;iostream&gt;</span>
 <span style="color: #BC7A00"># include &lt;fstream&gt;</span>
@@ -1576,7 +1588,7 @@ ofstream ofile;
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec44">Linear Algebra Methods </h2>
+<h2 id="___sec45">Linear Algebra Methods </h2>
 
 <ul>
   <li> Gaussian elimination, \( O(2/3n^3) \) flops, general matrix</li>
@@ -1589,7 +1601,7 @@ ofstream ofile;
 
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec45">LU Decomposition </h2>
+<h2 id="___sec46">LU Decomposition </h2>
 
 <p>
 The LU decomposition method means that we can rewrite
@@ -1597,31 +1609,30 @@ this matrix as the product of two matrices \( \mathbf{L} \) and \( \mathbf{U} \)
 where
 
 $$
-\label{eq3}
-   \left(\begin{array}{cccc}
+   \begin{bmatrix}
                           a_{11} & a_{12} & a_{13} & a_{14} \\
                           a_{21} & a_{22} & a_{23} & a_{24} \\
                           a_{31} & a_{32} & a_{33} & a_{34} \\
                           a_{41} & a_{42} & a_{43} & a_{44}
-                      \end{array} \right)
-                      = \left( \begin{array}{cccc}
+                      \end{bmatrix}
+                      = \begin{bmatrix}
                               1  & 0      & 0      & 0 \\
                           l_{21} & 1      & 0      & 0 \\
                           l_{31} & l_{32} & 1      & 0 \\
                           l_{41} & l_{42} & l_{43} & 1
-                      \end{array} \right)
-                        \left( \begin{array}{cccc}
+                      \end{bmatrix}
+                        \begin{bmatrix}
                           u_{11} & u_{12} & u_{13} & u_{14} \\
                                0 & u_{22} & u_{23} & u_{24} \\
                                0 & 0      & u_{33} & u_{34} \\
                                0 & 0      &  0     & u_{44}
-             \end{array} \right).
+             \end{bmatrix}.
 $$
 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec46">LU Decomposition </h2>
+<h2 id="___sec47">LU Decomposition </h2>
 
 <p>
 LU decomposition forms the backbone of other algorithms in linear algebra, such as the
@@ -1650,7 +1661,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec47">LU Decomposition, why? </h2>
+<h2 id="___sec48">LU Decomposition, why? </h2>
 
 <p>
 There are at least three main advantages with LU decomposition compared with standard Gaussian elimination:
@@ -1663,7 +1674,7 @@ There are at least three main advantages with LU decomposition compared with sta
 
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec48">LU Decomposition, linear equations </h2>
+<h2 id="___sec49">LU Decomposition, linear equations </h2>
 
 <p>
 With the LU decomposition it is rather
@@ -1692,7 +1703,7 @@ $$ \mathbf{A} \mathbf{x} \equiv \mathbf{L} \mathbf{U} \mathbf{x} =\mathbf{w}. $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec49">LU Decomposition, linear equations </h2>
+<h2 id="___sec50">LU Decomposition, linear equations </h2>
 
 <p>
 The previous equation can be calculated in two steps
@@ -1725,7 +1736,7 @@ through \( \mathbf{Ux}=\mathbf{y} \).
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec50">LU Decomposition, why? </h2>
+<h2 id="___sec51">LU Decomposition, why? </h2>
 
 <p>
 For our four-dimentional example this takes the form
@@ -1758,7 +1769,7 @@ needed to solve the set of \( n \) linear equations.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec51">LU Decomposition, linear equations </h2>
+<h2 id="___sec52">LU Decomposition, linear equations </h2>
 
 <p>
 The algorithm goes as follows
@@ -1771,7 +1782,7 @@ The algorithm goes as follows
 
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec52">LU Decomposition, the inverse of a matrix </h2>
+<h2 id="___sec53">LU Decomposition, the inverse of a matrix </h2>
 
 <p>
 If the inverse exists then
@@ -1789,57 +1800,57 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec53">LU Decomposition, the inverse of a matrix </h2>
+<h2 id="___sec54">LU Decomposition, the inverse of a matrix </h2>
 
 <p>
 If we assume that the first column (that is column 1) of the inverse matrix
 can be written as a vector with unknown entries
 
 $$
-    \mathbf{A}_1^{-1}= \left( \begin{array}{c}
+    \mathbf{A}_1^{-1}= \begin{bmatrix}
                               a_{11}^{-1} \\
                               a_{21}^{-1} \\
                               \dots \\
                               a_{n1}^{-1} \\
-                    \end{array} \right),
+                    \end{bmatrix},
 $$
 
 then we have a linear set of equations
 
 $$
-    \mathbf{LU}\left( \begin{array}{c}
+    \mathbf{LU}\begin{bmatrix}
                               a_{11}^{-1} \\
                               a_{21}^{-1} \\
                               \dots \\
                               a_{n1}^{-1} \\
-                    \end{array} \right) =\left( \begin{array}{c}
+                    \end{bmatrix} =\begin{bmatrix}
                                1 \\
                               0 \\
                               \dots \\
                               0 \\
-                    \end{array} \right).
+                    \end{bmatrix}.
 $$
 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec54">LU Decomposition, the inverse </h2>
+<h2 id="___sec55">LU Decomposition, the inverse </h2>
 
 <p>
 In a similar way we can compute the unknow entries of the second column,
 
 $$
-    \mathbf{LU}\left( \begin{array}{c}
+    \mathbf{LU}\begin{bmatrix}
                               a_{12}^{-1} \\
                               a_{22}^{-1} \\
                               \dots \\
                               a_{n2}^{-1} \\
-                    \end{array} \right) =\left( \begin{array}{c}
+                    \end{bmatrix}=\begin{bmatrix}
                                 0 \\
                               1 \\
                               \dots \\
                               0 \\
-                    \end{array} \right),
+                    \end{bmatrix},
 $$
 
 and continue till we have solved all \( n \) sets of linear equations.
@@ -1847,7 +1858,7 @@ and continue till we have solved all \( n \) sets of linear equations.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec55"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_blank">How to use the Library functions</a> </h2>
+<h2 id="___sec56"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_blank">How to use the Library functions</a> </h2>
 
 <p>
 Standard C/C++: fetch the files <code>lib.cpp</code> and <code>lib.h</code>. You can make a directory where you store
@@ -1874,7 +1885,7 @@ these files, and eventually its compiled version lib.o. The example here is <a h
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec56"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_blank">How to use the Library functions</a> </h2>
+<h2 id="___sec57"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_blank">How to use the Library functions</a> </h2>
 
 <p>
 
@@ -1897,7 +1908,7 @@ these files, and eventually its compiled version lib.o. The example here is <a h
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec57"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_blank">How to use the Library functions</a> </h2>
+<h2 id="___sec58"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_blank">How to use the Library functions</a> </h2>
 
 <p>
 
@@ -1923,7 +1934,7 @@ these files, and eventually its compiled version lib.o. The example here is <a h
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec58"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary" target="_blank">How to use the Library functions</a> </h2>
+<h2 id="___sec59"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary" target="_blank">How to use the Library functions</a> </h2>
 
 <p>
 For Fortran users:
@@ -1948,7 +1959,7 @@ For Fortran users:
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec59"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary" target="_blank">How to use the Library functions</a> </h2>
+<h2 id="___sec60"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary" target="_blank">How to use the Library functions</a> </h2>
 
 <p>
 For Fortran users:
@@ -1972,7 +1983,7 @@ For Fortran users:
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec60"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp" target="_blank">Using Armadillo to perform an LU decomposition</a> </h2>
+<h2 id="___sec61"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp" target="_blank">Using Armadillo to perform an LU decomposition</a> </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
@@ -2007,7 +2018,7 @@ For Fortran users:
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec61">Iterative methods, Chapter 6 </h2>
+<h2 id="___sec62">Iterative methods, Chapter 6 </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2023,62 +2034,31 @@ For Fortran users:
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec62">Iterative methods, Jacobi's method </h2>
+<h2 id="___sec63">Iterative methods, Jacobi's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
 It is a simple method for solving
 $$ 
-\hat{A}\mathbf{x}=\mathbf{b},
+\mathbf{A}\mathbf{x}=\mathbf{b},
 $$
 
-where \( \hat{A} \) is a matrix and \( \mathbf{x} \) and \( \mathbf{b} \) are vectors. The vector \( \mathbf{x} \) is 
+where \( \mathbf{A} \) is a matrix and \( \mathbf{x} \) and \( \mathbf{b} \) are vectors. The vector \( \mathbf{x} \) is 
 the unknown.
 
 <p>
 It is an iterative scheme where we start with a guess for the unknown, and 
 after \( k+1 \) iterations we have  
 $$ 
-\mathbf{x}^{(k+1)}= \hat{D}^{-1}(\mathbf{b}-(\hat{L}+\hat{U})\mathbf{x}^{(k)}),
+\mathbf{x}^{(k+1)}= \mathbf{D}^{-1}(\mathbf{b}-(\mathbf{L}+\mathbf{U})\mathbf{x}^{(k)}),
 $$
 
-with \( \hat{A}=\hat{D}+\hat{U}+\hat{L} \) and
-\( \hat{D} \) being a diagonal matrix, \( \hat{U} \) an upper triangular matrix and \( \hat{L} \) a  lower triangular
+with \( \mathbf{A}=\mathbf{D}+\mathbf{U}+\mathbf{L} \) and
+\( \mathbf{D} \) being a diagonal matrix, \( \mathbf{U} \) an upper triangular matrix and \( \mathbf{L} \) a  lower triangular
 matrix.
 
 <p>
-If the matrix \( \hat{A} \) is positive definite or diagonally dominant, one can show that this method will always converge to the exact solution.
-</div>
-
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec63">Iterative methods, Jacobi's method </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-We can demonstrate Jacobi's method by this \( 4\times 4 \) matrix problem. We assume a guess
-for the vector elements \( x_i^{(0)} \), a guess which represents our first iteration. The new
-values are obtained by substitution
-$$
-\begin{eqnarray}
- x_1^{(1)} =&(b_1-a_{12}x_2^{(0)} -a_{13}x_3^{(0)} - a_{14}x_4^{(0)})/a_{11} \nonumber \\
- x_2^{(1)} =&(b_2-a_{21}x_1^{(0)} - a_{23}x_3^{(0)} - a_{24}x_4^{(0)})/a_{22} \nonumber \\
- x_3^{(1)} =&(b_3- a_{31}x_1^{(0)} -a_{32}x_2^{(0)} -a_{34}x_4^{(0)})/a_{33} \nonumber \\
- x_4^{(1)}=&(b_4-a_{41}x_1^{(0)} -a_{42}x_2^{(0)} - a_{43}x_3^{(0)})/a_{44},  \nonumber
-\end{eqnarray}
-$$
-
-which after \( k+1 \) iterations reads
-$$
-\begin{eqnarray}
- x_1^{(k+1)} =&(b_1-a_{12}x_2^{(k)} -a_{13}x_3^{(k)} - a_{14}x_4^{(k)})/a_{11} \nonumber \\
- x_2^{(k+1)} =&(b_2-a_{21}x_1^{(k)} - a_{23}x_3^{(k)} - a_{24}x_4^{(k)})/a_{22} \nonumber \\
- x_3^{(k+1)} =&(b_3- a_{31}x_1^{(k)} -a_{32}x_2^{(k)} -a_{34}x_4^{(k)})/a_{33} \nonumber \\
- x_4^{(k+1)}=&(b_4-a_{41}x_1^{(k)} -a_{42}x_2^{(k)} - a_{43}x_3^{(k)})/a_{44},  \nonumber
-\end{eqnarray}
-$$
+If the matrix \( \mathbf{A} \) is positive definite or diagonally dominant, one can show that this method will always converge to the exact solution.
 </div>
 
 
@@ -2089,50 +2069,49 @@ $$
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
-We can generalize the above equations to
+We can demonstrate Jacobi's method by this \( 4\times 4 \) matrix problem. We assume a guess
+for the vector elements \( x_i^{(0)} \), a guess which represents our first iteration. The new
+values are obtained by substitution
 $$
- x_i^{(k+1)}=(b_i-\sum_{j=1, j\ne i}^{n}a_{ij}x_j^{(k)})/a_{ii}
+\begin{align}
+ x_1^{(1)} =&(b_1-a_{12}x_2^{(0)} -a_{13}x_3^{(0)} - a_{14}x_4^{(0)})/a_{11} \nonumber \\
+ x_2^{(1)} =&(b_2-a_{21}x_1^{(0)} - a_{23}x_3^{(0)} - a_{24}x_4^{(0)})/a_{22} \nonumber \\
+ x_3^{(1)} =&(b_3- a_{31}x_1^{(0)} -a_{32}x_2^{(0)} -a_{34}x_4^{(0)})/a_{33} \nonumber \\
+ x_4^{(1)}=&(b_4-a_{41}x_1^{(0)} -a_{42}x_2^{(0)} - a_{43}x_3^{(0)})/a_{44},  \nonumber
+\end{align}
 $$
 
-or in an even more compact form as
-$$ \mathbf{x}^{(k+1)}= \hat{D}^{-1}(\mathbf{b}-(\hat{L}+\hat{U})\mathbf{x}^{(k)}),
+which after \( k+1 \) iterations reads
 $$
-
-with \( \hat{A}=\hat{D}+\hat{U}+\hat{L} \) and
-\( \hat{D} \) being a diagonal matrix, \( \hat{U} \) an upper triangular matrix and \( \hat{L} \) a  lower triangular
-matrix.
+\begin{align}
+ x_1^{(k+1)} =&(b_1-a_{12}x_2^{(k)} -a_{13}x_3^{(k)} - a_{14}x_4^{(k)})/a_{11} \nonumber \\
+ x_2^{(k+1)} =&(b_2-a_{21}x_1^{(k)} - a_{23}x_3^{(k)} - a_{24}x_4^{(k)})/a_{22} \nonumber \\
+ x_3^{(k+1)} =&(b_3- a_{31}x_1^{(k)} -a_{32}x_2^{(k)} -a_{34}x_4^{(k)})/a_{33} \nonumber \\
+ x_4^{(k+1)}=&(b_4-a_{41}x_1^{(k)} -a_{42}x_2^{(k)} - a_{43}x_3^{(k)})/a_{44},  \nonumber
+\end{align}
+$$
 </div>
 
 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec65">Iterative methods, Gauss-Seidel's method </h2>
+<h2 id="___sec65">Iterative methods, Jacobi's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
-Our \( 4\times 4 \) matrix problem 
+We can generalize the above equations to
 $$
-\begin{eqnarray}
- x_1^{(k+1)} =&(b_1-a_{12}x_2^{(k)} -a_{13}x_3^{(k)} - a_{14}x_4^{(k)})/a_{11} \nonumber \\
- x_2^{(k+1)} =&(b_2-a_{21}x_1^{(k)} - a_{23}x_3^{(k)} - a_{24}x_4^{(k)})/a_{22} \nonumber \\
- x_3^{(k+1)} =&(b_3- a_{31}x_1^{(k)} -a_{32}x_2^{(k)} -a_{34}x_4^{(k)})/a_{33} \nonumber \\
- x_4^{(k+1)}=&(b_4-a_{41}x_1^{(k)} -a_{42}x_2^{(k)} - a_{43}x_3^{(k)})/a_{44},  \nonumber
-\end{eqnarray}
+ x_i^{(k+1)}=(b_i-\sum_{j=1, j\ne i}^{n}a_{ij}x_j^{(k)})/a_{ii}
 $$
 
-can be rewritten as 
-$$
-\begin{eqnarray}
- x_1^{(k+1)} =&(b_1-a_{12}x_2^{(k)} -a_{13}x_3^{(k)} - a_{14}x_4^{(k)})/a_{11} \nonumber \\
- x_2^{(k+1)} =&(b_2-a_{21}x_1^{(k+1)} - a_{23}x_3^{(k)} - a_{24}x_4^{(k)})/a_{22} \nonumber \\
- x_3^{(k+1)} =&(b_3- a_{31}x_1^{(k+1)} -a_{32}x_2^{(k+1)} -a_{34}x_4^{(k)})/a_{33} \nonumber \\
- x_4^{(k+1)}=&(b_4-a_{41}x_1^{(k+1)} -a_{42}x_2^{(k+1)} - a_{43}x_3^{(k+1)})/a_{44},  \nonumber
-\end{eqnarray}
+or in an even more compact form as
+$$ \mathbf{x}^{(k+1)}= \mathbf{D}^{-1}(\mathbf{b}-(\mathbf{L}+\mathbf{U})\mathbf{x}^{(k)}),
 $$
 
-which allows us to utilize the preceding solution (forward substitution). This improves normally the convergence
-behavior and leads to the Gauss-Seidel method!
+with \( \mathbf{A}=\mathbf{D}+\mathbf{U}+\mathbf{L} \) and
+\( \mathbf{D} \) being a diagonal matrix, \( \mathbf{U} \) an upper triangular matrix and \( \mathbf{L} \) a  lower triangular
+matrix.
 </div>
 
 
@@ -2143,14 +2122,46 @@ behavior and leads to the Gauss-Seidel method!
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
-We can generalize 
+Our \( 4\times 4 \) matrix problem 
 $$
-\begin{eqnarray}
+\begin{align}
+ x_1^{(k+1)} =&(b_1-a_{12}x_2^{(k)} -a_{13}x_3^{(k)} - a_{14}x_4^{(k)})/a_{11} \nonumber \\
+ x_2^{(k+1)} =&(b_2-a_{21}x_1^{(k)} - a_{23}x_3^{(k)} - a_{24}x_4^{(k)})/a_{22} \nonumber \\
+ x_3^{(k+1)} =&(b_3- a_{31}x_1^{(k)} -a_{32}x_2^{(k)} -a_{34}x_4^{(k)})/a_{33} \nonumber \\
+ x_4^{(k+1)}=&(b_4-a_{41}x_1^{(k)} -a_{42}x_2^{(k)} - a_{43}x_3^{(k)})/a_{44},  \nonumber
+\end{align}
+$$
+
+can be rewritten as 
+$$
+\begin{align}
  x_1^{(k+1)} =&(b_1-a_{12}x_2^{(k)} -a_{13}x_3^{(k)} - a_{14}x_4^{(k)})/a_{11} \nonumber \\
  x_2^{(k+1)} =&(b_2-a_{21}x_1^{(k+1)} - a_{23}x_3^{(k)} - a_{24}x_4^{(k)})/a_{22} \nonumber \\
  x_3^{(k+1)} =&(b_3- a_{31}x_1^{(k+1)} -a_{32}x_2^{(k+1)} -a_{34}x_4^{(k)})/a_{33} \nonumber \\
  x_4^{(k+1)}=&(b_4-a_{41}x_1^{(k+1)} -a_{42}x_2^{(k+1)} - a_{43}x_3^{(k+1)})/a_{44},  \nonumber
-\end{eqnarray}
+\end{align}
+$$
+
+which allows us to utilize the preceding solution (forward substitution). This improves normally the convergence
+behavior and leads to the Gauss-Seidel method!
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec67">Iterative methods, Gauss-Seidel's method </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We can generalize 
+$$
+\begin{align}
+ x_1^{(k+1)} =&(b_1-a_{12}x_2^{(k)} -a_{13}x_3^{(k)} - a_{14}x_4^{(k)})/a_{11} \nonumber \\
+ x_2^{(k+1)} =&(b_2-a_{21}x_1^{(k+1)} - a_{23}x_3^{(k)} - a_{24}x_4^{(k)})/a_{22} \nonumber \\
+ x_3^{(k+1)} =&(b_3- a_{31}x_1^{(k+1)} -a_{32}x_2^{(k+1)} -a_{34}x_4^{(k)})/a_{33} \nonumber \\
+ x_4^{(k+1)}=&(b_4-a_{41}x_1^{(k+1)} -a_{42}x_2^{(k+1)} - a_{43}x_3^{(k+1)})/a_{44},  \nonumber
+\end{align}
 $$
 
 to the following form
@@ -2162,28 +2173,9 @@ The procedure is generally continued until the changes made by an iteration are 
 
 <p>
 The convergence properties of the Jacobi method and the 
-Gauss-Seidel method are dependent on the matrix \( \hat{A} \). These methods converge when
+Gauss-Seidel method are dependent on the matrix \( \mathbf{A} \). These methods converge when
 the matrix is symmetric positive-definite, or is strictly or irreducibly diagonally dominant.
 Both methods sometimes converge even if these conditions are not satisfied.
-</div>
-
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec67">Iterative methods, Successive over-relaxation </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-Given a square system of n linear equations with unknown \( \mathbf x \):
-$$
-    \hat{A}\mathbf x = \mathbf b
-$$
-
-where
-$$
-    \hat{A}=\begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\a_{n1} & a_{n2} & \cdots & a_{nn} \end{bmatrix}, \qquad \mathbf{x} = \begin{bmatrix} x_{1} \\ x_2 \\ \vdots \\ x_n \end{bmatrix} , \qquad \mathbf{b} = \begin{bmatrix} b_{1} \\ b_2 \\ \vdots \\ b_n \end{bmatrix}.
-$$
 </div>
 
 
@@ -2194,9 +2186,28 @@ $$
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
+Given a square system of n linear equations with unknown \( \mathbf x \):
+$$
+    \mathbf{A}\mathbf x = \mathbf b
+$$
+
+where
+$$
+    \mathbf{A}=\begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\a_{n1} & a_{n2} & \cdots & a_{nn} \end{bmatrix}, \qquad \mathbf{x} = \begin{bmatrix} x_{1} \\ x_2 \\ \vdots \\ x_n \end{bmatrix} , \qquad \mathbf{b} = \begin{bmatrix} b_{1} \\ b_2 \\ \vdots \\ b_n \end{bmatrix}.
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec69">Iterative methods, Successive over-relaxation </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
 Then A can be decomposed into a diagonal component D, and strictly lower and upper triangular components L and U:
 $$
-    \hat{A} =\hat{D} + \hat{L} + \hat{U},
+    \mathbf{A} =\mathbf{D} + \mathbf{L} + \mathbf{U},
 $$
 
 where
@@ -2216,7 +2227,7 @@ for a constant \( \omega > 1 \).
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec69">Iterative methods, Successive over-relaxation </h2>
+<h2 id="___sec70">Iterative methods, Successive over-relaxation </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2237,7 +2248,7 @@ The choice of relaxation factor is not necessarily easy, and depends upon the pr
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec70">Cubic Splines, Chapter 6 </h2>
+<h2 id="___sec71">Cubic Splines, Chapter 6 </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2268,17 +2279,17 @@ as follows
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec71">Splines </h2>
+<h2 id="___sec72">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
 As an example, consider a spline function of degree \( k=1 \) defined as follows
 $$
-    s(x)=\left\{\begin{array}{cc} s_0(x)=a_0x+b_0 & x\in [x_0, x_1) \\   
+    s(x)=\begin{bmatrix} s_0(x)=a_0x+b_0 & x\in [x_0, x_1) \\   
                              s_1(x)=a_1x+b_1 & x\in [x_1, x_2) \\   
                              \dots & \dots \\
                              s_{n-1}(x)=a_{n-1}x+b_{n-1} & x\in 
-                             [x_{n-1}, x_n] \end{array}\right.
+                             [x_{n-1}, x_n] \end{bmatrix}.
 $$
 
 In this case the polynomial consists of series of straight lines 
@@ -2293,7 +2304,7 @@ function values.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec72">Splines </h2>
+<h2 id="___sec73">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2320,7 +2331,7 @@ yielding \( 4n \) coefficients to determine.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec73">Splines </h2>
+<h2 id="___sec74">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2354,7 +2365,7 @@ freedom to be determined.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec74">Splines </h2>
+<h2 id="___sec75">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2386,21 +2397,22 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec75">Splines </h2>
+<h2 id="___sec76">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
 Using the conditions \( s_i(x_i)=y_i \) and \( s_i(x_{i+1})=y_{i+1} \) 
 we can in turn determine the constants \( c \) and \( d \) resulting in
 $$
-\begin{eqnarray}
+\begin{align}
    s_i(x) =&\frac{f_i}{6(x_{i+1}-x_i)}(x_{i+1}-x)^3+
                \frac{f_{i+1}}{6(x_{i+1}-x_i)}(x-x_i)^3 \nonumber  \\ 
             +&(\frac{y_{i+1}}{x_{i+1}-x_i}-\frac{f_{i+1}(x_{i+1}-x_i)}{6})
               (x-x_i)+
              (\frac{y_{i}}{x_{i+1}-x_i}-\frac{f_{i}(x_{i+1}-x_i)}{6})
              (x_{i+1}-x).
-\end{eqnarray}
+\label{_auto13}
+\end{align}
 $$
 </div>
 
@@ -2408,7 +2420,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec76">Splines </h2>
+<h2 id="___sec77">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2436,30 +2448,30 @@ solved  through e.g., Gaussian elemination
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec77">Splines </h2>
+<h2 id="___sec78">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
 Gaussian elimination
 $$
-   \left[\begin{array}{cccccccc} u_1 & h_1 &0 &\dots & & & & \\
+   \begin{bmatrix} u_1 & h_1 &0 &\dots & & & & \\
                                  h_1 & u_2 & h_2 &0 &\dots & & & \\
                                   0   & h_2 & u_3 & h_3 &0 &\dots & & \\
                                \dots& & \dots &\dots &\dots &\dots &\dots & \\
                                  &\dots & & &0 &h_{n-3} &u_{n-2} &h_{n-2} \\
-                                 & && & &0 &h_{n-2} &u_{n-1} \end{array}\right]
-   \left[\begin{array}{c} f_1 \\ 
+                                 & && & &0 &h_{n-2} &u_{n-1} \end{bmatrix}
+   \begin{bmatrix} f_1 \\ 
                           f_2 \\
                           f_3\\
                           \dots \\
                           f_{n-2} \\ 
-                          f_{n-1} \end{array} \right] =
-   \left[\begin{array}{c} v_1 \\ 
+                          f_{n-1} \end{bmatrix} =
+   \begin{bmatrix} v_1 \\ 
                           v_2 \\
                           v_3\\
                           \dots \\
                           v_{n-2}\\
-                          v_{n-1} \end{array} \right].
+                          v_{n-1} \end{bmatrix}.
 $$
 
 Note that this is a set of tridiagonal equations and can be solved 
@@ -2470,7 +2482,7 @@ through only \( O(n) \) operations.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec78">Splines </h2>
+<h2 id="___sec79">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2498,7 +2510,7 @@ and is called only once.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec79">Splines </h2>
+<h2 id="___sec80">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>

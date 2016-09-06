@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -97,41 +106,35 @@ Automatically generated HTML file from DocOnce source
                2,
                None,
                '___sec38'),
-              ('Gaussian Elimination and Tridiagonal matrices, project 1',
-               2,
-               None,
-               '___sec39'),
+              ('Backward substitution', 2, None, '___sec39'),
               ('Gaussian Elimination and Tridiagonal matrices, project 1',
                2,
                None,
                '___sec40'),
               ('Project 1, hints', 2, None, '___sec41'),
               ('Project 1, hints', 2, None, '___sec42'),
+              ('Simple expressions for project 1', 2, None, '___sec43'),
               ('"Program example":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/CppQtCodesLectures/MatrixTest"',
                2,
                None,
-               '___sec43'),
-              ('Linear Algebra Methods', 2, None, '___sec44'),
-              ('LU Decomposition', 2, None, '___sec45'),
+               '___sec44'),
+              ('Linear Algebra Methods', 2, None, '___sec45'),
               ('LU Decomposition', 2, None, '___sec46'),
-              ('LU Decomposition, why?', 2, None, '___sec47'),
-              ('LU Decomposition, linear equations', 2, None, '___sec48'),
+              ('LU Decomposition', 2, None, '___sec47'),
+              ('LU Decomposition, why?', 2, None, '___sec48'),
               ('LU Decomposition, linear equations', 2, None, '___sec49'),
-              ('LU Decomposition, why?', 2, None, '___sec50'),
-              ('LU Decomposition, linear equations', 2, None, '___sec51'),
-              ('LU Decomposition, the inverse of a matrix',
-               2,
-               None,
-               '___sec52'),
+              ('LU Decomposition, linear equations', 2, None, '___sec50'),
+              ('LU Decomposition, why?', 2, None, '___sec51'),
+              ('LU Decomposition, linear equations', 2, None, '___sec52'),
               ('LU Decomposition, the inverse of a matrix',
                2,
                None,
                '___sec53'),
-              ('LU Decomposition, the inverse', 2, None, '___sec54'),
-              ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"',
+              ('LU Decomposition, the inverse of a matrix',
                2,
                None,
-               '___sec55'),
+               '___sec54'),
+              ('LU Decomposition, the inverse', 2, None, '___sec55'),
               ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"',
                2,
                None,
@@ -140,7 +143,7 @@ Automatically generated HTML file from DocOnce source
                2,
                None,
                '___sec57'),
-              ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary"',
+              ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"',
                2,
                None,
                '___sec58'),
@@ -148,23 +151,23 @@ Automatically generated HTML file from DocOnce source
                2,
                None,
                '___sec59'),
-              ('"Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"',
+              ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary"',
                2,
                None,
                '___sec60'),
-              ('Iterative methods, Chapter 6', 2, None, '___sec61'),
-              ("Iterative methods, Jacobi's method", 2, None, '___sec62'),
-              ("Iterative methods, Jacobi's method", 2, None, '___sec63'),
-              ("Iterative methods, Jacobi's method", 2, None, '___sec64'),
-              ("Iterative methods, Gauss-Seidel's method",
+              ('"Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"',
                2,
                None,
-               '___sec65'),
+               '___sec61'),
+              ('Iterative methods, Chapter 6', 2, None, '___sec62'),
+              ("Iterative methods, Jacobi's method", 2, None, '___sec63'),
+              ("Iterative methods, Jacobi's method", 2, None, '___sec64'),
+              ("Iterative methods, Jacobi's method", 2, None, '___sec65'),
               ("Iterative methods, Gauss-Seidel's method",
                2,
                None,
                '___sec66'),
-              ('Iterative methods, Successive over-relaxation',
+              ("Iterative methods, Gauss-Seidel's method",
                2,
                None,
                '___sec67'),
@@ -176,8 +179,11 @@ Automatically generated HTML file from DocOnce source
                2,
                None,
                '___sec69'),
-              ('Cubic Splines, Chapter 6', 2, None, '___sec70'),
-              ('Splines', 2, None, '___sec71'),
+              ('Iterative methods, Successive over-relaxation',
+               2,
+               None,
+               '___sec70'),
+              ('Cubic Splines, Chapter 6', 2, None, '___sec71'),
               ('Splines', 2, None, '___sec72'),
               ('Splines', 2, None, '___sec73'),
               ('Splines', 2, None, '___sec74'),
@@ -185,7 +191,8 @@ Automatically generated HTML file from DocOnce source
               ('Splines', 2, None, '___sec76'),
               ('Splines', 2, None, '___sec77'),
               ('Splines', 2, None, '___sec78'),
-              ('Splines', 2, None, '___sec79')]}
+              ('Splines', 2, None, '___sec79'),
+              ('Splines', 2, None, '___sec80')]}
 end of tocinfo -->
 
 <body>
@@ -262,39 +269,39 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._linalg-bs037.html#___sec36" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs038.html#___sec37" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs039.html#___sec38" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs040.html#___sec39" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs040.html#___sec39" style="font-size: 80%;">Backward substitution</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs041.html#___sec40" style="font-size: 80%;">Gaussian Elimination and Tridiagonal matrices, project 1</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs042.html#___sec41" style="font-size: 80%;">Project 1, hints</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs043.html#___sec42" style="font-size: 80%;">Project 1, hints</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs044.html#___sec43" style="font-size: 80%;">"Program example":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/CppQtCodesLectures/MatrixTest"</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs045.html#___sec44" style="font-size: 80%;">Linear Algebra Methods</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs046.html#___sec45" style="font-size: 80%;">LU Decomposition</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs044.html#___sec43" style="font-size: 80%;">Simple expressions for project 1</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs045.html#___sec44" style="font-size: 80%;">"Program example":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/CppQtCodesLectures/MatrixTest"</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs046.html#___sec45" style="font-size: 80%;">Linear Algebra Methods</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs047.html#___sec46" style="font-size: 80%;">LU Decomposition</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs048.html#___sec47" style="font-size: 80%;">LU Decomposition, why?</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs049.html#___sec48" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs048.html#___sec47" style="font-size: 80%;">LU Decomposition</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs049.html#___sec48" style="font-size: 80%;">LU Decomposition, why?</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs050.html#___sec49" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs051.html#___sec50" style="font-size: 80%;">LU Decomposition, why?</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs052.html#___sec51" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs053.html#___sec52" style="font-size: 80%;">LU Decomposition, the inverse of a matrix</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs051.html#___sec50" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs052.html#___sec51" style="font-size: 80%;">LU Decomposition, why?</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs053.html#___sec52" style="font-size: 80%;">LU Decomposition, linear equations</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs054.html#___sec53" style="font-size: 80%;">LU Decomposition, the inverse of a matrix</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs055.html#___sec54" style="font-size: 80%;">LU Decomposition, the inverse</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs056.html#___sec55" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs055.html#___sec54" style="font-size: 80%;">LU Decomposition, the inverse of a matrix</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs056.html#___sec55" style="font-size: 80%;">LU Decomposition, the inverse</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs057.html#___sec56" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs058.html#___sec57" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs059.html#___sec58" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary"</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs059.html#___sec58" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs060.html#___sec59" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary"</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs061.html#___sec60" style="font-size: 80%;">"Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs062.html#___sec61" style="font-size: 80%;">Iterative methods, Chapter 6</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs063.html#___sec62" style="font-size: 80%;">Iterative methods, Jacobi's method</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs061.html#___sec60" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary"</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs062.html#___sec61" style="font-size: 80%;">"Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs063.html#___sec62" style="font-size: 80%;">Iterative methods, Chapter 6</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs064.html#___sec63" style="font-size: 80%;">Iterative methods, Jacobi's method</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs065.html#___sec64" style="font-size: 80%;">Iterative methods, Jacobi's method</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs066.html#___sec65" style="font-size: 80%;">Iterative methods, Gauss-Seidel's method</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs066.html#___sec65" style="font-size: 80%;">Iterative methods, Jacobi's method</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs067.html#___sec66" style="font-size: 80%;">Iterative methods, Gauss-Seidel's method</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs068.html#___sec67" style="font-size: 80%;">Iterative methods, Successive over-relaxation</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs068.html#___sec67" style="font-size: 80%;">Iterative methods, Gauss-Seidel's method</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs069.html#___sec68" style="font-size: 80%;">Iterative methods, Successive over-relaxation</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs070.html#___sec69" style="font-size: 80%;">Iterative methods, Successive over-relaxation</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs071.html#___sec70" style="font-size: 80%;">Cubic Splines, Chapter 6</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs072.html#___sec71" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs071.html#___sec70" style="font-size: 80%;">Iterative methods, Successive over-relaxation</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs072.html#___sec71" style="font-size: 80%;">Cubic Splines, Chapter 6</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs073.html#___sec72" style="font-size: 80%;">Splines</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs074.html#___sec73" style="font-size: 80%;">Splines</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs075.html#___sec74" style="font-size: 80%;">Splines</a></li>
@@ -303,6 +310,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._linalg-bs078.html#___sec77" style="font-size: 80%;">Splines</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs079.html#___sec78" style="font-size: 80%;">Splines</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs080.html#___sec79" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs081.html#___sec80" style="font-size: 80%;">Splines</a></li>
 
         </ul>
       </li>
@@ -318,7 +326,7 @@ MathJax.Hub.Config({
 <a name="part0025"></a>
 <!-- !split -->
 
-<h2 id="___sec24">Armadillo, simple examples </h2>
+<h2 id="___sec24" class="anchor">Armadillo, simple examples </h2>
 
 <p>
 
@@ -371,7 +379,7 @@ MathJax.Hub.Config({
   <li><a href="._linalg-bs033.html">34</a></li>
   <li><a href="._linalg-bs034.html">35</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._linalg-bs080.html">81</a></li>
+  <li><a href="._linalg-bs081.html">82</a></li>
   <li><a href="._linalg-bs026.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
