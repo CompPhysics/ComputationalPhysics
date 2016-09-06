@@ -914,7 +914,7 @@ The backward substitution gives then the final solution
 u_{i-1}= \frac{\tilde{f}_{i-1}-c_{i-1}u_i}{\tilde{b}_{i-1}},
 \]
 !et
-with $u_n=\tilde{f}_{i}/\tilde{b}_{i}$.
+with $u_n=\tilde{f}_{n}/\tilde{b}_{n}$ when $i=n$, the last point.
 
 
 !split
@@ -1022,7 +1022,7 @@ The backward substitution gives then the final solution
 u_{i-1}= \frac{i}{i+1}\left(\tilde{f}_{i-1}-u_i\right),
 \]
 !et
-with $u_n=\tilde{f}_{i}/\tilde{b}_{i}$.
+with $u_n=\tilde{f}_{n}/\tilde{b}_{n}$.
 
 
 !split
