@@ -1335,10 +1335,10 @@ Recall that \( \tilde{b}_1=b_1 \) and \( \tilde{f}_1=f_1 \) always.
 <p>
 The backward substitution gives then the final solution
 $$
-u_{i-1}= \frac{c_{i-1}u_i-\tilde{f}_{i-1}}{\tilde{b}_{i-1}},
+u_{i-1}= \frac{\tilde{f}_{i-1}-c_{i-1}u_i}{\tilde{b}_{i-1}},
 $$
 
-with \( u_n=\tilde{f}_{i-1}/\tilde{b}_{i-1} \).
+with \( u_n=\tilde{f}_{i}/\tilde{b}_{i} \).
 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -1445,10 +1445,10 @@ Recall that \( \tilde{d}_1=2 \) and \( \tilde{f}_1=f_1 \).  These arrays can be 
 <p>
 The backward substitution gives then the final solution
 $$
-u_{i-1}= -\frac{i}{i+1}\left(u_i-\tilde{f}_{i-1}\right),
+u_{i-1}= \frac{i}{i+1}\left(\tilde{f}_{i-1}-u_i\right),
 $$
 
-with \( u_n=\tilde{f}_{i-1}/\tilde{b}_{i-1} \).
+with \( u_n=\tilde{f}_{i}/\tilde{b}_{i} \).
 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
