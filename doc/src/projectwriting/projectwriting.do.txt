@@ -91,13 +91,24 @@ The conventions and techniques outlined here will save you a lot of time when yo
 !split
 ===== The report: how to write a good scienfitic/technical report =====
 !bblock What should it contain? A typical structure
+ * An abstract where you give the main summary of your work
  * An introduction where you explain the aims and rationale for the physics case and  what you have done. At the end of the introduction you should give a brief summary of the structure of the report
- * Theoretical models and technicalities. This is the methods section.
+ * Theoretical models and technicalities. This is the methods section
  * Results and discussion
  * Conclusions and perspectives
  * Appendix with extra material
  * Bibliography
 Keep always a good log of what you do.
+!eblock
+
+!split
+===== The report, the abstract =====
+!bblock 
+The abstract gives the reader a quick overview of what has been done and the most important results. Here is a typical example
+taken from a scientific article
+
+_We study the collective motion of a suspension of rodlike microswimmers in a two-dimensional film of viscoelastic fluids. We find that the fluid elasticity has a small effect on a suspension of pullers, while it significantly affects the pushers. The attraction and orientational ordering of the pushers are enhanced in viscoelastic fluids. The induced polymer stresses break down the large-scale flow structures and suppress velocity fluctuations. In addition, the energy spectra and induced mixing in the suspension of pushers are greatly modified by fluid elasticity._
+
 !eblock
 
 !split
@@ -108,6 +119,7 @@ You don't need to answer all questions in a chronological order.  When you write
  * What I have done
  * The structure of the report, how it is organized etc
 !eblock
+
 
 
 !split
@@ -154,6 +166,15 @@ You can consider moving parts of the material from the methods section to the ap
  * Give always references to material you base your work on, either  scientific articles/reports or books.
  * Refer to articles as: name(s) of author(s), journal, volume (boldfaced), page and year in parenthesis.
  * Refer to books as: name(s) of author(s), title of book, publisher, place and year, eventual page numbers
+!eblock
+
+
+!split
+===== Where do I find scientific articles, books etc and examples of reports  =====
+!bblock 
+ * With a UiO IP number you can access freely all books and scientific journals available at our "University library":"http://www.ub.uio.no/"
+ * For scientific articles, go to for example the journal "Physical Review Letters of the American Physical Society":"http://journals.aps.org/prl/issues/117/10"
+ * For project examples and how we give feedback on projects, go to the project folder of the course and click on the "ProjectExample link":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/ProjectExample".
 !eblock
   
 

@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -63,20 +72,25 @@ $(function () {
                2,
                None,
                '___sec7'),
-              ('The report, the introduction', 2, None, '___sec8'),
-              ('The report, discussion of methods', 2, None, '___sec9'),
-              ('The report, results part', 2, None, '___sec10'),
+              ('The report, the abstract', 2, None, '___sec8'),
+              ('The report, the introduction', 2, None, '___sec9'),
+              ('The report, discussion of methods', 2, None, '___sec10'),
+              ('The report, results part', 2, None, '___sec11'),
               ('The report, conclusions and perspectives',
                2,
                None,
-               '___sec11'),
-              ('The report, appendices', 2, None, '___sec12'),
-              ('The report, references', 2, None, '___sec13'),
+               '___sec12'),
+              ('The report, appendices', 2, None, '___sec13'),
+              ('The report, references', 2, None, '___sec14'),
+              ('Where do I find scientific articles, books etc and examples of reports',
+               2,
+               None,
+               '___sec15'),
               ('How can I use Python and _matplotlib_ to make figures for my report',
                2,
                None,
-               '___sec14'),
-              ('The Python code', 2, None, '___sec15')]}
+               '___sec16'),
+              ('The Python code', 2, None, '___sec17')]}
 end of tocinfo -->
 
 <body>
@@ -122,14 +136,16 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._projectwriting-bs006.html#___sec5" style="font-size: 80%;">Some basic ingredients for a successful numerical project</a></li>
      <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">More basic ingredients</a></li>
      <!-- navigation toc: --> <li><a href="._projectwriting-bs008.html#___sec7" style="font-size: 80%;">The report: how to write a good scienfitic/technical report</a></li>
-     <!-- navigation toc: --> <li><a href="._projectwriting-bs009.html#___sec8" style="font-size: 80%;">The report, the introduction</a></li>
-     <!-- navigation toc: --> <li><a href="._projectwriting-bs010.html#___sec9" style="font-size: 80%;">The report, discussion of methods</a></li>
-     <!-- navigation toc: --> <li><a href="._projectwriting-bs011.html#___sec10" style="font-size: 80%;">The report, results part</a></li>
-     <!-- navigation toc: --> <li><a href="._projectwriting-bs012.html#___sec11" style="font-size: 80%;">The report, conclusions and perspectives</a></li>
-     <!-- navigation toc: --> <li><a href="._projectwriting-bs013.html#___sec12" style="font-size: 80%;">The report, appendices</a></li>
-     <!-- navigation toc: --> <li><a href="._projectwriting-bs014.html#___sec13" style="font-size: 80%;">The report, references</a></li>
-     <!-- navigation toc: --> <li><a href="._projectwriting-bs015.html#___sec14" style="font-size: 80%;">How can I use Python and <b>matplotlib</b> to make figures for my report</a></li>
-     <!-- navigation toc: --> <li><a href="._projectwriting-bs016.html#___sec15" style="font-size: 80%;">The Python code</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs009.html#___sec8" style="font-size: 80%;">The report, the abstract</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs010.html#___sec9" style="font-size: 80%;">The report, the introduction</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs011.html#___sec10" style="font-size: 80%;">The report, discussion of methods</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs012.html#___sec11" style="font-size: 80%;">The report, results part</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs013.html#___sec12" style="font-size: 80%;">The report, conclusions and perspectives</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs014.html#___sec13" style="font-size: 80%;">The report, appendices</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs015.html#___sec14" style="font-size: 80%;">The report, references</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs016.html#___sec15" style="font-size: 80%;">Where do I find scientific articles, books etc and examples of reports</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs017.html#___sec16" style="font-size: 80%;">How can I use Python and <b>matplotlib</b> to make figures for my report</a></li>
+     <!-- navigation toc: --> <li><a href="._projectwriting-bs018.html#___sec17" style="font-size: 80%;">The Python code</a></li>
 
         </ul>
       </li>
@@ -145,7 +161,7 @@ MathJax.Hub.Config({
 <a name="part0007"></a>
 <!-- !split -->
 
-<h2 id="___sec6">More basic ingredients  </h2>
+<h2 id="___sec6" class="anchor">More basic ingredients  </h2>
 The conventions and techniques outlined here will save you a lot of time when you incrementally extend software over time from simpler to more complicated problems. In particular, you will benefit from many good habits:
 
 <ol>
@@ -177,6 +193,8 @@ The conventions and techniques outlined here will save you a lot of time when yo
   <li><a href="._projectwriting-bs014.html">15</a></li>
   <li><a href="._projectwriting-bs015.html">16</a></li>
   <li><a href="._projectwriting-bs016.html">17</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._projectwriting-bs018.html">19</a></li>
   <li><a href="._projectwriting-bs008.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->

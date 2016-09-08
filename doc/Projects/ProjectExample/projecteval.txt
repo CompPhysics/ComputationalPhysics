@@ -15,11 +15,15 @@ Mark and comments:
 
 Mark and comments: 
 
-*Analysis: of results and the effectiveness of their selection and presentation. Are the results well understood and discussed? Total number of possible points: 30*
+*Code/Implementations/test: Readability of code, implementation, testing and discussion of benchmarks. Total number of possible points 20*
 
 Mark and comments: 
 
-*Conclusions, discussions and critical comments: on what was learned about the method used and on the results obtained. Possible directions and future improvements? Total number of possible points: 20*
+*Analysis: of results and the effectiveness of their selection and presentation. Are the results well understood and discussed? Total number of possible points: 20*
+
+Mark and comments: 
+
+*Conclusions, discussions and critical comments: on what was learned about the method used and on the results obtained. Possible directions and future improvements? Total number of possible points: 10*
 
 Mark and comments: 
 
