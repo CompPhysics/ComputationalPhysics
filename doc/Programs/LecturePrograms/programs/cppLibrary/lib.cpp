@@ -3,28 +3,6 @@
     **             lib.cpp
     **
 
-TID time_step(int num)
-    ** calculates start and stop time and returns the difference.                
-    ** Input data:                            
-    **    int number  = 1 for start - zero return values     
-    **                = 2 for stop  - return time from last start
-    **    TID run     - returns the time difference. 
-
-void  **matrix(int row, int col, int num_bytes) 
-    ** reserves dynamic memory for a two-dimensional matrix 
-    ** using the C++ command new . No initialization of the elements. 
-    ** Input data:                      
-    **  int row      - number of  rows          
-    **  int col      - number of columns        
-    **  int num_bytes- number of bytes for each 
-    **                 element                  
-    ** Returns a void  **pointer to the reserved memory location.                                
-
-void free_matrix(void **matr)
-    ** releases the memory reserved by the function matrix() 
-    ** for the two-dimensional matrix[][] 
-    ** Input data:                          
-    **  void  **matr - pointer to the matrix
 
 void rk4(double *y, double *dydx, int n, double x, double h, double  *yout,
 	                void (*derivs)(double, double *, double *))
@@ -145,28 +123,6 @@ void polint(double xa[], double ya[], int n, double x, double *y, double *dy)
     ** of degree N - 1 such that P(xa_i) = ya_i, i = 0,..,n-1, then the returned 
     ** value is y = P(x). 
 
-double rtbis(double (*func)(double), double x1, double x2, double xacc)
-    ** calculates a root between x1 and x2 of a function
-    ** pointed to by (*func) using the method of bisection  
-    ** The root is returned with an accuracy of +- xacc.
-
-double rtsec(double (*func)(double), double x1, double x2, double xacc)
-    ** calculates a root between x1 and x2 of a function
-    ** pointed to by (*func) using the secant method.
-    ** The root is returned with an accuracy of +- xacc.
-
-double rtnewt(void (*funcd)(double, double *, double *), double x1, double x2, double xacc)
-   ** calculates a root between x1 and x2 of a function pointed to
-    ** by (*funcd) using the Newton-Raphson method. The user-defined
-    ** function funcd() returns both the function value and its first
-    ** derivative at the point x,
-    ** The root is returned with an accuracy of +- xacc.
-
-double zbrent(double (*func)(double), double x1, double x2, double xacc)
-    ** calculates a root between x1 and x2 of a function
-    ** pointed to by (*funcd) using the Brent's method.
-    ** The root is returned with an accuracy of +- xacc.
-
 double ran0(long *idum)
     ** is an "Minimal" random number generator of Park and Miller
     ** (see Numerical recipe page 279). Set or reset the input value
@@ -204,58 +160,6 @@ double ran3(long *idum)
 
 #include "lib.h"
 
-
-    /*
-    ** The function                           
-    **      TID time_step(..)                 
-    ** calculates start and stop time and returns the difference.                
-    ** Input data:                            
-    **    int number  = 1 for start - zero return values     
-    **                = 2 for stop  - return time from last start
-    **    TID run     - returns the time difference. 
-    */
-
-TID time_step(int num)
-{
-  unsigned long long int
-                           num_sec;
-
-  static long
-                           zsec = 0, zusec = 0;
-  double
-                           retval;
-  TID
-                           ex_time;
-  struct timeval
-                           tp;
-
-  if(num == 1) {              // initialization of time
-
-    zsec  = tp.tv_sec;
-    zusec = tp.tv_usec;
-
-    ex_time.sec  = 0;
-    ex_time.min  = 0;
-    ex_time.hour = 0;
-  }
-  else if(num == 2) {
-
-    retval = (double)(tp.tv_sec - zsec) + (tp.tv_usec - zusec) * 0.000001;
-
-    num_sec = (unsigned long long int)retval;
-    ex_time.sec  = num_sec % 60;
-    ex_time.min  = num_sec / 60;
-    ex_time.hour = ex_time.min/ 60;
-    ex_time.min  = ex_time.min % 60;
-  }
-  else {
-    printf("\n\nError in function time_step(): ");
-    printf("\nInput data num = %d is wrong !!\n\n", num);
-    exit(1);
-  }
-  return ex_time;
-
-} // End: function time_step()
 
   /*
    * The function                             

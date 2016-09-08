@@ -19,7 +19,6 @@ using namespace std;
 
 #define   NULL_PTR   (void *) 0
 #define   ZERO       1.0E-10
-//#define   INFINITY   1.0E15
 #define   UL         unsigned long
 
          /* a macro used in function pythag() */
@@ -32,19 +31,8 @@ static float sqrarg;
 
 #define   SIGN(a,b) ((b)<0 ? -fabs(a) : fabs(a))
 
-    // ******   data declaration  ******* 
-
-typedef   struct  {   // structure definition for execution time   
-  unsigned long long int
-                          tick,
-                           sec,
-                           min,
-                          hour;
-} TID; 
-
     // Function declarations
 
-TID time_step(int num);
 void  **matrix(int, int, int);
 void free_matrix(void **);
 void rk4(double *, double *, int, double, double, double  *,
@@ -61,10 +49,6 @@ double trapezoidal_rule(double, double, int, double (*func)(double));
 void spline(double *, double *, int, double, double, double *);
 void splint(double *, double *, double *, int, double, double *);
 void polint(double *, double *, int, double, double *, double *);
-double rtbis(double(*func)(double), double, double, double);
-double rtsec(double( *func)(double), double, double, double);
-double rtnewt(void ( *funcd)(double, double *, double *), double, double, double);
-double zbrent(double( *func)(double), double, double, double);
 double ran0(long *);
 double ran1(long *);
 double ran2(long *);
