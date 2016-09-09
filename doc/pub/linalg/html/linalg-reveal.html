@@ -1456,7 +1456,7 @@ $$
 and the new righthand side \( \tilde{f}_i \) given by
 <p>&nbsp;<br>
 $$
-\tilde{f}_i= f_i + \frac{i\tilde{f}_{i-1}}{i+1}.
+\tilde{f}_i= f_i + \frac{(i-1)\tilde{f}_{i-1}}{i}.
 $$
 <p>&nbsp;<br>
 
@@ -1466,7 +1466,7 @@ Recall that \( \tilde{d}_1=2 \) and \( \tilde{f}_1=f_1 \).  These arrays can be 
 The backward substitution gives then the final solution
 <p>&nbsp;<br>
 $$
-u_{i-1}= \frac{i}{i+1}\left(\tilde{f}_{i-1}-u_i\right),
+u_{i-1}= \frac{i-1}{i}\left(\tilde{f}_{i-1}-u_i\right),
 $$
 <p>&nbsp;<br>
 

@@ -335,7 +335,7 @@ $$
 
 and the new righthand side \( \tilde{f}_i \) given by
 $$
-\tilde{f}_i= f_i + \frac{i\tilde{f}_{i-1}}{i+1}.
+\tilde{f}_i= f_i + \frac{(i-1)\tilde{f}_{i-1}}{i}.
 $$
 
 Recall that \( \tilde{d}_1=2 \) and \( \tilde{f}_1=f_1 \).  These arrays can be set up before computing \( u \).
@@ -343,7 +343,7 @@ Recall that \( \tilde{d}_1=2 \) and \( \tilde{f}_1=f_1 \).  These arrays can be 
 <p>
 The backward substitution gives then the final solution
 $$
-u_{i-1}= \frac{i}{i+1}\left(\tilde{f}_{i-1}-u_i\right),
+u_{i-1}= \frac{i-1}{i}\left(\tilde{f}_{i-1}-u_i\right),
 $$
 
 with \( u_n=\tilde{f}_{n}/\tilde{b}_{n} \).
