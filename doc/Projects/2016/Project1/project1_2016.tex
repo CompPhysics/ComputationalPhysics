@@ -154,7 +154,7 @@ The general one-dimensional Poisson equation reads then
 
 \begin{enumerate}
 \item[(a)] 
-In this project we will solve the one-dimensional Poissson equation
+In this project we will solve the one-dimensional Poisson equation
 with Dirichlet boundary conditions by rewriting it as a set of linear equations.
 
 
@@ -229,7 +229,7 @@ Our linear equation reads
 Note well that we do not include the endpoints since the boundary conditions are used resulting in a fixed value for $v_i$.
 A tridiagonal matrix is a special form of banded matrix where all the elements are zero except for 
 those on and immediately above and below the leading diagonal.
-Develop a general algorithm first which does does not assume that we have a matrix with the same elements along the diagonal and the non-diagonal elements.
+Develop a general algorithm first which does not assume that we have a matrix with the same elements along the diagonal and the non-diagonal elements.
 The algorithm for solving this set of equations is rather simple and requires two steps only, a decomposition 
 and forward substitution and finally a backward substitution. 
 
@@ -258,7 +258,7 @@ Compute the relative error  in the data set $i=1,\dots, n$,by setting up
 \]
 as function of $log_{10}(h)$ for the function values $u_i$ and $v_i$.
 For each step length extract the max value of the relative error.  
-Try to increase $n$ $n=10^7$.  Make a table of the results and 
+Try to increase $n$ to $n=10^7$.  Make a table of the results and 
 comment your results. You can use either the algorithm from b) or c). 
 
 \item[(e)]
