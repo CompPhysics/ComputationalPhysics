@@ -98,22 +98,6 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \clubpenalty = 10000
 \widowpenalty = 10000
 
-\newenvironment{doconceexercise}{}{}
-\newcounter{doconceexercisecounter}
-
-
-% ------ header in subexercises ------
-%\newcommand{\subex}[1]{\paragraph{#1}}
-%\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
-\makeatletter
-% 1.5ex is the spacing above the header, 0.5em the spacing after subex title
-\newcommand\subex{\@startsection{paragraph}{4}{\z@}%
-                  {1.5ex\@plus1ex \@minus.2ex}%
-                  {-0.5em}%
-                  {\normalfont\normalsize\bfseries}}
-\makeatother
-
-
 % --- end of standard preamble for documents ---
 
 
@@ -172,12 +156,9 @@ Fall semester 2016
 \vspace{1cm}
 
 
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
 \subsection{Schroedinger's equation for two electrons in a three-dimensional harmonic oscillator well}
 
+\paragraph{Introduction.}
 The aim of this project is to solve Schroedinger's equation for two
 electrons in a three-dimensional harmonic oscillator well with and
 without a repulsive Coulomb interaction.  Your task is to solve this
@@ -359,8 +340,7 @@ Since the values of $u$ at the two endpoints are known via the boundary conditio
 \label{eq:matrixse} 
 \end{equation}
 
-
-\subex{a)}
+\paragraph{Project 2 a): Mathematical intermezzo.}
 A unitary transformation preserves  the orthogonality of the obtained eigenvectors. To see this consider first a basis of vectors $\mathbf{v}_i$,
 \[
 \mathbf{v}_i = \begin{bmatrix} v_{i1} \\ \dots \\ \dots \\v_{in} \end{bmatrix}
@@ -373,11 +353,10 @@ Show that an orthogonal or unitary transformation
 \[
 \mathbf{w}_i=\mathbf{U}\mathbf{v}_i,
 \]
-preserves the dot product and orthogonality.
+preserves the dot product and orthogonality. 
 
-
-Your task now is to write a function which implements Jacobi's rotation algorithm (see Lecture notes chapter 7)  in order to solve Eq. (\ref{eq:sematrix}).  We 
-Define the quantities $\tan\theta = t= s/c$, with $s=\sin\theta$ and $c=\cos\theta$ and
+\paragraph{Project 2 b): Setting up a code for the non-interacting case.}
+Your task now is to write a function which implements Jacobi's rotation algorithm (see Lecture notes chapter 7)  in order to solve Eq. (\ref{eq:sematrix}).  We define the quantities $\tan\theta = t= s/c$, with $s=\sin\theta$ and $c=\cos\theta$ and
 \begin{equation*}\cot 2\theta=\tau = \frac{a_{ll}-a_{kk}}{2a_{kl}}.
 \end{equation*}
 We can then define the angle $\theta$ so that the non-diagonal matrix elements of the transformed matrix 
@@ -399,10 +378,9 @@ and $c$ and $s$ are easily obtained via
 \end{equation*}
 and $s=tc$.  
 
-\subex{b)}
-How many mesh points $N$
+Check how many mesh points $N$
 do you need in order to get the lowest three eigenvalues 
-with four leading digits?  
+with four leading digits.
 Remember to check the eigenvalues for 
 the dependency on the choice of $\rho_{\mathrm{max}}=\rho_N$.
 
@@ -418,14 +396,15 @@ A Python program which solves this part of the project is available under the \h
 
 
 Comment your results (here you could for example compute the time needed for 
-both algorithms for a given dimensionality of the matrix).
-
-\subex{c)}
-In this project (and later ones as well) we will implement so-called \textbf{unit} tests. Our unit tests are mainly meant to test mathematical properties of our algorithm. During the development phase of a program it is useful to devise tests that your program should pass. One of these is to make sure that for a given simple test matrix (say a $5\times 5$ matrix) our algorithm for searching for the largest non-diagonal element always returns the correct answer. Furthermore, for a known simple matrix, irrespective of changes made, we should always get the same and correct eigenvalues. Another test is to make sure that the orthogonality shown in exercise (a) is preserved. Try to figure out other tests your code should pass, based either on the mathematical properties of the algorithms or more program specific tests. Implement at least two unit tests in this project.
+both algorithms for a given dimensionality of the matrix).  
 
 
+\paragraph{Project 2 c): Implementing tests in your code.}
+In this project (and later ones as well) we will implement so-called \textbf{unit} tests. Our unit tests are mainly meant to test mathematical properties of our algorithm. During the development phase of a program it is useful to devise tests that your program should pass. One of these is to make sure that for a given simple test matrix (say a $5\times 5$ matrix) our algorithm for searching for the largest non-diagonal element always returns the correct answer. Furthermore, for a known simple matrix, irrespective of changes made, we should always get the same and correct eigenvalues. Another test is to make sure that the orthogonality shown in exercise (a) is preserved. Try to figure out other tests your code should pass, based either on the mathematical properties of the algorithms or more program specific tests. Implement at least two unit tests in this project. 
 
-\subex{d)}
+
+
+\paragraph{Project 2 d): The interacting case.}
 We will now study two electrons in a harmonic oscillator well which
 also interact via a repulsive Coulomb interaction.
 Let us start with the single-electron equation written as
@@ -530,9 +509,8 @@ stable as functions of $\rho_{\mathrm{max}}$ and the number of steps.
 We are only interested in the ground state with $l=0$. We omit the 
 center-of-mass energy.
 
-You can reuse the code you wrote for (a), 
-but you need to change the potential
-from $\rho^2$ to $\omega_r^2\rho^2+1/\rho$. 
+You can reuse the code you wrote for part (b), 
+but you need to change the potential from $\rho^2$ to $\omega_r^2\rho^2+1/\rho$. 
 
 Comment the results for the lowest state (ground state) as function of
 varying strengths of $\omega_r$. 
@@ -541,7 +519,9 @@ varying strengths of $\omega_r$.
 For specific oscillator frequencies, the above equation has answers in an analytical form,
 see the article by \href{{http://prola.aps.org/abstract/PRA/v48/i5/p3561_1}}{M. Taut, Phys. Rev. A 48, 3561 (1993)}.
 
-\subex{e)}
+
+
+\paragraph{Project 2 e): Analyzing and understanding the results.}
 In this exercise we want to plot the wave function 
 for two electrons as functions of the relative coordinate $r$ and different
 values of $\omega_r$.  With no Coulomb interaction you should have a result which corresponds to the non-interacting case. 
@@ -555,22 +535,19 @@ omit again the  center-of-mass motion.
 The eigenvectors are normalized. 
 Plot then the normalized wave functions for different  values of $\omega_r$ and comment the results.
 
-\subex{f)}
+\paragraph{Project 2 f): First optional challenge.}
 This exercise is optional and is meant more as a challenge for those of you with an interest in other algorithms for solving eigenvalue problems. 
 Implement the iterative Lanczos' algorithm discussed in the lecture notes and compute the lowest eigenvalues 
 as done in exercise (d) above. Compare your results and discuss faults and merits of the iterative method versus
-direct methods like Jacobi's method.
+direct methods like Jacobi's method. 
 
 
 
-\subex{g)}
+
+\paragraph{Project 2 f): Second optional challenge.}
 This exercise is also optional and is an algorithmic challenge. Your matrix is already is tridiagonal. 
-Can you devise a more efficient way to find the eigenvalues and eigenvectors instead of the brute force application of Jacobi's method?
+Can you devise a more efficient way to find the eigenvalues and eigenvectors instead of the brute force application of Jacobi's method? 
 
-
-
-\end{doconceexercise}
-% --- end exercise ---
 
 
 \subsection{Introduction to numerical projects}
@@ -619,6 +596,7 @@ The preferred format for the report is a PDF file. You can also use DOC or posts
 Finally, 
 we encourage you to work two and two together. Optimal working groups consist of 
 2-3 students. You can then hand in a common report. 
+
 
 
 
