@@ -43,11 +43,28 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                None,
                '___sec0'),
-              ('Introduction to numerical projects', 2, None, '___sec1'),
+              ('Introduction', 3, None, '___sec1'),
+              ('Project 2 a): Mathematical intermezzo', 3, None, '___sec2'),
+              ('Project 2 b): Setting up a code for the non-interacting case',
+               3,
+               None,
+               '___sec3'),
+              ('Project 2 c): Implementing tests in your code',
+               3,
+               None,
+               '___sec4'),
+              ('Project 2 d): The interacting case', 3, None, '___sec5'),
+              ('Project 2 e): Analyzing and understanding the results',
+               3,
+               None,
+               '___sec6'),
+              ('Project 2 f): First optional challenge', 3, None, '___sec7'),
+              ('Project 2 f): Second optional challenge', 3, None, '___sec8'),
+              ('Introduction to numerical projects', 2, None, '___sec9'),
               ('Format for electronic delivery of report and programs',
                2,
                None,
-               '___sec2')]}
+               '___sec10')]}
 end of tocinfo -->
 
 <body>
@@ -90,12 +107,11 @@ MathJax.Hub.Config({
 <p>
 <center><h4>Fall semester 2016</h4></center> <!-- date -->
 <br>
-<p>
-<!-- --- begin exercise --- -->
 
-<h2 id="___sec0">Schroedinger's equation for two electrons in a three-dimensional harmonic oscillator well </h2>
+<h2 id="___sec0">Schroedinger's equation for two electrons in a three-dimensional harmonic oscillator well  </h2>
 
-<p>
+<h3 id="___sec1">Introduction </h3>
+
 The aim of this project is to solve Schroedinger's equation for two
 electrons in a three-dimensional harmonic oscillator well with and
 without a repulsive Coulomb interaction.  Your task is to solve this
@@ -338,8 +354,8 @@ $$
 \end{equation}
 $$
 
-<p>
-<b>a)</b>
+<h3 id="___sec2">Project 2 a): Mathematical intermezzo </h3>
+
 A unitary transformation preserves  the orthogonality of the obtained eigenvectors. To see this consider first a basis of vectors \( \mathbf{v}_i \),
 $$
 \mathbf{v}_i = \begin{bmatrix} v_{i1} \\ \dots \\ \dots \\v_{in} \end{bmatrix}
@@ -357,9 +373,10 @@ $$
 
 preserves the dot product and orthogonality.
 
+<h3 id="___sec3">Project 2 b): Setting up a code for the non-interacting case </h3>
+
 <p>
-Your task now is to write a function which implements Jacobi's rotation algorithm (see Lecture notes chapter 7)  in order to solve Eq. \eqref{eq:sematrix}.  We 
-Define the quantities \( \tan\theta = t= s/c \), with \( s=\sin\theta \) and \( c=\cos\theta \) and
+Your task now is to write a function which implements Jacobi's rotation algorithm (see Lecture notes chapter 7)  in order to solve Eq. \eqref{eq:sematrix}.  We define the quantities \( \tan\theta = t= s/c \), with \( s=\sin\theta \) and \( c=\cos\theta \) and
 $$
 \begin{equation*}\cot 2\theta=\tau = \frac{a_{ll}-a_{kk}}{2a_{kl}}.
 \end{equation*}
@@ -394,10 +411,9 @@ $$
 and \( s=tc \).
 
 <p>
-<b>b)</b>
-How many mesh points \( N \)
+Check how many mesh points \( N \)
 do you need in order to get the lowest three eigenvalues 
-with four leading digits?  
+with four leading digits.
 Remember to check the eigenvalues for 
 the dependency on the choice of \( \rho_{\mathrm{max}}=\rho_N \).
 
@@ -416,12 +432,12 @@ A Python program which solves this part of the project is available under the <a
 Comment your results (here you could for example compute the time needed for 
 both algorithms for a given dimensionality of the matrix).
 
-<p>
-<b>c)</b>
+<h3 id="___sec4">Project 2 c): Implementing tests in your code </h3>
+
 In this project (and later ones as well) we will implement so-called <b>unit</b> tests. Our unit tests are mainly meant to test mathematical properties of our algorithm. During the development phase of a program it is useful to devise tests that your program should pass. One of these is to make sure that for a given simple test matrix (say a \( 5\times 5 \) matrix) our algorithm for searching for the largest non-diagonal element always returns the correct answer. Furthermore, for a known simple matrix, irrespective of changes made, we should always get the same and correct eigenvalues. Another test is to make sure that the orthogonality shown in exercise (a) is preserved. Try to figure out other tests your code should pass, based either on the mathematical properties of the algorithms or more program specific tests. Implement at least two unit tests in this project.
 
-<p>
-<b>d)</b>
+<h3 id="___sec5">Project 2 d): The interacting case  </h3>
+
 We will now study two electrons in a harmonic oscillator well which
 also interact via a repulsive Coulomb interaction.
 Let us start with the single-electron equation written as
@@ -567,9 +583,8 @@ We are only interested in the ground state with \( l=0 \). We omit the
 center-of-mass energy.
 
 <p>
-You can reuse the code you wrote for (a), 
-but you need to change the potential
-from \( \rho^2 \) to \( \omega_r^2\rho^2+1/\rho \).
+You can reuse the code you wrote for part (b), 
+but you need to change the potential from \( \rho^2 \) to \( \omega_r^2\rho^2+1/\rho \).
 
 <p>
 Comment the results for the lowest state (ground state) as function of
@@ -579,8 +594,8 @@ varying strengths of \( \omega_r \).
 For specific oscillator frequencies, the above equation has answers in an analytical form,
 see the article by <a href="http://prola.aps.org/abstract/PRA/v48/i5/p3561_1" target="_blank">M. Taut, Phys. Rev. A 48, 3561 (1993)</a>.
 
-<p>
-<b>e)</b>
+<h3 id="___sec6">Project 2 e): Analyzing and understanding the results  </h3>
+
 In this exercise we want to plot the wave function 
 for two electrons as functions of the relative coordinate \( r \) and different
 values of \( \omega_r \).  With no Coulomb interaction you should have a result which corresponds to the non-interacting case. 
@@ -596,22 +611,19 @@ omit again the  center-of-mass motion.
 The eigenvectors are normalized. 
 Plot then the normalized wave functions for different  values of \( \omega_r \) and comment the results.
 
-<p>
-<b>f)</b>
+<h3 id="___sec7">Project 2 f): First optional challenge </h3>
+
 This exercise is optional and is meant more as a challenge for those of you with an interest in other algorithms for solving eigenvalue problems. 
 Implement the iterative Lanczos' algorithm discussed in the lecture notes and compute the lowest eigenvalues 
 as done in exercise (d) above. Compare your results and discuss faults and merits of the iterative method versus
 direct methods like Jacobi's method.
 
-<p>
-<b>g)</b>
+<h3 id="___sec8">Project 2 f): Second optional challenge </h3>
+
 This exercise is also optional and is an algorithmic challenge. Your matrix is already is tridiagonal. 
 Can you devise a more efficient way to find the eigenvalues and eigenvectors instead of the brute force application of Jacobi's method?
 
-<p>
-<!-- --- end exercise --- -->
-
-<h2 id="___sec1">Introduction to numerical projects </h2>
+<h2 id="___sec9">Introduction to numerical projects </h2>
 
 <p>
 Here follows a brief recipe and recommendation on how to write a report for each
@@ -629,7 +641,7 @@ project.
   <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
 </ul>
 
-<h2 id="___sec2">Format for electronic delivery of report and programs </h2>
+<h2 id="___sec10">Format for electronic delivery of report and programs </h2>
 
 <p>
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:

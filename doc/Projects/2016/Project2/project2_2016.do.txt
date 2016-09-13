@@ -3,8 +3,9 @@ AUTHOR: "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emn
 DATE: Fall semester 2016
 
 
-===== {Project}: Schroedinger's equation for two electrons in a three-dimensional harmonic oscillator well  =====
+===== Schroedinger's equation for two electrons in a three-dimensional harmonic oscillator well  =====
 
+=== Introduction ===
 The aim of this project is to solve Schroedinger's equation for two
 electrons in a three-dimensional harmonic oscillator well with and
 without a repulsive Coulomb interaction.  Your task is to solve this
@@ -228,7 +229,7 @@ label{eq:matrixse}
 \end{equation}
 !et 
 
-!bsubex
+=== Project 2 a): Mathematical intermezzo === 
 A unitary transformation preserves  the orthogonality of the obtained eigenvectors. To see this consider first a basis of vectors $\mathbf{v}_i$,
 !bt
 \[
@@ -248,11 +249,10 @@ Show that an orthogonal or unitary transformation
 \]
 !et
 preserves the dot product and orthogonality. 
-!esubex
 
+=== Project 2 b): Setting up a code for the non-interacting case === 
 
-Your task now is to write a function which implements Jacobi's rotation algorithm (see Lecture notes chapter 7)  in order to solve Eq. (ref{eq:sematrix}).  We 
-Define the quantities $\tan\theta = t= s/c$, with $s=\sin\theta$ and $c=\cos\theta$ and
+Your task now is to write a function which implements Jacobi's rotation algorithm (see Lecture notes chapter 7)  in order to solve Eq. (ref{eq:sematrix}).  We define the quantities $\tan\theta = t= s/c$, with $s=\sin\theta$ and $c=\cos\theta$ and
 !bt
 \begin{equation*}\cot 2\theta=\tau = \frac{a_{ll}-a_{kk}}{2a_{kl}}.
 \end{equation*}
@@ -282,10 +282,9 @@ and $c$ and $s$ are easily obtained via
 !et
 and $s=tc$.  
 
-!bsubex
-How many mesh points $N$
+Check how many mesh points $N$
 do you need in order to get the lowest three eigenvalues 
-with four leading digits?  
+with four leading digits.
 Remember to check the eigenvalues for 
 the dependency on the choice of $\rho_{\mathrm{max}}=\rho_N$.
 
@@ -302,15 +301,14 @@ A Python program which solves this part of the project is available under the "p
 
 Comment your results (here you could for example compute the time needed for 
 both algorithms for a given dimensionality of the matrix).  
-!esubex
 
-!bsubex
+
+=== Project 2 c): Implementing tests in your code === 
 In this project (and later ones as well) we will implement so-called _unit_ tests. Our unit tests are mainly meant to test mathematical properties of our algorithm. During the development phase of a program it is useful to devise tests that your program should pass. One of these is to make sure that for a given simple test matrix (say a $5\times 5$ matrix) our algorithm for searching for the largest non-diagonal element always returns the correct answer. Furthermore, for a known simple matrix, irrespective of changes made, we should always get the same and correct eigenvalues. Another test is to make sure that the orthogonality shown in exercise (a) is preserved. Try to figure out other tests your code should pass, based either on the mathematical properties of the algorithms or more program specific tests. Implement at least two unit tests in this project. 
-!esubex
 
 
  
-!bsubex
+=== Project 2 d): The interacting case  === 
 We will now study two electrons in a harmonic oscillator well which
 also interact via a repulsive Coulomb interaction.
 Let us start with the single-electron equation written as
@@ -439,9 +437,8 @@ stable as functions of $\rho_{\mathrm{max}}$ and the number of steps.
 We are only interested in the ground state with $l=0$. We omit the 
 center-of-mass energy.
 
-You can reuse the code you wrote for (a), 
-but you need to change the potential
-from $\rho^2$ to $\omega_r^2\rho^2+1/\rho$. 
+You can reuse the code you wrote for part (b), 
+but you need to change the potential from $\rho^2$ to $\omega_r^2\rho^2+1/\rho$. 
 
 Comment the results for the lowest state (ground state) as function of
 varying strengths of $\omega_r$. 
@@ -450,9 +447,9 @@ varying strengths of $\omega_r$.
 For specific oscillator frequencies, the above equation has answers in an analytical form,
 see the article by "M. Taut, Phys. Rev. A 48, 3561 (1993)":"http://prola.aps.org/abstract/PRA/v48/i5/p3561_1".
 
-!esubex
 
-!bsubex
+
+=== Project 2 e): Analyzing and understanding the results  === 
 In this exercise we want to plot the wave function 
 for two electrons as functions of the relative coordinate $r$ and different
 values of $\omega_r$.  With no Coulomb interaction you should have a result which corresponds to the non-interacting case. 
@@ -465,21 +462,19 @@ omit again the  center-of-mass motion.
 
 The eigenvectors are normalized. 
 Plot then the normalized wave functions for different  values of $\omega_r$ and comment the results.
-!esubex
 
-!bsubex
+=== Project 2 f): First optional challenge === 
 This exercise is optional and is meant more as a challenge for those of you with an interest in other algorithms for solving eigenvalue problems. 
 Implement the iterative Lanczos' algorithm discussed in the lecture notes and compute the lowest eigenvalues 
 as done in exercise (d) above. Compare your results and discuss faults and merits of the iterative method versus
 direct methods like Jacobi's method. 
-!esubex
 
 
 
-!bsubex
+
+=== Project 2 f): Second optional challenge === 
 This exercise is also optional and is an algorithmic challenge. Your matrix is already is tridiagonal. 
 Can you devise a more efficient way to find the eigenvalues and eigenvectors instead of the brute force application of Jacobi's method? 
-!esubex
 
 
 
