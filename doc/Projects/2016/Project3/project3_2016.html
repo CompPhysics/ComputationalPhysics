@@ -1,0 +1,344 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Project 3, deadline  October 24">
+
+<title>Project 3, deadline  October 24</title>
+
+
+<style type="text/css">
+/* bloodish style */
+
+body {
+  font-family: Helvetica, Verdana, Arial, Sans-serif;
+  color: #404040;
+  background: #ffffff;
+}
+h1 { font-size: 1.8em;  color: #8A0808; }
+h2 { font-size: 1.6em;  color: #8A0808; }
+h3 { font-size: 1.4em;  color: #8A0808; }
+h4 { color: #8A0808; }
+a { color: #8A0808; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+/* pre style removed because it will interfer with pygments */
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+div { text-align: justify; text-justify: inter-word; }
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Building a model for the solar system using ordinary differential equations',
+               2,
+               None,
+               '___sec0'),
+              ('Introduction', 3, None, '___sec1'),
+              ('Project 3a): The Earth-Sun system', 3, None, '___sec2'),
+              ('Project 3b): Writing an object oriented code for the Earth-Sun system',
+               3,
+               None,
+               '___sec3'),
+              ('Project 3c): Test of the algorithms', 3, None, '___sec4'),
+              ('Project 3d): Escape velocity', 3, None, '___sec5'),
+              ('Project 3e): The three-body problem', 3, None, '___sec6'),
+              ('Project 3f): Final model for all planets of the solar system',
+               3,
+               None,
+               '___sec7'),
+              ('Project 3g): The perihelion precession of Mercury',
+               3,
+               None,
+               '___sec8'),
+              ('Introduction to numerical projects', 2, None, '___sec9'),
+              ('Format for electronic delivery of report and programs',
+               2,
+               None,
+               '___sec10')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1>Project 3, deadline  October 24</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): <a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_blank">Computational Physics I FYS3150/FYS4150</a> -->
+
+<center>
+<b><a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_blank">Computational Physics I FYS3150/FYS4150</a></b> 
+</center>
+
+<p>
+<!-- institution -->
+
+<center><b>Department of Physics, University of Oslo, Norway</b></center>
+<br>
+<p>
+<center><h4>Fall semester 2016</h4></center> <!-- date -->
+<br>
+
+<h2 id="___sec0">Building a model for the solar system using ordinary differential equations  </h2>
+
+<h3 id="___sec1">Introduction </h3>
+
+<p>
+The aim of this project is to develop a code for simulating the solar system using two popular algorithms for solving coupled ordinary differential equations, the velocity Verlet
+algorithm and the fourth-order Runge-Kutta algorithm (RK4).
+
+<p>
+In the first part however, we will limit ourselves (in order to test the algorithms) 
+to a hypothetical solar system
+with the Earth only orbiting around the sun.
+The only force in the problem is gravity. Newton's law of gravitation  is given by a force \( F_G \)
+\[
+F_G=\frac{GM_{\odot}M_{\mathrm{Earth}}}{r^2},
+\]
+where \( M_{\odot} \) is the mass of the Sun and \( M_{\mathrm{Earth}} \) is the mass of the Earth. The gravitational constant is \( G \) and \( r \) is the distance between the Earth and the Sun.
+We assume that the Sun has a mass which is much larger 
+than that of the Earth. We can therefore safely neglect the 
+motion of the Sun in this problem.  In the first part of this project, your aim is to compute the motion
+of the the Earth using different methods for solving ordinary differential equations.
+
+<p>
+We assume that the orbit of the Earth around the Sun 
+is co-planar, and we take this to be the \( xy \)-plane.
+Using Newton's second law of motion we get the following equations
+\[
+\frac{d^2x}{dt^2}=\frac{F_{G,x}}{M_{\mathrm{Earth}}},
+\]
+and 
+\[
+\frac{d^2y}{dt^2}=\frac{F_{G,y}}{M_{\mathrm{Earth}}},
+\]
+where \( F_{G,x} \) and \( F_{G,y} \) are the \( x \) and \( y \) components of the gravitational force.
+
+<p>
+We will use so-called astronomical units when rewriting our equations. 
+Using astronomical units (AU as abbreviation)it means that 
+one astronomical unit of length, known as 1 AU, is the average distance between the Sun and Earth, that is
+\( 1 \) AU = \( 1.5\times 10^{11} \) m.  It can also be convenient to use years instead of seconds since years match
+better the time evolution of the solar system. The mass of the Sun is \( M_{\mathrm{sun}}=M_{\odot}=2\times 10^{30} \) kg. The mass of Earth is
+\( M_{\mathrm{Earth}}=6\times 10^{24} \) kg. The mass of other planets like Jupiter is 
+\( M_{\mathrm{Jupiter}}=1.9\times 10^{27} \) kg and its distance to the Sun is 5.20 AU. Similar numbers for Mars
+are \( M_{\mathrm{Mars}}=6.6\times 10^{23} \) kg and  1.52 AU, for Venus \( M_{\mathrm{Venus}}=4.9\times 10^{24} \) kg and  0.72 AU, for Saturn are \( M_{\mathrm{Saturn}}=5.5\times 10^{26} \) kg and  9.54 AU, for Mercury are \( M_{\mathrm{Mercury}}=2.4\times 10^{23} \) kg and  0.39 AU, for Uranus are \( M_{\mathrm{Uranus}}=8.8\times 10^{25} \) kg and  19.19 AU, for Neptun are \( M_{\mathrm{Neptun}}=1.03\times 10^{26} \) kg and  30.06 AU and for Pluto are \( M_{\mathrm{Pluto}}=1.31\times 10^{22} \) kg and  39.53 AU. Pluto is no longer considered  a planet, but we add it here for historical reasons. It is optional in this project to include Pluto and eventual moons.
+
+<p>
+In setting up the equations we can limit ourselves to a co-planar motion and use only the \( x \) and \( y \) coordinates. But you should feel free to extend your equations to three dimensions.
+
+<p>
+<a href="http://www.nasa.gov/index.html" target="_blank">NASA</a> has an excellent site at <a href="http://ssd.jpl.nasa.gov/horizons.cgi#top" target="_blank"><tt>http://ssd.jpl.nasa.gov/horizons.cgi#top</tt></a>.
+From there you can extract initial conditions in order to start your differential equation solver.
+At the above website you need to change from <b>OBSERVER</b> to <b>VECTOR</b> and then write in the planet you are interested in.
+The generated data contain the \( x \), \( y \) and \( z \) values as well as their corresponding velocities. The velocities are in units of AU per day.
+Alternatively they can be obtained in terms of km and km/s.
+
+<p>
+For the first system below involving only the Earth and the Sun, you could just initialize the position with say \( x=1 \) AU
+and \( y=0 \) AU.
+
+<p>
+<b>For this project you can hand in collaborative reports and programs.</b>
+
+<h3 id="___sec2">Project 3a): The Earth-Sun system  </h3>
+
+<p>
+We assume that mass units can be obtained by using the fact that Earth's orbit is almost circular around the Sun.
+For circular motion we know that the force must obey the following relation
+\[
+F_G= \frac{M_{\mathrm{Earth}}v^2}{r}=\frac{GM_{\odot}M_{\mathrm{Earth}}}{r^2},
+\]
+where \( v \) is the velocity of Earth. 
+The latter equation can be used to show that
+\[
+v^2r=GM_{\odot}=4\pi^2\mathrm{AU}^3/\mathrm{yr}^2.
+\]
+Discretize the above differential equations and set up an algorithm for solving these equations using the so-called velocity Verlet and
+the RK4   methods discussed in the lecture notes and lecture slides (see for example chapter 8 of the lecture notes).
+
+<h3 id="___sec3">Project 3b): Writing an object oriented code for the Earth-Sun system </h3>
+
+<p>
+Write then a program which solves the above differential equations for the Earth-Sun system
+using the RK4 method and the velocity Verlet method. 
+Your code should be object oriented. Try to figure out which parts and operations could be written as classes
+and generalized.  
+Your task here is to think of the program flow and figure out which parts can be abstracted and reused for many types of operations. We have provided an example on how to structure
+the <a href="https://github.com/mortele/solar-system-fys3150" target="_blank">solar system solver</a>. This will be discussed during the lectures and various lab sessions. A similar structure in Fortran will also be provided.
+
+<h3 id="___sec4">Project 3c): Test of the algorithms </h3>
+
+<p>
+Find out which initial value for the velocity that gives a circular orbit
+and test the stability of your algorithm as function of different time steps \( \Delta t \). 
+Make a plot of the results you obtain for the position of the Earth (plot the \( x \) and \( y \) values) orbiting  the Sun.
+
+<p>
+Check also for the case of a circular orbit that both the kinetic and the potential energies are conserved.
+Check also if the  angular momentum is conserved. Explain why these quantities
+should be conserved.
+
+<p>
+Discuss eventual differences between the Verlet algorithm and the RK4 algorithm. Consider also the number of FLOPs involved and perform a timing of the
+two algortihms for equal final times.
+
+<p>
+We will use the velocity Verlet algorithm in the remaining part of the project.
+
+<h3 id="___sec5">Project 3d): Escape velocity </h3>
+
+<p>
+Consider then a planet which begins at a distance of 1 AU from the sun. Find out by trial and error
+what the initial velocity must be in order for the planet to escape from the sun.  Can you find an exact answer?  How does that match your numerical results?
+
+<h3 id="___sec6">Project 3e): The three-body problem </h3>
+
+<p>
+We will now study the three-body problem, still with the Sun kept fixed as the center of mass of the system  but 
+including Jupiter (the most massive planet in the solar system, having a mass that is approximately 1000 times
+smaller than that of the Sun) together with the Earth. This leads to a three-body problem. Without Jupiter, the Earth's motion is stable and unchanging with time. The aim here is to find out how much Jupiter alters the Earth's motion.
+
+<p>
+The program you have developed can easily be modified by simply adding the magnitude of the force betweem the Earth and Jupiter.
+
+<p>
+This force is given again by 
+\[
+F_{\mathrm{Earth-Jupiter}}=\frac{GM_{\mathrm{Jupiter}}M_{\mathrm{Earth}}}{r_{\mathrm{Earth-Jupiter}}^2},
+\]
+where \( M_{\mathrm{Jupiter}} \) is the mass of the sun and \( M_{\mathrm{Earth}} \) is the mass of Earth. 
+The gravitational constant is \( G \) and \( r_{\mathrm{Earth-Jupiter}} \) is the distance between Earth and Jupiter.
+
+<p>
+We assume again that the orbits of the two planets are co-planar, and we take this to be the \( xy \)-plane (you can easily extend the equations to three dimensions). 
+Modify your first-order differential equations in order to accomodate both the
+motion of the Earth and Jupiter by taking into account the distance in \( x \) and
+\( y \) between the Earth and Jupiter. Set up the algorithm and plot the positions of the Earth and Jupiter using the velocity Verlet algorithm.
+Discuss the stability of the solutions using your Verlet solver.
+
+<p>
+Repeat 
+the calculations by increasing the mass of Jupiter by a factor of 10 and 1000
+ and plot the position of the Earth.  Study again the stability of the Verlet solver.
+
+<h3 id="___sec7">Project 3f): Final model for all planets of the solar system </h3>
+
+Finally, using our Verlet solver, we carry out a real three-body calculation where all three systems, 
+the Earth, Jupiter and the Sun are in motion. To do this, choose the center-of-mass position of the three-body system as 
+the origin rather than the position of the sun. Give the Sun an initial velocity which makes the total momentum of the system exactly zero (the center-of-mass will remain fixed). Compare these results with those from the previous exercise and comment your results. Extend your program to include all planets in the solar system (if you have time, you can also include the various moons, but it is not required) and discuss your results. Use the above NASA link  to set up the initial positions and velocities for all planets.
+
+<h3 id="___sec8">Project 3g): The perihelion precession of Mercury </h3>
+
+<p>
+An important test of the general theory of relativity was to compare its prediction for the
+perihelion precession of Mercury to the observed value. The observed value of the perihelion precession, when
+all classical effects (such as the perturbation of the orbit due to gravitational attraction from the other planets) are
+subtracted, is \( 43'' \) (\( 43 \) arc seconds) per century.
+
+<p>
+Closed elliptical orbits are a special feature of the Newtonian \( 1/r^2 \) force. In general, any correction to the
+pure \( 1/r^2 \) behaviour will lead to an orbit which is not closed, i.e. after one complete orbit around the Sun, the
+planet will not be at exactly the same position as it started. If the correction is small, then each orbit around
+the Sun will be almost the same as the classical ellipse, and the orbit can be thought of as an ellipse whose 
+orientation in space slowly rotates. In other words, the perihelion of the ellipse slowly precesses around the Sun.
+
+<p>
+You will now study the orbit of Mercury around the Sun, adding a general relativistic correction to the Newtonian
+gravitational force, so that the force becomes
+\[
+F_G = \frac{GM_\mathrm{Sun}M_\mathrm{Mercury}}{r^2}\left[1 + \frac{3l^2}{r^2c^2}\right]
+\]
+where \( M_\mathrm{Mercury} \) is the mass of Mercury, \( r \) is the distance between Mercury and the Sun, \( l=|\vec{r}\times\vec{v}| \) is the magnitude of Mercury's orbital angular momentum per unit mass, 
+and \( c \) is the speed of light in vacuum. Run a simulation 
+over one century of Mercury's orbit around the Sun with no other planets present, starting with Mercury at perihelion on the \( x \) axis.
+Check then the value of the perihelion angle \( \theta_\mathrm{p} \), using
+\[
+\tan \theta_\mathrm{p} = \frac{y_\mathrm{p}}{x_\mathrm{p}}
+\]
+where \( x_\mathrm{p} \) (\( y_\mathrm{p} \)) is the \( x \) (\( y \)) position of Mercury at perihelion, i.e. at the point
+where Mercury is at its closest to the Sun. You may use that the speed of Mercury at perihelion is \( 12.44\,\mathrm{AU}/\mathrm{yr} \), and that the distance to the Sun
+at perihelion is \( 0.3075\,\mathrm{AU} \).
+You need to make sure that the time resolution used in your simulation
+is sufficient, for example by checking that the perihelion precession you get with a pure Newtonian force is at least
+a few orders of magnitude smaller than the observed perihelion precession of Mercury. Can the observed perihelion 
+precession of Mercury be explained by the general theory of relativity?
+
+<h2 id="___sec9">Introduction to numerical projects </h2>
+
+<p>
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+<ul>
+  <li> Give a short description of the nature of the problem and the eventual  numerical methods you have used.</li>
+  <li> Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.</li>
+  <li> Include the source code of your program. Comment your program properly.</li>
+  <li> If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.</li>
+  <li> Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.</li>
+  <li> Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.</li>
+  <li> Try to give an interpretation of you results in your answers to  the problems.</li>
+  <li> Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.</li>
+  <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
+</ul>
+
+<h2 id="___sec10">Format for electronic delivery of report and programs </h2>
+
+<p>
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+<ul>
+  <li> Use Devilry to hand in your projects, log in  at  <a href="http://devilry.ifi.uio.no" target="_blank"><tt>http://devilry.ifi.uio.no</tt></a> with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.</li>
+  <li> Upload <b>only</b> the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.</li>
+  <li> In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parametxers.</li>
+  <li> In this and all later projects, you should include tests (for example unit tests) of your code(s).</li>
+  <li> Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.</li>
+</ul>
+
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. You can then hand in a common report.
+
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2016, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+
