@@ -7,10 +7,10 @@ DATE: Fall semester 2016
 
 === Introduction ===
 
-The aim of this project is to develop a code for simulating the solar system using two popular algorithms for solving coupled ordinary differential equations, the velocity Verlet
-algorithm and the fourth-order Runge-Kutta algorithm (RK4).
+The aim of this project is to develop a code for simulating the solar system using a widely popular algorithm for solving coupled ordinary differential equations, the so-called velocity Verlet
+algorithm.
 
-In the first part however, we will limit ourselves (in order to test the algorithms) 
+In the first part however, we will limit ourselves (in order to test the algorithm) 
 to a hypothetical solar system
 with the Earth only orbiting around the sun.
 The only force in the problem is gravity. Newton's law of gravitation  is given by a force $F_G$
@@ -69,18 +69,18 @@ The latter equation can be used to show that
 \[
 v^2r=GM_{\odot}=4\pi^2\mathrm{AU}^3/\mathrm{yr}^2.
 \]
-Discretize the above differential equations and set up an algorithm for solving these equations using the so-called velocity Verlet and
-the RK4   methods discussed in the lecture notes and lecture slides (see for example chapter 8 of the lecture notes).
+Discretize the above differential equations and set up an algorithm for solving these equations using Euler's forward algorithm and the so-called velocity Verlet method discussed in the lecture notes and lecture slides (see for example chapter 8 of the lecture notes).
 
 === Project 3b): Writing an object oriented code for the Earth-Sun system ===
 
 Write then a program which solves the above differential equations for the Earth-Sun system
-using the RK4 method and the velocity Verlet method. 
+using Euler's  method and the velocity Verlet method. 
 Your code should be object oriented. Try to figure out which parts and operations could be written as classes
 and generalized.  
 Your task here is to think of the program flow and figure out which parts can be abstracted and reused for many types of operations. We have provided an example on how to structure
 the "solar system solver":"https://github.com/mortele/solar-system-fys3150". This will be discussed during the lectures and various lab sessions. A similar structure in Fortran will also be provided. 
 
+For those of you who will focus on the Molecular Dynamics version of Project 5, much of the structures developed here as well as the implementation of the Verlet algorithm, can be used in that project as well.
 
 === Project 3c): Test of the algorithms ===
 
@@ -92,7 +92,7 @@ Check also for the case of a circular orbit that both the kinetic and the potent
 Check also if the  angular momentum is conserved. Explain why these quantities
 should be conserved.
 
-Discuss eventual differences between the Verlet algorithm and the RK4 algorithm. Consider also the number of FLOPs involved and perform a timing of the
+Discuss eventual differences between the Verlet algorithm and the Euler algorithm. Consider also the number of FLOPs involved and perform a timing of the
 two algortihms for equal final times.
 
 We will use the velocity Verlet algorithm in the remaining part of the project. 
