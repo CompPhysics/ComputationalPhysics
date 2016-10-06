@@ -919,21 +919,57 @@ derivatives are unchanged. This equations are similar for all other planets and 
 "NASA":"http://www.nasa.gov/index.html" has an excellent site at URL:"http://ssd.jpl.nasa.gov/horizons.cgi#top".
 From there you can extract initial conditions in order to start your differential equation solver.
 At the above website you need to change from _OBSERVER_ to _VECTOR_ and then write in the planet you are interested in.
-NThe generated data contain the $x$, $y$ and $z$ values as well as their corresponding velocities. The velocities are in units of AU per day.
+The generated data contain the $x$, $y$ and $z$ values as well as their corresponding velocities. The velocities are in units of AU per day.
 Alternatively they can be obtained in terms of km and km/s. 
 
 For the first simple system involving the Earth and the Sun, you could just initialize the position with say $x=1$ AU
 and $y=0$ AU. 
 !eblock
 
+!split
+===== How do we develop a larger numerical project  =====
 
+When building up a numerical project there are several elements you should think of, amongst these we take the liberty of mentioning the following.
+ o  How to structure a code in terms of functions and modules
+ o  How to read input data flexibly from the command line
+ o  Find tests and how to write unit tests (test functions). A very good example is "Catch":"https://github.com/philsquared/Catch", a modern, C++-native, header-only, framework for unit-tests. Try to find suitable tests of the mathematical algorithms as well as tests which reflect the physics of the system. 
+ o  It takes one quick command to let all your code undergo heavy testing
+ o  How to refactor code in terms of classes (instead of functions only)
+ o  How to conduct and automate large-scale numerical experiments
 
+!split
+===== More on large numerical projects  =====
+The conventions and techniques outlined here will save you a lot of time when you incrementally extend software over time from simpler to more complicated problems.
+ o Scale your equations in order to simplify, make for example the equations dimensionless or scale them in convenient units
+ o New code is added in a modular fashion to a library (modules)
+ o Programs are run through convenient user interfaces
+ o Tedious manual work with running programs is automated,
+ o Your scientific investigations are reproducible, scientific reports with top quality typesetting are produced both for paper and electronic devices.
 
-
+!split
+===== A few words on unit testing =====
+A very good and simple framework for unit testing is "Catch":"https://github.com/philsquared/Catch".
+Unit Testing is the practice of testing the smallest testable parts,
+called units, of an application individually and independently to
+determine if they behave exactly as expected. Unit tests (short code
+fragments) are usually written such that they can be performed at any
+time during the development to continually verify the behavior of the
+code. In this way, possible bugs will be identified early in the
+development cycle, making the debugging at later stage much
+easier.
 
 
 !split
-===== Simple Example, Block tied to a Wall =====
+=====  Unit tests with "Catch":"https://github.com/philsquared/Catch" =====
+There are many benefits associated with Unit Testing since it  increases confidence in changing and maintaining code. Big changes can be made to the code quickly, since the tests will ensure that everything still is working properly.
+ * Since the code needs to be modular to make Unit Testing possible, the code will be easier to reuse. This improves the code design.
+ * Debugging is easier, since when a test fails, only the latest changes need to be debugged.
+ * Different parts of a project can be tested without the need to wait for the other parts to be available.
+ * A unit test can serve as a documentation on the functionality of a unit of the code.
+
+
+!split
+===== A simple Example first, Block tied to a Wall =====
 !bblock
 Our first example is the classical case of simple harmonic oscillations, namely a block sliding on a horizontal frictionless surface. The block is tied to a wall with a spring. If the spring is not compressed or stretched too far, the force on the block at a given position $x$ is 
 !bt
@@ -1059,13 +1095,7 @@ where $N$ is the number of mesh points.
 !split
 ===== Simple Example, Block tied to a Wall =====
 !bblock
-To run a c++ program using ipython notebook, you can use the following statements.
 !bc pyscpro
-%%install_ext https://raw.github.com/dragly/cppmagic/master/cppmagic.py
-%%load_ext cppmagic
-!ec
-!bc pyscpro
-%%cpp 
 /*    This program solves Newton's equation for a block
       sliding on a horizontal frictionless surface. The block
       is tied  to a wall with a spring, and Newton's equation
@@ -1329,7 +1359,7 @@ ofile.close()
 
 
 !split
-===== The classical pendulum =====
+===== The second example: The classical pendulum and scaling the equations =====
 !bblock
 The angular equation of motion of the pendulum is given by
 Newton's equation and with no external force it reads 
@@ -1406,8 +1436,8 @@ and introducing the quantity $Q$, called the *quality factor*,
 !et
   and the dimensionless amplitude 
 !bt
-  \[
-     \hat{A}=\frac{A}{mg}
+\[
+\hat{A}=\frac{A}{mg}
   \]
 !et
 !eblock
@@ -1438,6 +1468,119 @@ These are the equations to be solved.  The factor $Q$ represents the number of o
 !eblock
 
 
+!split
+===== How to start our solar system project  =====
+!bblock
+
+The simplest possible step is to code the Earth-Sun system using Euler's method in two dimensions.
+The four coupled differential equations can then be discretized using Euler's method as (with step length $h$) are
+!bt
+\[
+   v_{x,i+1}=v_{x,i}-h\frac{4\pi^2}{r_i^3}x_i,
+\]
+!et
+!bt
+\[
+   x_{i+1}=x_i+hv_{x,i},
+\]
+!et
+!bt
+\[
+   v_{y,i+1}=v_{y,i}-h\frac{4\pi^2}{r_i^3}y_i,
+\]
+!et
+!bt
+\[
+   y_{i+1}=y_i+hv_{y,i},
+\]
+!et
+
+!eblock
+
+
+!split
+===== How to start our solar system project, the simple Euler equations  =====
+!bc cppcod
+/*    
+    Euler's method for the Eart-Sun system, simplest possible code
+*/ 
+#include <cmath>
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+using namespace  std;
+// output file as global variable
+ofstream ofile;
+// function declarations
+void output( double, double, double, double, double);
+
+int main(int argc, char* argv[])
+{
+//  declarations of variables
+  char *outfilename;
+  // Read in output file, abort if there are too few command-line arguments
+  if( argc <= 1 ){
+    cout << "Bad Usage: " << argv[0] <<
+      " read also output file on same line" << endl;
+    //    exit(1);
+  }
+  else{
+    outfilename=argv[1];
+  }
+  ofile.open(outfilename);
+
+  int NumberofSteps = 1000;
+  double FinalTime = 1.0;
+  double Step = FinalTime/((double) NumberofSteps);
+  double time = 0.0;
+  // Initial values  x = 1.0 AU and vy = 2*pi
+  double pi = acos(-1.0);
+  double FourPi2 = 4*pi*pi;
+  double x =  1.0; double y =  0.0; double vx = 0.0; double vy = 2.0*pi;
+  double r = sqrt(x*x+y*y);
+
+// now we start solving the differential equations using Euler's method
+  while (time <= FinalTime){
+    x += Step*vx;
+    y += Step*vy;
+    vx -= Step*FourPi2*x/(r*r*r);
+    vy -= Step*FourPi2*y/(r*r*r);
+    r = sqrt(x*x+y*y);
+    time += Step;
+    output(time, x, y, vx, vy);   // write to file 
+  }
+  ofile.close();  // close output file
+  return 0;
+}   //  End of main function 
+
+//    function to write out the final results
+void output(double time, double x, double y, double vx, double vy)
+{
+  ofile << setiosflags(ios::showpoint | ios::uppercase);
+  ofile << setw(15) << setprecision(8) << time;
+  ofile << setw(15) << setprecision(8) << x;
+  ofile << setw(15) << setprecision(8) << y;
+  ofile << setw(15) << setprecision(8) << vx;
+  ofile << setw(15) << setprecision(8) << vy << endl;
+}  // end of function output
+
+
+!ec
+
+
+!split
+=====  Where do we go from here? =====
+!bblock
+
+* Our next step could be to simply replace the brute force coding of the positions and velocities using the vector class discussed in the solar system  "class example":"https://github.com/mortele/solar-system-fys3150". That is, we continue with the above Euler code and simply replace the variables $x$, $y$, $vx$ and $vy$ with vectors defined in the _vec3_ class.
+
+* It is important to have a simple working code that is well tested and understood before we move on to new additions. In this part it is useful to introduce possible unit tests. 
+
+* The next step is to add a class about for example celestial bodies, as discussed in the simple extension of the Euler method for the "Earth-Sun system":"https://github.com/andeplane/solar-system". This will discussed during the lab sessions.
+
+* Thereafter we can add the full complexity as discussed in the solar system "class example":"https://github.com/mortele/solar-system-fys3150" to be discussed during the lab sessions. 
+
+!eblock
 
 !split
 ===== Adaptive methods =====
@@ -1540,165 +1683,14 @@ we can design the following algorithm:
  * If $\epsilon > \xi$ we need to decrease the step size in the next time step.
  * If $\epsilon < \xi$ we need to increase the step size in the next time step.
 
-A much used algorithm is the so-called RKF45 which uses a combination of fourth and fifth order RK methods. 
+
 !eblock
 
 
-!split
-===== Adaptive methods, RKF45 =====
-!bblock
-At each step, two different approximations for the solution are made and compared. If the
-two answers are in close agreement, the approximation is accepted. If the two answers
-do not agree to a specified accuracy, the step size is reduced. If the answers agree to
-more significant digits than required, the step size is increased.
-Each step requires the use of the following six values:
-!bt
-\[
-k_1 = h f (t_k , y_k ),
-\]
-!et
-!bt
-\[
-k_2 = h f (t_k + \frac{1}{4}h, y_k + \frac{1}{4}k_1) ,
-\]
-!et
-!bt
-\[
-k_3 = h f (t_k + \frac{3}{8}h, y_k + \frac{3}{32}k_1 + \frac{9}{32}k_2) ,
-\]
-!et
-!bt
-\[
-k_4 = h f (t_k + \frac{12}{13}h, y_k + \frac{1932}{2197}k_1 + \frac{7200}{2197}k_2+\frac{7296}{2197}k_3),
-\]
-!et
-!bt
-\[
-k_5 = h f (t_k + h, y_k + \frac{439}{216}k_1 -8k_2+ \frac{3680}{513}k_3+\frac{845}{4104}k_4),
-\]
-!et
-!bt
-\[
-k_6 = h f (t_k + \frac{1}{2}h, y_k - \frac{8}{27}k_1 + 2k_2-\frac{3544}{2565}k_2+\frac{1859}{4104}k_4-+\frac{11}{40}k_5).
-\]
-!et
-!eblock
-
-!split
-===== Adaptive methods, RKF45 =====
-!bblock
-An approximation to the solution of the ODE is made using a Runge-Kutta method of order 4:
-!bt
-\[
-y_{k+1} = y_k  + \frac{25}{216}k_1+\frac{1408}{2565}k_3 +\frac{2197}{4101}k_4-\frac{1}{5}k_5,
-\]
-!et
-where the four function values $k_1$ , $k_3$ , $k_4$ , and $k_5$ are used. Notice that $k_2$ is not used  here.
-A better value for the solution is determined using a Runge-Kutta
-method of order 5:
-!bt
-\[
-z_{k+1} = y_k + \frac{16}{135}k_1+\frac{6656}{12825}k_3 +\frac{28561}{56430}k_4-\frac{9}{50}k_5+\frac{2}{55}k_6.
-\]
-!et
-The optimal time step $\alpha h$ is then determined by
-!bt
-\[
-\alpha = \left( \frac{\xi h}{2|z_{k+1}-y_{k+1}|}\right)^{1/4},
-\]
-!et
-with $\xi$ our defined tolerance.
-!eblock
-
-!split
-===== "Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples" =====
-!bc cppcod
-#include <iostream>
-#include <solver.h>
-#include <planet.h>
-#include <cmath>
-#include <armadillo>
-using namespace arma;
-using namespace std;
-
-int main()
-{
-//  The solarsystem object inherits all functionality of the solver class
-   solver solarsystem;
-// Here we initialize all elements in the solar system (planets)
-   planet  Sun(1,0,0,0,0,0,0);
-   planet  Mercury(1.2e-7, 0.39, 0, 0,0,9.96,0);
-   planet  Venus(2.4e-6, 0.72, 0, 0,0,7.36,0);
-   planet  Earth(1.5e-6,1,0,0, 0, 6.26, 0);
-   planet  Mars(3.3e-7, 1.52, 0, 0,0,5.06,0);
-   planet  Jupiter(9.5e-4, 5.20, 0,0,0,2.75,0);
-   planet  Saturn(2.75e-4, 9.54, 0, 0,0,2.04,0);
-   planet  Uranus(4.4e-5, 19.19, 0, 0,0,1.43,0);
-   planet  Neptune(5.1e-5, 30.06, 0, 0,0,1.14,0);
-   planet  Pluto(5.6e-9, 39.53, 0, 0,0,0.99,0);
-// Now we add all planets
-   solarsystem.add(Sun);
-   solarsystem.add(Mercury);
-   solarsystem.add(Venus);
-   solarsystem.add(Earth);
-   solarsystem.add(Mars);
-   solarsystem.add(Jupiter);
-   solarsystem.add(Saturn);
-   solarsystem.add(Uranus);
-   solarsystem.add(Neptune);
-   solarsystem.add(Pluto);
-
-   int elements = solarsystem.number_planets;
-   cout << "number of element" << elements<< endl;
-   solarsystem.solverRK4(solarsystem.all_planets, 0.001, 100 );
-
-}
-!ec
-The full code, with cpp files and header files,  is at URL:"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples".
-
-!split
-===== "Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file =====
-!bc cppcod
-#ifndef PLANET_H
-#define PLANET_H
-
-class planet
-{
-public:
-
-    double position[3];
-    double velocity[3];
-    double mass;
-    planet(double M, double x,double y, double z, double vx, double vy, double vz);
-    planet();
-
-};
-
-#endif // PLANET_H
-
-!ec
-
-!split
-===== "Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file, cpp file for planet class, simple example =====
-!bc cppcod
-#include "planet.h"
-// Simple constructor
-planet::planet()
-{
-};
-// Improved constructor
-planet::planet(double M, double x,double y, double z, double vx, double vy, double vz){
-mass = M;
-position[0] = x;
-position[1] = y;
-position[2] = z;
-
-velocity[0] = vx;
-velocity[1] = vy;
-velocity[2] = vz;
-};
 
 
-!ec
+
+
+
 
 
