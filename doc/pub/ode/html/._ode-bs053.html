@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -119,38 +128,46 @@ $(function () {
                2,
                None,
                '___sec33'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec34'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec35'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec36'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec37'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec38'),
+              ('How do we develop a larger numerical project',
+               2,
+               None,
+               '___sec34'),
+              ('More on large numerical projects', 2, None, '___sec35'),
+              ('A few words on unit testing', 2, None, '___sec36'),
+              ('Unit tests with "Catch":"https://github.com/philsquared/Catch"',
+               2,
+               None,
+               '___sec37'),
+              ('A simple Example first, Block tied to a Wall',
+               2,
+               None,
+               '___sec38'),
               ('Simple Example, Block tied to a Wall', 2, None, '___sec39'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec40'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec41'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec42'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec43'),
               ('Simple Example, Block tied to a Wall, python code',
                2,
                None,
-               '___sec40'),
-              ('The classical pendulum', 2, None, '___sec41'),
-              ('More on the Pendulum', 2, None, '___sec42'),
-              ('More on the Pendulum', 2, None, '___sec43'),
-              ('More on the Pendulum', 2, None, '___sec44'),
-              ('Adaptive methods', 2, None, '___sec45'),
-              ('Adaptive methods', 2, None, '___sec46'),
-              ('Adaptive methods', 2, None, '___sec47'),
-              ('Adaptive methods', 2, None, '___sec48'),
-              ('Adaptive methods, RKF45', 2, None, '___sec49'),
-              ('Adaptive methods, RKF45', 2, None, '___sec50'),
-              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples"',
+               '___sec44'),
+              ('The second example: The classical pendulum and scaling the equations',
                2,
                None,
-               '___sec51'),
-              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file',
+               '___sec45'),
+              ('More on the Pendulum', 2, None, '___sec46'),
+              ('More on the Pendulum', 2, None, '___sec47'),
+              ('More on the Pendulum', 2, None, '___sec48'),
+              ('How to start our solar system project', 2, None, '___sec49'),
+              ('How to start our solar system project, the simple Euler equations',
                2,
                None,
-               '___sec52'),
-              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file, cpp file for planet class, simple example',
-               2,
-               None,
-               '___sec53')]}
+               '___sec50'),
+              ('Where do we go from here?', 2, None, '___sec51'),
+              ('Adaptive methods', 2, None, '___sec52'),
+              ('Adaptive methods', 2, None, '___sec53'),
+              ('Adaptive methods', 2, None, '___sec54'),
+              ('Adaptive methods', 2, None, '___sec55')]}
 end of tocinfo -->
 
 <body>
@@ -222,26 +239,28 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._ode-bs032.html#___sec31" style="font-size: 80%;">Building a code for the solar system, adding Jupiter</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs033.html#___sec32" style="font-size: 80%;">Building a code for the solar system, adding Jupiter</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs034.html#___sec33" style="font-size: 80%;">How can I get the initial velocities and positions of the planets</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs035.html#___sec34" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs036.html#___sec35" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs037.html#___sec36" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs038.html#___sec37" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs039.html#___sec38" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs035.html#___sec34" style="font-size: 80%;">How do we develop a larger numerical project</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs036.html#___sec35" style="font-size: 80%;">More on large numerical projects</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs037.html#___sec36" style="font-size: 80%;">A few words on unit testing</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs038.html#___sec37" style="font-size: 80%;">Unit tests with "Catch":"https://github.com/philsquared/Catch"</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs039.html#___sec38" style="font-size: 80%;">A simple Example first, Block tied to a Wall</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs040.html#___sec39" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs041.html#___sec40" style="font-size: 80%;">Simple Example, Block tied to a Wall, python code</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs042.html#___sec41" style="font-size: 80%;">The classical pendulum</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs043.html#___sec42" style="font-size: 80%;">More on the Pendulum</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs044.html#___sec43" style="font-size: 80%;">More on the Pendulum</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs045.html#___sec44" style="font-size: 80%;">More on the Pendulum</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs046.html#___sec45" style="font-size: 80%;">Adaptive methods</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs047.html#___sec46" style="font-size: 80%;">Adaptive methods</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs048.html#___sec47" style="font-size: 80%;">Adaptive methods</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs049.html#___sec48" style="font-size: 80%;">Adaptive methods</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs050.html#___sec49" style="font-size: 80%;">Adaptive methods, RKF45</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs051.html#___sec50" style="font-size: 80%;">Adaptive methods, RKF45</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs052.html#___sec51" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples"</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec52" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs054.html#___sec53" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file, cpp file for planet class, simple example</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs041.html#___sec40" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs042.html#___sec41" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs043.html#___sec42" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs044.html#___sec43" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs045.html#___sec44" style="font-size: 80%;">Simple Example, Block tied to a Wall, python code</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs046.html#___sec45" style="font-size: 80%;">The second example: The classical pendulum and scaling the equations</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs047.html#___sec46" style="font-size: 80%;">More on the Pendulum</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs048.html#___sec47" style="font-size: 80%;">More on the Pendulum</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs049.html#___sec48" style="font-size: 80%;">More on the Pendulum</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs050.html#___sec49" style="font-size: 80%;">How to start our solar system project</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs051.html#___sec50" style="font-size: 80%;">How to start our solar system project, the simple Euler equations</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs052.html#___sec51" style="font-size: 80%;">Where do we go from here?</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec52" style="font-size: 80%;">Adaptive methods</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs054.html#___sec53" style="font-size: 80%;">Adaptive methods</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs055.html#___sec54" style="font-size: 80%;">Adaptive methods</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs056.html#___sec55" style="font-size: 80%;">Adaptive methods</a></li>
 
         </ul>
       </li>
@@ -257,27 +276,15 @@ MathJax.Hub.Config({
 <a name="part0053"></a>
 <!-- !split -->
 
-<h2 id="___sec52"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples" target="_self">Solar system code, main program</a>, header file </h2>
-<p>
+<h2 id="___sec52" class="anchor">Adaptive methods </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+In case the function to integrate varies slowly or fast in different integration domains, adaptive methods are normally used. One strategy is always to decrease the step size. As we have seen earlier, this leads to more CPU cycles and may lead to loss or numerical precision. An alternative is to use higher-order RK methods for example. However, this leads again to more cycles, furthermore, there is no guarantee that higher-order leads to an improved error.
+</div>
+</div>
 
-<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#ifndef PLANET_H</span>
-<span style="color: #BC7A00">#define PLANET_H</span>
 
-<span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">planet</span>
-{
-<span style="color: #008000; font-weight: bold">public</span><span style="color: #666666">:</span>
-
-    <span style="color: #B00040">double</span> position[<span style="color: #666666">3</span>];
-    <span style="color: #B00040">double</span> velocity[<span style="color: #666666">3</span>];
-    <span style="color: #B00040">double</span> mass;
-    planet(<span style="color: #B00040">double</span> M, <span style="color: #B00040">double</span> x,<span style="color: #B00040">double</span> y, <span style="color: #B00040">double</span> z, <span style="color: #B00040">double</span> vx, <span style="color: #B00040">double</span> vy, <span style="color: #B00040">double</span> vz);
-    planet();
-
-};
-
-<span style="color: #BC7A00">#endif </span><span style="color: #408080; font-style: italic">// PLANET_H</span>
-</pre></div>
 <p>
 <p>
 <!-- navigation buttons at the bottom of the page -->
@@ -295,6 +302,8 @@ MathJax.Hub.Config({
   <li><a href="._ode-bs052.html">53</a></li>
   <li class="active"><a href="._ode-bs053.html">54</a></li>
   <li><a href="._ode-bs054.html">55</a></li>
+  <li><a href="._ode-bs055.html">56</a></li>
+  <li><a href="._ode-bs056.html">57</a></li>
   <li><a href="._ode-bs054.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->

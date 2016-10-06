@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -119,38 +128,46 @@ $(function () {
                2,
                None,
                '___sec33'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec34'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec35'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec36'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec37'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec38'),
+              ('How do we develop a larger numerical project',
+               2,
+               None,
+               '___sec34'),
+              ('More on large numerical projects', 2, None, '___sec35'),
+              ('A few words on unit testing', 2, None, '___sec36'),
+              ('Unit tests with "Catch":"https://github.com/philsquared/Catch"',
+               2,
+               None,
+               '___sec37'),
+              ('A simple Example first, Block tied to a Wall',
+               2,
+               None,
+               '___sec38'),
               ('Simple Example, Block tied to a Wall', 2, None, '___sec39'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec40'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec41'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec42'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec43'),
               ('Simple Example, Block tied to a Wall, python code',
                2,
                None,
-               '___sec40'),
-              ('The classical pendulum', 2, None, '___sec41'),
-              ('More on the Pendulum', 2, None, '___sec42'),
-              ('More on the Pendulum', 2, None, '___sec43'),
-              ('More on the Pendulum', 2, None, '___sec44'),
-              ('Adaptive methods', 2, None, '___sec45'),
-              ('Adaptive methods', 2, None, '___sec46'),
-              ('Adaptive methods', 2, None, '___sec47'),
-              ('Adaptive methods', 2, None, '___sec48'),
-              ('Adaptive methods, RKF45', 2, None, '___sec49'),
-              ('Adaptive methods, RKF45', 2, None, '___sec50'),
-              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples"',
+               '___sec44'),
+              ('The second example: The classical pendulum and scaling the equations',
                2,
                None,
-               '___sec51'),
-              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file',
+               '___sec45'),
+              ('More on the Pendulum', 2, None, '___sec46'),
+              ('More on the Pendulum', 2, None, '___sec47'),
+              ('More on the Pendulum', 2, None, '___sec48'),
+              ('How to start our solar system project', 2, None, '___sec49'),
+              ('How to start our solar system project, the simple Euler equations',
                2,
                None,
-               '___sec52'),
-              ('"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file, cpp file for planet class, simple example',
-               2,
-               None,
-               '___sec53')]}
+               '___sec50'),
+              ('Where do we go from here?', 2, None, '___sec51'),
+              ('Adaptive methods', 2, None, '___sec52'),
+              ('Adaptive methods', 2, None, '___sec53'),
+              ('Adaptive methods', 2, None, '___sec54'),
+              ('Adaptive methods', 2, None, '___sec55')]}
 end of tocinfo -->
 
 <body>
@@ -222,26 +239,28 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._ode-bs032.html#___sec31" style="font-size: 80%;">Building a code for the solar system, adding Jupiter</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs033.html#___sec32" style="font-size: 80%;">Building a code for the solar system, adding Jupiter</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs034.html#___sec33" style="font-size: 80%;">How can I get the initial velocities and positions of the planets</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs035.html#___sec34" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs036.html#___sec35" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs037.html#___sec36" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs038.html#___sec37" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs039.html#___sec38" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs035.html#___sec34" style="font-size: 80%;">How do we develop a larger numerical project</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs036.html#___sec35" style="font-size: 80%;">More on large numerical projects</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs037.html#___sec36" style="font-size: 80%;">A few words on unit testing</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs038.html#___sec37" style="font-size: 80%;">Unit tests with "Catch":"https://github.com/philsquared/Catch"</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs039.html#___sec38" style="font-size: 80%;">A simple Example first, Block tied to a Wall</a></li>
      <!-- navigation toc: --> <li><a href="._ode-bs040.html#___sec39" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs041.html#___sec40" style="font-size: 80%;">Simple Example, Block tied to a Wall, python code</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs042.html#___sec41" style="font-size: 80%;">The classical pendulum</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs043.html#___sec42" style="font-size: 80%;">More on the Pendulum</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs044.html#___sec43" style="font-size: 80%;">More on the Pendulum</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs045.html#___sec44" style="font-size: 80%;">More on the Pendulum</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs046.html#___sec45" style="font-size: 80%;">Adaptive methods</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs047.html#___sec46" style="font-size: 80%;">Adaptive methods</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs048.html#___sec47" style="font-size: 80%;">Adaptive methods</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs049.html#___sec48" style="font-size: 80%;">Adaptive methods</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs050.html#___sec49" style="font-size: 80%;">Adaptive methods, RKF45</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs051.html#___sec50" style="font-size: 80%;">Adaptive methods, RKF45</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec51" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples"</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs053.html#___sec52" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file</a></li>
-     <!-- navigation toc: --> <li><a href="._ode-bs054.html#___sec53" style="font-size: 80%;">"Solar system code, main program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples", header file, cpp file for planet class, simple example</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs041.html#___sec40" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs042.html#___sec41" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs043.html#___sec42" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs044.html#___sec43" style="font-size: 80%;">Simple Example, Block tied to a Wall</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs045.html#___sec44" style="font-size: 80%;">Simple Example, Block tied to a Wall, python code</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs046.html#___sec45" style="font-size: 80%;">The second example: The classical pendulum and scaling the equations</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs047.html#___sec46" style="font-size: 80%;">More on the Pendulum</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs048.html#___sec47" style="font-size: 80%;">More on the Pendulum</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs049.html#___sec48" style="font-size: 80%;">More on the Pendulum</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs050.html#___sec49" style="font-size: 80%;">How to start our solar system project</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs051.html#___sec50" style="font-size: 80%;">How to start our solar system project, the simple Euler equations</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec51" style="font-size: 80%;">Where do we go from here?</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs053.html#___sec52" style="font-size: 80%;">Adaptive methods</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs054.html#___sec53" style="font-size: 80%;">Adaptive methods</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs055.html#___sec54" style="font-size: 80%;">Adaptive methods</a></li>
+     <!-- navigation toc: --> <li><a href="._ode-bs056.html#___sec55" style="font-size: 80%;">Adaptive methods</a></li>
 
         </ul>
       </li>
@@ -257,53 +276,20 @@ MathJax.Hub.Config({
 <a name="part0052"></a>
 <!-- !split -->
 
-<h2 id="___sec51"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples" target="_self">Solar system code, main program</a> </h2>
-<p>
+<h2 id="___sec51" class="anchor">Where do we go from here? </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
-<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;solver.h&gt;</span>
-<span style="color: #BC7A00">#include &lt;planet.h&gt;</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
-<span style="color: #BC7A00">#include &lt;armadillo&gt;</span>
-<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
-<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+<ul>
+<li> Our next step could be to simply replace the brute force coding of the positions and velocities using the vector class discussed in the solar system  <a href="https://github.com/mortele/solar-system-fys3150" target="_self">class example</a>. That is, we continue with the above Euler code and simply replace the variables \( x \), \( y \), \( vx \) and \( vy \) with vectors defined in the <b>vec3</b> class.</li>
+<li> It is important to have a simple working code that is well tested and understood before we move on to new additions. In this part it is useful to introduce possible unit tests.</li> 
+<li> The next step is to add a class about for example celestial bodies, as discussed in the simple extension of the Euler method for the <a href="https://github.com/andeplane/solar-system" target="_self">Earth-Sun system</a>. This will discussed during the lab sessions.</li>
+<li> Thereafter we can add the full complexity as discussed in the solar system <a href="https://github.com/mortele/solar-system-fys3150" target="_self">class example</a> to be discussed during the lab sessions.</li> 
+</ul>
+</div>
+</div>
 
-<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
-{
-<span style="color: #408080; font-style: italic">//  The solarsystem object inherits all functionality of the solver class</span>
-   solver solarsystem;
-<span style="color: #408080; font-style: italic">// Here we initialize all elements in the solar system (planets)</span>
-   planet  Sun(<span style="color: #666666">1</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>);
-   planet  Mercury(<span style="color: #666666">1.2e-7</span>, <span style="color: #666666">0.39</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">9.96</span>,<span style="color: #666666">0</span>);
-   planet  Venus(<span style="color: #666666">2.4e-6</span>, <span style="color: #666666">0.72</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">7.36</span>,<span style="color: #666666">0</span>);
-   planet  Earth(<span style="color: #666666">1.5e-6</span>,<span style="color: #666666">1</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>, <span style="color: #666666">0</span>, <span style="color: #666666">6.26</span>, <span style="color: #666666">0</span>);
-   planet  Mars(<span style="color: #666666">3.3e-7</span>, <span style="color: #666666">1.52</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">5.06</span>,<span style="color: #666666">0</span>);
-   planet  Jupiter(<span style="color: #666666">9.5e-4</span>, <span style="color: #666666">5.20</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">2.75</span>,<span style="color: #666666">0</span>);
-   planet  Saturn(<span style="color: #666666">2.75e-4</span>, <span style="color: #666666">9.54</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">2.04</span>,<span style="color: #666666">0</span>);
-   planet  Uranus(<span style="color: #666666">4.4e-5</span>, <span style="color: #666666">19.19</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">1.43</span>,<span style="color: #666666">0</span>);
-   planet  Neptune(<span style="color: #666666">5.1e-5</span>, <span style="color: #666666">30.06</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">1.14</span>,<span style="color: #666666">0</span>);
-   planet  Pluto(<span style="color: #666666">5.6e-9</span>, <span style="color: #666666">39.53</span>, <span style="color: #666666">0</span>, <span style="color: #666666">0</span>,<span style="color: #666666">0</span>,<span style="color: #666666">0.99</span>,<span style="color: #666666">0</span>);
-<span style="color: #408080; font-style: italic">// Now we add all planets</span>
-   solarsystem.add(Sun);
-   solarsystem.add(Mercury);
-   solarsystem.add(Venus);
-   solarsystem.add(Earth);
-   solarsystem.add(Mars);
-   solarsystem.add(Jupiter);
-   solarsystem.add(Saturn);
-   solarsystem.add(Uranus);
-   solarsystem.add(Neptune);
-   solarsystem.add(Pluto);
-
-   <span style="color: #B00040">int</span> elements <span style="color: #666666">=</span> solarsystem.number_planets;
-   cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;number of element&quot;</span> <span style="color: #666666">&lt;&lt;</span> elements<span style="color: #666666">&lt;&lt;</span> endl;
-   solarsystem.solverRK4(solarsystem.all_planets, <span style="color: #666666">0.001</span>, <span style="color: #666666">100</span> );
-
-}
-</pre></div>
-<p>
-The full code, with cpp files and header files,  is at <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples" target="_self"><tt>https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/OOExamples</tt></a>.
 
 <p>
 <p>
@@ -323,6 +309,8 @@ The full code, with cpp files and header files,  is at <a href="https://github.c
   <li class="active"><a href="._ode-bs052.html">53</a></li>
   <li><a href="._ode-bs053.html">54</a></li>
   <li><a href="._ode-bs054.html">55</a></li>
+  <li><a href="._ode-bs055.html">56</a></li>
+  <li><a href="._ode-bs056.html">57</a></li>
   <li><a href="._ode-bs053.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
