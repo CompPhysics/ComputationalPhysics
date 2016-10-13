@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -215,23 +224,30 @@ $(function () {
               ('Treatment of Singular Integrals', 2, None, '___sec82'),
               ('Treatment of Singular Integrals', 2, None, '___sec83'),
               ('Treatment of Singular Integrals', 2, None, '___sec84'),
-              ('Hints concerning project 3', 2, None, '___sec85'),
-              ('Hints concerning project 3, parts of code',
+              ('Example of a multidimensional integral', 2, None, '___sec85'),
+              ('Parts of code and brute force Gauss-Legendre quadrature',
                2,
                None,
                '___sec86'),
-              ('Hints concerning project 3, the function to integrate',
+              ('The function to integrate, code example',
                2,
                None,
                '___sec87'),
-              ('Hints concerning project 3, Laguerre polynomials',
+              ('Laguerre polynomials', 2, None, '___sec88'),
+              ('Laguerre polynomials, the new integrand',
                2,
                None,
-               '___sec88'),
-              ('Hints concerning project 3, Laguerre polynomials, the new integrand',
+               '___sec89'),
+              ('Laguerre polynomials, new integration rule: Gauss-Laguerre',
                2,
                None,
-               '___sec89')]}
+               '___sec90'),
+              ('Fixing $N=20$ with Gauss-Legendre', 2, None, '___sec91'),
+              ('Fixing $r_{\\mathrm{max}}=2$ with Gauss-Legendre',
+               2,
+               None,
+               '___sec92'),
+              ('Results  with Gauss-Laguerre', 2, None, '___sec93')]}
 end of tocinfo -->
 
 <body>
@@ -354,11 +370,15 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._integrate-bs083.html#___sec82" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
      <!-- navigation toc: --> <li><a href="._integrate-bs084.html#___sec83" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
      <!-- navigation toc: --> <li><a href="._integrate-bs085.html#___sec84" style="font-size: 80%;">Treatment of Singular Integrals</a></li>
-     <!-- navigation toc: --> <li><a href="._integrate-bs086.html#___sec85" style="font-size: 80%;">Hints concerning project 3</a></li>
-     <!-- navigation toc: --> <li><a href="._integrate-bs087.html#___sec86" style="font-size: 80%;">Hints concerning project 3, parts of code</a></li>
-     <!-- navigation toc: --> <li><a href="._integrate-bs088.html#___sec87" style="font-size: 80%;">Hints concerning project 3, the function to integrate</a></li>
-     <!-- navigation toc: --> <li><a href="._integrate-bs089.html#___sec88" style="font-size: 80%;">Hints concerning project 3, Laguerre polynomials</a></li>
-     <!-- navigation toc: --> <li><a href="._integrate-bs090.html#___sec89" style="font-size: 80%;">Hints concerning project 3, Laguerre polynomials, the new integrand</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs086.html#___sec85" style="font-size: 80%;">Example of a multidimensional integral</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs087.html#___sec86" style="font-size: 80%;">Parts of code and brute force Gauss-Legendre quadrature</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs088.html#___sec87" style="font-size: 80%;">The function to integrate, code example</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs089.html#___sec88" style="font-size: 80%;">Laguerre polynomials</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs090.html#___sec89" style="font-size: 80%;">Laguerre polynomials, the new integrand</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs091.html#___sec90" style="font-size: 80%;">Laguerre polynomials, new integration rule: Gauss-Laguerre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs092.html#___sec91" style="font-size: 80%;">Fixing \( N=20 \) with Gauss-Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs093.html#___sec92" style="font-size: 80%;">Fixing \( r_{\mathrm{max}}=2 \) with Gauss-Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs094.html#___sec93" style="font-size: 80%;">Results  with Gauss-Laguerre</a></li>
 
         </ul>
       </li>
@@ -374,7 +394,7 @@ MathJax.Hub.Config({
 <a name="part0039"></a>
 <!-- !split -->
 
-<h2 id="___sec38">Orthogonal polynomials, Legendre </h2>
+<h2 id="___sec38" class="anchor">Orthogonal polynomials, Legendre </h2>
 It is common to choose the normalization condition
 $$
 \begin{equation*}
@@ -429,7 +449,7 @@ $$
   <li><a href="._integrate-bs047.html">48</a></li>
   <li><a href="._integrate-bs048.html">49</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._integrate-bs090.html">91</a></li>
+  <li><a href="._integrate-bs094.html">95</a></li>
   <li><a href="._integrate-bs040.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->

@@ -1921,13 +1921,15 @@ where the right-hand side is no longer singular at
 $k=k_0$, it is proportional to the derivative $df/dk$,
 and can be evaluated numerically as any other integral.
 
-Such a trick is often used when evaluating integral  equations, as discussed in the next section.
+Such a trick is often used when evaluating integral  equations.
 !eblock
 
 
 !split
-===== Hints concerning project 3   =====
+===== Example of a multidimensional integral   =====
 !bblock
+Here we show an example of a multidimensional integral which appears in quantum mechanical calculations.
+
 The ansatz for the wave function for two electrons is given by the product of two
 $1s$ wave functions as 
 !bt
@@ -1942,17 +1944,18 @@ energy between two electrons, namely
    I = \int_{-\infty}^{\infty} d{\bf r}_1d{\bf r}_2  e^{-2\alpha (r_1+r_2)}\frac{1}{|{\bf r}_1-{\bf r}_2|}.
 \]
 !et
-
+The integral has an exact solution $5\pi^2/16 = 0.19277$. 
 !eblock
 
 !split
-===== Hints concerning project 3, parts of code   =====
+===== Parts of code and brute force Gauss-Legendre quadrature  =====
 !bblock
+If we use Gaussian quadrature with Legendre polynomials (without rewriting the integral), we have
 !bc cppcod
      double *x = new double [N];
      double *w = new double [N];
 //   set up the mesh points and weights
-     gauleg(a,b,x,w, N);
+     GaussLegendrePoints(a,b,x,w, N);
 
 //   evaluate the integral with the Gauss-Legendre method
 //   Note that we initialize the sum
@@ -1973,7 +1976,7 @@ energy between two electrons, namely
 !eblock
 
 !split
-===== Hints concerning project 3, the function to integrate   =====
+===== The function to integrate, code example   =====
 !bblock
 !bc cppcod
 //  this function defines the function to integrate
@@ -1984,21 +1987,19 @@ double int_function(double x1, double y1, double z1, double x2, double y2, doubl
    double exp1=-2*alpha*sqrt(x1*x1+y1*y1+z1*z1);
    double exp2=-2*alpha*sqrt(x2*x2+y2*y2+z2*z2);
    double deno=sqrt(pow((x1-x2),2)+pow((y1-y2),2)+pow((z1-z2),2));
-// Cheating!!
-  if(deno <pow(10.,-6.)) { return 0;}
-  else return exp(exp1+exp2)/deno;
+   return exp(exp1+exp2)/deno;
 } // end of function to evaluate
 !ec
 
 !eblock
 
 !split
-===== Hints concerning project 3, Laguerre polynomials   =====
+===== Laguerre polynomials   =====
 !bblock
 Using Legendre polynomials for the Gaussian quadrature is not very efficient. There are several reasons for this:
 * You can easily end up in situations where the integrand diverges
 * The limits $\pm \infty$ have to be approximated with a finite number
-You will find it useful to change to spherical coordinates
+It is very useful here to change to spherical coordinates
 !bt
 \[
    d{\bf r}_1d{\bf r}_2  = r_1^2dr_1 r_2^2dr_2 dcos(\theta_1)dcos(\theta_2)d\phi_1d\phi_2,
@@ -2020,7 +2021,7 @@ with
 
 
 !split
-===== Hints concerning project 3, Laguerre polynomials, the new integrand   =====
+===== Laguerre polynomials, the new integrand   =====
 !bblock
 This means that our integral becomes
 !bt
@@ -2043,11 +2044,61 @@ with
 !eblock
 
 
+!split
+===== Laguerre polynomials, new integration rule: Gauss-Laguerre   =====
+!bblock
+Our integral is now given by
+!bt
+\[
+I=\int_0^{\infty} r_1^2dr_1 \int_0^{\infty}r_2^2dr_2 \int_0^{\pi}dcos(\theta_1)\int_0^{\pi}dcos(\theta_2)\int_0^{2\pi}d\phi_1\int_0^{2\pi}d\phi_2  \frac{\exp{-2\alpha (r_1+r_2)}}{r_{12}}
+\]
+!et
+For the angles we need to perform the integrations over $\theta_i\in [0,\pi]$ and $\phi_i \in [0,2\pi]$. However, for the radial part we can now either use
+* Gauss-Legendre wth an appropriate mapping or
+* Gauss-Laguerre taking properly care of the integrands involving the $r_i^2 \exp{-(2\alpha r_i)}$ terms.
+!eblock
 
 
 
+!split
+===== Fixing $N=20$ with Gauss-Legendre   =====
+
+|--------------------------------------------------------------------|
+|$r_{\mathrm{max}}$| Integral Error |
+|--------------------------------------------------------------------|
+ | 1.00  |0.161419805 | 0.0313459063   |
+ | 1.50  |0.180468967  |0.012296744    |
+ | 2.00  |0.177065182  |0.0157005292   |
+ | 2.50  |0.167970694  |0.0247950165  |
+ | 3.00  |0.156139391  |0.0366263199  |
+|--------------------------------------------------------------------|
 
 
 
+!split
+===== Fixing $r_{\mathrm{max}}=2$ with Gauss-Legendre   =====
 
+|--------------------------------------------------------------------|
+|$N$ | Integral |Error   |
+|--------------------------------------------------------------------|
+|10 |0.129834248  |0.0629314631   |
+|16 |0.167860437  |0.0249052742   |
+|20 |0.177065182 |0.0157005292    |
+|26 |0.183543237 |0.00922247353   |
+|30 |0.185795624 |0.00697008738    |
+|--------------------------------------------------------------------|
 
+!split
+=====  Results  with Gauss-Laguerre   =====
+
+|--------------------------------------------------------------------|
+|$N$| Integral| Error  |
+|--------------------------------------------------------------------|
+|10 |0.186457345 |0.00630836601  |
+|16 |0.190113364 |0.00265234708  |
+|20 |0.19108178 |0.00168393093   |
+|26 |0.191831828 |0.000933882594  |
+|30 |0.192113712 |0.000651999339  |
+|--------------------------------------------------------------------|
+
+The code that was used to generate these results can be found under the "programs link":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/NumericalIntegration/cpp/program2.cpp".
