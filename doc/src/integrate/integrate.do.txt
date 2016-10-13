@@ -1934,14 +1934,14 @@ The ansatz for the wave function for two electrons is given by the product of tw
 $1s$ wave functions as 
 !bt
 \[
-   \Psi({\bf r}_1,{\bf r}_2)  =   e^{-\alpha (r_1+r_2)}.
+   \Psi({\bf r}_1,{\bf r}_2)  =   \exp{-(\alpha (r_1+r_2))}.
 \]
 !et
 The integral we need to solve is the quantum mechanical expectation value of the correlation
 energy between two electrons, namely
 !bt
 \[
-   I = \int_{-\infty}^{\infty} d{\bf r}_1d{\bf r}_2  e^{-2\alpha (r_1+r_2)}\frac{1}{|{\bf r}_1-{\bf r}_2|}.
+   I = \int_{-\infty}^{\infty} d{\bf r}_1d{\bf r}_2  \exp{-2(\alpha (r_1+r_2))}\frac{1}{|{\bf r}_1-{\bf r}_2|}.
 \]
 !et
 The integral has an exact solution $5\pi^2/16 = 0.19277$. 
@@ -2026,7 +2026,7 @@ with
 This means that our integral becomes
 !bt
 \[
-I=\int_0^{\infty} r_1^2dr_1 \int_0^{\infty}r_2^2dr_2 \int_0^{\pi}dcos(\theta_1)\int_0^{\pi}dcos(\theta_2)\int_0^{2\pi}d\phi_1\int_0^{2\pi}d\phi_2  \frac{e^{-2\alpha (r_1+r_2)}}{r_{12}}
+I=\int_0^{\infty} r_1^2dr_1 \int_0^{\infty}r_2^2dr_2 \int_0^{\pi}dcos(\theta_1)\int_0^{\pi}dcos(\theta_2)\int_0^{2\pi}d\phi_1\int_0^{2\pi}d\phi_2  \frac{\exp{-2\alpha (r_1+r_2)}}{r_{12}}
 \]
 !et
 where we have defined
@@ -2061,10 +2061,10 @@ For the angles we need to perform the integrations over $\theta_i\in [0,\pi]$ an
 
 
 !split
-===== Fixing $N=20$ with Gauss-Legendre   =====
+===== Results with  $N=20$ with Gauss-Legendre   =====
 
 |--------------------------------------------------------------------|
-|$r_{\mathrm{max}}$| Integral Error |
+|$r_{\mathrm{max}}$| Integral| Error |
 |--------------------------------------------------------------------|
  | 1.00  |0.161419805 | 0.0313459063   |
  | 1.50  |0.180468967  |0.012296744    |
@@ -2076,7 +2076,7 @@ For the angles we need to perform the integrations over $\theta_i\in [0,\pi]$ an
 
 
 !split
-===== Fixing $r_{\mathrm{max}}=2$ with Gauss-Legendre   =====
+===== Results for  $r_{\mathrm{max}}=2$ with Gauss-Legendre   =====
 
 |--------------------------------------------------------------------|
 |$N$ | Integral |Error   |
@@ -2101,4 +2101,4 @@ For the angles we need to perform the integrations over $\theta_i\in [0,\pi]$ an
 |30 |0.192113712 |0.000651999339  |
 |--------------------------------------------------------------------|
 
-The code that was used to generate these results can be found under the "programs link":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/NumericalIntegration/cpp/program2.cpp".
+The code that was used to generate these results can be found under the "program link":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/NumericalIntegration/cpp/program2.cpp".
