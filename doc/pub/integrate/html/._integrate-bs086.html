@@ -242,8 +242,11 @@ $(function () {
                2,
                None,
                '___sec90'),
-              ('Fixing $N=20$ with Gauss-Legendre', 2, None, '___sec91'),
-              ('Fixing $r_{\\mathrm{max}}=2$ with Gauss-Legendre',
+              ('Results with  $N=20$ with Gauss-Legendre',
+               2,
+               None,
+               '___sec91'),
+              ('Results for  $r_{\\mathrm{max}}=2$ with Gauss-Legendre',
                2,
                None,
                '___sec92'),
@@ -376,8 +379,8 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._integrate-bs089.html#___sec88" style="font-size: 80%;">Laguerre polynomials</a></li>
      <!-- navigation toc: --> <li><a href="._integrate-bs090.html#___sec89" style="font-size: 80%;">Laguerre polynomials, the new integrand</a></li>
      <!-- navigation toc: --> <li><a href="._integrate-bs091.html#___sec90" style="font-size: 80%;">Laguerre polynomials, new integration rule: Gauss-Laguerre</a></li>
-     <!-- navigation toc: --> <li><a href="._integrate-bs092.html#___sec91" style="font-size: 80%;">Fixing \( N=20 \) with Gauss-Legendre</a></li>
-     <!-- navigation toc: --> <li><a href="._integrate-bs093.html#___sec92" style="font-size: 80%;">Fixing \( r_{\mathrm{max}}=2 \) with Gauss-Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs092.html#___sec91" style="font-size: 80%;">Results with  \( N=20 \) with Gauss-Legendre</a></li>
+     <!-- navigation toc: --> <li><a href="._integrate-bs093.html#___sec92" style="font-size: 80%;">Results for  \( r_{\mathrm{max}}=2 \) with Gauss-Legendre</a></li>
      <!-- navigation toc: --> <li><a href="._integrate-bs094.html#___sec93" style="font-size: 80%;">Results  with Gauss-Laguerre</a></li>
 
         </ul>
@@ -404,13 +407,13 @@ Here we show an example of a multidimensional integral which appears in quantum 
 The ansatz for the wave function for two electrons is given by the product of two
 \( 1s \) wave functions as 
 $$
-   \Psi({\bf r}_1,{\bf r}_2)  =   e^{-\alpha (r_1+r_2)}.
+   \Psi({\bf r}_1,{\bf r}_2)  =   \exp{-(\alpha (r_1+r_2))}.
 $$
 
 The integral we need to solve is the quantum mechanical expectation value of the correlation
 energy between two electrons, namely
 $$
-   I = \int_{-\infty}^{\infty} d{\bf r}_1d{\bf r}_2  e^{-2\alpha (r_1+r_2)}\frac{1}{|{\bf r}_1-{\bf r}_2|}.
+   I = \int_{-\infty}^{\infty} d{\bf r}_1d{\bf r}_2  \exp{-2(\alpha (r_1+r_2))}\frac{1}{|{\bf r}_1-{\bf r}_2|}.
 $$
 
 The integral has an exact solution \( 5\pi^2/16 = 0.19277 \).
