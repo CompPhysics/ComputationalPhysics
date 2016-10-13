@@ -1,0 +1,514 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Computational Physics Lectures: How to optimize codes, from vectorization to parallelization">
+
+<title>Computational Physics Lectures: How to optimize codes, from vectorization to parallelization</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Content', 2, None, '___sec0'),
+              ('Optimization and profiling', 2, None, '___sec1'),
+              ('More on optimization', 2, None, '___sec2'),
+              ('Optimization and profiling', 2, None, '___sec3'),
+              ('Optimization and debugging', 2, None, '___sec4'),
+              ('Other hints', 2, None, '___sec5'),
+              ('Vectorization and the basic idea behind parallel computing',
+               2,
+               None,
+               '___sec6'),
+              ('A rough classification of hardware models',
+               2,
+               None,
+               '___sec7'),
+              ('Shared memory and distributed memory', 2, None, '___sec8'),
+              ('Different parallel programming paradigms',
+               2,
+               None,
+               '___sec9'),
+              ('Different parallel programming paradigms',
+               2,
+               None,
+               '___sec10'),
+              ('What is vectorization?', 2, None, '___sec11'),
+              ('Number of elements that can acted upon', 2, None, '___sec12'),
+              ('Number of elements that can acted upon, examples',
+               2,
+               None,
+               '___sec13'),
+              ('Number of elements that can acted upon, examples',
+               2,
+               None,
+               '___sec14'),
+              ('"A simple test case with and without vectorization":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp"',
+               2,
+               None,
+               '___sec15'),
+              ('Compiling with and without vectorization',
+               2,
+               None,
+               '___sec16'),
+              ('Automatic vectorization and vectorization inhibitors, criteria',
+               2,
+               None,
+               '___sec17'),
+              ('Automatic vectorization and vectorization inhibitors, exit criteria',
+               2,
+               None,
+               '___sec18'),
+              ('Automatic vectorization and vectorization inhibitors, straight-line code',
+               2,
+               None,
+               '___sec19'),
+              ('Automatic vectorization and vectorization inhibitors, nested loops',
+               2,
+               None,
+               '___sec20'),
+              ('Automatic vectorization and vectorization inhibitors, function calls',
+               2,
+               None,
+               '___sec21'),
+              ('Automatic vectorization and vectorization inhibitors, data dependencies',
+               2,
+               None,
+               '___sec22'),
+              ('Automatic vectorization and vectorization inhibitors, more data dependencies',
+               2,
+               None,
+               '___sec23'),
+              ('Automatic vectorization and vectorization inhibitors, memory stride',
+               2,
+               None,
+               '___sec24'),
+              ('Memory management', 2, None, '___sec25'),
+              ('Memory and communication', 2, None, '___sec26'),
+              ('Measuring performance', 2, None, '___sec27'),
+              ('Problems with measuring time', 2, None, '___sec28'),
+              ('Problems with cold start', 2, None, '___sec29'),
+              ('Problems with smart compilers', 2, None, '___sec30'),
+              ('Problems with interference', 2, None, '___sec31'),
+              ('Problems with measuring performance', 2, None, '___sec32'),
+              ('Thomas algorithm for tridiagonal linear algebra equations',
+               2,
+               None,
+               '___sec33'),
+              ('Thomas algorithm, forward substitution', 2, None, '___sec34'),
+              ('Thomas algorithm, backward substitution',
+               2,
+               None,
+               '___sec35'),
+              ('Thomas algorithm and counting of operations (floating point and memory)',
+               2,
+               None,
+               '___sec36'),
+              ('"Example: Transpose of a matrix":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program8.cpp"',
+               2,
+               None,
+               '___sec37'),
+              ('"Matrix-matrix multiplication":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp"',
+               2,
+               None,
+               '___sec38'),
+              ('How do we define speedup? Simplest form',
+               2,
+               None,
+               '___sec39'),
+              ('How do we define speedup? Correct baseline',
+               2,
+               None,
+               '___sec40'),
+              ('Parallel  speedup', 2, None, '___sec41'),
+              ('Speedup and memory', 2, None, '___sec42'),
+              ('Upper bounds on speedup', 2, None, '___sec43'),
+              ("Amdahl's law", 2, None, '___sec44'),
+              ('How much is parallelizable', 2, None, '___sec45'),
+              ("Today's situation of parallel computing",
+               2,
+               None,
+               '___sec46'),
+              ('Overhead present in parallel computing', 2, None, '___sec47'),
+              ('Parallelizing a sequential algorithm', 2, None, '___sec48'),
+              ('Strategies', 2, None, '___sec49'),
+              ('How do I run MPI on a PC/Laptop? MPI', 2, None, '___sec50'),
+              ('Can I do it on my own PC/laptop? OpenMP installation',
+               2,
+               None,
+               '___sec51'),
+              ('Installing MPI', 2, None, '___sec52'),
+              ('Installing MPI and using Qt', 2, None, '___sec53'),
+              ('Using "Smaug":"http://comp-phys.net/cluster-info/using-smaug/", the CompPhys computing cluster',
+               2,
+               None,
+               '___sec54'),
+              ('What is OpenMP', 2, None, '___sec55'),
+              ('Getting started, things to remember', 2, None, '___sec56'),
+              ('OpenMP syntax', 2, None, '___sec57'),
+              ('Different OpenMP styles of parallelism', 2, None, '___sec58'),
+              ('General code structure', 2, None, '___sec59'),
+              ('Parallel region', 2, None, '___sec60'),
+              ('Hello world, not again, please!', 2, None, '___sec61'),
+              ('Hello world, yet another variant', 2, None, '___sec62'),
+              ('Important OpenMP library routines', 2, None, '___sec63'),
+              ('Private variables', 2, None, '___sec64'),
+              ('Master region', 2, None, '___sec65'),
+              ('Parallel for loop', 2, None, '___sec66'),
+              ('Parallel computations and loops', 2, None, '___sec67'),
+              ('Scheduling of  loop computations', 2, None, '___sec68'),
+              ('Example code for loop scheduling', 2, None, '___sec69'),
+              ('Example code for loop scheduling, guided instead of dynamic',
+               2,
+               None,
+               '___sec70'),
+              ('More on Parallel for loop', 2, None, '___sec71'),
+              ('What can happen with this loop?', 2, None, '___sec72'),
+              ('Inner product', 2, None, '___sec73'),
+              ('Different threads do different tasks', 2, None, '___sec74'),
+              ('Single execution', 2, None, '___sec75'),
+              ('Coordination and synchronization', 2, None, '___sec76'),
+              ('Data scope', 2, None, '___sec77'),
+              ('Some remarks', 2, None, '___sec78'),
+              ('Parallelizing nested for-loops', 2, None, '___sec79'),
+              ('Nested parallelism', 2, None, '___sec80'),
+              ('Parallel tasks', 2, None, '___sec81'),
+              ('Common mistakes', 2, None, '___sec82'),
+              ('Not all computations are simple', 2, None, '___sec83'),
+              ('Not all computations are simple, competing threads',
+               2,
+               None,
+               '___sec84'),
+              ('How to find the max value using OpenMP', 2, None, '___sec85'),
+              ('Then deal with the race conditions', 2, None, '___sec86'),
+              ('What can slow down OpenMP performance?', 2, None, '___sec87'),
+              ('What can slow down OpenMP performance?', 2, None, '___sec88'),
+              ('Find the max location for each thread', 2, None, '___sec89'),
+              ('Combine the values from each thread', 2, None, '___sec90'),
+              ('"Matrix-matrix multiplication":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/ParallelizationOpenMP/OpenMPvectornorm.cpp"',
+               2,
+               None,
+               '___sec91'),
+              ('"Matrix-matrix multiplication":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/ParallelizationOpenMP/OpenMPmatrixmatrixmult.cpp"',
+               2,
+               None,
+               '___sec92'),
+              ('What is Message Passing Interface (MPI)?',
+               2,
+               None,
+               '___sec93'),
+              ('Going Parallel with MPI', 2, None, '___sec94'),
+              ('MPI is a library', 2, None, '___sec95'),
+              ('Bindings to MPI routines', 2, None, '___sec96'),
+              ('Communicator', 2, None, '___sec97'),
+              ('Some of the most  important MPI functions',
+               2,
+               None,
+               '___sec98'),
+              ('"The first MPI C/C++ program":"https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-pages/doc/Programs/LecturePrograms/programs/MPI/chapter07/program2.cpp"',
+               2,
+               None,
+               '___sec99'),
+              ('The Fortran program', 2, None, '___sec100'),
+              ('Note 1', 2, None, '___sec101'),
+              ('"Ordered output with MPIBarrier":"https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-pages/doc/Programs/LecturePrograms/programs/MPI/chapter07/program3.cpp"',
+               2,
+               None,
+               '___sec102'),
+              ('Note 2', 2, None, '___sec103'),
+              ('"Ordered output":"https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-pages/doc/Programs/LecturePrograms/programs/MPI/chapter07/program4.cpp"',
+               2,
+               None,
+               '___sec104'),
+              ('Note 3', 2, None, '___sec105'),
+              ('Note 4', 2, None, '___sec106'),
+              ('"Numerical integration in parallel":"https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-pages/doc/Programs/LecturePrograms/programs/MPI/chapter07/program6.cpp"',
+               2,
+               None,
+               '___sec107'),
+              ('Dissection of trapezoidal rule with $MPI\\_reduce$',
+               2,
+               None,
+               '___sec108'),
+              ('Dissection of trapezoidal rule', 2, None, '___sec109'),
+              ('Integrating with _MPI_', 2, None, '___sec110'),
+              ('How do I use $MPI\\_reduce$?', 2, None, '___sec111'),
+              ('More on $MPI\\_Reduce$', 2, None, '___sec112'),
+              ('Dissection of trapezoidal rule', 2, None, '___sec113'),
+              ('Dissection of trapezoidal rule', 2, None, '___sec114')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="codeoptimization-bs.html">Computational Physics Lectures: How to optimize codes, from vectorization to parallelization</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs001.html#___sec0" style="font-size: 80%;">Content</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs002.html#___sec1" style="font-size: 80%;">Optimization and profiling</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs003.html#___sec2" style="font-size: 80%;">More on optimization</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs004.html#___sec3" style="font-size: 80%;">Optimization and profiling</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs005.html#___sec4" style="font-size: 80%;">Optimization and debugging</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs006.html#___sec5" style="font-size: 80%;">Other hints</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs007.html#___sec6" style="font-size: 80%;">Vectorization and the basic idea behind parallel computing</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs008.html#___sec7" style="font-size: 80%;">A rough classification of hardware models</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs009.html#___sec8" style="font-size: 80%;">Shared memory and distributed memory</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs010.html#___sec9" style="font-size: 80%;">Different parallel programming paradigms</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs011.html#___sec10" style="font-size: 80%;">Different parallel programming paradigms</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs012.html#___sec11" style="font-size: 80%;">What is vectorization?</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs013.html#___sec12" style="font-size: 80%;">Number of elements that can acted upon</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs014.html#___sec13" style="font-size: 80%;">Number of elements that can acted upon, examples</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs015.html#___sec14" style="font-size: 80%;">Number of elements that can acted upon, examples</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs016.html#___sec15" style="font-size: 80%;">"A simple test case with and without vectorization":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs017.html#___sec16" style="font-size: 80%;">Compiling with and without vectorization</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs018.html#___sec17" style="font-size: 80%;">Automatic vectorization and vectorization inhibitors, criteria</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs019.html#___sec18" style="font-size: 80%;">Automatic vectorization and vectorization inhibitors, exit criteria</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs020.html#___sec19" style="font-size: 80%;">Automatic vectorization and vectorization inhibitors, straight-line code</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs021.html#___sec20" style="font-size: 80%;">Automatic vectorization and vectorization inhibitors, nested loops</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs022.html#___sec21" style="font-size: 80%;">Automatic vectorization and vectorization inhibitors, function calls</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs023.html#___sec22" style="font-size: 80%;">Automatic vectorization and vectorization inhibitors, data dependencies</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs024.html#___sec23" style="font-size: 80%;">Automatic vectorization and vectorization inhibitors, more data dependencies</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs025.html#___sec24" style="font-size: 80%;">Automatic vectorization and vectorization inhibitors, memory stride</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs026.html#___sec25" style="font-size: 80%;">Memory management</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs027.html#___sec26" style="font-size: 80%;">Memory and communication</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs028.html#___sec27" style="font-size: 80%;">Measuring performance</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs029.html#___sec28" style="font-size: 80%;">Problems with measuring time</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs030.html#___sec29" style="font-size: 80%;">Problems with cold start</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs031.html#___sec30" style="font-size: 80%;">Problems with smart compilers</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs032.html#___sec31" style="font-size: 80%;">Problems with interference</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs033.html#___sec32" style="font-size: 80%;">Problems with measuring performance</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs034.html#___sec33" style="font-size: 80%;">Thomas algorithm for tridiagonal linear algebra equations</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs035.html#___sec34" style="font-size: 80%;">Thomas algorithm, forward substitution</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs036.html#___sec35" style="font-size: 80%;">Thomas algorithm, backward substitution</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs037.html#___sec36" style="font-size: 80%;">Thomas algorithm and counting of operations (floating point and memory)</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs038.html#___sec37" style="font-size: 80%;">"Example: Transpose of a matrix":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program8.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs039.html#___sec38" style="font-size: 80%;">"Matrix-matrix multiplication":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs040.html#___sec39" style="font-size: 80%;">How do we define speedup? Simplest form</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs041.html#___sec40" style="font-size: 80%;">How do we define speedup? Correct baseline</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs042.html#___sec41" style="font-size: 80%;">Parallel  speedup</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs043.html#___sec42" style="font-size: 80%;">Speedup and memory</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs044.html#___sec43" style="font-size: 80%;">Upper bounds on speedup</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs045.html#___sec44" style="font-size: 80%;">Amdahl's law</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs046.html#___sec45" style="font-size: 80%;">How much is parallelizable</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs047.html#___sec46" style="font-size: 80%;">Today's situation of parallel computing</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs048.html#___sec47" style="font-size: 80%;">Overhead present in parallel computing</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs049.html#___sec48" style="font-size: 80%;">Parallelizing a sequential algorithm</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs050.html#___sec49" style="font-size: 80%;">Strategies</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs051.html#___sec50" style="font-size: 80%;">How do I run MPI on a PC/Laptop? MPI</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs052.html#___sec51" style="font-size: 80%;">Can I do it on my own PC/laptop? OpenMP installation</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs053.html#___sec52" style="font-size: 80%;">Installing MPI</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs054.html#___sec53" style="font-size: 80%;">Installing MPI and using Qt</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs055.html#___sec54" style="font-size: 80%;">Using "Smaug":"http://comp-phys.net/cluster-info/using-smaug/", the CompPhys computing cluster</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs056.html#___sec55" style="font-size: 80%;">What is OpenMP</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs057.html#___sec56" style="font-size: 80%;">Getting started, things to remember</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs058.html#___sec57" style="font-size: 80%;">OpenMP syntax</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs059.html#___sec58" style="font-size: 80%;">Different OpenMP styles of parallelism</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs060.html#___sec59" style="font-size: 80%;">General code structure</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs061.html#___sec60" style="font-size: 80%;">Parallel region</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs062.html#___sec61" style="font-size: 80%;">Hello world, not again, please!</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs063.html#___sec62" style="font-size: 80%;">Hello world, yet another variant</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs064.html#___sec63" style="font-size: 80%;">Important OpenMP library routines</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs065.html#___sec64" style="font-size: 80%;">Private variables</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs066.html#___sec65" style="font-size: 80%;">Master region</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs067.html#___sec66" style="font-size: 80%;">Parallel for loop</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs068.html#___sec67" style="font-size: 80%;">Parallel computations and loops</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs069.html#___sec68" style="font-size: 80%;">Scheduling of  loop computations</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs070.html#___sec69" style="font-size: 80%;">Example code for loop scheduling</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs071.html#___sec70" style="font-size: 80%;">Example code for loop scheduling, guided instead of dynamic</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs072.html#___sec71" style="font-size: 80%;">More on Parallel for loop</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs073.html#___sec72" style="font-size: 80%;">What can happen with this loop?</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs074.html#___sec73" style="font-size: 80%;">Inner product</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs075.html#___sec74" style="font-size: 80%;">Different threads do different tasks</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs076.html#___sec75" style="font-size: 80%;">Single execution</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs077.html#___sec76" style="font-size: 80%;">Coordination and synchronization</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs078.html#___sec77" style="font-size: 80%;">Data scope</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs079.html#___sec78" style="font-size: 80%;">Some remarks</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs080.html#___sec79" style="font-size: 80%;">Parallelizing nested for-loops</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs081.html#___sec80" style="font-size: 80%;">Nested parallelism</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs082.html#___sec81" style="font-size: 80%;">Parallel tasks</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs083.html#___sec82" style="font-size: 80%;">Common mistakes</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs084.html#___sec83" style="font-size: 80%;">Not all computations are simple</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs085.html#___sec84" style="font-size: 80%;">Not all computations are simple, competing threads</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs086.html#___sec85" style="font-size: 80%;">How to find the max value using OpenMP</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs087.html#___sec86" style="font-size: 80%;">Then deal with the race conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs088.html#___sec87" style="font-size: 80%;">What can slow down OpenMP performance?</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs089.html#___sec88" style="font-size: 80%;">What can slow down OpenMP performance?</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec89" style="font-size: 80%;">Find the max location for each thread</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs091.html#___sec90" style="font-size: 80%;">Combine the values from each thread</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs092.html#___sec91" style="font-size: 80%;">"Matrix-matrix multiplication":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/ParallelizationOpenMP/OpenMPvectornorm.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs093.html#___sec92" style="font-size: 80%;">"Matrix-matrix multiplication":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/ParallelizationOpenMP/OpenMPmatrixmatrixmult.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs094.html#___sec93" style="font-size: 80%;">What is Message Passing Interface (MPI)?</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs095.html#___sec94" style="font-size: 80%;">Going Parallel with MPI</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs096.html#___sec95" style="font-size: 80%;">MPI is a library</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs097.html#___sec96" style="font-size: 80%;">Bindings to MPI routines</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs098.html#___sec97" style="font-size: 80%;">Communicator</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs099.html#___sec98" style="font-size: 80%;">Some of the most  important MPI functions</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs100.html#___sec99" style="font-size: 80%;">"The first MPI C/C++ program":"https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-pages/doc/Programs/LecturePrograms/programs/MPI/chapter07/program2.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs101.html#___sec100" style="font-size: 80%;">The Fortran program</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs102.html#___sec101" style="font-size: 80%;">Note 1</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs103.html#___sec102" style="font-size: 80%;">"Ordered output with MPIBarrier":"https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-pages/doc/Programs/LecturePrograms/programs/MPI/chapter07/program3.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs104.html#___sec103" style="font-size: 80%;">Note 2</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs105.html#___sec104" style="font-size: 80%;">"Ordered output":"https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-pages/doc/Programs/LecturePrograms/programs/MPI/chapter07/program4.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs106.html#___sec105" style="font-size: 80%;">Note 3</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs107.html#___sec106" style="font-size: 80%;">Note 4</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs108.html#___sec107" style="font-size: 80%;">"Numerical integration in parallel":"https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-pages/doc/Programs/LecturePrograms/programs/MPI/chapter07/program6.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs109.html#___sec108" style="font-size: 80%;">Dissection of trapezoidal rule with \( MPI\_reduce \)</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs110.html#___sec109" style="font-size: 80%;">Dissection of trapezoidal rule</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs111.html#___sec110" style="font-size: 80%;">Integrating with <b>MPI</b></a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs112.html#___sec111" style="font-size: 80%;">How do I use \( MPI\_reduce \)?</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs113.html#___sec112" style="font-size: 80%;">More on \( MPI\_Reduce \)</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs114.html#___sec113" style="font-size: 80%;">Dissection of trapezoidal rule</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs115.html#___sec114" style="font-size: 80%;">Dissection of trapezoidal rule</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0090"></a>
+<!-- !split -->
+
+<h2 id="___sec89" class="anchor">Find the max location for each thread </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> maxloc[MAX_THREADS], mloc;
+<span style="color: #B00040">double</span> maxval[MAX_THREADS], mval; 
+<span style="color: #BC7A00">#pragma omp parallel shared(maxval,maxloc)</span>
+{
+  <span style="color: #B00040">int</span> id <span style="color: #666666">=</span> omp_get_thread_num(); 
+  maxval[id] <span style="color: #666666">=</span> <span style="color: #666666">-1.0e30</span>;
+<span style="color: #BC7A00">#pragma omp for</span>
+   <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>) {
+       <span style="color: #008000; font-weight: bold">if</span> (x[i] <span style="color: #666666">&gt;</span> maxval[id]) { 
+           maxloc[id] <span style="color: #666666">=</span> i;
+           maxval[id] <span style="color: #666666">=</span> x[i]; 
+       }
+    }
+}
+</pre></div>
+<p>
+</div>
+</div>
+
+
+<p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+<li><a href="._codeoptimization-bs089.html">&laquo;</a></li>
+  <li><a href="._codeoptimization-bs000.html">1</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._codeoptimization-bs082.html">83</a></li>
+  <li><a href="._codeoptimization-bs083.html">84</a></li>
+  <li><a href="._codeoptimization-bs084.html">85</a></li>
+  <li><a href="._codeoptimization-bs085.html">86</a></li>
+  <li><a href="._codeoptimization-bs086.html">87</a></li>
+  <li><a href="._codeoptimization-bs087.html">88</a></li>
+  <li><a href="._codeoptimization-bs088.html">89</a></li>
+  <li><a href="._codeoptimization-bs089.html">90</a></li>
+  <li class="active"><a href="._codeoptimization-bs090.html">91</a></li>
+  <li><a href="._codeoptimization-bs091.html">92</a></li>
+  <li><a href="._codeoptimization-bs092.html">93</a></li>
+  <li><a href="._codeoptimization-bs093.html">94</a></li>
+  <li><a href="._codeoptimization-bs094.html">95</a></li>
+  <li><a href="._codeoptimization-bs095.html">96</a></li>
+  <li><a href="._codeoptimization-bs096.html">97</a></li>
+  <li><a href="._codeoptimization-bs097.html">98</a></li>
+  <li><a href="._codeoptimization-bs098.html">99</a></li>
+  <li><a href="._codeoptimization-bs099.html">100</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._codeoptimization-bs115.html">116</a></li>
+  <li><a href="._codeoptimization-bs091.html">&raquo;</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright only on the titlepage -->
+</center>
+
+
+</body>
+</html>
+    
+
