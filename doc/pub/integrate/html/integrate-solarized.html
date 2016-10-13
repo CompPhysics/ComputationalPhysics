@@ -244,23 +244,30 @@ $(function () {
               ('Treatment of Singular Integrals', 2, None, '___sec82'),
               ('Treatment of Singular Integrals', 2, None, '___sec83'),
               ('Treatment of Singular Integrals', 2, None, '___sec84'),
-              ('Hints concerning project 3', 2, None, '___sec85'),
-              ('Hints concerning project 3, parts of code',
+              ('Example of a multidimensional integral', 2, None, '___sec85'),
+              ('Parts of code and brute force Gauss-Legendre quadrature',
                2,
                None,
                '___sec86'),
-              ('Hints concerning project 3, the function to integrate',
+              ('The function to integrate, code example',
                2,
                None,
                '___sec87'),
-              ('Hints concerning project 3, Laguerre polynomials',
+              ('Laguerre polynomials', 2, None, '___sec88'),
+              ('Laguerre polynomials, the new integrand',
                2,
                None,
-               '___sec88'),
-              ('Hints concerning project 3, Laguerre polynomials, the new integrand',
+               '___sec89'),
+              ('Laguerre polynomials, new integration rule: Gauss-Laguerre',
                2,
                None,
-               '___sec89')]}
+               '___sec90'),
+              ('Fixing $N=20$ with Gauss-Legendre', 2, None, '___sec91'),
+              ('Fixing $r_{\\mathrm{max}}=2$ with Gauss-Legendre',
+               2,
+               None,
+               '___sec92'),
+              ('Results  with Gauss-Laguerre', 2, None, '___sec93')]}
 end of tocinfo -->
 
 <body>
@@ -606,7 +613,7 @@ A simple function which implements this algorithm is as follows
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">TrapezoidalRule</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> a, <span style="color: #a7a7a7; font-weight: bold">double</span> b, <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> (*func)(<span style="color: #a7a7a7; font-weight: bold">double</span>))
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">TrapezoidalRule</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> a, <span style="color: #a7a7a7; font-weight: bold">double</span> b, <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> (*func)(<span style="color: #a7a7a7; font-weight: bold">double</span>))
 {
       <span style="color: #a7a7a7; font-weight: bold">double</span> TrapezSum;
       <span style="color: #a7a7a7; font-weight: bold">double</span> fa, fb, x, step;
@@ -641,7 +648,7 @@ definition
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%">  <span style="color: #a7a7a7; font-weight: bold">void</span> TrapezoidalRule(<span style="color: #a7a7a7; font-weight: bold">double</span> a, <span style="color: #a7a7a7; font-weight: bold">double</span> b, <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> *TrapezSum, <span style="color: #a7a7a7; font-weight: bold">double</span> (*func)(<span style="color: #a7a7a7; font-weight: bold">double</span>) )  
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">void</span> TrapezoidalRule(<span style="color: #a7a7a7; font-weight: bold">double</span> a, <span style="color: #a7a7a7; font-weight: bold">double</span> b, <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> *TrapezSum, <span style="color: #a7a7a7; font-weight: bold">double</span> (*func)(<span style="color: #a7a7a7; font-weight: bold">double</span>) )  
 </pre></div>
 <p>
 What happens here is that we are transferring a pointer to the name 
@@ -650,7 +657,7 @@ a double precision number. The function  <b>TrapezoidalRule</b> is called as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%">  TrapezoidalRule(a, b, n, &amp;MyFunction )       
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span>  TrapezoidalRule(a, b, n, &amp;MyFunction )       
 </pre></div>
 <p>
 in the calling function. We note that <b>a</b>, <b>b</b> and <b>n</b> are called by value,
@@ -799,7 +806,7 @@ error below.  It is easy to implement this algorithm,  as shown here
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">RectangleRule</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> a, <span style="color: #a7a7a7; font-weight: bold">double</span> b, <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> (*func)(<span style="color: #a7a7a7; font-weight: bold">double</span>))
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">RectangleRule</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> a, <span style="color: #a7a7a7; font-weight: bold">double</span> b, <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> (*func)(<span style="color: #a7a7a7; font-weight: bold">double</span>))
 {
       <span style="color: #a7a7a7; font-weight: bold">double</span> RectangleSum;
       <span style="color: #a7a7a7; font-weight: bold">double</span> fa, fb, x, step;
@@ -1546,7 +1553,7 @@ for computing Legendre polynomials of order \( N \).
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span style="color: #228B22">//  This function computes the Legendre polynomial of degree N</span>
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #228B22">//  This function computes the Legendre polynomial of degree N</span>
 
 <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">Legendre</span>( <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> x) 
 {
@@ -2178,8 +2185,8 @@ and the Gauss-Legendre method is included here.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span style="color: #1e889b">#include &lt;iostream&gt;</span>
-<span style="color: #1e889b">#include &quot;lib.h&quot;</span>
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;lib.h&quot;</span><span style="color: #1e889b"></span>
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 <span style="color: #228B22">//     Here we define various functions called by the main program</span>
 <span style="color: #228B22">//     this function defines the function to integrate</span>
@@ -2680,16 +2687,19 @@ where the right-hand side is no longer singular at
 and can be evaluated numerically as any other integral.
 
 <p>
-Such a trick is often used when evaluating integral  equations, as discussed in the next section.
+Such a trick is often used when evaluating integral  equations.
 </div>
 
 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec85">Hints concerning project 3   </h2>
+<h2 id="___sec85">Example of a multidimensional integral   </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
+<p>
+Here we show an example of a multidimensional integral which appears in quantum mechanical calculations.
+
 <p>
 The ansatz for the wave function for two electrons is given by the product of two
 \( 1s \) wave functions as 
@@ -2703,24 +2713,25 @@ $$
    I = \int_{-\infty}^{\infty} d{\bf r}_1d{\bf r}_2  e^{-2\alpha (r_1+r_2)}\frac{1}{|{\bf r}_1-{\bf r}_2|}.
 $$
 
-
+The integral has an exact solution \( 5\pi^2/16 = 0.19277 \).
 </div>
 
 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec86">Hints concerning project 3, parts of code   </h2>
+<h2 id="___sec86">Parts of code and brute force Gauss-Legendre quadrature  </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
+If we use Gaussian quadrature with Legendre polynomials (without rewriting the integral), we have
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%">     <span style="color: #a7a7a7; font-weight: bold">double</span> *x = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span> [N];
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span>     <span style="color: #a7a7a7; font-weight: bold">double</span> *x = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span> [N];
      <span style="color: #a7a7a7; font-weight: bold">double</span> *w = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span> [N];
 <span style="color: #228B22">//   set up the mesh points and weights</span>
-     gauleg(a,b,x,w, N);
+     GaussLegendrePoints(a,b,x,w, N);
 
 <span style="color: #228B22">//   evaluate the integral with the Gauss-Legendre method</span>
 <span style="color: #228B22">//   Note that we initialize the sum</span>
@@ -2744,14 +2755,14 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec87">Hints concerning project 3, the function to integrate   </h2>
+<h2 id="___sec87">The function to integrate, code example   </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #228B22">//  this function defines the function to integrate</span>
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #228B22">//  this function defines the function to integrate</span>
 <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">int_function</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x1, <span style="color: #a7a7a7; font-weight: bold">double</span> y1, <span style="color: #a7a7a7; font-weight: bold">double</span> z1, <span style="color: #a7a7a7; font-weight: bold">double</span> x2, <span style="color: #a7a7a7; font-weight: bold">double</span> y2, <span style="color: #a7a7a7; font-weight: bold">double</span> z2)
 {
    <span style="color: #a7a7a7; font-weight: bold">double</span> alpha = <span style="color: #B452CD">2.</span>;
@@ -2759,9 +2770,7 @@ $$
    <span style="color: #a7a7a7; font-weight: bold">double</span> exp1=-<span style="color: #B452CD">2</span>*alpha*sqrt(x1*x1+y1*y1+z1*z1);
    <span style="color: #a7a7a7; font-weight: bold">double</span> exp2=-<span style="color: #B452CD">2</span>*alpha*sqrt(x2*x2+y2*y2+z2*z2);
    <span style="color: #a7a7a7; font-weight: bold">double</span> deno=sqrt(pow((x1-x2),<span style="color: #B452CD">2</span>)+pow((y1-y2),<span style="color: #B452CD">2</span>)+pow((z1-z2),<span style="color: #B452CD">2</span>));
-<span style="color: #228B22">// Cheating!!</span>
-  <span style="color: #8B008B; font-weight: bold">if</span>(deno &lt;pow(<span style="color: #B452CD">10.</span>,-<span style="color: #B452CD">6.</span>)) { <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;}
-  <span style="color: #8B008B; font-weight: bold">else</span> <span style="color: #8B008B; font-weight: bold">return</span> exp(exp1+exp2)/deno;
+   <span style="color: #8B008B; font-weight: bold">return</span> exp(exp1+exp2)/deno;
 } <span style="color: #228B22">// end of function to evaluate</span>
 </pre></div>
 
@@ -2771,7 +2780,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec88">Hints concerning project 3, Laguerre polynomials   </h2>
+<h2 id="___sec88">Laguerre polynomials   </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2782,7 +2791,7 @@ Using Legendre polynomials for the Gaussian quadrature is not very efficient. Th
 <li> The limits \( \pm \infty \) have to be approximated with a finite number</li>
 </ul>
 
-You will find it useful to change to spherical coordinates
+It is very useful here to change to spherical coordinates
 $$
    d{\bf r}_1d{\bf r}_2  = r_1^2dr_1 r_2^2dr_2 dcos(\theta_1)dcos(\theta_2)d\phi_1d\phi_2,
 $$
@@ -2802,7 +2811,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec89">Hints concerning project 3, Laguerre polynomials, the new integrand   </h2>
+<h2 id="___sec89">Laguerre polynomials, the new integrand   </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2824,6 +2833,82 @@ $$
 
 
 <p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec90">Laguerre polynomials, new integration rule: Gauss-Laguerre   </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Our integral is now given by
+$$
+I=\int_0^{\infty} r_1^2dr_1 \int_0^{\infty}r_2^2dr_2 \int_0^{\pi}dcos(\theta_1)\int_0^{\pi}dcos(\theta_2)\int_0^{2\pi}d\phi_1\int_0^{2\pi}d\phi_2  \frac{\exp{-2\alpha (r_1+r_2)}}{r_{12}}
+$$
+
+For the angles we need to perform the integrations over \( \theta_i\in [0,\pi] \) and \( \phi_i \in [0,2\pi] \). However, for the radial part we can now either use
+
+<ul>
+<li> Gauss-Legendre wth an appropriate mapping or</li>
+<li> Gauss-Laguerre taking properly care of the integrands involving the \( r_i^2 \exp{-(2\alpha r_i)} \) terms.</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec91">Fixing \( N=20 \) with Gauss-Legendre   </h2>
+
+<p>
+<table border="1">
+<thead>
+<tr><td align="center">\( r_{\mathrm{max}} \)</td> <th align="center">Integral Error</th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   1.00                      </td> <td align="center">   0.161419805       </td> <td align="center">   0.0313459063    </td> </tr>
+<tr><td align="center">   1.50                      </td> <td align="center">   0.180468967       </td> <td align="center">   0.012296744     </td> </tr>
+<tr><td align="center">   2.00                      </td> <td align="center">   0.177065182       </td> <td align="center">   0.0157005292    </td> </tr>
+<tr><td align="center">   2.50                      </td> <td align="center">   0.167970694       </td> <td align="center">   0.0247950165    </td> </tr>
+<tr><td align="center">   3.00                      </td> <td align="center">   0.156139391       </td> <td align="center">   0.0366263199    </td> </tr>
+</tbody>
+</table>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec92">Fixing \( r_{\mathrm{max}}=2 \) with Gauss-Legendre   </h2>
+
+<p>
+<table border="1">
+<thead>
+<tr><td align="center">\( N \)</td> <th align="center">  Integral </th> <th align="center">    Error    </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   10         </td> <td align="center">   0.129834248    </td> <td align="center">   0.0629314631     </td> </tr>
+<tr><td align="center">   16         </td> <td align="center">   0.167860437    </td> <td align="center">   0.0249052742     </td> </tr>
+<tr><td align="center">   20         </td> <td align="center">   0.177065182    </td> <td align="center">   0.0157005292     </td> </tr>
+<tr><td align="center">   26         </td> <td align="center">   0.183543237    </td> <td align="center">   0.00922247353    </td> </tr>
+<tr><td align="center">   30         </td> <td align="center">   0.185795624    </td> <td align="center">   0.00697008738    </td> </tr>
+</tbody>
+</table>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec93">Results  with Gauss-Laguerre   </h2>
+
+<p>
+<table border="1">
+<thead>
+<tr><td align="center">\( N \)</td> <th align="center">  Integral </th> <th align="center">    Error     </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   10         </td> <td align="center">   0.186457345    </td> <td align="center">   0.00630836601     </td> </tr>
+<tr><td align="center">   16         </td> <td align="center">   0.190113364    </td> <td align="center">   0.00265234708     </td> </tr>
+<tr><td align="center">   20         </td> <td align="center">   0.19108178     </td> <td align="center">   0.00168393093     </td> </tr>
+<tr><td align="center">   26         </td> <td align="center">   0.191831828    </td> <td align="center">   0.000933882594    </td> </tr>
+<tr><td align="center">   30         </td> <td align="center">   0.192113712    </td> <td align="center">   0.000651999339    </td> </tr>
+</tbody>
+</table>
+<p>
+The code that was used to generate these results can be found under the <a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/NumericalIntegration/cpp/program2.cpp" target="_blank">programs link</a>.
 
 <!-- ------------------- end of main content --------------- -->
 
