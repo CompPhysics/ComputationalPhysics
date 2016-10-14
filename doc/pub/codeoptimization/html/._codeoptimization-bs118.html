@@ -375,7 +375,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs058.html#___sec57" style="font-size: 80%;">Using "Smaug":"http://comp-phys.net/cluster-info/using-smaug/", the CompPhys computing cluster</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs059.html#___sec58" style="font-size: 80%;">What is OpenMP</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs060.html#___sec59" style="font-size: 80%;">Getting started, things to remember</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec60" style="font-size: 80%;">OpenMP syntax</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs061.html#___sec60" style="font-size: 80%;">OpenMP syntax</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs062.html#___sec61" style="font-size: 80%;">Different OpenMP styles of parallelism</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs063.html#___sec62" style="font-size: 80%;">General code structure</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs064.html#___sec63" style="font-size: 80%;">Parallel region</a></li>
@@ -432,7 +432,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs115.html#___sec114" style="font-size: 80%;">How do I use \( MPI\_reduce \)?</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs116.html#___sec115" style="font-size: 80%;">More on \( MPI\_Reduce \)</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs117.html#___sec116" style="font-size: 80%;">Dissection of trapezoidal rule</a></li>
-     <!-- navigation toc: --> <li><a href="._codeoptimization-bs118.html#___sec117" style="font-size: 80%;">Dissection of trapezoidal rule</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec117" style="font-size: 80%;">Dissection of trapezoidal rule</a></li>
 
         </ul>
       </li>
@@ -445,62 +445,57 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0061"></a>
+<a name="part0118"></a>
 <!-- !split -->
 
-<h2 id="___sec60" class="anchor">OpenMP syntax </h2>
-
-<ul>
-<li> Mostly directives</li>
-</ul>
-
+<h2 id="___sec117" class="anchor">Dissection of trapezoidal rule  </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp construct [ clause ...]</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//  this function defines the trapezoidal rule</span>
+<span style="color: #B00040">double</span> <span style="color: #0000FF">trapezoidal_rule</span>(<span style="color: #B00040">double</span> a, <span style="color: #B00040">double</span> b, <span style="color: #B00040">int</span> n, 
+                         <span style="color: #B00040">double</span> (<span style="color: #666666">*</span>func)(<span style="color: #B00040">double</span>))
+{
+  <span style="color: #B00040">double</span> trapez_sum;
+  <span style="color: #B00040">double</span> fa, fb, x, step;
+  <span style="color: #B00040">int</span>    j;
+  step<span style="color: #666666">=</span>(b<span style="color: #666666">-</span>a)<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n);
+  fa<span style="color: #666666">=</span>(<span style="color: #666666">*</span>func)(a)<span style="color: #666666">/2.</span> ;
+  fb<span style="color: #666666">=</span>(<span style="color: #666666">*</span>func)(b)<span style="color: #666666">/2.</span> ;
+  trapez_sum<span style="color: #666666">=0.</span>;
+  <span style="color: #008000; font-weight: bold">for</span> (j<span style="color: #666666">=1</span>; j <span style="color: #666666">&lt;=</span> n<span style="color: #666666">-1</span>; j<span style="color: #666666">++</span>){
+    x<span style="color: #666666">=</span>j<span style="color: #666666">*</span>step<span style="color: #666666">+</span>a;
+    trapez_sum<span style="color: #666666">+=</span>(<span style="color: #666666">*</span>func)(x);
+  }
+  trapez_sum<span style="color: #666666">=</span>(trapez_sum<span style="color: #666666">+</span>fb<span style="color: #666666">+</span>fa)<span style="color: #666666">*</span>step;
+  <span style="color: #008000; font-weight: bold">return</span> trapez_sum;
+}  <span style="color: #408080; font-style: italic">// end trapezoidal_rule </span>
 </pre></div>
-<ul>
- <li> Some functions and types</li> 
-</ul>
+<p>
+</div>
+</div>
+
 
 <p>
-
-<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
-</pre></div>
-<ul>
- <li> Most apply to a block of code</li>
- <li> Specifically, a <b>structured block</b></li>
- <li> Enter at top, exit at bottom only, exit(), abort() permitted</li>
-</ul>
 
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
-<li><a href="._codeoptimization-bs060.html">&laquo;</a></li>
+<li><a href="._codeoptimization-bs117.html">&laquo;</a></li>
   <li><a href="._codeoptimization-bs000.html">1</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._codeoptimization-bs053.html">54</a></li>
-  <li><a href="._codeoptimization-bs054.html">55</a></li>
-  <li><a href="._codeoptimization-bs055.html">56</a></li>
-  <li><a href="._codeoptimization-bs056.html">57</a></li>
-  <li><a href="._codeoptimization-bs057.html">58</a></li>
-  <li><a href="._codeoptimization-bs058.html">59</a></li>
-  <li><a href="._codeoptimization-bs059.html">60</a></li>
-  <li><a href="._codeoptimization-bs060.html">61</a></li>
-  <li class="active"><a href="._codeoptimization-bs061.html">62</a></li>
-  <li><a href="._codeoptimization-bs062.html">63</a></li>
-  <li><a href="._codeoptimization-bs063.html">64</a></li>
-  <li><a href="._codeoptimization-bs064.html">65</a></li>
-  <li><a href="._codeoptimization-bs065.html">66</a></li>
-  <li><a href="._codeoptimization-bs066.html">67</a></li>
-  <li><a href="._codeoptimization-bs067.html">68</a></li>
-  <li><a href="._codeoptimization-bs068.html">69</a></li>
-  <li><a href="._codeoptimization-bs069.html">70</a></li>
-  <li><a href="._codeoptimization-bs070.html">71</a></li>
-  <li><a href="">...</a></li>
-  <li><a href="._codeoptimization-bs118.html">119</a></li>
-  <li><a href="._codeoptimization-bs062.html">&raquo;</a></li>
+  <li><a href="._codeoptimization-bs110.html">111</a></li>
+  <li><a href="._codeoptimization-bs111.html">112</a></li>
+  <li><a href="._codeoptimization-bs112.html">113</a></li>
+  <li><a href="._codeoptimization-bs113.html">114</a></li>
+  <li><a href="._codeoptimization-bs114.html">115</a></li>
+  <li><a href="._codeoptimization-bs115.html">116</a></li>
+  <li><a href="._codeoptimization-bs116.html">117</a></li>
+  <li><a href="._codeoptimization-bs117.html">118</a></li>
+  <li class="active"><a href="._codeoptimization-bs118.html">119</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 

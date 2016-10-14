@@ -375,7 +375,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs058.html#___sec57" style="font-size: 80%;">Using "Smaug":"http://comp-phys.net/cluster-info/using-smaug/", the CompPhys computing cluster</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs059.html#___sec58" style="font-size: 80%;">What is OpenMP</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs060.html#___sec59" style="font-size: 80%;">Getting started, things to remember</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec60" style="font-size: 80%;">OpenMP syntax</a></li>
+     <!-- navigation toc: --> <li><a href="._codeoptimization-bs061.html#___sec60" style="font-size: 80%;">OpenMP syntax</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs062.html#___sec61" style="font-size: 80%;">Different OpenMP styles of parallelism</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs063.html#___sec62" style="font-size: 80%;">General code structure</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs064.html#___sec63" style="font-size: 80%;">Parallel region</a></li>
@@ -430,7 +430,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs113.html#___sec112" style="font-size: 80%;">Dissection of trapezoidal rule</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs114.html#___sec113" style="font-size: 80%;">Integrating with <b>MPI</b></a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs115.html#___sec114" style="font-size: 80%;">How do I use \( MPI\_reduce \)?</a></li>
-     <!-- navigation toc: --> <li><a href="._codeoptimization-bs116.html#___sec115" style="font-size: 80%;">More on \( MPI\_Reduce \)</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec115" style="font-size: 80%;">More on \( MPI\_Reduce \)</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs117.html#___sec116" style="font-size: 80%;">Dissection of trapezoidal rule</a></li>
      <!-- navigation toc: --> <li><a href="._codeoptimization-bs118.html#___sec117" style="font-size: 80%;">Dissection of trapezoidal rule</a></li>
 
@@ -445,62 +445,51 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0061"></a>
+<a name="part0116"></a>
 <!-- !split -->
 
-<h2 id="___sec60" class="anchor">OpenMP syntax </h2>
+<h2 id="___sec115" class="anchor">More on \( MPI\_Reduce \) </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+In our case, since we are summing
+the rectangle  contributions from every process we define  \( MPI\_Op = MPI\_SUM \).
+If we have an array or matrix we can search for the largest og smallest element by sending either \( MPI\_MAX \) or 
+\( MPI\_MIN \).  If we want the location as well (which array element) we simply transfer 
+\( MPI\_MAXLOC \) or \( MPI\_MINOC \). If we want the product we write \( MPI\_PROD \).
 
-<ul>
-<li> Mostly directives</li>
-</ul>
-
+<p>
+\( MPI\_Allreduce \) is defined as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp construct [ clause ...]</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">MPI_Allreduce( <span style="color: #B00040">void</span> <span style="color: #666666">*</span>senddata, <span style="color: #B00040">void</span><span style="color: #666666">*</span> resultdata, <span style="color: #B00040">int</span> count, 
+          MPI_Datatype datatype, MPI_Op, MPI_Comm comm)        
 </pre></div>
-<ul>
- <li> Some functions and types</li> 
-</ul>
+<p>
+</div>
+</div>
+
 
 <p>
-
-<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
-</pre></div>
-<ul>
- <li> Most apply to a block of code</li>
- <li> Specifically, a <b>structured block</b></li>
- <li> Enter at top, exit at bottom only, exit(), abort() permitted</li>
-</ul>
-
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
-<li><a href="._codeoptimization-bs060.html">&laquo;</a></li>
+<li><a href="._codeoptimization-bs115.html">&laquo;</a></li>
   <li><a href="._codeoptimization-bs000.html">1</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._codeoptimization-bs053.html">54</a></li>
-  <li><a href="._codeoptimization-bs054.html">55</a></li>
-  <li><a href="._codeoptimization-bs055.html">56</a></li>
-  <li><a href="._codeoptimization-bs056.html">57</a></li>
-  <li><a href="._codeoptimization-bs057.html">58</a></li>
-  <li><a href="._codeoptimization-bs058.html">59</a></li>
-  <li><a href="._codeoptimization-bs059.html">60</a></li>
-  <li><a href="._codeoptimization-bs060.html">61</a></li>
-  <li class="active"><a href="._codeoptimization-bs061.html">62</a></li>
-  <li><a href="._codeoptimization-bs062.html">63</a></li>
-  <li><a href="._codeoptimization-bs063.html">64</a></li>
-  <li><a href="._codeoptimization-bs064.html">65</a></li>
-  <li><a href="._codeoptimization-bs065.html">66</a></li>
-  <li><a href="._codeoptimization-bs066.html">67</a></li>
-  <li><a href="._codeoptimization-bs067.html">68</a></li>
-  <li><a href="._codeoptimization-bs068.html">69</a></li>
-  <li><a href="._codeoptimization-bs069.html">70</a></li>
-  <li><a href="._codeoptimization-bs070.html">71</a></li>
-  <li><a href="">...</a></li>
+  <li><a href="._codeoptimization-bs108.html">109</a></li>
+  <li><a href="._codeoptimization-bs109.html">110</a></li>
+  <li><a href="._codeoptimization-bs110.html">111</a></li>
+  <li><a href="._codeoptimization-bs111.html">112</a></li>
+  <li><a href="._codeoptimization-bs112.html">113</a></li>
+  <li><a href="._codeoptimization-bs113.html">114</a></li>
+  <li><a href="._codeoptimization-bs114.html">115</a></li>
+  <li><a href="._codeoptimization-bs115.html">116</a></li>
+  <li class="active"><a href="._codeoptimization-bs116.html">117</a></li>
+  <li><a href="._codeoptimization-bs117.html">118</a></li>
   <li><a href="._codeoptimization-bs118.html">119</a></li>
-  <li><a href="._codeoptimization-bs062.html">&raquo;</a></li>
+  <li><a href="._codeoptimization-bs117.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 
