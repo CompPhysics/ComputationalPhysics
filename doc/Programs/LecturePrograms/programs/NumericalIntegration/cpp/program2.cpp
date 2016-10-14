@@ -384,7 +384,7 @@ int main(){
 	
 	printf("EXACT RESULT:\t%.8f\t\n", 5*M_PI*M_PI/256);
 	
-	n = 20;
+	n = 30;
 	a = -3;
 	b =  3;
 	
@@ -398,7 +398,7 @@ int main(){
 	Gauss_Laguerre(n_lag, n_leg, int_lag);
 	printf("Gau-Lag:     \t%.8f\t\n", int_lag);
 	
-	n_mc = 1000000;
+	n_mc = 10000000;
 	a = -3;
 	b =  3;
 	srand(time(NULL));
