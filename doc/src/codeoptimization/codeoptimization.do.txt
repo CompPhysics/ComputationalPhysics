@@ -437,6 +437,54 @@ When dealing with arrays, you should also avoid memory stride, since this slows 
   }
 !ec
 
+!split 
+===== Compiling with and without vectorization =====
+We can compile and link without vectorization using the clang c++ compiler
+!bc cppcod
+clang -o novec.x vecexample.cpp
+!ec
+and with vectorization (and additional optimizations)
+!bc cppcod
+clang++ -O3 -Rpass=loop-vectorize -o  vec.x vecexample.cpp 
+!ec
+The speedup depends on the size of the vectors. In the example here we have run with $10^7$ elements.
+The example here was run on an IMac17.1 with OSX El Capitan (10.11.4) as operating system and an Intel i5 3.3 GHz CPU.  
+!bc cppcod 
+Compphys:~ hjensen$ ./vec.x 10000000
+Time used  for norm computation=0.04720500000
+Compphys:~ hjensen$ ./novec.x 10000000
+Time used  for norm computation=0.03311700000
+!ec
+This particular C++ compiler speeds up the above loop operations with a factor of 1.5 
+Performing the same operations for $10^9$ elements results in a smaller speedup since reading from main memory is required. The non-vectorized code is seemingly faster. 
+!bc cppcod 
+Compphys:~ hjensen$ ./vec.x 1000000000
+Time used  for norm computation=58.41391100
+Compphys:~ hjensen$ ./novec.x 1000000000
+Time used  for norm computation=46.51295300
+!ec
+We will discuss these issues further in the next slides.  
+
+
+!split 
+===== Compiling with and without vectorization using clang =====
+We can compile and link without vectorization with clang compiler
+!bc cppcod
+clang++ -o -fno-vectorize novec.x vecexample.cpp
+!ec
+and with vectorization
+!bc cppcod
+clang++ -O3 -Rpass=loop-vectorize -o  vec.x vecexample.cpp 
+!ec
+We can also add vectorization analysis, see for example
+!bc cppcod
+clang++ -O3 -Rpass-analysis=loop-vectorize -o  vec.x vecexample.cpp 
+!ec
+or figure out if vectorization was missed
+!bc cppcod
+clang++ -O3 -Rpass-missed=loop-vectorize -o  vec.x vecexample.cpp 
+!ec
+
 
 
 
@@ -634,12 +682,12 @@ x_i = \frac{f_i}{b_i}
 | Memory Writes  |     $4(N-2)$   |
 | Subtractions   |     $3(N-2)$   |
 | Multiplications |     $3(N-2)$  |
-| Divisions       |     $3(N-2)$  |
+| Divisions       |     $4(N-2)$  |
 |-------------------------------------------------------------------------------------------|
 
 !eblock
 
-!bblock
+!bblock An inefficient code
 !bc cppcod
 // Forward substitution    
 // Note that we can simplify by precalculating a[i-1]/b[i-1]
@@ -655,6 +703,35 @@ x_i = \frac{f_i}{b_i}
   }
 !ec
 !eblock
+
+
+
+!split
+=====  "The specialized Thomas algorithm (Project 1)":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Projects/2016/Project1/Examples/TridiagonalTiming.cpp"  =====
+!bblock
+
+
+|-------------------------------------------------------------------------------------------|
+|  Operation     | Floating Point | 
+|-------------------------------------------------------------------------------------------|
+| Memory Reads   |    $6(N-2)$   |
+| Memory Writes  |     $2(N-2)$   |
+| Additions   |     $2(N-2)$   |
+| Divisions       |     $2(N-2)$  |
+|-------------------------------------------------------------------------------------------|
+
+!eblock
+
+!bblock
+!bc cppcod
+      // Forward substitution cannot be vectorized
+      for (int i = 2; i < n; i++) b[i] = b[i] + b[i-1]/d[i-1];
+      // Backward substitution  cannot be vectorized
+      solution[n-1] = b[n-1]/d[n-1];
+      for (int i = n-2; i > 0; i--) solution[i] = (b[i]+solution[i+1])/d[i];
+!ec
+!eblock
+
 
 
 !split
@@ -2308,6 +2385,8 @@ double trapezoidal_rule(double a, double b, int n,
 
 
 !eblock
+
+
 
 
 
