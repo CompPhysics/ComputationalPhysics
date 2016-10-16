@@ -10,28 +10,29 @@ Automatically generated HTML file from DocOnce source
 
 <title>Project 2, deadline  October 3</title>
 
+<!-- Bootstrap style: bootstrap -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
 
 <style type="text/css">
-/* bloodish style */
 
-body {
-  font-family: Helvetica, Verdana, Arial, Sans-serif;
-  color: #404040;
-  background: #ffffff;
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
 }
-h1 { font-size: 1.8em;  color: #8A0808; }
-h2 { font-size: 1.6em;  color: #8A0808; }
-h3 { font-size: 1.4em;  color: #8A0808; }
-h4 { color: #8A0808; }
-a { color: #8A0808; text-decoration:none; }
-tt { font-family: "Courier New", Courier; }
-/* pre style removed because it will interfer with pygments */
-p { text-indent: 0px; }
-hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-p.caption { width: 80%; font-style: normal; text-align: left; }
-hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 
-div { text-align: justify; text-justify: inter-word; }
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -74,7 +75,7 @@ end of tocinfo -->
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
-     equationNumbers: {  autoNumber: "AMS"  },
+     equationNumbers: {  autoNumber: "none"  },
      extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
   }
 });
@@ -86,17 +87,58 @@ MathJax.Hub.Config({
 
 
     
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="Project2-bs.html">Project 2, deadline  October 3</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Schroedinger's equation for two electrons in a three-dimensional harmonic oscillator well</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Introduction</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 a): Mathematical intermezzo</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 b): Setting up a code for the non-interacting case</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 c): Implementing tests in your code</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 d): The interacting case</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 e): Analyzing and understanding the results</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 f): First optional challenge</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 g): Second optional challenge</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;"><b>Introduction to numerical projects</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;"><b>Format for electronic delivery of report and programs</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0000"></a>
 <!-- ------------------- main content ---------------------- -->
 
 
 
+<div class="jumbotron">
 <center><h1>Project 2, deadline  October 3</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s): <a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_blank">Computational Physics I FYS3150/FYS4150</a> -->
+<!-- author(s): <a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_self">Computational Physics I FYS3150/FYS4150</a> -->
 
 <center>
-<b><a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_blank">Computational Physics I FYS3150/FYS4150</a></b> 
+<b><a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_self">Computational Physics I FYS3150/FYS4150</a></b> 
 </center>
 
 <p>
@@ -107,10 +149,12 @@ MathJax.Hub.Config({
 <p>
 <center><h4>Fall semester 2016</h4></center> <!-- date -->
 <br>
+<p>
+</div> <!-- end jumbotron -->
 
-<h2 id="___sec0">Schroedinger's equation for two electrons in a three-dimensional harmonic oscillator well  </h2>
+<h2 id="___sec0" class="anchor">Schroedinger's equation for two electrons in a three-dimensional harmonic oscillator well  </h2>
 
-<h3 id="___sec1">Introduction </h3>
+<h3 id="___sec1" class="anchor">Introduction </h3>
 
 The aim of this project is to solve Schroedinger's equation for two
 electrons in a three-dimensional harmonic oscillator well with and
@@ -124,7 +168,7 @@ Electrons confined in small areas in semiconductors, so-called quantum
 dots, form a hot research area in modern solid-state physics, with
 applications spanning from such diverse fields as quantum
 nano-medicine to the contruction of quantum gates. 
-The article on quantum computing with quantum dots by <a href="http://journals.aps.org/pra/abstract/10.1103/PhysRevA.57.120" target="_blank">Loss and DiVincenzo</a> is an excellent read.
+The article on quantum computing with quantum dots by <a href="http://journals.aps.org/pra/abstract/10.1103/PhysRevA.57.120" target="_self">Loss and DiVincenzo</a> is an excellent read.
 
 <p>
 Here we will assume that these electrons move in a three-dimensional harmonic
@@ -252,7 +296,7 @@ expression for the second derivative of a function \( u \)
 $$
 \begin{equation}
     u''=\frac{u(\rho+h) -2u(\rho) +u(\rho-h)}{h^2} +O(h^2),
-\label{eq:diffoperation}
+\tag{1}
 \end{equation}
 $$
 
@@ -336,7 +380,7 @@ $$
                                                               \dots\\ \dots\\ \dots\\
                                                               u_{N}
              \end{bmatrix}.  
-\label{eq:sematrix}
+\tag{2}
 \end{equation}
 $$
 
@@ -350,11 +394,11 @@ $$
                                 0   & \dots & \dots & \dots  &-\frac{1}{h^2}  &\frac{2}{h^2}+V_{N-2} & -\frac{1}{h^2}\\
                                 0   & \dots & \dots & \dots  &\dots       &-\frac{1}{h^2} & \frac{2}{h^2}+V_{N-1}
              \end{bmatrix}
-\label{eq:matrixse} 
+\tag{3} 
 \end{equation}
 $$
 
-<h3 id="___sec2">Project 2 a): Mathematical intermezzo </h3>
+<h3 id="___sec2" class="anchor">Project 2 a): Mathematical intermezzo </h3>
 
 A unitary transformation preserves  the orthogonality of the obtained eigenvectors. To see this consider first a basis of vectors \( \mathbf{v}_i \),
 $$
@@ -373,10 +417,10 @@ $$
 
 preserves the dot product and orthogonality.
 
-<h3 id="___sec3">Project 2 b): Setting up a code for the non-interacting case </h3>
+<h3 id="___sec3" class="anchor">Project 2 b): Setting up a code for the non-interacting case </h3>
 
 <p>
-Your task now is to write a function which implements Jacobi's rotation algorithm (see Lecture notes chapter 7)  in order to solve Eq. \eqref{eq:sematrix}.  We define the quantities \( \tan\theta = t= s/c \), with \( s=\sin\theta \) and \( c=\cos\theta \) and
+Your task now is to write a function which implements Jacobi's rotation algorithm (see Lecture notes chapter 7)  in order to solve Eq. <a href="#mjx-eqn-2">(2)</a>.  We define the quantities \( \tan\theta = t= s/c \), with \( s=\sin\theta \) and \( c=\cos\theta \) and
 $$
 \begin{equation*}\cot 2\theta=\tau = \frac{a_{ll}-a_{kk}}{2a_{kl}}.
 \end{equation*}
@@ -424,17 +468,17 @@ of the dimensionality of the matrix.
 <p>
 You can check your results against the Armadillo function for solving 
 eigenvalue problems. The armadillo function <em>eigsys</em> can be used to find eigenvalues and eigenvectors.
-A Python program which solves this part of the project is available under the <a href="http://compphysics.github.io/ComputationalPhysics/doc/pub/projectwriting/html/projectwriting.html" target="_blank">project writing slides</a>.
+A Python program which solves this part of the project is available under the <a href="http://compphysics.github.io/ComputationalPhysics/doc/pub/projectwriting/html/projectwriting.html" target="_self">project writing slides</a>.
 
 <p>
 Comment your results (here you could for example compute the time needed for 
 both algorithms for a given dimensionality of the matrix).
 
-<h3 id="___sec4">Project 2 c): Implementing tests in your code </h3>
+<h3 id="___sec4" class="anchor">Project 2 c): Implementing tests in your code </h3>
 
 In this project (and later ones as well) we will implement so-called <b>unit</b> tests. Our unit tests are mainly meant to test mathematical properties of our algorithm. During the development phase of a program it is useful to devise tests that your program should pass. One of these is to make sure that for a given simple test matrix (say a \( 5\times 5 \) matrix) our algorithm for searching for the largest non-diagonal element always returns the correct answer. Furthermore, for a known simple matrix, irrespective of changes made, we should always get the same and correct eigenvalues. Another test is to make sure that the orthogonality shown in exercise (a) is preserved. Try to figure out other tests your code should pass, based either on the mathematical properties of the algorithms or more program specific tests. Implement at least two unit tests in this project.
 
-<h3 id="___sec5">Project 2 d): The interacting case  </h3>
+<h3 id="___sec5" class="anchor">Project 2 d): The interacting case  </h3>
 
 We will now study two electrons in a harmonic oscillator well which
 also interact via a repulsive Coulomb interaction.
@@ -590,9 +634,9 @@ varying strengths of \( \omega_r \).
 
 <p>
 For specific oscillator frequencies, the above equation has answers in an analytical form,
-see the article by <a href="http://prola.aps.org/abstract/PRA/v48/i5/p3561_1" target="_blank">M. Taut, Phys. Rev. A 48, 3561 (1993)</a>.
+see the article by <a href="http://prola.aps.org/abstract/PRA/v48/i5/p3561_1" target="_self">M. Taut, Phys. Rev. A 48, 3561 (1993)</a>.
 
-<h3 id="___sec6">Project 2 e): Analyzing and understanding the results  </h3>
+<h3 id="___sec6" class="anchor">Project 2 e): Analyzing and understanding the results  </h3>
 
 In this exercise we want to plot the wave function 
 for two electrons as functions of the relative coordinate \( r \) and different
@@ -609,19 +653,19 @@ omit again the  center-of-mass motion.
 The eigenvectors are normalized. 
 Plot then the normalized wave functions for different  values of \( \omega_r \) and comment the results.
 
-<h3 id="___sec7">Project 2 f): First optional challenge </h3>
+<h3 id="___sec7" class="anchor">Project 2 f): First optional challenge </h3>
 
 This exercise is optional and is meant more as a challenge for those of you with an interest in other algorithms for solving eigenvalue problems. 
 Implement the iterative Lanczos' algorithm discussed in the lecture notes and compute the lowest eigenvalues 
 as done in exercise (d) above. Compare your results and discuss faults and merits of the iterative method versus
 direct methods like Jacobi's method.
 
-<h3 id="___sec8">Project 2 g): Second optional challenge </h3>
+<h3 id="___sec8" class="anchor">Project 2 g): Second optional challenge </h3>
 
 This exercise is also optional and is an algorithmic challenge. Your matrix is already tridiagonal. 
 Can you devise a more efficient way to find the eigenvalues and eigenvectors instead of the brute force application of Jacobi's method?
 
-<h2 id="___sec9">Introduction to numerical projects </h2>
+<h2 id="___sec9" class="anchor">Introduction to numerical projects </h2>
 
 <p>
 Here follows a brief recipe and recommendation on how to write a report for each
@@ -639,13 +683,13 @@ project.
   <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
 </ul>
 
-<h2 id="___sec10">Format for electronic delivery of report and programs </h2>
+<h2 id="___sec10" class="anchor">Format for electronic delivery of report and programs </h2>
 
 <p>
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
 
 <ul>
-  <li> Use Devilry to hand in your projects, log in  at  <a href="http://devilry.ifi.uio.no" target="_blank"><tt>http://devilry.ifi.uio.no</tt></a> with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.</li>
+  <li> Use Devilry to hand in your projects, log in  at  <a href="http://devilry.ifi.uio.no" target="_self"><tt>http://devilry.ifi.uio.no</tt></a> with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.</li>
   <li> Upload <b>only</b> the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.</li>
   <li> In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parameters.</li>
   <li> In this and all later projects, you should include tests (for example unit tests) of your code(s).</li>
@@ -658,7 +702,23 @@ we encourage you to work two and two together. Optimal working groups consist of
 
 <p>
 
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+  <li class="active"><a href="._Project2-bs000.html">1</a></li>
+</ul>
 <!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
 
 
 <center style="font-size:80%">
