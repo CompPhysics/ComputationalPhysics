@@ -79,6 +79,49 @@ ${text_types(ch)}
 % endfor
 
 
+!split
+===== Projects Fall 2016 =====
+
+=== Project 1 ===
+ * LaTeX and PDF:
+     * "LaTex file":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project1/pdf/Project1.tex"
+     * "PDF file":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project1/pdf/Project1.pdf"
+ * HTML:
+   * "Plain html":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project1/html/Project1.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project1/html/Project1-bs.html"
+ * iPython notebook:
+   * "ipynb file": "https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project1/ipynb/Project1.ipynb"
+
+=== Project 2 ===
+ * LaTeX and PDF:
+     * "LaTex file":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project2/pdf/Project2.tex"
+     * "PDF file":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project2/pdf/Project2.pdf"
+ * HTML:
+   * "Plain html":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project2/html/Project2.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project2/html/Project2-bs.html"
+ * iPython notebook:
+   * "ipynb file": "https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project2/ipynb/Project2.ipynb"
+
+=== Project 3 ===
+ * LaTeX and PDF:
+     * "LaTex file":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project3/pdf/Project3.tex"
+     * "PDF file":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project3/pdf/Project3.pdf"
+ * HTML:
+   * "Plain html":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project3/html/Project3.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project3/html/Project3-bs.html"
+ * iPython notebook:
+   * "ipynb file": "https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project3/ipynb/Project3.ipynb"
+
+=== Project 4 ===
+ * LaTeX and PDF:
+     * "LaTex file":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project4/pdf/Project4.tex"
+     * "PDF file":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project4/pdf/Project4.pdf"
+ * HTML:
+   * "Plain html":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project4/html/Project4.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project4/html/Project4-bs.html"
+ * iPython notebook:
+   * "ipynb file": "https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016/Project4/ipynb/Project4.ipynb"
+
 
 !split
 ===== Teaching schedule Fall 2016 =====
