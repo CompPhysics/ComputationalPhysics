@@ -79,49 +79,6 @@ ${text_types(ch)}
 % endfor
 
 
-!split
-===== Projects Fall 2016 =====
-
-=== Project 1 ===
- * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project1/pdf/Project1.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project1/pdf/Project1.pdf"
- * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project1/html/Project1.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project1/html/Project1-bs.html"
- * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project1/ipynb/Project1.ipynb"
-
-=== Project 2 ===
- * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project2/pdf/Project2.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project2/pdf/Project2.pdf"
- * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project2/html/Project2.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project2/html/Project2-bs.html"
- * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project2/ipynb/Project2.ipynb"
-
-=== Project 3 ===
- * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project3/pdf/Project3.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project3/pdf/Project3.pdf"
- * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project3/html/Project3.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project3/html/Project3-bs.html"
- * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project3/ipynb/Project3.ipynb"
-
-=== Project 4 ===
- * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project4/pdf/Project4.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project4/pdf/Project4.pdf"
- * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project4/html/Project4.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project4/html/Project4-bs.html"
- * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project4/ipynb/Project4.ipynb"
-
 
 !split
 ===== Teaching schedule Fall 2016 =====
@@ -178,17 +135,17 @@ ${text_types(ch)}
 ===== Basic Syllabus =====
 !bblock
 The syllabus for this course consists of the lecture notes on the webpage (chapters 2-15) and 5 compulsory projects. The last three projects
-qare graded and count 1/3 each of the final mark.
+are graded and count 1/3 each of the final mark.
 
- * Monte Carlo methods in physics ("Lecture notes chapters 11, 12, 13 and 14":"http://compphysics.github.io/ComputationalPhysics/doc/Lectures")
+ * Monte Carlo methods in physics ("Lecture notes chapters 11, 12, 13 and 14":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Lectures")
 
- * Partial differential equations ("Lecture notes chapter 10":"http://compphysics.github.io/ComputationalPhysics/doc/Lectures")
+ * Partial differential equations ("Lecture notes chapter 10":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Lectures")
 
- * Ordinary differential equations ("Lecture notes chapter 8":"http://compphysics.github.io/ComputationalPhysics/doc/Lectures")
+ * Ordinary differential equations ("Lecture notes chapter 8":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Lectures")
 
- * Numerical integration, standard methods and Monte Carlo methods ("Lecture notes chapters 5.1-5.5 and 11":"http://compphysics.github.io/ComputationalPhysics/doc/Lectures")
+ * Numerical integration, standard methods and Monte Carlo methods ("Lecture notes chapters 5.1-5.5 and 11":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Lectures")
 
- * Linear algebra and eigenvalue problems. ("Lecture notes chapters 6 and 7":"http://compphysics.github.io/ComputationalPhysics/doc/Lectures")
+ * Linear algebra and eigenvalue problems. ("Lecture notes chapters 6 and 7":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Lectures")
 
 A good text that can be used (with more math plus much material on parallelization) is "Parallel Scientific Computing in C++ and MPI, of Karniadakis and Kirby III":"http://www.cambridge.org/us/academic/subjects/computer-science/scientific-computing-scientific-software/parallel-scientific-computing-c-and-mpi-seamless-approach-parallel-algorithms-and-their-implementation".
 !eblock
@@ -205,12 +162,12 @@ The program library in C++ and Fortran2008 used in this course is a rewritten ve
 !split
 ===== Programs in C++, Fortran and Python discussed in lecture notes =====
 !bblock
-All programs are available at the github address of the "course":"http://compphysics.github.io/ComputationalPhysics/doc/Programs"
+All programs are available at the github address of the "course":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Programs"
 !eblock
 
 ===== Projects =====
 !bblock
-Similarly, the pdf and latex files for the various are also available at the github address of the "course":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016"
+Similarly, the pdf and latex files for the various are also available at the github address of the "course":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2016"
 !eblock
 
 
