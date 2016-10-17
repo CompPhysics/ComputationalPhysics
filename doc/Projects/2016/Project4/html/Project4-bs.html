@@ -219,20 +219,20 @@ We choose now a square lattice with \( L=20 \) spins in the \( x \) and \( y \) 
 <p>
 In the previous exercise  we did not study carefully how many Monte Carlo cycles were needed in order to reach the most likely state. Here
 we want to perform a study of the time (here it corresponds to the number 
-of Monte Carlo cycles) one needs before one reaches an equilibrium situation 
+of Monte Carlo sweeps of the lattice) one needs before one reaches an equilibrium situation 
 and can start computing various expectations values. Our 
 first attempt is a rough and plain graphical
 one, where we plot various expectations values as functions of the number of Monte Carlo cycles.
 
 <p>
 Choose first a temperature of \( T=1.0 \) (in units of \( kT/J \)) and study the 
-mean energy and magnetisation (absolute value) as functions of the number of Monte Carlo cycles.
+mean energy and magnetisation (absolute value) as functions of the number of Monte Carlo cycles. Let the number of Monte Carlo cycles (sweeps per lattice)
+represent time.
 Use both an ordered (all spins pointing in one direction) and a random
 spin orientation as starting configuration. 
 How many Monte Carlo cycles do you need before you reach an equilibrium situation?
-Repeat this analysis for \( T=2.4 \).
-
-<p>
+Repeat this analysis for \( T=2.4 \). 
+Can you, based on these values estimate an equilibration time?
 Make also a plot of the total number of accepted configurations 
 as function of the total number of Monte Carlo cycles. How does the number of
 accepted configurations behave as function of temperature \( T \)?
@@ -241,7 +241,7 @@ accepted configurations behave as function of temperature \( T \)?
 
 <p>
 Compute thereafter the probability
-\( P(E) \) for the previous system with \( L=20 \) and the same temperatures.
+\( P(E) \) for the previous system with \( L=20 \) and the same temperatures, that is at \( T=1.0 \) and \( T=2.4 \).
 You compute this probability by simply counting the number of times a 
 given energy appears in your computation. Start the computation after 
 the steady state situation has been reached.
@@ -356,17 +356,18 @@ Use Eq. <a href="#mjx-eqn-3">(3)</a> and the exact result
 \( \nu=1 \) in order to estimate \( T_C \) in the thermodynamic limit 
 \( L\rightarrow \infty \)
 using your simulations with \( L=40 \), \( L=60 \), \( L=100 \) and \( L=140 \)
-The exact result for the critical temperature (after Lars Onsager) is
+The exact result for the critical temperature (<a href="http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117" target="_self">after Lars Onsager</a>) is
 \( kT_C/J=2/ln(1+\sqrt{2})\approx 2.269 \) with \( \nu=1 \).
 
 <h2 id="___sec9" class="anchor">Background literature </h2>
 
 <p>
-If you wish to read more about the Ising model and statistical physics here are two suggestions.
+If you wish to read more about the Ising model and statistical physics here are three suggestions.
 
 <ul>
-  <li> M. Plischke and B. Bergersen, <em>Equilibrium Statistical Physics</em>, Prentice-Hall, see chapters 5 and 6.</li>
-  <li> M. E. J. Newman and T. Barkema, <em>Monte Carlo Methods in Statistical Physics</em>, Oxford, see chapters 3 and 4.</li>
+  <li> <a href="http://www.worldscientific.com/worldscibooks/10.1142/5660" target="_self">M. Plischke and B. Bergersen</a>, <em>Equilibrium Statistical Physics</em>, World Scientific, see chapters 5 and 6.</li>
+  <li> <a href="http://www.cambridge.org/no/academic/subjects/physics/computational-science-and-modelling/guide-monte-carlo-simulations-statistical-physics-4th-edition?format=HB" target="_self">D. P. Landau and K. Binder</a>, <em>A Guide to Monte Carlo Simulations in Statistical Physics</em>, Cambridge, see chapters 2,3 and 4.</li>
+  <li> <a href="https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&" target="_self">M. E. J. Newman and T. Barkema</a>, <em>Monte Carlo Methods in Statistical Physics</em>, Oxford, see chapters 3 and 4.</li>
 </ul>
 
 <h2 id="___sec10" class="anchor">Introduction to numerical projects </h2>
