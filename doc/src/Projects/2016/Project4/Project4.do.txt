@@ -10,36 +10,36 @@ DATE: Fall semester 2016
 The aim of this project is to study a widely popular model to simulate phase transitions, the so-called Ising model in two dimensions. At a given critical temperature, this model exhbits a phase transition from a magnetic phase (a system with a finite magnetic moment) to a phase with zero magnetization. 
 
 In its simplest form
-the energy of the Ising model is expressed as
+the energy of the Ising model is expressed as, without an externally applied magnetic field, 
 !bt 
-\begin{equation} 
-E=-J\sum_{<kl>}^{N}s_ks_l 
-\end{equation} 
+\[
+E=-J\sum_{< kl >}^{N}s_ks_l 
+\]
 !et 
 with
-$s_k=\pm 1$, $N$ is the total number of spins and $J$ is a coupling
+$s_k=\pm 1$. The quantity $N$ represents the total number of spins and $J$ is a coupling
 constant expressing the strength of the interaction between
 neighboring spins.  The symbol $<kl>$ indicates that we sum over
 nearest neighbors only. We will assume that we have a ferromagnetic
 ordering, viz $J> 0$.  We will use periodic boundary conditions and
-the Metropolis algorithm only.
+the Metropolis algorithm only. The material on the Ising model can be found in chapter 13 of the lecture notes. The Metropolis algorithm is discussed in chapter 12. 
 
 
 _For this project you can collaborate with fellow students but you have to hand in an individual report._
 This project (together with projects 3 and 5) counts 1/3 of the final mark.
 
-=== Project 4a):   ===
+=== Project 4a): A simple $2\times 2$ lattice, analytical expressions  ===
 Assume we have only two spins in each dimension, that is $L=2$.
 Find the analytical expression 
 for the partition function and the corresponding
-expectations values for for $E$, $|{\cal M}|$, 
+expectations values for the energy $E$, the mean absolute value of the magnetic moment $\vert M\vert$ (we will refer to this as the mean magnetization), 
 the specific heat $C_V$ and the susceptibility $\chi$ 
 as functions of  $T$ using periodic boundary conditions.
 
-=== Project 4b):   ===
+=== Project 4b): Writing a code for the Ising model  ===
 Write now a code for the Ising model which computes the mean energy 
 $E$, mean magnetization 
-$|{\cal M}|$, the specific heat $C_V$ and the susceptibility $\chi$ 
+$\vert M\vert$, the specific heat $C_V$ and the susceptibility $\chi$ 
 as functions of  $T$ using periodic boundary conditions for 
 $L=2$ in the $x$ and $y$ directions. 
 Compare your results with the expressions from a)
@@ -48,10 +48,10 @@ for  a  temperature $T=1.0$ (in units of $kT/J$).
 How many Monte Carlo cycles do you need in order to achieve a 
 good agreeement?
 
-=== Project 4c):   ===
+=== Project 4c): When is the most likely state reached?  ===
 We choose now a square lattice with $L=20$ spins in the $x$ and $y$ directions. 
 
-In [b) we did not study carefully how many Monte Carlo cycles were needed in order to reach the most likely state. Here
+In the previous exercise  we did not study carefully how many Monte Carlo cycles were needed in order to reach the most likely state. Here
 we want to perform a study of the time (here it corresponds to the number 
 of Monte Carlo cycles) one needs before one reaches an equilibrium situation 
 and can start computing various expectations values. Our 
@@ -69,7 +69,8 @@ Make also a plot of the total number of accepted configurations
 as function of the total number of Monte Carlo cycles. How does the number of
 accepted configurations behave as function of temperature $T$?
 
-=== Project 4d):   ===
+=== Project 4d): Analyzing the probability distribution  ===
+
 Compute thereafter the probability
 $P(E)$ for the previous system with $L=20$ and the same temperatures.
 You compute this probability by simply counting the number of times a 
@@ -81,23 +82,22 @@ $\sigma^2_E$ and discuss the behavior you observe.
 === Studies of phase transitions ===
 Near $T_C$ we can characterize the behavior of many physical quantities
 by a power law behavior.
-As an example the mean magnetization is given by
-
+As an example, for the Ising class of models, 
+the mean magnetization is given by
 !bt
-\begin{equation}
-  \langle {\cal M}(T) \rangle \sim \left(T-T_C\right)^{\beta},
-\end{equation}
+\[
+  \langle M(T) \rangle \sim \left(T-T_C\right)^{\beta},
+\]
 !et
 where $\beta=1/8$ is a so-called critical exponent. A similar relation
 applies to the heat capacity
 
 !bt
-\begin{equation}
+\[
   C_V(T) \sim \left|T_C-T\right|^{\alpha},
-\end{equation}
+\]
 !et
 and the susceptibility
-
 !bt
 \begin{equation}
   \chi(T) \sim \left|T_C-T\right|^{\gamma},
@@ -160,14 +160,26 @@ and susceptibility
 !et
 
 
-=== Project 4e):   ===
-We wish to study the behavior of the Ising model in two dimensions close to the  critical temperature as a function of the lattice size $L\times L$. Calculate the expectation values  for $\langle E\rangle$ and $\langle |{\cal M}|\rangle$, the specific heat $C_V$ and the susceptibility $\chi$ as functions  of $T$ for $L=20$, $L=40$, $L=60$ and $L=80$ for $T\in [2.0,2.4]$ with a step in temperature $\Delta T=0.05$ or smaller.  Plot  $\langle E\rangle$, $\langle 1{\cal M}1\rangle$, $C_V$ and $\chi$  as functions of $T$. Can you see an indication of a phase transition?  Use the absolute value $\langle |{\cal M}|\rangle$ when you evaluate $\chi$.  You should parallelize the code using either OpenMP or MPI.
+=== Project 4e): Numerical studies of phase transitions === 
+We wish to study the behavior of the Ising model
+in two dimensions close to the critical temperature as a function of
+the lattice size $L\times L$. Calculate the expectation values for
+$\langle E\rangle$ and $\langle \vert M\vert \rangle$, the specific heat
+$C_V$ and the susceptibility $\chi$ as functions of $T$ for $L=40$,
+$L=60$, $L=100$ and $L=140$ for $T\in [2.0,2.3]$ with a step in
+temperature $\Delta T=0.05$ or smaller.  You may find it convenient narrow the domain for $T$. 
 
-=== Project 4f):   ===
+Plot $\langle E\rangle$,
+$\langle \vert M\vert\rangle$, $C_V$ and $\chi$ as functions of $T$. Can
+you see an indication of a phase transition?  Use the absolute value
+$\langle \vert M\vert\rangle$ when you evaluate $\chi$.  For these production runs you should
+parallelize the code using either OpenMP or MPI. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code. 
+
+=== Project 4f): Extracting the critical temperature  ===
 Use Eq. (ref{eq:tc}) and the exact result
 $\nu=1$ in order to estimate $T_C$ in the thermodynamic limit 
 $L\rightarrow \infty$
-using your simulations with $L=20$, $L=40$, $L=60$ and $L=80$
+using your simulations with $L=40$, $L=60$, $L=100$ and $L=140$
 The exact result for the critical temperature (after Lars Onsager) is
 $kT_C/J=2/ln(1+\sqrt{2})\approx 2.269$ with $\nu=1$.
 
@@ -176,9 +188,9 @@ $kT_C/J=2/ln(1+\sqrt{2})\approx 2.269$ with $\nu=1$.
 
 If you wish to read more about the Ising model and statistical physics here are two suggestions.
 
-  * M. Plischke and B. Bergersen, Equilibrium Statistical Physics, Prentice-Hall, see chapters 5 and 6.
+  * M. Plischke and B. Bergersen, *Equilibrium Statistical Physics*, Prentice-Hall, see chapters 5 and 6.
 
-  * M. E. J. Newman and T. Barkema, Monte Carlo methods in statistical physics, Oxford, see chapters 3 and 4.
+  * M. E. J. Newman and T. Barkema, *Monte Carlo Methods in Statistical Physics*, Oxford, see chapters 3 and 4.
 
 
 ===== Introduction to numerical projects =====
