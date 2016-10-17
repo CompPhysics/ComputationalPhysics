@@ -27,7 +27,7 @@ void initialize(int, int **, double&, double&);
 // The metropolis algorithm 
 void Metropolis(int, long&, int **, double&, double&, double *);
 // prints to file the results of the calculations  
-void output(int, int, double, double *);
+void output(int, int, double, double, double, double, double, double);
 //  Matrix memory allocation
 //  allocate space for a matrix
 void  **matrix(int, int, int);
@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
   char *outfilename;
   long idum;
   int **spin_matrix, n_spins, mcs;
-  double w[17], total_average[5], initial_temp, final_temp, E, M, temp_step;
+  double w[17], initial_temp, final_temp, E, M, temp_step;
 
   if (argc <= 1) {
     cout << "Bad Usage: " << argv[0] << 
@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
     outfilename=argv[1];
     ofile.open(outfilename); 
   }
-  n_spins = 10; mcs = 1000000;  initial_temp = 2.1; final_temp = 2.6; temp_step =0.05;
+  n_spins = 20; mcs = 1000000;  initial_temp = 2.1; final_temp = 2.4; temp_step =0.05;
   cout << "  C++/OpenMP version" << endl;
   cout << "  Ising model with OpenMP" << endl;
   int thread_num = omp_get_max_threads ( );
@@ -70,30 +70,26 @@ int main(int argc, char* argv[])
   // Start Monte Carlo sampling by looping over T first
   for ( double temperature = initial_temp; temperature <= final_temp; temperature+=temp_step){
     //    initialise energy and magnetization 
-    E = M = 0.;
+
     // initialise array for expectation values
     initialize(n_spins, spin_matrix, E, M);
     // setup array for possible energy changes
     for( int de =-8; de <= 8; de++) w[de+8] = 0;
     for( int de =-8; de <= 8; de+=4) w[de+8] = exp(-de/temperature);
-    for( int i = 0; i < 5; i++) total_average[i] = 0.;
     int cycles; 
     // start Monte Carlo computation and parallel region
-    double average[5];
-# pragma omp parallel private (average) shared(total_average)
-    for( int i = 0; i < 5; i++) average[i] = 0.;
-#pragma omp for 
+    double totalE, totalM, Mabs, totalE2, totalM2;    
+# pragma omp parallel default(shared) private (cycles, E, M) reduction(+:totalE,totalM,totalE2,totalM2,Mabs)
+    E = M = 0.;
+    totalE = totalM = Mabs = totalE2 = totalM2 = 0.0;
+# pragma omp for 
     for (cycles = 1; cycles <= mcs; cycles++){
       Metropolis(n_spins, idum, spin_matrix, E, M, w);
-      // update expectation values  for local node
-      average[0] += E;    average[1] += E*E;
-      average[2] += M;    average[3] += M*M; average[4] += fabs(M);
+      // update expectation values
+      totalE += E;    totalE2 += E*E;
+      totalM += M;    totalM2 += M*M; Mabs += fabs(M);
     }
-#pragma omp critical
-    for(int j=0;j<5;j++) {
-      total_average[j] = average[j]; 
-    }
-    output(n_spins, mcs, temperature, total_average);
+    output(n_spins, mcs, temperature, totalE, totalM, Mabs, totalE2, totalM2);
   }
   free_matrix((void **) spin_matrix); // free memory
   wtime = omp_get_wtime ( ) - wtime;
@@ -145,14 +141,14 @@ void Metropolis(int n_spins, long& idum, int **spin_matrix, double& E, double&M,
 } // end of Metropolis sampling over spins
 
 
-void output(int n_spins, int mcs, double temperature, double *total_average)
+void output(int n_spins, int mcs, double temperature, double totalE, double totalM, double Mabs, double totalE2, double totalM2)
 {
   double norm = 1/((double) (mcs));  // divided by total number of cycles 
-  double Etotal_average = total_average[0]*norm;
-  double E2total_average = total_average[1]*norm;
-  double Mtotal_average = total_average[2]*norm;
-  double M2total_average = total_average[3]*norm;
-  double Mabstotal_average = total_average[4]*norm;
+  double Etotal_average = totalE*norm;
+  double E2total_average = totalE2*norm;
+  double Mtotal_average = totalM*norm;
+  double M2total_average = totalM2*norm;
+  double Mabstotal_average = Mabs*norm;
   // all expectation values are per spin, divide by 1/n_spins/n_spins
   double Evariance = (E2total_average- Etotal_average*Etotal_average)/n_spins/n_spins;
   double Mvariance = (M2total_average - Mabstotal_average*Mabstotal_average)/n_spins/n_spins;
@@ -302,6 +298,7 @@ void free_matrix(void **matr)
   delete [] matr;
 
 }  // End:  function free_matrix() 
+
 
 
 
