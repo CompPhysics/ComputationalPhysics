@@ -218,20 +218,20 @@ where $f_i=f(x_i)$.
 Show that you can rewrite this equation as a linear set of equations of the form
 
 \begin{equation*}
-   \hat{A}\hat{v} = \tilde{\hat{b}},
+   \mathbf{A}\mathbf{v} = \tilde{\mathbf{b}},
 \end{equation*}
-where $\hat{A}$ is an $n\times n$  tridiagonal matrix which we rewrite as
+where $\mathbf{A}$ is an $n\times n$  tridiagonal matrix which we rewrite as
 
-\begin{equation}
-    \hat{A} = \left(\begin{array}{cccccc}
+\[
+    \mathbf{A} = \begin{bmatrix}
                            2& -1& 0 &\dots   & \dots &0 \\
                            -1 & 2 & -1 &0 &\dots &\dots \\
                            0&-1 &2 & -1 & 0 & \dots \\
                            & \dots   & \dots &\dots   &\dots & \dots \\
                            0&\dots   &  &-1 &2& -1 \\
                            0&\dots    &  & 0  &-1 & 2 \\
-                      \end{array} \right),
-\end{equation}
+                      \end{bmatrix},
+\]
 and $\tilde{b}_i=h^2f_i$.
 
 
@@ -243,35 +243,35 @@ solution in the Poisson equation).  We will compare
 our numerical solution with this result in the next exercise. 
 
 \paragraph{Project 1 b):}
-We can rewrite our matrix $\hat{A}$ in terms of one-dimensional vectors $a,b,c$  
+We can rewrite our matrix $\mathbf{A}$ in terms of one-dimensional vectors $a,b,c$  
 of length $1:n$. 
 Our linear equation reads
 
-\begin{equation}
-    \hat{A} = \left(\begin{array}{cccccc}
+\[
+    \mathbf{A} = \begin{bmatrix}
                            b_1& c_1 & 0 &\dots   & \dots &\dots \\
                            a_1 & b_2 & c_2 &\dots &\dots &\dots \\
                            & a_2 & b_3 & c_3 & \dots & \dots \\
                            & \dots   & \dots &\dots   &\dots & \dots \\
                            &   &  &a_{n-2}  &b_{n-1}& c_{n-1} \\
                            &    &  &   &a_{n-1} & b_n \\
-                      \end{array} \right)\left(\begin{array}{c}
+                      \end{bmatrix}\begin{bmatrix}
                            v_1\\
                            v_2\\
                            \dots \\
                           \dots  \\
                           \dots \\
                            v_n\\
-                      \end{array} \right)
-  =\left(\begin{array}{c}
+                      \end{bmatrix}
+  =\begin{bmatrix}
                            \tilde{b}_1\\
                            \tilde{b}_2\\
                            \dots \\
                            \dots \\
                           \dots \\
                            \tilde{b}_n\\
-                      \end{array} \right).
-\end{equation}
+                      \end{bmatrix}.
+\]
 Note well that we do not include the endpoints since the boundary conditions are used resulting in a fixed value for $v_i$.
 A tridiagonal matrix is a special form of banded matrix where all the elements are zero except for 
 those on and immediately above and below the leading diagonal.
@@ -299,10 +299,10 @@ for this specific tri-diagonal matrix. Compare the CPU time with the general alg
 \paragraph{Project 1 d):}
 Compute the relative error  in the data set $i=1,\dots, n$,by setting up
 
-\begin{equation*}
+\[
    \epsilon_i=log_{10}\left(\left|\frac{v_i-u_i}
                  {u_i}\right|\right),
-\end{equation*}
+\]
 as function of $log_{10}(h)$ for the function values $u_i$ and $v_i$.
 For each step length extract the max value of the relative error.  
 Try to increase $n$ to $n=10^7$.  Make a table of the results and 
@@ -324,8 +324,7 @@ Comment your results.
 
 
 To compute the elapsed time in c++ you can use the following statements
-\begin{print}
-using namespace std;
+\begin{verbatim}
 ...
 #include "time.h"   //  you have to include the time.h header
 int main()
@@ -338,9 +337,9 @@ int main()
     finish = clock();
     ( (finish - start)/CLOCKS_PER_SEC );
 ...
-\end{print}
+\end{verbatim}
 Similarly, in Fortran, this simple example shows how to compute the elapsed time.
-\begin{print}
+\begin{verbatim}
 PROGRAM time
  REAL :: etime          ! Declare the type of etime()
  REAL :: elapsed(2)     ! For receiving user and system time
@@ -358,7 +357,7 @@ PROGRAM time
               ' system=', elapsed(2)
 
 END PROGRAM time
-\end{print}
+\end{verbatim}
 
 
 
