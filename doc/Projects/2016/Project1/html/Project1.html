@@ -200,24 +200,21 @@ Show that you can rewrite this equation as a linear set of equations of the form
 
 $$
 \begin{equation*}
-   \hat{A}\hat{v} = \tilde{\hat{b}},
+   \mathbf{A}\mathbf{v} = \tilde{\mathbf{b}},
 \end{equation*}
 $$
 
-where \( \hat{A} \) is an \( n\times n \)  tridiagonal matrix which we rewrite as
+where \( \mathbf{A} \) is an \( n\times n \)  tridiagonal matrix which we rewrite as
 
 $$
-\begin{equation}
-    \hat{A} = \left(\begin{array}{cccccc}
+    \mathbf{A} = \begin{bmatrix}
                            2& -1& 0 &\dots   & \dots &0 \\
                            -1 & 2 & -1 &0 &\dots &\dots \\
                            0&-1 &2 & -1 & 0 & \dots \\
                            & \dots   & \dots &\dots   &\dots & \dots \\
                            0&\dots   &  &-1 &2& -1 \\
                            0&\dots    &  & 0  &-1 & 2 \\
-                      \end{array} \right),
-\label{_auto1}
-\end{equation}
+                      \end{bmatrix},
 $$
 
 and \( \tilde{b}_i=h^2f_i \).
@@ -233,37 +230,34 @@ our numerical solution with this result in the next exercise.
 <h3 id="___sec2">Project 1 b): </h3>
 
 <p>
-We can rewrite our matrix \( \hat{A} \) in terms of one-dimensional vectors \( a,b,c \)  
+We can rewrite our matrix \( \mathbf{A} \) in terms of one-dimensional vectors \( a,b,c \)  
 of length \( 1:n \). 
 Our linear equation reads
 
 $$
-\begin{equation}
-    \hat{A} = \left(\begin{array}{cccccc}
+    \mathbf{A} = \begin{bmatrix}
                            b_1& c_1 & 0 &\dots   & \dots &\dots \\
                            a_1 & b_2 & c_2 &\dots &\dots &\dots \\
                            & a_2 & b_3 & c_3 & \dots & \dots \\
                            & \dots   & \dots &\dots   &\dots & \dots \\
                            &   &  &a_{n-2}  &b_{n-1}& c_{n-1} \\
                            &    &  &   &a_{n-1} & b_n \\
-                      \end{array} \right)\left(\begin{array}{c}
+                      \end{bmatrix}\begin{bmatrix}
                            v_1\\
                            v_2\\
                            \dots \\
                           \dots  \\
                           \dots \\
                            v_n\\
-                      \end{array} \right)
-  =\left(\begin{array}{c}
+                      \end{bmatrix}
+  =\begin{bmatrix}
                            \tilde{b}_1\\
                            \tilde{b}_2\\
                            \dots \\
                            \dots \\
                           \dots \\
                            \tilde{b}_n\\
-                      \end{array} \right).
-\label{_auto2}
-\end{equation}
+                      \end{bmatrix}.
 $$
 
 Note well that we do not include the endpoints since the boundary conditions are used resulting in a fixed value for \( v_i \).
@@ -299,10 +293,8 @@ for this specific tri-diagonal matrix. Compare the CPU time with the general alg
 Compute the relative error  in the data set \( i=1,\dots, n \),by setting up
 
 $$
-\begin{equation*}
    \epsilon_i=log_{10}\left(\left|\frac{v_i-u_i}
                  {u_i}\right|\right),
-\end{equation*}
 $$
 
 as function of \( log_{10}(h) \) for the function values \( u_i \) and \( v_i \).
@@ -331,8 +323,7 @@ To compute the elapsed time in c++ you can use the following statements
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
-...
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">...
 <span style="color: #BC7A00">#include &quot;time.h&quot;   </span><span style="color: #408080; font-style: italic">//  you have to include the time.h header</span>
 <span style="color: #B00040">int</span> main()
 {
