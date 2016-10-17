@@ -53,18 +53,19 @@ We choose now a square lattice with $L=20$ spins in the $x$ and $y$ directions.
 
 In the previous exercise  we did not study carefully how many Monte Carlo cycles were needed in order to reach the most likely state. Here
 we want to perform a study of the time (here it corresponds to the number 
-of Monte Carlo cycles) one needs before one reaches an equilibrium situation 
+of Monte Carlo sweeps of the lattice) one needs before one reaches an equilibrium situation 
 and can start computing various expectations values. Our 
 first attempt is a rough and plain graphical
 one, where we plot various expectations values as functions of the number of Monte Carlo cycles.
 
 Choose first a temperature of $T=1.0$ (in units of $kT/J$) and study the 
-mean energy and magnetisation (absolute value) as functions of the number of Monte Carlo cycles.
+mean energy and magnetisation (absolute value) as functions of the number of Monte Carlo cycles. Let the number of Monte Carlo cycles (sweeps per lattice)
+represent time.
 Use both an ordered (all spins pointing in one direction) and a random
 spin orientation as starting configuration. 
 How many Monte Carlo cycles do you need before you reach an equilibrium situation?
 Repeat this analysis for $T=2.4$. 
-
+Can you, based on these values estimate an equilibration time?
 Make also a plot of the total number of accepted configurations 
 as function of the total number of Monte Carlo cycles. How does the number of
 accepted configurations behave as function of temperature $T$?
@@ -72,7 +73,7 @@ accepted configurations behave as function of temperature $T$?
 === Project 4d): Analyzing the probability distribution  ===
 
 Compute thereafter the probability
-$P(E)$ for the previous system with $L=20$ and the same temperatures.
+$P(E)$ for the previous system with $L=20$ and the same temperatures, that is at $T=1.0$ and $T=2.4$.
 You compute this probability by simply counting the number of times a 
 given energy appears in your computation. Start the computation after 
 the steady state situation has been reached.
@@ -180,17 +181,19 @@ Use Eq. (ref{eq:tc}) and the exact result
 $\nu=1$ in order to estimate $T_C$ in the thermodynamic limit 
 $L\rightarrow \infty$
 using your simulations with $L=40$, $L=60$, $L=100$ and $L=140$
-The exact result for the critical temperature (after Lars Onsager) is
+The exact result for the critical temperature ("after Lars Onsager":"http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117") is
 $kT_C/J=2/ln(1+\sqrt{2})\approx 2.269$ with $\nu=1$.
 
 
 ===== Background literature =====
 
-If you wish to read more about the Ising model and statistical physics here are two suggestions.
+If you wish to read more about the Ising model and statistical physics here are three suggestions.
 
-  * M. Plischke and B. Bergersen, *Equilibrium Statistical Physics*, Prentice-Hall, see chapters 5 and 6.
+  * "M. Plischke and B. Bergersen":"http://www.worldscientific.com/worldscibooks/10.1142/5660", *Equilibrium Statistical Physics*, World Scientific, see chapters 5 and 6.
 
-  * M. E. J. Newman and T. Barkema, *Monte Carlo Methods in Statistical Physics*, Oxford, see chapters 3 and 4.
+  * "D. P. Landau and K. Binder":"http://www.cambridge.org/no/academic/subjects/physics/computational-science-and-modelling/guide-monte-carlo-simulations-statistical-physics-4th-edition?format=HB", *A Guide to Monte Carlo Simulations in Statistical Physics*, Cambridge, see chapters 2,3 and 4.
+
+  * "M. E. J. Newman and T. Barkema":"https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&", *Monte Carlo Methods in Statistical Physics*, Oxford, see chapters 3 and 4.
 
 
 ===== Introduction to numerical projects =====
