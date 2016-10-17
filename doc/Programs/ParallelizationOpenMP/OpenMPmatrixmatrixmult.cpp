@@ -32,6 +32,7 @@ int main (int argc, char* argv[])
     C[i] = new double[n];
   }
   // Define parallel region
+  Fsum = 0.0;
 # pragma omp parallel for default(shared) private (angle, i, j, k) reduction(+:Fsum)
   // Set up values for matrix A and B and zero matrix C
   for (i = 0; i < n; i++){
@@ -41,6 +42,7 @@ int main (int argc, char* argv[])
       B[j][i] =  A[i][j];
     }
   }
+  # pragma omp for
   // Then perform the matrix-matrix multiplication
   for (i = 0; i < n; i++){
     for (j = 0; j < n; j++) {
@@ -50,8 +52,8 @@ int main (int argc, char* argv[])
        }
     }
   }
+  # pragma omp for
   // Compute now the Frobenius norm
-  Fsum = 0.0;
   for (i = 0; i < n; i++){
     for (j = 0; j < n; j++) {
       Fsum += C[i][j]*C[i][j];

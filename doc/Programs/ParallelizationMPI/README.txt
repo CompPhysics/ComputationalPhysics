@@ -4,7 +4,7 @@ o  sudo apt-get install openmpi-bin
 
 For OS X users, install brew (after having installed xcode and gcc, needed for the 
 gfortran compiler of openmpi) and then run
-o  brew install openmpi
+o  brew install open-mpi
 
 When running an executable (code.x), run as
 o mpirun -n 10 ./code.x

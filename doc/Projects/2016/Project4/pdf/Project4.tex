@@ -20,6 +20,8 @@ final,                   % draft: marks overfull hboxes, figures with paths
 
 \usepackage[pdftex]{graphicx}
 
+\usepackage{fancyvrb} % packages needed for verbatim environments
+
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
 \usepackage{ucs}
@@ -281,7 +283,9 @@ Plot $\langle E\rangle$,
 $\langle \vert M\vert\rangle$, $C_V$ and $\chi$ as functions of $T$. Can
 you see an indication of a phase transition?  Use the absolute value
 $\langle \vert M\vert\rangle$ when you evaluate $\chi$.  For these production runs you should
-parallelize the code using either OpenMP or MPI. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code. 
+parallelize the code using either MPI (recommended) or OpenMP. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code. 
+
+
 
 \paragraph{Project 4f): Extracting the critical temperature.}
 Use Eq. (\ref{eq:tc}) and the exact result
@@ -291,6 +295,57 @@ using your simulations with $L=40$, $L=60$, $L=100$ and $L=140$
 The exact result for the critical temperature (\href{{http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117}}{after Lars Onsager}) is
 $kT_C/J=2/ln(1+\sqrt{2})\approx 2.269$ with $\nu=1$.
 
+\subsection*{How to install openmpi and/or OpenMP on your PC/laptop}
+
+If you use your own laptop, for linux/ubuntu users, you need to install two packages (alternatively use the synaptic package manager)
+\begin{verbatim}
+  sudo apt-get install libopenmpi-dev
+  sudo apt-get install openmpi-bin
+\end{verbatim}
+For OS X users, install brew (after having installed xcode and gcc, needed for the 
+gfortran compiler of openmpi) and then run
+\begin{verbatim}
+brew install open-mpi
+\end{verbatim}
+When compiling from the command line, depending on your choice of programming language you need to compile and link as for example
+\begin{verbatim}
+mpic++ -O3 -o executable program.cpp
+\end{verbatim}
+if you use c++ (alternatively mpicxx) and
+\begin{verbatim}
+mpif90 -O3 -o executable program.f90
+\end{verbatim}
+if you use Fortran90.
+
+When running an executable (code.x), run as
+\begin{verbatim}
+mpirun -n 10 ./code.x
+\end{verbatim}
+where -n indicates the number of processes, 10 here.
+
+With openmpi installed, when using Qt, add to your .pro file the instructions at \href{{http://dragly.org/2012/03/14/developing-mpi-applications-in-qt-creator/}}{Svenn-Arne Dragly's site}
+
+You may need to tell Qt where opempi is stored.
+
+For the machines at the computer lab, openmpi is located  at /usr/lib64/openmpi/bin
+Add to your .bashrc file the following
+\begin{verbatim}
+export PATH=/usr/lib64/openmpi/bin:$PATH 
+\end{verbatim}
+For Windows users we recommend to follow the instructions at the \href{{https://www.open-mpi.org/software/ompi/v1.6/ms-windows.php}}{Open MPI site}.
+
+If you use OpenMP, for linux users, compile and link with for example
+\begin{verbatim}
+c++ -O3 -fopenmp -o <executable>  <nameofprogram>
+\end{verbatim}
+For OS X users, you need to install clang-omp using brew, that is
+\begin{verbatim}
+brew install clang-omp
+\end{verbatim}
+and then compile and link with for example
+\begin{verbatim}
+clang-omp++ -O3 -fopenmp -o <executable>  <nameofprogram>
+\end{verbatim}
 
 \subsection*{Background literature}
 

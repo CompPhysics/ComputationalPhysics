@@ -69,12 +69,16 @@ div { text-align: justify; text-justify: inter-word; }
                3,
                None,
                '___sec8'),
-              ('Background literature', 2, None, '___sec9'),
-              ('Introduction to numerical projects', 2, None, '___sec10'),
+              ('How to install openmpi and/or OpenMP on your PC/laptop',
+               2,
+               None,
+               '___sec9'),
+              ('Background literature', 2, None, '___sec10'),
+              ('Introduction to numerical projects', 2, None, '___sec11'),
               ('Format for electronic delivery of report and programs',
                2,
                None,
-               '___sec11')]}
+               '___sec12')]}
 end of tocinfo -->
 
 <body>
@@ -303,7 +307,7 @@ Plot \( \langle E\rangle \),
 \( \langle \vert M\vert\rangle \), \( C_V \) and \( \chi \) as functions of \( T \). Can
 you see an indication of a phase transition?  Use the absolute value
 \( \langle \vert M\vert\rangle \) when you evaluate \( \chi \).  For these production runs you should
-parallelize the code using either OpenMP or MPI. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code.
+parallelize the code using either MPI (recommended) or OpenMP. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code.
 
 <h3 id="___sec8">Project 4f): Extracting the critical temperature  </h3>
 
@@ -314,7 +318,91 @@ using your simulations with \( L=40 \), \( L=60 \), \( L=100 \) and \( L=140 \)
 The exact result for the critical temperature (<a href="http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117" target="_blank">after Lars Onsager</a>) is
 \( kT_C/J=2/ln(1+\sqrt{2})\approx 2.269 \) with \( \nu=1 \).
 
-<h2 id="___sec9">Background literature </h2>
+<h2 id="___sec9">How to install openmpi and/or OpenMP on your PC/laptop </h2>
+
+<p>
+If you use your own laptop, for linux/ubuntu users, you need to install two packages (alternatively use the synaptic package manager)
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  sudo apt-get install libopenmpi-dev
+  sudo apt-get install openmpi-bin
+</pre></div>
+<p>
+For OS X users, install brew (after having installed xcode and gcc, needed for the 
+gfortran compiler of openmpi) and then run
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>brew install open-mpi
+</pre></div>
+<p>
+When compiling from the command line, depending on your choice of programming language you need to compile and link as for example
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpic++ -O3 -o executable program.cpp
+</pre></div>
+<p>
+if you use c++ (alternatively mpicxx) and
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpif90 -O3 -o executable program.f90
+</pre></div>
+<p>
+if you use Fortran90.
+
+<p>
+When running an executable (code.x), run as
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpirun -n 10 ./code.x
+</pre></div>
+<p>
+where -n indicates the number of processes, 10 here.
+
+<p>
+With openmpi installed, when using Qt, add to your .pro file the instructions at <a href="http://dragly.org/2012/03/14/developing-mpi-applications-in-qt-creator/" target="_blank">Svenn-Arne Dragly's site</a>
+
+<p>
+You may need to tell Qt where opempi is stored.
+
+<p>
+For the machines at the computer lab, openmpi is located  at /usr/lib64/openmpi/bin
+Add to your .bashrc file the following
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>export PATH=/usr/lib64/openmpi/bin:$PATH 
+</pre></div>
+<p>
+For Windows users we recommend to follow the instructions at the <a href="https://www.open-mpi.org/software/ompi/v1.6/ms-windows.php" target="_blank">Open MPI site</a>.
+
+<p>
+If you use OpenMP, for linux users, compile and link with for example
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c++ -O3 -fopenmp -o &lt;executable&gt;  &lt;nameofprogram&gt;
+</pre></div>
+<p>
+For OS X users, you need to install clang-omp using brew, that is
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>brew install clang-omp
+</pre></div>
+<p>
+and then compile and link with for example
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang-omp++ -O3 -fopenmp -o &lt;executable&gt;  &lt;nameofprogram&gt;
+</pre></div>
+
+<h2 id="___sec10">Background literature </h2>
 
 <p>
 If you wish to read more about the Ising model and statistical physics here are three suggestions.
@@ -325,7 +413,7 @@ If you wish to read more about the Ising model and statistical physics here are 
   <li> <a href="https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&" target="_blank">M. E. J. Newman and T. Barkema</a>, <em>Monte Carlo Methods in Statistical Physics</em>, Oxford, see chapters 3 and 4.</li>
 </ul>
 
-<h2 id="___sec10">Introduction to numerical projects </h2>
+<h2 id="___sec11">Introduction to numerical projects </h2>
 
 <p>
 Here follows a brief recipe and recommendation on how to write a report for each
@@ -343,7 +431,7 @@ project.
   <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
 </ul>
 
-<h2 id="___sec11">Format for electronic delivery of report and programs </h2>
+<h2 id="___sec12">Format for electronic delivery of report and programs </h2>
 
 <p>
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
