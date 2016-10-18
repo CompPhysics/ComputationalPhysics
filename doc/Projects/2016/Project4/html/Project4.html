@@ -69,13 +69,13 @@ div { text-align: justify; text-justify: inter-word; }
                3,
                None,
                '___sec8'),
-              ('How to install openmpi and/or OpenMP on your PC/laptop',
+              ('Background literature', 2, None, '___sec9'),
+              ('Introduction to numerical projects', 2, None, '___sec10'),
+              ('Format for electronic delivery of report and programs',
                2,
                None,
-               '___sec9'),
-              ('Background literature', 2, None, '___sec10'),
-              ('Introduction to numerical projects', 2, None, '___sec11'),
-              ('Format for electronic delivery of report and programs',
+               '___sec11'),
+              ('How to install openmpi and/or OpenMP on your PC/laptop',
                2,
                None,
                '___sec12')]}
@@ -307,7 +307,7 @@ Plot \( \langle E\rangle \),
 \( \langle \vert M\vert\rangle \), \( C_V \) and \( \chi \) as functions of \( T \). Can
 you see an indication of a phase transition?  Use the absolute value
 \( \langle \vert M\vert\rangle \) when you evaluate \( \chi \).  For these production runs you should
-parallelize the code using either MPI (recommended) or OpenMP. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code.
+parallelize the code using MPI (recommended). Alternatively OpenMP can be used. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code.
 
 <h3 id="___sec8">Project 4f): Extracting the critical temperature  </h3>
 
@@ -318,7 +318,53 @@ using your simulations with \( L=40 \), \( L=60 \), \( L=100 \) and \( L=140 \)
 The exact result for the critical temperature (<a href="http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117" target="_blank">after Lars Onsager</a>) is
 \( kT_C/J=2/ln(1+\sqrt{2})\approx 2.269 \) with \( \nu=1 \).
 
-<h2 id="___sec9">How to install openmpi and/or OpenMP on your PC/laptop </h2>
+<h2 id="___sec9">Background literature </h2>
+
+<p>
+If you wish to read more about the Ising model and statistical physics here are three suggestions.
+
+<ul>
+  <li> <a href="http://www.worldscientific.com/worldscibooks/10.1142/5660" target="_blank">M. Plischke and B. Bergersen</a>, <em>Equilibrium Statistical Physics</em>, World Scientific, see chapters 5 and 6.</li>
+  <li> <a href="http://www.cambridge.org/no/academic/subjects/physics/computational-science-and-modelling/guide-monte-carlo-simulations-statistical-physics-4th-edition?format=HB" target="_blank">D. P. Landau and K. Binder</a>, <em>A Guide to Monte Carlo Simulations in Statistical Physics</em>, Cambridge, see chapters 2,3 and 4.</li>
+  <li> <a href="https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&" target="_blank">M. E. J. Newman and T. Barkema</a>, <em>Monte Carlo Methods in Statistical Physics</em>, Oxford, see chapters 3 and 4.</li>
+</ul>
+
+<h2 id="___sec10">Introduction to numerical projects </h2>
+
+<p>
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+<ul>
+  <li> Give a short description of the nature of the problem and the eventual  numerical methods you have used.</li>
+  <li> Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.</li>
+  <li> Include the source code of your program. Comment your program properly.</li>
+  <li> If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.</li>
+  <li> Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.</li>
+  <li> Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.</li>
+  <li> Try to give an interpretation of you results in your answers to  the problems.</li>
+  <li> Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.</li>
+  <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
+</ul>
+
+<h2 id="___sec11">Format for electronic delivery of report and programs </h2>
+
+<p>
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+<ul>
+  <li> Use Devilry to hand in your projects, log in  at  <a href="http://devilry.ifi.uio.no" target="_blank"><tt>http://devilry.ifi.uio.no</tt></a> with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.</li>
+  <li> Upload <b>only</b> the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.</li>
+  <li> In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parametxers.</li>
+  <li> In this and all later projects, you should include tests (for example unit tests) of your code(s).</li>
+  <li> Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.</li>
+</ul>
+
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. For this specific report you need to hand in an individual report.
+
+<h2 id="___sec12">How to install openmpi and/or OpenMP on your PC/laptop </h2>
 
 <p>
 If you use your own laptop, for linux/ubuntu users, you need to install two packages (alternatively use the synaptic package manager)
@@ -341,24 +387,24 @@ When compiling from the command line, depending on your choice of programming la
 <p>
 
 <!-- code=text (!bc vrb) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpic++ -O3 -o executable program.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpic++ -O3 -o &lt;executable&gt; &lt;programname.cpp&gt;
 </pre></div>
 <p>
 if you use c++ (alternatively mpicxx) and
 <p>
 
 <!-- code=text (!bc vrb) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpif90 -O3 -o executable program.f90
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpif90 -O3 -o &lt;executable&gt; &lt;programname.f90&gt;
 </pre></div>
 <p>
 if you use Fortran90.
 
 <p>
-When running an executable (code.x), run as
+When running an executable, run as
 <p>
 
 <!-- code=text (!bc vrb) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpirun -n 10 ./code.x
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpirun -n 10 ./&lt;executable&gt;
 </pre></div>
 <p>
 where -n indicates the number of processes, 10 here.
@@ -385,7 +431,7 @@ If you use OpenMP, for linux users, compile and link with for example
 <p>
 
 <!-- code=text (!bc vrb) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c++ -O3 -fopenmp -o &lt;executable&gt;  &lt;nameofprogram&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c++ -O3 -fopenmp -o &lt;executable&gt;  &lt;programname.cpp&gt;
 </pre></div>
 <p>
 For OS X users, you need to install clang-omp using brew, that is
@@ -399,55 +445,22 @@ and then compile and link with for example
 <p>
 
 <!-- code=text (!bc vrb) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang-omp++ -O3 -fopenmp -o &lt;executable&gt;  &lt;nameofprogram&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang-omp++ -O3 -fopenmp -o &lt;executable&gt;  &lt;programname.cpp&gt;
 </pre></div>
-
-<h2 id="___sec10">Background literature </h2>
-
 <p>
-If you wish to read more about the Ising model and statistical physics here are three suggestions.
-
-<ul>
-  <li> <a href="http://www.worldscientific.com/worldscibooks/10.1142/5660" target="_blank">M. Plischke and B. Bergersen</a>, <em>Equilibrium Statistical Physics</em>, World Scientific, see chapters 5 and 6.</li>
-  <li> <a href="http://www.cambridge.org/no/academic/subjects/physics/computational-science-and-modelling/guide-monte-carlo-simulations-statistical-physics-4th-edition?format=HB" target="_blank">D. P. Landau and K. Binder</a>, <em>A Guide to Monte Carlo Simulations in Statistical Physics</em>, Cambridge, see chapters 2,3 and 4.</li>
-  <li> <a href="https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&" target="_blank">M. E. J. Newman and T. Barkema</a>, <em>Monte Carlo Methods in Statistical Physics</em>, Oxford, see chapters 3 and 4.</li>
-</ul>
-
-<h2 id="___sec11">Introduction to numerical projects </h2>
-
+If you program in Fortran and use <b>gfortran</b>, compile as for example
 <p>
-Here follows a brief recipe and recommendation on how to write a report for each
-project.
 
-<ul>
-  <li> Give a short description of the nature of the problem and the eventual  numerical methods you have used.</li>
-  <li> Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.</li>
-  <li> Include the source code of your program. Comment your program properly.</li>
-  <li> If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.</li>
-  <li> Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.</li>
-  <li> Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.</li>
-  <li> Try to give an interpretation of you results in your answers to  the problems.</li>
-  <li> Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.</li>
-  <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
-</ul>
-
-<h2 id="___sec12">Format for electronic delivery of report and programs </h2>
-
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>gfortran -O3 -fopenmp -o &lt;executable&gt;  &lt;programname.f90&gt;
+</pre></div>
 <p>
-The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+If you have access to Intel's <b>ifort</b> compiler, compile as 
+<p>
 
-<ul>
-  <li> Use Devilry to hand in your projects, log in  at  <a href="http://devilry.ifi.uio.no" target="_blank"><tt>http://devilry.ifi.uio.no</tt></a> with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.</li>
-  <li> Upload <b>only</b> the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.</li>
-  <li> In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parametxers.</li>
-  <li> In this and all later projects, you should include tests (for example unit tests) of your code(s).</li>
-  <li> Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.</li>
-</ul>
-
-Finally, 
-we encourage you to work two and two together. Optimal working groups consist of 
-2-3 students. For this specific report you need to hand in an individual report.
-
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ifort -O3 -fopenmp -o &lt;executable&gt;  &lt;programname.f90&gt;
+</pre></div>
 <p>
 
 <!-- ------------------- end of main content --------------- -->

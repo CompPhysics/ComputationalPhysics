@@ -3,8 +3,33 @@
 %% (https://github.com/hplgit/doconce/)
 %%
 %%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
 
+% #define PREAMBLE
 
+% #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
 
 \documentclass[%
@@ -20,7 +45,11 @@ final,                   % draft: marks overfull hboxes, figures with paths
 
 \usepackage[pdftex]{graphicx}
 
-\usepackage{fancyvrb} % packages needed for verbatim environments
+\usepackage{ptex2tex}
+% #ifdef MINTED
+\usepackage{minted}
+\usemintedstyle{default}
+% #endif
 
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
@@ -90,6 +119,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \begin{document}
 
 % matching end for #ifdef PREAMBLE
+% #endif
 
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
 
@@ -132,7 +162,7 @@ Fall semester 2016
 \vspace{1cm}
 
 
-\subsection*{Studies of phase transitions in magnetic systems}
+\subsection{Studies of phase transitions in magnetic systems}
 
 \paragraph{Introduction.}
 The aim of this project is to study a widely popular model to simulate phase transitions, the so-called Ising model in two dimensions. At a given critical temperature, this model exhbits a phase transition from a magnetic phase (a system with a finite magnetic moment) to a phase with zero magnetization. 
@@ -295,7 +325,7 @@ using your simulations with $L=40$, $L=60$, $L=100$ and $L=140$
 The exact result for the critical temperature (\href{{http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117}}{after Lars Onsager}) is
 $kT_C/J=2/ln(1+\sqrt{2})\approx 2.269$ with $\nu=1$.
 
-\subsection*{Background literature}
+\subsection{Background literature}
 
 If you wish to read more about the Ising model and statistical physics here are three suggestions.
 
@@ -308,7 +338,7 @@ If you wish to read more about the Ising model and statistical physics here are 
 \end{itemize}
 
 \noindent
-\subsection*{Introduction to numerical projects}
+\subsection{Introduction to numerical projects}
 
 Here follows a brief recipe and recommendation on how to write a report for each
 project.
@@ -334,7 +364,7 @@ project.
 \end{itemize}
 
 \noindent
-\subsection*{Format for electronic delivery of report and programs}
+\subsection{Format for electronic delivery of report and programs}
 
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
 
@@ -357,32 +387,32 @@ we encourage you to work two and two together. Optimal working groups consist of
 
 
 
-\subsection*{How to install openmpi and/or OpenMP on your PC/laptop}
+\subsection{How to install openmpi and/or OpenMP on your PC/laptop}
 
 If you use your own laptop, for linux/ubuntu users, you need to install two packages (alternatively use the synaptic package manager)
-\begin{verbatim}
+\bvrb
   sudo apt-get install libopenmpi-dev
   sudo apt-get install openmpi-bin
-\end{verbatim}
+\evrb
 For OS X users, install brew (after having installed xcode and gcc, needed for the 
 gfortran compiler of openmpi) and then run
-\begin{verbatim}
+\bvrb
 brew install open-mpi
-\end{verbatim}
+\evrb
 When compiling from the command line, depending on your choice of programming language you need to compile and link as for example
-\begin{verbatim}
+\bvrb
 mpic++ -O3 -o <executable> <programname.cpp>
-\end{verbatim}
+\evrb
 if you use c++ (alternatively mpicxx) and
-\begin{verbatim}
+\bvrb
 mpif90 -O3 -o <executable> <programname.f90>
-\end{verbatim}
+\evrb
 if you use Fortran90.
 
 When running an executable, run as
-\begin{verbatim}
+\bvrb
 mpirun -n 10 ./<executable>
-\end{verbatim}
+\evrb
 where -n indicates the number of processes, 10 here.
 
 With openmpi installed, when using Qt, add to your .pro file the instructions at \href{{http://dragly.org/2012/03/14/developing-mpi-applications-in-qt-creator/}}{Svenn-Arne Dragly's site}
@@ -391,32 +421,32 @@ You may need to tell Qt where opempi is stored.
 
 For the machines at the computer lab, openmpi is located  at /usr/lib64/openmpi/bin
 Add to your .bashrc file the following
-\begin{verbatim}
+\bvrb
 export PATH=/usr/lib64/openmpi/bin:$PATH 
-\end{verbatim}
+\evrb
 For Windows users we recommend to follow the instructions at the \href{{https://www.open-mpi.org/software/ompi/v1.6/ms-windows.php}}{Open MPI site}.
 
 If you use OpenMP, for linux users, compile and link with for example
-\begin{verbatim}
+\bvrb
 c++ -O3 -fopenmp -o <executable>  <programname.cpp>
-\end{verbatim}
+\evrb
 For OS X users, you need to install clang-omp using brew, that is
-\begin{verbatim}
+\bvrb
 brew install clang-omp
-\end{verbatim}
+\evrb
 and then compile and link with for example
-\begin{verbatim}
+\bvrb
 clang-omp++ -O3 -fopenmp -o <executable>  <programname.cpp>
-\end{verbatim}
+\evrb
 
 If you program in Fortran and use \textbf{gfortran}, compile as for example
-\begin{verbatim}
+\bvrb
 gfortran -O3 -fopenmp -o <executable>  <programname.f90>
-\end{verbatim}
+\evrb
 If you have access to Intel's \textbf{ifort} compiler, compile as 
-\begin{verbatim}
+\bvrb
 ifort -O3 -fopenmp -o <executable>  <programname.f90>
-\end{verbatim}
+\evrb
 
 
 
@@ -429,5 +459,7 @@ ifort -O3 -fopenmp -o <executable>  <programname.f90>
 
 % ------------------- end of main content ---------------
 
+% #ifdef PREAMBLE
 \end{document}
+% #endif
 

@@ -174,7 +174,7 @@ Plot $\langle E\rangle$,
 $\langle \vert M\vert\rangle$, $C_V$ and $\chi$ as functions of $T$. Can
 you see an indication of a phase transition?  Use the absolute value
 $\langle \vert M\vert\rangle$ when you evaluate $\chi$.  For these production runs you should
-parallelize the code using either MPI (recommended) or OpenMP. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code. 
+parallelize the code using MPI (recommended). Alternatively OpenMP can be used. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code. 
 
 
 
@@ -185,58 +185,6 @@ $L\rightarrow \infty$
 using your simulations with $L=40$, $L=60$, $L=100$ and $L=140$
 The exact result for the critical temperature ("after Lars Onsager":"http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117") is
 $kT_C/J=2/ln(1+\sqrt{2})\approx 2.269$ with $\nu=1$.
-
-===== How to install openmpi and/or OpenMP on your PC/laptop =====
-
-If you use your own laptop, for linux/ubuntu users, you need to install two packages (alternatively use the synaptic package manager)
-!bc vrb
-  sudo apt-get install libopenmpi-dev
-  sudo apt-get install openmpi-bin
-!ec
-For OS X users, install brew (after having installed xcode and gcc, needed for the 
-gfortran compiler of openmpi) and then run
-!bc vrb
-brew install open-mpi
-!ec
-When compiling from the command line, depending on your choice of programming language you need to compile and link as for example
-!bc vrb
-mpic++ -O3 -o executable program.cpp
-!ec
-if you use c++ (alternatively mpicxx) and
-!bc vrb
-mpif90 -O3 -o executable program.f90
-!ec
-if you use Fortran90.
-
-When running an executable (code.x), run as
-!bc vrb
-mpirun -n 10 ./code.x
-!ec
-where -n indicates the number of processes, 10 here.
-
-With openmpi installed, when using Qt, add to your .pro file the instructions at "Svenn-Arne Dragly's site":"http://dragly.org/2012/03/14/developing-mpi-applications-in-qt-creator/"
-
-You may need to tell Qt where opempi is stored.
-
-For the machines at the computer lab, openmpi is located  at /usr/lib64/openmpi/bin
-Add to your .bashrc file the following
-!bc vrb
-export PATH=/usr/lib64/openmpi/bin:$PATH 
-!ec
-For Windows users we recommend to follow the instructions at the "Open MPI site":"https://www.open-mpi.org/software/ompi/v1.6/ms-windows.php".
-
-If you use OpenMP, for linux users, compile and link with for example
-!bc vrb
-c++ -O3 -fopenmp -o <executable>  <nameofprogram>
-!ec
-For OS X users, you need to install clang-omp using brew, that is
-!bc vrb
-brew install clang-omp
-!ec
-and then compile and link with for example
-!bc vrb
-clang-omp++ -O3 -fopenmp -o <executable>  <nameofprogram>
-!ec
 
 ===== Background literature =====
 
@@ -296,8 +244,66 @@ we encourage you to work two and two together. Optimal working groups consist of
 
 
 
+===== How to install openmpi and/or OpenMP on your PC/laptop =====
 
+If you use your own laptop, for linux/ubuntu users, you need to install two packages (alternatively use the synaptic package manager)
+!bc vrb
+  sudo apt-get install libopenmpi-dev
+  sudo apt-get install openmpi-bin
+!ec
+For OS X users, install brew (after having installed xcode and gcc, needed for the 
+gfortran compiler of openmpi) and then run
+!bc vrb
+brew install open-mpi
+!ec
+When compiling from the command line, depending on your choice of programming language you need to compile and link as for example
+!bc vrb
+mpic++ -O3 -o <executable> <programname.cpp>
+!ec
+if you use c++ (alternatively mpicxx) and
+!bc vrb
+mpif90 -O3 -o <executable> <programname.f90>
+!ec
+if you use Fortran90.
 
+When running an executable, run as
+!bc vrb
+mpirun -n 10 ./<executable>
+!ec
+where -n indicates the number of processes, 10 here.
+
+With openmpi installed, when using Qt, add to your .pro file the instructions at "Svenn-Arne Dragly's site":"http://dragly.org/2012/03/14/developing-mpi-applications-in-qt-creator/"
+
+You may need to tell Qt where opempi is stored.
+
+For the machines at the computer lab, openmpi is located  at /usr/lib64/openmpi/bin
+Add to your .bashrc file the following
+!bc vrb
+export PATH=/usr/lib64/openmpi/bin:$PATH 
+!ec
+For Windows users we recommend to follow the instructions at the "Open MPI site":"https://www.open-mpi.org/software/ompi/v1.6/ms-windows.php".
+
+If you use OpenMP, for linux users, compile and link with for example
+!bc vrb
+c++ -O3 -fopenmp -o <executable>  <programname.cpp>
+!ec
+For OS X users, you need to install clang-omp using brew, that is
+!bc vrb
+brew install clang-omp
+!ec
+and then compile and link with for example
+!bc vrb
+clang-omp++ -O3 -fopenmp -o <executable>  <programname.cpp>
+!ec
+
+If you program in Fortran and use _gfortran_, compile as for example
+!bc vrb
+gfortran -O3 -fopenmp -o <executable>  <programname.f90>
+!ec
+If you have access to Intel's _ifort_ compiler, compile as 
+!bc vrb
+ifort -O3 -fopenmp -o <executable>  <programname.f90>
+!ec
 
 
 
