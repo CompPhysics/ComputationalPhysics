@@ -31,10 +31,11 @@ int main (int argc, char* argv[])
     B[i] = new double[n];
     C[i] = new double[n];
   }
-  // Define parallel region
   Fsum = 0.0;
-# pragma omp parallel for default(shared) private (angle, i, j, k) reduction(+:Fsum)
+  // Define parallel region
+# pragma omp parallel default(shared) private (angle, i, j, k) reduction(+:Fsum)
   // Set up values for matrix A and B and zero matrix C
+  # pragma omp for
   for (i = 0; i < n; i++){
     for (j = 0; j < n; j++) {
       angle = 2.0*M_PI*i*j/ (( double ) n);
@@ -42,8 +43,8 @@ int main (int argc, char* argv[])
       B[j][i] =  A[i][j];
     }
   }
-  # pragma omp for
   // Then perform the matrix-matrix multiplication
+  # pragma omp for
   for (i = 0; i < n; i++){
     for (j = 0; j < n; j++) {
        C[i][j] =  0.0;    
@@ -52,15 +53,15 @@ int main (int argc, char* argv[])
        }
     }
   }
-  # pragma omp for
   // Compute now the Frobenius norm
+  # pragma omp for
   for (i = 0; i < n; i++){
     for (j = 0; j < n; j++) {
       Fsum += C[i][j]*C[i][j];
     }
   }
-  Fsum = sqrt(Fsum);
 // end parallel region and letting only one thread perform I/O
+  Fsum = sqrt(Fsum);
   wtime = omp_get_wtime ( ) - wtime;
   cout << setiosflags(ios::showpoint | ios::uppercase);
   cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << wtime  << endl;
