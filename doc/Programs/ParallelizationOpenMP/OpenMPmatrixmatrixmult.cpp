@@ -34,6 +34,7 @@ int main (int argc, char* argv[])
   Fsum = 0.0;
   // Define parallel region
 # pragma omp parallel default(shared) private (angle, i, j, k) reduction(+:Fsum)
+  {
   // Set up values for matrix A and B and zero matrix C
   # pragma omp for
   for (i = 0; i < n; i++){
@@ -60,7 +61,7 @@ int main (int argc, char* argv[])
       Fsum += C[i][j]*C[i][j];
     }
   }
-// end parallel region and letting only one thread perform I/O
+  } // end parallel region and letting only one thread perform I/O
   Fsum = sqrt(Fsum);
   wtime = omp_get_wtime ( ) - wtime;
   cout << setiosflags(ios::showpoint | ios::uppercase);
