@@ -1450,16 +1450,16 @@ while \( P(x) \) is the cumulative probability.
 <p>
 <table border="1">
 <thead>
-<tr><th align="center">             </th> <th align="center">                 Discrete PDF                 </th> <th align="center">               Continuous PDF               </th> </tr>
+<tr><th align="center">             </th> <th align="center">                 Discrete PDF                 </th> <th align="center">              Continuous PDF              </th> </tr>
 </thead>
 <tbody>
-<tr><td align="left">   Domain           </td> <td align="center">   \( \left\{x_1, x_2, x_3, \dots, x_N\right\} \)    </td> <td align="center">   \( [a,b] \)                                     </td> </tr>
-<tr><td align="left">   Probability      </td> <td align="center">   \( p(x_i) \)                                      </td> <td align="center">   \( p(x)dx \)                                    </td> </tr>
-<tr><td align="left">   Cumulative       </td> <td align="center">   \( P_i=\sum_{l=1}^ip(x_l) \)                      </td> <td align="center">   \( P(x)=\int_a^xp(t)dt \)                       </td> </tr>
-<tr><td align="left">   Positivity       </td> <td align="center">   $ 0 \le p(x_i) \le 1$                             </td> <td align="center">   $ p(x) \ge 0$                                   </td> </tr>
-<tr><td align="left">   Positivity       </td> <td align="center">   $ 0 \le P_i \le 1$                                </td> <td align="center">   $ 0 \le P(x) \le 1$                             </td> </tr>
-<tr><td align="left">   Monotonic        </td> <td align="center">   \( P_i \ge P_j \) if \( x_i \ge x_j \)            </td> <td align="center">   \( P(x_i) \ge P(x_j) \) if \( x_i \ge x_j \)    </td> </tr>
-<tr><td align="left">   Normalization    </td> <td align="center">   \( P_N=1 \)                                       </td> <td align="center">   \( P(b)=1 \)                                    </td> </tr>
+<tr><td align="left">   Domain           </td> <td align="center">   \( \left\{x_1, x_2, x_3, \dots, x_N\right\} \)    </td> <td align="center">   \( [a,b] \)                                   </td> </tr>
+<tr><td align="left">   Probability      </td> <td align="center">   \( p(x_i) \)                                      </td> <td align="center">   \( p(x)dx \)                                  </td> </tr>
+<tr><td align="left">   Cumulative       </td> <td align="center">   \( P_i=\sum_{l=1}^ip(x_l) \)                      </td> <td align="center">   \( P(x)=\int_a^xp(t)dt \)                     </td> </tr>
+<tr><td align="left">   Positivity       </td> <td align="center">   $ 0\le p(x_i)\le 1$                               </td> <td align="center">   $ p(x) \ge 0$                                 </td> </tr>
+<tr><td align="left">   Positivity       </td> <td align="center">   $ 0\le P_i\le 1$                                  </td> <td align="center">   $ 0\le P(x)\le 1$                             </td> </tr>
+<tr><td align="left">   Monotonic        </td> <td align="center">   \( P_i\ge P_j \) if \( x_i\ge x_j \)              </td> <td align="center">   \( P(x_i)\ge P(x_j) \) if \( x_i\ge x_j \)    </td> </tr>
+<tr><td align="left">   Normalization    </td> <td align="center">   \( P_N=1 \)                                       </td> <td align="center">   \( P(b)=1 \)                                  </td> </tr>
 </tbody>
 </table>
 
@@ -4249,32 +4249,6 @@ print "Montecarlo result = %10.8E" % int_mc
 print "Sigma             = %10.8E" % sigma
 
 </script></div>
-
-</div>
-</section>
-
-
-<section>
-<h2 id="___sec118">Results </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-The following table lists the results from the above two programs written in c++
-as function of the number of Monte Carlo samples. The suffix \( cr \) stands for the brute force approach 
-while \( gd \) stands for the use of a Gaussian distribution function. One sees clearly that the approachwith a Gaussian distribution function yields a much improved numerical result, with fewer samples.
-
-<p>
-<table border="1">
-<thead>
-<tr><td align="center">\( N \) </td> <td align="center">\( I_{cr} \)</td> <td align="center">\( I_{gd} \)</td> </tr>
-</thead>
-<tbody>
-<tr><td align="right">   10000       </td> <td align="left">   9.92072E+01     </td> <td align="left">   9.33225E+01     </td> </tr>
-<tr><td align="right">   100000      </td> <td align="left">   8.75039E+01     </td> <td align="left">   9.30042E+01     </td> </tr>
-<tr><td align="right">   1000000     </td> <td align="left">   9.56759E+01     </td> <td align="left">   9.29988E+01     </td> </tr>
-<tr><td align="right">   10000000    </td> <td align="left">   9.15446E+01     </td> <td align="left">   9.30203E+01     </td> </tr>
-</tbody>
-</table>
 
 </div>
 </section>

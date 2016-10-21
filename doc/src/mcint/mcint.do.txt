@@ -989,9 +989,9 @@ while $P(x)$ is the cumulative probability.
 | Domain                                     | $\left\{x_1, x_2, x_3, \dots, x_N\right\}$ | $[a,b]$                                    |
 | Probability                                | $p(x_i)$                                   | $p(x)dx$                                   |
 | Cumulative                                 | $P_i=\sum_{l=1}^ip(x_l)$                   | $P(x)=\int_a^xp(t)dt$                      |
-| Positivity                                 | $ 0 \le p(x_i) \le 1$                      | $ p(x) \ge 0$                              |
-| Positivity                                 | $ 0 \le P_i \le 1$                         | $ 0 \le P(x) \le 1$                        |
-| Monotonic                                  | $P_i \ge P_j$ if $x_i \ge x_j$             | $P(x_i) \ge P(x_j)$ if $x_i \ge x_j$       |
+| Positivity                                 | $ 0\le p(x_i)\le 1$                      | $ p(x) \ge 0$                              |
+| Positivity                                 | $ 0\le P_i\le 1$                         | $ 0\le P(x)\le 1$                        |
+| Monotonic                                  | $P_i\ge P_j$ if $x_i\ge x_j$             | $P(x_i)\ge P(x_j)$ if $x_i\ge x_j$       |
 | Normalization                              | $P_N=1$                                    | $P(b)=1$                                   |
 |--------------------------------------------------------------------------------------------------------------------------------------|
 
@@ -3117,26 +3117,6 @@ print "Montecarlo result = %10.8E" % int_mc
 print "Sigma             = %10.8E" % sigma
 !ec
 !eblock
-
-!split 
-===== Results =====
-!bblock
-The following table lists the results from the above two programs written in c++
-as function of the number of Monte Carlo samples. The suffix $cr$ stands for the brute force approach 
-while $gd$ stands for the use of a Gaussian distribution function. One sees clearly that the approachwith a Gaussian distribution function yields a much improved numerical result, with fewer samples.
-
-|-----------------------------------------|
-| $N$         | $I_{cr}$    | $I_{gd}$    |
-|-----r------------l------------l---------|
-| 10000       | 9.92072E+01 | 9.33225E+01 |
-| 100000      | 8.75039E+01 | 9.30042E+01 |
-| 1000000     | 9.56759E+01 | 9.29988E+01 |
-| 10000000    | 9.15446E+01 | 9.30203E+01 |
-|-----------------------------------------|
-
-!eblock
-
-
 
 
 

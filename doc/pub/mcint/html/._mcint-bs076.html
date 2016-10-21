@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -355,8 +364,7 @@ $(function () {
               ('Brute Force Integration', 2, None, '___sec114'),
               ('Importance Sampling', 2, None, '___sec115'),
               ('Python codes', 2, None, '___sec116'),
-              ('Python codes, importance sampling', 2, None, '___sec117'),
-              ('Results', 2, None, '___sec118')]}
+              ('Python codes, importance sampling', 2, None, '___sec117')]}
 end of tocinfo -->
 
 <body>
@@ -512,7 +520,6 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._mcint-bs116.html#___sec115" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Importance Sampling</a></li>
      <!-- navigation toc: --> <li><a href="._mcint-bs117.html#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Python codes</a></li>
      <!-- navigation toc: --> <li><a href="._mcint-bs118.html#___sec117" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Python codes, importance sampling</a></li>
-     <!-- navigation toc: --> <li><a href="._mcint-bs119.html#___sec118" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Results</a></li>
 
         </ul>
       </li>
@@ -528,7 +535,7 @@ MathJax.Hub.Config({
 <a name="part0076"></a>
 <!-- !split -->
 
-<h1 id="___sec75">Random number generator RNG, RAN0 code </h1>
+<h1 id="___sec75" class="anchor">Random number generator RNG, RAN0 code </h1>
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
@@ -594,7 +601,7 @@ MathJax.Hub.Config({
   <li><a href="._mcint-bs084.html">85</a></li>
   <li><a href="._mcint-bs085.html">86</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._mcint-bs119.html">120</a></li>
+  <li><a href="._mcint-bs118.html">119</a></li>
   <li><a href="._mcint-bs077.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
