@@ -3,8 +3,33 @@
 %% (https://github.com/hplgit/doconce/)
 %%
 %%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
 
+% #define PREAMBLE
 
+% #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
 
 \documentclass[%
@@ -88,6 +113,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \begin{document}
 
 % matching end for #ifdef PREAMBLE
+% #endif
 
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
 
@@ -130,7 +156,7 @@ Fall semester 2016
 \vspace{1cm}
 
 
-\subsection*{Building a model for the solar system using ordinary differential equations}
+\subsection{Building a model for the solar system using ordinary differential equations}
 
 \paragraph{Introduction.}
 The aim of this project is to develop a code for simulating the solar system using a widely popular algorithm for solving coupled ordinary differential equations, the so-called velocity Verlet
@@ -165,10 +191,29 @@ We will use so-called astronomical units when rewriting our equations.
 Using astronomical units (AU as abbreviation)it means that 
 one astronomical unit of length, known as 1 AU, is the average distance between the Sun and Earth, that is
 $1$ AU = $1.5\times 10^{11}$ m.  It can also be convenient to use years instead of seconds since years match
-better the time evolution of the solar system. The mass of the Sun is $M_{\mathrm{sun}}=M_{\odot}=2\times 10^{30}$ kg. The mass of Earth is
-$M_{\mathrm{Earth}}=6\times 10^{24}$ kg. The mass of other planets like Jupiter is 
-$M_{\mathrm{Jupiter}}=1.9\times 10^{27}$ kg and its distance to the Sun is 5.20 AU. Similar numbers for Mars
-are $M_{\mathrm{Mars}}=6.6\times 10^{23}$ kg and  1.52 AU, for Venus $M_{\mathrm{Venus}}=4.9\times 10^{24}$ kg and  0.72 AU, for Saturn are $M_{\mathrm{Saturn}}=5.5\times 10^{26}$ kg and  9.54 AU, for Mercury are $M_{\mathrm{Mercury}}=2.4\times 10^{23}$ kg and  0.39 AU, for Uranus are $M_{\mathrm{Uranus}}=8.8\times 10^{25}$ kg and  19.19 AU, for Neptun are $M_{\mathrm{Neptun}}=1.03\times 10^{26}$ kg and  30.06 AU and for Pluto are $M_{\mathrm{Pluto}}=1.31\times 10^{22}$ kg and  39.53 AU. Pluto is no longer considered  a planet, but we add it here for historical reasons. It is optional in this project to include Pluto and eventual moons. 
+better the time evolution of the solar system. The mass of the Sun is $M_{\mathrm{sun}}=M_{\odot}=2\times 10^{30}$ kg. The masses all relevant planets and their distances from the sun are listed in the table here in kg and AU.
+
+
+\begin{quote}
+\begin{tabular}{ccc}
+\hline
+\multicolumn{1}{c}{ Planet } & \multicolumn{1}{c}{ Mass in kg } & \multicolumn{1}{c}{ Distance to  sun in AU } \\
+\hline
+Earth   & $M_{\mathrm{Earth}}=6\times 10^{24}$ kg     & 1AU                    \\
+Jupiter & $M_{\mathrm{Jupiter}}=1.9\times 10^{27}$ kg & 5.20 AU                \\
+Mars    & $M_{\mathrm{Mars}}=6.6\times 10^{23}$ kg    & 1.52 AU                \\
+Venus   & $M_{\mathrm{Venus}}=4.9\times 10^{24}$ kg   & 0.72 AU                \\
+Saturn  & $M_{\mathrm{Saturn}}=5.5\times 10^{26}$ kg  & 9.54 AU                \\
+Mercury & $M_{\mathrm{Mercury}}=3.3\times 10^{23}$ kg & 0.39 AU                \\
+Uranus  & $M_{\mathrm{Uranus}}=8.8\times 10^{25}$ kg  & 19.19 AU               \\
+Neptun  & $M_{\mathrm{Neptun}}=1.03\times 10^{26}$ kg & 30.06 AU               \\
+Pluto   & $M_{\mathrm{Pluto}}=1.31\times 10^{22}$ kg  & 39.53 AU               \\
+\hline
+\end{tabular}
+\end{quote}
+
+\noindent
+Pluto is no longer considered  a planet, but we add it here for historical reasons. It is optional in this project to include Pluto and eventual moons. 
 
 In setting up the equations we can limit ourselves to a co-planar motion and use only the $x$ and $y$ coordinates. But you should feel free to extend your equations to three dimensions.
 
@@ -289,7 +334,7 @@ a few orders of magnitude smaller than the observed perihelion precession of Mer
 precession of Mercury be explained by the general theory of relativity?
 
 
-\subsection*{Introduction to numerical projects}
+\subsection{Introduction to numerical projects}
 
 Here follows a brief recipe and recommendation on how to write a report for each
 project.
@@ -315,7 +360,7 @@ project.
 \end{itemize}
 
 \noindent
-\subsection*{Format for electronic delivery of report and programs}
+\subsection{Format for electronic delivery of report and programs}
 
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
 
@@ -341,5 +386,7 @@ we encourage you to work two and two together. Optimal working groups consist of
 
 % ------------------- end of main content ---------------
 
+% #ifdef PREAMBLE
 \end{document}
+% #endif
 
