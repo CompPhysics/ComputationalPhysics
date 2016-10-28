@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -150,7 +159,7 @@ $(function () {
                None,
                '___sec39'),
               ('Five possible energy differences', 2, None, '___sec40'),
-              ('The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program',
+              ('"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/MPIising.cpp"',
                2,
                None,
                '___sec41'),
@@ -163,14 +172,18 @@ $(function () {
               ('Change in magnetization', 2, None, '___sec45'),
               ('A small note', 2, None, '___sec46'),
               ('Initialization', 2, None, '___sec47'),
-              ('Two-dimensional Ising Model, energy per spin and specific heat',
+              ('"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/IsingModel.cpp"',
                2,
                None,
                '___sec48'),
+              ('Two-dimensional Ising Model, energy per spin and specific heat',
+               2,
+               None,
+               '___sec49'),
               ('Two-dimensional Ising Model and analysis of spin values',
                2,
                None,
-               '___sec49')]}
+               '___sec50')]}
 end of tocinfo -->
 
 <body>
@@ -249,15 +262,16 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._statphys-bs039.html#___sec38" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs040.html#___sec39" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model, practical issues</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs041.html#___sec40" style="font-size: 80%;">Five possible energy differences</a></li>
-     <!-- navigation toc: --> <li><a href="._statphys-bs042.html#___sec41" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs042.html#___sec41" style="font-size: 80%;">"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/MPIising.cpp"</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs043.html#___sec42" style="font-size: 80%;">Coding energy differences</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs044.html#___sec43" style="font-size: 80%;">Efficient expression for energy differences</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs045.html#___sec44" style="font-size: 80%;">Final energy difference</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs046.html#___sec45" style="font-size: 80%;">Change in magnetization</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs047.html#___sec46" style="font-size: 80%;">A small note</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs048.html#___sec47" style="font-size: 80%;">Initialization</a></li>
-     <!-- navigation toc: --> <li><a href="._statphys-bs049.html#___sec48" style="font-size: 80%;">Two-dimensional Ising Model, energy per spin and specific heat</a></li>
-     <!-- navigation toc: --> <li><a href="._statphys-bs050.html#___sec49" style="font-size: 80%;">Two-dimensional Ising Model and analysis of spin values</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs049.html#___sec48" style="font-size: 80%;">"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/IsingModel.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs050.html#___sec49" style="font-size: 80%;">Two-dimensional Ising Model, energy per spin and specific heat</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs051.html#___sec50" style="font-size: 80%;">Two-dimensional Ising Model and analysis of spin values</a></li>
 
         </ul>
       </li>
@@ -273,7 +287,7 @@ MathJax.Hub.Config({
 <a name="part0008"></a>
 <!-- !split -->
 
-<h2 id="___sec7">Energy and specific heat in the canonical ensemble  </h2>
+<h2 id="___sec7" class="anchor">Energy and specific heat in the canonical ensemble  </h2>
 
 <p>
 The energy is proportional to the first derivative of the potential,
@@ -322,7 +336,7 @@ which again can be related to the second derivative of Helmholtz' free energy.
   <li><a href="._statphys-bs016.html">17</a></li>
   <li><a href="._statphys-bs017.html">18</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._statphys-bs050.html">51</a></li>
+  <li><a href="._statphys-bs051.html">52</a></li>
   <li><a href="._statphys-bs009.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->

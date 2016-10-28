@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -150,7 +159,7 @@ $(function () {
                None,
                '___sec39'),
               ('Five possible energy differences', 2, None, '___sec40'),
-              ('The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program',
+              ('"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/MPIising.cpp"',
                2,
                None,
                '___sec41'),
@@ -163,14 +172,18 @@ $(function () {
               ('Change in magnetization', 2, None, '___sec45'),
               ('A small note', 2, None, '___sec46'),
               ('Initialization', 2, None, '___sec47'),
-              ('Two-dimensional Ising Model, energy per spin and specific heat',
+              ('"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/IsingModel.cpp"',
                2,
                None,
                '___sec48'),
+              ('Two-dimensional Ising Model, energy per spin and specific heat',
+               2,
+               None,
+               '___sec49'),
               ('Two-dimensional Ising Model and analysis of spin values',
                2,
                None,
-               '___sec49')]}
+               '___sec50')]}
 end of tocinfo -->
 
 <body>
@@ -249,15 +262,16 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._statphys-bs039.html#___sec38" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs040.html#___sec39" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model, practical issues</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs041.html#___sec40" style="font-size: 80%;">Five possible energy differences</a></li>
-     <!-- navigation toc: --> <li><a href="._statphys-bs042.html#___sec41" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs042.html#___sec41" style="font-size: 80%;">"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/MPIising.cpp"</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs043.html#___sec42" style="font-size: 80%;">Coding energy differences</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs044.html#___sec43" style="font-size: 80%;">Efficient expression for energy differences</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs045.html#___sec44" style="font-size: 80%;">Final energy difference</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs046.html#___sec45" style="font-size: 80%;">Change in magnetization</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs047.html#___sec46" style="font-size: 80%;">A small note</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs048.html#___sec47" style="font-size: 80%;">Initialization</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec48" style="font-size: 80%;">Two-dimensional Ising Model, energy per spin and specific heat</a></li>
-     <!-- navigation toc: --> <li><a href="._statphys-bs050.html#___sec49" style="font-size: 80%;">Two-dimensional Ising Model and analysis of spin values</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec48" style="font-size: 80%;">"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/IsingModel.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs050.html#___sec49" style="font-size: 80%;">Two-dimensional Ising Model, energy per spin and specific heat</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs051.html#___sec50" style="font-size: 80%;">Two-dimensional Ising Model and analysis of spin values</a></li>
 
         </ul>
       </li>
@@ -273,135 +287,179 @@ MathJax.Hub.Config({
 <a name="part0049"></a>
 <!-- !split -->
 
-<h2 id="___sec48">Two-dimensional Ising Model, energy per spin and specific heat </h2>
+<h2 id="___sec48" class="anchor"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/IsingModel.cpp" target="_self">The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program</a> </h2>
 
 <p>
-The following Python program, based on the above C++ codes, plots the expectation value of the energy and its fluctuation, that is the specific heat. Both quantities are plotted per spin and genererated for a \( 20\times 20 \) lattice.
+Here follows an alternative Ising model code using the <a href="http://www.cplusplus.com/reference/random/mt19937_64/" target="_self">Mersenne twister engine</a> as described in the c++ "random class":" ".
 
 <p>
 
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/* </span>
+<span style="color: #408080; font-style: italic">   Program to solve the two-dimensional Ising model </span>
+<span style="color: #408080; font-style: italic">   with zero external field and no parallelization using the Mersenne twister engine for generating random </span>
+<span style="color: #408080; font-style: italic">   numbers.</span>
+<span style="color: #408080; font-style: italic">   The coupling constant J = 1</span>
+<span style="color: #408080; font-style: italic">   Boltzmann&#39;s constant = 1, temperature has thus dimension energy</span>
+<span style="color: #408080; font-style: italic">   Metropolis sampling is used. Periodic boundary conditions.</span>
+<span style="color: #408080; font-style: italic">   The code needs an output file on the command line and the variables mcs, nspins,</span>
+<span style="color: #408080; font-style: italic">   initial temp, final temp and temp step.</span>
+<span style="color: #408080; font-style: italic">   Run as</span>
+<span style="color: #408080; font-style: italic">   ./executable Outputfile numberof spins number of MC cycles initial temp final temp tempstep</span>
+<span style="color: #408080; font-style: italic">   ./test.x Lattice 100 10000000 2.1 2.4 0.01</span>
+<span style="color: #408080; font-style: italic">   Compile and link as </span>
+<span style="color: #408080; font-style: italic">   c++ -O3 -std=c++11 -Rpass=loop-vectorize -o Ising.x IsingModel.cpp -larmadillo</span>
+<span style="color: #408080; font-style: italic">*/</span>
 
-<div class="compute"><script type="text/x-sage">
-#  Code for the two-dimensional Ising model with periodic boundary conditions
-import numpy, sys, math
-from  matplotlib import pyplot as plt
-import numpy as np
+<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
+<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #BC7A00">#include &lt;fstream&gt;</span>
+<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
+<span style="color: #BC7A00">#include &lt;cstdlib&gt;</span>
+<span style="color: #BC7A00">#include &lt;random&gt;</span>
+<span style="color: #BC7A00">#include &lt;armadillo&gt;</span>
+<span style="color: #BC7A00">#include &lt;string&gt;</span>
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span>  std;
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
+<span style="color: #408080; font-style: italic">// output file</span>
+ofstream ofile;
+
+<span style="color: #408080; font-style: italic">// inline function for periodic boundary conditions</span>
+<span style="color: #008000; font-weight: bold">inline</span> <span style="color: #B00040">int</span> <span style="color: #0000FF">periodic</span>(<span style="color: #B00040">int</span> i, <span style="color: #B00040">int</span> limit, <span style="color: #B00040">int</span> add) { 
+  <span style="color: #008000; font-weight: bold">return</span> (i<span style="color: #666666">+</span>limit<span style="color: #666666">+</span>add) <span style="color: #666666">%</span> (limit);
+}
+<span style="color: #408080; font-style: italic">// Function to initialise energy and magnetization</span>
+<span style="color: #B00040">void</span> <span style="color: #0000FF">InitializeLattice</span>(<span style="color: #B00040">int</span>, mat <span style="color: #666666">&amp;</span>, <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span>, <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span>);
+<span style="color: #408080; font-style: italic">// The metropolis algorithm including the loop over Monte Carlo cycles</span>
+<span style="color: #B00040">void</span> <span style="color: #0000FF">MetropolisSampling</span>(<span style="color: #B00040">int</span>, <span style="color: #B00040">int</span>, <span style="color: #B00040">double</span>, vec <span style="color: #666666">&amp;</span>);
+<span style="color: #408080; font-style: italic">// prints to file the results of the calculations  </span>
+<span style="color: #B00040">void</span> <span style="color: #0000FF">output</span>(<span style="color: #B00040">int</span>, <span style="color: #B00040">int</span>, <span style="color: #B00040">double</span>, vec);
+
+<span style="color: #408080; font-style: italic">// Main program begins here</span>
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
+{
+  string filename;
+  <span style="color: #B00040">int</span> NSpins, MCcycles;
+  <span style="color: #B00040">double</span> InitialTemp, FinalTemp, TempStep;
+  <span style="color: #008000; font-weight: bold">if</span> (argc <span style="color: #666666">&lt;=</span> <span style="color: #666666">5</span>) {
+    cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Bad Usage: &quot;</span> <span style="color: #666666">&lt;&lt;</span> argv[<span style="color: #666666">0</span>] <span style="color: #666666">&lt;&lt;</span> 
+      <span style="color: #BA2121">&quot; read output file, Number of spins, MC cycles, initial and final temperature and tempurate step&quot;</span> <span style="color: #666666">&lt;&lt;</span> endl;
+    exit(<span style="color: #666666">1</span>);
+  }
+  <span style="color: #008000; font-weight: bold">if</span> (argc <span style="color: #666666">&gt;</span> <span style="color: #666666">1</span>) {
+    filename<span style="color: #666666">=</span>argv[<span style="color: #666666">1</span>];
+    NSpins <span style="color: #666666">=</span> atoi(argv[<span style="color: #666666">2</span>]);
+    MCcycles <span style="color: #666666">=</span> atoi(argv[<span style="color: #666666">3</span>]);    
+    InitialTemp <span style="color: #666666">=</span> atof(argv[<span style="color: #666666">4</span>]);
+    FinalTemp <span style="color: #666666">=</span> atof(argv[<span style="color: #666666">5</span>]);
+    TempStep <span style="color: #666666">=</span> atof(argv[<span style="color: #666666">6</span>]);
+  }
+  <span style="color: #408080; font-style: italic">// Declare new file name and add lattice size to file name</span>
+  string fileout <span style="color: #666666">=</span> filename;
+  string argument <span style="color: #666666">=</span> to_string(NSpins);
+  fileout.append(argument);
+  ofile.open(fileout);
+  <span style="color: #408080; font-style: italic">// Start Monte Carlo sampling by looping over T first</span>
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">double</span> Temperature <span style="color: #666666">=</span> InitialTemp; Temperature <span style="color: #666666">&lt;=</span> FinalTemp; Temperature<span style="color: #666666">+=</span>TempStep){
+    vec ExpectationValues <span style="color: #666666">=</span> zeros<span style="color: #666666">&lt;</span>mat<span style="color: #666666">&gt;</span>(<span style="color: #666666">5</span>);
+    <span style="color: #408080; font-style: italic">// start Monte Carlo computation</span>
+    MetropolisSampling(NSpins, MCcycles, Temperature, ExpectationValues);
+    output(NSpins, MCcycles, Temperature, ExpectationValues);
+  }
+  ofile.close();  <span style="color: #408080; font-style: italic">// close output file</span>
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+
+<span style="color: #408080; font-style: italic">// function to initialise energy, spin matrix and magnetization</span>
+<span style="color: #B00040">void</span> <span style="color: #0000FF">InitializeLattice</span>(<span style="color: #B00040">int</span> NSpins, mat <span style="color: #666666">&amp;</span>SpinMatrix,  <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> Energy, <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> MagneticMoment)
+{
+  <span style="color: #408080; font-style: italic">// setup spin matrix and initial magnetization</span>
+  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> x <span style="color: #666666">=0</span>; x <span style="color: #666666">&lt;</span> NSpins; x<span style="color: #666666">++</span>) {
+    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> y<span style="color: #666666">=</span> <span style="color: #666666">0</span>; y <span style="color: #666666">&lt;</span> NSpins; y<span style="color: #666666">++</span>){
+      SpinMatrix(x,y) <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>; <span style="color: #408080; font-style: italic">// spin orientation for the ground state</span>
+      MagneticMoment <span style="color: #666666">+=</span>  (<span style="color: #B00040">double</span>) SpinMatrix(x,y);
+    }
+  }
+  <span style="color: #408080; font-style: italic">// setup initial energy</span>
+  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> x <span style="color: #666666">=0</span>; x <span style="color: #666666">&lt;</span> NSpins; x<span style="color: #666666">++</span>) {
+    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> y<span style="color: #666666">=</span> <span style="color: #666666">0</span>; y <span style="color: #666666">&lt;</span> NSpins; y<span style="color: #666666">++</span>){
+      Energy <span style="color: #666666">-=</span>  (<span style="color: #B00040">double</span>) SpinMatrix(x,y)<span style="color: #666666">*</span>
+	(SpinMatrix(periodic(x,NSpins,<span style="color: #666666">-1</span>),y) <span style="color: #666666">+</span>
+	 SpinMatrix(x,periodic(y,NSpins,<span style="color: #666666">-1</span>)));
+    }
+  }
+}<span style="color: #408080; font-style: italic">// end function initialise</span>
 
 
-def periodic (i, limit, add):
-    """
-    Choose correct matrix index with periodic
-    boundary conditions
+<span style="color: #408080; font-style: italic">// The Monte Carlo part with the Metropolis algo with sweeps over the lattice</span>
+<span style="color: #B00040">void</span> <span style="color: #0000FF">MetropolisSampling</span>(<span style="color: #B00040">int</span> NSpins, <span style="color: #B00040">int</span> MCcycles, <span style="color: #B00040">double</span> Temperature, vec <span style="color: #666666">&amp;</span>ExpectationValues)
+{
+  <span style="color: #408080; font-style: italic">// Initialize the seed and call the Mersenne algo</span>
+  std<span style="color: #666666">::</span>random_device rd;
+  std<span style="color: #666666">::</span>mt19937_64 gen(rd());
+  <span style="color: #408080; font-style: italic">// Then set up the uniform distribution for x \in [[0, 1]</span>
+  std<span style="color: #666666">::</span>uniform_real_distribution<span style="color: #666666">&lt;</span><span style="color: #B00040">double</span><span style="color: #666666">&gt;</span> distribution(<span style="color: #666666">0.0</span>,<span style="color: #666666">1.0</span>);
+  <span style="color: #408080; font-style: italic">//  Allocate memory for spin matrix</span>
+  mat SpinMatrix <span style="color: #666666">=</span> zeros<span style="color: #666666">&lt;</span>mat<span style="color: #666666">&gt;</span>(NSpins,NSpins);
+  <span style="color: #408080; font-style: italic">//    initialise energy and magnetization </span>
+  <span style="color: #B00040">double</span> Energy <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;     <span style="color: #B00040">double</span> MagneticMoment <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;
+  <span style="color: #408080; font-style: italic">// initialize array for expectation values</span>
+  InitializeLattice(NSpins, SpinMatrix, Energy, MagneticMoment);
+  <span style="color: #408080; font-style: italic">// setup array for possible energy changes</span>
+  vec EnergyDifference <span style="color: #666666">=</span> zeros<span style="color: #666666">&lt;</span>mat<span style="color: #666666">&gt;</span>(<span style="color: #666666">17</span>); 
+  <span style="color: #008000; font-weight: bold">for</span>( <span style="color: #B00040">int</span> de <span style="color: #666666">=-8</span>; de <span style="color: #666666">&lt;=</span> <span style="color: #666666">8</span>; de<span style="color: #666666">+=4</span>) EnergyDifference(de<span style="color: #666666">+8</span>) <span style="color: #666666">=</span> exp(<span style="color: #666666">-</span>de<span style="color: #666666">/</span>Temperature);
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> cycles <span style="color: #666666">=</span> <span style="color: #666666">1</span>; cycles <span style="color: #666666">&lt;=</span> MCcycles; cycles<span style="color: #666666">++</span>){
+    <span style="color: #408080; font-style: italic">// The sweep over the lattice, looping over all spin sites</span>
+    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> x <span style="color: #666666">=0</span>; x <span style="color: #666666">&lt;</span> NSpins; x<span style="color: #666666">++</span>) {
+      <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> y<span style="color: #666666">=</span> <span style="color: #666666">0</span>; y <span style="color: #666666">&lt;</span> NSpins; y<span style="color: #666666">++</span>){
+	<span style="color: #B00040">int</span> ix <span style="color: #666666">=</span> (<span style="color: #B00040">int</span>) (distribution(gen)<span style="color: #666666">*</span>(<span style="color: #B00040">double</span>)NSpins);
+	<span style="color: #B00040">int</span> iy <span style="color: #666666">=</span> (<span style="color: #B00040">int</span>) (distribution(gen)<span style="color: #666666">*</span>(<span style="color: #B00040">double</span>)NSpins);
+	<span style="color: #B00040">int</span> deltaE <span style="color: #666666">=</span>  <span style="color: #666666">2*</span>SpinMatrix(ix,iy)<span style="color: #666666">*</span>
+	  (SpinMatrix(ix,periodic(iy,NSpins,<span style="color: #666666">-1</span>))<span style="color: #666666">+</span>
+	   SpinMatrix(periodic(ix,NSpins,<span style="color: #666666">-1</span>),iy) <span style="color: #666666">+</span>
+	   SpinMatrix(ix,periodic(iy,NSpins,<span style="color: #666666">1</span>)) <span style="color: #666666">+</span>
+	   SpinMatrix(periodic(ix,NSpins,<span style="color: #666666">1</span>),iy));
+	<span style="color: #008000; font-weight: bold">if</span> ( distribution(gen) <span style="color: #666666">&lt;=</span> EnergyDifference(deltaE<span style="color: #666666">+8</span>) ) {
+	  SpinMatrix(ix,iy) <span style="color: #666666">*=</span> <span style="color: #666666">-1.0</span>;  <span style="color: #408080; font-style: italic">// flip one spin and accept new spin config</span>
+	  MagneticMoment <span style="color: #666666">+=</span> (<span style="color: #B00040">double</span>) <span style="color: #666666">2*</span>SpinMatrix(ix,iy);
+	  Energy <span style="color: #666666">+=</span> (<span style="color: #B00040">double</span>) deltaE;
+	}
+      }
+    }
+    <span style="color: #408080; font-style: italic">// update expectation values  for local node</span>
+    ExpectationValues(<span style="color: #666666">0</span>) <span style="color: #666666">+=</span> Energy;    ExpectationValues(<span style="color: #666666">1</span>) <span style="color: #666666">+=</span> Energy<span style="color: #666666">*</span>Energy;
+    ExpectationValues(<span style="color: #666666">2</span>) <span style="color: #666666">+=</span> MagneticMoment;    
+    ExpectationValues(<span style="color: #666666">3</span>) <span style="color: #666666">+=</span> MagneticMoment<span style="color: #666666">*</span>MagneticMoment; 
+    ExpectationValues(<span style="color: #666666">4</span>) <span style="color: #666666">+=</span> fabs(MagneticMoment);
+  }
 
-    Input:
-    - i:     Base index
-    - limit: Highest \"legal\" index
-    - add:   Number to add or subtract from i
-    """
-    return (i+limit+add) % limit
+} <span style="color: #408080; font-style: italic">// end of Metropolis sampling over spins</span>
 
-def monteCarlo(temp, size, trials):
-    """
-    Calculate the energy and magnetization
-    (\"straight\" and squared) for a given temperature
+<span style="color: #B00040">void</span> <span style="color: #0000FF">output</span>(<span style="color: #B00040">int</span> NSpins, <span style="color: #B00040">int</span> MCcycles, <span style="color: #B00040">double</span> temperature, vec ExpectationValues)
+{
+  <span style="color: #B00040">double</span> norm <span style="color: #666666">=</span> <span style="color: #666666">1.0/</span>((<span style="color: #B00040">double</span>) (MCcycles));  <span style="color: #408080; font-style: italic">// divided by  number of cycles </span>
+  <span style="color: #B00040">double</span> E_ExpectationValues <span style="color: #666666">=</span> ExpectationValues(<span style="color: #666666">0</span>)<span style="color: #666666">*</span>norm;
+  <span style="color: #B00040">double</span> E2_ExpectationValues <span style="color: #666666">=</span> ExpectationValues(<span style="color: #666666">1</span>)<span style="color: #666666">*</span>norm;
+  <span style="color: #B00040">double</span> M_ExpectationValues <span style="color: #666666">=</span> ExpectationValues(<span style="color: #666666">2</span>)<span style="color: #666666">*</span>norm;
+  <span style="color: #B00040">double</span> M2_ExpectationValues <span style="color: #666666">=</span> ExpectationValues(<span style="color: #666666">3</span>)<span style="color: #666666">*</span>norm;
+  <span style="color: #B00040">double</span> Mabs_ExpectationValues <span style="color: #666666">=</span> ExpectationValues(<span style="color: #666666">4</span>)<span style="color: #666666">*</span>norm;
+  <span style="color: #408080; font-style: italic">// all expectation values are per spin, divide by 1/NSpins/NSpins</span>
+  <span style="color: #B00040">double</span> Evariance <span style="color: #666666">=</span> (E2_ExpectationValues<span style="color: #666666">-</span> E_ExpectationValues<span style="color: #666666">*</span>E_ExpectationValues)<span style="color: #666666">/</span>NSpins<span style="color: #666666">/</span>NSpins;
+  <span style="color: #B00040">double</span> Mvariance <span style="color: #666666">=</span> (M2_ExpectationValues <span style="color: #666666">-</span> Mabs_ExpectationValues<span style="color: #666666">*</span>Mabs_ExpectationValues)<span style="color: #666666">/</span>NSpins<span style="color: #666666">/</span>NSpins;
+  ofile <span style="color: #666666">&lt;&lt;</span> setiosflags(ios<span style="color: #666666">::</span>showpoint <span style="color: #666666">|</span> ios<span style="color: #666666">::</span>uppercase);
+  ofile <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">15</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> temperature;
+  ofile <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">15</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> E_ExpectationValues<span style="color: #666666">/</span>NSpins<span style="color: #666666">/</span>NSpins;
+  ofile <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">15</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> Evariance<span style="color: #666666">/</span>temperature<span style="color: #666666">/</span>temperature;
+  ofile <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">15</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> M_ExpectationValues<span style="color: #666666">/</span>NSpins<span style="color: #666666">/</span>NSpins;
+  ofile <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">15</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> Mvariance<span style="color: #666666">/</span>temperature;
+  ofile <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">15</span>) <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> Mabs_ExpectationValues<span style="color: #666666">/</span>NSpins<span style="color: #666666">/</span>NSpins <span style="color: #666666">&lt;&lt;</span> endl;
+} <span style="color: #408080; font-style: italic">// end output function</span>
 
-    Input:
-    - temp:   Temperature to calculate for
-    - size:   dimension of square matrix
-    - trials: Monte-carlo trials (how many times do we
-                                  flip the matrix?)
 
-    Output:
-    - E_av:       Energy of matrix averaged over trials, normalized to spins**2
-    - E_variance: Variance of energy, same normalization * temp**2
-    """
 
-    #Setup spin matrix, initialize to ground state
-    spin_matrix = numpy.zeros( (size,size), numpy.int8) + 1
-
-    #Create and initialize variables
-    E = 0
-    E_av = E2_av = 0
     
-    #Setup array for possible energy changes
-    w = numpy.zeros(17,numpy.float64)
-    for de in xrange(-8,9,4): #include +8
-        w[de+8] = math.exp(-de/temp)
-    
-    #Calculate initial energy
-    for j in xrange(size): 
-        for i in xrange(size):
-            E -= spin_matrix.item(i,j)*\
-                 (spin_matrix.item(periodic(i,size,-1),j) + spin_matrix.item(i,periodic(j,size,1)))
-
-    #Start metropolis MonteCarlo computation 
-    for i in xrange(trials):
-        #Metropolis
-        #Loop over all spins, pick a random spin each time
-        for s in xrange(size**2):
-            x = int(numpy.random.random()*size)
-            y = int(numpy.random.random()*size)
-            deltaE = 2*spin_matrix.item(x,y)*\
-                     (spin_matrix.item(periodic(x,size,-1), y) +\
-                      spin_matrix.item(periodic(x,size,1),  y) +\
-                      spin_matrix.item(x, periodic(y,size,-1)) +\
-                      spin_matrix.item(x, periodic(y,size,1)))
-            if numpy.random.random() <= w[deltaE+8]:
-                #Accept!
-                spin_matrix[x,y] *= -1
-                E += deltaE
-            
-        #Update expectation values
-        E_av    += E
-        E2_av   += E**2
-
-    E_av       /= float(trials);
-    E2_av      /= float(trials);
-    #Calculate variance and normalize to per-point and temp
-    E_variance  = (E2_av-E_av*E_av)/float(size*size*temp*temp);
-    #Normalize returned averages to per-point
-    E_av       /= float(size*size);
-
-    return (E_av, E_variance)
-    
-    
-# Main program
-
-# values of the lattice, number of Monte Carlo cycles and temperature domain
-size        =   20
-trials      =   100000
-temp_init   = 1.8
-temp_end    = 2.6
-temp_step   = 0.1
-
-
-temps = numpy.arange(temp_init,temp_end+temp_step/2,temp_step,float)
-Dim = np.size(temps)
-energy = np.zeros(Dim)
-heatcapacity = np.zeros(Dim) 
-temperature = np.zeros(Dim)
-for temp in temps:
-    (E_av, E_variance) = monteCarlo(temp,size,trials)
-    temperature[temp] = temp
-    energy[temp] = E_av
-    heatcapacity[temp] = E_variance
-plt.figure(1)
-plt.subplot(211)
-plt.axis([1.8,2.6,-2.0, -1.0])
-plt.xlabel(r'Temperature $J/(k_B)$')
-plt.ylabel(r'Average energy per spin  $E/N$')
-plt.plot(temperature, energy, 'b-')
-plt.subplot(212)
-plt.axis([1.8,2.6, 0.0, 2.0])
-plt.plot(temperature, heatcapacity, 'r-')
-plt.xlabel(r'Temperature $J/(k_B)$')
-plt.ylabel(r'Heat capacity per spin  $C_V/N$')
-plt.savefig('energycv.pdf')
-plt.show()
-
-
-
-</script></div>
+</pre></div>
 <p>
 <p>
 <!-- navigation buttons at the bottom of the page -->
@@ -419,6 +477,7 @@ plt.show()
   <li><a href="._statphys-bs048.html">49</a></li>
   <li class="active"><a href="._statphys-bs049.html">50</a></li>
   <li><a href="._statphys-bs050.html">51</a></li>
+  <li><a href="._statphys-bs051.html">52</a></li>
   <li><a href="._statphys-bs050.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
