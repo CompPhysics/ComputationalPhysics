@@ -268,10 +268,10 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._statphys-bs045.html#___sec44" style="font-size: 80%;">Final energy difference</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs046.html#___sec45" style="font-size: 80%;">Change in magnetization</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs047.html#___sec46" style="font-size: 80%;">A small note</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec47" style="font-size: 80%;">Initialization</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs048.html#___sec47" style="font-size: 80%;">Initialization</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs049.html#___sec48" style="font-size: 80%;">"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/IsingModel.cpp"</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs050.html#___sec49" style="font-size: 80%;">Two-dimensional Ising Model, energy per spin and specific heat</a></li>
-     <!-- navigation toc: --> <li><a href="._statphys-bs051.html#___sec50" style="font-size: 80%;">Two-dimensional Ising Model and analysis of spin values</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec50" style="font-size: 80%;">Two-dimensional Ising Model and analysis of spin values</a></li>
 
         </ul>
       </li>
@@ -284,58 +284,243 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0048"></a>
+<a name="part0051"></a>
 <!-- !split -->
 
-<h2 id="___sec47" class="anchor">Initialization </h2>
+<h2 id="___sec50" class="anchor">Two-dimensional Ising Model and analysis of spin values </h2>
 
 <p>
-We need also to initialize various variables.
-This is done in the function here.
+The following python code displays the values of the spins as function of temperature.
+The blue color corresponds to spin up states while red represents spin down states. Increasing the temperature as input parameter, see the parameters below, results in a a net magnetization which becomes zero. At low temperatures, the system is highly ordered with essentially only one specific spin value.
 <p>
 
-<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// function to initialise energy, spin matrix and magnetization</span>
-<span style="color: #B00040">void</span> <span style="color: #0000FF">initialize</span>(<span style="color: #B00040">int</span> n_spins, <span style="color: #B00040">double</span> temp, <span style="color: #B00040">int</span> <span style="color: #666666">**</span>spin_matrix, 
-		<span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> E, <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> M)
-{
-  <span style="color: #408080; font-style: italic">// setup spin matrix and intial magnetization</span>
-  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> y <span style="color: #666666">=0</span>; y <span style="color: #666666">&lt;</span> n_spins; y<span style="color: #666666">++</span>) {
-    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> x<span style="color: #666666">=</span> <span style="color: #666666">0</span>; x <span style="color: #666666">&lt;</span> n_spins; x<span style="color: #666666">++</span>){
-      <span style="color: #008000; font-weight: bold">if</span> (temp <span style="color: #666666">&lt;</span> <span style="color: #666666">1.5</span>) spin_matrix[y][x] <span style="color: #666666">=</span> <span style="color: #666666">1</span>; <span style="color: #408080; font-style: italic">// spin orientation for the ground state</span>
-      M <span style="color: #666666">+=</span>  (<span style="color: #B00040">double</span>) spin_matrix[y][x];
-    }
-  }
-  <span style="color: #408080; font-style: italic">// setup initial energy</span>
-  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> y <span style="color: #666666">=0</span>; y <span style="color: #666666">&lt;</span> n_spins; y<span style="color: #666666">++</span>) {
-    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> x<span style="color: #666666">=</span> <span style="color: #666666">0</span>; x <span style="color: #666666">&lt;</span> n_spins; x<span style="color: #666666">++</span>){
-      E <span style="color: #666666">-=</span>  (<span style="color: #B00040">double</span>) spin_matrix[y][x]<span style="color: #666666">*</span>
-	(spin_matrix[periodic(y,n_spins,<span style="color: #666666">-1</span>)][x] <span style="color: #666666">+</span>
-	 spin_matrix[y][periodic(x,n_spins,<span style="color: #666666">-1</span>)]);
-    }
-  }
-}<span style="color: #408080; font-style: italic">// end function initialise</span>
-</pre></div>
+
+<div class="compute"><script type="text/x-sage">
+# coding=utf-8
+#2-dimensional ising model with visualization
+
+import numpy, sys, math
+import pygame
+
+#Needed for visualize when using SDL
+screen = None;
+font   = None;
+BLOCKSIZE = 10
+
+def periodic (i, limit, add):
+    """
+    Choose correct matrix index with periodic
+    boundary conditions
+
+    Input:
+    - i:     Base index
+    - limit: Highest \"legal\" index
+    - add:   Number to add or subtract from i
+    """
+    return (i+limit+add) % limit
+
+def visualize(spin_matrix, temp, E, M, method):
+    """
+    Visualize the spin matrix
+
+    Methods:
+    method = -1:No visualization (testing)
+    method = 0: Just print it to the terminal
+    method = 1: Pretty-print to terminal
+    method = 2: SDL/pygame single-pixel
+    method = 3: SDL/pygame rectangle
+    """
+
+    #Simple terminal dump
+    if method == 0:
+        print "temp:", temp, "E:", E, "M:", M
+        print spin_matrix
+    #Pretty-print to terminal
+    elif method == 1:
+        out = ""
+        size = len(spin_matrix)
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    out += "X"
+                else:
+                    out += " "
+            out += "\n"
+        print "temp:", temp, "E:", E, "M:", M
+        print out + "\n"
+    #SDL single-pixel (useful for large arrays)
+    elif method == 2:
+        size = len(spin_matrix)
+        screen.lock()
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    screen.set_at((x,y),(0,0,255))
+                else:
+                    screen.set_at((x,y),(255,0,0))
+        screen.unlock()
+        pygame.display.flip()
+    #SDL block (usefull for smaller arrays)
+    elif method == 3:
+        size = len(spin_matrix)
+        screen.lock()
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(0,0,255),rect)
+                else:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(255,0,0),rect)
+        screen.unlock()
+        pygame.display.flip()
+    #SDL block w/ data-display
+    elif method == 4:
+        size = len(spin_matrix)
+        screen.lock()
+        for y in xrange(size):
+            for x in xrange(size):
+                if spin_matrix.item(x,y) == 1:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(255,255,255),rect)
+                else:
+                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
+                    pygame.draw.rect(screen,(0,0,0),rect)
+        s = font.render("<E> = %5.3E; <M> = %5.3E" % E,M,False,(255,0,0))
+        screen.blit(s,(0,0))
+        
+        screen.unlock()
+        pygame.display.flip()    
+
+    
+
+def monteCarlo(temp, size, trials, visual_method):
+    """
+    Calculate the energy and magnetization
+    (\"straight\" and squared) for a given temperature
+
+    Input:
+    - temp:   Temperature to calculate for
+    - size:   dimension of square matrix
+    - trials: Monte-carlo trials (how many times do we
+                                  flip the matrix?)
+    - visual_method: What method should we use to visualize?
+
+    Output:
+    - E_av:       Energy of matrix averaged over trials, normalized to spins**2
+    - E_variance: Variance of energy, same normalization * temp**2
+    - M_av:       Magnetic field of matrix, averaged over trials, normalized to spins**2
+    - M_variance: Variance of magnetic field, same normalization * temp
+    - Mabs:       Absolute value of magnetic field, averaged over trials
+    """
+
+    #Setup spin matrix, initialize to ground state
+    spin_matrix = numpy.zeros( (size,size), numpy.int8) + 1
+
+    #Create and initialize variables
+    E    = M     = 0
+    E_av = E2_av = M_av = M2_av = Mabs_av = 0
+    
+    #Setup array for possible energy changes
+    w = numpy.zeros(17,numpy.float64)
+    for de in xrange(-8,9,4): #include +8
+        w[de+8] = math.exp(-de/temp)
+    
+    #Calculate initial magnetization:
+    M = spin_matrix.sum()
+    #Calculate initial energy
+    for j in xrange(size): 
+        for i in xrange(size):
+            E -= spin_matrix.item(i,j)*\
+                 (spin_matrix.item(periodic(i,size,-1),j) + spin_matrix.item(i,periodic(j,size,1)))
+
+    #Start metropolis MonteCarlo computation 
+    for i in xrange(trials):
+        #Metropolis
+        #Loop over all spins, pick a random spin each time
+        for s in xrange(size**2):
+            x = int(numpy.random.random()*size)
+            y = int(numpy.random.random()*size)
+            deltaE = 2*spin_matrix.item(x,y)*\
+                     (spin_matrix.item(periodic(x,size,-1), y) +\
+                      spin_matrix.item(periodic(x,size,1),  y) +\
+                      spin_matrix.item(x, periodic(y,size,-1)) +\
+                      spin_matrix.item(x, periodic(y,size,1)))
+            if numpy.random.random() <= w[deltaE+8]:
+                #Accept!
+                spin_matrix[x,y] *= -1
+                M += 2*spin_matrix[x,y]
+                E += deltaE
+            
+        #Update expectation values
+        E_av    += E
+        E2_av   += E**2
+        M_av    += M
+        M2_av   += M**2
+        Mabs_av += int(math.fabs(M))
+
+        visualize(spin_matrix, temp,E/float(size**2),M/float(size**2), method);
+
+    #Normalize average values
+    E_av       /= float(trials);
+    E2_av      /= float(trials);
+    M_av       /= float(trials);
+    M2_av      /= float(trials);
+    Mabs_av    /= float(trials);
+    #Calculate variance and normalize to per-point and temp
+    E_variance  = (E2_av-E_av*E_av)/float(size*size*temp*temp);
+    M_variance  = (M2_av-M_av*M_av)/float(size*size*temp);
+    #Normalize returned averages to per-point
+    E_av       /= float(size*size);
+    M_av       /= float(size*size);
+    Mabs_av    /= float(size*size);
+    
+    return (E_av, E_variance, M_av, M_variance, Mabs_av)
+    
+    
+# Main program
+
+size        =   100
+trials      =   100000
+temp        = 2.1
+method      =   3
+
+#Initialize pygame
+if method == 2 or method == 3 or method == 4:
+    pygame.init()
+    if method == 2:
+        screen = pygame.display.set_mode((size,size))
+    elif method == 3:
+        screen = pygame.display.set_mode((size*10,size*10))
+    elif method == 4:
+        screen = pygame.display.set_mode((size*10,size*10))
+        font   = pygame.font.Font(None,12)
+        
+
+(E_av, E_variance, M_av, M_variance, Mabs_av) = monteCarlo(temp,size,trials, method)
+print "%15.8E %15.8E %15.8E %15.8E %15.8E %15.8E\n" % (temp, E_av, E_variance, M_av, M_variance, Mabs_av)
+
+pygame.quit();
+
+
+</script></div>
 <p>
+
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
-<li><a href="._statphys-bs047.html">&laquo;</a></li>
+<li><a href="._statphys-bs050.html">&laquo;</a></li>
   <li><a href="._statphys-bs000.html">1</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._statphys-bs040.html">41</a></li>
-  <li><a href="._statphys-bs041.html">42</a></li>
-  <li><a href="._statphys-bs042.html">43</a></li>
   <li><a href="._statphys-bs043.html">44</a></li>
   <li><a href="._statphys-bs044.html">45</a></li>
   <li><a href="._statphys-bs045.html">46</a></li>
   <li><a href="._statphys-bs046.html">47</a></li>
   <li><a href="._statphys-bs047.html">48</a></li>
-  <li class="active"><a href="._statphys-bs048.html">49</a></li>
+  <li><a href="._statphys-bs048.html">49</a></li>
   <li><a href="._statphys-bs049.html">50</a></li>
   <li><a href="._statphys-bs050.html">51</a></li>
-  <li><a href="._statphys-bs051.html">52</a></li>
-  <li><a href="._statphys-bs049.html">&raquo;</a></li>
+  <li class="active"><a href="._statphys-bs051.html">52</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 

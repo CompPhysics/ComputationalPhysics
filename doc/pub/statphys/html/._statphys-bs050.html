@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -150,7 +159,7 @@ $(function () {
                None,
                '___sec39'),
               ('Five possible energy differences', 2, None, '___sec40'),
-              ('The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program',
+              ('"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/MPIising.cpp"',
                2,
                None,
                '___sec41'),
@@ -163,14 +172,18 @@ $(function () {
               ('Change in magnetization', 2, None, '___sec45'),
               ('A small note', 2, None, '___sec46'),
               ('Initialization', 2, None, '___sec47'),
-              ('Two-dimensional Ising Model, energy per spin and specific heat',
+              ('"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/IsingModel.cpp"',
                2,
                None,
                '___sec48'),
+              ('Two-dimensional Ising Model, energy per spin and specific heat',
+               2,
+               None,
+               '___sec49'),
               ('Two-dimensional Ising Model and analysis of spin values',
                2,
                None,
-               '___sec49')]}
+               '___sec50')]}
 end of tocinfo -->
 
 <body>
@@ -249,15 +262,16 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._statphys-bs039.html#___sec38" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs040.html#___sec39" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model, practical issues</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs041.html#___sec40" style="font-size: 80%;">Five possible energy differences</a></li>
-     <!-- navigation toc: --> <li><a href="._statphys-bs042.html#___sec41" style="font-size: 80%;">The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs042.html#___sec41" style="font-size: 80%;">"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/MPIising.cpp"</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs043.html#___sec42" style="font-size: 80%;">Coding energy differences</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs044.html#___sec43" style="font-size: 80%;">Efficient expression for energy differences</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs045.html#___sec44" style="font-size: 80%;">Final energy difference</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs046.html#___sec45" style="font-size: 80%;">Change in magnetization</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs047.html#___sec46" style="font-size: 80%;">A small note</a></li>
      <!-- navigation toc: --> <li><a href="._statphys-bs048.html#___sec47" style="font-size: 80%;">Initialization</a></li>
-     <!-- navigation toc: --> <li><a href="._statphys-bs049.html#___sec48" style="font-size: 80%;">Two-dimensional Ising Model, energy per spin and specific heat</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec49" style="font-size: 80%;">Two-dimensional Ising Model and analysis of spin values</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs049.html#___sec48" style="font-size: 80%;">"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/IsingModel.cpp"</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec49" style="font-size: 80%;">Two-dimensional Ising Model, energy per spin and specific heat</a></li>
+     <!-- navigation toc: --> <li><a href="._statphys-bs051.html#___sec50" style="font-size: 80%;">Two-dimensional Ising Model and analysis of spin values</a></li>
 
         </ul>
       </li>
@@ -273,25 +287,20 @@ MathJax.Hub.Config({
 <a name="part0050"></a>
 <!-- !split -->
 
-<h2 id="___sec49">Two-dimensional Ising Model and analysis of spin values </h2>
+<h2 id="___sec49" class="anchor">Two-dimensional Ising Model, energy per spin and specific heat </h2>
 
 <p>
-The following python code displays the values of the spins as function of temperature.
-The blue color corresponds to spin up states while red represents spin down states. Increasing the temperature as input parameter, see the parameters below, results in a a net magnetization which becomes zero. At low temperatures, the system is highly ordered with essentially only one specific spin value.
+The following Python program, based on the above C++ codes, plots the expectation value of the energy and its fluctuation, that is the specific heat. Both quantities are plotted per spin and genererated for a \( 20\times 20 \) lattice.
+
 <p>
 
 
 <div class="compute"><script type="text/x-sage">
-# coding=utf-8
-#2-dimensional ising model with visualization
-
+#  Code for the two-dimensional Ising model with periodic boundary conditions
 import numpy, sys, math
-import pygame
+from  matplotlib import pyplot as plt
+import numpy as np
 
-#Needed for visualize when using SDL
-screen = None;
-font   = None;
-BLOCKSIZE = 10
 
 def periodic (i, limit, add):
     """
@@ -305,82 +314,7 @@ def periodic (i, limit, add):
     """
     return (i+limit+add) % limit
 
-def visualize(spin_matrix, temp, E, M, method):
-    """
-    Visualize the spin matrix
-
-    Methods:
-    method = -1:No visualization (testing)
-    method = 0: Just print it to the terminal
-    method = 1: Pretty-print to terminal
-    method = 2: SDL/pygame single-pixel
-    method = 3: SDL/pygame rectangle
-    """
-
-    #Simple terminal dump
-    if method == 0:
-        print "temp:", temp, "E:", E, "M:", M
-        print spin_matrix
-    #Pretty-print to terminal
-    elif method == 1:
-        out = ""
-        size = len(spin_matrix)
-        for y in xrange(size):
-            for x in xrange(size):
-                if spin_matrix.item(x,y) == 1:
-                    out += "X"
-                else:
-                    out += " "
-            out += "\n"
-        print "temp:", temp, "E:", E, "M:", M
-        print out + "\n"
-    #SDL single-pixel (useful for large arrays)
-    elif method == 2:
-        size = len(spin_matrix)
-        screen.lock()
-        for y in xrange(size):
-            for x in xrange(size):
-                if spin_matrix.item(x,y) == 1:
-                    screen.set_at((x,y),(0,0,255))
-                else:
-                    screen.set_at((x,y),(255,0,0))
-        screen.unlock()
-        pygame.display.flip()
-    #SDL block (usefull for smaller arrays)
-    elif method == 3:
-        size = len(spin_matrix)
-        screen.lock()
-        for y in xrange(size):
-            for x in xrange(size):
-                if spin_matrix.item(x,y) == 1:
-                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
-                    pygame.draw.rect(screen,(0,0,255),rect)
-                else:
-                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
-                    pygame.draw.rect(screen,(255,0,0),rect)
-        screen.unlock()
-        pygame.display.flip()
-    #SDL block w/ data-display
-    elif method == 4:
-        size = len(spin_matrix)
-        screen.lock()
-        for y in xrange(size):
-            for x in xrange(size):
-                if spin_matrix.item(x,y) == 1:
-                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
-                    pygame.draw.rect(screen,(255,255,255),rect)
-                else:
-                    rect = pygame.Rect(x*BLOCKSIZE,y*BLOCKSIZE,BLOCKSIZE,BLOCKSIZE)
-                    pygame.draw.rect(screen,(0,0,0),rect)
-        s = font.render("<E> = %5.3E; <M> = %5.3E" % E,M,False,(255,0,0))
-        screen.blit(s,(0,0))
-        
-        screen.unlock()
-        pygame.display.flip()    
-
-    
-
-def monteCarlo(temp, size, trials, visual_method):
+def monteCarlo(temp, size, trials):
     """
     Calculate the energy and magnetization
     (\"straight\" and squared) for a given temperature
@@ -390,30 +324,24 @@ def monteCarlo(temp, size, trials, visual_method):
     - size:   dimension of square matrix
     - trials: Monte-carlo trials (how many times do we
                                   flip the matrix?)
-    - visual_method: What method should we use to visualize?
 
     Output:
     - E_av:       Energy of matrix averaged over trials, normalized to spins**2
     - E_variance: Variance of energy, same normalization * temp**2
-    - M_av:       Magnetic field of matrix, averaged over trials, normalized to spins**2
-    - M_variance: Variance of magnetic field, same normalization * temp
-    - Mabs:       Absolute value of magnetic field, averaged over trials
     """
 
     #Setup spin matrix, initialize to ground state
     spin_matrix = numpy.zeros( (size,size), numpy.int8) + 1
 
     #Create and initialize variables
-    E    = M     = 0
-    E_av = E2_av = M_av = M2_av = Mabs_av = 0
+    E = 0
+    E_av = E2_av = 0
     
     #Setup array for possible energy changes
     w = numpy.zeros(17,numpy.float64)
     for de in xrange(-8,9,4): #include +8
         w[de+8] = math.exp(-de/temp)
     
-    #Calculate initial magnetization:
-    M = spin_matrix.sum()
     #Calculate initial energy
     for j in xrange(size): 
         for i in xrange(size):
@@ -435,63 +363,60 @@ def monteCarlo(temp, size, trials, visual_method):
             if numpy.random.random() <= w[deltaE+8]:
                 #Accept!
                 spin_matrix[x,y] *= -1
-                M += 2*spin_matrix[x,y]
                 E += deltaE
             
         #Update expectation values
         E_av    += E
         E2_av   += E**2
-        M_av    += M
-        M2_av   += M**2
-        Mabs_av += int(math.fabs(M))
 
-        visualize(spin_matrix, temp,E/float(size**2),M/float(size**2), method);
-
-    #Normalize average values
     E_av       /= float(trials);
     E2_av      /= float(trials);
-    M_av       /= float(trials);
-    M2_av      /= float(trials);
-    Mabs_av    /= float(trials);
     #Calculate variance and normalize to per-point and temp
     E_variance  = (E2_av-E_av*E_av)/float(size*size*temp*temp);
-    M_variance  = (M2_av-M_av*M_av)/float(size*size*temp);
     #Normalize returned averages to per-point
     E_av       /= float(size*size);
-    M_av       /= float(size*size);
-    Mabs_av    /= float(size*size);
-    
-    return (E_av, E_variance, M_av, M_variance, Mabs_av)
+
+    return (E_av, E_variance)
     
     
 # Main program
 
-size        =   100
+# values of the lattice, number of Monte Carlo cycles and temperature domain
+size        =   20
 trials      =   100000
-temp        = 2.1
-method      =   3
+temp_init   = 1.8
+temp_end    = 2.6
+temp_step   = 0.1
 
-#Initialize pygame
-if method == 2 or method == 3 or method == 4:
-    pygame.init()
-    if method == 2:
-        screen = pygame.display.set_mode((size,size))
-    elif method == 3:
-        screen = pygame.display.set_mode((size*10,size*10))
-    elif method == 4:
-        screen = pygame.display.set_mode((size*10,size*10))
-        font   = pygame.font.Font(None,12)
-        
 
-(E_av, E_variance, M_av, M_variance, Mabs_av) = monteCarlo(temp,size,trials, method)
-print "%15.8E %15.8E %15.8E %15.8E %15.8E %15.8E\n" % (temp, E_av, E_variance, M_av, M_variance, Mabs_av)
+temps = numpy.arange(temp_init,temp_end+temp_step/2,temp_step,float)
+Dim = np.size(temps)
+energy = np.zeros(Dim)
+heatcapacity = np.zeros(Dim) 
+temperature = np.zeros(Dim)
+for temp in temps:
+    (E_av, E_variance) = monteCarlo(temp,size,trials)
+    temperature[temp] = temp
+    energy[temp] = E_av
+    heatcapacity[temp] = E_variance
+plt.figure(1)
+plt.subplot(211)
+plt.axis([1.8,2.6,-2.0, -1.0])
+plt.xlabel(r'Temperature $J/(k_B)$')
+plt.ylabel(r'Average energy per spin  $E/N$')
+plt.plot(temperature, energy, 'b-')
+plt.subplot(212)
+plt.axis([1.8,2.6, 0.0, 2.0])
+plt.plot(temperature, heatcapacity, 'r-')
+plt.xlabel(r'Temperature $J/(k_B)$')
+plt.ylabel(r'Heat capacity per spin  $C_V/N$')
+plt.savefig('energycv.pdf')
+plt.show()
 
-pygame.quit();
 
 
 </script></div>
 <p>
-
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
@@ -507,6 +432,8 @@ pygame.quit();
   <li><a href="._statphys-bs048.html">49</a></li>
   <li><a href="._statphys-bs049.html">50</a></li>
   <li class="active"><a href="._statphys-bs050.html">51</a></li>
+  <li><a href="._statphys-bs051.html">52</a></li>
+  <li><a href="._statphys-bs051.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 
