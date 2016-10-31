@@ -1,6 +1,10 @@
 /* 
+   TO DO: look up parallel RNG, check ranlux48
+   TO DO: performance analysis and vectorization, find bottlenecks
+   TO DO: make smarter array for energy differences
    Program to solve the two-dimensional Ising model 
    with zero external field and no parallelization
+   Parallel version using MPI
    The coupling constant J is set to J = 1
    Boltzmann's constant = 1, temperature has thus dimension energy
    Metropolis aolgorithm  is used as well as periodic boundary conditions.
@@ -13,6 +17,7 @@
    c++ -O3 -std=c++11 -Rpass=loop-vectorize -o Ising.x IsingModel.cpp -larmadillo
 */
 
+#include "mpi.h"
 #include <cmath>
 #include <iostream>
 #include <fstream>
@@ -42,42 +47,68 @@ void WriteResultstoFile(int, int, double, vec);
 int main(int argc, char* argv[])
 {
   string filename;
-  int NSpins, MCcycles;
+  int NSpins, MonteCarloCycles;
   double InitialTemp, FinalTemp, TempStep;
-  if (argc <= 5) {
+  int NProcesses, RankProcess;
+  //  MPI initializations
+  MPI_Init (&argc, &argv);
+  MPI_Comm_size (MPI_COMM_WORLD, &NProcesses);
+  MPI_Comm_rank (MPI_COMM_WORLD, &RankProcess);
+  if (RankProcess == 0 && argc <= 5) {
     cout << "Bad Usage: " << argv[0] << 
       " read output file, Number of spins, MC cycles, initial and final temperature and tempurate step" << endl;
     exit(1);
   }
-  if (argc > 1) {
+  if ((RankProcess == 0) && (argc > 1)) {
     filename=argv[1];
     NSpins = atoi(argv[2]);
-    MCcycles = atoi(argv[3]);    
+    MonteCarloCycles = atoi(argv[3]);    
     InitialTemp = atof(argv[4]);
     FinalTemp = atof(argv[5]);
     TempStep = atof(argv[6]);
   }
-  // Declare new file name and add lattice size to file name
-  string fileout = filename;
-  string argument = to_string(NSpins);
-  fileout.append(argument);
-  ofile.open(fileout);
-  // Start Monte Carlo sampling by looping over the selcted Temperatures
-  for (double Temperature = InitialTemp; Temperature <= FinalTemp; Temperature+=TempStep){
-    vec ExpectationValues = zeros<mat>(5);
-    // Start Monte Carlo computation and get expectation values
-    MetropolisSampling(NSpins, MCcycles, Temperature, ExpectationValues);
-    // 
-    WriteResultstoFile(NSpins, MCcycles, Temperature, ExpectationValues);
+  // Declare new file name and add lattice size to file name, only master node opens file
+  if (RankProcess == 0) {
+    string fileout = filename;
+    string argument = to_string(NSpins);
+    fileout.append(argument);
+    ofile.open(fileout);
   }
-  ofile.close();  // close output file
+  // broadcast to all nodes common variables since only master node reads from command line
+  MPI_Bcast (&MonteCarloCycles, 1, MPI_INT, 0, MPI_COMM_WORLD);
+  MPI_Bcast (&NSpins, 1, MPI_INT, 0, MPI_COMM_WORLD);
+  MPI_Bcast (&InitialTemp, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+  MPI_Bcast (&FinalTemp, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+  MPI_Bcast (&TempStep, 1, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+  // Start Monte Carlo sampling by looping over the selected Temperatures
+  double  TimeStart, TimeEnd, TotalTime;
+  TimeStart = MPI_Wtime();
+  for (double Temperature = InitialTemp; Temperature <= FinalTemp; Temperature+=TempStep){
+    vec LocalExpectationValues = zeros<mat>(5);
+    // Start Monte Carlo computation and get local expectation values
+    MetropolisSampling(NSpins, MonteCarloCycles, Temperature, LocalExpectationValues);
+    // Find total average
+    vec TotalExpectationValues = zeros<mat>(5);
+    for( int i =0; i < 5; i++){
+      MPI_Reduce(&LocalExpectationValues[i], &TotalExpectationValues[i], 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+    }
+    if ( RankProcess == 0) WriteResultstoFile(NSpins, MonteCarloCycles*NProcesses, Temperature, TotalExpectationValues);
+  }
+  if(RankProcess == 0)  ofile.close();  // close output file
+  TimeEnd = MPI_Wtime();
+  TotalTime = TimeEnd-TimeStart;
+  if ( RankProcess == 0) {
+    cout << "Time = " <<  TotalTime  << " on number of processors: "  << NProcesses  << endl;
+  }
+  // End MPI
+  MPI_Finalize (); 
   return 0;
 }
 
 
-
 // The Monte Carlo part with the Metropolis algo with sweeps over the lattice
-void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &ExpectationValues)
+void MetropolisSampling(int NSpins, int MonteCarloCycles, double Temperature, vec &ExpectationValues)
 {
   // Initialize the seed and call the Mersienne algo
   std::random_device rd;
@@ -93,23 +124,22 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
   // setup array for possible energy changes
   vec EnergyDifference = zeros<mat>(17); 
   for( int de =-8; de <= 8; de+=4) EnergyDifference(de+8) = exp(-de/Temperature);
-  // Start Monte Carlo cycles
-  for (int cycles = 1; cycles <= MCcycles; cycles++){
+  // Start Monte Carlo experiments
+  int AllSpins = NSpins*NSpins;
+  for (int cycles = 1; cycles <= MonteCarloCycles; cycles++){
     // The sweep over the lattice, looping over all spin sites
-    for(int x =0; x < NSpins; x++) {
-      for (int y= 0; y < NSpins; y++){
-	int ix = (int) (RandomNumberGenerator(gen)*(double)NSpins);
-	int iy = (int) (RandomNumberGenerator(gen)*(double)NSpins);
-	int deltaE =  2*SpinMatrix(ix,iy)*
-	  (SpinMatrix(ix,PeriodicBoundary(iy,NSpins,-1))+
-	   SpinMatrix(PeriodicBoundary(ix,NSpins,-1),iy) +
-	   SpinMatrix(ix,PeriodicBoundary(iy,NSpins,1)) +
-	   SpinMatrix(PeriodicBoundary(ix,NSpins,1),iy));
-	if ( RandomNumberGenerator(gen) <= EnergyDifference(deltaE+8) ) {
-	  SpinMatrix(ix,iy) *= -1.0;  // flip one spin and accept new spin config
-	  MagneticMoment += (double) 2*SpinMatrix(ix,iy);
-	  Energy += (double) deltaE;
-	}
+    for(int Spins =0; Spins < AllSpins; Spins++) {
+      int ix = (int) (RandomNumberGenerator(gen)*NSpins);
+      int iy = (int) (RandomNumberGenerator(gen)*NSpins);
+      int deltaE =  2*SpinMatrix(ix,iy)*
+	(SpinMatrix(ix,PeriodicBoundary(iy,NSpins,-1))+
+	 SpinMatrix(PeriodicBoundary(ix,NSpins,-1),iy) +
+	 SpinMatrix(ix,PeriodicBoundary(iy,NSpins,1)) +
+	 SpinMatrix(PeriodicBoundary(ix,NSpins,1),iy));
+      if ( RandomNumberGenerator(gen) <= EnergyDifference(deltaE+8) ) {
+	SpinMatrix(ix,iy) *= -1.0;  // flip one spin and accept new spin config
+	MagneticMoment += 2.0*SpinMatrix(ix,iy);
+	Energy += (double) deltaE;
       }
     }
     // update expectation values  for local node
@@ -123,7 +153,7 @@ void MetropolisSampling(int NSpins, int MCcycles, double Temperature, vec &Expec
 // function to initialise energy, spin matrix and magnetization
 void InitializeLattice(int NSpins, mat &SpinMatrix,  double& Energy, double& MagneticMoment)
 {
-  // setup spin matrix and initial magnetization
+  // setup spin matrix and initial magnetization using cold start, all spins pointing up or down
   for(int x =0; x < NSpins; x++) {
     for (int y= 0; y < NSpins; y++){
       SpinMatrix(x,y) = 1.0; // spin orientation for the ground state
@@ -138,31 +168,35 @@ void InitializeLattice(int NSpins, mat &SpinMatrix,  double& Energy, double& Mag
 	 SpinMatrix(x,PeriodicBoundary(y,NSpins,-1)));
     }
   }
-}// end function initialise
+}// end function initialize
 
 
 
-void WriteResultstoFile(int NSpins, int MCcycles, double temperature, vec ExpectationValues)
+void WriteResultstoFile(int NSpins, int MonteCarloCycles, double temperature, vec ExpectationValues)
 {
-  double norm = 1.0/((double) (MCcycles));  // divided by  number of cycles 
+  double norm = 1.0/((double) (MonteCarloCycles));  // divided by  number of cycles 
   double E_ExpectationValues = ExpectationValues(0)*norm;
   double E2_ExpectationValues = ExpectationValues(1)*norm;
   double M_ExpectationValues = ExpectationValues(2)*norm;
   double M2_ExpectationValues = ExpectationValues(3)*norm;
   double Mabs_ExpectationValues = ExpectationValues(4)*norm;
   // all expectation values are per spin, divide by 1/NSpins/NSpins
-  double Evariance = (E2_ExpectationValues- E_ExpectationValues*E_ExpectationValues)/NSpins/NSpins;
-  double Mvariance = (M2_ExpectationValues - Mabs_ExpectationValues*Mabs_ExpectationValues)/NSpins/NSpins;
+  double AllSpins = 1.0/((double) NSpins*NSpins);
+  double HeatCapacity = (E2_ExpectationValues- E_ExpectationValues*E_ExpectationValues)*AllSpins/temperature/temperature;
+  double MagneticSusceptibility = (M2_ExpectationValues - M_ExpectationValues*M_ExpectationValues)*AllSpins/temperature;
   ofile << setiosflags(ios::showpoint | ios::uppercase);
   ofile << setw(15) << setprecision(8) << temperature;
-  ofile << setw(15) << setprecision(8) << E_ExpectationValues/NSpins/NSpins;
-  ofile << setw(15) << setprecision(8) << Evariance/temperature/temperature;
-  ofile << setw(15) << setprecision(8) << M_ExpectationValues/NSpins/NSpins;
-  ofile << setw(15) << setprecision(8) << Mvariance/temperature;
-  ofile << setw(15) << setprecision(8) << Mabs_ExpectationValues/NSpins/NSpins << endl;
+  ofile << setw(15) << setprecision(8) << E_ExpectationValues*AllSpins;
+  ofile << setw(15) << setprecision(8) << HeatCapacity;
+  ofile << setw(15) << setprecision(8) << M_ExpectationValues*AllSpins;
+  ofile << setw(15) << setprecision(8) << MagneticSusceptibility;
+  ofile << setw(15) << setprecision(8) << Mabs_ExpectationValues*AllSpins << endl;
 } // end output function
 
 
 
     
+
+
+
 
