@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
     outfilename=argv[1];
     ofile.open(outfilename); 
   }
-  n_spins = 200; mcs = 100000000;  initial_temp = 2.1; final_temp = 2.3; temp_step =0.01;
+  n_spins = 10; mcs = 100000;  initial_temp = 2.1; final_temp = 2.4; temp_step =0.02;
   /*
   Determine number of intervall which are used by all processes
   myloop_begin gives the starting point on process my_rank
@@ -81,6 +81,9 @@ int main(int argc, char* argv[])
   // if one starts with the same seed, one ends with the same random numbers
   idum = -1-my_rank;  // random starting point
   // Start Monte Carlo sampling by looping over T first
+
+  double  TimeStart, TimeEnd, TotalTime;
+  TimeStart = MPI_Wtime();
   for ( double temperature = initial_temp; temperature <= final_temp; temperature+=temp_step){
     //    initialise energy and magnetization 
     E = M = 0.;
@@ -109,6 +112,12 @@ int main(int argc, char* argv[])
   }
   free_matrix((void **) spin_matrix); // free memory
   ofile.close();  // close output file
+ TimeEnd = MPI_Wtime();
+  TotalTime = TimeEnd-TimeStart;
+  if ( my_rank == 0) {
+    cout << "Time = " <<  TotalTime  << " on number of processors: "  << numprocs  << endl;
+  }
+
   // End MPI
   MPI_Finalize (); 
   return 0;

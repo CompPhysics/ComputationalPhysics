@@ -2322,13 +2322,14 @@ For the normal distribution, expressed here as
 \end{equation*}
 !et
 it is rather difficult to find an inverse since the cumulative
-distribution is given by the error function $erf(x)$  % add reference
+distribution is given by the error function $erf(x)$
 
 !bt
 \begin{equation*}
     \mathrm{erf}(x) = \frac{2}{\sqrt{\pi}}\int_{0}^x e^{-t^2} dt. 
 \end{equation*}
 !et
+Both "c++":"http://www.cplusplus.com/reference/cmath/erfc/"  and  "Fortran":"https://gcc.gnu.org/onlinedocs/gfortran/ERFC.html"   have this function as intrinsic ones. 
 !eblock
 
 !split
