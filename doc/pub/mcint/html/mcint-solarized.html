@@ -327,44 +327,41 @@ $(function () {
                None,
                '___sec82'),
               ('Which RNG should I use?', 1, None, '___sec83'),
-              ('Improved Monte Carlo Integration', 1, None, '___sec84'),
-              ('Change of Variables', 2, None, '___sec85'),
+              ('How to use the Mersenne generator', 2, None, '___sec84'),
+              ('Improved Monte Carlo Integration', 1, None, '___sec85'),
               ('Change of Variables', 2, None, '___sec86'),
-              ('Transformed Uniform Distribution', 2, None, '___sec87'),
-              ('Exponential Distribution', 2, None, '___sec88'),
+              ('Change of Variables', 2, None, '___sec87'),
+              ('Transformed Uniform Distribution', 2, None, '___sec88'),
               ('Exponential Distribution', 2, None, '___sec89'),
               ('Exponential Distribution', 2, None, '___sec90'),
-              ('Normal Distribution', 2, None, '___sec91'),
+              ('Exponential Distribution', 2, None, '___sec91'),
               ('Normal Distribution', 2, None, '___sec92'),
               ('Normal Distribution', 2, None, '___sec93'),
               ('Normal Distribution', 2, None, '___sec94'),
               ('Normal Distribution', 2, None, '___sec95'),
-              ('Importance Sampling', 2, None, '___sec96'),
+              ('Normal Distribution', 2, None, '___sec96'),
               ('Importance Sampling', 2, None, '___sec97'),
               ('Importance Sampling', 2, None, '___sec98'),
               ('Importance Sampling', 2, None, '___sec99'),
               ('Importance Sampling', 2, None, '___sec100'),
               ('Importance Sampling', 2, None, '___sec101'),
-              ('Importance Sampling, a simple example', 2, None, '___sec102'),
+              ('Importance Sampling', 2, None, '___sec102'),
+              ('Importance Sampling, a simple example', 2, None, '___sec103'),
               ('Importance Sampling, a simple example, a simple plot',
                2,
                None,
-               '___sec103'),
+               '___sec104'),
               ('Importance Sampling, a simple example, the code part',
                2,
                None,
-               '___sec104'),
+               '___sec105'),
               ('Importance Sampling, a simple example, and the results',
                2,
                None,
-               '___sec105'),
-              ('Acceptance-Rejection Method', 2, None, '___sec106'),
+               '___sec106'),
               ('Acceptance-Rejection Method', 2, None, '___sec107'),
               ('Acceptance-Rejection Method', 2, None, '___sec108'),
-              ('Monte Carlo Integration of Multidimensional Integrals',
-               2,
-               None,
-               '___sec109'),
+              ('Acceptance-Rejection Method', 2, None, '___sec109'),
               ('Monte Carlo Integration of Multidimensional Integrals',
                2,
                None,
@@ -381,10 +378,14 @@ $(function () {
                2,
                None,
                '___sec113'),
-              ('Brute Force Integration', 2, None, '___sec114'),
-              ('Importance Sampling', 2, None, '___sec115'),
-              ('Python codes', 2, None, '___sec116'),
-              ('Python codes, importance sampling', 2, None, '___sec117')]}
+              ('Monte Carlo Integration of Multidimensional Integrals',
+               2,
+               None,
+               '___sec114'),
+              ('Brute Force Integration', 2, None, '___sec115'),
+              ('Importance Sampling', 2, None, '___sec116'),
+              ('Python codes', 2, None, '___sec117'),
+              ('Python codes, importance sampling', 2, None, '___sec118')]}
 end of tocinfo -->
 
 <body>
@@ -3072,7 +3073,36 @@ plt.show()
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h1 id="___sec84">Improved Monte Carlo Integration </h1>
+<h2 id="___sec84">How to use the Mersenne generator </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The following part of a c++ code (from project 4) sets up the uniform distribution for \( x\in [0,1] \). 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%">/*
+
+<span style="color: #228B22">//  You need this </span>
+<span style="color: #1e889b">#include &lt;random&gt;</span>
+
+<span style="color: #228B22">// Initialize the seed and call the Mersienne algo</span>
+std::random_device rd;
+std::mt19937_64 gen(rd());
+<span style="color: #228B22">// Set up the uniform distribution for x \in [[0, 1]</span>
+std::uniform_real_distribution&lt;<span style="color: #a7a7a7; font-weight: bold">double</span>&gt; RandomNumberGenerator(<span style="color: #B452CD">0.0</span>,<span style="color: #B452CD">1.0</span>);
+
+<span style="color: #228B22">// Now use the RNG</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> ix = (<span style="color: #a7a7a7; font-weight: bold">int</span>) (RandomNumberGenerator(gen)*NSpins);
+</pre></div>
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h1 id="___sec85">Improved Monte Carlo Integration </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3099,7 +3129,7 @@ upon the above simple brute force approach with the uniform distribution, namely
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec85">Change of Variables </h2>
+<h2 id="___sec86">Change of Variables </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3128,7 +3158,7 @@ All random number generators  use the uniform distribution to generate numbers \
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec86">Change of Variables </h2>
+<h2 id="___sec87">Change of Variables </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3172,7 +3202,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec87">Transformed Uniform Distribution </h2>
+<h2 id="___sec88">Transformed Uniform Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3217,7 +3247,7 @@ a well-known result!
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec88">Exponential Distribution </h2>
+<h2 id="___sec89">Exponential Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3262,7 +3292,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec89">Exponential Distribution </h2>
+<h2 id="___sec90">Exponential Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3298,7 +3328,7 @@ where \( x_i \) is a random number in the interval \( [0,1] \).
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec90">Exponential Distribution </h2>
+<h2 id="___sec91">Exponential Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3330,7 +3360,7 @@ y=-log(<span style="color: #B452CD">1.</span>-x);
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec91">Normal Distribution </h2>
+<h2 id="___sec92">Normal Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3342,20 +3372,22 @@ $$
 $$
 
 it is rather difficult to find an inverse since the cumulative
-distribution is given by the error function \( erf(x) \)  % add reference
+distribution is given by the error function \( erf(x) \)
 
 $$
 \begin{equation*}
     \mathrm{erf}(x) = \frac{2}{\sqrt{\pi}}\int_{0}^x e^{-t^2} dt. 
 \end{equation*}
 $$
+
+Both <a href="http://www.cplusplus.com/reference/cmath/erfc/" target="_blank">c++</a>  and  <a href="https://gcc.gnu.org/onlinedocs/gfortran/ERFC.html" target="_blank">Fortran</a>   have this function as intrinsic ones.
 </div>
 
 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec92">Normal Distribution </h2>
+<h2 id="___sec93">Normal Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3389,7 +3421,7 @@ multiplying random numbers
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec93">Normal Distribution </h2>
+<h2 id="___sec94">Normal Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3426,7 +3458,7 @@ where \( x' \) is a random number generated for \( x'\in [0,1] \).
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec94">Normal Distribution </h2>
+<h2 id="___sec95">Normal Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3466,7 +3498,7 @@ with \( x'\in [0,1] \) and \( \theta \in 2\pi [0,1] \).
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec95">Normal Distribution </h2>
+<h2 id="___sec96">Normal Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3490,7 +3522,7 @@ y=radius*sin(theta);
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec96">Importance Sampling </h2>
+<h2 id="___sec97">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3522,7 +3554,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec97">Importance Sampling </h2>
+<h2 id="___sec98">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3549,7 +3581,7 @@ If we can invert \( x(y) \), we find \( y(x) \) as well.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec98">Importance Sampling </h2>
+<h2 id="___sec99">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3574,7 +3606,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec99">Importance Sampling </h2>
+<h2 id="___sec100">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3598,7 +3630,7 @@ are
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec100">Importance Sampling </h2>
+<h2 id="___sec101">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3623,7 +3655,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec101">Importance Sampling </h2>
+<h2 id="___sec102">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3678,7 +3710,7 @@ with \( y_i\in [0,1] \),
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec102">Importance Sampling, a simple example </h2>
+<h2 id="___sec103">Importance Sampling, a simple example </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3716,7 +3748,7 @@ We have that when \( y=0 \) then  \( x=0 \) and when  \( y=1 \) we have \( x=1 \
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec103">Importance Sampling, a simple example, a simple plot </h2>
+<h2 id="___sec104">Importance Sampling, a simple example, a simple plot </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3763,7 +3795,7 @@ plt.show()
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec104">Importance Sampling, a simple example, the code part </h2>
+<h2 id="___sec105">Importance Sampling, a simple example, the code part </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3789,7 +3821,7 @@ plt.show()
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec105">Importance Sampling, a simple example, and the results </h2>
+<h2 id="___sec106">Importance Sampling, a simple example, and the results </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3819,7 +3851,7 @@ However, it is unfair to study one-dimensional integrals with MC methods!
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec106">Acceptance-Rejection Method </h2>
+<h2 id="___sec107">Acceptance-Rejection Method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3853,7 +3885,7 @@ in the latter equation again.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec107">Acceptance-Rejection Method </h2>
+<h2 id="___sec108">Acceptance-Rejection Method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3878,7 +3910,7 @@ multiplied by the area of the rectangle, should approximate the chosen integral.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec108">Acceptance-Rejection Method </h2>
+<h2 id="___sec109">Acceptance-Rejection Method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3908,7 +3940,7 @@ easy to implement this numerically, as shown in the following code.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec109">Monte Carlo Integration of Multidimensional Integrals </h2>
+<h2 id="___sec110">Monte Carlo Integration of Multidimensional Integrals </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3938,7 +3970,7 @@ if we were to use the uniform distribution on the interval \( [0,1] \).
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec110">Monte Carlo Integration of Multidimensional Integrals </h2>
+<h2 id="___sec111">Monte Carlo Integration of Multidimensional Integrals </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3965,7 +3997,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec111">Monte Carlo Integration of Multidimensional Integrals </h2>
+<h2 id="___sec112">Monte Carlo Integration of Multidimensional Integrals </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3990,7 +4022,7 @@ with  \( d=6 \).
 
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec112">Monte Carlo Integration of Multidimensional Integrals </h2>
+<h2 id="___sec113">Monte Carlo Integration of Multidimensional Integrals </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -4019,7 +4051,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec113">Monte Carlo Integration of Multidimensional Integrals </h2>
+<h2 id="___sec114">Monte Carlo Integration of Multidimensional Integrals </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -4045,7 +4077,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec114">Brute Force Integration </h2>
+<h2 id="___sec115">Brute Force Integration </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -4110,7 +4142,7 @@ and the other employing importance sampling with a gaussian distribution.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec115">Importance Sampling </h2>
+<h2 id="___sec116">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -4199,7 +4231,7 @@ random numbers from a gaussian distribution.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec116">Python codes </h2>
+<h2 id="___sec117">Python codes </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -4266,7 +4298,7 @@ print "Sigma             = %10.8E" % sigma
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec117">Python codes, importance sampling </h2>
+<h2 id="___sec118">Python codes, importance sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
