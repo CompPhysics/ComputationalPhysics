@@ -2111,6 +2111,29 @@ plt.show()
 
 
 !split
+===== How to use the Mersenne generator =====
+!bblock
+The following part of a c++ code (from project 4) sets up the uniform distribution for $x\in [0,1]$. 
+!bc cppcod
+/*
+
+//  You need this 
+#include <random>
+
+// Initialize the seed and call the Mersienne algo
+std::random_device rd;
+std::mt19937_64 gen(rd());
+// Set up the uniform distribution for x \in [[0, 1]
+std::uniform_real_distribution<double> RandomNumberGenerator(0.0,1.0);
+
+// Now use the RNG
+int ix = (int) (RandomNumberGenerator(gen)*NSpins);
+!ec
+!eblock
+
+
+
+!split
 ======= Improved Monte Carlo Integration =======
 !bblock
 We have presented a simple brute force approach 
