@@ -142,7 +142,7 @@ void MetropolisSampling(int NSpins, int MonteCarloCycles, double Temperature, ve
 	Energy += (double) deltaE;
       }
     }
-    // update expectation values  for local node
+    // update expectation values  for local node after a sweep through the lattice
     ExpectationValues(0) += Energy;    ExpectationValues(1) += Energy*Energy;
     ExpectationValues(2) += MagneticMoment;    
     ExpectationValues(3) += MagneticMoment*MagneticMoment; 
