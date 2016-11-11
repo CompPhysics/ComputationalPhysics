@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+#Number of nodes
+#$ -pe mpi 20
+#
+#Project
+#$ -P uio 
+#$ -N VMC
+#Walltime
+#$ -l s_rt=0:10:0
+
+source /site/bin/jobsetup
+
+module load mpich2
+
+cd $SCRATCH
+
+time /site/bin/mpiexec ~/sommerjobb/VMC/VMC-c++-mpi/VMC.x
+
+cp $SCRATCH/data ~/sommerjobb/VMC/VMC-c++-mpi/
+
+# end of script

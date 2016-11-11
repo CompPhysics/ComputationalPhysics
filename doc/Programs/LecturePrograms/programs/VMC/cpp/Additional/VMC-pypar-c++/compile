@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#module load compython
+swig -python -c++ MC.i
+c++ -fPIC -c MC_wrap.cxx -I/site/VERSIONS/compython-2.3/Linux/include/python2.5
+c++ -fPIC -shared MC_wrap.o -o _MC.so
+

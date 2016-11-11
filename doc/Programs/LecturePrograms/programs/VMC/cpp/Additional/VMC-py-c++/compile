@@ -1,0 +1,6 @@
+#!/bin/bash
+
+swig -python -c++ MC.i
+c++ -fPIC -c MC_wrap.cxx -I/usr/include/python2.4
+c++ -fPIC -shared MC_wrap.o -o _MC.so
+
