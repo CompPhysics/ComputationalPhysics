@@ -48,3 +48,7 @@ doc/Projects/2016/Project2/.project2_2016.copyright
 *.dlog
 
 
+
+*.user
+
+doc/Programs/ParallelizationMPI/dill10
