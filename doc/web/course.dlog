@@ -26,3 +26,223 @@ running preprocess -DFORMAT=html -DDEVICE=screen  course.do.txt > tmp_preprocess
 running mako on tmp_preprocess__course.do.txt to make tmp_mako__course.do.txt
 translating doconce text in tmp_mako__course.do.txt to html
 output in course.html
+running preprocess -DFORMAT=html -DDEVICE=screen  course.do.txt > tmp_preprocess__course.do.txt
+running mako on tmp_preprocess__course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+*** error: syntax error in table!
+    missing three horizontal rules and heading
+    in the right places
+
+    lines surrounding the table:
+| Week 45|  Variational Monte Carlo                            | <b>Project 5, deadline December 9</b> |  Sections 14.1-14.4  | Finalize project 4 |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 46| Variational Monte Carlo                             |                                  | Section 14.5     | Work on project 5 |
+|        |  Presentation of final projects                     |                                  |                       |  |   
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 47 | Partial differential equations                     |                                  |  Sections 10.1-10.2 | Work on project 5   |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 48 | Partial differential equations                     |                                  |  Sections 10.3-10.4 | Finalize project 5   |
+|         | Summary of course and discussions                  |                                  |                            |
+|----------------------------------------------------------------------------------------------------------------------------|
+
+<p>
+
+<p>
+
+
+    here are the recorded table rows:
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Discussion of pointers and arrays---Work on project 1|)
+|  | Discussion of pointers and arrays |  |  | Work on project 1 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 36-Linear algebra, Gaussian elimination--Sections 6.4, 6.5 and 6.6-How to write a good report and more git and Qt stuff|)
+| Week 36 | Linear algebra, Gaussian elimination |  | Sections 6.4, 6.5 and 6.6 | How to write a good report and more git and Qt stuff |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Spline interpolation and iterative methods-Discussed during lab sessions-Read slides on how to write a report|)
+|  | Spline interpolation and iterative methods | Discussed during lab sessions | Read slides on how to write a report |
+|---------------------| (horizontal rule)
+| Week 37 | Eigenvalue problems, Jacobi's method | <b>Project 2, deadline October 3</b> | Sections 7.1-7.4 | Object orientation with examples |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Householder's and Given's methods--Read slides on object orientation and section 3.3-Finalize project 1|)
+|  | Householder's and Given's methods |  | Read slides on object orientation and section 3.3 | Finalize project 1 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 38-Eigenvalue problems, iterative and power methods--Sections 7.4-7.7-Object orientation|)
+| Week 38 | Eigenvalue problems, iterative and power methods |  | Sections 7.4-7.7 | Object orientation |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Differential equations--Sections 8.1-8.3|)
+|  | Differential equations |  | Sections 8.1-8.3 |
+|---------------------| (horizontal rule)
+| Week 39 | Ordinary differential equations | <b>Project 3, deadline October 24</b> | Sections 8.3-8.7 | Object orientation (OO) |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |----Finalize project 2|)
+|  |  |  |  | Finalize project 2 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 40-Numerical integration--Sections 5.1-5.3-OO and  Vectorization|)
+| Week 40 | Numerical integration |  | Sections 5.1-5.3 | OO and  Vectorization |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |---Read slides on vectorization etc-|)
+|  |  |  | Read slides on vectorization etc |  |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 41-Numerical integration  and parallelization--Section 5.5-Parallelization with OpenMP|)
+| Week 41 | Numerical integration  and parallelization |  | Section 5.5 | Parallelization with OpenMP |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Introduction to Monte Carlo methods--Sections 11.1-11.2-|)
+|  | Introduction to Monte Carlo methods |  | Sections 11.1-11.2 |  |
+|---------------------| (horizontal rule)
+| Week 42 | Introduction to Monte Carlo methods | <b>Project 4, deadline November 14</b> | Sections 11.3-11.5 | Parallelization with MPI |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Random walks and the Metropolis algorithm--Sections 12.1-12.3-Finalize project 3|)
+|  | Random walks and the Metropolis algorithm |  | Sections 12.1-12.3 | Finalize project 3 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 43-Random walks and the Metropolis algorithm--Sections 12.4-12.5-Start project 4|)
+| Week 43 | Random walks and the Metropolis algorithm |  | Sections 12.4-12.5 | Start project 4 |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Discussion of project 4 and statistical mechanics--Sections 13.1-13.3-More OO|)
+|  | Discussion of project 4 and statistical mechanics |  | Sections 13.1-13.3 | More OO |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 44-Project 4 and statistical mechanics--Sections 13.4-13.7-Parallelization and high-performance computing|)
+| Week 44 | Project 4 and statistical mechanics |  | Sections 13.4-13.7 | Parallelization and high-performance computing |
+|---------------------| (horizontal rule)
+| Week 45 | Variational Monte Carlo | <b>Project 5, deadline December 9</b> | Sections 14.1-14.4 | Finalize project 4 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 46-Variational Monte Carlo--Section 14.5-Work on project 5|)
+| Week 46 | Variational Monte Carlo |  | Section 14.5 | Work on project 5 |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Presentation of final projects---|)
+|  | Presentation of final projects |  |  |  |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 47-Partial differential equations--Sections 10.1-10.2-Work on project 5|)
+| Week 47 | Partial differential equations |  | Sections 10.1-10.2 | Work on project 5 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 48-Partial differential equations--Sections 10.3-10.4-Finalize project 5|)
+| Week 48 | Partial differential equations |  | Sections 10.3-10.4 | Finalize project 5 |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Summary of course and discussions--|)
+|  | Summary of course and discussions |  |  |
+|---------------------| (horizontal rule)
+
+possible trouble:
+1. Not a table, just an opening pipe symbol at the beginning of the line?
+2. Something wrong with the syntax in a preceding table?
+running preprocess -DFORMAT=html -DDEVICE=screen  course.do.txt > tmp_preprocess__course.do.txt
+running mako on tmp_preprocess__course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+*** error: syntax error in table!
+    missing three horizontal rules and heading
+    in the right places
+
+    lines surrounding the table:
+| Week 45|  Variational Monte Carlo                            | <b>Project 5, deadline December 9</b> |  Sections 14.1-14.4  | Finalize project 4 |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 46| Variational Monte Carlo                             |                                  | Section 14.5     | Work on project 5 |
+|        |  Presentation of final projects                     |                                  |                  |       |   
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 47 | Partial differential equations                     |                                  |  Sections 10.1-10.2 | Work on project 5   |
+|----------------------------------------------------------------------------------------------------------------------------|
+| Week 48 | Partial differential equations                     |                                  |  Sections 10.3-10.4 | Finalize project 5   |
+|         | Summary of course and discussions                  |                                  |                            |
+|----------------------------------------------------------------------------------------------------------------------------|
+
+<p>
+
+<p>
+
+
+    here are the recorded table rows:
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Discussion of pointers and arrays---Work on project 1|)
+|  | Discussion of pointers and arrays |  |  | Work on project 1 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 36-Linear algebra, Gaussian elimination--Sections 6.4, 6.5 and 6.6-How to write a good report and more git and Qt stuff|)
+| Week 36 | Linear algebra, Gaussian elimination |  | Sections 6.4, 6.5 and 6.6 | How to write a good report and more git and Qt stuff |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Spline interpolation and iterative methods-Discussed during lab sessions-Read slides on how to write a report|)
+|  | Spline interpolation and iterative methods | Discussed during lab sessions | Read slides on how to write a report |
+|---------------------| (horizontal rule)
+| Week 37 | Eigenvalue problems, Jacobi's method | <b>Project 2, deadline October 3</b> | Sections 7.1-7.4 | Object orientation with examples |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Householder's and Given's methods--Read slides on object orientation and section 3.3-Finalize project 1|)
+|  | Householder's and Given's methods |  | Read slides on object orientation and section 3.3 | Finalize project 1 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 38-Eigenvalue problems, iterative and power methods--Sections 7.4-7.7-Object orientation|)
+| Week 38 | Eigenvalue problems, iterative and power methods |  | Sections 7.4-7.7 | Object orientation |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Differential equations--Sections 8.1-8.3|)
+|  | Differential equations |  | Sections 8.1-8.3 |
+|---------------------| (horizontal rule)
+| Week 39 | Ordinary differential equations | <b>Project 3, deadline October 24</b> | Sections 8.3-8.7 | Object orientation (OO) |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |----Finalize project 2|)
+|  |  |  |  | Finalize project 2 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 40-Numerical integration--Sections 5.1-5.3-OO and  Vectorization|)
+| Week 40 | Numerical integration |  | Sections 5.1-5.3 | OO and  Vectorization |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |---Read slides on vectorization etc-|)
+|  |  |  | Read slides on vectorization etc |  |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 41-Numerical integration  and parallelization--Section 5.5-Parallelization with OpenMP|)
+| Week 41 | Numerical integration  and parallelization |  | Section 5.5 | Parallelization with OpenMP |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Introduction to Monte Carlo methods--Sections 11.1-11.2-|)
+|  | Introduction to Monte Carlo methods |  | Sections 11.1-11.2 |  |
+|---------------------| (horizontal rule)
+| Week 42 | Introduction to Monte Carlo methods | <b>Project 4, deadline November 14</b> | Sections 11.3-11.5 | Parallelization with MPI |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Random walks and the Metropolis algorithm--Sections 12.1-12.3-Finalize project 3|)
+|  | Random walks and the Metropolis algorithm |  | Sections 12.1-12.3 | Finalize project 3 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 43-Random walks and the Metropolis algorithm--Sections 12.4-12.5-Start project 4|)
+| Week 43 | Random walks and the Metropolis algorithm |  | Sections 12.4-12.5 | Start project 4 |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Discussion of project 4 and statistical mechanics--Sections 13.1-13.3-More OO|)
+|  | Discussion of project 4 and statistical mechanics |  | Sections 13.1-13.3 | More OO |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 44-Project 4 and statistical mechanics--Sections 13.4-13.7-Parallelization and high-performance computing|)
+| Week 44 | Project 4 and statistical mechanics |  | Sections 13.4-13.7 | Parallelization and high-performance computing |
+|---------------------| (horizontal rule)
+| Week 45 | Variational Monte Carlo | <b>Project 5, deadline December 9</b> | Sections 14.1-14.4 | Finalize project 4 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 46-Variational Monte Carlo--Section 14.5-Work on project 5|)
+| Week 46 | Variational Monte Carlo |  | Section 14.5 | Work on project 5 |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Presentation of final projects---|)
+|  | Presentation of final projects |  |  |  |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 47-Partial differential equations--Sections 10.1-10.2-Work on project 5|)
+| Week 47 | Partial differential equations |  | Sections 10.1-10.2 | Work on project 5 |
+|---------------------| (horizontal rule)
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |Week 48-Partial differential equations--Sections 10.3-10.4-Finalize project 5|)
+| Week 48 | Partial differential equations |  | Sections 10.3-10.4 | Finalize project 5 |
+NOTE: do not use pipes in horizontal rule of this type:
+(write instead |-Summary of course and discussions--|)
+|  | Summary of course and discussions |  |  |
+|---------------------| (horizontal rule)
+
+possible trouble:
+1. Not a table, just an opening pipe symbol at the beginning of the line?
+2. Something wrong with the syntax in a preceding table?
+running preprocess -DFORMAT=html -DDEVICE=screen  course.do.txt > tmp_preprocess__course.do.txt
+running mako on tmp_preprocess__course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
