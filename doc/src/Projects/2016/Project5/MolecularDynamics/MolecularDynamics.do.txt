@@ -6,22 +6,42 @@ DATE: Fall semester 2016
 ===== Theoretical background and description of the physical system =====
 In this project we will implement a model called molecular dynamics (MD). MD allows us to study the dynamics of atoms and explore the phase space. For those of you who are taking FYS2160 - Thermodynamics, this project will be an excellent choice. The atoms interact through a force given as the negative gradient of a potential energy function. With this force, we can integrate Newton's laws. While exploring the phase space, we will sample statistical properties of the system like energy, temperature, pressure, diffusion constant and so on.
 
-We will also learn how to do write object oriented code with classes and subclasses.
-The class structure which you developed for project 3 can be used again here, as well as the Velocity Verlet algorithm of project 3.
-
-You are given a code skeleton that contains the basic structure of an MD code, but you will have to implement many of the functions yourself. We think that *learn by example* is a great way to learn how to proper object orient your code, but you can of course start from scratch if you want. You can find the code at
-URL:"https://github.com/andeplane/molecular-dynamics-fys3150". After pressing the Fork button, you should have a fork that you can clone with *git clone git@github.com:<username>/molecular-dynamics-fys3150.git*. You can clone or fork this repository into your own. 
-
-After you have downloaded the repository, open the project in Qt Creator and see if it runs. The program should create 100 argon atoms and place them uniformly inside a cubic box with sides 10 Angstroms. Each atom is given a velocity according to the Maxwell-Boltzmann distribution so that
-
-!bt
-\begin{align}
-	P(v_i)\dm{v_i} = \left(\frac{m}{2\pi k_B T}\right)^{1/2} \exp\left(-\frac{m v_i^2}{2k_B T}\right) \dm{v_i},
-\end{align}
-!et
-where $m$ is the mass of the atom, $k_B$ is Boltzmann's constant and $T$ is the temperature. We recognize this as a normal distribution with zero mean and standard deviation $\sigma = \sqrt{k_B T/m}$. The program will evolve the system in time with no forces so that all atoms move in a straight line. It will create a file called *movie.xyz* containing all the timesteps ready to visualize with for example VMD.
+We will also learn how to do write object oriented code. You are given
+a code skeleton that contains the basic structure of an MD code, but
+you will have to \ implement many of the functions yourself. We think
+that \textit{learn by example} is a great way to learn how to proper
+object orient your code, but you can \ of course start from scratch if
+you want. You can find the "code
+here":"https://github.com/andeplane/molecular-dynamics-fys3150". You
+can clone or fork this repository into your own.  The class structure
+which you developed for project 3 can also be used again here, as well
+as the Velocity Verlet algorithm of project 3.
 
 
+After you have downloaded the repository, open the project in Qt
+Creator and see if it runs. The program should create 100 argon atoms
+and place them uniformly inside a cubic box with sides 10
+Angstroms. Each atom is given a velocity according to the
+Maxwell-Boltzmann distribution so that
+!bt 
+\begin{align} 
+P(v_i)d\mathrm{v}_i = \left(\frac{m}{2\pi k_B
+T}\right)^{1/2} \exp\left(-\frac{m v_i^2}{2k_B T}\right)d\mathrm{v}_i,
+\end{align} 
+!et 
+where $m$ is the mass of the atom, $k_B$ is
+Boltzmann's constant and $T$ is the temperature. We recognize this as
+a normal distribution with zero mean and standard deviation $\sigma =
+\sqrt{k_B T/m}$. The program will evolve the system in time with no
+forces so that all atoms move in a straight line. It will create a
+file called *movie.xyz* containing all the timesteps ready to
+visualize with for example Ovito. You can download Ovito from this "site":"http://www.ovito.org/index.php/download". You should start
+with the fun part - to look at the simulation in Ovito. We then
+strongly recommend you to, before you start, look at the code
+structure and try to understand how the different classes are
+connected to each other and how a typical timestep is computed. You
+can skip understanding the contents of \textit{unitconverter.cpp} and
+\textit{vec3.cpp}.
 
 
 _For this project you can collaborate with fellow students and you can  hand in a common report._
@@ -30,8 +50,8 @@ This project (together with projects 3 and 4) counts 1/3 of the final mark.
 ===== Before starting =====
 
 Before you start, we would like that you pay attention to the following two steps:
-  o First, spend 30 minutes figuring out what molecular dynamics is and what problems it can be used to understand. What areas of physics can it be used in? What about chemistry and biology? What you find here should be part of your introduction section in your report.
-  o Then run the program, visualize the output with VMD or Ovito (as mentioned above). Now, spend 30 minutes looking at the code and understand how the output is produced and try to understand every step in the code. The best way to do this is to start at the top of the *main()* function and follow every line and every function call, step by step. _As a part if your report, you should explain the code structure and draw a flow chart (a diagram showing how the program is executed)._ This part is extremely important and will save you a lot of time. And of course, please ask us teachers if you have any questions!
+  o First, spend some 30 minutes figuring out what molecular dynamics is and what problems it can be used to understand. What areas of physics can it be used in? What about chemistry and biology? What you find here should be part of your introduction section in your report.
+  o Then run the program, visualize the output with for example Ovito (as mentioned above). Now, spend some 30-60 minutes looking at the code and understand how the output is produced and try to understand every step in the code. The best way to do this is to start at the top of the *main()* function and follow every line and every function call, step by step. _As a part if your report, you should explain the code structure and draw a flow chart (a diagram showing how the program is executed)._ This part is extremely important and will save you a lot of time. And of course, please ask us teachers if you have any questions!
 
 === Project 5a):  ===
 When working with MD, the system size is usually limited by available computer resources. A typical large MD simulation (with a parallelized code) contains a few million atoms corresponding to a system much smaller than a cubic micron. In order to get rid of boundary effects, we usually apply periodic boundary conditions so that we simulate a system of infinite size. You need to implement the *applyPeriodicBoundaryConditions* function in the *System* class. After doing so, run the program again and notice how the atoms now are contained inside a box. Discuss the benefits of this strategy.
@@ -64,25 +84,24 @@ where $i=0,1,..., N_x-1, j=0,1,..., N_y-1, k=0,1,..., N_z-1$. The unit vectors o
 	\hat{\mathbf{u}}_1 = b\hat{\mathbf{i}}, \quad \hat{\mathbf{u}}_2 = b\hat{\mathbf{j}}, \quad \hat{\mathbf{u}}_3 = b\hat{\mathbf{k}}.
 \end{align}
 !et
-Implement the function *createFCCLattice(int numberOfUnitCellsEachDimension, double latticeConstant)* in the *System* class. Remember to remove the 100 atoms that are created as the code is right now. Use lattice constant $b=5.26$ $\mathrm{angstrom}$. Remember to update the system size so the *applyPeriodicBoundaryConditions* function works properly. If you now visualize the result of the program, you should see the nice crystallic structure in the beginning of the simulation. What is the density $\rho$ in your system?
+Implement the function *createFCCLattice(int numberOfUnitCellsEachDimension, double latticeConstant)* in the *System* class. Remember to remove the 100 atoms that are created as the code is right now. Use lattice constant $b=5.26$ $\mathrm{Angstrom}$. Remember to update the system size so the *applyPeriodicBoundaryConditions* function works properly. If you now visualize the result of the program, you should see the nice crystallic structure in the beginning of the simulation. What is the density $\rho$ in your system?
 
 === Project 5d):   ===
-While this looks nice, we need to implement the computation of forces in order to see interesting physics. In this project, we will use the Lennard-Jones potential  which calculates the energy between two atoms $i$ and $j$ as
+While this looks nice, we need to implement the computation of forces in order to see interesting physics. In this project, we will use the "Lennard-Jones potential":"http://en.wikipedia.org/wiki/Lennard-Jones_potential"  which calculates the energy between two atoms $i$ and $j$ as
 
 !bt
 \begin{align}
 	U(r_{ij}) = 4\epsilon\left[\left(\frac{\sigma}{r_{ij}}\right)^{12} - \left(\frac{\sigma}{r_{ij}}\right)^6\right],
 \end{align}
 !et
-where $r_{ij} = |\mathbf{r}_i - \mathbf{r}_j|$ is the distance from atom $i$ to atom $j$, $\epsilon$ is the depth of the potential well (units energy) and $\sigma$ is the distance at which the potential is zero. For argon, optimal values of the parameters are:
+where $r_{ij} = \vert\mathbf{r}_i - \mathbf{r}_j\vert$ is the distance from atom $i$ to atom $j$, $\epsilon$ is the depth of the potential well (with dimension energy) and $\sigma$ is the distance at which the potential is zero. For argon, optimal values of the parameters are:
 
 !bt
 \begin{align}
-	\frac{\epsilon}{k_B} = 119.8\mathrm{K}, \sigma=3.405 \mathrm{angstrom}.
+	\frac{\epsilon}{k_B} = 119.8\mathrm{K}, \sigma=3.405 \mathrm{Angstrom}.
 \end{align}
 !et
-You can read more about the "Lennard-Jones potential here":"http://en.wikipedia.org/wiki/Lennard-Jones_potential".
-In our code, we use the so called MD units (see the units definition at the end). This potential actually reproduces equilibrium thermodynamic properties that are in good agreement with experimental values for argon. The equation of state for this system is the van der Waals equation of state. Phases such as solid, liquid and gas are reproduced from this simple model with phase transitions and everything which is remarkable.
+In our code, we use the so called MD units (see the units definition at the end). This potential reproduces equilibrium thermodynamic properties that are in good agreement with experimental values for argon. The equation of state for this system is the van der Waals equation of state. Phases such as solid, liquid and gas are reproduced from this simple model with phase transitions and other properties as well with a  remarkable agreement with data.
 
 The total potential energy $V$ in the system is computed by summing over all pairs of atoms (counting each pair only once)
 
@@ -107,7 +126,7 @@ giving the $x$-component (the other components are calculated the same way)
 !et
 where $x_{ij}$ is the $x$-component of $\mathbf{r}_{ij}$.
 
-Calculate (analytically) the force and implement the *calculateForces* function in the LennardJones class, using the Velocity Verlet algorithm that you developed for project 3. You will have to take care of the periodic boundary conditions. You could use the minimum image convention as described "here":"http://en.wikipedia.org/wiki/Periodic_boundary_conditions". Now run the simulation with 5 unit cells in each dimension (500 atoms) for different initial temperatures. Can you tell if the system is in a solid state just by looking at the system in VMD/Ovito? At what initial temperature is the crystal melting?
+Calculate (analytically) the force and implement the *calculateForces* function in the LennardJones class, using the Velocity Verlet algorithm that you developed for project 3. You will have to take care of the periodic boundary conditions. You could use the minimum image convention as described "here":"http://en.wikipedia.org/wiki/Periodic_boundary_conditions". Now run the simulation with 5 unit cells in each dimension (500 atoms) for different initial temperatures. Can you tell if the system is in a solid state just by looking at the system in Ovito? At what initial temperature is the crystal melting?
 
 === Project 5e):   ===
 We now have a working Molecular dynamics code! Congratulations, well done. The next step is to calculate some physical properties of the system. The easiest properties to measure are the kinetic and potential energy (calculated in the LennardJones class). The kinetic energy is of course defined as
@@ -119,8 +138,7 @@ We now have a working Molecular dynamics code! Congratulations, well done. The n
 !et
 where $m_i$ and $v_i$ is the mass and the speed of atom $i$. You can use the function *atom->velocity.lengthSquared()* to calculate the dot product of the velocities. 
 
-You can also calculate an estimate of the temperature through the equipartition theorem, see for example D. Schroeder's *An Introduction to Thermal Physics* for details.
-
+You can also calculate an estimate of the temperature through the equipartition theorem, see for example D. Schroeder's *An Introduction to Thermal Physics* for details,
 !bt
 \begin{align}
 	\langle E_k \rangle = \frac{3}{2}N_\text{atoms} k_B T.
@@ -136,9 +154,9 @@ We can use this to define an *instantaneous* temperature
 
 All of these quantities should be calculated in the *StatisticsSampler* class. All the statistical quantities should be saved to a file which needs to be implemented in the *saveToFile* function in the same class. 
 
-As you will see, since the temperature is proportional to the kinetic energy, its initial value will drop in the beginning when the system is initialized in the crystal structure. Why does this happen? What happens to the total energy? In order to have a system with final temperature $T$, what initial temperature $T_i$ is needed? What is the ratio $T/T_i$? Again visualize with *VMD* or *Ovito* and use your eyes to determine at what temperature the system actually melts at. After the temperature drops, it will reach a more or less stable value. The system is then said to be in an equilibrium state.
+As you will see, since the temperature is proportional to the kinetic energy, its initial value will drop in the beginning when the system is initialized in the crystal structure. Why does this happen? What happens to the total energy? In order to have a system with final temperature $T$, what initial temperature $T_i$ is needed? What is the ratio $T/T_i$? Again visualize with for example *Ovito* and use your eyes to determine at what temperature the system actually melts at. After the temperature drops, it will reach a more or less stable value. The system is then said to be in an equilibrium state.
 
-=== Project 5e):   ===
+=== Project 5f):   ===
 The last exercise is to compute the diffusion constant and use this to measure the melting temperature. We use the Einstein relation that relates the so called mean square displacement (MSD) to the diffusion constant
 
 !bt
@@ -158,6 +176,47 @@ where $\mathbf{r}_i(t)$ is the position of atom $i$ at time $t$. When you implem
 We can use the diffusion constant to find the melting temperature. Atoms in a solid will not diffuse much, so a solid will have a diffusion constant close to zero. Now solve the Einstein relation for the diffusion constant $D$ and add a function in *StatisticsSampler* measuring this quantity. Plot the diffusion constant as a function for different temperatures $T$ and use this to find an estimate for the melting temperature. Use what you found in f) to make sure you simulate temperatures both above and below the melting temperature. Also remember not to use the initial temperature, but the measured temperature after the system has reached equilibrium. You can use the builtin *UnitConverter* to convert the temperature to SI units as illustrated in the top of the *main* function. 
 
 If you want (_not required, but interesting if you have time_), compare the melting temperature to experimental values for argon. Note that the lattice constant $b$ we have used corresponds to a very high density. You may want to change the lattice constant so that the density matches the experimental setup you found. 
+
+======= Link with FYS2160 - what is really going on here? =======
+The idea of an MD simulation is to sample microstates from a statistical ensemble. In our simulation, we have a constant number of atoms $N$, a constant volume $V$ and a (more or less, depending on our integrator) constant energy $E$. This corresponds to the microcanonical ensemble (NVE). 
+
+Although we produce the dynamics of atoms, we should not see MD as a model that will give the true trajectories of the atoms, but rather a model that allows us to explore the phase space according to the probabilities we can calculate with statistical mechanics. A fundamental assumption in any MD simulation is the ergodic hypothesis. It states that *over long periods of time, the time spent by a system in some region of the phase space of microstates with the same energy is proportional to the volume of this region, i.e., that all accessible microstates are equiprobable over a long period of time*. This means that by evolving the atoms through time will visit microstates of the ensemble according to the true probabilities given by the ensemble.
+
+======= Units =======
+
+The program uses by default a set of units where we have chosen the following four units
+
+!bt
+\begin{align}
+	\text{1 unit of mass } &= 1 \text{ a.m.u} = 1.661\times 10^{-27}\mathrm{kg},\\
+	\text{1 unit of length } &= 1.0 \mathrm{angstrom} = 1.0\times 10^{-10}\mathrm{m},\\
+	\text{1 unit of energy } &= 1.651\times 10^{-21}\mathrm{J},\\
+	\text{1 unit of temperature} &= 119.735\mathrm{K}.
+\end{align}
+!et
+Boltzmann's constant is then equal to one (convince yourself about this), and other units can be derived by using known relations. We can for example find the unit of time by using $E=mc^2$. We have that
+
+!bt
+\begin{align}
+	\text{Energy} = \text{Mass} \times \frac{\text{Length}^2}{\text{Time}^2},
+\end{align}
+!et
+which can be solved for time
+
+!bt
+\begin{align}
+	\text{Time} = \text{Length} \times \sqrt{\frac{\text{Mass}}{\text{Energy}}}.
+\end{align}
+!et
+By inserting the values above, we get
+
+!bt
+\begin{align}
+	\text{1 unit of time } &= 1.0 \times 10^{-10}\sqrt{\frac{1.661\times 10^{-27}}{1.651\times 10^{-21}}} \text{ s} = 1.00224\times 10^{-13}\mathrm{s}.
+\end{align}
+!et
+This way, we can continue working out the values of the other units. What are the units of force? And pressure? In the project, a class that calculates these values is given.
+
 
 
 
@@ -205,82 +264,6 @@ The preferred format for the report is a PDF file. You can also use DOC or posts
 Finally, 
 we encourage you to work two and two together. Optimal working groups consist of 
 2-3 students. For this specific report you can  hand in a common report.
-
-
-
-
-======= FYS2160 - what is really going on here? =======
-The idea of an MD simulation is to sample microstates from a statistical ensemble. In our simulation, we have a constant number of atoms $N$, a constant volume $V$ and a (more or less, depending on our integrator) constant energy $E$. This corresponds to the microcanonical ensemble (NVE). 
-
-Although we produce the dynamics of atoms, we should not see MD as a model that will give the true trajectories of the atoms, but rather a model that allows us to explore the phase space according to the probabilities we can calculate with statistical mechanics. A fundamental assumption in any MD simulation is the ergodic hypothesis. It states that *over long periods of time, the time spent by a system in some region of the phase space of microstates with the same energy is proportional to the volume of this region, i.e., that all accessible microstates are equiprobable over a long period of time*. This means that by evolving the atoms through time will visit microstates of the ensemble according to the true probabilities given by the ensemble.
-
-======= Units =======
-
-The program uses by default a set of units where we have chosen the following four units
-
-!bt
-\begin{align}
-	\text{1 unit of mass } &= 1 \text{ a.m.u} = 1.661\times 10^{-27}\mathrm{kg},\\
-	\text{1 unit of length } &= 1.0 \mathrm{angstrom} = 1.0\times 10^{-10}\mathrm{m},\\
-	\text{1 unit of energy } &= 1.651\times 10^{-21}\mathrm{J},\\
-	\text{1 unit of temperature} &= 119.735\mathrm{K}.
-\end{align}
-!et
-Boltzmann's constant is then equal to one (convince yourself about this), and other units can be derived by using known relations. We can for example find the unit of time by using $E=mc^2$. We have that
-
-!bt
-\begin{align}
-	\text{Energy} = \text{Mass} \times \frac{\text{Length}^2}{\text{Time}^2},
-\end{align}
-!et
-which can be solved for time
-
-!bt
-\begin{align}
-	\text{Time} = \text{Length} \times \sqrt{\frac{\text{Mass}}{\text{Energy}}}.
-\end{align}
-!et
-By inserting the values above, we get
-
-!bt
-\begin{align}
-	\text{1 unit of time } &= 1.0 \times 10^{-10}\sqrt{\frac{1.661\times 10^{-27}}{1.651\times 10^{-21}}} \text{ s} = 1.00224\times 10^{-13}\mathrm{s}.
-\end{align}
-!et
-This way, we can continue working out the values of the other units. What are the units of force? And pressure? In the project, a class that calculates these values is given.
-
-======= Visualizations in VMD =======
-===== Installation =====
-=== OS X ===
-
-The installation on Mac OS X should be fairly simple. Just visit \url{http://www.ks.uiuc.edu/Development/Download/download.cgi?PackageName=VMD} and download the version (the 1.9.1 version works, but feel free to try the 1.9.2 beta) called *MacOS X OpenGL, CUDA (32-bit Intel x86)*. You will need to create an account, but don't worry. They won't send you any spam. Once you have downloaded the file, open the dmg-file and copy *VMD 1.9.1* into your Applications folder and start the program.
-=== Linux (computer lab) ===
-The installation on Linux requires that we compile the source code. Since we don't have sudo access on the computer lab machines we need to configure the installation path. To simplify this process, we have written an installation script in Python that you can find here: \url{http://folk.uio.no/anderhaf/fys3150/install_vmd_linux.py}. Just download the script and run it with *python install_vmd_linux.py*. When you run the script, *VMD* will be installed in a folder called *VMD* in the directory you run the script from. The same script should work on Ubuntu. The compiled executable is then put in *./VMD/bin/* so that you can run vmd with the command *./VMD/bin/vmd*.
-
-===== Usage =====
-
-VMD is a great tool to look at MD simulations. When you open VMD, you can load the file *movie.xyz* by clicking *File, New Molecule* and browsing to your file. Click *Load* and the file is loaded into VMD. The default representation of atoms isn't very beautiful, so go to *Graphics, Representations* and choose for example *VDW* from the *Drawing Method* list. You can make the spheres smaller by choosing a smaller *Sphere Scale*.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

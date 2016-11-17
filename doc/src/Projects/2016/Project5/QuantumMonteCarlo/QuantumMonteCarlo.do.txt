@@ -180,7 +180,7 @@ and find the energy and variance minima as functions of $\alpha$. Discuss your r
 
 Compute also the expectation value of the mean distance at the energy minimun 
   $r_{12}=\sqrt{\mathbf{r}_1-\mathbf{r}_2}$ between the two electrons for the optimal set of the variational parameters using $\omega=0.01$,
-  $\omega=0.05$ and $\omega=1.0$.  Comment your results. 
+  $\omega=0.5$ and $\omega=1.0$.  Comment your results. 
 You will find it convenient to object orient your code.
 
 
@@ -198,9 +198,9 @@ $\alpha$ in order to see whether you find an even lower energy and so forth.
 
 
 With the optimal parameters for the ground state wave function, compute the expectation values of the  energy and the variance using $\omega=0.01$,
-  $\omega=0.05$ and $\omega=1.0$. How important are the correlations introduced by the Jastrow factor? Comment your results. Compare the best VMC results wth those from project 2 for the same frequencies.  Compute also the expectation value of the mean distance at the energy minimun 
+  $\omega=0.5$ and $\omega=1.0$. How important are the correlations introduced by the Jastrow factor? Comment your results. Compare the best VMC results wth those from project 2 for the same frequencies.  Compute also the expectation value of the mean distance at the energy minimun 
   $r_{12}=\sqrt{\mathbf{r}_1-\mathbf{r}_2}$ between the two electrons for the optimal set of the variational parameters using $\omega=0.01$,
-  $\omega=0.05$ and $\omega=1.0$.  Comment your results and compare the results with and without the Jastrow factor.
+  $\omega=0.5$ and $\omega=1.0$.  Comment your results and compare the results with and without the Jastrow factor.
 
 === Project 5e):   ===
 Finally, we want to test the virial theorem for a range of frequencies. The virial theorem states that the expectation value of the total kinetic energy $\langle T \rangle$ is proportional to the expectation value of the total potential energy $\langle V \rangle$. For a pure harmonic oscillator this proportionality is given by
