@@ -3,8 +3,33 @@
 %% (https://github.com/hplgit/doconce/)
 %%
 %%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
 
+% #define PREAMBLE
 
+% #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
 
 \documentclass[%
@@ -65,6 +90,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \begin{document}
 
 % matching end for #ifdef PREAMBLE
+% #endif
 
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
 
@@ -106,7 +132,7 @@ Fall semester 2016
 \vspace{1cm}
 
 
-\subsection*{Theoretical background and description of the physical system}
+\subsection{Theoretical background and description of the physical system}
 In this project we will implement a model called molecular dynamics (MD). MD allows us to study the dynamics of atoms and explore the phase space. For those of you who are taking FYS2160 - Thermodynamics, this project will be an excellent choice. The atoms interact through a force given as the negative gradient of a potential energy function. With this force, we can integrate Newton's laws. While exploring the phase space, we will sample statistical properties of the system like energy, temperature, pressure, diffusion constant and so on.
 
 We will also learn how to do write object oriented code. You are given
@@ -148,7 +174,7 @@ can skip understanding the contents of \textit{unitconverter.cpp} and
 \textbf{For this project you can collaborate with fellow students and you can  hand in a common report.}
 This project (together with projects 3 and 4) counts 1/3 of the final mark.
 
-\subsection*{Before starting}
+\subsection{Before starting}
 
 Before you start, we would like that you pay attention to the following two steps:
 \begin{enumerate}
@@ -256,12 +282,12 @@ We can use the diffusion constant to find the melting temperature. Atoms in a so
 
 If you want (\textbf{not required, but interesting if you have time}), compare the melting temperature to experimental values for argon. Note that the lattice constant $b$ we have used corresponds to a very high density. You may want to change the lattice constant so that the density matches the experimental setup you found. 
 
-\section*{Link with FYS2160 - what is really going on here?}
+\section{Link with FYS2160 - what is really going on here?}
 The idea of an MD simulation is to sample microstates from a statistical ensemble. In our simulation, we have a constant number of atoms $N$, a constant volume $V$ and a (more or less, depending on our integrator) constant energy $E$. This corresponds to the microcanonical ensemble (NVE). 
 
 Although we produce the dynamics of atoms, we should not see MD as a model that will give the true trajectories of the atoms, but rather a model that allows us to explore the phase space according to the probabilities we can calculate with statistical mechanics. A fundamental assumption in any MD simulation is the ergodic hypothesis. It states that \emph{over long periods of time, the time spent by a system in some region of the phase space of microstates with the same energy is proportional to the volume of this region, i.e., that all accessible microstates are equiprobable over a long period of time}. This means that by evolving the atoms through time will visit microstates of the ensemble according to the true probabilities given by the ensemble.
 
-\section*{Units}
+\section{Units}
 
 The program uses by default a set of units where we have chosen the following four units
 
@@ -291,7 +317,7 @@ This way, we can continue working out the values of the other units. What are th
 
 
 
-\subsection*{Introduction to numerical projects}
+\subsection{Introduction to numerical projects}
 
 Here follows a brief recipe and recommendation on how to write a report for each
 project.
@@ -317,7 +343,7 @@ project.
 \end{itemize}
 
 \noindent
-\subsection*{Format for electronic delivery of report and programs}
+\subsection{Format for electronic delivery of report and programs}
 
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
 
@@ -344,5 +370,7 @@ we encourage you to work two and two together. Optimal working groups consist of
 
 % ------------------- end of main content ---------------
 
+% #ifdef PREAMBLE
 \end{document}
+% #endif
 

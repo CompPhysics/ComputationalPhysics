@@ -114,7 +114,7 @@ Project 5, deadline  December 9, 2016
 % ----------------- author(s) -------------------------
 
 \begin{center}
-{\bf Partial Differential equations${}^{}$} \\ [0mm]
+{\bf Stock Market model${}^{}$} \\ [0mm]
 \end{center}
 
 \begin{center}
@@ -134,136 +134,125 @@ Fall semester 2016
 
 \subsection{Theoretical background and description of the system}
 
-This project is more numerically directed, with tests
-of algorithms for solving partial differential equations using finite difference schemes. 
-Chapter 10 of the lecture notes provides the necessary theoretical background.
+The aim of this project is to simulate financial transactions among financial agents
+using Monte Carlo methods. The final goal is to extract a distribution of income  as function
+of the income $m$.   From Pareto's work (V.~Pareto, 1897) it is known from empirical studies
+that the higher end of the distribution of money follows a distribution 
+\[
+w_m\propto m^{-1-\alpha},
+\]
+with $\alpha\in [1,2]$. We will here follow the analysis made by \href{{http://www.sciencedirect.com/science/article/pii/S0378437104004327}}{Patriarca and collaborators}. 
 
-The physical problem can be that of the temperature gradient in a rod of length $L=1$ or that of channel flow
-between two flat and infinite plates at $x=0$ and $x=1$, where the fluid is initially at rest
-and the plate $x=1$ is given a sudden initial movement.  We are looking at a one-dimensional
-problem
+Here we will study numerically the relation between the micro-dynamic relations among financial 
+agents and the  resulting macroscopic money distribution.
 
-\begin{equation*}
- \frac{\partial^2 u(x,t)}{\partial x^2} =\frac{\partial u(x,t)}{\partial t}, t> 0, x\in [0,L]
-\end{equation*}
-or
-
-\begin{equation*}
-u_{xx} = u_t,
-\end{equation*}
-with initial conditions, i.e., the conditions at $t=0$,
-
-\begin{equation*}
-u(x,0)= 0 \hspace{0.5cm} 0 < x < L
-\end{equation*}
-with $L=1$ the length of the $x$-region of interest. The 
-boundary conditions are
+We assume we have $N$ agents that exchange money in pairs $(i,j)$. We assume also that all agents
+start with the same amount of money $m_0 > 0$. At a given 'time step', we choose randomly a pair
+of agents $(i,j)$ and let a transaction take place. This means that agent $i$'s money $m_i$ changes
+to $m_i'$ and similarly we have $m_j\rightarrow m_j'$. 
+Money is conserved during a transaction, meaning that
+\begin{equation}
+  m_i+m_j=m_i'+m_j'.
+  \label{eq:conserve}
+\end{equation}
+The change is done via a random reassignement (a random number) $\epsilon$, meaning that
 
 \begin{equation*}
-u(0,t)= 0 \hspace{0.5cm} t > 0,
+m_i' = \epsilon(m_i+m_j),
 \end{equation*}
-and
+leading to
 
 \begin{equation*}
-u(L,t)= 1 \hspace{0.5cm} t > 0.
+m_j'= (1-\epsilon)(m_i+m_j).
 \end{equation*}
-The function $u(x,t)$  can be the temperature gradient of a  rod or represent the fluid velocity 
-in a direction parallel to the plates, that is normal to the $x$-axis. In the latter case, 
-for small $t$, only the part of the fluid
-close to the moving plate is set in significant  motion, resulting in a thin boundary layer at $x=1$. 
-As time increases, the velocity approaches a linear variation with $x$. In this case, which can be derived
-from the incompressible Navier-Stokes, the above equations constitute a model for  
-studying friction between moving surfaces separated by a thin fluid film.
-
-In this project we want to study the numerical stability of three methods for partial differential equations
-(PDEs). 
-These methods we will discuss are
-the explicit forward Euler algorithm with discretized versions of time given by a forward formula and a centered difference in space resulting in   
-\begin{equation*} 
-u_t\approx \frac{u(x,t+\Delta t)-u(x,t)}{\Delta t}=\frac{u(x_i,t_j+\Delta t)-u(x_i,t_j)}{\Delta t}
-\end{equation*}
-and
+The number $\epsilon$ is extracted from a uniform distribution.
+In this simple model, no agents are left with a debt, that is $m\ge 0$.
+Due to the conservation law above, one can show that the system relaxes toward an equilibrium
+state given by a Gibbs distribution
 
 \begin{equation*}
-u_{xx}\approx \frac{u(x+\Delta x,t)-2u(x,t)+u(x-\Delta x,t)}{\Delta x^2},
+w_m=\beta \exp{(-\beta m)},
 \end{equation*}
-or
+with
 
 \begin{equation*}
-u_{xx}\approx \frac{u(x_i+\Delta x,t_j)-2u(x_i,t_j)+u(x_i-\Delta x,t_j)}{\Delta x^2}.
+\beta = \frac{1}{\langle m\rangle},
 \end{equation*}
-We will also discuss the implicit Backward Euler with   
-\begin{equation*} 
-u_t\approx \frac{u(x,t)-u(x,t-\Delta t)}{\Delta t}=\frac{u(x_i,t_j)-u(x_i,t_j-\Delta t)}{\Delta t}
-\end{equation*}
-and
+and $\langle m\rangle=\sum_i m_i/N=m_0$, the average money.
+It means that after equilibrium has been reached that the majority of agents is left with a small
+number of money, while the number of richest agents, those with $m$ larger than a specific value $m'$,
+exponentially decreases with $m'$.
 
-\begin{equation*}
-u_{xx}\approx \frac{u(x+\Delta x,t)-2u(x,t)+u(x-\Delta x,t)}{\Delta x^2},
-\end{equation*}
-or
+We assume that we have $N=500$ agents.   In each simulation, we need a sufficiently large number of transactions, say $10^7$. Our aim is find the final equilibrium distribution $w_m$. In order to do that we would need
+several runs of the above simulations, at least $10^3-10^4$ runs (experiments).
 
-\begin{equation*}
-u_{xx}\approx \frac{u(x_i+\Delta x,t_j)-2u(x_i,t_j)+u(x_i-\Delta x,t_j)}{\Delta x^2},
-\end{equation*}
 
-Finally we use the implicit Crank-Nicolson scheme with  a time-centered scheme at $(x,t+\Delta t/2)$   
-\begin{equation*} 
-u_t\approx \frac{u(x,t+\Delta t)-u(x,t)}{\Delta t}=\frac{u(x_i,t_j+\Delta t)-u(x_i,t_j)}{\Delta t}.
-\end{equation*}
-The corresponding spatial second-order derivative reads
-
-\begin{align*}
-u_{xx}\approx &\frac{1}{2}\left(\frac{u(x_i+\Delta x,t_j)-2u(x_i,t_j)+u(x_i-\Delta x,t_j)}{\Delta x^2}\right. +\\
-&\left. \frac{u(x_i+\Delta x,t_j+\Delta t)-2u(x_i,t_j+\Delta t)+u(x_i-\Delta x,t_j+\Delta t)}{\Delta x^2}\right).
-\end{align*}
-Note well that we are using a time-centered scheme wih $t+\Delta t/2$ as center.
 
 
 \textbf{For this project you can collaborate with fellow students and you can  hand in a common report.}
 This project (together with projects 3 and 4) counts 1/3 of the final mark.
 
-\paragraph{Project 5a): Setting up the algorithms.}
-Write down the algorithms for these three methods and the equations you need to implement.
-For the implicit schemes show that the equations lead to a tridiagonal matrix system for the new values.
+\paragraph{Project 5a): Simulation of Transactions.}
+Your task is to first set up an algorithm which simulates the above transactions with an initial
+  amount $m_0$.
+  The challenge here is to figure out a Monte Carlo  simulation  based on the
+  above equations.
+  You will in particular need to make an algorithm which sets up a histogram as function of $m$.
+  This histogram contains the number of times a value $m$ is registered and represents
+  $w_m\Delta m$. You will need to set up a value for the interval $\Delta m$  (typically $0.01-0.05$).
+  That means you need to account for the number of times you register an income in the interval
+  $m,m+\Delta m$. The number of times you register this income, represents the value that enters the histogram.
+  You will also need to find a criterion for when the equilibrium situation has been reached.
 
-\paragraph{Project 5b): Truncation errors and analytic solutions.}
-Find the truncation errors of these three schemes and investigate their stability properties.
-Find also the analytic solution to the continuous problem. 
+\paragraph{Project 5b): Recognizing the distribution.}
+Make thereafter a plot of  $\log{(w_m)}$ as function of $m$
+  and see if you get a straight line.
+  Comment the result.
 
-\paragraph{Project 5c): Implementation.}
-Implement the three algorithms in the same code and perform tests of the solution 
-for these three approaches
-for $\Delta x=1/10$, $h=1/100$ using  $\Delta t$ as dictated by the stability limit of the explicit scheme.
-Study the solutions at two time points $t_1$ and $t_2$ where $u(x,t_1)$ is smooth but still significantly curved
-and $u(x,t_2)$ is almost linear, close to the stationary state.
-Remember that forsolving the tridiagonal equations you can use your code from project 1.  
-\paragraph{Project 5d):}
-Compare the solutions at $t_1$ and $t_2$ with the analytic result for the continuous problem.
-Which of the schemes would you classify as the best?
+\paragraph{Project 5c): Transactions and savings.}
+We can then change our model to allow for a saving criterion, meaning that the agents save
+  a fraction $\lambda$ of the money they have before the transaction is made. The final distribution will then no longer be given by Gibbs distribution. It could also include a taxation on financial transactions.
 
-\paragraph{Project 5e): Moving to two dimensions.}
-Extend the code you have developed here to two
-  dimensions. 
-It means that we deal with a $2+1$ dimensional problem. Our differential equation becomes
-\[
- \frac{\partial^2 u(x,y,t)}{\partial x^2}+\frac{\partial^2 u(x,y,t)}{\partial y^2} =\frac{\partial u(x,y,t)}{\partial t}, t> 0, x,y\in [0,1],
-\]
-where we now have made a model with a square lattice for $x$ and $y$. 
-How would you extend the boundary conditions from one dimension to two dimensions? And can you
-  find a closed form solution here as well?  It is left to you to decide upon what kind of boundary conditions
-you deem appropriate.
-\paragraph{Project 5f): Solving the two-dimensional equations numerically.}
-Implement the implicit scheme discussed in chapter 10 of the lecture notes using Jacobi's method as the iterative method.
-Outline the algorithm for solving the two-dimensional diffusion equation and 
-implement the implicit scheme as function of $\Delta x$ (assuming
-$\Delta x = \Delta y$) and $\Delta t$. Solve the equations numerically and give a critical discussion of your results. 
-Compare your results with the closed-form answer. Discuss the stability
-of the solution as function of different values of $\Delta x$  and $\Delta t$. 
+  The conservation law of Eq. (\ref{eq:conserve}) holds, but the money to be shared in a transaction between
+  agent $i$ and agent $j$ is now $(1-\lambda)(m_i+m_j)$. This means that we have
 
-You should parallelize the equations using MPI. 
+\begin{equation*}
+  m_i' = \lambda m_i+\epsilon(1-\lambda)(m_i+m_j),
+  \end{equation*}
+  and
 
+\begin{equation*}
+  m_j' = \lambda m_j+(1-\epsilon)(1-\lambda)(m_i+m_j),
+  \end{equation*}
+  which can be written as
 
+\begin{equation*}
+  m_i'=m_i+\delta m
+  \end{equation*}
+  and
+
+\begin{equation*}
+  m_j'=m_j-\delta m,
+  \end{equation*}
+  with
+
+\begin{equation*}
+  \delta m=(1-\lambda)(\epsilon m_j-(1-\epsilon)m_i),
+  \end{equation*}
+  showing how money is conserved during a transaction.
+  Select values of $\lambda =0.25,0.5$ and $\lambda=0.9$ and try to extract the corresponding
+  equilibrium distributions and compare these with the Gibbs distribution. Comment your results.
+  If you have time, see if you can extract a parametrization of the above curves, see for example \href{{http://www.sciencedirect.com/science/article/pii/S0378437104004327}}{Patriarca and collaborators}. 
+
+\paragraph{Project 5d): To be added.}
+\paragraph{Project 5e): To be added.}
+\subsection{Background literature}
+
+\begin{itemize}
+   \item \href{{http://www.sciencedirect.com/science/article/pii/S0378437104004327}}{M. Patriarca, A. Chakraborti, K. Kaski, Physica A \textbf{340}, 334 (2004)}
+\end{itemize}
+
+\noindent
 \subsection{Introduction to numerical projects}
 
 Here follows a brief recipe and recommendation on how to write a report for each
@@ -310,6 +299,21 @@ The preferred format for the report is a PDF file. You can also use DOC or posts
 Finally, 
 we encourage you to work two and two together. Optimal working groups consist of 
 2-3 students. For this specific report you can  hand in a common report.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
