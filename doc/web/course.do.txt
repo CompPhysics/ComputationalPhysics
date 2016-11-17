@@ -134,6 +134,42 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/QuantumMonteCarlo/ipynb/QuantumMonteCarlo.ipynb"
 
 
+=== Project 5 Molecular Dynamics ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/MolecularDynamics/pdf/MolecularDynamics.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/MolecularDynamics/pdf/MolecularDynamics.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/MolecularDynamics/html/MolecularDynamics.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/MolecularDynamics/html/MolecularDynamics-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/MolecularDynamics/ipynb/MolecularDynamics.ipynb"
+
+
+=== Project 5 Monte Carlo Modeling of Transactions ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/FinancialEngineering/pdf/FinancialEngineering.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/FinancialEngineering/pdf/FinancialEngineering.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/FinancialEngineering/html/FinancialEngineering.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/FinancialEngineering/html/FinancialEngineering-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/FinancialEngineering/ipynb/FinancialEngineering.ipynb"
+
+
+=== Project 5 Partial Differential Equations ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/PartialDiffEquations/pdf/PartialDiffEquations.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/PartialDiffEquations/pdf/PartialDiffEquations.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/PartialDiffEquations/html/PartialDiffEquations.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/PartialDiffEquations/html/PartialDiffEquations-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/PartialDiffEquations/ipynb/PartialDiffEquations.ipynb"
+
+
+
+
+
 !split
 ===== Teaching schedule Fall 2016 =====
 
@@ -177,6 +213,7 @@ ${text_types(ch)}
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 46| Variational Monte Carlo                             |                                  | Section 14.5     | Work on project 5 |
 |        |  Presentation of final projects                     |                                  |                  |       |   
+| | Partial differential equations                     |                                  |  Sections 10.1-10.2 |   |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 47 | Partial differential equations                     |                                  |  Sections 10.1-10.2 | Work on project 5   |
 |----------------------------------------------------------------------------------------------------------------------------|
