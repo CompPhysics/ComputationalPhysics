@@ -164,6 +164,11 @@ of the solution as function of different values of $\Delta x$  and $\Delta t$.
 You should parallelize the equations using MPI. 
 
 
+=== References ===
+
+A very good reference is the textbook by "Winther and Tveito on partial differential equations":"http://www.springer.com/us/book/9783540225515". It is available online "from the University library":"https://vpn2.uio.no/+CSCO+0h756767633A2F2F797661782E66636576617472652E70627A++/book/10.1007/b138016/page/1".
+
+
 ===== Introduction to numerical projects =====
 
 Here follows a brief recipe and recommendation on how to write a report for each

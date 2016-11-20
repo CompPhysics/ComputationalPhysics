@@ -48,3 +48,29 @@ In the folder
 
     shared/guides/starting_jobs 
 you will find a simple example on how to set up a job and compile and run. This files are write protected. Copy them to your own folder and compile and run there. For more information see the readme file under the program folder.
+
+For Qt users on OSX, the following recipe should allow you to run mpi:
+
+After installing open-mpi
+
+Get info from the terminal:
+~ username$ which mpic++
+/usr/local/bin/mpic++
+
+~ username$ mpic++ --showme:compile
+-I/usr/local/Cellar/open-mpi/2.0.1/include
+
+~ username$ mpic++ --showme:link
+-L/usr/local/opt/libevent/lib -L/usr/local/Cellar/open-mpi/2.0.1/lib -lmpi
+
+Add the paths of compile and link to the ".pro" file
+INCLUDEPATH += /usr/local/Cellar/open-mpi/2.0.1/include
+LIBS += -L/usr/local/opt/libevent/lib -L/usr/local/Cellar/open-mpi/2.0.1/lib -lmpi
+
+Compile with -O3 flag and C++11:
+Project-path username$ mpicxx -std=c++11 -O3 -o code.x main.cpp
+If you have more than just main.cpp, use
+Project-path username$ mpicxx -std=c++11 -O3 -o code.x *.cpp 
+
+Run with 4 threads:
+Project-path username$ mpirun -n 4 ./code.x
