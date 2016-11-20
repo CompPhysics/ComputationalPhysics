@@ -167,6 +167,17 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/PartialDiffEquations/ipynb/PartialDiffEquations.ipynb"
 
 
+=== Project 5 Astrophysics project ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/AstroProject/pdf/AstroProject.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/AstroProject/pdf/AstroProject.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/AstroProject/html/AstroProject.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/AstroProject/html/AstroProject-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/AstroProject/ipynb/AstroProject.ipynb"
+
+
 
 
 
