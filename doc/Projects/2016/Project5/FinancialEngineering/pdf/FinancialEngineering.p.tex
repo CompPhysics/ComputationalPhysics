@@ -136,7 +136,7 @@ Fall semester 2016
 
 The aim of this project is to simulate financial transactions among financial agents
 using Monte Carlo methods. The final goal is to extract a distribution of income  as function
-of the income $m$.   From Pareto's work (V.~Pareto, 1897) it is known from empirical studies
+of the income $m$.   From Pareto's work (\href{{http://www.institutcoppet.org/2012/05/08/cours-deconomie-politique-1896-de-vilfredo-pareto}}{V.~Pareto, 1897}) it is known from empirical studies
 that the higher end of the distribution of money follows a distribution 
 \[
 w_m\propto m^{-1-\alpha},
@@ -242,14 +242,43 @@ We can then change our model to allow for a saving criterion, meaning that the a
   showing how money is conserved during a transaction.
   Select values of $\lambda =0.25,0.5$ and $\lambda=0.9$ and try to extract the corresponding
   equilibrium distributions and compare these with the Gibbs distribution. Comment your results.
-  If you have time, see if you can extract a parametrization of the above curves, see for example \href{{http://www.sciencedirect.com/science/article/pii/S0378437104004327}}{Patriarca and collaborators}. 
+Extract a parametrization of the above curves, see for example \href{{http://www.sciencedirect.com/science/article/pii/S0378437104004327}}{Patriarca and collaborators} and see if you can parametrize the high-end tails of the distributions in terms of power laws. Comment your results.
 
-\paragraph{Project 5d): To be added.}
-\paragraph{Project 5e): To be added.}
+\paragraph{Project 5d): Nearest neighbor interactions.}
+In the rest of this project we will follow the work of \href{{http://www.sciencedirect.com/science/article/pii/S0378437114006967}}{Goswami and Sen}. 
+In the studies above the agents were selected randomly, irrespective of whether we allowed for
+saving or not during a transaction. What is often observed is that various agents tend to make preferences for for whom to interact with. We will now study the evolution of the distribution of wealth $w_m$ by assuming that there is a likelihood 
+\[
+p_{ij} \propto \vert m_i-m_j\vert^{-\alpha},
+\]
+for an interaction between agents $i$ and $j$ with respective wealths $m_i$ and $m_j$. The parameter  $\alpha >  0$. For $\alpha=0$ we recover our model from part 5a). 
+Perform the same analysis as previously with $N=500$ as well as with $N=1000$ agents and study the distribution of wealth for $\alpha =0.5$, $\alpha =1.0$, $\alpha =1.5$ and $\alpha =2.0$. 
+You should try to reproduce Figure 1 of \href{{http://www.sciencedirect.com/science/article/pii/S0378437114006967}}{Goswami and Sen}. 
+Extract the tail of the distribution and see if it follows a Pareto distribution
+\[
+w_m\propto m^{-1-\alpha}. 
+\]
+What happens if $\alpha \gg 1$?
+
+Perform the analysis with and without a saving $\lambda$ on each transaction and comment your results. 
+\paragraph{Project 5e): Nearest neighbors and former  transactions.}
+We add to the previous probability the possibility that two agents who interact have performed similar transactions earlier. That is, in addition to being financially close, we assume that the likelihood for interacting increases if two agents have interacted earlier. 
+We add this feature by modifying the previous likelihood to
+\[
+p_{ij} \propto \vert m_i-m_j\vert^{-\alpha}\left(c_{ij}+1\right)^{\gamma},
+\]
+where $c_{ij}$ represents the number of  previous interactions that have taken place between $i$ and $j$. The factor $1$ is added in order to ensure that if they have not interacted earlier they can still interact.  Perform similar studies as above with $N=1000$, $\alpha=1.0$ and $\alpha=2.0$ using $\gamma = 0.0, 1.0, 2.0, 3.0$ and $4.0$. Plot the wealth distributions for these cases and try to extract eventual power law tails with and without a saving $\lambda$ in each transaction. Comment your results and compare them with figures 5 and 6 of \href{{http://www.sciencedirect.com/science/article/pii/S0378437114006967}}{Goswami and Sen}.  
+
+Finally, (this part is optional) if you have time, which features would you add to these models in order to make them even more realistic? 
+
 \subsection{Background literature}
 
 \begin{itemize}
-   \item \href{{http://www.sciencedirect.com/science/article/pii/S0378437104004327}}{M. Patriarca, A. Chakraborti, K. Kaski, Physica A \textbf{340}, 334 (2004)}
+  \item \href{{http://www.institutcoppet.org/2012/05/08/cours-deconomie-politique-1896-de-vilfredo-pareto}}{V. Pareto, Cours d'economie politique, Lausanne, 1897}.
+
+  \item \href{{http://www.sciencedirect.com/science/article/pii/S0378437104004327}}{M. Patriarca, A. Chakraborti, K. Kaski, Physica A \textbf{340}, 334 (2004)}.
+
+  \item \href{{http://www.sciencedirect.com/science/article/pii/S0378437114006967}}{S. Goswami and P. Sen, Physica A \textbf{415}, 514 (2014)}.
 \end{itemize}
 
 \noindent
