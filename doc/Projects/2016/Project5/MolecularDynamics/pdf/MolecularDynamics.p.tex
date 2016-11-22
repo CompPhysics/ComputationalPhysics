@@ -133,7 +133,7 @@ Fall semester 2016
 
 
 \subsection{Theoretical background and description of the physical system}
-In this project we will implement a model called molecular dynamics (MD). MD allows us to study the dynamics of atoms and explore the phase space. For those of you who are taking FYS2160 - Thermodynamics, this project will be an excellent choice. The atoms interact through a force given as the negative gradient of a potential energy function. With this force, we can integrate Newton's laws. While exploring the phase space, we will sample statistical properties of the system like energy, temperature, pressure, diffusion constant and so on.
+In this project we will implement a model called molecular dynamics (MD). Molecular dynamics allows us to study the dynamics of atoms and explore the phase space. For those of you who are taking FYS2160 - Thermodynamics, this project will be an excellent choice. The atoms interact through a force given by the negative gradient of a potential energy function. With this force, we can integrate Newton's laws. While exploring the phase space, we will sample statistical properties of the system like energy, temperature, pressure, diffusion constant and so on.
 
 We will also learn how to do write object oriented code. You are given
 a code skeleton that contains the basic structure of an MD code, but
@@ -159,12 +159,13 @@ T}\right)^{1/2} \exp\left(-\frac{m v_i^2}{2k_B T}\right)d\mathrm{v}_i,
 where $m$ is the mass of the atom, $k_B$ is
 Boltzmann's constant and $T$ is the temperature. We recognize this as
 a normal distribution with zero mean and standard deviation $\sigma =
-\sqrt{k_B T/m}$. The program will evolve the system in time with no
+\sqrt{k_B T/m}$. We recognize this also as the Boltzmann distribution $P(E) \propto \exp{(-\beta E)}$, with $E = 0.5mv^2$.
+The program will evolve the system in time with no
 forces so that all atoms move in a straight line. It will create a
 file called \emph{movie.xyz} containing all the timesteps ready to
 visualize with for example Ovito. You can download Ovito from this \href{{http://www.ovito.org/index.php/download}}{site}. You should start
 with the fun part - to look at the simulation in Ovito. We then
-strongly recommend you to, before you start, look at the code
+strongly recommend that, before you start, you look at the code
 structure and try to understand how the different classes are
 connected to each other and how a typical timestep is computed. You
 can skip understanding the contents of \emph{unitconverter.cpp} and \emph{vec3.cpp}.
@@ -177,19 +178,19 @@ This project (together with projects 3 and 4) counts 1/3 of the final mark.
 
 Before you start, we would like that you pay attention to the following two steps:
 \begin{enumerate}
- \item First, spend some 30 minutes figuring out what molecular dynamics is and what problems it can be used to understand. What areas of physics can it be used in? What about chemistry and biology? What you find here should be part of your introduction section in your report.
+ \item First, spend some 30 minutes figuring out what molecular dynamics is and which problems it can be applied to. What areas of physics can it be used in? What about chemistry and biology? What you find here should be part of the  introductory section in your report.
 
- \item Then run the program, visualize the output with for example Ovito (as mentioned above). Now, spend some 30-60 minutes looking at the code and understand how the output is produced and try to understand every step in the code. The best way to do this is to start at the top of the \emph{main()} function and follow every line and every function call, step by step. \textbf{As a part if your report, you should explain the code structure and draw a flow chart (a diagram showing how the program is executed).} This part is extremely important and will save you a lot of time. And of course, please ask us teachers if you have any questions!
+ \item Then run the program, visualize the output with for example Ovito (as mentioned above). Now, spend some 30-60 minutes looking at the code and understand how the output is produced and try to understand every step in the code. The best way to do this is to start at the top of the \emph{main()} function and follow every line and every function call, step by step. \textbf{As a part of your report, you should explain the code structure and draw a flow chart (a diagram showing how the program is executed).} This part is extremely important and will save you a lot of time. And of course, please ask us teachers if you have any questions!
 \end{enumerate}
 
 \noindent
-\paragraph{Project 5a):}
+\paragraph{Project 5a): Getting started.}
 When working with MD, the system size is usually limited by available computer resources. A typical large MD simulation (with a parallelized code) contains a few million atoms corresponding to a system much smaller than a cubic micron. In order to get rid of boundary effects, we usually apply periodic boundary conditions so that we simulate a system of infinite size. You need to implement the \emph{applyPeriodicBoundaryConditions} function in the \emph{System} class. After doing so, run the program again and notice how the atoms now are contained inside a box. Discuss the benefits of this strategy.
 
-\paragraph{Project 5b):}
+\paragraph{Project 5b): Velocity distribution.}
 The atoms are usually given velocities according to the Maxwell-Boltzmann distribution (you should discuss why this is the case) which will result in a nonzero net momentum in the system. Implement the \emph{removeMomentum} function in the \emph{System} class so that the net momentum is zero.
 
-\paragraph{Project 5c):}
+\paragraph{Project 5c): FCC lattice.}
 The atoms are now uniformly distributed in space. This is not very physical, so we should place the atoms in a crystal structure. When we later implement the Lennard-Jones potential, we will see that the face-centered cubic (FCC) lattice is a stable structure for the potential (it is actually the crystalline structure of argon). A lattice is built up by \emph{unit cells} - a group of atoms - so that a larger system can be created by repeating these cells in space. An FCC lattice unit cell of size $b$ in Angstroms (this is the lattice constant) consists of four atoms with local coordinates
 
 \begin{align}
@@ -208,9 +209,9 @@ where $i=0,1,..., N_x-1, j=0,1,..., N_y-1, k=0,1,..., N_z-1$. The unit vectors o
 \begin{align}
 	\hat{\mathbf{u}}_1 = b\hat{\mathbf{i}}, \quad \hat{\mathbf{u}}_2 = b\hat{\mathbf{j}}, \quad \hat{\mathbf{u}}_3 = b\hat{\mathbf{k}}.
 \end{align}
-Implement the function \emph{createFCCLattice(int numberOfUnitCellsEachDimension, double latticeConstant)} in the \emph{System} class. Remember to remove the 100 atoms that are created as the code is right now. Use lattice constant $b=5.26$ $\mathrm{Angstrom}$. Remember to update the system size so the \emph{applyPeriodicBoundaryConditions} function works properly. If you now visualize the result of the program, you should see the nice crystallic structure in the beginning of the simulation. What is the density $\rho$ in your system?
+Implement the function \emph{createFCCLattice(int numberOfUnitCellsEachDimension, double latticeConstant)} in the \emph{System} class. Remember to remove the 100 atoms that are created as the code is right now. Use lattice constant $b=5.26$ $\mathrm{Angstrom}$. Remember to update the system size so the \emph{applyPeriodicBoundaryConditions} function works properly. If you now visualize the result of the program, you should see the nice crystalline structure in the beginning of the simulation. What is the density $\rho$ in your system?
 
-\paragraph{Project 5d):}
+\paragraph{Project 5d): Calculation of forces.}
 While this looks nice, we need to implement the computation of forces in order to see interesting physics. In this project, we will use the \href{{http://en.wikipedia.org/wiki/Lennard-Jones_potential}}{Lennard-Jones potential}  which calculates the energy between two atoms $i$ and $j$ as
 
 \begin{align}
@@ -221,7 +222,7 @@ where $r_{ij} = \vert\mathbf{r}_i - \mathbf{r}_j\vert$ is the distance from atom
 \begin{align}
 	\frac{\epsilon}{k_B} = 119.8\mathrm{K}, \sigma=3.405 \mathrm{Angstrom}.
 \end{align}
-In our code, we use the so called MD units (see the units definition at the end). This potential reproduces equilibrium thermodynamic properties that are in good agreement with experimental values for argon. The equation of state for this system is the van der Waals equation of state. Phases such as solid, liquid and gas are reproduced from this simple model with phase transitions and other properties as well with a  remarkable agreement with data.
+In our code, we use the so called MD units (see the units definition at the end). This potential reproduces thermodynamic equilibrium properties that are in good agreement with experimental values for argon. The equation of state for this system is the van der Waals equation of state. Phases such as solid, liquid and gas are reproduced from this simple model with phase transitions and other properties as well with a  remarkable agreement with data.
 
 The total potential energy $V$ in the system is computed by summing over all pairs of atoms (counting each pair only once)
 
@@ -242,8 +243,8 @@ where $x_{ij}$ is the $x$-component of $\mathbf{r}_{ij}$.
 
 Calculate (analytically) the force and implement the \emph{calculateForces} function in the LennardJones class, using the Velocity Verlet algorithm that you developed for project 3. You will have to take care of the periodic boundary conditions. You could use the minimum image convention as described \href{{http://en.wikipedia.org/wiki/Periodic_boundary_conditions}}{here}. Now run the simulation with 5 unit cells in each dimension (500 atoms) for different initial temperatures. Can you tell if the system is in a solid state just by looking at the system in Ovito? At what initial temperature is the crystal melting?
 
-\paragraph{Project 5e):}
-We now have a working Molecular dynamics code! Congratulations, well done. The next step is to calculate some physical properties of the system. The easiest properties to measure are the kinetic and potential energy (calculated in the LennardJones class). The kinetic energy is of course defined as
+\paragraph{Project 5e): Kinetic and potential energies.}
+We now have a working Molecular dynamics code! The next step is to calculate some physical properties of the system. The easiest properties to measure are the kinetic and potential energy (calculated in the LennardJones class). The kinetic energy is defined as
 
 \begin{align}
 	E_k = \sum_{i=1}^{N_\text{atoms}} \frac{1}{2} m_i v_i^2,
@@ -262,9 +263,9 @@ We can use this to define an \emph{instantaneous} temperature
 
 All of these quantities should be calculated in the \emph{StatisticsSampler} class. All the statistical quantities should be saved to a file which needs to be implemented in the \emph{saveToFile} function in the same class. 
 
-As you will see, since the temperature is proportional to the kinetic energy, its initial value will drop in the beginning when the system is initialized in the crystal structure. Why does this happen? What happens to the total energy? In order to have a system with final temperature $T$, what initial temperature $T_i$ is needed? What is the ratio $T/T_i$? Again visualize with for example \emph{Ovito} and use your eyes to determine at what temperature the system actually melts at. After the temperature drops, it will reach a more or less stable value. The system is then said to be in an equilibrium state.
+As you will see, since the temperature is proportional to the kinetic energy, its initial value will drop in the beginning when the system is initialized in the crystal structure. Why does this happen? What happens to the total energy? In order to have a system with final temperature $T$, what initial temperature $T_i$ is needed? What is the ratio $T/T_i$? Do multiple simulations with different random seeds and plot this ratio as a function of time. Again visualize with for example \emph{Ovito} and try to determine at what temperature the system actually melts at. After the temperature drops, it will reach a more or less stable value. The system is then said to be in an equilibrium state.
 
-\paragraph{Project 5f):}
+\paragraph{Project 5f): Diffusion constant.}
 The last exercise is to compute the diffusion constant and use this to measure the melting temperature. We use the Einstein relation that relates the so called mean square displacement (MSD) to the diffusion constant
 
 \begin{align}
@@ -277,9 +278,8 @@ where $D$ is the diffusion constant, $t$ is time. The mean square displacement f
 \end{align}
 where $\mathbf{r}_i(t)$ is the position of atom $i$ at time $t$. When you implement this you need to add the initial position as a new property in the \emph{Atom} class. You also need to update the \emph{applyPeriodicBoundaryConditions} so that $r_i^2(t)$ is the actual displacement as if no periodic boundary condition has occured. Why is this important?
 
-We can use the diffusion constant to find the melting temperature. Atoms in a solid will not diffuse much, so a solid will have a diffusion constant close to zero. Now solve the Einstein relation for the diffusion constant $D$ and add a function in \emph{StatisticsSampler} measuring this quantity. Plot the diffusion constant as a function for different temperatures $T$ and use this to find an estimate for the melting temperature. Use what you found in f) to make sure you simulate temperatures both above and below the melting temperature. Also remember not to use the initial temperature, but the measured temperature after the system has reached equilibrium. You can use the builtin \emph{UnitConverter} to convert the temperature to SI units as illustrated in the top of the \emph{main} function. 
+We can use the diffusion constant to find the melting temperature. Atoms in a solid will not diffuse much, meaning that a solid will have a diffusion constant close to zero. Now solve the Einstein relation for the diffusion constant $D$ and add a function in \emph{StatisticsSampler} thats measures this quantity. Plot the diffusion constant as a function of temperature $T$ and use this to find an estimate for the melting temperature. Use what you found earlier  to make sure you simulate temperatures both above and below the melting temperature. Also remember not to use the initial temperature, but the measured temperature after the system has reached equilibrium. You can use the builtin \emph{UnitConverter} to convert the temperature to SI units as illustrated in the top of the \emph{main} function. 
 
-If you want (\textbf{not required, but interesting if you have time}), compare the melting temperature to experimental values for argon. Note that the lattice constant $b$ we have used corresponds to a very high density. You may want to change the lattice constant so that the density matches the experimental setup you found. 
 
 \section{Link with FYS2160 - what is really going on here?}
 The idea of an MD simulation is to sample microstates from a statistical ensemble. In our simulation, we have a constant number of atoms $N$, a constant volume $V$ and a (more or less, depending on our integrator) constant energy $E$. This corresponds to the microcanonical ensemble (NVE). 
@@ -288,7 +288,7 @@ Although we produce the dynamics of atoms, we should not see MD as a model that 
 
 \section{Units}
 
-The program uses by default a set of units where we have chosen the following four units
+The program uses by default a set of units. We have chosen the following four units
 
 \begin{align}
 	\text{1 unit of mass } &= 1 \text{ a.m.u} = 1.661\times 10^{-27}\mathrm{kg},\\
