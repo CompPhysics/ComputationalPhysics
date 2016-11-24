@@ -1,11 +1,8 @@
-# -*- coding: utf-8 -*-
 
 # Code for solving du/dt = ddu/ddx on a rectangular grid
 # of size L x (T*dt),
 # with with L = 1, u(x,0) = g(x), u(0,t) = u(L,t) = 0
 #
-# Based on the code/analysis i wrote for project5
-# Kyrre Ness Sjøbæk, k.n.sjobak (at) fys.uio.no
 
 import numpy,math
 import sys

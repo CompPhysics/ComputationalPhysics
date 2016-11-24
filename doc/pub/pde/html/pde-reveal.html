@@ -2006,7 +2006,7 @@ With \( n+1 \) mesh points the equations for \( u \) result in a system of \( (n
 
 <section>
 <h2 id="___sec57">Scheme for solving Laplace's (Poisson's) equation </h2>
-We rewrite Eq. (ref{eq:poissonscheme}
+We rewrite Eq. <a href="#mjx-eqn-18">(18)</a>
 
 <p>&nbsp;<br>
 $$
@@ -2599,7 +2599,306 @@ iterative schemes like the Jacobi or the Gauss-Seidel methods will converge to t
 
 
 <section>
-<h2 id="___sec75">Wave Equation in two Dimensions </h2>
+<h2 id="___sec75"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/Jacobi.cpp" target="_blank">Solving project 1 again but now with Jacobi's method</a> </h2>
+Let us revisit project 1 and the Thomas algorithm for solving a system of tridiagonal matrices for  the equation 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">//  Solves linear equations for simple tridiagonal matrix using the iterative Jacobi method</span>
+....
+<span style="color: #228B22">// Begin main program</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> main(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[]){
+     <span style="color: #228B22">// missing statements, see code link above</span>
+
+      mat A = zeros&lt;mat&gt;(n,n);
+      <span style="color: #228B22">// Set up arrays for the simple case</span>
+      vec <span style="color: #008b45">b</span>(n);  vec <span style="color: #008b45">x</span>(n);
+      A(<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>) = -<span style="color: #B452CD">1</span>;  x(<span style="color: #B452CD">0</span>) = h;  b(<span style="color: #B452CD">0</span>) =  hh*f(x(<span style="color: #B452CD">0</span>)); 
+      x(n-<span style="color: #B452CD">1</span>) = x(<span style="color: #B452CD">0</span>)+(n-<span style="color: #B452CD">1</span>)*h; b(n-<span style="color: #B452CD">1</span>) = hh*f(x(n-<span style="color: #B452CD">1</span>)); 
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n-<span style="color: #B452CD">1</span>; i++){ 
+        x(i) = x(i-<span style="color: #B452CD">1</span>)+h; 
+	b(i) = hh*f(x(i));
+        A(i,i-<span style="color: #B452CD">1</span>)  = -<span style="color: #B452CD">1.0</span>;
+        A(i,i+<span style="color: #B452CD">1</span>)  = -<span style="color: #B452CD">1.0</span>;
+      }
+     A(n-<span style="color: #B452CD">2</span>,n-<span style="color: #B452CD">1</span>) = -<span style="color: #B452CD">1.0</span>; A(n-<span style="color: #B452CD">1</span>,n-<span style="color: #B452CD">2</span>) = -<span style="color: #B452CD">1.0</span>;
+  <span style="color: #228B22">// solve Ax = b by iteration with a random starting vector</span>
+     <span style="color: #a7a7a7; font-weight: bold">int</span> maxiter = <span style="color: #B452CD">100</span>; <span style="color: #a7a7a7; font-weight: bold">double</span> diff = <span style="color: #B452CD">1.0</span>; 
+     <span style="color: #a7a7a7; font-weight: bold">double</span> epsilon = <span style="color: #B452CD">1.0e-10</span>;  <span style="color: #a7a7a7; font-weight: bold">int</span> iter = <span style="color: #B452CD">0</span>;
+      vec SolutionOld  = randu&lt;vec&gt;(n);
+      vec SolutionNew  = zeros&lt;vec&gt;(n);
+      <span style="color: #8B008B; font-weight: bold">while</span> (iter &lt;= maxiter || diff &gt; epsilon){
+	SolutionNew = (b -A*SolutionOld)*<span style="color: #B452CD">0.5</span>; 
+        iter++; diff = fabs(sum(SolutionNew-SolutionOld)/n);
+        SolutionOld = SolutionNew;
+      }
+      vec solution = SolutionOld;}
+</pre></div>
+</section>
+
+
+<section>
+<h2 id="___sec76"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp" target="_blank">Program to solve Jacobi's method in two dimension</a> </h2>
+The following program sets up the diffusion equation solver in two spatial dimensions using Jacobi's method. Note that we have skipped a loop over time. This has to be inserted in order to perform the calculations. 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">/* Simple program for solving the two-dimensional diffusion </span>
+<span style="color: #228B22">   equation or Poisson equation using Jacobi&#39;s iterative method</span>
+<span style="color: #228B22">   Note that this program does not contain a loop over the time </span>
+<span style="color: #228B22">   dependence.</span>
+<span style="color: #228B22">*/</span>
+
+<span style="color: #1e889b">#include &lt;iostream&gt;</span>
+<span style="color: #1e889b">#include &lt;iomanip&gt;</span>
+<span style="color: #1e889b">#include &lt;armadillo&gt;</span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, mat &amp;, mat &amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>);
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> * argv[]){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> Npoints = <span style="color: #B452CD">40</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> ExactSolution;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> dx = <span style="color: #B452CD">1.0</span>/(Npoints-<span style="color: #B452CD">1</span>);
+  <span style="color: #a7a7a7; font-weight: bold">double</span> dt = <span style="color: #B452CD">0.25</span>*dx*dx;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> tolerance = <span style="color: #B452CD">1.0e-14</span>;
+  mat A = zeros&lt;mat&gt;(Npoints,Npoints);
+  mat q = zeros&lt;mat&gt;(Npoints,Npoints);
+
+  <span style="color: #228B22">// setting up an additional source term</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++)
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; Npoints; j++)
+      q(i,j) = -<span style="color: #B452CD">2.0</span>*M_PI*M_PI*sin(M_PI*dx*i)*sin(M_PI*dx*j);
+    
+  <span style="color: #a7a7a7; font-weight: bold">int</span> itcount = JacobiSolver(Npoints,dx,dt,A,q,tolerance);
+ 
+  <span style="color: #228B22">// Testing against exact solution</span>
+  <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++){
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j &lt; Npoints; j++){
+      ExactSolution = -sin(M_PI*dx*i)*sin(M_PI*dx*j);
+      sum += fabs((A(i,j) - ExactSolution));
+    }
+  }
+  cout &lt;&lt; setprecision(<span style="color: #B452CD">5</span>) &lt;&lt; setiosflags(ios::scientific);
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Jacobi method with error &quot;</span> &lt;&lt; sum/Npoints &lt;&lt; <span style="color: #CD5555">&quot; in &quot;</span> &lt;&lt; itcount &lt;&lt; <span style="color: #CD5555">&quot; iterations&quot;</span> &lt;&lt; endl;
+}
+</pre></div>
+</section>
+
+
+<section>
+<h2 id="___sec77"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp" target="_blank">The Jacobi solver function</a> </h2>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">// Function for setting up the iterative Jacobi solver</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #a7a7a7; font-weight: bold">double</span> dx, <span style="color: #a7a7a7; font-weight: bold">double</span> dt, mat &amp;A, mat &amp;q, <span style="color: #a7a7a7; font-weight: bold">double</span> abstol)
+{
+  <span style="color: #a7a7a7; font-weight: bold">int</span> MaxIterations = <span style="color: #B452CD">100000</span>;
+  mat Aold = zeros&lt;mat&gt;(N,N);
+  
+  <span style="color: #a7a7a7; font-weight: bold">double</span> D = dt/(dx*dx);
+  
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>;  i &lt; N-<span style="color: #B452CD">1</span>; i++)
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">1</span>; j &lt; N-<span style="color: #B452CD">1</span>; j++)
+      Aold(i,j) = <span style="color: #B452CD">1.0</span>;
+  
+  <span style="color: #228B22">// Boundary Conditions -- all zeros</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i &lt; N; i++){
+    A(<span style="color: #B452CD">0</span>,i) = <span style="color: #B452CD">0.0</span>;
+    A(N-<span style="color: #B452CD">1</span>,i) = <span style="color: #B452CD">0.0</span>;
+    A(i,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.0</span>;
+    A(i,N-<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">0.0</span>;
+  }
+  <span style="color: #228B22">// Start the iterative solver</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> k = <span style="color: #B452CD">0</span>; k &lt; MaxIterations; k++){
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; N-<span style="color: #B452CD">1</span>; i++){
+      <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">1</span>; j &lt; N-<span style="color: #B452CD">1</span>; j++){
+	A(i,j) = dt*q(i,j) + Aold(i,j) +
+	  D*(Aold(i+<span style="color: #B452CD">1</span>,j) + Aold(i,j+<span style="color: #B452CD">1</span>) - <span style="color: #B452CD">4.0</span>*Aold(i,j) + 
+	     Aold(i-<span style="color: #B452CD">1</span>,j) + Aold(i,j-<span style="color: #B452CD">1</span>));
+      }
+    }
+    <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; N;i++){
+      <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; N;j++){
+	sum += (Aold(i,j)-A(i,j))*(Aold(i,j)-A(i,j));
+	Aold(i,j) = A(i,j);
+      }
+    }
+    <span style="color: #8B008B; font-weight: bold">if</span>(sqrt (sum) &lt;abstol){
+      <span style="color: #8B008B; font-weight: bold">return</span> k;
+    }
+  }
+  cerr &lt;&lt; <span style="color: #CD5555">&quot;Jacobi: Maximum Number of Interations Reached Without Convergence\n&quot;</span>;
+  <span style="color: #8B008B; font-weight: bold">return</span> MaxIterations;
+}
+</pre></div>
+</section>
+
+
+<section>
+<h2 id="___sec78"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp" target="_blank">Parallel Jacobi</a> </h2>
+
+<p>
+In order to parallelize the Jacobi method we need to introduce to new <b>MPI</b> functions, namely <em>MPIGather</em> and <em>MPIAllgather</em>.
+
+<p>
+Here we present a parallel implementation of the Jacobi method without an explicit link to the diffusion equation.  Let us go back to the plain Jacobi method 
+and implement it in parallel.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">//  Main program first</span>
+<span style="color: #1e889b">#include &lt;mpi.h&gt;</span>
+
+<span style="color: #228B22">//  Omitted statements</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> * argv[]){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> i,j, N = <span style="color: #B452CD">20</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> **A,*x,*q;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> totalnodes,mynode;
+
+  MPI_Init(&amp;argc,&amp;argv);
+  MPI_Comm_size(MPI_COMM_WORLD, &amp;totalnodes);
+  MPI_Comm_rank(MPI_COMM_WORLD, &amp;mynode);
+
+  <span style="color: #8B008B; font-weight: bold">if</span>(mynode==<span style="color: #B452CD">0</span>){
+
+  }
+  ParallelJacobi(mynode,totalnodes,N,A,x,q,<span style="color: #B452CD">1.0e-14</span>);
+  <span style="color: #8B008B; font-weight: bold">if</span>(mynode==<span style="color: #B452CD">0</span>){
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; N; i++)
+      cout &lt;&lt; x[i] &lt;&lt; endl;
+
+  }
+  MPI_Finalize();
+}
+</pre></div>
+</section>
+
+
+<section>
+<h2 id="___sec79"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp" target="_blank">Parallel Jacobi</a> </h2>
+
+<p>
+Here follows the parallel implementation of the Jacobi algorithm
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">ParallelJacobi</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> mynode, <span style="color: #a7a7a7; font-weight: bold">int</span> numnodes, <span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #a7a7a7; font-weight: bold">double</span> **A, <span style="color: #a7a7a7; font-weight: bold">double</span> *x, <span style="color: #a7a7a7; font-weight: bold">double</span> *b, <span style="color: #a7a7a7; font-weight: bold">double</span> abstol){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> i,j,k,i_global;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> maxit = <span style="color: #B452CD">100000</span>;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> rows_local,local_offset,last_rows_local,*count,*displacements;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> sum1,sum2,*xold;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> error_sum_local, error_sum_global;
+  MPI_Status status;
+
+  rows_local = (<span style="color: #a7a7a7; font-weight: bold">int</span>) floor((<span style="color: #a7a7a7; font-weight: bold">double</span>)N/numnodes);
+  local_offset = mynode*rows_local;
+  <span style="color: #8B008B; font-weight: bold">if</span>(mynode == (numnodes-<span style="color: #B452CD">1</span>)) 
+    rows_local = N - rows_local*(numnodes-<span style="color: #B452CD">1</span>);
+
+  <span style="color: #228B22">/*Distribute the Matrix and R.H.S. among the processors */</span>
+  <span style="color: #8B008B; font-weight: bold">if</span>(mynode == <span style="color: #B452CD">0</span>){
+    <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">1</span>;i&lt;numnodes-<span style="color: #B452CD">1</span>;i++){
+      <span style="color: #8B008B; font-weight: bold">for</span>(j=<span style="color: #B452CD">0</span>;j&lt;rows_local;j++)
+        MPI_Send(A[i*rows_local+j],N,MPI_DOUBLE,i,j,MPI_COMM_WORLD);
+      MPI_Send(b+i*rows_local,rows_local,MPI_DOUBLE,i,rows_local,
+               MPI_COMM_WORLD);
+    }
+    last_rows_local = N-rows_local*(numnodes-<span style="color: #B452CD">1</span>);
+    <span style="color: #8B008B; font-weight: bold">for</span>(j=<span style="color: #B452CD">0</span>;j&lt;last_rows_local;j++)
+      MPI_Send(A[(numnodes-<span style="color: #B452CD">1</span>)*rows_local+j],N,MPI_DOUBLE,numnodes-<span style="color: #B452CD">1</span>,j,
+               MPI_COMM_WORLD);
+    MPI_Send(b+(numnodes-<span style="color: #B452CD">1</span>)*rows_local,last_rows_local,MPI_DOUBLE,numnodes-<span style="color: #B452CD">1</span>,
+             last_rows_local,MPI_COMM_WORLD);
+  }
+  <span style="color: #8B008B; font-weight: bold">else</span>{
+    A = CreateMatrix(rows_local,N);
+    x = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[rows_local];    
+    b = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[rows_local];
+    <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span>;i&lt;rows_local;i++)
+      MPI_Recv(A[i],N,MPI_DOUBLE,<span style="color: #B452CD">0</span>,i,MPI_COMM_WORLD,&amp;status);
+    MPI_Recv(b,rows_local,MPI_DOUBLE,<span style="color: #B452CD">0</span>,rows_local,MPI_COMM_WORLD,&amp;status);
+  }
+
+
+  xold = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[N];
+  count = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[numnodes];
+  displacements = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[numnodes];
+
+
+  <span style="color: #228B22">//set initial guess to all 1.0</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span>; i&lt;N; i++){
+    xold[i] = <span style="color: #B452CD">1.0</span>;
+  }
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span>;i&lt;numnodes;i++){
+    count[i] = (<span style="color: #a7a7a7; font-weight: bold">int</span>) floor((<span style="color: #a7a7a7; font-weight: bold">double</span>)N/numnodes);
+    displacements[i] = i*count[i];
+  }
+  count[numnodes-<span style="color: #B452CD">1</span>] = N - ((<span style="color: #a7a7a7; font-weight: bold">int</span>)floor((<span style="color: #a7a7a7; font-weight: bold">double</span>)N/numnodes))*(numnodes-<span style="color: #B452CD">1</span>);
+  
+  <span style="color: #8B008B; font-weight: bold">for</span>(k=<span style="color: #B452CD">0</span>; k&lt;maxit; k++){
+    error_sum_local = <span style="color: #B452CD">0.0</span>;
+    <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">0</span>; i&lt;rows_local; i++){
+      i_global = local_offset+i;
+      sum1 = <span style="color: #B452CD">0.0</span>; sum2 = <span style="color: #B452CD">0.0</span>;
+      <span style="color: #8B008B; font-weight: bold">for</span>(j=<span style="color: #B452CD">0</span>; j &lt; i_global; j++)
+        sum1 = sum1 + A[i][j]*xold[j];
+      <span style="color: #8B008B; font-weight: bold">for</span>(j=i_global+<span style="color: #B452CD">1</span>; j &lt; N; j++)
+        sum2 = sum2 + A[i][j]*xold[j];
+      
+      x[i] = (-sum1 - sum2 + b[i])/A[i][i_global];
+      error_sum_local += (x[i]-xold[i_global])*(x[i]-xold[i_global]);
+    }
+    
+    MPI_Allreduce(&amp;error_sum_local,&amp;error_sum_global,<span style="color: #B452CD">1</span>,MPI_DOUBLE,
+                  MPI_SUM,MPI_COMM_WORLD);
+    MPI_Allgatherv(x,rows_local,MPI_DOUBLE,xold,count,displacements,
+                   MPI_DOUBLE,MPI_COMM_WORLD);
+    
+    <span style="color: #8B008B; font-weight: bold">if</span>(sqrt(error_sum_global)&lt;abstol){
+      <span style="color: #8B008B; font-weight: bold">if</span>(mynode == <span style="color: #B452CD">0</span>){
+        <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span>;i&lt;N;i++)
+          x[i] = xold[i];
+      }
+      <span style="color: #8B008B; font-weight: bold">else</span>{
+        DestroyMatrix(A,rows_local,N);
+        <span style="color: #8B008B; font-weight: bold">delete</span>[] x;
+        <span style="color: #8B008B; font-weight: bold">delete</span>[] b;
+      }
+      <span style="color: #8B008B; font-weight: bold">delete</span>[] xold;
+      <span style="color: #8B008B; font-weight: bold">delete</span>[] count;
+      <span style="color: #8B008B; font-weight: bold">delete</span>[] displacements;
+      <span style="color: #8B008B; font-weight: bold">return</span> k;
+    }
+  }
+
+  cerr &lt;&lt; <span style="color: #CD5555">&quot;Jacobi: Maximum Number of Interations Reached Without Convergence\n&quot;</span>;
+  <span style="color: #8B008B; font-weight: bold">if</span>(mynode == <span style="color: #B452CD">0</span>){
+    <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span>;i&lt;N;i++)
+      x[i] = xold[i];
+  }
+  <span style="color: #8B008B; font-weight: bold">else</span>{
+    DestroyMatrix(A,rows_local,N);
+    <span style="color: #8B008B; font-weight: bold">delete</span>[] x;
+    <span style="color: #8B008B; font-weight: bold">delete</span>[] b;
+  }
+  <span style="color: #8B008B; font-weight: bold">delete</span>[] xold;
+  <span style="color: #8B008B; font-weight: bold">delete</span>[] count;
+  <span style="color: #8B008B; font-weight: bold">delete</span>[] displacements;
+  
+  <span style="color: #8B008B; font-weight: bold">return</span> maxit;
+}
+</pre></div>
+</section>
+
+
+<section>
+<h2 id="___sec80">Wave Equation in two Dimensions </h2>
 
 <p>
 The \( 1+1 \)-dimensional wave equation reads
@@ -2631,7 +2930,7 @@ $$
 
 
 <section>
-<h2 id="___sec76">Wave Equation in two Dimensions, discretizing </h2>
+<h2 id="___sec81">Wave Equation in two Dimensions, discretizing </h2>
 We discretize again time and position,
 
 <p>&nbsp;<br>
@@ -2686,7 +2985,7 @@ $$
 
 
 <section>
-<h2 id="___sec77">Wave Equation in two Dimensions </h2>
+<h2 id="___sec82">Wave Equation in two Dimensions </h2>
 If we assume that all values at times \( t=j \) and \( t=j-1 \) are known, the only unknown variable is \( u_{i,j+1} \) and the last equation yields thus an explicit
 scheme for updating this quantity. We have thus an explicit finite difference
 scheme for computing the wave function \( u \). The only additional complication
@@ -2717,7 +3016,7 @@ implying that \( u_{i,+1}=u_{i,-1} \).
 
 
 <section>
-<h2 id="___sec78">Wave Equation in two Dimensions </h2>
+<h2 id="___sec83">Wave Equation in two Dimensions </h2>
 If we insert this condition in Eq. <a href="#mjx-eqn-23">(23)</a> we arrive at a
 special formula for the first time step
 
@@ -2749,7 +3048,7 @@ in our setup of the initial conditions.
 
 
 <section>
-<h2 id="___sec79">Wave Equation in two Dimensions </h2>
+<h2 id="___sec84">Wave Equation in two Dimensions </h2>
 The situation is rather similar for the \( 2+1 \)-dimensional case, 
 except that we now need to discretize the spatial \( y \)-coordinate as well.
 Our equations will now depend on three variables whose discretized versions
@@ -2784,7 +3083,7 @@ $$
 
 
 <section>
-<h2 id="___sec80">Wave Equation in two Dimensions </h2>
+<h2 id="___sec85">Wave Equation in two Dimensions </h2>
 We have now the following discretized partial derivatives
 <p>&nbsp;<br>
 $$
@@ -2833,7 +3132,7 @@ unknown quantity.
 
 
 <section>
-<h2 id="___sec81">Wave Equation in two Dimensions </h2>
+<h2 id="___sec86">Wave Equation in two Dimensions </h2>
 It is easy to account for different step lengths for \( x \) and \( y \).
 The partial derivative is treated in much the same way
 as for the one-dimensional case, except that we now have an additional
@@ -2853,7 +3152,7 @@ in our setup of the initial conditions.
 
 
 <section>
-<h2 id="___sec82">Analytical  Solution for the two-dimensional wave equation </h2>
+<h2 id="___sec87">Analytical  Solution for the two-dimensional wave equation </h2>
 We develop here the closed-form solution for the \( 2+1 \) dimensional wave equation with the following boundary and initial conditions
 
 <p>&nbsp;<br>
@@ -2871,7 +3170,7 @@ $$
 
 
 <section>
-<h2 id="___sec83">Analytical  Solution for the two-dimensional wave equation, first step </h2>
+<h2 id="___sec88">Analytical  Solution for the two-dimensional wave equation, first step </h2>
 Our first step is to make the ansatz
 
 <p>&nbsp;<br>
@@ -2905,7 +3204,7 @@ $$
 
 
 <section>
-<h2 id="___sec84">Analytical  Solution for the two-dimensional wave equation, </h2>
+<h2 id="___sec89">Analytical  Solution for the two-dimensional wave equation, </h2>
 The lhs and rhs are independent of each other and we obtain two differential equations
 <p>&nbsp;<br>
 $$
@@ -2949,7 +3248,7 @@ $$
 
 
 <section>
-<h2 id="___sec85">Analytical  Solution for the two-dimensional wave equation, separation of variables </h2>
+<h2 id="___sec90">Analytical  Solution for the two-dimensional wave equation, separation of variables </h2>
 Since the lhs and rhs are again independent of each other, we can separate the latter equation into two independent 
 equations, one for \( x \) and one for \( y \), namely
 
@@ -2976,7 +3275,7 @@ with \( \rho^2= \nu^2-\kappa^2 \).
 
 
 <section>
-<h2 id="___sec86">Analytical  Solution for the two-dimensional wave equation, separation of variables </h2>
+<h2 id="___sec91">Analytical  Solution for the two-dimensional wave equation, separation of variables </h2>
 The second step is to solve these differential equations, which all have trigonometric functions as solutions, viz.
 <p>&nbsp;<br>
 $$
@@ -2999,7 +3298,7 @@ $$
 
 
 <section>
-<h2 id="___sec87">Analytical  Solution for the two-dimensional wave equation, boundary conditions </h2>
+<h2 id="___sec92">Analytical  Solution for the two-dimensional wave equation, boundary conditions </h2>
 The boundary conditions require that \( F(x,y) = H(x)Q(y) \) are zero at the boundaries, meaning that
 \( H(0)=H(L)=Q(0)=Q(L)=0 \).  This yields the solutions
 
@@ -3027,7 +3326,7 @@ or \( \lambda_{mn}= c\pi/L\sqrt{m^2+n^2} \).
 
 
 <section>
-<h2 id="___sec88">Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions </h2>
+<h2 id="___sec93">Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions </h2>
 The solution for \( G \) is
 
 <p>&nbsp;<br>
@@ -3051,7 +3350,7 @@ $$
 
 
 <section>
-<h2 id="___sec89">Analytical  Solution for the two-dimensional wave equation, final steps </h2>
+<h2 id="___sec94">Analytical  Solution for the two-dimensional wave equation, final steps </h2>
 The final step is to determine the coefficients \( B_{mn} \) and \( D_{mn} \) from the Fourier coefficients.
 The equations for these  are determined by the initial conditions \( u(x,y,0) = f(x,y) \) and 
 \( \partial u/\partial t|_{t=0}= g(x,y) \). 
@@ -3080,7 +3379,7 @@ Inserting the particular functional forms of \( f(x,y) \) and \( g(x,y) \) one o
 
 
 <section>
-<h2 id="___sec90">Python code for solving the two-dimensional wave equation </h2>
+<h2 id="___sec95">Python code for solving the two-dimensional wave equation </h2>
 The following Python code sets up and solves the two-dimensional  wave equation for all three methods discussed.
 <p>
 

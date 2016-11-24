@@ -1403,7 +1403,7 @@ With $n+1$ mesh points the equations for $u$ result in a system of $(n+1)^2$ lin
 
 !split
 ===== Scheme for solving Laplace's (Poisson's) equation =====
-We rewrite Eq. (ref{eq:poissonscheme}
+We rewrite Eq. (ref{eq:poissonscheme})
 
 !bt
 \begin{equation} 
@@ -1893,6 +1893,294 @@ This equation has essentially the same structure as Eq. (ref{eq:poissonrewritten
 the function $\rho_{ij}$ is replaced by the solution at a previous time step $l-1$. Furthermore, the diagonal matrix elements
 are now given by $1+4\alpha$, while the non-zero non-diagonal matrix elements equal $\alpha$. This matrix is also positive definite, meaning in turn that
 iterative schemes like the Jacobi or the Gauss-Seidel methods will converge to the desired solution after a given number of iterations. 
+
+!split
+===== "Solving project 1 again but now with Jacobi's method":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/Jacobi.cpp" =====
+Let us revisit project 1 and the Thomas algorithm for solving a system of tridiagonal matrices for  the equation 
+!bc cppcod
+//  Solves linear equations for simple tridiagonal matrix using the iterative Jacobi method
+....
+// Begin main program
+int main(int argc, char *argv[]){
+     // missing statements, see code link above
+
+      mat A = zeros<mat>(n,n);
+      // Set up arrays for the simple case
+      vec b(n);  vec x(n);
+      A(0,1) = -1;  x(0) = h;  b(0) =  hh*f(x(0)); 
+      x(n-1) = x(0)+(n-1)*h; b(n-1) = hh*f(x(n-1)); 
+      for (int i = 1; i < n-1; i++){ 
+        x(i) = x(i-1)+h; 
+	b(i) = hh*f(x(i));
+        A(i,i-1)  = -1.0;
+        A(i,i+1)  = -1.0;
+      }
+     A(n-2,n-1) = -1.0; A(n-1,n-2) = -1.0;
+  // solve Ax = b by iteration with a random starting vector
+     int maxiter = 100; double diff = 1.0; 
+     double epsilon = 1.0e-10;  int iter = 0;
+      vec SolutionOld  = randu<vec>(n);
+      vec SolutionNew  = zeros<vec>(n);
+      while (iter <= maxiter || diff > epsilon){
+	SolutionNew = (b -A*SolutionOld)*0.5; 
+        iter++; diff = fabs(sum(SolutionNew-SolutionOld)/n);
+        SolutionOld = SolutionNew;
+      }
+      vec solution = SolutionOld;}
+!ec
+
+
+
+
+
+
+
+!split
+=====  "Program to solve Jacobi's method in two dimension":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp" =====
+The following program sets up the diffusion equation solver in two spatial dimensions using Jacobi's method. Note that we have skipped a loop over time. This has to be inserted in order to perform the calculations. 
+!bc cppcod
+/* Simple program for solving the two-dimensional diffusion 
+   equation or Poisson equation using Jacobi's iterative method
+   Note that this program does not contain a loop over the time 
+   dependence.
+*/
+
+#include <iostream>
+#include <iomanip>
+#include <armadillo>
+using namespace std;
+using namespace arma;
+
+int JacobiSolver(int, double, double, mat &, mat &, double);
+
+int main(int argc, char * argv[]){
+  int Npoints = 40;
+  double ExactSolution;
+  double dx = 1.0/(Npoints-1);
+  double dt = 0.25*dx*dx;
+  double tolerance = 1.0e-14;
+  mat A = zeros<mat>(Npoints,Npoints);
+  mat q = zeros<mat>(Npoints,Npoints);
+
+  // setting up an additional source term
+  for(int i = 0; i < Npoints; i++)
+    for(int j = 0; j < Npoints; j++)
+      q(i,j) = -2.0*M_PI*M_PI*sin(M_PI*dx*i)*sin(M_PI*dx*j);
+    
+  int itcount = JacobiSolver(Npoints,dx,dt,A,q,tolerance);
+ 
+  // Testing against exact solution
+  double sum = 0.0;
+  for(int i = 0; i < Npoints; i++){
+    for(int j=0;j < Npoints; j++){
+      ExactSolution = -sin(M_PI*dx*i)*sin(M_PI*dx*j);
+      sum += fabs((A(i,j) - ExactSolution));
+    }
+  }
+  cout << setprecision(5) << setiosflags(ios::scientific);
+  cout << "Jacobi method with error " << sum/Npoints << " in " << itcount << " iterations" << endl;
+}
+!ec
+
+!split
+=====  "The Jacobi solver function":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp" =====
+!bc cppcod
+// Function for setting up the iterative Jacobi solver
+int JacobiSolver(int N, double dx, double dt, mat &A, mat &q, double abstol)
+{
+  int MaxIterations = 100000;
+  mat Aold = zeros<mat>(N,N);
+  
+  double D = dt/(dx*dx);
+  
+  for(int i=1;  i < N-1; i++)
+    for(int j=1; j < N-1; j++)
+      Aold(i,j) = 1.0;
+  
+  // Boundary Conditions -- all zeros
+  for(int i=0; i < N; i++){
+    A(0,i) = 0.0;
+    A(N-1,i) = 0.0;
+    A(i,0) = 0.0;
+    A(i,N-1) = 0.0;
+  }
+  // Start the iterative solver
+  for(int k = 0; k < MaxIterations; k++){
+    for(int i = 1; i < N-1; i++){
+      for(int j=1; j < N-1; j++){
+	A(i,j) = dt*q(i,j) + Aold(i,j) +
+	  D*(Aold(i+1,j) + Aold(i,j+1) - 4.0*Aold(i,j) + 
+	     Aold(i-1,j) + Aold(i,j-1));
+      }
+    }
+    double sum = 0.0;
+    for(int i = 0; i < N;i++){
+      for(int j = 0; j < N;j++){
+	sum += (Aold(i,j)-A(i,j))*(Aold(i,j)-A(i,j));
+	Aold(i,j) = A(i,j);
+      }
+    }
+    if(sqrt (sum) <abstol){
+      return k;
+    }
+  }
+  cerr << "Jacobi: Maximum Number of Interations Reached Without Convergence\n";
+  return MaxIterations;
+}
+!ec
+ 
+!split 
+===== "Parallel Jacobi":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp" =====
+
+In order to parallelize the Jacobi method we need to introduce to new _MPI_ functions, namely *MPIGather* and *MPIAllgather*.
+
+Here we present a parallel implementation of the Jacobi method without an explicit link to the diffusion equation.  Let us go back to the plain Jacobi method 
+and implement it in parallel.
+!bc cppcod 
+//  Main program first
+#include <mpi.h>
+
+//  Omitted statements
+int main(int argc, char * argv[]){
+  int i,j, N = 20;
+  double **A,*x,*q;
+  int totalnodes,mynode;
+
+  MPI_Init(&argc,&argv);
+  MPI_Comm_size(MPI_COMM_WORLD, &totalnodes);
+  MPI_Comm_rank(MPI_COMM_WORLD, &mynode);
+
+  if(mynode==0){
+
+  }
+  ParallelJacobi(mynode,totalnodes,N,A,x,q,1.0e-14);
+  if(mynode==0){
+    for(int i = 0; i < N; i++)
+      cout << x[i] << endl;
+
+  }
+  MPI_Finalize();
+}
+!ec
+
+!split 
+===== "Parallel Jacobi":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp" =====
+
+Here follows the parallel implementation of the Jacobi algorithm
+!bc cppcod 
+
+
+int ParallelJacobi(int mynode, int numnodes, int N, double **A, double *x, double *b, double abstol){
+  int i,j,k,i_global;
+  int maxit = 100000;
+  int rows_local,local_offset,last_rows_local,*count,*displacements;
+  double sum1,sum2,*xold;
+  double error_sum_local, error_sum_global;
+  MPI_Status status;
+
+  rows_local = (int) floor((double)N/numnodes);
+  local_offset = mynode*rows_local;
+  if(mynode == (numnodes-1)) 
+    rows_local = N - rows_local*(numnodes-1);
+
+  /*Distribute the Matrix and R.H.S. among the processors */
+  if(mynode == 0){
+    for(i=1;i<numnodes-1;i++){
+      for(j=0;j<rows_local;j++)
+        MPI_Send(A[i*rows_local+j],N,MPI_DOUBLE,i,j,MPI_COMM_WORLD);
+      MPI_Send(b+i*rows_local,rows_local,MPI_DOUBLE,i,rows_local,
+               MPI_COMM_WORLD);
+    }
+    last_rows_local = N-rows_local*(numnodes-1);
+    for(j=0;j<last_rows_local;j++)
+      MPI_Send(A[(numnodes-1)*rows_local+j],N,MPI_DOUBLE,numnodes-1,j,
+               MPI_COMM_WORLD);
+    MPI_Send(b+(numnodes-1)*rows_local,last_rows_local,MPI_DOUBLE,numnodes-1,
+             last_rows_local,MPI_COMM_WORLD);
+  }
+  else{
+    A = CreateMatrix(rows_local,N);
+    x = new double[rows_local];    
+    b = new double[rows_local];
+    for(i=0;i<rows_local;i++)
+      MPI_Recv(A[i],N,MPI_DOUBLE,0,i,MPI_COMM_WORLD,&status);
+    MPI_Recv(b,rows_local,MPI_DOUBLE,0,rows_local,MPI_COMM_WORLD,&status);
+  }
+
+
+  xold = new double[N];
+  count = new int[numnodes];
+  displacements = new int[numnodes];
+
+
+  //set initial guess to all 1.0
+  for(i=0; i<N; i++){
+    xold[i] = 1.0;
+  }
+
+  for(i=0;i<numnodes;i++){
+    count[i] = (int) floor((double)N/numnodes);
+    displacements[i] = i*count[i];
+  }
+  count[numnodes-1] = N - ((int)floor((double)N/numnodes))*(numnodes-1);
+  
+  for(k=0; k<maxit; k++){
+    error_sum_local = 0.0;
+    for(i = 0; i<rows_local; i++){
+      i_global = local_offset+i;
+      sum1 = 0.0; sum2 = 0.0;
+      for(j=0; j < i_global; j++)
+        sum1 = sum1 + A[i][j]*xold[j];
+      for(j=i_global+1; j < N; j++)
+        sum2 = sum2 + A[i][j]*xold[j];
+      
+      x[i] = (-sum1 - sum2 + b[i])/A[i][i_global];
+      error_sum_local += (x[i]-xold[i_global])*(x[i]-xold[i_global]);
+    }
+    
+    MPI_Allreduce(&error_sum_local,&error_sum_global,1,MPI_DOUBLE,
+                  MPI_SUM,MPI_COMM_WORLD);
+    MPI_Allgatherv(x,rows_local,MPI_DOUBLE,xold,count,displacements,
+                   MPI_DOUBLE,MPI_COMM_WORLD);
+    
+    if(sqrt(error_sum_global)<abstol){
+      if(mynode == 0){
+        for(i=0;i<N;i++)
+          x[i] = xold[i];
+      }
+      else{
+        DestroyMatrix(A,rows_local,N);
+        delete[] x;
+        delete[] b;
+      }
+      delete[] xold;
+      delete[] count;
+      delete[] displacements;
+      return k;
+    }
+  }
+
+  cerr << "Jacobi: Maximum Number of Interations Reached Without Convergence\n";
+  if(mynode == 0){
+    for(i=0;i<N;i++)
+      x[i] = xold[i];
+  }
+  else{
+    DestroyMatrix(A,rows_local,N);
+    delete[] x;
+    delete[] b;
+  }
+  delete[] xold;
+  delete[] count;
+  delete[] displacements;
+  
+  return maxit;
+}
+
+!ec
+
+
+
 
 !split
 ===== Wave Equation in two Dimensions =====
