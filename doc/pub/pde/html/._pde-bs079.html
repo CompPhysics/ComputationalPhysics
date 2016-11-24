@@ -250,17 +250,26 @@ $(function () {
                2,
                None,
                '___sec74'),
-              ("Solving project 1 again but now with Jacobi's method",
+              ('"Solving project 1 again but now with Jacobi\'s method":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/Jacobi.cpp"',
                2,
                None,
                '___sec75'),
-              ("Program to solve Jacobi's method in two dimension",
+              ('"Program to solve Jacobi\'s method in two dimension":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp"',
                2,
                None,
                '___sec76'),
-              ('The Jacobi solver function', 2, None, '___sec77'),
-              ('Parallel Jacobi', 2, None, '___sec78'),
-              ('Parallel Jacobi', 2, None, '___sec79'),
+              ('"The Jacobi solver function":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp"',
+               2,
+               None,
+               '___sec77'),
+              ('"Parallel Jacobi":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp"',
+               2,
+               None,
+               '___sec78'),
+              ('"Parallel Jacobi":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp"',
+               2,
+               None,
+               '___sec79'),
               ('Wave Equation in two Dimensions', 2, None, '___sec80'),
               ('Wave Equation in two Dimensions, discretizing',
                2,
@@ -419,11 +428,11 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._pde-bs073.html#___sec72" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions, discretizing</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs074.html#___sec73" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions, the second derivative</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs075.html#___sec74" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs076.html#___sec75" style="font-size: 80%;"><b>Solving project 1 again but now with Jacobi's method</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs077.html#___sec76" style="font-size: 80%;"><b>Program to solve Jacobi's method in two dimension</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs078.html#___sec77" style="font-size: 80%;"><b>The Jacobi solver function</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec78" style="font-size: 80%;"><b>Parallel Jacobi</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs080.html#___sec79" style="font-size: 80%;"><b>Parallel Jacobi</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs076.html#___sec75" style="font-size: 80%;"><b>"Solving project 1 again but now with Jacobi's method":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/Jacobi.cpp"</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs077.html#___sec76" style="font-size: 80%;"><b>"Program to solve Jacobi's method in two dimension":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp"</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs078.html#___sec77" style="font-size: 80%;"><b>"The Jacobi solver function":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp"</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec78" style="font-size: 80%;"><b>"Parallel Jacobi":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp"</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs080.html#___sec79" style="font-size: 80%;"><b>"Parallel Jacobi":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp"</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs081.html#___sec80" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs082.html#___sec81" style="font-size: 80%;"><b>Wave Equation in two Dimensions, discretizing</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs083.html#___sec82" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
@@ -455,7 +464,7 @@ MathJax.Hub.Config({
 <a name="part0079"></a>
 <!-- !split  -->
 
-<h2 id="___sec78" class="anchor">Parallel Jacobi </h2>
+<h2 id="___sec78" class="anchor"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp" target="_self">Parallel Jacobi</a> </h2>
 
 <p>
 In order to parallelize the Jacobi method we need to introduce to new <b>MPI</b> functions, namely <em>MPIGather</em> and <em>MPIAllgather</em>.

@@ -249,17 +249,26 @@ $(function () {
                2,
                None,
                '___sec74'),
-              ("Solving project 1 again but now with Jacobi's method",
+              ('"Solving project 1 again but now with Jacobi\'s method":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/Jacobi.cpp"',
                2,
                None,
                '___sec75'),
-              ("Program to solve Jacobi's method in two dimension",
+              ('"Program to solve Jacobi\'s method in two dimension":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp"',
                2,
                None,
                '___sec76'),
-              ('The Jacobi solver function', 2, None, '___sec77'),
-              ('Parallel Jacobi', 2, None, '___sec78'),
-              ('Parallel Jacobi', 2, None, '___sec79'),
+              ('"The Jacobi solver function":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp"',
+               2,
+               None,
+               '___sec77'),
+              ('"Parallel Jacobi":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp"',
+               2,
+               None,
+               '___sec78'),
+              ('"Parallel Jacobi":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp"',
+               2,
+               None,
+               '___sec79'),
               ('Wave Equation in two Dimensions', 2, None, '___sec80'),
               ('Wave Equation in two Dimensions, discretizing',
                2,
@@ -2494,7 +2503,7 @@ iterative schemes like the Jacobi or the Gauss-Seidel methods will converge to t
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec75">Solving project 1 again but now with Jacobi's method </h2>
+<h2 id="___sec75"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/Jacobi.cpp" target="_blank">Solving project 1 again but now with Jacobi's method</a> </h2>
 Let us revisit project 1 and the Thomas algorithm for solving a system of tridiagonal matrices for  the equation 
 <p>
 
@@ -2532,7 +2541,7 @@ Let us revisit project 1 and the Thomas algorithm for solving a system of tridia
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec76">Program to solve Jacobi's method in two dimension </h2>
+<h2 id="___sec76"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp" target="_blank">Program to solve Jacobi's method in two dimension</a> </h2>
 The following program sets up the diffusion equation solver in two spatial dimensions using Jacobi's method. Note that we have skipped a loop over time. This has to be inserted in order to perform the calculations. 
 <p>
 
@@ -2582,7 +2591,7 @@ The following program sets up the diffusion equation solver in two spatial dimen
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec77">The Jacobi solver function </h2>
+<h2 id="___sec77"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp" target="_blank">The Jacobi solver function</a> </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
@@ -2632,7 +2641,7 @@ The following program sets up the diffusion equation solver in two spatial dimen
 <p>
 <!-- !split  -->
 
-<h2 id="___sec78">Parallel Jacobi </h2>
+<h2 id="___sec78"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp" target="_blank">Parallel Jacobi</a> </h2>
 
 <p>
 In order to parallelize the Jacobi method we need to introduce to new <b>MPI</b> functions, namely <em>MPIGather</em> and <em>MPIAllgather</em>.
@@ -2671,7 +2680,7 @@ and implement it in parallel.
 <p>
 <!-- !split  -->
 
-<h2 id="___sec79">Parallel Jacobi </h2>
+<h2 id="___sec79"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp" target="_blank">Parallel Jacobi</a> </h2>
 
 <p>
 Here follows the parallel implementation of the Jacobi algorithm

@@ -1895,7 +1895,7 @@ are now given by $1+4\alpha$, while the non-zero non-diagonal matrix elements eq
 iterative schemes like the Jacobi or the Gauss-Seidel methods will converge to the desired solution after a given number of iterations. 
 
 !split
-===== Solving project 1 again but now with Jacobi's method =====
+===== "Solving project 1 again but now with Jacobi's method":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/Jacobi.cpp" =====
 Let us revisit project 1 and the Thomas algorithm for solving a system of tridiagonal matrices for  the equation 
 !bc cppcod
 //  Solves linear equations for simple tridiagonal matrix using the iterative Jacobi method
@@ -1936,7 +1936,7 @@ int main(int argc, char *argv[]){
 
 
 !split
-=====  Program to solve Jacobi's method in two dimension =====
+=====  "Program to solve Jacobi's method in two dimension":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp" =====
 The following program sets up the diffusion equation solver in two spatial dimensions using Jacobi's method. Note that we have skipped a loop over time. This has to be inserted in order to perform the calculations. 
 !bc cppcod
 /* Simple program for solving the two-dimensional diffusion 
@@ -1983,7 +1983,7 @@ int main(int argc, char * argv[]){
 !ec
 
 !split
-=====  The Jacobi solver function =====
+=====  "The Jacobi solver function":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/diffusion2dim.cpp" =====
 !bc cppcod
 // Function for setting up the iterative Jacobi solver
 int JacobiSolver(int N, double dx, double dt, mat &A, mat &q, double abstol)
@@ -2030,7 +2030,7 @@ int JacobiSolver(int N, double dx, double dt, mat &A, mat &q, double abstol)
 !ec
  
 !split 
-===== Parallel Jacobi =====
+===== "Parallel Jacobi":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp" =====
 
 In order to parallelize the Jacobi method we need to introduce to new _MPI_ functions, namely *MPIGather* and *MPIAllgather*.
 
@@ -2064,7 +2064,7 @@ int main(int argc, char * argv[]){
 !ec
 
 !split 
-===== Parallel Jacobi =====
+===== "Parallel Jacobi":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/MPIdiffusion.cpp" =====
 
 Here follows the parallel implementation of the Jacobi algorithm
 !bc cppcod 
