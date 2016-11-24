@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -241,52 +250,63 @@ $(function () {
                2,
                None,
                '___sec74'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec75'),
-              ('Wave Equation in two Dimensions, discretizing',
+              ("Solving project 1 again but now with Jacobi's method",
+               2,
+               None,
+               '___sec75'),
+              ("Program to solve Jacobi's method in two dimension",
                2,
                None,
                '___sec76'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec77'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec78'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec79'),
+              ('The Jacobi solver function', 2, None, '___sec77'),
+              ('Parallel Jacobi', 2, None, '___sec78'),
+              ('Parallel Jacobi', 2, None, '___sec79'),
               ('Wave Equation in two Dimensions', 2, None, '___sec80'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec81'),
+              ('Wave Equation in two Dimensions, discretizing',
+               2,
+               None,
+               '___sec81'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec82'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec83'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec84'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec85'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec86'),
               ('Analytical  Solution for the two-dimensional wave equation',
                2,
                None,
-               '___sec82'),
+               '___sec87'),
               ('Analytical  Solution for the two-dimensional wave equation, first step',
                2,
                None,
-               '___sec83'),
+               '___sec88'),
               ('Analytical  Solution for the two-dimensional wave equation,',
                2,
                None,
-               '___sec84'),
+               '___sec89'),
               ('Analytical  Solution for the two-dimensional wave equation, separation of variables',
                2,
                None,
-               '___sec85'),
+               '___sec90'),
               ('Analytical  Solution for the two-dimensional wave equation, separation of variables',
                2,
                None,
-               '___sec86'),
+               '___sec91'),
               ('Analytical  Solution for the two-dimensional wave equation, boundary conditions',
                2,
                None,
-               '___sec87'),
+               '___sec92'),
               ('Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions',
                2,
                None,
-               '___sec88'),
+               '___sec93'),
               ('Analytical  Solution for the two-dimensional wave equation, final steps',
                2,
                None,
-               '___sec89'),
+               '___sec94'),
               ('Python code for solving the two-dimensional wave equation',
                2,
                None,
-               '___sec90')]}
+               '___sec95')]}
 end of tocinfo -->
 
 <body>
@@ -399,22 +419,27 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._pde-bs073.html#___sec72" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions, discretizing</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs074.html#___sec73" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions, the second derivative</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs075.html#___sec74" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs076.html#___sec75" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs077.html#___sec76" style="font-size: 80%;"><b>Wave Equation in two Dimensions, discretizing</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs078.html#___sec77" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs079.html#___sec78" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs080.html#___sec79" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs076.html#___sec75" style="font-size: 80%;"><b>Solving project 1 again but now with Jacobi's method</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs077.html#___sec76" style="font-size: 80%;"><b>Program to solve Jacobi's method in two dimension</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs078.html#___sec77" style="font-size: 80%;"><b>The Jacobi solver function</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs079.html#___sec78" style="font-size: 80%;"><b>Parallel Jacobi</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs080.html#___sec79" style="font-size: 80%;"><b>Parallel Jacobi</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs081.html#___sec80" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs082.html#___sec81" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs083.html#___sec82" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs084.html#___sec83" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, first step</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs085.html#___sec84" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation,</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs086.html#___sec85" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs087.html#___sec86" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs088.html#___sec87" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, boundary conditions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs089.html#___sec88" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs090.html#___sec89" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, final steps</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs091.html#___sec90" style="font-size: 80%;"><b>Python code for solving the two-dimensional wave equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs082.html#___sec81" style="font-size: 80%;"><b>Wave Equation in two Dimensions, discretizing</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs083.html#___sec82" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs084.html#___sec83" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs085.html#___sec84" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs086.html#___sec85" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs087.html#___sec86" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs088.html#___sec87" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs089.html#___sec88" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, first step</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs090.html#___sec89" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation,</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs091.html#___sec90" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs092.html#___sec91" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs093.html#___sec92" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, boundary conditions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs094.html#___sec93" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs095.html#___sec94" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, final steps</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs096.html#___sec95" style="font-size: 80%;"><b>Python code for solving the two-dimensional wave equation</b></a></li>
 
         </ul>
       </li>
@@ -430,7 +455,7 @@ MathJax.Hub.Config({
 <a name="part0050"></a>
 <!-- !split -->
 
-<h2 id="___sec49">Solution for the One-dimensional Diffusion Equation </h2>
+<h2 id="___sec49" class="anchor">Solution for the One-dimensional Diffusion Equation </h2>
 To satisfy the boundary conditions we require \( B=0 \) and \( \lambda=n\pi/L \). One solution is therefore found to be
 $$
 \begin{equation*}
@@ -474,7 +499,7 @@ $$
   <li><a href="._pde-bs058.html">59</a></li>
   <li><a href="._pde-bs059.html">60</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._pde-bs091.html">92</a></li>
+  <li><a href="._pde-bs096.html">97</a></li>
   <li><a href="._pde-bs051.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->

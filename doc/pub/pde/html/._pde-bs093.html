@@ -416,7 +416,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._pde-bs070.html#___sec69" style="font-size: 80%;"><b>Python code for solving the two-dimensional Laplace equation</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs071.html#___sec70" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs072.html#___sec71" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec72" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions, discretizing</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs073.html#___sec72" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions, discretizing</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs074.html#___sec73" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions, the second derivative</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs075.html#___sec74" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs076.html#___sec75" style="font-size: 80%;"><b>Solving project 1 again but now with Jacobi's method</b></a></li>
@@ -436,7 +436,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._pde-bs090.html#___sec89" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation,</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs091.html#___sec90" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs092.html#___sec91" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs093.html#___sec92" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, boundary conditions</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec92" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, boundary conditions</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs094.html#___sec93" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs095.html#___sec94" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, final steps</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs096.html#___sec95" style="font-size: 80%;"><b>Python code for solving the two-dimensional wave equation</b></a></li>
@@ -452,56 +452,50 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0073"></a>
+<a name="part0093"></a>
 <!-- !split -->
 
-<h2 id="___sec72" class="anchor">Jacobi's algorithm extended to the diffusion equation in two dimensions, discretizing </h2>
-We discretize again position and time, and use the following approximation for the second derivatives
+<h2 id="___sec92" class="anchor">Analytical  Solution for the two-dimensional wave equation, boundary conditions </h2>
+The boundary conditions require that \( F(x,y) = H(x)Q(y) \) are zero at the boundaries, meaning that
+\( H(0)=H(L)=Q(0)=Q(L)=0 \).  This yields the solutions
 
 $$
 \begin{equation*}
-u_{xx}\approx \frac{u(x+h,y,t)-2u(x,y,t)+u(x-h,y,t)}{h^2},
+  H_m(x) = \sin(\frac{m\pi x}{L}) \hspace{1cm} Q_n(y) = \sin(\frac{n\pi y}{L}),
 \end{equation*}
 $$
 
-which we rewrite as, in its discretized version,
+or
 
 $$
 \begin{equation*}
-u_{xx}\approx \frac{u^{l}_{i+1,j}-2u^{l}_{i,j}+u^{l}_{i-1,j}}{h^2},
+  F_{mn}(x,y) = \sin(\frac{m\pi x}{L})\sin(\frac{n\pi y}{L}).
 \end{equation*}
 $$
 
-where \( x_i=x_0+ih \), \( y_j=y_0+jh \) and \( t_l=t_0+l\Delta t \), with \( h=L/(n+1) \) and \( \Delta t \) the time step.
+With \( \rho^2= \nu^2-\kappa^2 \) and \( \lambda = c\nu \) we have an eigenspectrum \( \lambda=c\sqrt{\kappa^2+\rho^2} \) 
+or \( \lambda_{mn}= c\pi/L\sqrt{m^2+n^2} \).
 
 <p>
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
-<li><a href="._pde-bs072.html">&laquo;</a></li>
+<li><a href="._pde-bs092.html">&laquo;</a></li>
   <li><a href="._pde-bs000.html">1</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._pde-bs065.html">66</a></li>
-  <li><a href="._pde-bs066.html">67</a></li>
-  <li><a href="._pde-bs067.html">68</a></li>
-  <li><a href="._pde-bs068.html">69</a></li>
-  <li><a href="._pde-bs069.html">70</a></li>
-  <li><a href="._pde-bs070.html">71</a></li>
-  <li><a href="._pde-bs071.html">72</a></li>
-  <li><a href="._pde-bs072.html">73</a></li>
-  <li class="active"><a href="._pde-bs073.html">74</a></li>
-  <li><a href="._pde-bs074.html">75</a></li>
-  <li><a href="._pde-bs075.html">76</a></li>
-  <li><a href="._pde-bs076.html">77</a></li>
-  <li><a href="._pde-bs077.html">78</a></li>
-  <li><a href="._pde-bs078.html">79</a></li>
-  <li><a href="._pde-bs079.html">80</a></li>
-  <li><a href="._pde-bs080.html">81</a></li>
-  <li><a href="._pde-bs081.html">82</a></li>
-  <li><a href="._pde-bs082.html">83</a></li>
-  <li><a href="">...</a></li>
+  <li><a href="._pde-bs085.html">86</a></li>
+  <li><a href="._pde-bs086.html">87</a></li>
+  <li><a href="._pde-bs087.html">88</a></li>
+  <li><a href="._pde-bs088.html">89</a></li>
+  <li><a href="._pde-bs089.html">90</a></li>
+  <li><a href="._pde-bs090.html">91</a></li>
+  <li><a href="._pde-bs091.html">92</a></li>
+  <li><a href="._pde-bs092.html">93</a></li>
+  <li class="active"><a href="._pde-bs093.html">94</a></li>
+  <li><a href="._pde-bs094.html">95</a></li>
+  <li><a href="._pde-bs095.html">96</a></li>
   <li><a href="._pde-bs096.html">97</a></li>
-  <li><a href="._pde-bs074.html">&raquo;</a></li>
+  <li><a href="._pde-bs094.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 

@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -241,52 +250,63 @@ $(function () {
                2,
                None,
                '___sec74'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec75'),
-              ('Wave Equation in two Dimensions, discretizing',
+              ("Solving project 1 again but now with Jacobi's method",
+               2,
+               None,
+               '___sec75'),
+              ("Program to solve Jacobi's method in two dimension",
                2,
                None,
                '___sec76'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec77'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec78'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec79'),
+              ('The Jacobi solver function', 2, None, '___sec77'),
+              ('Parallel Jacobi', 2, None, '___sec78'),
+              ('Parallel Jacobi', 2, None, '___sec79'),
               ('Wave Equation in two Dimensions', 2, None, '___sec80'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec81'),
+              ('Wave Equation in two Dimensions, discretizing',
+               2,
+               None,
+               '___sec81'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec82'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec83'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec84'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec85'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec86'),
               ('Analytical  Solution for the two-dimensional wave equation',
                2,
                None,
-               '___sec82'),
+               '___sec87'),
               ('Analytical  Solution for the two-dimensional wave equation, first step',
                2,
                None,
-               '___sec83'),
+               '___sec88'),
               ('Analytical  Solution for the two-dimensional wave equation,',
                2,
                None,
-               '___sec84'),
+               '___sec89'),
               ('Analytical  Solution for the two-dimensional wave equation, separation of variables',
                2,
                None,
-               '___sec85'),
+               '___sec90'),
               ('Analytical  Solution for the two-dimensional wave equation, separation of variables',
                2,
                None,
-               '___sec86'),
+               '___sec91'),
               ('Analytical  Solution for the two-dimensional wave equation, boundary conditions',
                2,
                None,
-               '___sec87'),
+               '___sec92'),
               ('Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions',
                2,
                None,
-               '___sec88'),
+               '___sec93'),
               ('Analytical  Solution for the two-dimensional wave equation, final steps',
                2,
                None,
-               '___sec89'),
+               '___sec94'),
               ('Python code for solving the two-dimensional wave equation',
                2,
                None,
-               '___sec90')]}
+               '___sec95')]}
 end of tocinfo -->
 
 <body>
@@ -399,22 +419,27 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._pde-bs073.html#___sec72" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions, discretizing</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs074.html#___sec73" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions, the second derivative</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs075.html#___sec74" style="font-size: 80%;"><b>Jacobi's algorithm extended to the diffusion equation in two dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec75" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs077.html#___sec76" style="font-size: 80%;"><b>Wave Equation in two Dimensions, discretizing</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs078.html#___sec77" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs079.html#___sec78" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs080.html#___sec79" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec75" style="font-size: 80%;"><b>Solving project 1 again but now with Jacobi's method</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs077.html#___sec76" style="font-size: 80%;"><b>Program to solve Jacobi's method in two dimension</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs078.html#___sec77" style="font-size: 80%;"><b>The Jacobi solver function</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs079.html#___sec78" style="font-size: 80%;"><b>Parallel Jacobi</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs080.html#___sec79" style="font-size: 80%;"><b>Parallel Jacobi</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs081.html#___sec80" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs082.html#___sec81" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs083.html#___sec82" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs084.html#___sec83" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, first step</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs085.html#___sec84" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation,</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs086.html#___sec85" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs087.html#___sec86" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs088.html#___sec87" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, boundary conditions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs089.html#___sec88" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs090.html#___sec89" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, final steps</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs091.html#___sec90" style="font-size: 80%;"><b>Python code for solving the two-dimensional wave equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs082.html#___sec81" style="font-size: 80%;"><b>Wave Equation in two Dimensions, discretizing</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs083.html#___sec82" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs084.html#___sec83" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs085.html#___sec84" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs086.html#___sec85" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs087.html#___sec86" style="font-size: 80%;"><b>Wave Equation in two Dimensions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs088.html#___sec87" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs089.html#___sec88" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, first step</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs090.html#___sec89" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation,</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs091.html#___sec90" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs092.html#___sec91" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs093.html#___sec92" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, boundary conditions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs094.html#___sec93" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs095.html#___sec94" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, final steps</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs096.html#___sec95" style="font-size: 80%;"><b>Python code for solving the two-dimensional wave equation</b></a></li>
 
         </ul>
       </li>
@@ -430,31 +455,41 @@ MathJax.Hub.Config({
 <a name="part0076"></a>
 <!-- !split -->
 
-<h2 id="___sec75">Wave Equation in two Dimensions </h2>
-
+<h2 id="___sec75" class="anchor">Solving project 1 again but now with Jacobi's method </h2>
+Let us revisit project 1 and the Thomas algorithm for solving a system of tridiagonal matrices for  the equation 
 <p>
-The \( 1+1 \)-dimensional wave equation reads
 
-$$
-\begin{equation*}
- \frac{\partial^2 u}{\partial x^2}=\frac{\partial^2 u}{\partial t^2},
-\end{equation*}
-$$
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//  Solves linear equations for simple tridiagonal matrix using the iterative Jacobi method</span>
+....
+<span style="color: #408080; font-style: italic">// Begin main program</span>
+<span style="color: #B00040">int</span> main(<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span> <span style="color: #666666">*</span>argv[]){
+     <span style="color: #408080; font-style: italic">// missing statements, see code link above</span>
 
-with \( u=u(x,t) \) and we have assumed that we operate with 
-dimensionless variables. Possible boundary and initial conditions
-with \( L=1 \)  are
-
-$$
-\begin{equation*}
- \begin{array}{cc} u_{xx} = u_{tt}& x\in(0,1), t>0 \\
-                         u(x,0) = g(x)& x\in (0,1) \\
-                         u(0,t)=u(1,t)=0 & t > 0\\
-                         \partial u/\partial t|_{t=0}=0 & x\in (0,1)\\
-                       \end{array} . 
-\end{equation*}
-$$
-
+      mat A <span style="color: #666666">=</span> zeros<span style="color: #666666">&lt;</span>mat<span style="color: #666666">&gt;</span>(n,n);
+      <span style="color: #408080; font-style: italic">// Set up arrays for the simple case</span>
+      vec <span style="color: #0000FF">b</span>(n);  vec <span style="color: #0000FF">x</span>(n);
+      A(<span style="color: #666666">0</span>,<span style="color: #666666">1</span>) <span style="color: #666666">=</span> <span style="color: #666666">-1</span>;  x(<span style="color: #666666">0</span>) <span style="color: #666666">=</span> h;  b(<span style="color: #666666">0</span>) <span style="color: #666666">=</span>  hh<span style="color: #666666">*</span>f(x(<span style="color: #666666">0</span>)); 
+      x(n<span style="color: #666666">-1</span>) <span style="color: #666666">=</span> x(<span style="color: #666666">0</span>)<span style="color: #666666">+</span>(n<span style="color: #666666">-1</span>)<span style="color: #666666">*</span>h; b(n<span style="color: #666666">-1</span>) <span style="color: #666666">=</span> hh<span style="color: #666666">*</span>f(x(n<span style="color: #666666">-1</span>)); 
+      <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">1</span>; i <span style="color: #666666">&lt;</span> n<span style="color: #666666">-1</span>; i<span style="color: #666666">++</span>){ 
+        x(i) <span style="color: #666666">=</span> x(i<span style="color: #666666">-1</span>)<span style="color: #666666">+</span>h; 
+	b(i) <span style="color: #666666">=</span> hh<span style="color: #666666">*</span>f(x(i));
+        A(i,i<span style="color: #666666">-1</span>)  <span style="color: #666666">=</span> <span style="color: #666666">-1.0</span>;
+        A(i,i<span style="color: #666666">+1</span>)  <span style="color: #666666">=</span> <span style="color: #666666">-1.0</span>;
+      }
+     A(n<span style="color: #666666">-2</span>,n<span style="color: #666666">-1</span>) <span style="color: #666666">=</span> <span style="color: #666666">-1.0</span>; A(n<span style="color: #666666">-1</span>,n<span style="color: #666666">-2</span>) <span style="color: #666666">=</span> <span style="color: #666666">-1.0</span>;
+  <span style="color: #408080; font-style: italic">// solve Ax = b by iteration with a random starting vector</span>
+     <span style="color: #B00040">int</span> maxiter <span style="color: #666666">=</span> <span style="color: #666666">100</span>; <span style="color: #B00040">double</span> diff <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>; 
+     <span style="color: #B00040">double</span> epsilon <span style="color: #666666">=</span> <span style="color: #666666">1.0e-10</span>;  <span style="color: #B00040">int</span> iter <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+      vec SolutionOld  <span style="color: #666666">=</span> randu<span style="color: #666666">&lt;</span>vec<span style="color: #666666">&gt;</span>(n);
+      vec SolutionNew  <span style="color: #666666">=</span> zeros<span style="color: #666666">&lt;</span>vec<span style="color: #666666">&gt;</span>(n);
+      <span style="color: #008000; font-weight: bold">while</span> (iter <span style="color: #666666">&lt;=</span> maxiter <span style="color: #666666">||</span> diff <span style="color: #666666">&gt;</span> epsilon){
+	SolutionNew <span style="color: #666666">=</span> (b <span style="color: #666666">-</span>A<span style="color: #666666">*</span>SolutionOld)<span style="color: #666666">*0.5</span>; 
+        iter<span style="color: #666666">++</span>; diff <span style="color: #666666">=</span> fabs(sum(SolutionNew<span style="color: #666666">-</span>SolutionOld)<span style="color: #666666">/</span>n);
+        SolutionOld <span style="color: #666666">=</span> SolutionNew;
+      }
+      vec solution <span style="color: #666666">=</span> SolutionOld;}
+</pre></div>
 <p>
 <p>
 <!-- navigation buttons at the bottom of the page -->
@@ -481,7 +516,7 @@ $$
   <li><a href="._pde-bs084.html">85</a></li>
   <li><a href="._pde-bs085.html">86</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._pde-bs091.html">92</a></li>
+  <li><a href="._pde-bs096.html">97</a></li>
   <li><a href="._pde-bs077.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
