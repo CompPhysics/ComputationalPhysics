@@ -125,7 +125,7 @@ which can be used to test our Monte Carlo results.
 These systems are called \href{{http://en.wikipedia.org/wiki/Quantum_dot}}{quantum dots} and constitute a lively research
 area in condensed matter physics and materials science, with
 applications spanning from the contruction of quantum circuits to
-applications to solar cells and nano-medicine. Although most studies are dne for electrons in two dimensions,
+applications to solar cells and nano-medicine. Although most studies are done for electrons in two dimensions,
 we will limit ourselves to the three-dimensional case since it allows us to compare our variational Monte Carlo (VMC)
 results with what we did in project 2. 
 
@@ -134,7 +134,7 @@ such systems, with an emphasis on understanding correlations due to
 the repulsive interaction between electrons.
 The advantage of the VMC approach is that we can carry out our calculations using cartesian coordinates. 
 
-The relevant background material can be fund in chapter 14 of the lecture notes.
+The relevant background material can be found in chapter 14 of the lecture notes.
 
 
 We consider a system of electrons confined in a pure three-dimensional
@@ -217,10 +217,19 @@ gives a closed-form expression
 \[ 
 E_{L1} = \frac{1}{2}\omega^2\left( r_1^2+r_2^2\right)\left(1-\alpha^2\right) +3\alpha\omega.
 \]
-Use this expression when developing your program. Find then the analytical expression for the second trial wave function
+Use this expression when developing your program. 
+For the first trial function it will give you the exact analytical result when you exclude the Coulomb interaction. The exact result for the ground state is then $3\omega$. 
+Adding the repulsive Coulomb interaction gives us then
 \[ 
-E_{L2} = E_{L1}+?
+E_{L1} = \frac{1}{2}\omega^2\left( r_1^2+r_2^2\right)\left(1-\alpha^2\right) +3\alpha\omega+\frac{1}{r_{12}}.
 \]
+When you study the final energy for the first trial function, this is the result you should compare the second trial function with.
+The analytical expression for the second trial wave function (with $E_{L1}$ now including the Coulomb repulsion)
+\[ 
+E_{L2} = E_{L1}+\frac{1}{2(1+\beta r_{12})^2}\left\{\alpha\omega r_{12}-\frac{1}{2(1+\beta r_{12})^2}-\frac{2}{r_{12}}+\frac{2\beta}{1+\beta r_{12}}\right\}
+\]
+The exact ground state energy for $\omega =1 $ is $3.558$ a.u. Check this result against your results from project 2 and remember to add the contribution from the center-of-mass energy, which is 1.5 a.u.
+
 You will need to program both equations when computing the expectation value of the energy and the energy variance.
 
 \paragraph{Project 5c):}
