@@ -277,15 +277,18 @@ you deem appropriate.
 <h3 id="___sec6">Project 5f): Solving the two-dimensional equations numerically   </h3>
 
 <p>
-Implement the  scheme discussed in chapter 10 of the lecture notes using Jacobi's method as the iterative method.
+Here you can choose between an explicit or an implicit scheme. 
+For the implicit scheme discussed in chapter 10 of the lecture notes, upi need to use for example an iterative method like Jacobi's.
+
+<p>
 Outline the algorithm for solving the two-dimensional diffusion equation and 
-implement the implicit scheme as function of \( \Delta x \) (assuming
+implement the explicit or the implicit scheme as function of \( \Delta x \) (assuming
 \( \Delta x = \Delta y \)) and \( \Delta t \). Solve the equations numerically and give a critical discussion of your results. 
 Compare your results with the closed-form answer. Discuss the stability
 of the solution as function of different values of \( \Delta x \)  and \( \Delta t \).
 
 <p>
-You should, if you have time, try to  parallelize the equations using MPI.
+You should, if you have time, try to  parallelize the equations using MPI or OpenMP.
 
 <h3 id="___sec7">References </h3>
 
