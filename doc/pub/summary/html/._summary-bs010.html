@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -31,31 +40,48 @@ Automatically generated HTML file from DocOnce source
 
 <!-- tocinfo
 {'highest level': 2,
- 'sections': [('Learning outcomes', 2, None, '___sec0'),
-              ('Topics we have covered this year', 2, None, '___sec1'),
+ 'sections': [('What? Me worry? No final exam this year!',
+               2,
+               None,
+               '___sec0'),
+              ('"What did I learn in school this year":"https://www.youtube.com/watch?v=ZTxmDV_njsc"',
+               2,
+               None,
+               '___sec1'),
+              ('Topics we have covered this year', 2, None, '___sec2'),
               ('Linear algebra and eigenvalue problems, chapters 6.1-6.5 and 7.1-7.5',
                2,
                None,
-               '___sec2'),
+               '___sec3'),
               ('Monte Carlo methods in physics (Chapters 11, 12 and 13)',
                2,
                None,
-               '___sec3'),
+               '___sec4'),
               ('Ordinary differential equations (Chapter 8)',
                2,
                None,
-               '___sec4'),
+               '___sec5'),
               ('Partial differential equations, chapter 10',
                2,
                None,
-               '___sec5'),
-              ('Final presentation', 2, None, '___sec6'),
-              ('What? Me worry?', 2, None, '___sec7'),
-              ('Computational science courses at MSU', 2, None, '___sec8'),
-              ('Best wishes to you all and thanks so much for your efforts this semester',
+               '___sec6'),
+              ('Learning outcomes and overarching aims of this course',
                2,
                None,
-               '___sec9')]}
+               '___sec7'),
+              ('Additional learning outcomes', 2, None, '___sec8'),
+              ('"New Master of Science program at UiO from Fall 2018":"http://mhjensen.github.io/CPMLS/doc/pub/Masterprogram/html/Masterprogram.html"',
+               2,
+               None,
+               '___sec9'),
+              ('The program opens up for flexible backgrounds',
+               2,
+               None,
+               '___sec10'),
+              ('Best wishes to you all and thanks so much for your heroic efforts this semester',
+               2,
+               None,
+               '___sec11')]}
 end of tocinfo -->
 
 <body>
@@ -77,16 +103,18 @@ end of tocinfo -->
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
-     <!-- navigation toc: --> <li><a href="._summary-bs001.html#___sec0" style="font-size: 80%;">Learning outcomes</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs002.html#___sec1" style="font-size: 80%;">Topics we have covered this year</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs003.html#___sec2" style="font-size: 80%;">Linear algebra and eigenvalue problems, chapters 6.1-6.5 and 7.1-7.5</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs004.html#___sec3" style="font-size: 80%;">Monte Carlo methods in physics (Chapters 11, 12 and 13)</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs005.html#___sec4" style="font-size: 80%;">Ordinary differential equations (Chapter 8)</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs006.html#___sec5" style="font-size: 80%;">Partial differential equations, chapter 10</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs007.html#___sec6" style="font-size: 80%;">Final presentation</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs008.html#___sec7" style="font-size: 80%;">What? Me worry?</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs009.html#___sec8" style="font-size: 80%;">Computational science courses at MSU</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">Best wishes to you all and thanks so much for your efforts this semester</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs001.html#___sec0" style="font-size: 80%;">What? Me worry? No final exam this year!</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs002.html#___sec1" style="font-size: 80%;">"What did I learn in school this year":"https://www.youtube.com/watch?v=ZTxmDV_njsc"</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs003.html#___sec2" style="font-size: 80%;">Topics we have covered this year</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs004.html#___sec3" style="font-size: 80%;">Linear algebra and eigenvalue problems, chapters 6.1-6.5 and 7.1-7.5</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs005.html#___sec4" style="font-size: 80%;">Monte Carlo methods in physics (Chapters 11, 12 and 13)</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs006.html#___sec5" style="font-size: 80%;">Ordinary differential equations (Chapter 8)</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs007.html#___sec6" style="font-size: 80%;">Partial differential equations, chapter 10</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs008.html#___sec7" style="font-size: 80%;">Learning outcomes and overarching aims of this course</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs009.html#___sec8" style="font-size: 80%;">Additional learning outcomes</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;">"New Master of Science program at UiO from Fall 2018":"http://mhjensen.github.io/CPMLS/doc/pub/Masterprogram/html/Masterprogram.html"</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs011.html#___sec10" style="font-size: 80%;">The program opens up for flexible backgrounds</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs012.html#___sec11" style="font-size: 80%;">Best wishes to you all and thanks so much for your heroic efforts this semester</a></li>
 
         </ul>
       </li>
@@ -102,13 +130,27 @@ end of tocinfo -->
 <a name="part0010"></a>
 <!-- !split -->
 
-<h2 id="___sec9">Best wishes to you all and thanks so much for your efforts this semester </h2>
+<h2 id="___sec9" class="anchor"><a href="http://mhjensen.github.io/CPMLS/doc/pub/Masterprogram/html/Masterprogram.html" target="_self">New Master of Science program at UiO from Fall 2018</a>  </h2>
+The program aims at offering thesis projects in a variety of fields. The scientists involved in this program can offer thesis
+topics that cover several disciplines. The program has 60 study places and the study directions are
+
+<ul>
+<li> Computational Science:  Applied Mathematics and Risk Analysis (14)</li>
+<li> Computational Science:  Astrophysics  (2)</li>
+<li> Computational Science:  Bioinformatics (5)</li>
+<li> Computational Science:  Bioscience   (4)</li>
+<li> Computational Science:  Chemistry (4)</li>
+<li> Computational Science:  Geoscience  (5)</li>
+<li> Computational Science:  Imaging and Biomedical computing (8)</li>
+<li> Computational Science:  Material Science (2)</li>
+<li> Computational Science:  Mechanics (8)</li>
+<li> Computational Science:  Physics  (8)</li>
+<li> Computational Science:  Economy and Finance (not clear yet)</li>
+</ul>
+
+The thesis projects will be tailored to the student's needs, wishes and scientific background. The projects can easily incorporate topics from more than one discipline.
 
 <p>
-<center><p><img src="figures/Nebbdyr2.png" align="bottom" width=500></p></center>
-
-<p>
-
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
@@ -124,6 +166,9 @@ end of tocinfo -->
   <li><a href="._summary-bs008.html">9</a></li>
   <li><a href="._summary-bs009.html">10</a></li>
   <li class="active"><a href="._summary-bs010.html">11</a></li>
+  <li><a href="._summary-bs011.html">12</a></li>
+  <li><a href="._summary-bs012.html">13</a></li>
+  <li><a href="._summary-bs011.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 
