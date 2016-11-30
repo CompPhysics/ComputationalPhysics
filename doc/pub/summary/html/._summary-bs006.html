@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -31,31 +40,48 @@ Automatically generated HTML file from DocOnce source
 
 <!-- tocinfo
 {'highest level': 2,
- 'sections': [('Learning outcomes', 2, None, '___sec0'),
-              ('Topics we have covered this year', 2, None, '___sec1'),
+ 'sections': [('What? Me worry? No final exam this year!',
+               2,
+               None,
+               '___sec0'),
+              ('"What did I learn in school this year":"https://www.youtube.com/watch?v=ZTxmDV_njsc"',
+               2,
+               None,
+               '___sec1'),
+              ('Topics we have covered this year', 2, None, '___sec2'),
               ('Linear algebra and eigenvalue problems, chapters 6.1-6.5 and 7.1-7.5',
                2,
                None,
-               '___sec2'),
+               '___sec3'),
               ('Monte Carlo methods in physics (Chapters 11, 12 and 13)',
                2,
                None,
-               '___sec3'),
+               '___sec4'),
               ('Ordinary differential equations (Chapter 8)',
                2,
                None,
-               '___sec4'),
+               '___sec5'),
               ('Partial differential equations, chapter 10',
                2,
                None,
-               '___sec5'),
-              ('Final presentation', 2, None, '___sec6'),
-              ('What? Me worry?', 2, None, '___sec7'),
-              ('Computational science courses at MSU', 2, None, '___sec8'),
-              ('Best wishes to you all and thanks so much for your efforts this semester',
+               '___sec6'),
+              ('Learning outcomes and overarching aims of this course',
                2,
                None,
-               '___sec9')]}
+               '___sec7'),
+              ('Additional learning outcomes', 2, None, '___sec8'),
+              ('"New Master of Science program at UiO from Fall 2018":"http://mhjensen.github.io/CPMLS/doc/pub/Masterprogram/html/Masterprogram.html"',
+               2,
+               None,
+               '___sec9'),
+              ('The program opens up for flexible backgrounds',
+               2,
+               None,
+               '___sec10'),
+              ('Best wishes to you all and thanks so much for your heroic efforts this semester',
+               2,
+               None,
+               '___sec11')]}
 end of tocinfo -->
 
 <body>
@@ -77,16 +103,18 @@ end of tocinfo -->
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
-     <!-- navigation toc: --> <li><a href="._summary-bs001.html#___sec0" style="font-size: 80%;">Learning outcomes</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs002.html#___sec1" style="font-size: 80%;">Topics we have covered this year</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs003.html#___sec2" style="font-size: 80%;">Linear algebra and eigenvalue problems, chapters 6.1-6.5 and 7.1-7.5</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs004.html#___sec3" style="font-size: 80%;">Monte Carlo methods in physics (Chapters 11, 12 and 13)</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs005.html#___sec4" style="font-size: 80%;">Ordinary differential equations (Chapter 8)</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">Partial differential equations, chapter 10</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs007.html#___sec6" style="font-size: 80%;">Final presentation</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs008.html#___sec7" style="font-size: 80%;">What? Me worry?</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs009.html#___sec8" style="font-size: 80%;">Computational science courses at MSU</a></li>
-     <!-- navigation toc: --> <li><a href="._summary-bs010.html#___sec9" style="font-size: 80%;">Best wishes to you all and thanks so much for your efforts this semester</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs001.html#___sec0" style="font-size: 80%;">What? Me worry? No final exam this year!</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs002.html#___sec1" style="font-size: 80%;">"What did I learn in school this year":"https://www.youtube.com/watch?v=ZTxmDV_njsc"</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs003.html#___sec2" style="font-size: 80%;">Topics we have covered this year</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs004.html#___sec3" style="font-size: 80%;">Linear algebra and eigenvalue problems, chapters 6.1-6.5 and 7.1-7.5</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs005.html#___sec4" style="font-size: 80%;">Monte Carlo methods in physics (Chapters 11, 12 and 13)</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">Ordinary differential equations (Chapter 8)</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs007.html#___sec6" style="font-size: 80%;">Partial differential equations, chapter 10</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs008.html#___sec7" style="font-size: 80%;">Learning outcomes and overarching aims of this course</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs009.html#___sec8" style="font-size: 80%;">Additional learning outcomes</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs010.html#___sec9" style="font-size: 80%;">"New Master of Science program at UiO from Fall 2018":"http://mhjensen.github.io/CPMLS/doc/pub/Masterprogram/html/Masterprogram.html"</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs011.html#___sec10" style="font-size: 80%;">The program opens up for flexible backgrounds</a></li>
+     <!-- navigation toc: --> <li><a href="._summary-bs012.html#___sec11" style="font-size: 80%;">Best wishes to you all and thanks so much for your heroic efforts this semester</a></li>
 
         </ul>
       </li>
@@ -102,13 +130,14 @@ end of tocinfo -->
 <a name="part0006"></a>
 <!-- !split -->
 
-<h2 id="___sec5">Partial differential equations, chapter 10 </h2>
+<h2 id="___sec5" class="anchor">Ordinary differential equations (Chapter 8) </h2>
 
 <ul>
-<li> Set up diffusion, Poisson and wave equations up to 2 spatial dimensions and time</li>  
-<li> Set up the mathematical model and algorithms for these equations, with boundary and initial conditions. The stability conditions for the diffusion equation.</li>
-<li> Explicit, implicit and Crank-Nicolson schemes, and how to solve them. Remember that they result in triangular matrices (project 4).</li>  
-<li> Diffusion equation in two dimensions.</li>
+<li> Euler's method and improved Euler's method, truncation errors (project 3)</li>
+<li> Runge Kutta methods, 2nd and 4th order, truncation errors</li>
+<li> Leap-frog and Verlet algoritm (projects 3 and 5)</li>
+<li> How to implement and solve a second-order differential equation,  both linear and non-linear (projects 3 and 5).</li>
+<li> How to make your equations dimensionless (projects 2, 3, 4 and 5).</li>
 </ul>
 
 <p>
@@ -126,6 +155,8 @@ end of tocinfo -->
   <li><a href="._summary-bs008.html">9</a></li>
   <li><a href="._summary-bs009.html">10</a></li>
   <li><a href="._summary-bs010.html">11</a></li>
+  <li><a href="._summary-bs011.html">12</a></li>
+  <li><a href="._summary-bs012.html">13</a></li>
   <li><a href="._summary-bs007.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
