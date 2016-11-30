@@ -1,4 +1,4 @@
-TITLE: Summary of course and the final exam
+TITLE: Summary of course
 AUTHOR: Morten Hjorth-Jensen  {copyright, 1999-present|CC BY-NC} Email morten.hjorth-jensen@fys.uio.no at Department of Physics and Center of Mathematics for Applications, University of Oslo & National Superconducting Cyclotron Laboratory, Michigan State University
 DATE: Spring 2016
 
@@ -88,12 +88,25 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 
 
 
+!split
+===== Other courses in Computational Science at UiO =====
 
+!bblock Bachelor/Master/PhD Courses
+  * "INF-MAT4130":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4130/index-eng.html" Numerical linear algebra
+  * "MAT-INF4300":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4300/index-eng.html", PDEs and Sobolev spaces I
+  * "MAT-INF4310":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4310/index-eng.html", PDEs and Sobolev spaces II
+  * "MAT-INF3360":"http://www.uio.no/studier/emner/matnat/math/MAT-INF3360/index-eng.html" - Introduction to Partial Differential Equations
+  * "INF5620":"http://www.uio.no/studier/emner/matnat/ifi/INF5620/index-eng.html" Numerical methods for PDEs, finite element method
+  * "FYS4411":"http://www.uio.no/studier/emner/matnat/fys/FYS4411/" Computational physics II (Parallelization (MPI), object orientation, quantum mechanical systems with many interacting particles), spring semester
+  * "FYS4460":"http://www.uio.no/studier/emner/matnat/fys/FYS4460/" Computational physics III (Parallelization (MPI), object orientation, classical statistical physics, simulation of phase transitions, spring semester
+  * "INF3331/4331":"http://www.uio.no/studier/emner/matnat/ifi/INF3331/" Problem solving with high-level languages (Python), fall semester
+  * "INF3380":"http://www.uio.no/studier/emner/matnat/ifi/INF3380/index-eng.html" Parallel computing for problems in the Natural Sciences (mostly PDEs), spring semester
+!eblock
 
 
 
 !split
-===== "New Master of Science program at UiO from Fall 2018":"http://mhjensen.github.io/CPMLS/doc/pub/Masterprogram/html/Masterprogram.html"  =====
+===== "New Master of Science program at UiO in Computational Science from Fall 2018":"http://mhjensen.github.io/CPMLS/doc/pub/Masterprogram/html/Masterprogram.html"  =====
 The program aims at offering thesis projects in a variety of fields. The scientists involved in this program can offer thesis
 topics that cover several disciplines. The program has 60 study places and the study directions are
 
