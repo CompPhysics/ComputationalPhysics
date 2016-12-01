@@ -264,29 +264,29 @@ $(function () {
                2,
                None,
                '___sec79'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec80'),
+              ('"Parallel Jacobi":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/OpenMPdiffusion.cpp"',
+               2,
+               None,
+               '___sec80'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec81'),
               ('Wave Equation in two Dimensions, discretizing',
                2,
                None,
-               '___sec81'),
-              ('Wave Equation in two Dimensions', 2, None, '___sec82'),
+               '___sec82'),
               ('Wave Equation in two Dimensions', 2, None, '___sec83'),
               ('Wave Equation in two Dimensions', 2, None, '___sec84'),
               ('Wave Equation in two Dimensions', 2, None, '___sec85'),
               ('Wave Equation in two Dimensions', 2, None, '___sec86'),
+              ('Wave Equation in two Dimensions', 2, None, '___sec87'),
               ('Analytical  Solution for the two-dimensional wave equation',
                2,
                None,
-               '___sec87'),
+               '___sec88'),
               ('Analytical  Solution for the two-dimensional wave equation, first step',
                2,
                None,
-               '___sec88'),
-              ('Analytical  Solution for the two-dimensional wave equation,',
-               2,
-               None,
                '___sec89'),
-              ('Analytical  Solution for the two-dimensional wave equation, separation of variables',
+              ('Analytical  Solution for the two-dimensional wave equation,',
                2,
                None,
                '___sec90'),
@@ -294,22 +294,26 @@ $(function () {
                2,
                None,
                '___sec91'),
-              ('Analytical  Solution for the two-dimensional wave equation, boundary conditions',
+              ('Analytical  Solution for the two-dimensional wave equation, separation of variables',
                2,
                None,
                '___sec92'),
-              ('Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions',
+              ('Analytical  Solution for the two-dimensional wave equation, boundary conditions',
                2,
                None,
                '___sec93'),
-              ('Analytical  Solution for the two-dimensional wave equation, final steps',
+              ('Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions',
                2,
                None,
                '___sec94'),
+              ('Analytical  Solution for the two-dimensional wave equation, final steps',
+               2,
+               None,
+               '___sec95'),
               ('Python code for solving the two-dimensional wave equation',
                2,
                None,
-               '___sec95')]}
+               '___sec96')]}
 end of tocinfo -->
 
 <body>
@@ -2790,9 +2794,114 @@ Here follows the parallel implementation of the Jacobi algorithm
 }
 </pre></div>
 <p>
+<!-- !split  -->
+
+<h2 id="___sec80"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/PDE/cpp/OpenMPdiffusion.cpp" target="_blank">Parallel Jacobi</a> </h2>
+
+<p>
+Here follows the parallel implementation of the diffusion equation using OpenMP
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span style="color: #228B22">/* Simple program for solving the two-dimensional diffusion </span>
+<span style="color: #228B22">   equation or Poisson equation using Jacobi&#39;s iterative method</span>
+<span style="color: #228B22">   Note that this program does not contain a loop over the time </span>
+<span style="color: #228B22">   dependence. It uses OpenMP to parallelize</span>
+<span style="color: #228B22">*/</span>
+
+<span style="color: #1e889b">#include &lt;iostream&gt;</span>
+<span style="color: #1e889b">#include &lt;iomanip&gt;</span>
+<span style="color: #1e889b">#include &lt;armadillo&gt;</span>
+<span style="color: #1e889b">#include &lt;omp.h&gt;</span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, mat &amp;, mat &amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>);
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> * argv[]){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> Npoints = <span style="color: #B452CD">100</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> ExactSolution;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> dx = <span style="color: #B452CD">1.0</span>/(Npoints-<span style="color: #B452CD">1</span>);
+  <span style="color: #a7a7a7; font-weight: bold">double</span> dt = <span style="color: #B452CD">0.25</span>*dx*dx;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> tolerance = <span style="color: #B452CD">1.0e-8</span>;
+  mat A = zeros&lt;mat&gt;(Npoints,Npoints);
+  mat q = zeros&lt;mat&gt;(Npoints,Npoints);
+
+  <span style="color: #a7a7a7; font-weight: bold">int</span> thread_num;
+  omp_set_num_threads(<span style="color: #B452CD">4</span>);
+  thread_num = omp_get_max_threads ();
+  cout &lt;&lt; <span style="color: #CD5555">&quot;  The number of processors available = &quot;</span> &lt;&lt; omp_get_num_procs () &lt;&lt; endl ;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;  The number of threads available    = &quot;</span> &lt;&lt; thread_num &lt;&lt;  endl;
+  <span style="color: #228B22">// setting up an additional source term</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++)
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; Npoints; j++)
+      q(i,j) = -<span style="color: #B452CD">2.0</span>*M_PI*M_PI*sin(M_PI*dx*i)*sin(M_PI*dx*j);
+    
+  <span style="color: #a7a7a7; font-weight: bold">int</span> itcount = JacobiSolver(Npoints,dx,dt,A,q,tolerance);
+ 
+  <span style="color: #228B22">// Testing against exact solution</span>
+  <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++){
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j &lt; Npoints; j++){
+      ExactSolution = -sin(M_PI*dx*i)*sin(M_PI*dx*j);
+      sum += fabs((A(i,j) - ExactSolution));
+    }
+  }
+  cout &lt;&lt; setprecision(<span style="color: #B452CD">5</span>) &lt;&lt; setiosflags(ios::scientific);
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Jacobi error is &quot;</span> &lt;&lt; sum/Npoints &lt;&lt; <span style="color: #CD5555">&quot; in &quot;</span> &lt;&lt; itcount &lt;&lt; <span style="color: #CD5555">&quot; iterations&quot;</span> &lt;&lt; endl;
+}
+
+
+<span style="color: #228B22">// Function for setting up the iterative Jacobi solver</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #a7a7a7; font-weight: bold">double</span> dx, <span style="color: #a7a7a7; font-weight: bold">double</span> dt, mat &amp;A, mat &amp;q, <span style="color: #a7a7a7; font-weight: bold">double</span> abstol)
+{
+  <span style="color: #a7a7a7; font-weight: bold">int</span> MaxIterations = <span style="color: #B452CD">100000</span>;
+
+  
+  <span style="color: #a7a7a7; font-weight: bold">double</span> D = dt/(dx*dx);
+  <span style="color: #228B22">// initial guess</span>
+  mat Aold = randu&lt;mat&gt;(N,N);  
+  <span style="color: #228B22">// Boundary conditions, all zeros</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i &lt; N; i++){
+    A(<span style="color: #B452CD">0</span>,i) = <span style="color: #B452CD">0.0</span>;
+    A(N-<span style="color: #B452CD">1</span>,i) = <span style="color: #B452CD">0.0</span>;
+    A(i,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.0</span>;
+    A(i,N-<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">0.0</span>;
+  }
+  <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">1.0</span>;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> k = <span style="color: #B452CD">0</span>;
+  <span style="color: #228B22">// Start the iterative solver</span>
+  <span style="color: #8B008B; font-weight: bold">while</span> (k &lt; MaxIterations &amp;&amp; sum &gt; abstol){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> i, j;
+  sum = <span style="color: #B452CD">0.0</span>;
+  <span style="color: #228B22">// Define parallel region</span>
+<span style="color: #1e889b"># pragma omp parallel default(shared) private (i, j) reduction(+:sum)</span>
+  {
+     <span style="color: #1e889b"># pragma omp for</span>
+    <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">1</span>; i &lt; N-<span style="color: #B452CD">1</span>; i++){
+      <span style="color: #8B008B; font-weight: bold">for</span>(j = <span style="color: #B452CD">1</span>; j &lt; N-<span style="color: #B452CD">1</span>; j++){
+	A(i,j) = dt*q(i,j) + Aold(i,j) +
+	  D*(Aold(i+<span style="color: #B452CD">1</span>,j) + Aold(i,j+<span style="color: #B452CD">1</span>) - <span style="color: #B452CD">4.0</span>*Aold(i,j) + 
+	     Aold(i-<span style="color: #B452CD">1</span>,j) + Aold(i,j-<span style="color: #B452CD">1</span>));
+      }
+    }
+    <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">0</span>; i &lt; N;i++){
+      <span style="color: #8B008B; font-weight: bold">for</span>(j = <span style="color: #B452CD">0</span>; j &lt; N;j++){
+	sum += fabs(Aold(i,j)-A(i,j));
+	Aold(i,j) = A(i,j);
+      }
+    }
+    sum /= (N*N); 
+  } <span style="color: #228B22">//end parallel region</span>
+  k++;
+  } <span style="color: #228B22">//end while loop</span>
+  <span style="color: #8B008B; font-weight: bold">return</span> k;
+}
+</pre></div>
+<p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec80">Wave Equation in two Dimensions </h2>
+<h2 id="___sec81">Wave Equation in two Dimensions </h2>
 
 <p>
 The \( 1+1 \)-dimensional wave equation reads
@@ -2820,7 +2929,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec81">Wave Equation in two Dimensions, discretizing </h2>
+<h2 id="___sec82">Wave Equation in two Dimensions, discretizing </h2>
 We discretize again time and position,
 
 $$
@@ -2865,7 +2974,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec82">Wave Equation in two Dimensions </h2>
+<h2 id="___sec83">Wave Equation in two Dimensions </h2>
 If we assume that all values at times \( t=j \) and \( t=j-1 \) are known, the only unknown variable is \( u_{i,j+1} \) and the last equation yields thus an explicit
 scheme for updating this quantity. We have thus an explicit finite difference
 scheme for computing the wave function \( u \). The only additional complication
@@ -2892,7 +3001,7 @@ implying that \( u_{i,+1}=u_{i,-1} \).
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec83">Wave Equation in two Dimensions </h2>
+<h2 id="___sec84">Wave Equation in two Dimensions </h2>
 If we insert this condition in Eq. \eqref{eq:wavescheme} we arrive at a
 special formula for the first time step
 
@@ -2920,7 +3029,7 @@ in our setup of the initial conditions.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec84">Wave Equation in two Dimensions </h2>
+<h2 id="___sec85">Wave Equation in two Dimensions </h2>
 The situation is rather similar for the \( 2+1 \)-dimensional case, 
 except that we now need to discretize the spatial \( y \)-coordinate as well.
 Our equations will now depend on three variables whose discretized versions
@@ -2951,7 +3060,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec85">Wave Equation in two Dimensions </h2>
+<h2 id="___sec86">Wave Equation in two Dimensions </h2>
 We have now the following discretized partial derivatives
 $$
 \begin{equation*}
@@ -2992,7 +3101,7 @@ unknown quantity.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec86">Wave Equation in two Dimensions </h2>
+<h2 id="___sec87">Wave Equation in two Dimensions </h2>
 It is easy to account for different step lengths for \( x \) and \( y \).
 The partial derivative is treated in much the same way
 as for the one-dimensional case, except that we now have an additional
@@ -3010,7 +3119,7 @@ in our setup of the initial conditions.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec87">Analytical  Solution for the two-dimensional wave equation </h2>
+<h2 id="___sec88">Analytical  Solution for the two-dimensional wave equation </h2>
 We develop here the closed-form solution for the \( 2+1 \) dimensional wave equation with the following boundary and initial conditions
 
 $$
@@ -3026,7 +3135,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec88">Analytical  Solution for the two-dimensional wave equation, first step </h2>
+<h2 id="___sec89">Analytical  Solution for the two-dimensional wave equation, first step </h2>
 Our first step is to make the ansatz
 
 $$
@@ -3054,7 +3163,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec89">Analytical  Solution for the two-dimensional wave equation, </h2>
+<h2 id="___sec90">Analytical  Solution for the two-dimensional wave equation, </h2>
 The lhs and rhs are independent of each other and we obtain two differential equations
 $$
 \begin{equation*}
@@ -3090,7 +3199,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec90">Analytical  Solution for the two-dimensional wave equation, separation of variables </h2>
+<h2 id="___sec91">Analytical  Solution for the two-dimensional wave equation, separation of variables </h2>
 Since the lhs and rhs are again independent of each other, we can separate the latter equation into two independent 
 equations, one for \( x \) and one for \( y \), namely
 
@@ -3113,7 +3222,7 @@ with \( \rho^2= \nu^2-\kappa^2 \).
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec91">Analytical  Solution for the two-dimensional wave equation, separation of variables </h2>
+<h2 id="___sec92">Analytical  Solution for the two-dimensional wave equation, separation of variables </h2>
 The second step is to solve these differential equations, which all have trigonometric functions as solutions, viz.
 $$
 \begin{equation*}
@@ -3132,7 +3241,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec92">Analytical  Solution for the two-dimensional wave equation, boundary conditions </h2>
+<h2 id="___sec93">Analytical  Solution for the two-dimensional wave equation, boundary conditions </h2>
 The boundary conditions require that \( F(x,y) = H(x)Q(y) \) are zero at the boundaries, meaning that
 \( H(0)=H(L)=Q(0)=Q(L)=0 \).  This yields the solutions
 
@@ -3156,7 +3265,7 @@ or \( \lambda_{mn}= c\pi/L\sqrt{m^2+n^2} \).
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec93">Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions </h2>
+<h2 id="___sec94">Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions </h2>
 The solution for \( G \) is
 
 $$
@@ -3176,7 +3285,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec94">Analytical  Solution for the two-dimensional wave equation, final steps </h2>
+<h2 id="___sec95">Analytical  Solution for the two-dimensional wave equation, final steps </h2>
 The final step is to determine the coefficients \( B_{mn} \) and \( D_{mn} \) from the Fourier coefficients.
 The equations for these  are determined by the initial conditions \( u(x,y,0) = f(x,y) \) and 
 \( \partial u/\partial t|_{t=0}= g(x,y) \). 
@@ -3201,7 +3310,7 @@ Inserting the particular functional forms of \( f(x,y) \) and \( g(x,y) \) one o
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec95">Python code for solving the two-dimensional wave equation </h2>
+<h2 id="___sec96">Python code for solving the two-dimensional wave equation </h2>
 The following Python code sets up and solves the two-dimensional  wave equation for all three methods discussed.
 <p>
 
