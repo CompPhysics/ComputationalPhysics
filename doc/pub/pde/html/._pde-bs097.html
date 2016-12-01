@@ -375,7 +375,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._pde-bs016.html#___sec15" style="font-size: 80%;"><b>Diffusion equation, dimensionless form</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs017.html#___sec16" style="font-size: 80%;"><b>Explicit Scheme</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs018.html#___sec17" style="font-size: 80%;"><b>Explicit Scheme, boundary conditions</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec18" style="font-size: 80%;"><b>Explicit Scheme, algorithm</b></a></li>
+     <!-- navigation toc: --> <li><a href="._pde-bs019.html#___sec18" style="font-size: 80%;"><b>Explicit Scheme, algorithm</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs020.html#___sec19" style="font-size: 80%;"><b>Explicit Scheme, simplifications</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs021.html#___sec20" style="font-size: 80%;"><b>Explicit Scheme, solving the equations</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs022.html#___sec21" style="font-size: 80%;"><b>Explicit Scheme, simple case</b></a></li>
@@ -453,7 +453,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._pde-bs094.html#___sec93" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, boundary conditions</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs095.html#___sec94" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, separation of variables and solutions</b></a></li>
      <!-- navigation toc: --> <li><a href="._pde-bs096.html#___sec95" style="font-size: 80%;"><b>Analytical  Solution for the two-dimensional wave equation, final steps</b></a></li>
-     <!-- navigation toc: --> <li><a href="._pde-bs097.html#___sec96" style="font-size: 80%;"><b>Python code for solving the two-dimensional wave equation</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec96" style="font-size: 80%;"><b>Python code for solving the two-dimensional wave equation</b></a></li>
 
         </ul>
       </li>
@@ -466,67 +466,70 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0019"></a>
+<a name="part0097"></a>
 <!-- !split -->
 
-<h2 id="___sec18" class="anchor">Explicit Scheme, algorithm </h2>
-If we use standard approximations for the derivatives we obtain
-
-$$
-\begin{equation*}
-u_t\approx \frac{u(x,t+\Delta t)-u(x,t)}{\Delta t}=\frac{u(x_i,t_j+\Delta t)-u(x_i,t_j)}{\Delta t}
-\end{equation*}
-$$
-
-with a local approximation error \( O(\Delta t) \)  
-and
-
-$$
-\begin{equation*}
-u_{xx}\approx \frac{u(x+\Delta x,t)-2u(x,t)+u(x-\Delta x,t)}{\Delta x^2},
-\end{equation*}
-$$
-
-or
-
-$$
-\begin{equation*}
-u_{xx}\approx \frac{u(x_i+\Delta x,t_j)-2u(x_i,t_j)+u(x_i-\Delta x,t_j)}{\Delta x^2},
-\end{equation*}
-$$
-
-with a local approximation error \( O(\Delta x^2) \). Our approximation is to higher order
-in coordinate space. This can be justified since in most cases it is the spatial
-dependence which causes numerical problems.
-
+<h2 id="___sec96" class="anchor">Python code for solving the two-dimensional wave equation </h2>
+The following Python code sets up and solves the two-dimensional  wave equation for all three methods discussed.
 <p>
+
+
+<div class="compute"><script type="text/x-sage">
+#Program which solves the 2+1-dimensional wave equation by a finite difference scheme
+
+from numpy import *
+#Define the grid
+N = 31
+h = 1.0 / (N-1)
+dt = .0005
+t_steps = 10000
+x,y = ndgrid(linspace(0,1,N),linspace(0,1,N),sparse=False)
+
+alpha = dt**2 / h**2
+
+#Initial conditions with du/dt = 0
+u = sin(x*pi)*cos(y*pi-pi/2)
+u_old = zeros(u.shape,type(u[0,0]))
+for i in xrange(1,N-1):
+    for j in xrange(1,N-1):
+        u_old[i,j] = u[i,j] + (alpha/2)*(u[i+1,j] - 4*u[i,j] + u[i-1,j] + u[i,j+1] + u[i,j-1])
+u_new = zeros(u.shape,type(u[0,0]))
+
+#We don't necessarily want to plot every time step. We plot every n'th step where
+n = 100
+plotnr = 0
+
+#Iteration over time steps
+for k in xrange(t_steps):
+    for i in xrange(1,N-1): #1 - N-2 because we don't want to change the boundaries
+        for j in xrange(1,N-1):
+            u_new[i,j] = 2*u[i,j] - u_old[i,j] + alpha*(u[i+1,j] - 4*u[i,j] + u[i-1,j] + u[i,j+1] + u[i,j-1])
+
+    #Prepare for next time step by manipulating pointers
+    temp = u_new
+    u_new = u_old
+    u_old = u
+    u = temp
+#To do: Make movie
+
+</script></div>
+<p>
+
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
-<li><a href="._pde-bs018.html">&laquo;</a></li>
+<li><a href="._pde-bs096.html">&laquo;</a></li>
   <li><a href="._pde-bs000.html">1</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._pde-bs011.html">12</a></li>
-  <li><a href="._pde-bs012.html">13</a></li>
-  <li><a href="._pde-bs013.html">14</a></li>
-  <li><a href="._pde-bs014.html">15</a></li>
-  <li><a href="._pde-bs015.html">16</a></li>
-  <li><a href="._pde-bs016.html">17</a></li>
-  <li><a href="._pde-bs017.html">18</a></li>
-  <li><a href="._pde-bs018.html">19</a></li>
-  <li class="active"><a href="._pde-bs019.html">20</a></li>
-  <li><a href="._pde-bs020.html">21</a></li>
-  <li><a href="._pde-bs021.html">22</a></li>
-  <li><a href="._pde-bs022.html">23</a></li>
-  <li><a href="._pde-bs023.html">24</a></li>
-  <li><a href="._pde-bs024.html">25</a></li>
-  <li><a href="._pde-bs025.html">26</a></li>
-  <li><a href="._pde-bs026.html">27</a></li>
-  <li><a href="._pde-bs027.html">28</a></li>
-  <li><a href="._pde-bs028.html">29</a></li>
-  <li><a href="">...</a></li>
-  <li><a href="._pde-bs097.html">98</a></li>
-  <li><a href="._pde-bs020.html">&raquo;</a></li>
+  <li><a href="._pde-bs089.html">90</a></li>
+  <li><a href="._pde-bs090.html">91</a></li>
+  <li><a href="._pde-bs091.html">92</a></li>
+  <li><a href="._pde-bs092.html">93</a></li>
+  <li><a href="._pde-bs093.html">94</a></li>
+  <li><a href="._pde-bs094.html">95</a></li>
+  <li><a href="._pde-bs095.html">96</a></li>
+  <li><a href="._pde-bs096.html">97</a></li>
+  <li class="active"><a href="._pde-bs097.html">98</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 
