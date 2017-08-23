@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -275,14 +284,14 @@ MathJax.Hub.Config({
 <a name="part0065"></a>
 <!-- !split -->
 
-<h2 id="___sec65">Call by value or reference </h2>
+<h2 id="___sec65" class="anchor">Call by value or reference </h2>
 C++ allows the programmer to use solely call by reference (note that call by reference is implemented as pointers). To see the difference between C and C++, consider the following simple examples.
 In C we would write
 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #B00040">int</span> n; n <span style="color: #666666">=8</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #B00040">int</span> n; n <span style="color: #666666">=8</span>;
    func(<span style="color: #666666">&amp;</span>n); <span style="color: #408080; font-style: italic">/* &amp;n is a pointer to n */</span>
    ....
    <span style="color: #B00040">void</span> func(<span style="color: #B00040">int</span> <span style="color: #666666">*</span>i)
@@ -296,7 +305,7 @@ whereas in C++ we would write
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #B00040">int</span> n; n <span style="color: #666666">=8</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #B00040">int</span> n; n <span style="color: #666666">=8</span>;
    func(n); <span style="color: #408080; font-style: italic">// just transfer n itself</span>
    ....
    <span style="color: #B00040">void</span> func(<span style="color: #B00040">int</span><span style="color: #666666">&amp;</span> i)

@@ -295,7 +295,7 @@ Here follows an alternative Ising model code using the <a href="http://www.cplus
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/* </span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">/* </span>
 <span style="color: #408080; font-style: italic">   Program to solve the two-dimensional Ising model </span>
 <span style="color: #408080; font-style: italic">   with zero external field and no parallelization using the Mersenne twister engine for generating random </span>
 <span style="color: #408080; font-style: italic">   numbers.</span>
@@ -311,14 +311,14 @@ Here follows an alternative Ising model code using the <a href="http://www.cplus
 <span style="color: #408080; font-style: italic">   c++ -O3 -std=c++11 -Rpass=loop-vectorize -o Ising.x IsingModel.cpp -larmadillo</span>
 <span style="color: #408080; font-style: italic">*/</span>
 
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;fstream&gt;</span>
-<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
-<span style="color: #BC7A00">#include &lt;cstdlib&gt;</span>
-<span style="color: #BC7A00">#include &lt;random&gt;</span>
-<span style="color: #BC7A00">#include &lt;armadillo&gt;</span>
-<span style="color: #BC7A00">#include &lt;string&gt;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;fstream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdlib&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;random&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;armadillo&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;string&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span>  std;
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
 <span style="color: #408080; font-style: italic">// output file</span>

@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -374,7 +383,7 @@ MathJax.Hub.Config({
 <a name="part0029"></a>
 <!-- !split -->
 
-<h2 id="___sec28">Discussion of Jacobi's method for eigenvalues </h2>
+<h2 id="___sec28" class="anchor">Discussion of Jacobi's method for eigenvalues </h2>
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
@@ -382,7 +391,7 @@ Finding the new matrix elements
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">Jacobi_rotate</span> ( mat A, mat R, <span style="color: #B00040">int</span> k, <span style="color: #B00040">int</span> l, <span style="color: #B00040">int</span> n )
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">void</span> <span style="color: #0000FF">Jacobi_rotate</span> ( mat A, mat R, <span style="color: #B00040">int</span> k, <span style="color: #B00040">int</span> l, <span style="color: #B00040">int</span> n )
 {
   <span style="color: #B00040">double</span> s, c;
   <span style="color: #008000; font-weight: bold">if</span> ( A(k,l) <span style="color: #666666">!=</span> <span style="color: #666666">0.0</span> ) {

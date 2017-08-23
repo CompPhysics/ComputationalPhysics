@@ -482,7 +482,7 @@ MathJax.Hub.Config({
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #408080; font-style: italic">// Forward substitution cannot be vectorized</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>      <span style="color: #408080; font-style: italic">// Forward substitution cannot be vectorized</span>
       <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">2</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) b[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span> b[i<span style="color: #666666">-1</span>]<span style="color: #666666">/</span>d[i<span style="color: #666666">-1</span>];
       <span style="color: #408080; font-style: italic">// Backward substitution  cannot be vectorized</span>
       solution[n<span style="color: #666666">-1</span>] <span style="color: #666666">=</span> b[n<span style="color: #666666">-1</span>]<span style="color: #666666">/</span>d[n<span style="color: #666666">-1</span>];

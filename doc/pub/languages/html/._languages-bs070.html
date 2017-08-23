@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -275,12 +284,12 @@ MathJax.Hub.Config({
 <a name="part0070"></a>
 <!-- !split -->
 
-<h2 id="___sec70"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program6.cpp" target="_self">Example codes in c++, transfer of data using call by value and call by reference</a> </h2>
+<h2 id="___sec70" class="anchor"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program6.cpp" target="_self">Example codes in c++, transfer of data using call by value and call by reference</a> </h2>
 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 <span style="color: #408080; font-style: italic">//  Declare functions before main</span>
 <span style="color: #B00040">void</span> <span style="color: #0000FF">func</span>(<span style="color: #B00040">int</span>, <span style="color: #B00040">int</span><span style="color: #666666">*</span>);

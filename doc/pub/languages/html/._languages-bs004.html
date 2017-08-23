@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -275,7 +284,7 @@ MathJax.Hub.Config({
 <a name="part0004"></a>
 <!-- !split -->
 
-<h2 id="___sec3">Getting Started </h2>
+<h2 id="___sec3" class="anchor">Getting Started </h2>
 
 <p>
 <div class="panel panel-default">
@@ -287,7 +296,7 @@ instructions under Linux/Unix can be used
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c++ -c -Wall myprogram.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c++ -c -Wall myprogram.cpp
 c++ -o myprogram myprogram.o
 </pre></div>
 <p>
@@ -305,7 +314,7 @@ Also, to speed up the code use compile options like
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c++ -O3 -c -Wall myprogram.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c++ -O3 -c -Wall myprogram.cpp
 </pre></div>
 <p>
 </div>

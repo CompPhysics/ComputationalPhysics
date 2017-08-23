@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -187,7 +196,7 @@ MathJax.Hub.Config({
 <a name="part0020"></a>
 <!-- !split -->
 
-<h2 id="___sec19">Programming classes </h2>
+<h2 id="___sec19" class="anchor">Programming classes </h2>
 
 <p>
 The simplest member function are those we defined to extract
@@ -198,7 +207,7 @@ functions
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">double</span> Complex<span style="color: #666666">::</span> Re () <span style="color: #008000; font-weight: bold">const</span> { <span style="color: #008000; font-weight: bold">return</span> re; }} <span style="color: #408080; font-style: italic">//  getting the real part</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">double</span> Complex<span style="color: #666666">::</span> Re () <span style="color: #008000; font-weight: bold">const</span> { <span style="color: #008000; font-weight: bold">return</span> re; }} <span style="color: #408080; font-style: italic">//  getting the real part</span>
 <span style="color: #B00040">double</span> Complex<span style="color: #666666">::</span> Im () <span style="color: #008000; font-weight: bold">const</span> { <span style="color: #008000; font-weight: bold">return</span> im; }  <span style="color: #408080; font-style: italic">//   and the imaginary part</span>
 </pre></div>
 <p>

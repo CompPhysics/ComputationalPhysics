@@ -463,7 +463,7 @@ Here is an example of a part of a program where specific operations lead to a sl
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">k <span style="color: #666666">=</span> n<span style="color: #666666">-1</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>k <span style="color: #666666">=</span> n<span style="color: #666666">-1</span>;
 <span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
     a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span>c<span style="color: #666666">*</span>d;
     e <span style="color: #666666">=</span> g[k];
@@ -474,7 +474,7 @@ A better code is
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">temp <span style="color: #666666">=</span> c<span style="color: #666666">*</span>d;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>temp <span style="color: #666666">=</span> c<span style="color: #666666">*</span>d;
 <span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
     a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span> temp;
 }

@@ -458,7 +458,7 @@ What happens with code like this
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel for</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel for</span>
 <span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>) sum <span style="color: #666666">+=</span> a[i]<span style="color: #666666">*</span>a[i];
 </pre></div>
 <p>
@@ -466,7 +466,7 @@ All threads can access the <b>sum</b> variable, but the addition is not atomic! 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
 <span style="color: #BC7A00">#pragma omp parallel for reduction(+:sum)</span>
 <span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>) sum <span style="color: #666666">+=</span> a[i]<span style="color: #666666">*</span>a[i];
 </pre></div>

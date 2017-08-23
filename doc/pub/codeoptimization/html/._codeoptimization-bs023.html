@@ -456,7 +456,7 @@ read-after-write statement with an explicit flow dependency cannot be vectorized
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #B00040">double</span> b <span style="color: #666666">=</span> <span style="color: #666666">15.</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #B00040">double</span> b <span style="color: #666666">=</span> <span style="color: #666666">15.</span>;
   <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">1</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
       a[i] <span style="color: #666666">=</span> a[i<span style="color: #666666">-1</span>] <span style="color: #666666">+</span> b;
   }
@@ -466,7 +466,7 @@ is an example of flow dependency and results in wrong numerical results if vecto
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   a[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">0</span>] <span style="color: #666666">+</span> b;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   a[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">0</span>] <span style="color: #666666">+</span> b;
    a[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">1</span>] <span style="color: #666666">+</span> b;
    a[<span style="color: #666666">3</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">2</span>] <span style="color: #666666">+</span> b;
    a[<span style="color: #666666">4</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">3</span>] <span style="color: #666666">+</span> b;

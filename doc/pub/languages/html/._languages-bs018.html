@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -275,7 +284,7 @@ MathJax.Hub.Config({
 <a name="part0018"></a>
 <!-- !split -->
 
-<h2 id="___sec17"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/Fortran/program2.f90" target="_self">From decimal to binary representation</a> </h2>
+<h2 id="___sec17" class="anchor"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/Fortran/program2.f90" target="_self">From decimal to binary representation</a> </h2>
 
 <p>
 <div class="panel panel-default">
@@ -284,7 +293,7 @@ MathJax.Hub.Config({
 <p>
 
 <!-- code=fortran (!bc fcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">PROGRAM </span>binary_integer
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">PROGRAM </span>binary_integer
 <span style="color: #008000; font-weight: bold">IMPLICIT NONE</span>
 <span style="color: #008000; font-weight: bold">  </span><span style="color: #B00040">INTEGER  </span>i, number, terms(<span style="color: #666666">0</span>:<span style="color: #666666">31</span>) <span style="color: #408080; font-style: italic">! storage of a0, a1, etc, up to 32 bits</span>
 

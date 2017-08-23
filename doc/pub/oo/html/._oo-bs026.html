@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -187,7 +196,7 @@ MathJax.Hub.Config({
 <a name="part0026"></a>
 <!-- !split -->
 
-<h2 id="___sec25">Programming classes </h2>
+<h2 id="___sec25" class="anchor">Programming classes </h2>
 
 <p>
 With this function, statements like
@@ -198,7 +207,7 @@ We can make simple implementations in terms of the assignment
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Complex<span style="color: #666666">::</span> Complex (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Complex<span style="color: #666666">::</span> Complex (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
 { <span style="color: #666666">*</span><span style="color: #008000; font-weight: bold">this</span> <span style="color: #666666">=</span> c; }
 </pre></div>
 <p>

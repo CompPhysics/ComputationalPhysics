@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -187,7 +196,7 @@ MathJax.Hub.Config({
 <a name="part0008"></a>
 <!-- !split -->
 
-<h2 id="___sec7">Programming classes </h2>
+<h2 id="___sec7" class="anchor">Programming classes </h2>
 
 <p>
 C++ has a class complex in its standard
@@ -196,11 +205,11 @@ template library (STL). The standard usage in a given function could then look l
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// Program to calculate addition and multiplication of two complex numbers</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// Program to calculate addition and multiplication of two complex numbers</span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
-<span style="color: #BC7A00">#include &lt;complex&gt;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;complex&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
 {
   complex<span style="color: #666666">&lt;</span><span style="color: #B00040">double</span><span style="color: #666666">&gt;</span> x(<span style="color: #666666">6.1</span>,<span style="color: #666666">8.2</span>), y(<span style="color: #666666">0.5</span>,<span style="color: #666666">1.3</span>);

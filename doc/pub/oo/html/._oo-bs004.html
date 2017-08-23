@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -187,7 +196,7 @@ MathJax.Hub.Config({
 <a name="part0004"></a>
 <!-- !split -->
 
-<h2 id="___sec3">Programming classes </h2>
+<h2 id="___sec3" class="anchor">Programming classes </h2>
 
 <p>
 The way the matrix addition is written is very close to the way we express this relation mathematically. The benefit for the
@@ -201,7 +210,7 @@ the two loops as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=0</span> ; i <span style="color: #666666">&lt;</span> n ; i<span style="color: #666666">++</span>) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=0</span> ; i <span style="color: #666666">&lt;</span> n ; i<span style="color: #666666">++</span>) {
       <span style="color: #008000; font-weight: bold">for</span>(j<span style="color: #666666">=0</span> ; j <span style="color: #666666">&lt;</span> n ; j<span style="color: #666666">++</span>) {
          a[i][j]<span style="color: #666666">=</span>b[i][j]<span style="color: #666666">+</span>c[i][j]
 </pre></div>

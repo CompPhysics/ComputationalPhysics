@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -275,7 +284,7 @@ MathJax.Hub.Config({
 <a name="part0066"></a>
 <!-- !split -->
 
-<h2 id="___sec66">Call by value or reference </h2>
+<h2 id="___sec66" class="anchor">Call by value or reference </h2>
 The reason why we emphasize the difference between call by value and call
 by reference is that it allows the programmer to avoid pitfalls
 like unwanted changes of variables. However, many people feel that this
