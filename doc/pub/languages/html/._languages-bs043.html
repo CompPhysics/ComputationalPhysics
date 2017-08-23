@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -275,7 +284,7 @@ MathJax.Hub.Config({
 <a name="part0043"></a>
 <!-- !split -->
 
-<h2 id="___sec43">Program to compute \( \exp{(-x)} \) </h2>
+<h2 id="___sec43" class="anchor">Program to compute \( \exp{(-x)} \) </h2>
 
 <p>
 <div class="panel panel-default">
@@ -284,7 +293,7 @@ MathJax.Hub.Config({
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">     <span style="color: #008000; font-weight: bold">while</span>(fabs(term) <span style="color: #666666">&gt;</span> TRUNCATION)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>     <span style="color: #008000; font-weight: bold">while</span>(fabs(term) <span style="color: #666666">&gt;</span> TRUNCATION)
        {
 	 term <span style="color: #666666">*=</span> <span style="color: #666666">-</span>x<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n);
 	 sum  <span style="color: #666666">+=</span> term;

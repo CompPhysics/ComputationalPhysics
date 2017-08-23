@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -275,12 +284,12 @@ MathJax.Hub.Config({
 <a name="part0059"></a>
 <!-- !split -->
 
-<h2 id="___sec59">File handling; C way cont. </h2>
+<h2 id="___sec59" class="anchor">File handling; C way cont. </h2>
 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> out_file <span style="color: #666666">=</span> fopen( argv[<span style="color: #666666">2</span>], <span style="color: #BA2121">&quot;w&quot;</span>); <span style="color: #408080; font-style: italic">// returns a pointer to the output file</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span> out_file <span style="color: #666666">=</span> fopen( argv[<span style="color: #666666">2</span>], <span style="color: #BA2121">&quot;w&quot;</span>); <span style="color: #408080; font-style: italic">// returns a pointer to the output file</span>
  <span style="color: #008000; font-weight: bold">if</span>( out_file <span style="color: #666666">==</span> <span style="color: #008000">NULL</span> )  {       <span style="color: #408080; font-style: italic">// can&#39;t find the file</span>
     printf(<span style="color: #BA2121">&quot;Can&#39;t find the output file%s</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>, argv[<span style="color: #666666">2</span>]);
     exit(<span style="color: #666666">0</span>);

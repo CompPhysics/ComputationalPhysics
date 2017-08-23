@@ -1,3 +1,4 @@
+\
 <!DOCTYPE html>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -162,12 +163,12 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>2016</h4></center> <!-- date -->
+<center><h4>Aug 23, 2017</h4></center> <!-- date -->
 <br>
 <p>
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 </section>
 
@@ -626,7 +627,7 @@ can easily be implemented in the following lines
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #8B008B; font-weight: bold">for</span> ( j=<span style="color: #B452CD">1</span>; j &lt; N; j++) {
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">for</span> ( j=<span style="color: #B452CD">1</span>; j &lt; N; j++) {
      energy += spin[j]*spin[j+<span style="color: #B452CD">1</span>]; 
 }
 </pre></div>
@@ -763,7 +764,7 @@ expression as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%">    jm=N;
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>    jm=N;
     <span style="color: #8B008B; font-weight: bold">for</span> ( j=<span style="color: #B452CD">1</span>; j &lt;=N ; j++) {
         energy += spin[j]*spin[jm]; 
         jm = j ;
@@ -1395,16 +1396,16 @@ The main part of the Ising model program is shown here
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">/* </span>
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">/* </span>
 <span style="color: #228B22">   Program to solve the two-dimensional Ising model </span>
 <span style="color: #228B22">   The coupling constant J = 1</span>
 <span style="color: #228B22">   Boltzmann&#39;s constant = 1, temperature has thus dimension energy</span>
 <span style="color: #228B22">   Metropolis sampling is used. Periodic boundary conditions.</span>
 <span style="color: #228B22">*/</span>
-<span style="color: #1e889b">#include &lt;iostream&gt;</span>
-<span style="color: #1e889b">#include &lt;fstream&gt;</span>
-<span style="color: #1e889b">#include &lt;iomanip&gt;</span>
-<span style="color: #1e889b">#include &quot;lib.h&quot;</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;fstream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iomanip&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;lib.h&quot;</span><span style="color: #1e889b"></span>
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span>  std;
 ofstream ofile;
 <span style="color: #228B22">// inline function for periodic boundary conditions</span>
@@ -1569,7 +1570,7 @@ Eqs. <a href="#mjx-eqn-3">(3)</a> and <a href="#mjx-eqn-4">(4)</a> are implement
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Metropolis</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> n_spins, <span style="color: #a7a7a7; font-weight: bold">long</span>&amp; idum, <span style="color: #a7a7a7; font-weight: bold">int</span> **spin_matrix, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; E, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;M, <span style="color: #a7a7a7; font-weight: bold">double</span> *w)
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Metropolis</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> n_spins, <span style="color: #a7a7a7; font-weight: bold">long</span>&amp; idum, <span style="color: #a7a7a7; font-weight: bold">int</span> **spin_matrix, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; E, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;M, <span style="color: #a7a7a7; font-weight: bold">double</span> *w)
 {
   <span style="color: #228B22">// loop over all spins</span>
   <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> y =<span style="color: #B452CD">0</span>; y &lt; n_spins; y++) {
@@ -1615,7 +1616,7 @@ This is done in the function here.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">// function to initialise energy, spin matrix and magnetization</span>
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">// function to initialise energy, spin matrix and magnetization</span>
 <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">initialize</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> n_spins, <span style="color: #a7a7a7; font-weight: bold">double</span> temp, <span style="color: #a7a7a7; font-weight: bold">int</span> **spin_matrix, 
 		<span style="color: #a7a7a7; font-weight: bold">double</span>&amp; E, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; M)
 {
@@ -1648,7 +1649,7 @@ Here follows an alternative Ising model code using the <a href="http://www.cplus
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">/* </span>
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">/* </span>
 <span style="color: #228B22">   Program to solve the two-dimensional Ising model </span>
 <span style="color: #228B22">   with zero external field and no parallelization using the Mersenne twister engine for generating random </span>
 <span style="color: #228B22">   numbers.</span>
@@ -1664,14 +1665,14 @@ Here follows an alternative Ising model code using the <a href="http://www.cplus
 <span style="color: #228B22">   c++ -O3 -std=c++11 -Rpass=loop-vectorize -o Ising.x IsingModel.cpp -larmadillo</span>
 <span style="color: #228B22">*/</span>
 
-<span style="color: #1e889b">#include &lt;cmath&gt;</span>
-<span style="color: #1e889b">#include &lt;iostream&gt;</span>
-<span style="color: #1e889b">#include &lt;fstream&gt;</span>
-<span style="color: #1e889b">#include &lt;iomanip&gt;</span>
-<span style="color: #1e889b">#include &lt;cstdlib&gt;</span>
-<span style="color: #1e889b">#include &lt;random&gt;</span>
-<span style="color: #1e889b">#include &lt;armadillo&gt;</span>
-<span style="color: #1e889b">#include &lt;string&gt;</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;fstream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iomanip&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdlib&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;random&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;armadillo&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;string&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span>  std;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 <span style="color: #228B22">// output file</span>

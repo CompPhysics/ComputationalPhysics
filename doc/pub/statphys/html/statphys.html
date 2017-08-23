@@ -224,7 +224,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>2016</h4></center> <!-- date -->
+<center><h4>Aug 23, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -638,7 +638,7 @@ can easily be implemented in the following lines
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">for</span> ( j<span style="color: #666666">=1</span>; j <span style="color: #666666">&lt;</span> N; j<span style="color: #666666">++</span>) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">for</span> ( j<span style="color: #666666">=1</span>; j <span style="color: #666666">&lt;</span> N; j<span style="color: #666666">++</span>) {
      energy <span style="color: #666666">+=</span> spin[j]<span style="color: #666666">*</span>spin[j<span style="color: #666666">+1</span>]; 
 }
 </pre></div>
@@ -757,7 +757,7 @@ expression as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    jm<span style="color: #666666">=</span>N;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    jm<span style="color: #666666">=</span>N;
     <span style="color: #008000; font-weight: bold">for</span> ( j<span style="color: #666666">=1</span>; j <span style="color: #666666">&lt;=</span>N ; j<span style="color: #666666">++</span>) {
         energy <span style="color: #666666">+=</span> spin[j]<span style="color: #666666">*</span>spin[jm]; 
         jm <span style="color: #666666">=</span> j ;
@@ -1343,16 +1343,16 @@ The main part of the Ising model program is shown here
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/* </span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">/* </span>
 <span style="color: #408080; font-style: italic">   Program to solve the two-dimensional Ising model </span>
 <span style="color: #408080; font-style: italic">   The coupling constant J = 1</span>
 <span style="color: #408080; font-style: italic">   Boltzmann&#39;s constant = 1, temperature has thus dimension energy</span>
 <span style="color: #408080; font-style: italic">   Metropolis sampling is used. Periodic boundary conditions.</span>
 <span style="color: #408080; font-style: italic">*/</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;fstream&gt;</span>
-<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
-<span style="color: #BC7A00">#include &quot;lib.h&quot;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;fstream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;lib.h&quot;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span>  std;
 ofstream ofile;
 <span style="color: #408080; font-style: italic">// inline function for periodic boundary conditions</span>
@@ -1508,7 +1508,7 @@ Eqs. \eqref{eq:deltaeising} and \eqref{eq:deltamising} are implemented in the fu
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">Metropolis</span>(<span style="color: #B00040">int</span> n_spins, <span style="color: #B00040">long</span><span style="color: #666666">&amp;</span> idum, <span style="color: #B00040">int</span> <span style="color: #666666">**</span>spin_matrix, <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> E, <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span>M, <span style="color: #B00040">double</span> <span style="color: #666666">*</span>w)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">void</span> <span style="color: #0000FF">Metropolis</span>(<span style="color: #B00040">int</span> n_spins, <span style="color: #B00040">long</span><span style="color: #666666">&amp;</span> idum, <span style="color: #B00040">int</span> <span style="color: #666666">**</span>spin_matrix, <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> E, <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span>M, <span style="color: #B00040">double</span> <span style="color: #666666">*</span>w)
 {
   <span style="color: #408080; font-style: italic">// loop over all spins</span>
   <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> y <span style="color: #666666">=0</span>; y <span style="color: #666666">&lt;</span> n_spins; y<span style="color: #666666">++</span>) {
@@ -1553,7 +1553,7 @@ This is done in the function here.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// function to initialise energy, spin matrix and magnetization</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// function to initialise energy, spin matrix and magnetization</span>
 <span style="color: #B00040">void</span> <span style="color: #0000FF">initialize</span>(<span style="color: #B00040">int</span> n_spins, <span style="color: #B00040">double</span> temp, <span style="color: #B00040">int</span> <span style="color: #666666">**</span>spin_matrix, 
 		<span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> E, <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> M)
 {
@@ -1585,7 +1585,7 @@ Here follows an alternative Ising model code using the <a href="http://www.cplus
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/* </span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">/* </span>
 <span style="color: #408080; font-style: italic">   Program to solve the two-dimensional Ising model </span>
 <span style="color: #408080; font-style: italic">   with zero external field and no parallelization using the Mersenne twister engine for generating random </span>
 <span style="color: #408080; font-style: italic">   numbers.</span>
@@ -1601,14 +1601,14 @@ Here follows an alternative Ising model code using the <a href="http://www.cplus
 <span style="color: #408080; font-style: italic">   c++ -O3 -std=c++11 -Rpass=loop-vectorize -o Ising.x IsingModel.cpp -larmadillo</span>
 <span style="color: #408080; font-style: italic">*/</span>
 
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;fstream&gt;</span>
-<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
-<span style="color: #BC7A00">#include &lt;cstdlib&gt;</span>
-<span style="color: #BC7A00">#include &lt;random&gt;</span>
-<span style="color: #BC7A00">#include &lt;armadillo&gt;</span>
-<span style="color: #BC7A00">#include &lt;string&gt;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;fstream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdlib&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;random&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;armadillo&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;string&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span>  std;
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
 <span style="color: #408080; font-style: italic">// output file</span>
@@ -2108,7 +2108,7 @@ pygame.quit();
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

@@ -161,7 +161,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>2016</h4></center> <!-- date -->
+<center><h4>Aug 23, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -219,7 +219,7 @@ the two loops as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=0</span> ; i <span style="color: #666666">&lt;</span> n ; i<span style="color: #666666">++</span>) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=0</span> ; i <span style="color: #666666">&lt;</span> n ; i<span style="color: #666666">++</span>) {
       <span style="color: #008000; font-weight: bold">for</span>(j<span style="color: #666666">=0</span> ; j <span style="color: #666666">&lt;</span> n ; j<span style="color: #666666">++</span>) {
          a[i][j]<span style="color: #666666">=</span>b[i][j]<span style="color: #666666">+</span>c[i][j]
 </pre></div>
@@ -284,11 +284,11 @@ template library (STL). The standard usage in a given function could then look l
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// Program to calculate addition and multiplication of two complex numbers</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// Program to calculate addition and multiplication of two complex numbers</span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
-<span style="color: #BC7A00">#include &lt;complex&gt;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;complex&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
 {
   complex<span style="color: #666666">&lt;</span><span style="color: #B00040">double</span><span style="color: #666666">&gt;</span> x(<span style="color: #666666">6.1</span>,<span style="color: #666666">8.2</span>), y(<span style="color: #666666">0.5</span>,<span style="color: #666666">1.3</span>);
@@ -317,12 +317,12 @@ functions, starting as follows
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#ifndef Complex_H</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#ifndef Complex_H</span>
 <span style="color: #BC7A00">#define Complex_H</span>
 <span style="color: #408080; font-style: italic">//   various include statements and definitions</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;          </span><span style="color: #408080; font-style: italic">// Standard ANSI-C++ include files</span>
-<span style="color: #BC7A00">#include &lt;new&gt;</span>
-<span style="color: #BC7A00">#include ....</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;          // Standard ANSI-C++ include files</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;new&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">....</span><span style="color: #BC7A00"></span>
 
 <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Complex</span>
 {...
@@ -360,7 +360,7 @@ multiplying two complex numbers.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &quot;Complex.h&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;Complex.h&quot;</span><span style="color: #BC7A00"></span>
 ...  other include and declarations
 <span style="color: #B00040">int</span> main ()
 {
@@ -390,7 +390,7 @@ of the class which allows us to print out the real and imaginary part of a given
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Complex</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Complex</span>
 {
 <span style="color: #008000; font-weight: bold">private</span><span style="color: #666666">:</span>
    <span style="color: #B00040">double</span> re, im; <span style="color: #408080; font-style: italic">// real and imaginary part</span>
@@ -409,10 +409,10 @@ of the class which allows us to print out the real and imaginary part of a given
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #666666">~</span>Complex () {}                        <span style="color: #408080; font-style: italic">// destructor</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #666666">~</span>Complex () {}                        <span style="color: #408080; font-style: italic">// destructor</span>
    <span style="color: #B00040">double</span>   Re () <span style="color: #008000; font-weight: bold">const</span>;        <span style="color: #408080; font-style: italic">// double real_part = a.Re();</span>
-   <span style="color: #B00040">double</span>   Im () <span style="color: #008000; font-weight: bold">const</span>;        <span style="color: #408080; font-style: italic">// double imag_part = a.Im();</span>
-   <span style="color: #B00040">double</span>   abs () <span style="color: #008000; font-weight: bold">const</span>;       <span style="color: #408080; font-style: italic">// double m = a.abs(); // modulus</span>
+   <span style="color: #B00040">double</span>   <span style="color: #0000FF">Im</span> () <span style="color: #008000; font-weight: bold">const</span>;        <span style="color: #408080; font-style: italic">// double imag_part = a.Im();</span>
+   <span style="color: #B00040">double</span>   <span style="color: #0000FF">abs</span> () <span style="color: #008000; font-weight: bold">const</span>;       <span style="color: #408080; font-style: italic">// double m = a.abs(); // modulus</span>
    <span style="color: #008000; font-weight: bold">friend</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">+</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span>  a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b);
    <span style="color: #008000; font-weight: bold">friend</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">-</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span>  a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b);
    <span style="color: #008000; font-weight: bold">friend</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">*</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span>  a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b);
@@ -466,7 +466,7 @@ A declaration like <code>Complex c;</code> calls the member function <code>Compl
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Complex<span style="color: #666666">::</span> Complex () { re <span style="color: #666666">=</span> im <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>; }
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Complex<span style="color: #666666">::</span> Complex () { re <span style="color: #666666">=</span> im <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>; }
 </pre></div>
 <p>
 meaning that it sets the real and imaginary parts to zero. Note the
@@ -484,7 +484,7 @@ Another possibility is
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Complex<span style="color: #666666">::</span> Complex () {}
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Complex<span style="color: #666666">::</span> Complex () {}
 </pre></div>
 <p>
 which means that there is no initialization of the real and imaginary parts. The drawback is that a given compiler can then assign random values to a given variable.
@@ -495,7 +495,7 @@ A call like <code>Complex a(0.1,1.3);</code> means that we could call the member
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Complex<span style="color: #666666">::</span> Complex (<span style="color: #B00040">double</span> re_a, <span style="color: #B00040">double</span> im_a) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Complex<span style="color: #666666">::</span> Complex (<span style="color: #B00040">double</span> re_a, <span style="color: #B00040">double</span> im_a) {
     re <span style="color: #666666">=</span> re_a; im <span style="color: #666666">=</span> im_a; }
 </pre></div>
 <p>
@@ -512,7 +512,7 @@ functions
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">double</span> Complex<span style="color: #666666">::</span> Re () <span style="color: #008000; font-weight: bold">const</span> { <span style="color: #008000; font-weight: bold">return</span> re; }} <span style="color: #408080; font-style: italic">//  getting the real part</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">double</span> Complex<span style="color: #666666">::</span> Re () <span style="color: #008000; font-weight: bold">const</span> { <span style="color: #008000; font-weight: bold">return</span> re; }} <span style="color: #408080; font-style: italic">//  getting the real part</span>
 <span style="color: #B00040">double</span> Complex<span style="color: #666666">::</span> Im () <span style="color: #008000; font-weight: bold">const</span> { <span style="color: #008000; font-weight: bold">return</span> im; }  <span style="color: #408080; font-style: italic">//   and the imaginary part</span>
 </pre></div>
 <p>
@@ -532,7 +532,7 @@ compile our program. This means that constant arguments in functions cannot be c
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// const arguments (in functions) cannot be changed:</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// const arguments (in functions) cannot be changed:</span>
 <span style="color: #B00040">void</span> <span style="color: #0000FF">myfunc</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
 { c.re <span style="color: #666666">=</span> <span style="color: #666666">0.2</span>; <span style="color: #408080; font-style: italic">/* ILLEGAL!! compiler error... */</span>  }
 </pre></div>
@@ -551,7 +551,7 @@ If we define a function to compute the absolute value of complex variable like
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">double</span> Complex<span style="color: #666666">::</span> abs ()  { <span style="color: #008000; font-weight: bold">return</span> sqrt(re<span style="color: #666666">*</span>re <span style="color: #666666">+</span> im<span style="color: #666666">*</span>im);}
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">double</span> Complex<span style="color: #666666">::</span> abs ()  { <span style="color: #008000; font-weight: bold">return</span> sqrt(re<span style="color: #666666">*</span>re <span style="color: #666666">+</span> im<span style="color: #666666">*</span>im);}
 </pre></div>
 <p>
 without the constant declaration  and define thereafter a function
@@ -560,7 +560,7 @@ without the constant declaration  and define thereafter a function
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">double</span> <span style="color: #0000FF">myabs</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">double</span> <span style="color: #0000FF">myabs</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
 { <span style="color: #008000; font-weight: bold">return</span> c.abs(); }   <span style="color: #408080; font-style: italic">// Not ok because c.abs() is not a const func.</span>
 </pre></div>
 <p>
@@ -579,7 +579,7 @@ To avoid this we declare the function <code>abs</code> as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">double</span> Complex<span style="color: #666666">::</span> abs () <span style="color: #008000; font-weight: bold">const</span> { <span style="color: #008000; font-weight: bold">return</span> sqrt(re<span style="color: #666666">*</span>re <span style="color: #666666">+</span> im<span style="color: #666666">*</span>im); }
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">double</span> Complex<span style="color: #666666">::</span> abs () <span style="color: #008000; font-weight: bold">const</span> { <span style="color: #008000; font-weight: bold">return</span> sqrt(re<span style="color: #666666">*</span>re <span style="color: #666666">+</span> im<span style="color: #666666">*</span>im); }
 </pre></div>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -610,7 +610,7 @@ as a part of the class defined as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Complex<span style="color: #666666">&amp;</span> Complex<span style="color: #666666">::</span> <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">=</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Complex<span style="color: #666666">&amp;</span> Complex<span style="color: #666666">::</span> <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">=</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
 {
    re <span style="color: #666666">=</span> c.re;
    im <span style="color: #666666">=</span> c.im;
@@ -631,7 +631,7 @@ We can make simple implementations in terms of the assignment
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Complex<span style="color: #666666">::</span> Complex (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Complex<span style="color: #666666">::</span> Complex (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
 { <span style="color: #666666">*</span><span style="color: #008000; font-weight: bold">this</span> <span style="color: #666666">=</span> c; }
 </pre></div>
 <p>
@@ -668,7 +668,7 @@ Inlining is enabled by the inline keyword
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">inline</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">+</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">inline</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">+</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b)
 { <span style="color: #008000; font-weight: bold">return</span> Complex (a.re <span style="color: #666666">+</span> b.re, a.im <span style="color: #666666">+</span> b.im); }
 </pre></div>
 <p>
@@ -688,7 +688,7 @@ are inline functions, this transforms to
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c.re <span style="color: #666666">=</span> a.re <span style="color: #666666">+</span> b.re;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c.re <span style="color: #666666">=</span> a.re <span style="color: #666666">+</span> b.re;
 c.im <span style="color: #666666">=</span> a.im <span style="color: #666666">+</span> b.im;
 </pre></div>
 <p>
@@ -705,7 +705,7 @@ The stand-alone function <code>operator+</code> is a friend of the Complex  clas
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Complex</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Complex</span>
 {
    ...
    <span style="color: #008000; font-weight: bold">friend</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">+</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b);
@@ -719,7 +719,7 @@ so it can read (and manipulate) the private data parts \( re \) and
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">inline</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">+</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">inline</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">+</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b)
 { <span style="color: #008000; font-weight: bold">return</span> Complex (a.re <span style="color: #666666">+</span> b.re, a.im <span style="color: #666666">+</span> b.im); }
 </pre></div>
 <p>
@@ -735,7 +735,7 @@ friend function
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">inline</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">+</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">inline</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">+</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b)
 { <span style="color: #008000; font-weight: bold">return</span> Complex (a.Re() <span style="color: #666666">+</span> b.Re(), a.Im() <span style="color: #666666">+</span> b.Im()); }
 </pre></div>
 <p>
@@ -749,7 +749,7 @@ The multiplication functionality can now be extended to imaginary numbers by the
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">inline</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">*</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">inline</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">*</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b)
 {
   <span style="color: #008000; font-weight: bold">return</span> Complex(a.re<span style="color: #666666">*</span>b.re <span style="color: #666666">-</span> a.im<span style="color: #666666">*</span>b.im, a.im<span style="color: #666666">*</span>b.re <span style="color: #666666">+</span> a.re<span style="color: #666666">*</span>b.im);
 </pre></div>
@@ -768,7 +768,7 @@ To inline the complete expression <code>a*b;</code>, the constructors and
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">inline</span> Complex<span style="color: #666666">::</span> Complex () { re <span style="color: #666666">=</span> im <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>; }
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">inline</span> Complex<span style="color: #666666">::</span> Complex () { re <span style="color: #666666">=</span> im <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>; }
 <span style="color: #008000; font-weight: bold">inline</span> Complex<span style="color: #666666">::</span> Complex (<span style="color: #B00040">double</span> re_, <span style="color: #B00040">double</span> im_)
 { ... }
 <span style="color: #008000; font-weight: bold">inline</span> Complex<span style="color: #666666">::</span> Complex (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
@@ -784,7 +784,7 @@ To inline the complete expression <code>a*b;</code>, the constructors and
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// e, c, d are complex</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// e, c, d are complex</span>
 e <span style="color: #666666">=</span> c<span style="color: #666666">*</span>d;
 <span style="color: #408080; font-style: italic">// first compiler translation:</span>
 e.<span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">=</span> (<span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">*</span> (c,d));
@@ -809,7 +809,7 @@ the effect of \( < < \) for a Complex object as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">ostream<span style="color: #666666">&amp;</span> <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">&lt;&lt;</span> (ostream<span style="color: #666666">&amp;</span> o, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ostream<span style="color: #666666">&amp;</span> <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">&lt;&lt;</span> (ostream<span style="color: #666666">&amp;</span> o, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
 { o <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;(&quot;</span> <span style="color: #666666">&lt;&lt;</span> c.Re() <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;,&quot;</span> <span style="color: #666666">&lt;&lt;</span> c.Im() <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;) &quot;</span>; <span style="color: #008000; font-weight: bold">return</span> o;}
 </pre></div>
 <p>
@@ -840,7 +840,7 @@ We can therefore make a more general class by rewriting our original example as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">template</span><span style="color: #666666">&lt;</span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">T</span><span style="color: #666666">&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">template</span><span style="color: #666666">&lt;</span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">T</span><span style="color: #666666">&gt;</span>
 <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Complex</span>
 {
 <span style="color: #008000; font-weight: bold">private</span><span style="color: #666666">:</span>
@@ -862,10 +862,10 @@ We can therefore make a more general class by rewriting our original example as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #666666">~</span>Complex () {}                        <span style="color: #408080; font-style: italic">// destructor</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #666666">~</span>Complex () {}                        <span style="color: #408080; font-style: italic">// destructor</span>
    T   Re () <span style="color: #008000; font-weight: bold">const</span>;        <span style="color: #408080; font-style: italic">// T real_part = a.Re();</span>
-   T   Im () <span style="color: #008000; font-weight: bold">const</span>;        <span style="color: #408080; font-style: italic">// T imag_part = a.Im();</span>
-   T   abs () <span style="color: #008000; font-weight: bold">const</span>;       <span style="color: #408080; font-style: italic">// T m = a.abs(); // modulus</span>
+   T   <span style="color: #0000FF">Im</span> () <span style="color: #008000; font-weight: bold">const</span>;        <span style="color: #408080; font-style: italic">// T imag_part = a.Im();</span>
+   T   <span style="color: #0000FF">abs</span> () <span style="color: #008000; font-weight: bold">const</span>;       <span style="color: #408080; font-style: italic">// T m = a.abs(); // modulus</span>
    <span style="color: #008000; font-weight: bold">friend</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">+</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span>  a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b);
    <span style="color: #008000; font-weight: bold">friend</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">-</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span>  a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b);
    <span style="color: #008000; font-weight: bold">friend</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">*</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span>  a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b);
@@ -886,7 +886,7 @@ and we would define variables in a code as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Complex<span style="color: #666666">&lt;</span><span style="color: #B00040">double</span><span style="color: #666666">&gt;</span> a(<span style="color: #666666">10.0</span>,<span style="color: #666666">5.1</span>);
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Complex<span style="color: #666666">&lt;</span><span style="color: #B00040">double</span><span style="color: #666666">&gt;</span> a(<span style="color: #666666">10.0</span>,<span style="color: #666666">5.1</span>);
 Complex<span style="color: #666666">&lt;</span><span style="color: #B00040">int</span><span style="color: #666666">&gt;</span> b(<span style="color: #666666">1</span>,<span style="color: #666666">0</span>);
 </pre></div>
 <p>
@@ -902,7 +902,7 @@ We would rewrite this function as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">template</span><span style="color: #666666">&lt;</span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">T</span><span style="color: #666666">&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">template</span><span style="color: #666666">&lt;</span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">T</span><span style="color: #666666">&gt;</span>
 Complex<span style="color: #666666">&lt;</span>T<span style="color: #666666">&gt;::</span> Complex (T re_a, T im_a)
 { re <span style="color: #666666">=</span> re_a; im <span style="color: #666666">=</span> im_a; }
 </pre></div>
@@ -920,7 +920,7 @@ Here follows a very simple first class in the file squared.h
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// Not all declarations here</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// Not all declarations here</span>
 <span style="color: #408080; font-style: italic">// Class to compute the square of a number</span>
 <span style="color: #008000; font-weight: bold">template</span><span style="color: #666666">&lt;</span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">T</span><span style="color: #666666">&gt;</span>
 <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Squared</span>{
@@ -944,8 +944,8 @@ and we would use it as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &quot;squared.h&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;squared.h&quot;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(){
@@ -959,11 +959,11 @@ and we would use it as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;cmath&gt;</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;fstream&gt;</span>
-<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
-<span style="color: #BC7A00">#include &quot;/Users/hjensen/Teaching/fys4411/programs/cgm/vectorclass.h&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;fstream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;/Users/hjensen/Teaching/fys4411/programs/cgm/vectorclass.h&quot;</span><span style="color: #BC7A00"></span>
 
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span>  std;
 
@@ -1071,12 +1071,12 @@ Vector <span style="color: #0000FF">SteepestDescent</span>(Matrix A, Vector b, V
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#ifndef _vectorclass</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#ifndef _vectorclass</span>
 <span style="color: #BC7A00">#define _vectorclass</span>
 
 
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span>  std;
 
 
@@ -1100,7 +1100,7 @@ Vector <span style="color: #0000FF">SteepestDescent</span>(Matrix A, Vector b, V
   Point(<span style="color: #008000; font-weight: bold">const</span> Point<span style="color: #666666">&amp;</span> v);
   <span style="color: #666666">~</span>Point();
   
-  <span style="color: #B00040">int</span>    Dimension() <span style="color: #008000; font-weight: bold">const</span>;
+  <span style="color: #B00040">int</span>    <span style="color: #0000FF">Dimension</span>() <span style="color: #008000; font-weight: bold">const</span>;
 
   <span style="color: #408080; font-style: italic">//************************</span>
   <span style="color: #408080; font-style: italic">// User Defined Operators</span>
@@ -1109,10 +1109,10 @@ Vector <span style="color: #0000FF">SteepestDescent</span>(Matrix A, Vector b, V
   <span style="color: #B00040">int</span> <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">!=</span>(<span style="color: #008000; font-weight: bold">const</span> Point<span style="color: #666666">&amp;</span> v) <span style="color: #008000; font-weight: bold">const</span>;
   Point <span style="color: #666666">&amp;</span> <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">=</span>(<span style="color: #008000; font-weight: bold">const</span> Point<span style="color: #666666">&amp;</span> v);
 
-  <span style="color: #B00040">double</span>  <span style="color: #008000; font-weight: bold">operator</span>()(<span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> i) <span style="color: #008000; font-weight: bold">const</span>;
+  <span style="color: #B00040">double</span>  <span style="color: #0000FF">operator</span>()(<span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> i) <span style="color: #008000; font-weight: bold">const</span>;
   <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> <span style="color: #008000; font-weight: bold">operator</span>()(<span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> i);
 
-  <span style="color: #B00040">void</span> Print() <span style="color: #008000; font-weight: bold">const</span>;
+  <span style="color: #B00040">void</span> <span style="color: #0000FF">Print</span>() <span style="color: #008000; font-weight: bold">const</span>;
 };
 
 
@@ -1134,7 +1134,7 @@ Vector <span style="color: #0000FF">SteepestDescent</span>(Matrix A, Vector b, V
   <span style="color: #666666">~</span>Vector();
   
   <span style="color: #B00040">void</span> <span style="color: #0000FF">Initialize</span>(<span style="color: #B00040">int</span> dim);
-  <span style="color: #B00040">int</span>    Dimension() <span style="color: #008000; font-weight: bold">const</span>;
+  <span style="color: #B00040">int</span>    <span style="color: #0000FF">Dimension</span>() <span style="color: #008000; font-weight: bold">const</span>;
   <span style="color: #B00040">double</span> <span style="color: #0000FF">Length</span>();     <span style="color: #408080; font-style: italic">/* Euclidean Norm of the Vector */</span>
   <span style="color: #B00040">void</span>   <span style="color: #0000FF">Normalize</span>();
 
@@ -1152,10 +1152,10 @@ Vector <span style="color: #0000FF">SteepestDescent</span>(Matrix A, Vector b, V
   <span style="color: #B00040">int</span> <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">!=</span>(<span style="color: #008000; font-weight: bold">const</span> Vector<span style="color: #666666">&amp;</span> v) <span style="color: #008000; font-weight: bold">const</span>;
   Vector <span style="color: #666666">&amp;</span> <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">=</span>(<span style="color: #008000; font-weight: bold">const</span> Vector<span style="color: #666666">&amp;</span> v);
 
-  <span style="color: #B00040">double</span>  <span style="color: #008000; font-weight: bold">operator</span>()(<span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> i) <span style="color: #008000; font-weight: bold">const</span>;
+  <span style="color: #B00040">double</span>  <span style="color: #0000FF">operator</span>()(<span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> i) <span style="color: #008000; font-weight: bold">const</span>;
   <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> <span style="color: #008000; font-weight: bold">operator</span>()(<span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> i);
 
-  <span style="color: #B00040">void</span> Print() <span style="color: #008000; font-weight: bold">const</span>;
+  <span style="color: #B00040">void</span> <span style="color: #0000FF">Print</span>() <span style="color: #008000; font-weight: bold">const</span>;
   <span style="color: #B00040">void</span> <span style="color: #0000FF">Initialize</span>(<span style="color: #B00040">double</span> a);
   <span style="color: #B00040">void</span> <span style="color: #0000FF">Initialize</span>(<span style="color: #B00040">double</span> <span style="color: #666666">*</span>v);
 };
@@ -1180,8 +1180,8 @@ Vector <span style="color: #0000FF">SteepestDescent</span>(Matrix A, Vector b, V
   Matrix(<span style="color: #B00040">int</span> rows1, <span style="color: #B00040">int</span> columns1, <span style="color: #B00040">double</span> <span style="color: #666666">**</span>rowptrs);
   <span style="color: #666666">~</span>Matrix();
 
-  <span style="color: #B00040">int</span> Rows() <span style="color: #008000; font-weight: bold">const</span>;
-  <span style="color: #B00040">int</span> Columns() <span style="color: #008000; font-weight: bold">const</span>;
+  <span style="color: #B00040">int</span> <span style="color: #0000FF">Rows</span>() <span style="color: #008000; font-weight: bold">const</span>;
+  <span style="color: #B00040">int</span> <span style="color: #0000FF">Columns</span>() <span style="color: #008000; font-weight: bold">const</span>;
   <span style="color: #B00040">double</span> <span style="color: #666666">**</span> <span style="color: #0000FF">GetPointer</span>();
   <span style="color: #B00040">void</span> <span style="color: #0000FF">GetColumn</span>(<span style="color: #B00040">int</span> col, Vector <span style="color: #666666">&amp;</span>x);
   <span style="color: #B00040">void</span> <span style="color: #0000FF">GetColumn</span>(<span style="color: #B00040">int</span> col, Vector <span style="color: #666666">&amp;</span>x, <span style="color: #B00040">int</span> rowoffset);
@@ -1193,7 +1193,7 @@ Vector <span style="color: #0000FF">SteepestDescent</span>(Matrix A, Vector b, V
   <span style="color: #408080; font-style: italic">// User Defined Operators</span>
   <span style="color: #408080; font-style: italic">//************************</span>
   Matrix<span style="color: #666666">&amp;</span> <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">=</span>(<span style="color: #008000; font-weight: bold">const</span> Matrix<span style="color: #666666">&amp;</span> m);
-  <span style="color: #B00040">double</span> <span style="color: #008000; font-weight: bold">operator</span>()(<span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> i, <span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> j) <span style="color: #008000; font-weight: bold">const</span>;
+  <span style="color: #B00040">double</span> <span style="color: #0000FF">operator</span>()(<span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> i, <span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> j) <span style="color: #008000; font-weight: bold">const</span>;
   <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> <span style="color: #008000; font-weight: bold">operator</span>()(<span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> i, <span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">int</span> j);
 
   <span style="color: #B00040">double</span> <span style="color: #0000FF">MaxModInRow</span>(<span style="color: #B00040">int</span> row);
@@ -1208,7 +1208,7 @@ Vector <span style="color: #0000FF">SteepestDescent</span>(Matrix A, Vector b, V
 
   <span style="color: #B00040">void</span> <span style="color: #0000FF">RowSwap</span>(<span style="color: #B00040">int</span> row1, <span style="color: #B00040">int</span> row2);
 
-  <span style="color: #B00040">void</span> Print() <span style="color: #008000; font-weight: bold">const</span>;
+  <span style="color: #B00040">void</span> <span style="color: #0000FF">Print</span>() <span style="color: #008000; font-weight: bold">const</span>;
 
 };
 
@@ -1265,7 +1265,7 @@ Vector <span style="color: #008000; font-weight: bold">operator</span><span styl
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &quot;vectorclass.h&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;vectorclass.h&quot;</span><span style="color: #BC7A00"></span>
 
 Point<span style="color: #666666">::</span>Point(<span style="color: #B00040">int</span> dim){
   dimension <span style="color: #666666">=</span> dim;
@@ -1917,7 +1917,7 @@ Vector <span style="color: #008000; font-weight: bold">operator</span><span styl
   
   <span style="color: #008000; font-weight: bold">if</span> (x <span style="color: #666666">==</span> <span style="color: #666666">-0.5</span>) 
     gamma <span style="color: #666666">=</span> <span style="color: #666666">-2.0*</span>sqrt(M_PI);
-  <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">!</span>x) <span style="color: #008000; font-weight: bold">return</span> gamma;
+  <span style="color: #008000; font-weight: bold">else</span> <span style="color: #0000FF">if</span> (<span style="color: #666666">!</span>x) <span style="color: #008000; font-weight: bold">return</span> gamma;
   <span style="color: #008000; font-weight: bold">else</span> <span style="color: #0000FF">if</span> ((x<span style="color: #666666">-</span>(<span style="color: #B00040">int</span>)x) <span style="color: #666666">==</span> <span style="color: #666666">0.5</span>){ 
     <span style="color: #B00040">int</span> n <span style="color: #666666">=</span> (<span style="color: #B00040">int</span>) x;
     <span style="color: #B00040">double</span> tmp <span style="color: #666666">=</span> x;
@@ -2034,7 +2034,7 @@ Look up the guide on how to install unit tests for c++ at course webpage. This i
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;unittest++/UnitTest++.h&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;unittest++/UnitTest++.h&gt;</span><span style="color: #BC7A00"></span>
 
 <span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">MyMultiplyClass</span>{
 <span style="color: #008000; font-weight: bold">public</span><span style="color: #666666">:</span>
@@ -2068,7 +2068,7 @@ And without classes
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;unittest++/UnitTest++.h&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;unittest++/UnitTest++.h&gt;</span><span style="color: #BC7A00"></span>
 
 
 <span style="color: #B00040">double</span> <span style="color: #0000FF">multiply</span>(<span style="color: #B00040">double</span> x, <span style="color: #B00040">double</span> y) {
@@ -2096,7 +2096,7 @@ software for unit testing.
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

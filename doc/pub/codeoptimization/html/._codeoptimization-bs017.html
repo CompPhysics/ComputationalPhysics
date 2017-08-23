@@ -453,14 +453,14 @@ We can compile and link without vectorization
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span> <span style="color: #666666">-</span>o novec.x vecexample.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c<span style="color: #666666">++</span> <span style="color: #666666">-</span>o novec.x vecexample.cpp
 </pre></div>
 <p>
 and with vectorization (and additional optimizations)
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
 </pre></div>
 <p>
 The speedup depends on the size of the vectors. In the example here we have run with \( 10^7 \) elements.
@@ -468,7 +468,7 @@ The example here was run on a PC with ubuntu 14.04 as operating system and an In
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>vec.x <span style="color: #666666">10000000</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>vec.x <span style="color: #666666">10000000</span>
 Time used  <span style="color: #008000; font-weight: bold">for</span> vector addition <span style="color: #666666">=</span> <span style="color: #666666">0.0100000</span>
 <span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>novec.x <span style="color: #666666">10000000</span>
 Time used  <span style="color: #008000; font-weight: bold">for</span> vector addition <span style="color: #666666">=</span> <span style="color: #666666">0.03000000000</span>

@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -187,7 +196,7 @@ MathJax.Hub.Config({
 <a name="part0019"></a>
 <!-- !split -->
 
-<h2 id="___sec18">Programming classes </h2>
+<h2 id="___sec18" class="anchor">Programming classes </h2>
 
 <p>
 Another possibility is
@@ -195,7 +204,7 @@ Another possibility is
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Complex<span style="color: #666666">::</span> Complex () {}
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Complex<span style="color: #666666">::</span> Complex () {}
 </pre></div>
 <p>
 which means that there is no initialization of the real and imaginary parts. The drawback is that a given compiler can then assign random values to a given variable.
@@ -206,7 +215,7 @@ A call like <code>Complex a(0.1,1.3);</code> means that we could call the member
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Complex<span style="color: #666666">::</span> Complex (<span style="color: #B00040">double</span> re_a, <span style="color: #B00040">double</span> im_a) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Complex<span style="color: #666666">::</span> Complex (<span style="color: #B00040">double</span> re_a, <span style="color: #B00040">double</span> im_a) {
     re <span style="color: #666666">=</span> re_a; im <span style="color: #666666">=</span> im_a; }
 </pre></div>
 <p>

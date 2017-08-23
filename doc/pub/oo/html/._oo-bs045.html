@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -187,12 +196,12 @@ MathJax.Hub.Config({
 <a name="part0045"></a>
 <!-- !split -->
 
-<h2 id="___sec44">A matrix-vector class, and finally all its functions </h2>
+<h2 id="___sec44" class="anchor">A matrix-vector class, and finally all its functions </h2>
 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &quot;vectorclass.h&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;vectorclass.h&quot;</span><span style="color: #BC7A00"></span>
 
 Point<span style="color: #666666">::</span>Point(<span style="color: #B00040">int</span> dim){
   dimension <span style="color: #666666">=</span> dim;
@@ -844,7 +853,7 @@ Vector <span style="color: #008000; font-weight: bold">operator</span><span styl
   
   <span style="color: #008000; font-weight: bold">if</span> (x <span style="color: #666666">==</span> <span style="color: #666666">-0.5</span>) 
     gamma <span style="color: #666666">=</span> <span style="color: #666666">-2.0*</span>sqrt(M_PI);
-  <span style="color: #008000; font-weight: bold">else</span> <span style="color: #008000; font-weight: bold">if</span> (<span style="color: #666666">!</span>x) <span style="color: #008000; font-weight: bold">return</span> gamma;
+  <span style="color: #008000; font-weight: bold">else</span> <span style="color: #0000FF">if</span> (<span style="color: #666666">!</span>x) <span style="color: #008000; font-weight: bold">return</span> gamma;
   <span style="color: #008000; font-weight: bold">else</span> <span style="color: #0000FF">if</span> ((x<span style="color: #666666">-</span>(<span style="color: #B00040">int</span>)x) <span style="color: #666666">==</span> <span style="color: #666666">0.5</span>){ 
     <span style="color: #B00040">int</span> n <span style="color: #666666">=</span> (<span style="color: #B00040">int</span>) x;
     <span style="color: #B00040">double</span> tmp <span style="color: #666666">=</span> x;

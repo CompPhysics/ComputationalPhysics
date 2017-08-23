@@ -259,7 +259,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>2016</h4></center> <!-- date -->
+<center><h4>Aug 23, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -504,7 +504,7 @@ In C/C++ this would be  defined as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #B00040">int</span> N <span style="color: #666666">=</span> <span style="color: #666666">100</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #B00040">int</span> N <span style="color: #666666">=</span> <span style="color: #666666">100</span>;
    <span style="color: #B00040">double</span> A[<span style="color: #666666">100</span>][<span style="color: #666666">100</span>];
    <span style="color: #408080; font-style: italic">//   initialize all elements to zero</span>
    <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=0</span> ; i <span style="color: #666666">&lt;</span> N ; i<span style="color: #666666">++</span>) {
@@ -537,7 +537,7 @@ In C/C++ this would be coded like
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=0</span> ; i <span style="color: #666666">&lt;</span> N ; i<span style="color: #666666">++</span>) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=0</span> ; i <span style="color: #666666">&lt;</span> N ; i<span style="color: #666666">++</span>) {
       <span style="color: #008000; font-weight: bold">for</span>(j<span style="color: #666666">=0</span> ; j <span style="color: #666666">&lt;</span> N ; j<span style="color: #666666">++</span>) {
          a[i][j] <span style="color: #666666">=</span> b[i][j]<span style="color: #666666">+</span>c[i][j]
 </pre></div>
@@ -566,7 +566,7 @@ In C/C++ this would be coded like
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=0</span> ; i <span style="color: #666666">&lt;</span> N ; i<span style="color: #666666">++</span>) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #008000; font-weight: bold">for</span>(i<span style="color: #666666">=0</span> ; i <span style="color: #666666">&lt;</span> N ; i<span style="color: #666666">++</span>) {
       <span style="color: #008000; font-weight: bold">for</span>(j<span style="color: #666666">=0</span> ; j <span style="color: #666666">&lt;</span> N ; j<span style="color: #666666">++</span>) {
          <span style="color: #008000; font-weight: bold">for</span>(k<span style="color: #666666">=0</span> ; k <span style="color: #666666">&lt;</span> N ; k<span style="color: #666666">++</span>) {
             a[i][j]<span style="color: #666666">+=</span>b[i][k]<span style="color: #666666">*</span>c[k][j];
@@ -587,7 +587,7 @@ In C/C++ this would be coded like
 <p>
 
 <!-- code=fortran (!bc fcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #008000; font-weight: bold">ALLOCATE</span> (a(N,N), b(N,N), c(N,N))
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #008000; font-weight: bold">ALLOCATE</span> (a(N,N), b(N,N), c(N,N))
    <span style="color: #008000; font-weight: bold">DO </span>j<span style="color: #666666">=1</span>,  N
       <span style="color: #008000; font-weight: bold">DO </span>i<span style="color: #666666">=1</span>, N
          a(i,j)<span style="color: #666666">=</span>b(i,j)<span style="color: #666666">+</span>c(i,j)
@@ -602,7 +602,7 @@ Fortran 90 writes the above statements in a much simpler way
 <p>
 
 <!-- code=fortran (!bc fcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   a<span style="color: #666666">=</span>b<span style="color: #666666">+</span>c
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   a<span style="color: #666666">=</span>b<span style="color: #666666">+</span>c
 </pre></div>
 <p>
 Multiplication
@@ -610,7 +610,7 @@ Multiplication
 <p>
 
 <!-- code=fortran (!bc fcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   a<span style="color: #666666">=</span><span style="color: #008000">MATMUL</span>(b,c)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   a<span style="color: #666666">=</span><span style="color: #008000">MATMUL</span>(b,c)
 </pre></div>
 <p>
 Fortran contains also the intrinsic functions TRANSPOSE and CONJUGATE.
@@ -642,7 +642,7 @@ At least three possibilities in this course
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> N;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> N;
 <span style="color: #B00040">double</span> <span style="color: #666666">**</span>  A;
 A <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span><span style="color: #666666">*</span>[N]
 <span style="color: #008000; font-weight: bold">for</span> ( i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> N; i<span style="color: #666666">++</span>)
@@ -654,7 +654,7 @@ Always free space when you don't need an array anymore.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">for</span> ( i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> N; i<span style="color: #666666">++</span>)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">for</span> ( i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> N; i<span style="color: #666666">++</span>)
     <span style="color: #008000; font-weight: bold">delete</span>[] A[i];
 <span style="color: #008000; font-weight: bold">delete</span>[] A;
 </pre></div>
@@ -682,8 +682,8 @@ Always free space when you don't need an array anymore.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;armadillo&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;armadillo&gt;</span><span style="color: #BC7A00"></span>
 
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
@@ -713,7 +713,7 @@ To compile, use for example (linux/ubuntu)
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span> <span style="color: #666666">-</span>O2 <span style="color: #666666">-</span>o program.x program.cpp  <span style="color: #666666">-</span>larmadillo <span style="color: #666666">-</span>llapack <span style="color: #666666">-</span>lblas
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c<span style="color: #666666">++</span> <span style="color: #666666">-</span>O2 <span style="color: #666666">-</span>o program.x program.cpp  <span style="color: #666666">-</span>larmadillo <span style="color: #666666">-</span>llapack <span style="color: #666666">-</span>lblas
 </pre></div>
 <p>
 where the <code>-l</code> option indicates the library you wish to link to.
@@ -723,7 +723,7 @@ For OS X users you may have to declare the paths to the include files and the li
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span> <span style="color: #666666">-</span>O2 <span style="color: #666666">-</span>o program.x program.cpp  <span style="color: #666666">-</span>L<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>lib <span style="color: #666666">-</span>I<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>include <span style="color: #666666">-</span>larmadillo <span style="color: #666666">-</span>llapack <span style="color: #666666">-</span>lblas
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c<span style="color: #666666">++</span> <span style="color: #666666">-</span>O2 <span style="color: #666666">-</span>o program.x program.cpp  <span style="color: #666666">-</span>L<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>lib <span style="color: #666666">-</span>I<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>include <span style="color: #666666">-</span>larmadillo <span style="color: #666666">-</span>llapack <span style="color: #666666">-</span>lblas
 </pre></div>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -733,8 +733,8 @@ For OS X users you may have to declare the paths to the include files and the li
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &quot;armadillo&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;armadillo&quot;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 
@@ -766,7 +766,7 @@ For OS X users you may have to declare the paths to the include files and the li
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  mat B;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  mat B;
 
   <span style="color: #408080; font-style: italic">// endr indicates &quot;end of row&quot;</span>
   B <span style="color: #666666">&lt;&lt;</span> <span style="color: #666666">0.555950</span> <span style="color: #666666">&lt;&lt;</span> <span style="color: #666666">0.274690</span> <span style="color: #666666">&lt;&lt;</span> <span style="color: #666666">0.540605</span> <span style="color: #666666">&lt;&lt;</span> <span style="color: #666666">0.798938</span> <span style="color: #666666">&lt;&lt;</span> endr
@@ -797,7 +797,7 @@ For OS X users you may have to declare the paths to the include files and the li
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #408080; font-style: italic">// submatrix types:</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #408080; font-style: italic">// submatrix types:</span>
   <span style="color: #408080; font-style: italic">//</span>
   <span style="color: #408080; font-style: italic">// .submat(first_row, first_column, last_row, last_column)</span>
   <span style="color: #408080; font-style: italic">// .row(row_number)</span>
@@ -830,7 +830,7 @@ For OS X users you may have to declare the paths to the include files and the li
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #408080; font-style: italic">// maximum from each row (traverse along columns)</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #408080; font-style: italic">// maximum from each row (traverse along columns)</span>
   cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;max(B,1) =&quot;</span> <span style="color: #666666">&lt;&lt;</span> endl;
   cout <span style="color: #666666">&lt;&lt;</span> max(B,<span style="color: #666666">1</span>) <span style="color: #666666">&lt;&lt;</span> endl;
   <span style="color: #408080; font-style: italic">// maximum value in B</span>
@@ -858,7 +858,7 @@ For OS X users you may have to declare the paths to the include files and the li
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #408080; font-style: italic">// row vectors are treated like a matrix with one row</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #408080; font-style: italic">// row vectors are treated like a matrix with one row</span>
   rowvec r;
   r <span style="color: #666666">&lt;&lt;</span> <span style="color: #666666">0.59499</span> <span style="color: #666666">&lt;&lt;</span> <span style="color: #666666">0.88807</span> <span style="color: #666666">&lt;&lt;</span> <span style="color: #666666">0.88532</span> <span style="color: #666666">&lt;&lt;</span> <span style="color: #666666">0.19968</span>;
   r.print(<span style="color: #BA2121">&quot;r:&quot;</span>);
@@ -890,8 +890,8 @@ For OS X users you may have to declare the paths to the include files and the li
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &quot;armadillo&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;armadillo&quot;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 
@@ -920,7 +920,7 @@ For OS X users you may have to declare the paths to the include files and the li
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #408080; font-style: italic">// inverse</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #408080; font-style: italic">// inverse</span>
   cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;inv(A) = &quot;</span> <span style="color: #666666">&lt;&lt;</span> endl <span style="color: #666666">&lt;&lt;</span> inv(A) <span style="color: #666666">&lt;&lt;</span> endl;
   <span style="color: #B00040">double</span> k <span style="color: #666666">=</span> <span style="color: #666666">1.23</span>;
 
@@ -1463,7 +1463,7 @@ with \( u_n=\tilde{f}_{n}/\tilde{b}_{n} \).
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/*</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">/*</span>
 <span style="color: #408080; font-style: italic">**     Project1: a) and b)</span>
 <span style="color: #408080; font-style: italic">**     The algorithm for solving the tridiagonal matrix</span>
 <span style="color: #408080; font-style: italic">**     equation is implemented (O(8n) FLOPS).</span>
@@ -1867,14 +1867,14 @@ these files, and eventually its compiled version lib.o. The example here is <a h
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//  Simple matrix inversion example</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;new&gt;</span>
-<span style="color: #BC7A00">#include &lt;cstdio&gt;</span>
-<span style="color: #BC7A00">#include &lt;cstdlib&gt;</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
-<span style="color: #BC7A00">#include &lt;cstring&gt;</span>
-<span style="color: #BC7A00">#include &quot;lib.h&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">//  Simple matrix inversion example</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;new&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdio&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdlib&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstring&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;lib.h&quot;</span><span style="color: #BC7A00"></span>
 
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 
@@ -1890,7 +1890,7 @@ these files, and eventually its compiled version lib.o. The example here is <a h
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">inverse</span>(<span style="color: #B00040">double</span> <span style="color: #666666">**</span>a, <span style="color: #B00040">int</span> n)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">void</span> <span style="color: #0000FF">inverse</span>(<span style="color: #B00040">double</span> <span style="color: #666666">**</span>a, <span style="color: #B00040">int</span> n)
 {
   <span style="color: #B00040">int</span>          i,j, <span style="color: #666666">*</span>indx;
   <span style="color: #B00040">double</span>       d, <span style="color: #666666">*</span>col, <span style="color: #666666">**</span>y;
@@ -1913,7 +1913,7 @@ these files, and eventually its compiled version lib.o. The example here is <a h
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #408080; font-style: italic">// find inverse of a[][] by columns</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #408080; font-style: italic">// find inverse of a[][] by columns</span>
   <span style="color: #008000; font-weight: bold">for</span>(j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
     <span style="color: #408080; font-style: italic">// initialize right-side of linear equations</span>
     <span style="color: #008000; font-weight: bold">for</span>(i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) col[i] <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
@@ -1942,7 +1942,7 @@ For Fortran users:
 <p>
 
 <!-- code=fortran (!bc fcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">PROGRAM </span>matrix
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">PROGRAM </span>matrix
   <span style="color: #008000; font-weight: bold">USE </span>constants
   <span style="color: #008000; font-weight: bold">USE </span>F90library
   <span style="color: #008000; font-weight: bold">IMPLICIT NONE</span>
@@ -1967,7 +1967,7 @@ For Fortran users:
 <p>
 
 <!-- code=fortran (!bc fcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">WRITE</span>(<span style="color: #666666">6</span>,<span style="color: #666666">*</span>) <span style="color: #BA2121">&#39; The matrix before inversion&#39;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #008000; font-weight: bold">WRITE</span>(<span style="color: #666666">6</span>,<span style="color: #666666">*</span>) <span style="color: #BA2121">&#39; The matrix before inversion&#39;</span>
   <span style="color: #008000; font-weight: bold">WRITE</span>(<span style="color: #666666">6</span>,<span style="color: #BA2121">&#39;(3F12.6)&#39;</span>) a
   ainv<span style="color: #666666">=</span>a
   <span style="color: #008000; font-weight: bold">CALL </span>matinv (ainv, n, d)
@@ -1987,8 +1987,8 @@ For Fortran users:
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &quot;armadillo&quot;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;armadillo&quot;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 
@@ -2492,7 +2492,7 @@ In order to use cubic spline interpolation you need first to call
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">spline(<span style="color: #B00040">double</span> x[], <span style="color: #B00040">double</span> y[], <span style="color: #B00040">int</span> n, <span style="color: #B00040">double</span> yp1,  <span style="color: #B00040">double</span> yp2, <span style="color: #B00040">double</span> y2[])
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>spline(<span style="color: #B00040">double</span> x[], <span style="color: #B00040">double</span> y[], <span style="color: #B00040">int</span> n, <span style="color: #B00040">double</span> yp1,  <span style="color: #B00040">double</span> yp2, <span style="color: #B00040">double</span> y2[])
 </pre></div>
 <p>
 This function takes as
@@ -2518,7 +2518,7 @@ Thereafter, if you wish to make  various interpolations, you need to call the fu
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">splint(<span style="color: #B00040">double</span> x[], <span style="color: #B00040">double</span> y[], <span style="color: #B00040">double</span> y2a[], <span style="color: #B00040">int</span> n, <span style="color: #B00040">double</span> x, <span style="color: #B00040">double</span> <span style="color: #666666">*</span>y)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>splint(<span style="color: #B00040">double</span> x[], <span style="color: #B00040">double</span> y[], <span style="color: #B00040">double</span> y2a[], <span style="color: #B00040">int</span> n, <span style="color: #B00040">double</span> x, <span style="color: #B00040">double</span> <span style="color: #666666">*</span>y)
 </pre></div>
 <p>
 which takes as input
@@ -2532,7 +2532,7 @@ to the point \( x \).
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

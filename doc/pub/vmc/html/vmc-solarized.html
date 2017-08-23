@@ -175,7 +175,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>2016</h4></center> <!-- date -->
+<center><h4>Aug 23, 2017 </h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -705,7 +705,7 @@ with $ r^2 = x^2 + y^2 + z^2$.
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sympy</span> <span style="color: #8B008B; font-weight: bold">import</span> symbols, diff, exp, sqrt
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sympy</span> <span style="color: #8B008B; font-weight: bold">import</span> symbols, diff, exp, sqrt
 x, y, z, Z = symbols(<span style="color: #CD5555">&#39;x y z Z&#39;</span>)
 r = sqrt(x*x + y*y + z*z)
 r
@@ -729,7 +729,7 @@ We can improve our output by factorizing and substituting expressions
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sympy</span> <span style="color: #8B008B; font-weight: bold">import</span> symbols, diff, exp, sqrt, factor, Symbol, printing
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sympy</span> <span style="color: #8B008B; font-weight: bold">import</span> symbols, diff, exp, sqrt, factor, Symbol, printing
 x, y, z, Z = symbols(<span style="color: #CD5555">&#39;x y z Z&#39;</span>)
 r = sqrt(x*x + y*y + z*z)
 phi = (Z*r - <span style="color: #B452CD">2</span>)*exp(-Z*r/<span style="color: #B452CD">2</span>)
@@ -753,7 +753,7 @@ We can in turn look at second derivatives
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sympy</span> <span style="color: #8B008B; font-weight: bold">import</span> symbols, diff, exp, sqrt, factor, Symbol, printing
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">sympy</span> <span style="color: #8B008B; font-weight: bold">import</span> symbols, diff, exp, sqrt, factor, Symbol, printing
 x, y, z, Z = symbols(<span style="color: #CD5555">&#39;x y z Z&#39;</span>)
 r = sqrt(x*x + y*y + z*z)
 phi = (Z*r - <span style="color: #B452CD">2</span>)*exp(-Z*r/<span style="color: #B452CD">2</span>)
@@ -781,8 +781,8 @@ With some practice this allows one to be able to check one's own calculation and
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #1e889b">#include &quot;vmcsolver.h&quot;</span>
-<span style="color: #1e889b">#include &lt;iostream&gt;</span>
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;vmcsolver.h&quot;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 
 <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
@@ -807,9 +807,9 @@ With some practice this allows one to be able to check one's own calculation and
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #1e889b">#ifndef VMCSOLVER_H</span>
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#ifndef VMCSOLVER_H</span>
 <span style="color: #1e889b">#define VMCSOLVER_H</span>
-<span style="color: #1e889b">#include &lt;armadillo&gt;</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;armadillo&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 <span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">VMCSolver</span>
 {
@@ -849,10 +849,10 @@ With some practice this allows one to be able to check one's own calculation and
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #1e889b">#include &quot;vmcsolver.h&quot;</span>
-<span style="color: #1e889b">#include &quot;lib.h&quot;</span>
-<span style="color: #1e889b">#include &lt;armadillo&gt;</span>
-<span style="color: #1e889b">#include &lt;iostream&gt;</span>
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;vmcsolver.h&quot;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;lib.h&quot;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;armadillo&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 
@@ -884,7 +884,7 @@ VMCSolver::VMCSolver() :
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">void</span> VMCSolver::runMonteCarloIntegration()
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">void</span> VMCSolver::runMonteCarloIntegration()
 {
     rOld = zeros&lt;mat&gt;(nParticles, nDimensions);
     rNew = zeros&lt;mat&gt;(nParticles, nDimensions);
@@ -948,7 +948,7 @@ VMCSolver::VMCSolver() :
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">double</span> VMCSolver::localEnergy(<span style="color: #8B008B; font-weight: bold">const</span> mat &amp;r)
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">double</span> VMCSolver::localEnergy(<span style="color: #8B008B; font-weight: bold">const</span> mat &amp;r)
 {
     mat rPlus = zeros&lt;mat&gt;(nParticles, nDimensions);
     mat rMinus = zeros&lt;mat&gt;(nParticles, nDimensions);
@@ -1009,7 +1009,7 @@ VMCSolver::VMCSolver() :
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">double</span> VMCSolver::waveFunction(<span style="color: #8B008B; font-weight: bold">const</span> mat &amp;r)
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">double</span> VMCSolver::waveFunction(<span style="color: #8B008B; font-weight: bold">const</span> mat &amp;r)
 {
     <span style="color: #a7a7a7; font-weight: bold">double</span> argument = <span style="color: #B452CD">0</span>;
     <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; nParticles; i++) {
@@ -1037,8 +1037,8 @@ VMCSolver::VMCSolver() :
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #1e889b">#include &lt;armadillo&gt;</span>
-<span style="color: #1e889b">#include &lt;iostream&gt;</span>
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;armadillo&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">ran2</span>(<span style="color: #a7a7a7; font-weight: bold">long</span> *);
@@ -1266,7 +1266,7 @@ VMCSolver::VMCSolver() :
 <span style="color: #228B22">// End: function ran2()</span>
 
 
-<span style="color: #1e889b">#include &lt;iostream&gt;</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 
 <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
@@ -1458,7 +1458,7 @@ magnitude, and all other eigenvalues are smaller.
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

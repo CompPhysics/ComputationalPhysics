@@ -461,7 +461,7 @@ All threads are potentially accessing and changing the same values, <b>maxloc</b
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp atomic</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp atomic</span>
 </pre></div>
 <ol>
 <li> Only one thread at a time can execute the following statement (not block). We can use the critical option</li>
@@ -470,7 +470,7 @@ All threads are potentially accessing and changing the same values, <b>maxloc</b
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp critical</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp critical</span>
 </pre></div>
 <ol>
 <li> Only one thread at a time can execute the following block</li>

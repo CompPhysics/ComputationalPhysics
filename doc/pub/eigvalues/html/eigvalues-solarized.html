@@ -317,7 +317,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>2016</h4></center> <!-- date -->
+<center><h4>Aug 23, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -625,7 +625,7 @@ Direct or non-iterative methods  require for matrices of dimensionality \( n\tim
 <tr><td align="center">   1965    </td> <td align="center">   \( n=200 \)         </td> <td align="center">   (Forsythe et al.)    </td> </tr>
 <tr><td align="center">   1980    </td> <td align="center">   \( n=2000 \)        </td> <td align="center">   Linpack              </td> </tr>
 <tr><td align="center">   1995    </td> <td align="center">   \( n=20000 \)       </td> <td align="center">   Lapack               </td> </tr>
-<tr><td align="center">   2012    </td> <td align="center">   \( n\sim 10^5 \)    </td> <td align="center">   Lapack               </td> </tr>
+<tr><td align="center">   2017    </td> <td align="center">   \( n\sim 10^5 \)    </td> <td align="center">   Lapack               </td> </tr>
 </tbody>
 </table>
 <p>
@@ -1046,7 +1046,7 @@ This is what we will need to code.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #228B22">//  we have defined a matrix A and a matrix R for the eigenvector, both of dim n x n</span>
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #228B22">//  we have defined a matrix A and a matrix R for the eigenvector, both of dim n x n</span>
 <span style="color: #228B22">//  The final matrix R has the eigenvectors in its row elements, it is set to one</span>
 <span style="color: #228B22">//  for the diagonal elements in the beginning, zero else.</span>
 ....
@@ -1076,7 +1076,7 @@ Finding the max nondiagonal element
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #228B22">//  the offdiag function, using Armadillo</span>
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #228B22">//  the offdiag function, using Armadillo</span>
 <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">offdiag</span>(mat A, <span style="color: #a7a7a7; font-weight: bold">int</span> p, <span style="color: #a7a7a7; font-weight: bold">int</span> q, <span style="color: #a7a7a7; font-weight: bold">int</span> n);
 {
    <span style="color: #a7a7a7; font-weight: bold">double</span> max;
@@ -1110,7 +1110,7 @@ Finding the new matrix elements
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Jacobi_rotate</span> ( mat A, mat R, <span style="color: #a7a7a7; font-weight: bold">int</span> k, <span style="color: #a7a7a7; font-weight: bold">int</span> l, <span style="color: #a7a7a7; font-weight: bold">int</span> n )
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Jacobi_rotate</span> ( mat A, mat R, <span style="color: #a7a7a7; font-weight: bold">int</span> k, <span style="color: #a7a7a7; font-weight: bold">int</span> l, <span style="color: #a7a7a7; font-weight: bold">int</span> n )
 {
   <span style="color: #a7a7a7; font-weight: bold">double</span> s, c;
   <span style="color: #8B008B; font-weight: bold">if</span> ( A(k,l) != <span style="color: #B452CD">0.0</span> ) {
@@ -1628,13 +1628,13 @@ The following program uses the eigenvalue solver provided by Armadillo and retur
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%">%install_ext https://raw.github.com/dragly/cppmagic/master/cppmagic.py
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span>%install_ext https://raw.github.com/dragly/cppmagic/master/cppmagic.py
 %load_ext cppmagic
 </pre></div>
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%">%%cpp -I/usr/local/include -L/usr/local/lib -llapack -lblas -larmadillo
+<div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span>%%cpp -I/usr/local/include -L/usr/local/lib -llapack -lblas -larmadillo
 /*
   Solves the one-particle Schrodinger equation
   <span style="color: #8B008B; font-weight: bold">for</span> a potential specified <span style="color: #8B008B">in</span> function
@@ -2499,7 +2499,7 @@ with \( \beta_k=\pm ||\hat{r}_{k}||_2 \).
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

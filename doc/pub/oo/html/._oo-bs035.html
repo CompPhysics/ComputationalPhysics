@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -187,7 +196,7 @@ MathJax.Hub.Config({
 <a name="part0035"></a>
 <!-- !split -->
 
-<h2 id="___sec34">Programming classes </h2>
+<h2 id="___sec34" class="anchor">Programming classes </h2>
 
 <p>
 Finally, if we wish to write to file or another device a complex number using the simple syntax
@@ -197,7 +206,7 @@ the effect of \( < < \) for a Complex object as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">ostream<span style="color: #666666">&amp;</span> <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">&lt;&lt;</span> (ostream<span style="color: #666666">&amp;</span> o, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ostream<span style="color: #666666">&amp;</span> <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">&lt;&lt;</span> (ostream<span style="color: #666666">&amp;</span> o, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> c)
 { o <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;(&quot;</span> <span style="color: #666666">&lt;&lt;</span> c.Re() <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;,&quot;</span> <span style="color: #666666">&lt;&lt;</span> c.Im() <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;) &quot;</span>; <span style="color: #008000; font-weight: bold">return</span> o;}
 </pre></div>
 <p>

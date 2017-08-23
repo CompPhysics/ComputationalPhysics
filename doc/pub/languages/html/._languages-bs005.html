@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -275,7 +284,7 @@ MathJax.Hub.Config({
 <a name="part0005"></a>
 <!-- !split -->
 
-<h2 id="___sec4">Makefiles and simple scripts </h2>
+<h2 id="___sec4" class="anchor">Makefiles and simple scripts </h2>
 
 <p>
 Under Linux/Unix it is often convenient to create a
@@ -285,7 +294,7 @@ compiling commands.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00"># Comment lines</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00"># Comment lines</span>
 <span style="color: #BC7A00"># General makefile for c - choose PROG =   name of given program</span>
 <span style="color: #BC7A00"># Here we define compiler option, libraries and the  target</span>
 CC<span style="color: #666666">=</span> g<span style="color: #666666">++</span> <span style="color: #666666">-</span>Wall

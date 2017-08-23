@@ -453,28 +453,28 @@ We can compile and link without vectorization with clang compiler
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>o <span style="color: #666666">-</span>fno<span style="color: #666666">-</span>vectorize novec.x vecexample.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>o <span style="color: #666666">-</span>fno<span style="color: #666666">-</span>vectorize novec.x vecexample.cpp
 </pre></div>
 <p>
 and with vectorization
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
 </pre></div>
 <p>
 We can also add vectorization analysis, see for example
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">-</span>analysis<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">-</span>analysis<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
 </pre></div>
 <p>
 or figure out if vectorization was missed
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">-</span>missed<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">-</span>missed<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
 </pre></div>
 <p>
 <p>

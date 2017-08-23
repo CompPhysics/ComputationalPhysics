@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -187,15 +196,15 @@ MathJax.Hub.Config({
 <a name="part0014"></a>
 <!-- !split -->
 
-<h2 id="___sec13">Programming classes </h2>
+<h2 id="___sec13" class="anchor">Programming classes </h2>
 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #666666">~</span>Complex () {}                        <span style="color: #408080; font-style: italic">// destructor</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #666666">~</span>Complex () {}                        <span style="color: #408080; font-style: italic">// destructor</span>
    <span style="color: #B00040">double</span>   Re () <span style="color: #008000; font-weight: bold">const</span>;        <span style="color: #408080; font-style: italic">// double real_part = a.Re();</span>
-   <span style="color: #B00040">double</span>   Im () <span style="color: #008000; font-weight: bold">const</span>;        <span style="color: #408080; font-style: italic">// double imag_part = a.Im();</span>
-   <span style="color: #B00040">double</span>   abs () <span style="color: #008000; font-weight: bold">const</span>;       <span style="color: #408080; font-style: italic">// double m = a.abs(); // modulus</span>
+   <span style="color: #B00040">double</span>   <span style="color: #0000FF">Im</span> () <span style="color: #008000; font-weight: bold">const</span>;        <span style="color: #408080; font-style: italic">// double imag_part = a.Im();</span>
+   <span style="color: #B00040">double</span>   <span style="color: #0000FF">abs</span> () <span style="color: #008000; font-weight: bold">const</span>;       <span style="color: #408080; font-style: italic">// double m = a.abs(); // modulus</span>
    <span style="color: #008000; font-weight: bold">friend</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">+</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span>  a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b);
    <span style="color: #008000; font-weight: bold">friend</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">-</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span>  a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b);
    <span style="color: #008000; font-weight: bold">friend</span> Complex <span style="color: #008000; font-weight: bold">operator</span><span style="color: #666666">*</span> (<span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span>  a, <span style="color: #008000; font-weight: bold">const</span> Complex<span style="color: #666666">&amp;</span> b);

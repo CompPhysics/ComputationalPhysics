@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -345,7 +354,7 @@ MathJax.Hub.Config({
 <a name="part0008"></a>
 <!-- !split -->
 
-<h2 id="___sec7">A simple example (close to project 4) and some more jargon </h2>
+<h2 id="___sec7" class="anchor">A simple example (close to project 4) and some more jargon </h2>
 
 <p>
 The obvious case is that of a random walker on a one-, or two- or three-dimensional lattice

@@ -456,7 +456,7 @@ MathJax.Hub.Config({
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  total_sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  total_sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
   local_sum <span style="color: #666666">=</span> trapezoidal_rule(local_a, local_b, local_n, 
                                <span style="color: #666666">&amp;</span>int_function); 
   MPI_Reduce(<span style="color: #666666">&amp;</span>local_sum, <span style="color: #666666">&amp;</span>total_sum, <span style="color: #666666">1</span>, MPI_DOUBLE, 

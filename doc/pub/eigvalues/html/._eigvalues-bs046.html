@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -374,7 +383,7 @@ MathJax.Hub.Config({
 <a name="part0046"></a>
 <!-- !split -->
 
-<h2 id="___sec45">Discussion of project 2, simple program for one particle in a harmonic oscillator trap </h2>
+<h2 id="___sec45" class="anchor">Discussion of project 2, simple program for one particle in a harmonic oscillator trap </h2>
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
@@ -382,13 +391,13 @@ The following program uses the eigenvalue solver provided by Armadillo and retur
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">%</span>install_ext https:<span style="color: #666666">//</span>raw<span style="color: #666666">.</span>github<span style="color: #666666">.</span>com<span style="color: #666666">/</span>dragly<span style="color: #666666">/</span>cppmagic<span style="color: #666666">/</span>master<span style="color: #666666">/</span>cppmagic<span style="color: #666666">.</span>py
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">%</span>install_ext https:<span style="color: #666666">//</span>raw<span style="color: #666666">.</span>github<span style="color: #666666">.</span>com<span style="color: #666666">/</span>dragly<span style="color: #666666">/</span>cppmagic<span style="color: #666666">/</span>master<span style="color: #666666">/</span>cppmagic<span style="color: #666666">.</span>py
 <span style="color: #666666">%</span>load_ext cppmagic
 </pre></div>
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">%%</span>cpp <span style="color: #666666">-</span>I<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>include <span style="color: #666666">-</span>L<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>lib <span style="color: #666666">-</span>llapack <span style="color: #666666">-</span>lblas <span style="color: #666666">-</span>larmadillo
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">%%</span>cpp <span style="color: #666666">-</span>I<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>include <span style="color: #666666">-</span>L<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>lib <span style="color: #666666">-</span>llapack <span style="color: #666666">-</span>lblas <span style="color: #666666">-</span>larmadillo
 <span style="color: #666666">/*</span>
   Solves the one<span style="color: #666666">-</span>particle Schrodinger equation
   <span style="color: #008000; font-weight: bold">for</span> a potential specified <span style="color: #AA22FF; font-weight: bold">in</span> function

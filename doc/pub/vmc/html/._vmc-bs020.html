@@ -209,7 +209,7 @@ We can improve our output by factorizing and substituting expressions
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">import</span> symbols, diff, exp, sqrt, factor, Symbol, printing
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">import</span> symbols, diff, exp, sqrt, factor, Symbol, printing
 x, y, z, Z <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;x y z Z&#39;</span>)
 r <span style="color: #666666">=</span> sqrt(x<span style="color: #666666">*</span>x <span style="color: #666666">+</span> y<span style="color: #666666">*</span>y <span style="color: #666666">+</span> z<span style="color: #666666">*</span>z)
 phi <span style="color: #666666">=</span> (Z<span style="color: #666666">*</span>r <span style="color: #666666">-</span> <span style="color: #666666">2</span>)<span style="color: #666666">*</span>exp(<span style="color: #666666">-</span>Z<span style="color: #666666">*</span>r<span style="color: #666666">/2</span>)

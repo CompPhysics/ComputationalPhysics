@@ -226,7 +226,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>2016</h4></center> <!-- date -->
+<center><h4>Aug 23, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -294,7 +294,7 @@ instructions under Linux/Unix can be used
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c++ -c -Wall myprogram.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c++ -c -Wall myprogram.cpp
 c++ -o myprogram myprogram.o
 </pre></div>
 <p>
@@ -312,7 +312,7 @@ Also, to speed up the code use compile options like
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c++ -O3 -c -Wall myprogram.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c++ -O3 -c -Wall myprogram.cpp
 </pre></div>
 
 </div>
@@ -331,7 +331,7 @@ compiling commands.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00"># Comment lines</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00"># Comment lines</span>
 <span style="color: #BC7A00"># General makefile for c - choose PROG =   name of given program</span>
 <span style="color: #BC7A00"># Here we define compiler option, libraries and the  target</span>
 CC<span style="color: #666666">=</span> g<span style="color: #666666">++</span> <span style="color: #666666">-</span>Wall
@@ -364,10 +364,10 @@ Here we present first the C version.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/* comments in C begin like this and end with */</span>
-<span style="color: #BC7A00">#include &lt;stdlib.h&gt; </span><span style="color: #408080; font-style: italic">/* atof function */</span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include &lt;math.h&gt;   </span><span style="color: #408080; font-style: italic">/* sine function */</span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include &lt;stdio.h&gt;  </span><span style="color: #408080; font-style: italic">/* printf function */</span><span style="color: #BC7A00"></span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">/* comments in C begin like this and end with */</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;stdlib.h&gt; /* atof function */</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;math.h&gt;   /* sine function */</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;stdio.h&gt;  /* printf function */</span><span style="color: #BC7A00"></span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
 {
   <span style="color: #B00040">double</span> r, s;        <span style="color: #408080; font-style: italic">/* declare variables */</span>
@@ -397,7 +397,7 @@ in so-called &quot;header files&quot; that must be included in the program, e.g.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #BC7A00">#include &lt;stdlib.h&gt; </span><span style="color: #408080; font-style: italic">/* atof function */</span><span style="color: #BC7A00"></span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;stdlib.h&gt; /* atof function */</span><span style="color: #BC7A00"></span>
 </pre></div>
 <p>
 We call three functions (atof, sin, printf)
@@ -412,7 +412,7 @@ The command-line arguments are transferred to the main function through
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #B00040">int</span> main (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #B00040">int</span> main (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
 </pre></div>
 
 </div>
@@ -432,7 +432,7 @@ The command-line arguments are transferred to the main function through
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #B00040">int</span> main (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #B00040">int</span> main (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
 </pre></div>
 <p>
 The integer <code>argc</code> is the no of command-line arguments, set to
@@ -469,10 +469,10 @@ Here we present first the C++ version.
 <p>
 
 <!-- code=c++ (!bc cpppro) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// A comment line begins like this in C++ programs</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// A comment line begins like this in C++ programs</span>
 <span style="color: #408080; font-style: italic">// Standard ANSI-C++ include files</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;   </span><span style="color: #408080; font-style: italic">// input and output</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;      </span><span style="color: #408080; font-style: italic">// math functions</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;   // input and output</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;      // math functions</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
 {
@@ -664,10 +664,10 @@ To see this, we have performed the following divisions by 2
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
-<span style="color: #BC7A00">#include &lt;cstdio&gt;</span>
-<span style="color: #BC7A00">#include &lt;cstdlib&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdio&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdlib&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
 {
@@ -707,7 +707,7 @@ To see this, we have performed the following divisions by 2
 <p>
 
 <!-- code=fortran (!bc fcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">PROGRAM </span>binary_integer
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">PROGRAM </span>binary_integer
 <span style="color: #008000; font-weight: bold">IMPLICIT NONE</span>
 <span style="color: #008000; font-weight: bold">  </span><span style="color: #B00040">INTEGER  </span>i, number, terms(<span style="color: #666666">0</span>:<span style="color: #666666">31</span>) <span style="color: #408080; font-style: italic">! storage of a0, a1, etc, up to 32 bits</span>
 
@@ -744,11 +744,11 @@ To see this, we have performed the following divisions by 2
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// A comment line begins like this in C++ programs</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// A comment line begins like this in C++ programs</span>
 <span style="color: #408080; font-style: italic">// Program to calculate 2**n</span>
 <span style="color: #408080; font-style: italic">// Standard ANSI-C++ include files */</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
 {
@@ -1276,11 +1276,11 @@ $$ \exp{(-x)}=\frac{1}{\exp{(x)}} $$
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// Program to calculate function exp(-x)</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// Program to calculate function exp(-x)</span>
 <span style="color: #408080; font-style: italic">// using straightforward summation with differing  precision</span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #408080; font-style: italic">// type float:  32 bits precision</span>
 <span style="color: #408080; font-style: italic">// type double: 64 bits precision</span>
 <span style="color: #BC7A00">#define   TYPE          double</span>
@@ -1305,7 +1305,7 @@ TYPE factorial(<span style="color: #B00040">int</span>);
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
 {
    <span style="color: #B00040">int</span>   n;
    TYPE  x, term, sum;
@@ -1336,7 +1336,7 @@ TYPE factorial(<span style="color: #B00040">int</span>);
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      printf(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">x = %4.1f   exp = %12.5E  series = %12.5E</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>      printf(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">x = %4.1f   exp = %12.5E  series = %12.5E</span>
               number of terms <span style="color: #666666">=</span> <span style="color: #666666">%</span>d<span style="color: #BA2121">&quot;,</span>
               x, exp(<span style="color: #666666">-</span>x), sum, n);
    } <span style="color: #408080; font-style: italic">// end of for() loop</span>
@@ -1405,10 +1405,10 @@ TYPE factorial(<span style="color: #B00040">int</span> n)
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// program to compute exp(-x) without exponentials</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// program to compute exp(-x) without exponentials</span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #BC7A00">#define  TRUNCATION     1.0E-10</span>
 
 <span style="color: #B00040">int</span> main()
@@ -1438,7 +1438,7 @@ TYPE factorial(<span style="color: #B00040">int</span> n)
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">     <span style="color: #008000; font-weight: bold">while</span>(fabs(term) <span style="color: #666666">&gt;</span> TRUNCATION)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>     <span style="color: #008000; font-weight: bold">while</span>(fabs(term) <span style="color: #666666">&gt;</span> TRUNCATION)
        {
 	 term <span style="color: #666666">*=</span> <span style="color: #666666">-</span>x<span style="color: #666666">/</span>((<span style="color: #B00040">double</span>) n);
 	 sum  <span style="color: #666666">+=</span> term;
@@ -1730,7 +1730,7 @@ Simple example declarations:
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std; <span style="color: #408080; font-style: italic">// note use of namespace</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std; <span style="color: #408080; font-style: italic">// note use of namespace</span>
   <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
  {
    <span style="color: #408080; font-style: italic">// what are the differences?</span>
@@ -1758,7 +1758,7 @@ Simple example declarations:
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std; <span style="color: #408080; font-style: italic">// note use of namespace</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std; <span style="color: #408080; font-style: italic">// note use of namespace</span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
 {
   <span style="color: #B00040">int</span> var;
@@ -1790,7 +1790,7 @@ Simple example declarations:
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
 {
   <span style="color: #B00040">int</span> var;     <span style="color: #408080; font-style: italic">// Define an integer variable var</span>
   <span style="color: #B00040">int</span> <span style="color: #666666">*</span>p;      <span style="color: #408080; font-style: italic">// Define a pointer to an integer</span>
@@ -1822,7 +1822,7 @@ Simple example declarations:
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> matr[<span style="color: #666666">2</span>];
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> matr[<span style="color: #666666">2</span>];
 <span style="color: #B00040">int</span> <span style="color: #666666">*</span>p;
 p <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>matr[<span style="color: #666666">0</span>];
 matr[<span style="color: #666666">0</span>] <span style="color: #666666">=</span> <span style="color: #666666">321</span>;
@@ -1852,7 +1852,7 @@ printf(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; fo
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> matr[<span style="color: #666666">2</span>];    <span style="color: #408080; font-style: italic">// Define integer array with two elements</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> matr[<span style="color: #666666">2</span>];    <span style="color: #408080; font-style: italic">// Define integer array with two elements</span>
 <span style="color: #B00040">int</span> <span style="color: #666666">*</span>p;         <span style="color: #408080; font-style: italic">// Define pointer to integer</span>
 p <span style="color: #666666">=</span> <span style="color: #666666">&amp;</span>matr[<span style="color: #666666">0</span>];   <span style="color: #408080; font-style: italic">// Point to the address of the first element in matr</span>
 matr[<span style="color: #666666">0</span>] <span style="color: #666666">=</span> <span style="color: #666666">321</span>;  <span style="color: #408080; font-style: italic">// Change the first element</span>
@@ -1882,7 +1882,7 @@ printf(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; fo
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Address of the matrix element matr[1]: 0xbfffef70
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Address of the matrix element matr[1]: 0xbfffef70
 Value of the  matrix element  matr[1]; 321
 Address of the matrix element matr[2]: 0xbfffef74
 Value of the matrix element  matr[2]: 322
@@ -1903,8 +1903,8 @@ Address of the pointer variable : 0xbfffef6c
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span> <span style="color: #666666">*</span>argv[])
 {
   <span style="color: #B00040">FILE</span> <span style="color: #666666">*</span>in_file, <span style="color: #666666">*</span>out_file;
@@ -1926,7 +1926,7 @@ Address of the pointer variable : 0xbfffef6c
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> out_file <span style="color: #666666">=</span> fopen( argv[<span style="color: #666666">2</span>], <span style="color: #BA2121">&quot;w&quot;</span>); <span style="color: #408080; font-style: italic">// returns a pointer to the output file</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span> out_file <span style="color: #666666">=</span> fopen( argv[<span style="color: #666666">2</span>], <span style="color: #BA2121">&quot;w&quot;</span>); <span style="color: #408080; font-style: italic">// returns a pointer to the output file</span>
  <span style="color: #008000; font-weight: bold">if</span>( out_file <span style="color: #666666">==</span> <span style="color: #008000">NULL</span> )  {       <span style="color: #408080; font-style: italic">// can&#39;t find the file</span>
     printf(<span style="color: #BA2121">&quot;Can&#39;t find the output file%s</span><span style="color: #BB6622; font-weight: bold">\n</span><span style="color: #BA2121">&quot;</span>, argv[<span style="color: #666666">2</span>]);
     exit(<span style="color: #666666">0</span>);
@@ -1943,7 +1943,7 @@ Address of the pointer variable : 0xbfffef6c
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;fstream&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;fstream&gt;</span><span style="color: #BC7A00"></span>
 
 <span style="color: #408080; font-style: italic">// input and output file as global variable</span>
 ofstream ofile;
@@ -1957,7 +1957,7 @@ ifstream ifile;
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
 {
   <span style="color: #B00040">char</span> <span style="color: #666666">*</span>outfilename;
   <span style="color: #408080; font-style: italic">//Read in output file, abort if there are too</span>
@@ -1982,7 +1982,7 @@ ifstream ifile;
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">output</span>(<span style="color: #B00040">double</span> r_min , <span style="color: #B00040">double</span> r_max, <span style="color: #B00040">int</span> max_step,
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">void</span> <span style="color: #0000FF">output</span>(<span style="color: #B00040">double</span> r_min , <span style="color: #B00040">double</span> r_max, <span style="color: #B00040">int</span> max_step,
             <span style="color: #B00040">double</span> <span style="color: #666666">*</span>d)
 {
 <span style="color: #B00040">int</span> i;
@@ -2005,7 +2005,7 @@ ofile <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
 {
   <span style="color: #B00040">char</span> <span style="color: #666666">*</span>infilename;
   <span style="color: #408080; font-style: italic">// Read in input file, abort if there are too</span>
@@ -2030,7 +2030,7 @@ ofile <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">char</span><span style="color: #666666">*</span> filename1 <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;myfile&quot;</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">const</span> <span style="color: #B00040">char</span><span style="color: #666666">*</span> filename1 <span style="color: #666666">=</span> <span style="color: #BA2121">&quot;myfile&quot;</span>;
 ifstream <span style="color: #0000FF">ifile</span>(filename1);
 string filename2 <span style="color: #666666">=</span> filename1 <span style="color: #666666">+</span> <span style="color: #BA2121">&quot;.out&quot;</span>
 ofstream ofile(filename2);  <span style="color: #408080; font-style: italic">// new output file</span>
@@ -2055,7 +2055,7 @@ In C we would write
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #B00040">int</span> n; n <span style="color: #666666">=8</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #B00040">int</span> n; n <span style="color: #666666">=8</span>;
    func(<span style="color: #666666">&amp;</span>n); <span style="color: #408080; font-style: italic">/* &amp;n is a pointer to n */</span>
    ....
    <span style="color: #B00040">void</span> func(<span style="color: #B00040">int</span> <span style="color: #666666">*</span>i)
@@ -2069,7 +2069,7 @@ whereas in C++ we would write
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   <span style="color: #B00040">int</span> n; n <span style="color: #666666">=8</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   <span style="color: #B00040">int</span> n; n <span style="color: #666666">=8</span>;
    func(n); <span style="color: #408080; font-style: italic">// just transfer n itself</span>
    ....
    <span style="color: #B00040">void</span> func(<span style="color: #B00040">int</span><span style="color: #666666">&amp;</span> i)
@@ -2099,7 +2099,7 @@ program know which values should or should not be changed.
 <p>
 
 <!-- code=fortran (!bc fcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">SUBROUTINE </span>coulomb_integral(np,lp,n,l,coulomb)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">SUBROUTINE </span>coulomb_integral(np,lp,n,l,coulomb)
   <span style="color: #008000; font-weight: bold">USE </span>effective_interaction_declar
   <span style="color: #008000; font-weight: bold">USE </span>energy_variables
   <span style="color: #008000; font-weight: bold">USE </span>wave_functions
@@ -2121,8 +2121,8 @@ This hinders unwanted changes and increases readability.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std; <span style="color: #408080; font-style: italic">// note use of namespace                                       </span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
 {
@@ -2156,10 +2156,10 @@ This hinders unwanted changes and increases readability.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
-<span style="color: #BC7A00">#include &lt;fstream&gt;</span>
-<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;fstream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std; <span style="color: #408080; font-style: italic">// note use of namespace                                       </span>
 
 <span style="color: #408080; font-style: italic">// output file as global variable</span>
@@ -2206,7 +2206,7 @@ ofstream ofile;
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 <span style="color: #408080; font-style: italic">//  Declare functions before main</span>
 <span style="color: #B00040">void</span> <span style="color: #0000FF">func</span>(<span style="color: #B00040">int</span>, <span style="color: #B00040">int</span><span style="color: #666666">*</span>);
@@ -2251,11 +2251,11 @@ ofstream ofile;
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;cstdlib&gt;</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;cmath&gt;</span>
-<span style="color: #BC7A00">#include &lt;iomanip&gt; </span>
-<span style="color: #BC7A00">#include &quot;time.h&quot; </span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdlib&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt; </span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;time.h&quot; </span><span style="color: #BC7A00"></span>
 
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std; <span style="color: #408080; font-style: italic">// note use of namespace                                       </span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
@@ -2292,7 +2292,7 @@ ofstream ofile;
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

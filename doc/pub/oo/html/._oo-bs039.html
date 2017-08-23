@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -187,7 +196,7 @@ MathJax.Hub.Config({
 <a name="part0039"></a>
 <!-- !split -->
 
-<h2 id="___sec38">Programming classes </h2>
+<h2 id="___sec38" class="anchor">Programming classes </h2>
 
 <p>
 What it says is that <code>Complex</code> is a parameterized type with \( T \) as a parameter and \( T \) has to be a type such as double
@@ -198,7 +207,7 @@ and we would define variables in a code as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Complex<span style="color: #666666">&lt;</span><span style="color: #B00040">double</span><span style="color: #666666">&gt;</span> a(<span style="color: #666666">10.0</span>,<span style="color: #666666">5.1</span>);
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Complex<span style="color: #666666">&lt;</span><span style="color: #B00040">double</span><span style="color: #666666">&gt;</span> a(<span style="color: #666666">10.0</span>,<span style="color: #666666">5.1</span>);
 Complex<span style="color: #666666">&lt;</span><span style="color: #B00040">int</span><span style="color: #666666">&gt;</span> b(<span style="color: #666666">1</span>,<span style="color: #666666">0</span>);
 </pre></div>
 <p>

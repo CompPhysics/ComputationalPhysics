@@ -476,7 +476,7 @@ Here follows the parallel implementation of the Jacobi algorithm
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> <span style="color: #0000FF">ParallelJacobi</span>(<span style="color: #B00040">int</span> mynode, <span style="color: #B00040">int</span> numnodes, <span style="color: #B00040">int</span> N, <span style="color: #B00040">double</span> <span style="color: #666666">**</span>A, <span style="color: #B00040">double</span> <span style="color: #666666">*</span>x, <span style="color: #B00040">double</span> <span style="color: #666666">*</span>b, <span style="color: #B00040">double</span> abstol){
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> <span style="color: #0000FF">ParallelJacobi</span>(<span style="color: #B00040">int</span> mynode, <span style="color: #B00040">int</span> numnodes, <span style="color: #B00040">int</span> N, <span style="color: #B00040">double</span> <span style="color: #666666">**</span>A, <span style="color: #B00040">double</span> <span style="color: #666666">*</span>x, <span style="color: #B00040">double</span> <span style="color: #666666">*</span>b, <span style="color: #B00040">double</span> abstol){
   <span style="color: #B00040">int</span> i,j,k,i_global;
   <span style="color: #B00040">int</span> maxit <span style="color: #666666">=</span> <span style="color: #666666">100000</span>;
   <span style="color: #B00040">int</span> rows_local,local_offset,last_rows_local,<span style="color: #666666">*</span>count,<span style="color: #666666">*</span>displacements;

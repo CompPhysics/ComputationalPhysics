@@ -80,109 +80,63 @@ ${text_types(ch)}
 
 
 !split
-===== Projects Fall 2016 =====
+===== Projects Fall 2017 =====
 
 === Project 1 ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project1/pdf/Project1.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project1/pdf/Project1.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project1/pdf/Project1.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project1/pdf/Project1.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project1/html/Project1.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project1/html/Project1-bs.html"
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project1/html/Project1.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project1/html/Project1-bs.html"
  * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project1/ipynb/Project1.ipynb"
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project1/ipynb/Project1.ipynb"
 
 === Project 2 ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project2/pdf/Project2.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project2/pdf/Project2.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project2/pdf/Project2.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project2/pdf/Project2.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project2/html/Project2.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project2/html/Project2-bs.html"
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project2/html/Project2.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project2/html/Project2-bs.html"
  * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project2/ipynb/Project2.ipynb"
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project2/ipynb/Project2.ipynb"
 
 === Project 3 ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project3/pdf/Project3.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project3/pdf/Project3.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project3/pdf/Project3.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project3/pdf/Project3.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project3/html/Project3.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project3/html/Project3-bs.html"
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project3/html/Project3.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project3/html/Project3-bs.html"
  * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project3/ipynb/Project3.ipynb"
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project3/ipynb/Project3.ipynb"
 
 === Project 4 ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project4/pdf/Project4.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project4/pdf/Project4.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/pdf/Project4.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/pdf/Project4.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project4/html/Project4.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project4/html/Project4-bs.html"
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/html/Project4.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/html/Project4-bs.html"
  * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project4/ipynb/Project4.ipynb"
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/ipynb/Project4.ipynb"
 
 
-=== Project 5 Variational Monte Carlo ===
+=== Project 5 To be filled in ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/QuantumMonteCarlo/html/QuantumMonteCarlo.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/QuantumMonteCarlo/html/QuantumMonteCarlo-bs.html"
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/html/QuantumMonteCarlo.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/html/QuantumMonteCarlo-bs.html"
  * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/QuantumMonteCarlo/ipynb/QuantumMonteCarlo.ipynb"
-
-
-=== Project 5 Molecular Dynamics ===
- * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/MolecularDynamics/pdf/MolecularDynamics.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/MolecularDynamics/pdf/MolecularDynamics.pdf"
- * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/MolecularDynamics/html/MolecularDynamics.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/MolecularDynamics/html/MolecularDynamics-bs.html"
- * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/MolecularDynamics/ipynb/MolecularDynamics.ipynb"
-
-
-=== Project 5 Monte Carlo Modeling of Transactions ===
- * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/FinancialEngineering/pdf/FinancialEngineering.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/FinancialEngineering/pdf/FinancialEngineering.pdf"
- * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/FinancialEngineering/html/FinancialEngineering.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/FinancialEngineering/html/FinancialEngineering-bs.html"
- * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/FinancialEngineering/ipynb/FinancialEngineering.ipynb"
-
-
-=== Project 5 Partial Differential Equations ===
- * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/PartialDiffEquations/pdf/PartialDiffEquations.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/PartialDiffEquations/pdf/PartialDiffEquations.pdf"
- * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/PartialDiffEquations/html/PartialDiffEquations.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/PartialDiffEquations/html/PartialDiffEquations-bs.html"
- * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/PartialDiffEquations/ipynb/PartialDiffEquations.ipynb"
-
-
-=== Project 5 Astrophysics project ===
- * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/AstroProject/pdf/AstroProject.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/AstroProject/pdf/AstroProject.pdf"
- * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/AstroProject/html/AstroProject.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/AstroProject/html/AstroProject-bs.html"
- * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2016/Project5/AstroProject/ipynb/AstroProject.ipynb"
-
-
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/ipynb/QuantumMonteCarlo.ipynb"
 
 
 
 !split
-===== Teaching schedule Fall 2016 =====
+===== Teaching schedule Fall 2017 =====
 
 |----------------------------------------------------------------------------------------------------------------------------|
 |  Week and days  |  Topics to be covered | Projects and deadlines | Reading assignments|  Lab  activities                   |
@@ -190,20 +144,20 @@ ${text_types(ch)}
 | Week 34|   Introduction to programming  | Warm-up exercise  |    Chapters 2 and 3.1 and 3.2  | presentation of Git and github|
 |        |   Numerical derivation         |                   |    From lecture notes          | Installing c++              |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 35 | Linear algebra, Gaussian elemination, LU decomposition | _Project 1, deadline September 19_ | Sections 2.5, 3.1, 6.3, 6.4  | Installing and using Qt |
+| Week 35 | Linear algebra, Gaussian elemination, LU decomposition | _Project 1, deadline September 11_ | Sections 2.5, 3.1, 6.3, 6.4  | Installing and using Qt |
 |         | Discussion of pointers and arrays    |                                 |                              | Work on project 1 |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 36|  Linear algebra, Gaussian elimination |      |  Sections 6.4, 6.5 and 6.6 | How to write a good report and more git and Qt stuff |
 |        |  Spline interpolation and iterative methods| Discussed during lab sessions | Read slides on how to write a report |  
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 37 | Eigenvalue problems, Jacobi's method             |   _Project 2, deadline October 3_ |  Sections 7.1-7.4 | Object orientation with examples |
+| Week 37 | Eigenvalue problems, Jacobi's method             |   _Project 2, deadline October 2_ |  Sections 7.1-7.4 | Object orientation with examples |
 |----------------------------------------------------------------------------------------------------------------------------|
 |   | Householder's and Given's methods               |                                   |  Read slides on object orientation and section 3.3 | Finalize project 1 |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 38 | Eigenvalue problems, iterative and power methods |   | Sections 7.4-7.7 |  Object orientation |
 |         | Differential equations                    |                                   | Sections 8.1-8.3 |  
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 39|  Ordinary differential equations  | _Project 3, deadline October 24_ | Sections 8.3-8.7  |   Object orientation (OO) |
+| Week 39|  Ordinary differential equations  | _Project 3, deadline October 23_ | Sections 8.3-8.7  |   Object orientation (OO) |
 |        |                                 |                                  |                   |  Finalize project 2   |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 40|  Numerical integration           |                                   | Sections 5.1-5.3  | OO and  Vectorization  |
@@ -212,7 +166,7 @@ ${text_types(ch)}
 | Week 41  |  Numerical integration  and parallelization       |                |  Section 5.5  | Parallelization with OpenMP  |
 |          |  Introduction to Monte Carlo methods              |                |  Sections 11.1-11.2 |                       |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 42  |  Introduction to Monte Carlo methods              | _Project 4, deadline November 14_ | Sections 11.3-11.5 |  Parallelization with MPI |
+| Week 42  |  Introduction to Monte Carlo methods              | _Project 4, deadline November 13_ | Sections 11.3-11.5 |  Parallelization with MPI |
 |          |  Random walks and the Metropolis algorithm        |                                   |  Sections 12.1-12.3 |  Finalize project 3   |   
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 43 |  Random walks and the Metropolis algorithm         |                                   | Sections 12.4-12.5  | Start project 4    | 
@@ -220,7 +174,7 @@ ${text_types(ch)}
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 44|   Project 4 and statistical mechanics               |                                   | Sections 13.4-13.7 |  Parallelization and high-performance computing |   
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 45|  Variational Monte Carlo                            | _Project 5, deadline December 9_ |  Sections 14.1-14.4  | Finalize project 4 |
+| Week 45|  Variational Monte Carlo                            | _Project 5, deadline December 8_ |  Sections 14.1-14.4  | Finalize project 4 |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 46| Variational Monte Carlo                             |                                  | Section 14.5     | Work on project 5 |
 |        |  Presentation of final projects                     |                                  |                  |       |   
