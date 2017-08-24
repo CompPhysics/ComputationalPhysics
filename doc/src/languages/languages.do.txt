@@ -158,11 +158,12 @@ The `printf` syntax is used for formatting output
 in many C-inspired languages (Perl, Python, Awk, partly C++).
 !eblock
 
+
 !split
-===== Hello World =====
+===== "Hello World with namespace":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/hellow.cpp" =====
 
 !bblock Now in C++
-Here we present first the C++ version.
+Here we present the C++ version using namespace.
 !bc cpppro
 // A comment line begins like this in C++ programs
 // Standard ANSI-C++ include files
@@ -172,13 +173,45 @@ using namespace std;
 int main (int argc, char* argv[])
 {
   // convert the text argv[1] to double using atof:
-  double r = atof(argv[1]);  /* convert the text argv[1] to double */
+  double r = atof(argv[1]);  // convert the text argv[1] to double
   double s = sin(r);
   cout << "Hello, World! sin(" << r << ") =" << s << endl;
-  return 0;           /* success execution of the program */
+  return 0;           // success execution of the program 
 }
 !ec
 !eblock
+
+
+!split
+===== "Hello World without namespace":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/hellownonamespace.cpp" =====
+
+!bblock Without namespace
+Namespaces provide a method for preventing name conflicts in large projects.
+Symbols declared inside a namespace block are placed in a named scope that prevents them from being mistaken for identically-named symbols in other scopes.
+Multiple namespace blocks with the same name are allowed. All declarations within those blocks are declared in the named scope.
+
+
+Here we present the C++ version without using namespace.
+!bc cpppro
+// A comment line begins like this in C++ programs
+// Standard ANSI-C++ include files
+#include <iostream>   // input and output
+#include <cmath>      // math functions
+using namespace std;
+int main (int argc, char* argv[])
+{
+  // convert the text argv[1] to double using atof:
+  double r = atof(argv[1]);  // convert the text argv[1] to double
+  double s = sin(r);
+  // Note std::cout and std::endl
+  std::cout << "Hello, World! sin(" << r << ") =" << s << std::endl;
+  return 0;           // success execution of the program 
+}
+!ec
+!eblock
+
+
+
 
 !split
 ===== C++ Hello World =====
