@@ -16,93 +16,99 @@ o Group IV  = Friday 2pm-6pm
 |----------------------------------------------------------------------------------------------------------------------------|
 | Last name | First name | Computer lab session | 
 |----------------------------------------------------------------------------------------------------------------------------|
-|Anderssen |	Mona |   |
+|Anderssen |	Mona | I  |
 |Baastad |		Camilla Marie | |	
 |Bilek	|	Stian Dysthe	| |	
-|Bruvoll	|	Ragnar Bjørn Watne | |	
-|Fongione	| David   | |	
-|Foss		| Sigbjørn Lundesgaard | |	
+|Bruvoll	|	Ragnar Bjørn Watne |III |	
+|Fongione	| David   | II |	
+|Foss		| Sigbjørn Lundesgaard | II |	
 |Hansen	|	Synne Skinnes		| |	
-|HUGOUNET	| Antoine			| |	
+|Hugounet	| Antoine			| II |	
 |Ingebrigtsen | 	Eirik			| |	
 |Johannessen |	Daniel Haugstad		| |	
-|Johnsen	|	John-Magnus		| |	
+|Johnsen	|	John-Magnus		| IV |	
 |Jordal	|	Maria Rolstad		| |	
-|Jørgensen |	Eina Bergem		| |	
+|Jørgensen |	Eina Bergem		| I |	
 |Kiste	|	Mikael Bergedalen	| |	
-|Kjelseth |	Ingrid Marie Endresen | |		
+|Kjelseth |	Ingrid Marie Endresen |III |		
 |Kosarifar |	Maziar | |	
-|Lima	|	Erlend | |	
+|Lima	|	Erlend |II |	
 |Lund	|	Eirik Andreas Frivold	| |	
-|Mellbye	|	Frederik Johan	| |		
-|Nardi	|	Federico | |	
-|Olesen	|	Tobias Berdiin	| |	
-|Saccardo |	Davide | |	
-|Sahraoui |	Raouad | |	
-|Salihi	|	Aram Farhad Shafiq | |		
+|Mellbye	|	Frederik Johan	|II |		
+|Nardi	|	Federico | II |	
+|Olesen	|	Tobias Berdiin	| II|	
+|Saccardo |	Davide | II|	
+|Sahraoui |	Raouad | I |	
+|Salihi	|	Aram Farhad Shafiq |II |		
 |Sjåstad	|	Thomas	    | |	
-|Skeie	|	Hilde Solesvik	| |	
-|Skjæveland |	Arnlaug Høgås	| |	
-|Speri	|	Lorenzo	| |	
-|Srisgantharajah |	Jalini	| |	
-|Sutterud |	Halvard	| |	
-|Sveen	|	Christian | |	
-|Villeneuve |	Ethel	  | |	
-|Vrevic	|	Adnan	  | |	
-|Wesenberg |	Kamilla Øverland	| |	
-|Yun	|	Hyejin	| |	
-|Øien	|	Maja Agnethe	| |	
-|Aashamar |	Ola Bakke	| |	
+|Skeie	|	Hilde Solesvik	|II |	
+|Skjæveland |	Arnlaug Høgås	|II |	
+|Speri	|	Lorenzo	| II |	
+|Srisgantharajah |	Jalini	| I|	
+|Sutterud |	Halvard	| II |	
+|Sveen	|	Christian |III |	
+|Villeneuve |	Ethel	  | II |	
+|Vrevic	|	Adnan	  | II |	
+|Wesenberg |	Kamilla Øverland	| III|	
+|Yun	|	Hyejin	| I |	
+|Øien	|	Maja Agnethe	|I |	
+|Aashamar |	Ola Bakke	|I |	
 |Asif	|	Summyia Khatoon	| |	
-|Aukan	|	Ingvild Sofie Sundby	| |	
-|Bakke	|	Daniél Jimenez		| |	
-|Berg	|	Hannah Christine	| |	
+|Aukan	|	Ingvild Sofie Sundby	|I |	
+|Bakke	|	Daniél Jimenez		|I |	
+|Berg	|	Hannah Christine	| I |	
 |Brodtkorb |	Lars Johan		| |	
-|Brændshøi |	Jostein			| |	
-|Byre	|	Hanne Eline	| |		
-|Chen	|	Yisha | |	
-|Christensen |	Mikkel Killingmoe	| |	
-|Furmyr	|	Frida Woldstad		| |	
-|Gonzalez |	Gabriel Ryan		| |	
-|Helland	|	Peder Bjærum		| |	
-|Herman	|	Daniel			| |	
-|Hjelmeland |	Trude Bjørgås	| |		
-|Hodne	|	Espen | |	
+|Brændshøi |	Jostein			|III |	
+|Byre	|	Hanne Eline	| I |		
+|Chen	|	Yisha | II |	
+|Christensen |	Mikkel Killingmoe	|II |	
+|Furmyr	|	Frida Woldstad		|I |	
+|Gonzalez |	Gabriel Ryan		| I |	
+|Helland	|	Peder Bjærum		| I |	
+|Herman	|	Daniel			| I |	
+|Hjelmeland |	Trude Bjørgås	| III |		
+|Hodne	|	Espen | I |	
 |Holta	|	Vigdis	| |	
-|Håland	|	Even Simonsen	| |	
-|Jacobsen |	Karl Åge	| |	
+|Håland	|	Even Simonsen	| II |	
+|Jacobsen |	Karl Åge	| IV|	
 |Johannessen |	Aina Marie	| |	
-|Karlsen	|	Kjetil		| |	
-|Kifle	|	Robin David	| |	
-|Killingstad |	Peter Even	| |	
-|Kjølerbakken |	Kai Morgan	| |	
-|Kløvstad |	Idun		| |	
+|Karlsen	|	Kjetil		|I |	
+|Kifle	|	Robin David	|IV |	
+|Killingstad |	Peter Even	|IV |	
+|Kjølerbakken |	Kai Morgan	| I |	
+|Kløvstad |	Idun		|II |	
 |Kolstø	|	Fransis Misiu Nyka	| |	
-|Langrekken |	Oda Kristin Berg	| |	
-|Losnedahl |	Sander Wågønes	| |		
-|Løyland	 |	Sverre | |	
-|Mauland	 |	Renate | |	
+|Langrekken |	Oda Kristin Berg	|III |	
+|Losnedahl |	Sander Wågønes	| IV |		
+|Løyland	 |	Sverre | III|	
+|Mauland	 |	Renate | III |	
 |Mehmood	 |	Ifrah  | |	
 |Monov	|	Georgi Stoyanov	| |	
-|Mozo Lopez |	Francisco Javier	| |	
-|Pestana	 |	Marc Kidwell		| |	
-|Pran	|	Marius Beckmann		| |	
+|Mozo Lopez |	Francisco Javier	| I |	
+|Pestana	 |	Marc Kidwell		| II |	
+|Pran	|	Marius Beckmann		|I |	
 |Ramtvedt |	Eirik Næsset		| |	
-|Reinertsen |	Vilde Mari		| |	
-|Reistad	|	Mathias Storhaug	| |	
-|Robstad	 |	Ester Irene		| |	
-|Skaar	|	Erik Fagerås		| |	
-|Skorgan	|	John Christian Haukenes	| |	
-|Slang	|	Sigmund	       | |	
-|Storaas	|	Thomas Aarflot | |	
-|Strøm	|	Elisabeth      | |	
+|Reinertsen |	Vilde Mari		| III |	
+|Reistad	|	Mathias Storhaug	| III |	
+|Robstad	 |	Ester Irene		| I |	
+|Skaar	|	Erik Fagerås		| III|	
+|Skorgan	|	John Christian Haukenes	| I |	
+|Slang	|	Sigmund	       | II |	
+|Storaas	|	Thomas Aarflot | III |	
+|Strøm	|	Elisabeth      | III|	
 |Svendsen |	Sveinn Sandvik | |	
 |Sømme	|	Børge Olsen-Hagen	| |	
 |Tangvik	|	Marit-Kristine		| |	
-|Thorkildsen |	Vemund Stenbekk		||
-|Vahabi	|	Marzieh		| |	
-|Videm	|	Sigrid	| |		
+|Thorkildsen |	Vemund Stenbekk		|II |
+|Vahabi	|	Marzieh		| II |	
+|Videm	|	Sigrid	| II |		
 |Xie	|	Han	| |		
-|Zolghadr |	Maryam		| |	 
+|Zolghadr |	Maryam		|II |	 
+|Ko |	Vinnie		|I |	 
+|Lund-Vang |	Magnus		|I |	 
+|Sjastad |	Thomas		|III |	 
+|Wirak |	Mette		|II |	 
+|Bondevik |	Tarjei		|II |	 
+|Dyrland |	Karianne		|I |	 
 |-----------------------------------------------------------------------------|
 	
