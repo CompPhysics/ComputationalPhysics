@@ -81,7 +81,7 @@ o Project 3: October 23 (graded with feedback)
 o Project 4: November 13 (graded with feedback)
 o Project 5: December 8 (graded with feedback)
 
-Projects are handed in using devilry.ifi.uio.no. We use Github as repository for codes, benchmark alculations etc. Commens and feedback on projects only via devilry. 
+Projects are handed in using devilry.ifi.uio.no. We use Github as repository for codes, benchmark calculations etc. Comments and feedback on projects only via devilry. 
 
 !eblock
 
@@ -123,7 +123,7 @@ Projects are handed in using devilry.ifi.uio.no. We use Github as repository for
   * Householder's tridiagonalization technique and finding eigenvalues based on this
   * Jacobi's method for finding eigenvalues
   * Singular value decomposition
-  * Qubic Spline interpolation
+  * Cubic Spline interpolation
 !eblock
 
 
