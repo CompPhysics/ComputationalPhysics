@@ -9,10 +9,10 @@ DATE: today
 
 !bblock
   * Thursday: First lecture: Presentation of the course, aims and content
-  * Thursday: Second Lecture: Introduction to C++ programming and numerical precision. Exercises for first week. 
-  * Friday: Numerical precision and C++ programming, continued and exercises for first week (chapter 2 of lecture notes)
+  * Thursday: Second Lecture: Introduction to C++ programming (chapters 2 and 3 of lecture notes) and start discussion of project 1.  
+  * Friday: Numerical precision and C++ programming, continued and discussion of project 1 (chapter 2 and 3 of lecture notes)
   * Numerical differentiation and loss of numerical precision (chapter 3 lecture notes)
-  * Computer lab: Thursday and Friday. First time: Thursday and Friday this week, Presentation of hardware and software at room FV329 first hour of every labgroup and solution of first simple exercises. The first two weeks we focus on simple programming exercises and to set up github and QTcreator. This week we discuss how to set up git and obtain a github account and look at two simple programming exercises. 
+  * Computer lab: Thursday and Friday. First time: Thursday and Friday this week, Presentation of hardware and software at room FV329 first hour of every labgroup and solution of first simple exercises. The first two weeks we focus on simple programming exercises and to set up github and QTcreator. This week we discuss how to set up git and obtain a github account and look at two simple programming exercises and for those interested start with project 1. 
 !eblock
 
 !split
@@ -23,7 +23,6 @@ DATE: today
    * Introduction to C++ programming
    * Numerical precision and C++ programming (chapter 2 of lecture notes)
    * Numerical differentiation and loss of numerical precision (chapter 3 lecture notes)
-   * Work on warm up exercise to demonstrate several programming elements
 !eblock
 
 !split

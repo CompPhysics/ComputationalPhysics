@@ -16,3 +16,6 @@ output in participants.html
 running preprocess -DFORMAT=html -DDEVICE=screen  participants.do.txt > tmp_preprocess__participants.do.txt
 translating doconce text in tmp_preprocess__participants.do.txt to html
 output in participants.html
+running preprocess -DFORMAT=html -DDEVICE=screen  participants.do.txt > tmp_preprocess__participants.do.txt
+translating doconce text in tmp_preprocess__participants.do.txt to html
+output in participants.html

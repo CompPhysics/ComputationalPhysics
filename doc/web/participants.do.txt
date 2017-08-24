@@ -4,105 +4,105 @@ TITLE: Overview of course material: PHY 480 and 905, Computational Physics
 
 TOC: off
 # #else
-TITLE: Participants, their email addresses and preferred lab sessions
-AUTHOR: Computational Physics Fall 2016 at Department of Physics, University of Oslo, Norway
+TITLE: Participants and preferred lab sessions
+AUTHOR: Computational Physics Fall 2017 at Department of Physics, University of Oslo, Norway
 # #endif
 
+o Group I = Thursday 10am-2pm
+o Group II = Thursday 2pm-6pm
+o Group III = Friday 10am-2pm
+o Group IV  = Friday 2pm-6pm
 
 |----------------------------------------------------------------------------------------------------------------------------|
-|  Name |                                                               Computer lab session | 
+| Last name | First name | Computer lab session | 
 |----------------------------------------------------------------------------------------------------------------------------|
-|Aarsæther	Stine Hammer	stinhaar@student.matnat.uio.no | Thursday 14-18     |
-|Aune	Helene Aleksandra Sæthre	heleneau@student.matnat.uio.no  | Thursday 10-14  |
-|Baastad	Camilla Marie	camilmba@student.matnat.uio.no   |   |
-|Bellavere	Elena	elena.bellavere@fys.uio.no   |   |
-|Bonten	Niels	nielsbo@math.uio.no   |   |
-|Brettschneider	Jinci Mari	jincimb@student.matnat.uio.no   |   |
-|Egenæs	Ole Halvor	oleheg@student.matnat.uio.no   | Thursday 10-14  |
-|Eldøy	Reinert Sæbø	reinerte@student.matnat.uio.no   | Thursday 10-14  |
-|Eriksen	Kari	karieri@student.matnat.uio.no   |   |
-|Fauli	Richard Andre	richaraf@student.matnat.uio.no   | Thursday 10-14  |
-|Fjeld	Solveig Andrea Devold	solveiaf@student.matnat.uio.no   |   |
-|Gilberg	Vebjørn Træet	vebjorng@student.matnat.uio.no   | Friday 10-14  |
-|Gjestvang	Dorthea	dortheg@student.matnat.uio.no   | Thursday 14-18  |
-|Hein	Kristine Baluka	krisbhei@student.matnat.uio.no   | Thursday 14-18  |
-|Heinesen	Daniel	daniehei@student.matnat.uio.no   | Thursday 10-14  |
-|Helland	Peder Bjærum	pederbh@student.matnat.uio.no   |   |
-|Hustad	Kristian Gregorius	krihus@ifi.uio.no   | Friday 10-14  |
-|Jacobsen	Sunniva	sunnivja@student.matnat.uio.no   | Friday 14-18  |
-|Jensen	Live Wang	livewj@student.matnat.uio.no   |   |
-|Johansen	Trond Wiggo	trondwj@student.matnat.uio.no   | Friday 10-14  |
-|Johansson	Anders	anjohan@student.matnat.uio.no    | Friday 10-14  |
-|Kirkvik	Ann-Silje	annsiljk@student.matnat.uio.no    |   |
-| Kjernlie      Johannes    johannkk@student.matnat.uio.no | Friday 10-14 |
-|Kløvstad	Idun	idunklo@student.matnat.uio.no    |   |
-|Knudsen	Samuel Korsan	samuelkk@student.matnat.uio.no   |   |
-|Knutson	Joseph	josephkn@student.matnat.uio.no    | Thursday 14-18 |
-|Lange	Gunnar Felix	gunnalan@student.matnat.uio.no    | Thursday 10-14  |
-|Lefdalsnes	Andreas Godø	andregl@student.matnat.uio.no   | Thursday 10-14  |
-|Levén	Erik Alexander	erikalev@student.matnat.uio.no   | Thursday 14-18  |
-|Lie	Henrik Bjoner	henribli@student.matnat.uio.no   | Friday 10-14  |
-|Lunde	Jonas Gahr Sturtzel	jonassl@student.matnat.uio.no   | Friday 10-14  |
-|Magnussen	Fredrik		fredrma@gmail.com   |   |
-|Millerjord	Simon Aas	simonami@student.matnat.uio.no    | Friday 14-18  |
-|Moholt	Harald	haralmoh@student.matnat.uio.no     | Friday 10-14  |
-|Myrvik	Tommy	tommymy@student.matnat.uio.no    | Friday 10-14  |
-|Nordhagen	Even Marius	evenmn@student.matnat.uio.no   | Thursday 14-18  |
-|Pedersen	Line Gaard	linegpe@student.matnat.uio.no    | Friday 14-18  |
-|Persson	Helen	helenper@student.matnat.uio.no    | Thursday 10-14  |
-|Raanaas	Tor Viljen	torvr@student.matnat.uio.no    |   |
-|Skarholt	Kristin Kveim	kristksk@student.matnat.uio.no   | Thursday 10-14  |
-|Skeie	Hilde Solesvik	h.s.skeie@usit.uio.no    |   |
-|Solli	Robert	robersol@student.matnat.uio.no    |   |
-|Stene	Christoffer	chsten@student.matnat.uio.no   |Friday 14-18   |
-|Storebakken	Tellef	tellefs@student.matnat.uio.no   | Thursday 14-18  |
-|Sutterud	Halvard	halvarsu@student.matnat.uio.no    | Thursday 10-14  |
-|Tuv	Kristian	kristtuv@student.matnat.uio.no    |   |
-|Winther-Larsen	Sebastian Gregorius	sebastwi@student.matnat.uio.no   | Friday 10-14  |
-|Østrem	Fredrik	fredost@student.matnat.uio.no    | Thursday 14-18  |
-|Øvland	Beate	beateovl@student.matnat.uio.no   |   |
-|Bakke	Helle Merethe	helle.bakke@astro.uio.no   | Thursday 10-14  |
-|Bareid	Magnus Christopher	m.c.bareid@astro.uio.no   | Friday 14-18  |
-|Bastnes	Simen Nyhus	s.n.bastnes@astro.uio.no   | Friday 14-18  |
-|Bilden	Sindre Rannem	s.r.bilden@fys.uio.no   | Thursday 14-18   |
-|Brændshøi	Jostein	jostbr@student.geo.uio.no   |   |
-|Chamandy	Tiffany Marie	t.m.chamandy@astro.uio.no   | Thursday 14-18  |
-|Chiem	Kevin Jeu	k.j.chiem@fys.uio.no   |   |
-|Delto	Carl Ludwig Maximilian	cldelto@student.matnat.uio.no   | Friday 10-14  |
-|Eames	Christopher Solheim	c.s.eames@fys.uio.no   |   |
-|Fazeli Hossein  hossein.fazeli@geo.uio.no   | Friday 14-18  |
-|Farhad Shako shako.farhad@mn.uio.no   | Thursday 14-18  |
-|Frogner	Lars	lars.frogner@astro.uio.no   | Thursday 10-14  |
-|Gribkovskaya	Anna	anna.gribkovskaya@fys.uio.no   | Thursday 10-14  |
-|Haraldsrud	Andreas Drolsum	andreadh@student.matnat.uio.no   |   |
-|Hauge	Eirik Ramsli	e.r.hauge@fys.uio.no    | Friday 14-18  |
-|Ho	Alex	aleh@student.matnat.uio.no    | Thursday 10-14  |
-|Holm	Ingrid Angélica Vazquez	ingraho@student.matnat.uio.no    | Friday 10-14  |
-|Hovda	Anne-Marthe	a.m.hovda@fys.uio.no    | Thursday 10-14  |
-|Jacobsen	Karl Åge	karlaj@student.matnat.uio.no   |   |
-|Johannessen	Aina Marie	ainajoh@student.geo.uio.no    |   |
-|Jonsson	Marius	mariujon@student.matnat.uio.no    | Thursday 10-14   |
-|Karzhou	Andrei	andrei.karzhou@fys.uio.no    | Friday 14-18  |
-|Kristensen	Oda Johanne	o.j.kristensen@fys.uio.no   | Thursday 14-18  |
-|Kukharenka	Andrei	andrei.kukharenka@fys.uio.no    | Friday 10-14  |
-|Markestad	Ask Juhl	a.j.markestad@fys.uio.no    | Thursday 10-14  |
-|Moseid	Kristine Onsum	krisomos@student.matnat.uio.no    |Friday 10-14   |
-|Nafstad	Halvor	halvor.nafstad@astro.uio.no    | Friday 10-14  |
-|Ness	Heine Håland	h.h.ness@fys.uio.no    |   |
-|Ringnes	Knut Haneborg	knuthane@student.matnat.uio.no   |   |
-|Rønning Vegard vegarron@fys.uio.no | Friday 10-14 |
-|Spilker	Andri Karoline Lunøe	a.k.l.spilker@fys.uio.no   | Thursday 14-18  |
-|Strand	Martin Gjæver	martiped@student.matnat.uio.no   |   |
-|Surmacz	Waldemar	waldemar.surmacz@astro.uio.no   |   |
-|Svalheim	Trygve Leithe	t.l.svalheim@astro.uio.no   |Friday 10-14   |
-|Svendsen	Øyvind Brynhildsvoll	o.b.svendsen@astro.uio.no   | Friday 14-18  |
-| Torp Sondre sondtr@student.matnat.uio.no | Friday 10-14 |
-|Ulvik	Geir Tore	g.t.ulvik@fys.uio.no   |   |
-|Valberg	Pål	paalval@student.matnat.uio.no   | Friday 10-14  |
-|Yaseen	Anisa	anisay@student.matnat.uio.no   |   |
-| Thorbjørn Vidvei Larsen   thorbjol@student.matnat.uio.no   |   |
-| Erik Fagerås Skaar   erikfsk@student.matnat.uio.no   | Friday 10-14  |
-| Lars Kristian Henriksen larskhe@student.matnat.uio.no   |   |
-| Rastad, Sarah Båvenäs  sarahbra@student.matnat.uio.no   |   |
-|----------------------------------------------------------------------------------------------------------------------------|
+|Anderssen |	Mona |   |
+|Baastad |		Camilla Marie | |	
+|Bilek	|	Stian Dysthe	| |	
+|Bruvoll	|	Ragnar Bjørn Watne | |	
+|Fongione	| David   | |	
+|Foss		| Sigbjørn Lundesgaard | |	
+|Hansen	|	Synne Skinnes		| |	
+|HUGOUNET	| Antoine			| |	
+|Ingebrigtsen | 	Eirik			| |	
+|Johannessen |	Daniel Haugstad		| |	
+|Johnsen	|	John-Magnus		| |	
+|Jordal	|	Maria Rolstad		| |	
+|Jørgensen |	Eina Bergem		| |	
+|Kiste	|	Mikael Bergedalen	| |	
+|Kjelseth |	Ingrid Marie Endresen | |		
+|Kosarifar |	Maziar | |	
+|Lima	|	Erlend | |	
+|Lund	|	Eirik Andreas Frivold	| |	
+|Mellbye	|	Frederik Johan	| |		
+|Nardi	|	Federico | |	
+|Olesen	|	Tobias Berdiin	| |	
+|Saccardo |	Davide | |	
+|Sahraoui |	Raouad | |	
+|Salihi	|	Aram Farhad Shafiq | |		
+|Sjåstad	|	Thomas	    | |	
+|Skeie	|	Hilde Solesvik	| |	
+|Skjæveland |	Arnlaug Høgås	| |	
+|Speri	|	Lorenzo	| |	
+|Srisgantharajah |	Jalini	| |	
+|Sutterud |	Halvard	| |	
+|Sveen	|	Christian | |	
+|Villeneuve |	Ethel	  | |	
+|Vrevic	|	Adnan	  | |	
+|Wesenberg |	Kamilla Øverland	| |	
+|Yun	|	Hyejin	| |	
+|Øien	|	Maja Agnethe	| |	
+|Aashamar |	Ola Bakke	| |	
+|Asif	|	Summyia Khatoon	| |	
+|Aukan	|	Ingvild Sofie Sundby	| |	
+|Bakke	|	Daniél Jimenez		| |	
+|Berg	|	Hannah Christine	| |	
+|Brodtkorb |	Lars Johan		| |	
+|Brændshøi |	Jostein			| |	
+|Byre	|	Hanne Eline	| |		
+|Chen	|	Yisha | |	
+|Christensen |	Mikkel Killingmoe	| |	
+|Furmyr	|	Frida Woldstad		| |	
+|Gonzalez |	Gabriel Ryan		| |	
+|Helland	|	Peder Bjærum		| |	
+|Herman	|	Daniel			| |	
+|Hjelmeland |	Trude Bjørgås	| |		
+|Hodne	|	Espen | |	
+|Holta	|	Vigdis	| |	
+|Håland	|	Even Simonsen	| |	
+|Jacobsen |	Karl Åge	| |	
+|Johannessen |	Aina Marie	| |	
+|Karlsen	|	Kjetil		| |	
+|Kifle	|	Robin David	| |	
+|Killingstad |	Peter Even	| |	
+|Kjølerbakken |	Kai Morgan	| |	
+|Kløvstad |	Idun		| |	
+|Kolstø	|	Fransis Misiu Nyka	| |	
+|Langrekken |	Oda Kristin Berg	| |	
+|Losnedahl |	Sander Wågønes	| |		
+|Løyland	 |	Sverre | |	
+|Mauland	 |	Renate | |	
+|Mehmood	 |	Ifrah  | |	
+|Monov	|	Georgi Stoyanov	| |	
+|Mozo Lopez |	Francisco Javier	| |	
+|Pestana	 |	Marc Kidwell		| |	
+|Pran	|	Marius Beckmann		| |	
+|Ramtvedt |	Eirik Næsset		| |	
+|Reinertsen |	Vilde Mari		| |	
+|Reistad	|	Mathias Storhaug	| |	
+|Robstad	 |	Ester Irene		| |	
+|Skaar	|	Erik Fagerås		| |	
+|Skorgan	|	John Christian Haukenes	| |	
+|Slang	|	Sigmund	       | |	
+|Storaas	|	Thomas Aarflot | |	
+|Strøm	|	Elisabeth      | |	
+|Svendsen |	Sveinn Sandvik | |	
+|Sømme	|	Børge Olsen-Hagen	| |	
+|Tangvik	|	Marit-Kristine		| |	
+|Thorkildsen |	Vemund Stenbekk		||
+|Vahabi	|	Marzieh		| |	
+|Videm	|	Sigrid	| |		
+|Xie	|	Han	| |		
+|Zolghadr |	Maryam		| |	 
+|-----------------------------------------------------------------------------|
 	
