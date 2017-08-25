@@ -154,44 +154,48 @@ div { text-align: justify; text-justify: inter-word; }
               ('Error Analysis', 2, None, '___sec50'),
               ('Error Analysis', 2, None, '___sec51'),
               ('Error Analysis', 2, None, '___sec52'),
-              ('Technical Matter in C/C++: Pointers', 2, None, '___sec53'),
+              ('"Program to compute derivative":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/derivative.cpp"',
+               2,
+               None,
+               '___sec53'),
+              ('Technical Matter in C/C++: Pointers', 2, None, '___sec54'),
               ('Technical Matter in C/C++: "Pointer example I":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program7.cpp"',
                2,
                None,
-               '___sec54'),
-              ('Dissection: Pointer example I', 2, None, '___sec55'),
+               '___sec55'),
+              ('Dissection: Pointer example I', 2, None, '___sec56'),
               ('"Pointer example II":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program8.cpp"',
                2,
                None,
-               '___sec56'),
-              ('Dissection: Pointer example II', 2, None, '___sec57'),
-              ('Output of Pointer example II', 2, None, '___sec58'),
-              ('File handling; C-way', 2, None, '___sec59'),
-              ('File handling; C way cont.', 2, None, '___sec60'),
-              ('File handling, C++-way', 2, None, '___sec61'),
+               '___sec57'),
+              ('Dissection: Pointer example II', 2, None, '___sec58'),
+              ('Output of Pointer example II', 2, None, '___sec59'),
+              ('File handling; C-way', 2, None, '___sec60'),
+              ('File handling; C way cont.', 2, None, '___sec61'),
               ('File handling, C++-way', 2, None, '___sec62'),
               ('File handling, C++-way', 2, None, '___sec63'),
               ('File handling, C++-way', 2, None, '___sec64'),
               ('File handling, C++-way', 2, None, '___sec65'),
-              ('Call by value or reference', 2, None, '___sec66'),
+              ('File handling, C++-way', 2, None, '___sec66'),
               ('Call by value or reference', 2, None, '___sec67'),
-              ('Call by value and reference, F90/95', 2, None, '___sec68'),
+              ('Call by value or reference', 2, None, '___sec68'),
+              ('Call by value and reference, F90/95', 2, None, '___sec69'),
               ('"Example codes in c++, dynamic memory allocation":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program4.cpp"',
                2,
                None,
-               '___sec69'),
+               '___sec70'),
               ('"Example codes in c++, writing to file and dynamic allocation for arrays":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program5.cpp"',
                2,
                None,
-               '___sec70'),
+               '___sec71'),
               ('"Example codes in c++, transfer of data using call by value and call by reference":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program6.cpp"',
                2,
                None,
-               '___sec71'),
+               '___sec72'),
               ('"Example codes in c++, operating on several arrays and printing time used":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp"',
                2,
                None,
-               '___sec72')]}
+               '___sec73')]}
 end of tocinfo -->
 
 <body>
@@ -233,7 +237,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Aug 24, 2017</h4></center> <!-- date -->
+<center><h4>Aug 25, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -1757,7 +1761,53 @@ The results for \( x=10 \) are shown in the Table
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec53">Technical Matter in C/C++: Pointers </h2>
+<h2 id="___sec53"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/derivative.cpp" target="_blank">Program to compute derivative</a> </h2>
+
+<p>
+We list here the program to compute the above derivative
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;fstream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #408080; font-style: italic">// Note: not using namespace for std</span>
+<span style="color: #408080; font-style: italic">// output file as global variable</span>
+
+std<span style="color: #666666">::</span>ofstream ofile;
+
+<span style="color: #408080; font-style: italic">// Begin of main program</span>
+
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
+{
+  <span style="color: #B00040">char</span> <span style="color: #666666">*</span>outfilename;
+  <span style="color: #408080; font-style: italic">// Read in output file, abort if there are too few command-line arguments</span>
+  <span style="color: #008000; font-weight: bold">if</span>( argc <span style="color: #666666">&lt;=</span> <span style="color: #666666">3</span> ){
+    std<span style="color: #666666">::</span>cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Bad Usage: &quot;</span> <span style="color: #666666">&lt;&lt;</span> argv[<span style="color: #666666">0</span>] <span style="color: #666666">&lt;&lt;</span>
+      <span style="color: #BA2121">&quot; read also output file and number of elements on same line&quot;</span> <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>endl;
+    exit(<span style="color: #666666">1</span>);
+  }
+  <span style="color: #008000; font-weight: bold">else</span>{
+    outfilename<span style="color: #666666">=</span>argv[<span style="color: #666666">1</span>];
+  }
+  <span style="color: #408080; font-style: italic">//  opening a file for the program</span>
+  ofile.open(outfilename);
+  <span style="color: #408080; font-style: italic">// extracting number of mesh points</span>
+  <span style="color: #B00040">int</span> i <span style="color: #666666">=</span> atoi(argv[<span style="color: #666666">2</span>]);
+  <span style="color: #B00040">double</span> x <span style="color: #666666">=</span> atof(argv[<span style="color: #666666">3</span>]);  <span style="color: #408080; font-style: italic">// reading x-value</span>
+  <span style="color: #B00040">double</span> h <span style="color: #666666">=</span> <span style="color: #666666">1.0/</span>((<span style="color: #B00040">double</span>) i); <span style="color: #408080; font-style: italic">// setting up step size</span>
+  <span style="color: #B00040">double</span> Derivative <span style="color: #666666">=</span> (exp(x<span style="color: #666666">+</span>h)<span style="color: #666666">-2.*</span>exp(x)<span style="color: #666666">+</span>exp(x<span style="color: #666666">-</span>h))<span style="color: #666666">/</span>(h<span style="color: #666666">*</span>h);
+  <span style="color: #B00040">double</span> RelativeError <span style="color: #666666">=</span> log10(fabs(Derivative<span style="color: #666666">-</span>exp(x))<span style="color: #666666">/</span>exp(x));
+  ofile <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>setw(<span style="color: #666666">15</span>) <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>setprecision(<span style="color: #666666">8</span>) <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;relative error=&quot;</span> <span style="color: #666666">&lt;&lt;</span> RelativeError <span style="color: #666666">&lt;&lt;</span> std<span style="color: #666666">::</span>endl;
+  ofile.close();  <span style="color: #408080; font-style: italic">// close output file</span>
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec54">Technical Matter in C/C++: Pointers </h2>
 
 <p>
 <div class="alert alert-block alert-block alert-text-normal">
@@ -1793,7 +1843,7 @@ Simple example declarations:
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec54">Technical Matter in C/C++: <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program7.cpp" target="_blank">Pointer example I</a> </h2>
+<h2 id="___sec55">Technical Matter in C/C++: <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program7.cpp" target="_blank">Pointer example I</a> </h2>
 
 <p>
 <div class="alert alert-block alert-block alert-text-normal">
@@ -1824,7 +1874,7 @@ Simple example declarations:
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec55">Dissection: Pointer example I </h2>
+<h2 id="___sec56">Dissection: Pointer example I </h2>
 
 <p>
 <div class="alert alert-block alert-block alert-text-normal">
@@ -1857,7 +1907,7 @@ Simple example declarations:
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec56"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program8.cpp" target="_blank">Pointer example II</a> </h2>
+<h2 id="___sec57"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program8.cpp" target="_blank">Pointer example II</a> </h2>
 
 <p>
 <div class="alert alert-block alert-block alert-text-normal">
@@ -1887,7 +1937,7 @@ printf(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; fo
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec57">Dissection: Pointer example II </h2>
+<h2 id="___sec58">Dissection: Pointer example II </h2>
 
 <p>
 <div class="alert alert-block alert-block alert-text-normal">
@@ -1917,7 +1967,7 @@ printf(<span style="color: #BA2121">&quot;</span><span style="color: #BB6622; fo
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec58">Output of Pointer example II </h2>
+<h2 id="___sec59">Output of Pointer example II </h2>
 
 <p>
 <div class="alert alert-block alert-block alert-text-normal">
@@ -1942,7 +1992,7 @@ Address of the pointer variable : 0xbfffef6c
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec59">File handling; C-way </h2>
+<h2 id="___sec60">File handling; C-way </h2>
 
 <p>
 
@@ -1965,7 +2015,7 @@ Address of the pointer variable : 0xbfffef6c
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec60">File handling; C way cont. </h2>
+<h2 id="___sec61">File handling; C way cont. </h2>
 
 <p>
 
@@ -1982,7 +2032,7 @@ Address of the pointer variable : 0xbfffef6c
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec61">File handling, C++-way </h2>
+<h2 id="___sec62">File handling, C++-way </h2>
 
 <p>
 
@@ -1996,7 +2046,7 @@ ifstream ifile;
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec62">File handling, C++-way </h2>
+<h2 id="___sec63">File handling, C++-way </h2>
 
 <p>
 
@@ -2021,7 +2071,7 @@ ifstream ifile;
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec63">File handling, C++-way </h2>
+<h2 id="___sec64">File handling, C++-way </h2>
 
 <p>
 
@@ -2044,7 +2094,7 @@ ofile <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec64">File handling, C++-way </h2>
+<h2 id="___sec65">File handling, C++-way </h2>
 
 <p>
 
@@ -2069,7 +2119,7 @@ ofile <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec65">File handling, C++-way </h2>
+<h2 id="___sec66">File handling, C++-way </h2>
 
 <p>
 
@@ -2092,7 +2142,7 @@ ifile <span style="color: #666666">&gt;&gt;</span> a <span style="color: #666666
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec66">Call by value or reference </h2>
+<h2 id="___sec67">Call by value or reference </h2>
 C++ allows the programmer to use solely call by reference (note that call by reference is implemented as pointers). To see the difference between C and C++, consider the following simple examples.
 In C we would write
 
@@ -2125,7 +2175,7 @@ whereas in C++ we would write
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec67">Call by value or reference </h2>
+<h2 id="___sec68">Call by value or reference </h2>
 The reason why we emphasize the difference between call by value and call
 by reference is that it allows the programmer to avoid pitfalls
 like unwanted changes of variables. However, many people feel that this
@@ -2134,7 +2184,7 @@ reduces the readability of the code.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec68">Call by value and reference, F90/95 </h2>
+<h2 id="___sec69">Call by value and reference, F90/95 </h2>
 
 <p>
 In Fortran we can use <code>INTENT(IN)</code>, <code>INTENT(OUT)</code>, <code>INTENT(INOUT)</code> to let the
@@ -2160,7 +2210,7 @@ This hinders unwanted changes and increases readability.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec69"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program4.cpp" target="_blank">Example codes in c++, dynamic memory allocation</a> </h2>
+<h2 id="___sec70"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program4.cpp" target="_blank">Example codes in c++, dynamic memory allocation</a> </h2>
 
 <p>
 
@@ -2195,7 +2245,7 @@ This hinders unwanted changes and increases readability.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec70"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program5.cpp" target="_blank">Example codes in c++, writing to file and dynamic allocation for arrays</a> </h2>
+<h2 id="___sec71"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program5.cpp" target="_blank">Example codes in c++, writing to file and dynamic allocation for arrays</a> </h2>
 
 <p>
 
@@ -2245,7 +2295,7 @@ ofstream ofile;
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec71"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program6.cpp" target="_blank">Example codes in c++, transfer of data using call by value and call by reference</a> </h2>
+<h2 id="___sec72"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program6.cpp" target="_blank">Example codes in c++, transfer of data using call by value and call by reference</a> </h2>
 
 <p>
 
@@ -2290,7 +2340,7 @@ ofstream ofile;
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec72"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" target="_blank">Example codes in c++, operating on several arrays and printing time used</a> </h2>
+<h2 id="___sec73"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" target="_blank">Example codes in c++, operating on several arrays and printing time used</a> </h2>
 
 <p>
 

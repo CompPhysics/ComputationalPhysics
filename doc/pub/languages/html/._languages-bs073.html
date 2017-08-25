@@ -253,7 +253,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._languages-bs042.html#___sec42" style="font-size: 80%;"><b>Results \( \exp{(-x)} \)</b></a></li>
      <!-- navigation toc: --> <li><a href="._languages-bs043.html#___sec43" style="font-size: 80%;"><b>"Program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program5.cpp" to compute \( \exp{(-x)} \)</b></a></li>
      <!-- navigation toc: --> <li><a href="._languages-bs044.html#___sec44" style="font-size: 80%;"><b>Program to compute \( \exp{(-x)} \)</b></a></li>
-     <!-- navigation toc: --> <li><a href="#___sec45" style="font-size: 80%;"><b>Results \( \exp{(-x)} \)</b></a></li>
+     <!-- navigation toc: --> <li><a href="._languages-bs045.html#___sec45" style="font-size: 80%;"><b>Results \( \exp{(-x)} \)</b></a></li>
      <!-- navigation toc: --> <li><a href="._languages-bs046.html#___sec46" style="font-size: 80%;"><b>Most used formula for derivatives</b></a></li>
      <!-- navigation toc: --> <li><a href="._languages-bs047.html#___sec47" style="font-size: 80%;"><b>Error Analysis</b></a></li>
      <!-- navigation toc: --> <li><a href="._languages-bs048.html#___sec48" style="font-size: 80%;"><b>Error Analysis</b></a></li>
@@ -281,7 +281,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._languages-bs070.html#___sec70" style="font-size: 80%;"><b>"Example codes in c++, dynamic memory allocation":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program4.cpp"</b></a></li>
      <!-- navigation toc: --> <li><a href="._languages-bs071.html#___sec71" style="font-size: 80%;"><b>"Example codes in c++, writing to file and dynamic allocation for arrays":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program5.cpp"</b></a></li>
      <!-- navigation toc: --> <li><a href="._languages-bs072.html#___sec72" style="font-size: 80%;"><b>"Example codes in c++, transfer of data using call by value and call by reference":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program6.cpp"</b></a></li>
-     <!-- navigation toc: --> <li><a href="._languages-bs073.html#___sec73" style="font-size: 80%;"><b>"Example codes in c++, operating on several arrays and printing time used":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp"</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec73" style="font-size: 80%;"><b>"Example codes in c++, operating on several arrays and printing time used":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp"</b></a></li>
 
         </ul>
       </li>
@@ -294,73 +294,66 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0045"></a>
+<a name="part0073"></a>
 <!-- !split -->
 
-<h2 id="___sec45" class="anchor">Results \( \exp{(-x)} \) </h2>
-
-<p>
-<div class="panel panel-default">
-<div class="panel-body">
-<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+<h2 id="___sec73" class="anchor"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" target="_self">Example codes in c++, operating on several arrays and printing time used</a> </h2>
 
 <p>
 
-<div class="row">
-  <div class="col-xs-7">
-    <table class="table table-striped table-hover table-condensed">
-<thead>
-<tr><td align="center"> \( x \)  </td> <td align="center">\( \exp{(-x)} \)</td> <td align="center"><b>     Series    </b></td> <td align="center"><b>Number of terms in series</b></td> </tr>
-</thead>
-<tbody>
-<tr><td align="center">   0.000000      </td> <td align="center">   0.10000000E+01      </td> <td align="center">   0.10000000E+01     </td> <td align="center">   1                            </td> </tr>
-<tr><td align="center">   10.000000     </td> <td align="center">   0.45399900E-04      </td> <td align="center">   0.45399900E-04     </td> <td align="center">   44                           </td> </tr>
-<tr><td align="center">   20.000000     </td> <td align="center">   0.20611536E-08      </td> <td align="center">   0.56385075E-08     </td> <td align="center">   72                           </td> </tr>
-<tr><td align="center">   30.000000     </td> <td align="center">   0.93576230E-13      </td> <td align="center">   -0.30668111E-04    </td> <td align="center">   100                          </td> </tr>
-<tr><td align="center">   40.000000     </td> <td align="center">   0.42483543E-17      </td> <td align="center">   -0.31657319E+01    </td> <td align="center">   127                          </td> </tr>
-<tr><td align="center">   50.000000     </td> <td align="center">   0.19287498E-21      </td> <td align="center">   0.11072933E+05     </td> <td align="center">   155                          </td> </tr>
-<tr><td align="center">   60.000000     </td> <td align="center">   0.87565108E-26      </td> <td align="center">   -0.33516811E+09    </td> <td align="center">   182                          </td> </tr>
-<tr><td align="center">   70.000000     </td> <td align="center">   0.39754497E-30      </td> <td align="center">   -0.32979605E+14    </td> <td align="center">   209                          </td> </tr>
-<tr><td align="center">   80.000000     </td> <td align="center">   0.18048514E-34      </td> <td align="center">   0.91805682E+17     </td> <td align="center">   237                          </td> </tr>
-<tr><td align="center">   90.000000     </td> <td align="center">   0.81940126E-39      </td> <td align="center">   -0.50516254E+22    </td> <td align="center">   264                          </td> </tr>
-<tr><td align="center">   100.000000    </td> <td align="center">   0.37200760E-43      </td> <td align="center">   -0.29137556E+26    </td> <td align="center">   291                          </td> </tr>
-</tbody>
-    </table>
-  </div> <!-- col-xs-7 -->
-</div> <!-- cell row -->
-<p>
-</div>
-</div>
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdlib&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt; </span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;time.h&quot; </span><span style="color: #BC7A00"></span>
 
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std; <span style="color: #408080; font-style: italic">// note use of namespace                                       </span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
+{
+  <span style="color: #B00040">int</span> i <span style="color: #666666">=</span> atoi(argv[<span style="color: #666666">1</span>]); 
+  <span style="color: #B00040">double</span> <span style="color: #666666">*</span>a, <span style="color: #666666">*</span>b, <span style="color: #666666">*</span>c;
+  a <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[i]; 
+  b <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[i]; 
+  c <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[i]; 
 
+  <span style="color: #B00040">clock_t</span> start, finish;
+  start <span style="color: #666666">=</span> clock();
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> i; j<span style="color: #666666">++</span>) {
+    a[j] <span style="color: #666666">=</span> cos(j<span style="color: #666666">*1.0</span>);
+    b[j] <span style="color: #666666">=</span> sin(j<span style="color: #666666">+3.0</span>);
+    c[j] <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+  }
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> i; j<span style="color: #666666">++</span>) {
+    c[j] <span style="color: #666666">=</span> a[j]<span style="color: #666666">+</span>b[j];
+  }
+  finish <span style="color: #666666">=</span> clock();
+  <span style="color: #B00040">double</span> timeused <span style="color: #666666">=</span> (<span style="color: #B00040">double</span>) (finish <span style="color: #666666">-</span> start)<span style="color: #666666">/</span>(CLOCKS_PER_SEC );
+  cout <span style="color: #666666">&lt;&lt;</span> setiosflags(ios<span style="color: #666666">::</span>showpoint <span style="color: #666666">|</span> ios<span style="color: #666666">::</span>uppercase);
+  cout <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">10</span>) <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">20</span>) <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Time used  for vector addition=&quot;</span> <span style="color: #666666">&lt;&lt;</span> timeused  <span style="color: #666666">&lt;&lt;</span> endl;
+  <span style="color: #008000; font-weight: bold">delete</span> [] a;
+  <span style="color: #008000; font-weight: bold">delete</span> [] b;
+  <span style="color: #008000; font-weight: bold">delete</span> [] c;
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;           <span style="color: #408080; font-style: italic">/* success execution of the program */</span>
+}
+</pre></div>
 <p>
+
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
-<li><a href="._languages-bs044.html">&laquo;</a></li>
+<li><a href="._languages-bs072.html">&laquo;</a></li>
   <li><a href="._languages-bs000.html">1</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._languages-bs037.html">38</a></li>
-  <li><a href="._languages-bs038.html">39</a></li>
-  <li><a href="._languages-bs039.html">40</a></li>
-  <li><a href="._languages-bs040.html">41</a></li>
-  <li><a href="._languages-bs041.html">42</a></li>
-  <li><a href="._languages-bs042.html">43</a></li>
-  <li><a href="._languages-bs043.html">44</a></li>
-  <li><a href="._languages-bs044.html">45</a></li>
-  <li class="active"><a href="._languages-bs045.html">46</a></li>
-  <li><a href="._languages-bs046.html">47</a></li>
-  <li><a href="._languages-bs047.html">48</a></li>
-  <li><a href="._languages-bs048.html">49</a></li>
-  <li><a href="._languages-bs049.html">50</a></li>
-  <li><a href="._languages-bs050.html">51</a></li>
-  <li><a href="._languages-bs051.html">52</a></li>
-  <li><a href="._languages-bs052.html">53</a></li>
-  <li><a href="._languages-bs053.html">54</a></li>
-  <li><a href="._languages-bs054.html">55</a></li>
-  <li><a href="">...</a></li>
-  <li><a href="._languages-bs073.html">74</a></li>
-  <li><a href="._languages-bs046.html">&raquo;</a></li>
+  <li><a href="._languages-bs065.html">66</a></li>
+  <li><a href="._languages-bs066.html">67</a></li>
+  <li><a href="._languages-bs067.html">68</a></li>
+  <li><a href="._languages-bs068.html">69</a></li>
+  <li><a href="._languages-bs069.html">70</a></li>
+  <li><a href="._languages-bs070.html">71</a></li>
+  <li><a href="._languages-bs071.html">72</a></li>
+  <li><a href="._languages-bs072.html">73</a></li>
+  <li class="active"><a href="._languages-bs073.html">74</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 
