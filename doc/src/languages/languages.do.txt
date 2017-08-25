@@ -1157,7 +1157,7 @@ The results for $x=10$ are shown in the Table
 !eblock
 
 !split
-===== "Program to compute derivative":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/derivative.cpp" =====
+===== "Program to compute derivative":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/derivative.cpp" =====
 
 We list here the program to compute the above derivative
 !bc cppcod
