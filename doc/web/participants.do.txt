@@ -22,7 +22,7 @@ o Group IV  = Friday 2pm-6pm
 |Bruvoll	|	Ragnar Bjørn Watne |III |	
 |Fongione	| David   | II |	
 |Foss		| Sigbjørn Lundesgaard | II |	
-|Hansen	|	Synne Skinnes		| |	
+|Hansen	|	Synne Skinnes		| III|	
 |Hugounet	| Antoine			| II |	
 |Ingebrigtsen | 	Eirik			| |	
 |Johannessen |	Daniel Haugstad		| |	
@@ -60,7 +60,7 @@ o Group IV  = Friday 2pm-6pm
 |Brodtkorb |	Lars Johan		| |	
 |Brændshøi |	Jostein			|III |	
 |Byre	|	Hanne Eline	| I |		
-|Chen	|	Yisha | II |	
+|Chen	|	Yisha | I |	
 |Christensen |	Mikkel Killingmoe	|II |	
 |Furmyr	|	Frida Woldstad		|I |	
 |Gonzalez |	Gabriel Ryan		| I |	
@@ -97,7 +97,7 @@ o Group IV  = Friday 2pm-6pm
 |Storaas	|	Thomas Aarflot | III |	
 |Strøm	|	Elisabeth      | III|	
 |Svendsen |	Sveinn Sandvik | |	
-|Sømme	|	Børge Olsen-Hagen	| |	
+|Sømme	|	Børge Olsen-Hagen	|I |	
 |Tangvik	|	Marit-Kristine		| |	
 |Thorkildsen |	Vemund Stenbekk		|II |
 |Vahabi	|	Marzieh		| II |	
