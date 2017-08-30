@@ -1,6 +1,227 @@
-TITLE: Teach yourself C++
+TITLE: Teach yourself c++
 AUTHOR: Morten Hjorth-Jensen
 DATE: today
+
+
+!bquiz
+Q: Which of the following cities are capitals?
+Cw: Sidney
+Cr: Kigali
+Cw: Bonn
+Cr: Bern
+Cr: Ottawa
+Cw: New York
+!equiz
+
+!bquiz
+Q: What is the capital of Norway?
+
+Cw: Helsinki
+E: Helsinki is the capital of Finland.
+
+Cw: Drammen
+E: Drammen is a small city close to Oslo.
+
+Cr: Oslo
+
+Cw: Denmark
+!equiz
+
+
+
+
+# Quiz 6
+
+!bquiz
+Q: Compute the result of $a+b$ in the case $a=2$ and $b=2$.
+
+Cw: 5.
+
+E: Good attempt, especially when referring to the following story.
+
+!bquote
+An anthropologist was asking a primitive tribesman about arithmetic.
+When the anthropologist asked, *What does two and two make?* the
+tribesman replied, *Five.* Asked to explain, the tribesman said, *If I
+have a rope with two knots, and another rope with two knots, and I
+join the ropes together, then I have five knots.*
+!equote
+
+Cr: 4.
+E: Seems trivial, but once upon a time...
+
+FIGURE: [fig/1p1, width=140 frac=0.2]
+
+Cw: The computation does not make sense when $a$ and $b$ are given without
+units.
+
+E: It is indeed possible to add pure numbers without any units.
+!equiz
+
+
+!bquiz
+Q: The equation
+
+!bt
+\begin{equation}
+\nabla\cdot\bm{u} = 0
+label{cont:eq}
+\end{equation}
+!et
+is famous in physics. Select the wrong assertion(s):
+
+K: gradient; divergence; curl; vector calculus
+
+Cw: The equation tells that the net outflow of something with
+velocity $\bm{u}$ in region is zero.
+E: This is right: integrating (ref{cont:eq}) over an arbitrary domain
+$\Omega$ and using Gauss' divergence theorem, we get the surface integral
+
+!bt
+\[ \int_{\partial\Omega}\bm{u}\cdot\bm{n}dS=0,\]
+!et
+where $\bm{n}$ is an outward unit normal on the boundary $\partial\Omega$.
+The quantity $\bm{u}\cdot\bm{n}dS$ is the outflow of volume per
+time unit if $\bm{u}$ is velocity.
+
+Cw: The equation tells that the vector field $\bm{u}$ is divergence free.
+E: Yes, *divergence free* is often used as synonym for *zero divergence*,
+and $\nabla\cdot\bm{u}$ is the divergence of a vector field $\bm{u}$.
+
+Cw: The equation implies that there exists a vector potential $\bm{A}$
+such that $\bm{u}=\nabla\times\bm{A}$.
+E: Yes, this is an important result in vector calculus that is much
+used in electromagnetics.
+
+Cr: The equation implies $\nabla\times\bm{u}=0$.
+E: No, only if $\bm{u}=\nabla\phi$, for some scalar potential $\phi$,
+we have $\nabla\times\bm{u}=0$.
+
+Cr: The equation implies that $\bm{u}$ must be a constant vector field.
+E: No, it is the *sum* of derivatives of different components of $\bm{u}$
+that is zero. Only in one dimension, where $\bm{u}=u_x\bm{i}$
+and consequently $\nabla\cdot\bm{u}=du/dx$, the vector field must be constant.
+!equiz
+
+!bquiz
+Q: We want to create a Python list object of length `n` where each
+element is `0`. Is the following code then what we need?
+
+!bc pycod
+import numpy
+mylist = numpy.zeros(n)
+!ec
+
+Cw: Yes.
+
+E: Not exactly: `numpy.zeros` creates an array of zeros, not a list.
+
+Cw: Yes, provided we write `np` instead of `numpy`:
+
+!bc pycod
+import numpy as np
+mylist = np.zeros(n)
+!ec
+
+E: No, this is fully equivalent to the original code, so `mylist` becomes
+an array, not a list.
+
+Cr: No.
+E: One would need to do `mylist = [0]*n` or `numpy.zeros(n).tolist()`.
+!equiz
+
+!bquiz
+Q:
+
+!bc pypro
+from math import sin
+
+def D(u, t, dt=1E-5):
+    return (u(t + dt) - u(t - dt))/(2*dt)
+
+def u(t):
+    "A quadratic function."
+    return t^2
+
+print D(u, t=4),
+print D(lambda x: return 2*x, 2)
+!ec
+The purpose of this program is to differentiate the two mathematical
+functions
+
+!bt
+\begin{align*}
+u(t) &= t^2,\\
+f(x) &= 2x.
+\end{align*}
+!et
+Determine which of the following assertions that is _wrong_.
+
+Cw: In Python, the syntax for $t^2$ is `t**2`, not `t^2`, so the
+`u` function contains an error.
+E: True. However, `t^2` will work for integer `t` in Python, but the computation is nonsense in this case since $u(t)$ is supposed to be $t^2$.
+
+Cw: The string in the `u` function is a valid doc string.
+E: Yes, a doc string can be any string after the function heading. It can
+have single quotes `'...'`, double quotes `"..."`,
+triple single quotes `'''...'''`, or triple double quotes `"""..."""`.
+The latter is the most popular for doc strings. Recall that triple quotes
+allow the string to span multiple lines.
+
+Cw: The output from the program is on a single line, despite two `print`
+statements.
+E: Yes, because of the comma after the first `print` statement: it suppresses
+the newline character that is normally appended to `print` statements in
+Python.
+
+Cr: One cannot use `u` both inside the `D` function and in the
+outer calling code (the main program).
+E: Yes, you can, because the `u` argument in the `D` function
+(holding a function)
+is a *local* variable inside the `D` function. The `u` in the calling
+code is *global* variable, holding a function object.
+Inside `D`, `u` refers to the
+local variable, while in the main program, `u` refers to the
+global variable, and the local variable `u` in `D` no longer exists, because
+it was deleted when returning from the function.
+Inside `D`, we can actually access the global `u` by `globals()['u']`,
+but that almost never comes to use and is also bad coding.
+
+Cw: The call `D(lambda x: return 2*x, 2)` is equivalent to defining
+
+!bc pycod
+def f(x):
+    return 2*x
+
+!ec
+and then calling `D(f, 2)`.
+
+E: `f(x)` is defined as a lambda function, which is a short-hand for
+defining functions as an expression, in a function call as here, or
+in the right-hand side of an assignment, e.g.,
+
+!bc pycod
+f = lambda x: return 2*x
+!ec
+
+Cw: There is danger of integer division in the `D` function.
+
+E: True, here is an example: `D(lambda t: t, dt=1)`. We get
+`(t+1 - t-1)/(2*1)`, which for any integer `t` gives `int/int`
+and hence integer division.
+
+Cw: The `D` function computes an approximate derivative of the
+function `u(t)`.
+
+E: Yes, `D` applies a widely used finite difference approximation
+formula to the derivative.
+
+Cw: Both calls to `D` result in the exact derivative, provided we
+replace `t^2` by `t**2`.
+
+E: Yes, the finite difference approximation used in `D` is exact
+for quadratic polynomials!
+!equiz
 
 
 
