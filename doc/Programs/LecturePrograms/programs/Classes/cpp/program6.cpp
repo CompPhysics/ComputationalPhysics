@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 //  Declare functions before main
-void func(int, int*);
+void func(int, int*);  // declare how func is called, first is an integer (transfer by value) and the next is call by reference by transferring an address
 int main(int argc, char *argv[])
 {
   int a;
@@ -15,10 +15,14 @@ int main(int argc, char *argv[])
   // the variable a is transferred by call by value. This means
   //  that the function func cannot change a in the calling function
   func( a,b);
-
+  cout << " changed value of b due to call to func" << endl;
+  for(int i = 0; i < 10; i++) {
+    cout <<  b[i] << endl;
+  }
   delete [] b ;
   return 0;
 } // End: function main()
+
 
 void func( int x, int *y)
 {
