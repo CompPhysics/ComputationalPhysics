@@ -1,6 +1,8 @@
-using namespace std;
+
+#include <cstdlib>
 #include <cmath>
 #include <iostream>
+using namespace std;
 int main()  
 {  
   int var;                    
@@ -8,6 +10,8 @@ int main()
    
   pointer = &var;  
   var  = 421;  
+  // dereferencing of a pointer, follow the value to the location
+  //  *pointer = var;
   printf("Address of the integer variable var : %p\n",&var);
   printf("Value of var : %d\n", var);
   printf("Value of the integer pointer variable: %p\n",pointer);

@@ -12,6 +12,7 @@ std::ofstream ofile;
 int main(int argc, char* argv[])
 {
   char *outfilename;
+  double derivativex[1000];
   // Read in output file, abort if there are too few command-line arguments
   if( argc <= 3 ){
     std::cout << "Bad Usage: " << argv[0] <<

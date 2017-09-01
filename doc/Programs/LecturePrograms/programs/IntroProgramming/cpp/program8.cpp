@@ -1,6 +1,7 @@
-using namespace std;
+#include <cstdlib>
 #include <cmath>
 #include <iostream>
+using namespace std;
 int main()  
 {   
   int matr[2];  
