@@ -1,4 +1,3 @@
-\
 <!DOCTYPE html>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -148,7 +147,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>Aug 23, 2017</h4></center> <!-- date -->
+<center><h4>Sep 4, 2017</h4></center> <!-- date -->
 <br>
 <p>
 
@@ -1467,7 +1466,7 @@ Recall that \( \tilde{d}_1=2 \) and \( \tilde{f}_1=f_1 \).  These arrays can be 
 The backward substitution gives then the final solution
 <p>&nbsp;<br>
 $$
-u_{i-1}= \frac{i-1}{i}\left(\tilde{f}_{i-1}-u_i\right),
+u_{i-1}= \frac{i-1}{i}\left(\tilde{f}_{i-1}+u_i\right),
 $$
 <p>&nbsp;<br>
 
@@ -1476,130 +1475,80 @@ with \( u_n=\tilde{f}_{n}/\tilde{b}_{n} \).
 
 
 <section>
-<h2 id="___sec44"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/CppQtCodesLectures/MatrixTest" target="_blank">Program example</a> </h2>
+<h2 id="___sec44"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Projects/2016/Project1/Examples/TridiagonalSimple.cpp" target="_blank">Program example</a> </h2>
 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">/*</span>
-<span style="color: #228B22">**     Project1: a) and b)</span>
-<span style="color: #228B22">**     The algorithm for solving the tridiagonal matrix</span>
-<span style="color: #228B22">**     equation is implemented (O(8n) FLOPS).</span>
-<span style="color: #228B22">*/</span>
-<span style="color: #1e889b"># include &lt;iostream&gt;</span>
-<span style="color: #1e889b"># include &lt;fstream&gt;</span>
-<span style="color: #1e889b"># include &lt;iomanip&gt;</span>
-<span style="color: #1e889b"># include &lt;cmath&gt;</span>
-
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;fstream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iomanip&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;string&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #228B22">// use namespace for output and input</span>
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+
+<span style="color: #228B22">// object for output files</span>
 ofstream ofile;
+<span style="color: #228B22">// Functions used</span>
+<span style="color: #8B008B; font-weight: bold">inline</span> <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">f</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x){<span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">100.0</span>*exp(-<span style="color: #B452CD">10.0</span>*x);
+}
+<span style="color: #8B008B; font-weight: bold">inline</span> <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">exact</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x) {<span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">1.0</span>-(<span style="color: #B452CD">1</span>-exp(-<span style="color: #B452CD">10</span>))*x-exp(-<span style="color: #B452CD">10</span>*x);}
 
-<span style="color: #228B22">// Declaring two functions that will be used:</span>
-<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">Solution</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x) {<span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">1.0</span>-(<span style="color: #B452CD">1</span>-exp(-<span style="color: #B452CD">10</span>))*x-exp(-<span style="color: #B452CD">10</span>*x);}
-
-<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">f</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x) {<span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">100</span>*exp(-<span style="color: #B452CD">10</span>*x);}
-
-<span style="color: #228B22">// Main program reads filename and n from command line:</span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[]) {
-
-    <span style="color: #228B22">// Declaration of initial variables:</span>
-    <span style="color: #a7a7a7; font-weight: bold">char</span> *outfilename;
-    <span style="color: #a7a7a7; font-weight: bold">int</span> n;
-
-    <span style="color: #228B22">// Read in output file and n,</span>
-    <span style="color: #228B22">// abort if there are too few command-line arguments:</span>
-    <span style="color: #8B008B; font-weight: bold">if</span>( argc &lt;= <span style="color: #B452CD">2</span> ){
-      cout &lt;&lt; <span style="color: #CD5555">&quot;Bad Usage: &quot;</span> &lt;&lt; argv[<span style="color: #B452CD">0</span>] &lt;&lt;
-          <span style="color: #CD5555">&quot; read also output file and n (int) on same line&quot;</span> &lt;&lt; endl;
-      exit(<span style="color: #B452CD">1</span>);
+<span style="color: #228B22">// Begin main program</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[]){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> exponent; 
+    string filename;
+    <span style="color: #228B22">// We read also the basic name for the output file and the highest power of 10^n we want</span>
+    <span style="color: #8B008B; font-weight: bold">if</span>( argc &lt;= <span style="color: #B452CD">1</span> ){
+          cout &lt;&lt; <span style="color: #CD5555">&quot;Bad Usage: &quot;</span> &lt;&lt; argv[<span style="color: #B452CD">0</span>] &lt;&lt;
+              <span style="color: #CD5555">&quot; read also file name on same line and max power 10^n&quot;</span> &lt;&lt; endl;
+          exit(<span style="color: #B452CD">1</span>);
     }
-    <span style="color: #8B008B; font-weight: bold">else</span>{
-      outfilename = argv[<span style="color: #B452CD">1</span>]; <span style="color: #228B22">// first command line argument.</span>
-      n = atoi(argv[<span style="color: #B452CD">2</span>]);  <span style="color: #228B22">// second command line argument.</span>
+        <span style="color: #8B008B; font-weight: bold">else</span>{
+        filename = argv[<span style="color: #B452CD">1</span>]; <span style="color: #228B22">// first command line argument after name of program</span>
+        exponent = atoi(argv[<span style="color: #B452CD">2</span>]);
     }
-
-    <span style="color: #228B22">// Constants of the problem:</span>
-    <span style="color: #a7a7a7; font-weight: bold">double</span> h = <span style="color: #B452CD">1.0</span>/(n+<span style="color: #B452CD">1.0</span>);
-    <span style="color: #a7a7a7; font-weight: bold">double</span> *x = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">2</span>];
-    <span style="color: #a7a7a7; font-weight: bold">double</span> *b_twidd = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">1</span>]; <span style="color: #228B22">// construction with n+1 points to make</span>
-                                       <span style="color: #228B22">// indexing close to mathematics.</span>
-    b_twidd[<span style="color: #B452CD">0</span>] = <span style="color: #B452CD">0</span>;
-
-    <span style="color: #228B22">// The constituents of the tridiagonal matrix A:</span>
-    <span style="color: #228B22">// Zeroth element not needed, but included to make indexing easy:</span>
-    <span style="color: #a7a7a7; font-weight: bold">int</span> *a = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[n+<span style="color: #B452CD">1</span>];
-    <span style="color: #a7a7a7; font-weight: bold">int</span> *b = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[n+<span style="color: #B452CD">1</span>];
-    <span style="color: #a7a7a7; font-weight: bold">int</span> *c = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[n+<span style="color: #B452CD">1</span>];
-
-    <span style="color: #228B22">// Temporal variabel in Gaussian elimination:</span>
-    <span style="color: #a7a7a7; font-weight: bold">double</span> *diag_temp = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">1</span>];
-
-    <span style="color: #228B22">// Real solution and approximated one:</span>
-    <span style="color: #a7a7a7; font-weight: bold">double</span> *u = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">2</span>]; <span style="color: #228B22">// Analytical solution</span>
-    <span style="color: #a7a7a7; font-weight: bold">double</span> *v = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">2</span>]; <span style="color: #228B22">// Numerical solution</span>
-    <span style="color: #228B22">// Including extra points to make the indexing easy:</span>
-    u[<span style="color: #B452CD">0</span>] = <span style="color: #B452CD">0</span>;
-    v[<span style="color: #B452CD">0</span>] = <span style="color: #B452CD">0</span>;
-
-    <span style="color: #228B22">// Filling up x-array, making x[0] = 0 and x[n+1] = 1:</span>
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;=n+<span style="color: #B452CD">1</span>; i++) {
-        x[i] = i*h;
-        <span style="color: #228B22">// Could print results to check:</span>
-        <span style="color: #228B22">//cout &lt;&lt; &quot;x = &quot; &lt;&lt; x[i] &lt;&lt; &quot; and &quot; &lt;&lt; &quot;h^2*f(x) = &quot; &lt;&lt; h*h*f(x[i]) &lt;&lt; endl;</span>
+    <span style="color: #228B22">// Loop over powers of 10</span>
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt;= exponent; i++){
+      <span style="color: #a7a7a7; font-weight: bold">int</span>  n = (<span style="color: #a7a7a7; font-weight: bold">int</span>) pow(<span style="color: #B452CD">10.0</span>,i);
+      <span style="color: #228B22">// Declare new file name</span>
+      string fileout = filename;
+      <span style="color: #228B22">// Convert the power 10^i to a string</span>
+      string argument = to_string(i);
+      <span style="color: #228B22">// Final filename as filename-i-</span>
+      fileout.append(argument);
+      <span style="color: #a7a7a7; font-weight: bold">double</span> h = <span style="color: #B452CD">1.0</span>/(n);
+      <span style="color: #a7a7a7; font-weight: bold">double</span> hh = h*h;
+      <span style="color: #228B22">// Set up arrays for the simple case</span>
+      <span style="color: #a7a7a7; font-weight: bold">double</span> *d = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span> [n+<span style="color: #B452CD">1</span>]; <span style="color: #a7a7a7; font-weight: bold">double</span> *b = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span> [n+<span style="color: #B452CD">1</span>]; <span style="color: #a7a7a7; font-weight: bold">double</span> *solution = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span> [n+<span style="color: #B452CD">1</span>];
+      <span style="color: #a7a7a7; font-weight: bold">double</span> *x = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">1</span>];
+      <span style="color: #228B22">// Quick setup of updated diagonal elements and value of</span>
+      d[<span style="color: #B452CD">0</span>] = d[n] = <span style="color: #B452CD">2</span>; solution[<span style="color: #B452CD">0</span>] = solution[n] = <span style="color: #B452CD">0.0</span>;
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n; i++) d[i] = (i+<span style="color: #B452CD">1.0</span>)/( (<span style="color: #a7a7a7; font-weight: bold">double</span>) i);  
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt;= n; i++){
+	x[i]= i*h;
+        b[i] = hh*f(i*h);
+      }
+      <span style="color: #228B22">// Forward substitution</span>
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">2</span>; i &lt; n; i++) b[i] = b[i] + b[i-<span style="color: #B452CD">1</span>]/d[i-<span style="color: #B452CD">1</span>];
+      <span style="color: #228B22">// Backward substitution</span>
+      solution[n-<span style="color: #B452CD">1</span>] = b[n-<span style="color: #B452CD">1</span>]/d[n-<span style="color: #B452CD">1</span>];
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = n-<span style="color: #B452CD">2</span>; i &gt; <span style="color: #B452CD">0</span>; i--) solution[i] = (b[i]+solution[i+<span style="color: #B452CD">1</span>])/d[i];
+      ofile.open(fileout);
+      ofile &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
+      <span style="color: #228B22">//      ofile &lt;&lt; &quot;       x:             approx:          exact:       relative error&quot; &lt;&lt; endl;</span>
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n;i++) {
+	<span style="color: #a7a7a7; font-weight: bold">double</span> xval = x[i];
+ 	 <span style="color: #a7a7a7; font-weight: bold">double</span> RelativeError = fabs((exact(xval)-solution[i])/exact(xval));
+         ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; xval;
+         ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; solution[i];
+         ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; exact(xval);
+         ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; log10(RelativeError) &lt;&lt; endl;
+      }
+      ofile.close();
+      <span style="color: #8B008B; font-weight: bold">delete</span> [] x; <span style="color: #8B008B; font-weight: bold">delete</span> [] d; <span style="color: #8B008B; font-weight: bold">delete</span> [] b; <span style="color: #8B008B; font-weight: bold">delete</span> [] solution;
     }
-
-    <span style="color: #228B22">// Filling up b_twiddle array, i.e. right hand side of equation:</span>
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>; i&lt;=n; i++) {
-        b_twidd[i] = h*h*f(x[i]);
-        <span style="color: #228B22">// Could print here to check:</span>
-        <span style="color: #228B22">//cout &lt;&lt; &quot;b_twidd = &quot; &lt;&lt; b_twidd[i] &lt;&lt; &quot;for x = &quot; &lt;&lt; x[i] &lt;&lt; endl;</span>
-        u[i] = Solution(x[i]);
-        <span style="color: #228B22">//cout &lt;&lt; &quot;u = &quot; &lt;&lt; u[i] &lt;&lt; &quot; for x = &quot; &lt;&lt; x[i] &lt;&lt;  endl;</span>
-        b[i] = <span style="color: #B452CD">2</span>;
-        a[i] = -<span style="color: #B452CD">1</span>;
-        c[i] = -<span style="color: #B452CD">1</span>;
-    }
-    c[n] = <span style="color: #B452CD">0</span>;
-    a[<span style="color: #B452CD">1</span>] = <span style="color: #B452CD">0</span>;
-
-    <span style="color: #228B22">// Algorithm for finding v:</span>
-    <span style="color: #228B22">// a(i)*v(i-1) + b(i)*v(i) + c(i)*v(i+1) = b_twidd(i)</span>
-    <span style="color: #228B22">// Row reduction; forward substitution:</span>
-    <span style="color: #a7a7a7; font-weight: bold">double</span> b_temp = b[<span style="color: #B452CD">1</span>];
-    v[<span style="color: #B452CD">1</span>] = b_twidd[<span style="color: #B452CD">1</span>]/b_temp;
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">2</span>;i&lt;=n;i++) {
-       <span style="color: #228B22">// Temporary value needed also in next loop:</span>
-       diag_temp[i] = c[i-<span style="color: #B452CD">1</span>]/b_temp;
-       <span style="color: #228B22">// Temporary diagonal element:</span>
-       b_temp = b[i] - a[i]*diag_temp[i];
-       <span style="color: #228B22">// Updating right hand side of matrix equation:</span>
-       v[i] = (b_twidd[i]-v[i-<span style="color: #B452CD">1</span>]*a[i])/b_temp;
-    }
-
-    <span style="color: #228B22">// Row reduction; backward substition:</span>
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=n-<span style="color: #B452CD">1</span>;i&gt;=<span style="color: #B452CD">1</span>;i--) {
-        v[i] -= diag_temp[i+<span style="color: #B452CD">1</span>]*v[i+<span style="color: #B452CD">1</span>];
-    }
-
-    <span style="color: #228B22">// Open file and write results to file:</span>
-    ofile.open(outfilename);
-    ofile &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
-    ofile &lt;&lt; <span style="color: #CD5555">&quot;       x:             u(x):          v(x):  &quot;</span> &lt;&lt; endl;
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>;i&lt;=n;i++) {
-       ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; x[i];
-       ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; u[i];
-       ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; v[i] &lt;&lt; endl;
-    }
-    ofile.close();
-
-    <span style="color: #8B008B; font-weight: bold">delete</span> [] x;
-    <span style="color: #8B008B; font-weight: bold">delete</span> [] b_twidd;
-    <span style="color: #8B008B; font-weight: bold">delete</span> [] a;
-    <span style="color: #8B008B; font-weight: bold">delete</span> [] b;
-    <span style="color: #8B008B; font-weight: bold">delete</span> [] c;
-    <span style="color: #8B008B; font-weight: bold">delete</span> [] u;
-    <span style="color: #8B008B; font-weight: bold">delete</span> [] v;
-
     <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
 }
 </pre></div>
