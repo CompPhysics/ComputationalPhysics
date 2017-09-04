@@ -1,10 +1,10 @@
 TITLE: Summary of course
 AUTHOR: Morten Hjorth-Jensen  {copyright, 1999-present|CC BY-NC} Email morten.hjorth-jensen@fys.uio.no at Department of Physics and Center of Mathematics for Applications, University of Oslo & National Superconducting Cyclotron Laboratory, Michigan State University
-DATE: Spring 2016
+DATE: today
 
 
 !split
-===== What? Me worry? No final exam this year! =====
+===== What? Me worry? No final exam in this course! =====
 FIGURE: [figures/exam1.jpeg, width=500 frac=0.6]
 FIGURE: [figures/whatmeworry.jpeg, width=500 frac=0.6]
 

@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -345,7 +354,7 @@ MathJax.Hub.Config({
 <a name="part0060"></a>
 <!-- !split -->
 
-<h2 id="___sec59">Random Walks, simple program </h2>
+<h2 id="___sec59" class="anchor">Random Walks, simple program </h2>
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
@@ -355,15 +364,15 @@ random walk (not listed in the main text) is found under programs/chapter12/prog
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/*</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">/*</span>
 <span style="color: #408080; font-style: italic">  1-dim random walk program. </span>
 <span style="color: #408080; font-style: italic">  A walker makes several trials steps with</span>
 <span style="color: #408080; font-style: italic">  a given number of walks per trial</span>
 <span style="color: #408080; font-style: italic">*/</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;fstream&gt;</span>
-<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
-<span style="color: #BC7A00">#include &quot;lib.h&quot;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;fstream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;lib.h&quot;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span>  std;
 
 <span style="color: #408080; font-style: italic">// Function to read in data from screen, note call by reference</span>

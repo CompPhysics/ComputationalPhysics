@@ -1,6 +1,6 @@
 TITLE: Computational Physics Lectures:  Introduction to programming (C++ and Fortran)
 AUTHOR: Morten Hjorth-Jensen  {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
-DATE: 2016
+DATE: today
 
 !split
 ===== Extremely useful tools, strongly recommended =====
@@ -158,11 +158,12 @@ The `printf` syntax is used for formatting output
 in many C-inspired languages (Perl, Python, Awk, partly C++).
 !eblock
 
+
 !split
-===== Hello World =====
+===== "Hello World with namespace":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/hellow.cpp" =====
 
 !bblock Now in C++
-Here we present first the C++ version.
+Here we present the C++ version using namespace.
 !bc cpppro
 // A comment line begins like this in C++ programs
 // Standard ANSI-C++ include files
@@ -172,13 +173,45 @@ using namespace std;
 int main (int argc, char* argv[])
 {
   // convert the text argv[1] to double using atof:
-  double r = atof(argv[1]);  /* convert the text argv[1] to double */
+  double r = atof(argv[1]);  // convert the text argv[1] to double
   double s = sin(r);
   cout << "Hello, World! sin(" << r << ") =" << s << endl;
-  return 0;           /* success execution of the program */
+  return 0;           // success execution of the program 
 }
 !ec
 !eblock
+
+
+!split
+===== "Hello World without namespace":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/hellownonamespace.cpp" =====
+
+!bblock Without namespace
+Namespaces provide a method for preventing name conflicts in large projects.
+Symbols declared inside a namespace block are placed in a named scope that prevents them from being mistaken for identically-named symbols in other scopes.
+Multiple namespace blocks with the same name are allowed. All declarations within those blocks are declared in the named scope.
+
+
+Here we present the C++ version without using namespace.
+!bc cpppro
+// A comment line begins like this in C++ programs
+// Standard ANSI-C++ include files
+#include <iostream>   // input and output
+#include <cmath>      // math functions
+using namespace std;
+int main (int argc, char* argv[])
+{
+  // convert the text argv[1] to double using atof:
+  double r = atof(argv[1]);  // convert the text argv[1] to double
+  double s = sin(r);
+  // Note std::cout and std::endl
+  std::cout << "Hello, World! sin(" << r << ") =" << s << std::endl;
+  return 0;           // success execution of the program 
+}
+!ec
+!eblock
+
+
+
 
 !split
 ===== C++ Hello World =====
@@ -1122,6 +1155,50 @@ The results for $x=10$ are shown in the Table
 |----------------------------------------------------------------|
 
 !eblock
+
+!split
+===== "Program to compute derivative":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/derivative.cpp" =====
+
+We list here the program to compute the above derivative
+!bc cppcod
+#include <iostream>
+#include <cmath>
+#include <fstream>
+#include <iomanip>
+// Note: not using namespace for std
+// output file as global variable
+
+std::ofstream ofile;
+
+// Begin of main program
+
+int main(int argc, char* argv[])
+{
+  char *outfilename;
+  // Read in output file, abort if there are too few command-line arguments
+  if( argc <= 3 ){
+    std::cout << "Bad Usage: " << argv[0] <<
+      " read also output file and number of elements on same line" << std::endl;
+    exit(1);
+  }
+  else{
+    outfilename=argv[1];
+  }
+  //  opening a file for the program
+  ofile.open(outfilename);
+  // extracting number of mesh points
+  int i = atoi(argv[2]);
+  double x = atof(argv[3]);  // reading x-value
+  double h = 1.0/((double) i); // setting up step size
+  double Derivative = (exp(x+h)-2.*exp(x)+exp(x-h))/(h*h);
+  double RelativeError = log10(fabs(Derivative-exp(x))/exp(x));
+  ofile << std::setw(15) << std::setprecision(8) << "relative error=" << RelativeError << std::endl;
+  ofile.close();  // close output file
+  return 0;
+}
+
+
+!ec
 
 !split
 ===== Technical Matter in C/C++: Pointers =====

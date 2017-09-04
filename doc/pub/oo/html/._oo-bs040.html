@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -187,7 +196,7 @@ MathJax.Hub.Config({
 <a name="part0040"></a>
 <!-- !split -->
 
-<h2 id="___sec39">Programming classes </h2>
+<h2 id="___sec39" class="anchor">Programming classes </h2>
 
 <p>
 Member functions of our class are defined by preceding the name of the function with the <code>template</code> keyword.
@@ -197,7 +206,7 @@ We would rewrite this function as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">template</span><span style="color: #666666">&lt;</span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">T</span><span style="color: #666666">&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">template</span><span style="color: #666666">&lt;</span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">T</span><span style="color: #666666">&gt;</span>
 Complex<span style="color: #666666">&lt;</span>T<span style="color: #666666">&gt;::</span> Complex (T re_a, T im_a)
 { re <span style="color: #666666">=</span> re_a; im <span style="color: #666666">=</span> im_a; }
 </pre></div>

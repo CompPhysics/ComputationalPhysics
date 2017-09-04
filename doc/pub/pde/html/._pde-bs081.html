@@ -334,8 +334,8 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -476,16 +476,16 @@ Here follows the parallel implementation of the diffusion equation using OpenMP
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">/* Simple program for solving the two-dimensional diffusion </span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">/* Simple program for solving the two-dimensional diffusion </span>
 <span style="color: #408080; font-style: italic">   equation or Poisson equation using Jacobi&#39;s iterative method</span>
 <span style="color: #408080; font-style: italic">   Note that this program does not contain a loop over the time </span>
 <span style="color: #408080; font-style: italic">   dependence. It uses OpenMP to parallelize</span>
 <span style="color: #408080; font-style: italic">*/</span>
 
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
-<span style="color: #BC7A00">#include &lt;iomanip&gt;</span>
-<span style="color: #BC7A00">#include &lt;armadillo&gt;</span>
-<span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;armadillo&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;omp.h&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> arma;
 

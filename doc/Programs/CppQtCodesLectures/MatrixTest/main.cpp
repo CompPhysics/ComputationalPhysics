@@ -16,13 +16,13 @@ int main()
   x.print("x=");
   // find LU decomp of A, P is the permutation matrix
   mat L, U, P;
-  lu(L,U,A);
+  lu(L,U,P,A);
   // print l
   L.print("L=");
   // print U
   U.print("U=");
   //Check that A = LU
-  (A-L*U).print("test");
+  (A-P*L*U).print("test");
     return 0;
   }
 

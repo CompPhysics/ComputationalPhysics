@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -345,7 +354,7 @@ MathJax.Hub.Config({
 <a name="part0062"></a>
 <!-- !split  -->
 
-<h2 id="___sec61">Simple python code with visualization of one-dimensional random walk </h2>
+<h2 id="___sec61" class="anchor">Simple python code with visualization of one-dimensional random walk </h2>
 The python code here is just a mere rewriting of the above c++ code, with the difference that 
 it employs matplotlib and gives the final plot. 
 <p>

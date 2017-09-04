@@ -322,7 +322,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>2016</h4></center> <!-- date -->
+<center><h4>Aug 23, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -630,7 +630,7 @@ Direct or non-iterative methods  require for matrices of dimensionality \( n\tim
 <tr><td align="center">   1965    </td> <td align="center">   \( n=200 \)         </td> <td align="center">   (Forsythe et al.)    </td> </tr>
 <tr><td align="center">   1980    </td> <td align="center">   \( n=2000 \)        </td> <td align="center">   Linpack              </td> </tr>
 <tr><td align="center">   1995    </td> <td align="center">   \( n=20000 \)       </td> <td align="center">   Lapack               </td> </tr>
-<tr><td align="center">   2012    </td> <td align="center">   \( n\sim 10^5 \)    </td> <td align="center">   Lapack               </td> </tr>
+<tr><td align="center">   2017    </td> <td align="center">   \( n\sim 10^5 \)    </td> <td align="center">   Lapack               </td> </tr>
 </tbody>
 </table>
 <p>
@@ -1051,7 +1051,7 @@ This is what we will need to code.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//  we have defined a matrix A and a matrix R for the eigenvector, both of dim n x n</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">//  we have defined a matrix A and a matrix R for the eigenvector, both of dim n x n</span>
 <span style="color: #408080; font-style: italic">//  The final matrix R has the eigenvectors in its row elements, it is set to one</span>
 <span style="color: #408080; font-style: italic">//  for the diagonal elements in the beginning, zero else.</span>
 ....
@@ -1081,7 +1081,7 @@ Finding the max nondiagonal element
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//  the offdiag function, using Armadillo</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">//  the offdiag function, using Armadillo</span>
 <span style="color: #B00040">double</span> <span style="color: #0000FF">offdiag</span>(mat A, <span style="color: #B00040">int</span> p, <span style="color: #B00040">int</span> q, <span style="color: #B00040">int</span> n);
 {
    <span style="color: #B00040">double</span> max;
@@ -1115,7 +1115,7 @@ Finding the new matrix elements
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">Jacobi_rotate</span> ( mat A, mat R, <span style="color: #B00040">int</span> k, <span style="color: #B00040">int</span> l, <span style="color: #B00040">int</span> n )
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">void</span> <span style="color: #0000FF">Jacobi_rotate</span> ( mat A, mat R, <span style="color: #B00040">int</span> k, <span style="color: #B00040">int</span> l, <span style="color: #B00040">int</span> n )
 {
   <span style="color: #B00040">double</span> s, c;
   <span style="color: #008000; font-weight: bold">if</span> ( A(k,l) <span style="color: #666666">!=</span> <span style="color: #666666">0.0</span> ) {
@@ -1633,13 +1633,13 @@ The following program uses the eigenvalue solver provided by Armadillo and retur
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">%</span>install_ext https:<span style="color: #666666">//</span>raw<span style="color: #666666">.</span>github<span style="color: #666666">.</span>com<span style="color: #666666">/</span>dragly<span style="color: #666666">/</span>cppmagic<span style="color: #666666">/</span>master<span style="color: #666666">/</span>cppmagic<span style="color: #666666">.</span>py
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">%</span>install_ext https:<span style="color: #666666">//</span>raw<span style="color: #666666">.</span>github<span style="color: #666666">.</span>com<span style="color: #666666">/</span>dragly<span style="color: #666666">/</span>cppmagic<span style="color: #666666">/</span>master<span style="color: #666666">/</span>cppmagic<span style="color: #666666">.</span>py
 <span style="color: #666666">%</span>load_ext cppmagic
 </pre></div>
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">%%</span>cpp <span style="color: #666666">-</span>I<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>include <span style="color: #666666">-</span>L<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>lib <span style="color: #666666">-</span>llapack <span style="color: #666666">-</span>lblas <span style="color: #666666">-</span>larmadillo
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">%%</span>cpp <span style="color: #666666">-</span>I<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>include <span style="color: #666666">-</span>L<span style="color: #666666">/</span>usr<span style="color: #666666">/</span>local<span style="color: #666666">/</span>lib <span style="color: #666666">-</span>llapack <span style="color: #666666">-</span>lblas <span style="color: #666666">-</span>larmadillo
 <span style="color: #666666">/*</span>
   Solves the one<span style="color: #666666">-</span>particle Schrodinger equation
   <span style="color: #008000; font-weight: bold">for</span> a potential specified <span style="color: #AA22FF; font-weight: bold">in</span> function
@@ -2504,7 +2504,7 @@ with \( \beta_k=\pm ||\hat{r}_{k}||_2 \).
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

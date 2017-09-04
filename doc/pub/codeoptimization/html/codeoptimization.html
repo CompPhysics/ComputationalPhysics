@@ -344,7 +344,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>2016</h4></center> <!-- date -->
+<center><h4>Aug 23, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -374,7 +374,7 @@ inherent in the various compilers. We have compiled and linked as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>c  mycode.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>c  mycode.cpp
 c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>o  mycode.exe  mycode.o
 </pre></div>
 <p>
@@ -389,7 +389,7 @@ It is instructive to look up the compiler manual for further instructions by wri
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">man c<span style="color: #666666">++</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>man c<span style="color: #666666">++</span>
 </pre></div>
 
 </div>
@@ -407,7 +407,7 @@ and a multiplication if this speeds up the code.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>c  mycode.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>c  mycode.cpp
 c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>o  mycode.exe  mycode.o
 </pre></div>
 <p>
@@ -427,7 +427,7 @@ You would then compile with
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>pg <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>c  mycode.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>pg <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>c  mycode.cpp
 c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>pg <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>o  mycode.exe  mycode.o
 </pre></div>
 <p>
@@ -435,7 +435,7 @@ After you have run the code you can obtain the profiling information via
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">gprof mycode.exe <span style="color: #666666">&gt;</span>  ProfileOutput
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>gprof mycode.exe <span style="color: #666666">&gt;</span>  ProfileOutput
 </pre></div>
 <p>
 When you have profiled properly your code, you must take out this option as it 
@@ -458,7 +458,7 @@ You would then compile with
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>g <span style="color: #666666">-</span>O0 <span style="color: #666666">-</span>c  mycode.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>g <span style="color: #666666">-</span>O0 <span style="color: #666666">-</span>c  mycode.cpp
 c<span style="color: #666666">++</span>  <span style="color: #666666">-</span>g <span style="color: #666666">-</span>O0 <span style="color: #666666">-</span>o  mycode.exe  mycode.o
 </pre></div>
 <p>
@@ -491,7 +491,7 @@ Here is an example of a part of a program where specific operations lead to a sl
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">k <span style="color: #666666">=</span> n<span style="color: #666666">-1</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>k <span style="color: #666666">=</span> n<span style="color: #666666">-1</span>;
 <span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
     a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span>c<span style="color: #666666">*</span>d;
     e <span style="color: #666666">=</span> g[k];
@@ -502,7 +502,7 @@ A better code is
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">temp <span style="color: #666666">=</span> c<span style="color: #666666">*</span>d;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>temp <span style="color: #666666">=</span> c<span style="color: #666666">*</span>d;
 <span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
     a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span> temp;
 }
@@ -614,7 +614,7 @@ Consider the following example
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
     a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span> c[i];
 }
 </pre></div>
@@ -648,7 +648,7 @@ We start with the simple scalar operations given by
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
     a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span> c[i];
 }
 </pre></div>
@@ -679,7 +679,7 @@ we have
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">+=4</span>){
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">for</span> (i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">+=4</span>){
     a[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span> c[i];
     a[i<span style="color: #666666">+1</span>] <span style="color: #666666">=</span> b[i<span style="color: #666666">+1</span>] <span style="color: #666666">+</span> c[i<span style="color: #666666">+1</span>];
     a[i<span style="color: #666666">+2</span>] <span style="color: #666666">=</span> b[i<span style="color: #666666">+2</span>] <span style="color: #666666">+</span> c[i<span style="color: #666666">+2</span>];
@@ -711,7 +711,7 @@ We implement these operations in a simple c++ program as
 <p>
 
 <!-- code=text (!bc cppcode) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">#include &lt;cstdlib&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>#include &lt;cstdlib&gt;
 #include &lt;iostream&gt;
 #include &lt;cmath&gt;
 #include &lt;iomanip&gt;
@@ -753,14 +753,14 @@ We can compile and link without vectorization
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span> <span style="color: #666666">-</span>o novec.x vecexample.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c<span style="color: #666666">++</span> <span style="color: #666666">-</span>o novec.x vecexample.cpp
 </pre></div>
 <p>
 and with vectorization (and additional optimizations)
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">c<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
 </pre></div>
 <p>
 The speedup depends on the size of the vectors. In the example here we have run with \( 10^7 \) elements.
@@ -768,7 +768,7 @@ The example here was run on a PC with ubuntu 14.04 as operating system and an In
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>vec.x <span style="color: #666666">10000000</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>vec.x <span style="color: #666666">10000000</span>
 Time used  <span style="color: #008000; font-weight: bold">for</span> vector addition <span style="color: #666666">=</span> <span style="color: #666666">0.0100000</span>
 <span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>novec.x <span style="color: #666666">10000000</span>
 Time used  <span style="color: #008000; font-weight: bold">for</span> vector addition <span style="color: #666666">=</span> <span style="color: #666666">0.03000000000</span>
@@ -791,7 +791,7 @@ An important criteria is that the loop counter \( n \) is known at the entry of 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
     a[j] <span style="color: #666666">=</span> cos(j<span style="color: #666666">*1.0</span>);
   }
 </pre></div>
@@ -810,7 +810,7 @@ The following is an example of a non-vectorizable loop
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
     a[j] <span style="color: #666666">=</span> cos(j<span style="color: #666666">*1.0</span>);
     <span style="color: #008000; font-weight: bold">if</span> (a[j] <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span> ) <span style="color: #008000; font-weight: bold">break</span>;
   }
@@ -826,7 +826,7 @@ The following code can however be vectorized since the <b>if</b> statement is im
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
     <span style="color: #B00040">double</span> x  <span style="color: #666666">=</span> cos(j<span style="color: #666666">*1.0</span>);
     <span style="color: #008000; font-weight: bold">if</span> (x <span style="color: #666666">&gt;</span> <span style="color: #666666">0</span> ) {
        a[j] <span style="color: #666666">=</span>  x<span style="color: #666666">*</span>sin(j<span style="color: #666666">*2.0</span>); 
@@ -849,7 +849,7 @@ Only the innermost loop of the following example is vectorized
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
       <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
            a[i][j] <span style="color: #666666">+=</span> b[i][j];
       }  
@@ -870,7 +870,7 @@ The following example is fully vectorizable
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
       a[i] <span style="color: #666666">=</span> log10(i)<span style="color: #666666">*</span>cos(i);
   }
 </pre></div>
@@ -888,7 +888,7 @@ read-after-write statement with an explicit flow dependency cannot be vectorized
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #B00040">double</span> b <span style="color: #666666">=</span> <span style="color: #666666">15.</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #B00040">double</span> b <span style="color: #666666">=</span> <span style="color: #666666">15.</span>;
   <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">1</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
       a[i] <span style="color: #666666">=</span> a[i<span style="color: #666666">-1</span>] <span style="color: #666666">+</span> b;
   }
@@ -898,7 +898,7 @@ is an example of flow dependency and results in wrong numerical results if vecto
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   a[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">0</span>] <span style="color: #666666">+</span> b;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   a[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">0</span>] <span style="color: #666666">+</span> b;
    a[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">1</span>] <span style="color: #666666">+</span> b;
    a[<span style="color: #666666">3</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">2</span>] <span style="color: #666666">+</span> b;
    a[<span style="color: #666666">4</span>] <span style="color: #666666">=</span> a[<span style="color: #666666">3</span>] <span style="color: #666666">+</span> b;
@@ -917,7 +917,7 @@ write-after-read statement can be vectorized. The following code
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #B00040">double</span> b <span style="color: #666666">=</span> <span style="color: #666666">15.</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #B00040">double</span> b <span style="color: #666666">=</span> <span style="color: #666666">15.</span>;
   <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">1</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
       a[i<span style="color: #666666">-1</span>] <span style="color: #666666">=</span> a[i] <span style="color: #666666">+</span> b;
   }
@@ -939,7 +939,7 @@ When dealing with arrays, you should also avoid memory stride, since this slows 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
       <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
            a[i][j] <span style="color: #666666">+=</span> b[i][j];
       }  
@@ -953,14 +953,14 @@ We can compile and link without vectorization using the clang c++ compiler
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">clang <span style="color: #666666">-</span>o novec.x vecexample.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang <span style="color: #666666">-</span>o novec.x vecexample.cpp
 </pre></div>
 <p>
 and with vectorization (and additional optimizations)
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
 </pre></div>
 <p>
 The speedup depends on the size of the vectors. In the example here we have run with \( 10^7 \) elements.
@@ -969,7 +969,7 @@ The example here was run on an IMac17.1 with OSX El Capitan (10.11.4) as operati
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>vec.x <span style="color: #666666">10000000</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>vec.x <span style="color: #666666">10000000</span>
 Time used  <span style="color: #008000; font-weight: bold">for</span> norm computation<span style="color: #666666">=0.04720500000</span>
 <span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>novec.x <span style="color: #666666">10000000</span>
 Time used  <span style="color: #008000; font-weight: bold">for</span> norm computation<span style="color: #666666">=0.03311700000</span>
@@ -980,7 +980,7 @@ Performing the same operations for \( 10^9 \) elements results in a smaller spee
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>vec.x <span style="color: #666666">1000000000</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>vec.x <span style="color: #666666">1000000000</span>
 Time used  <span style="color: #008000; font-weight: bold">for</span> norm computation<span style="color: #666666">=58.41391100</span>
 <span style="color: #A0A000">Compphys</span>:<span style="color: #666666">~</span> hjensen$ .<span style="color: #666666">/</span>novec.x <span style="color: #666666">1000000000</span>
 Time used  <span style="color: #008000; font-weight: bold">for</span> norm computation<span style="color: #666666">=46.51295300</span>
@@ -996,28 +996,28 @@ We can compile and link without vectorization with clang compiler
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>o <span style="color: #666666">-</span>fno<span style="color: #666666">-</span>vectorize novec.x vecexample.cpp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>o <span style="color: #666666">-</span>fno<span style="color: #666666">-</span>vectorize novec.x vecexample.cpp
 </pre></div>
 <p>
 and with vectorization
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
 </pre></div>
 <p>
 We can also add vectorization analysis, see for example
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">-</span>analysis<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">-</span>analysis<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
 </pre></div>
 <p>
 or figure out if vectorization was missed
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">-</span>missed<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>clang<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>Rpass<span style="color: #666666">-</span>missed<span style="color: #666666">=</span>loop<span style="color: #666666">-</span>vectorize <span style="color: #666666">-</span>o  vec.x vecexample.cpp 
 </pre></div>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -1072,7 +1072,7 @@ How do we measure erformance? What is wrong with this code to time a loop?
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  clock_t start, finish;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  clock_t start, finish;
   start = clock();
   for (int j = 0; j &lt; i; j++) {
     a[j] = b[j]+b[j]*c[j];
@@ -1289,7 +1289,7 @@ $$
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// Forward substitution    </span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// Forward substitution    </span>
 <span style="color: #408080; font-style: italic">// Note that we can simplify by precalculating a[i-1]/b[i-1]</span>
   <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i<span style="color: #666666">=1</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
      b[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">-</span> (a[i<span style="color: #666666">-1</span>]<span style="color: #666666">*</span>c[i<span style="color: #666666">-1</span>])<span style="color: #666666">/</span>b[i<span style="color: #666666">-1</span>];
@@ -1337,7 +1337,7 @@ $$
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">      <span style="color: #408080; font-style: italic">// Forward substitution cannot be vectorized</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>      <span style="color: #408080; font-style: italic">// Forward substitution cannot be vectorized</span>
       <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">2</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) b[i] <span style="color: #666666">=</span> b[i] <span style="color: #666666">+</span> b[i<span style="color: #666666">-1</span>]<span style="color: #666666">/</span>d[i<span style="color: #666666">-1</span>];
       <span style="color: #408080; font-style: italic">// Backward substitution  cannot be vectorized</span>
       solution[n<span style="color: #666666">-1</span>] <span style="color: #666666">=</span> b[n<span style="color: #666666">-1</span>]<span style="color: #666666">/</span>d[n<span style="color: #666666">-1</span>];
@@ -1355,7 +1355,7 @@ $$
 <p>
 
 <!-- code=text (!bc cppcode) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">#include &lt;cstdlib&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>#include &lt;cstdlib&gt;
 #include &lt;iostream&gt;
 #include &lt;cmath&gt;
 #include &lt;iomanip&gt;
@@ -1412,7 +1412,7 @@ This the matrix-matrix multiplication code with plain c++ memory allocation. It 
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">#include &lt;cstdlib&gt;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>#include &lt;cstdlib&gt;
 #include &lt;iostream&gt;
 #include &lt;cmath&gt;
 #include &lt;iomanip&gt;
@@ -1725,7 +1725,7 @@ When you have made sure you have installed MPI on your PC/laptop,
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #BC7A00"># Compile and link</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #BC7A00"># Compile and link</span>
   mpic<span style="color: #666666">++</span> <span style="color: #666666">-</span>O3 <span style="color: #666666">-</span>o nameofprog.x nameofprog.cpp
   <span style="color: #BC7A00">#  run code with for example 8 processes using mpirun/mpiexec</span>
   mpiexec <span style="color: #666666">-</span>n <span style="color: #666666">8</span> .<span style="color: #666666">/</span>nameofprog.x
@@ -1752,7 +1752,7 @@ on your laptop/PC, we recommend the following:
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  brew install clang<span style="color: #666666">-</span>omp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  brew install clang<span style="color: #666666">-</span>omp
 </pre></div>
 
 </div>
@@ -1769,7 +1769,7 @@ For linux/ubuntu users, you need to install two packages (alternatively use the 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  sudo apt<span style="color: #666666">-</span>get install libopenmpi<span style="color: #666666">-</span>dev
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  sudo apt<span style="color: #666666">-</span>get install libopenmpi<span style="color: #666666">-</span>dev
   sudo apt<span style="color: #666666">-</span>get install openmpi<span style="color: #666666">-</span>bin
 </pre></div>
 <p>
@@ -1778,14 +1778,14 @@ gfortran compiler of openmpi) and then install with brew
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   brew install openmpi
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   brew install openmpi
 </pre></div>
 <p>
 When running an executable (code.x), run as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  mpirun <span style="color: #666666">-</span>n <span style="color: #666666">10</span> .<span style="color: #666666">/</span>code.x
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  mpirun <span style="color: #666666">-</span>n <span style="color: #666666">10</span> .<span style="color: #666666">/</span>code.x
 </pre></div>
 <p>
 where we indicate that we want  the number of processes to be 10.
@@ -1811,14 +1811,14 @@ For the machines at the computer lab, openmpi is located  at
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"> <span style="color: #666666">/</span>usr<span style="color: #666666">/</span>lib64<span style="color: #666666">/</span>openmpi<span style="color: #666666">/</span>bin
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span> <span style="color: #666666">/</span>usr<span style="color: #666666">/</span>lib64<span style="color: #666666">/</span>openmpi<span style="color: #666666">/</span>bin
 </pre></div>
 <p>
 Add to your <em>.bashrc</em> file the following
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #008000; font-weight: bold">export</span> PATH<span style="color: #666666">=/</span>usr<span style="color: #666666">/</span>lib64<span style="color: #666666">/</span>openmpi<span style="color: #666666">/</span><span style="color: #A0A000">bin</span>:$PATH 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #008000; font-weight: bold">export</span> PATH<span style="color: #666666">=/</span>usr<span style="color: #666666">/</span>lib64<span style="color: #666666">/</span>openmpi<span style="color: #666666">/</span><span style="color: #A0A000">bin</span>:$PATH 
 </pre></div>
 
 </div>
@@ -1840,7 +1840,7 @@ Here follows a simple recipe
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   log in as ssh <span style="color: #666666">-</span>username tid.uio.no
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   log in as ssh <span style="color: #666666">-</span>username tid.uio.no
    ssh username@fyslab<span style="color: #666666">-</span>compphys
 </pre></div>
 <p>
@@ -1848,7 +1848,7 @@ In the folder
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">    shared<span style="color: #666666">/</span>guides<span style="color: #666666">/</span>starting_jobs 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>    shared<span style="color: #666666">/</span>guides<span style="color: #666666">/</span>starting_jobs 
 </pre></div>
 <p>
 you will find a simple example on how to set up a job and compile and run.
@@ -1904,7 +1904,7 @@ Many good tutorials online and excellent textbook
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;omp.h&gt;</span><span style="color: #BC7A00"></span>
 </pre></div>
 <ul>
  <li> Insert compiler directives in C++ syntax as</li> 
@@ -1913,7 +1913,7 @@ Many good tutorials online and excellent textbook
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp...</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp...</span>
 </pre></div>
 <ul>
 <li> Compile with for example <em>c++ -fopenmp code.cpp</em></li>
@@ -1940,7 +1940,7 @@ Many good tutorials online and excellent textbook
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp construct [ clause ...]</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp construct [ clause ...]</span>
 </pre></div>
 <ul>
  <li> Some functions and types</li> 
@@ -1949,7 +1949,7 @@ Many good tutorials online and excellent textbook
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;omp.h&gt;</span><span style="color: #BC7A00"></span>
 </pre></div>
 <ul>
  <li> Most apply to a block of code</li>
@@ -1979,7 +1979,7 @@ OpenMP supports several different ways to specify thread parallelism
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;omp.h&gt;</span><span style="color: #BC7A00"></span>
 main ()
 {
 <span style="color: #B00040">int</span> var1, var2, var3;
@@ -2019,7 +2019,7 @@ main ()
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel { ... }</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel { ... }</span>
 </pre></div>
 <ul>
 <li> Clauses can be added at the end of the directive</li>
@@ -2045,8 +2045,8 @@ main ()
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
-<span style="color: #BC7A00">#include &lt;cstdio&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;omp.h&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdio&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span> <span style="color: #666666">*</span>argv[])
 {
 <span style="color: #B00040">int</span> th_id, nthreads;
@@ -2077,8 +2077,8 @@ printf(<span style="color: #BA2121">&quot;There are %d threads</span><span style
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;cstdio&gt;</span>
-<span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdio&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;omp.h&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>(<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span> <span style="color: #666666">*</span>argv[]) 
 {
  omp_set_num_threads(<span style="color: #666666">4</span>); 
@@ -2097,7 +2097,7 @@ If a variable like <b>id</b> is  declared outside of the
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel, </span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel, </span>
 </pre></div>
 <p>
 it would have been shared by various the threads, possibly causing erroneous output
@@ -2136,7 +2136,7 @@ Private clause can be used to make thread- private versions of such variables:
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel private(id)</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel private(id)</span>
 {
  <span style="color: #B00040">int</span> id <span style="color: #666666">=</span> omp_get_thread_num();
  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;My thread num&quot;</span> <span style="color: #666666">&lt;&lt;</span> id <span style="color: #666666">&lt;&lt;</span> endl; 
@@ -2161,7 +2161,7 @@ It is often useful to have only one thread execute some of the code in a paralle
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel </span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel </span>
 {
   <span style="color: #BC7A00">#pragma omp master</span>
    {
@@ -2189,7 +2189,7 @@ It is often useful to have only one thread execute some of the code in a paralle
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp for</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp for</span>
 </pre></div>
 <ul>
 <li> Clauses can be added, such as</li>
@@ -2221,7 +2221,7 @@ OpenMP provides an easy way to parallelize a loop
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel for</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel for</span>
   <span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>) c[i] <span style="color: #666666">=</span> a[i];
 </pre></div>
 <p>
@@ -2262,7 +2262,7 @@ and  OpenMP defines three choices of loop scheduling:
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;omp.h&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #BC7A00">#define CHUNKSIZE 100</span>
 <span style="color: #BC7A00">#define N 1000</span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span> <span style="color: #666666">*</span>argv[])
@@ -2292,7 +2292,7 @@ chunk <span style="color: #666666">=</span> CHUNKSIZE;
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#include &lt;omp.h&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;omp.h&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #BC7A00">#define CHUNKSIZE 100</span>
 <span style="color: #BC7A00">#define N 1000</span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span> <span style="color: #666666">*</span>argv[])
@@ -2336,14 +2336,14 @@ chunk <span style="color: #666666">=</span> CHUNKSIZE;
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">// #pragma omp parallel and #pragma omp for</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// #pragma omp parallel and #pragma omp for</span>
 </pre></div>
 <p>
 can be combined into
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel for</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel for</span>
 </pre></div>
 
 </div>
@@ -2362,7 +2362,7 @@ What happens with code like this
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel for</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel for</span>
 <span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>) sum <span style="color: #666666">+=</span> a[i]<span style="color: #666666">*</span>a[i];
 </pre></div>
 <p>
@@ -2370,7 +2370,7 @@ All threads can access the <b>sum</b> variable, but the addition is not atomic! 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
 <span style="color: #BC7A00">#pragma omp parallel for reduction(+:sum)</span>
 <span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>) sum <span style="color: #666666">+=</span> a[i]<span style="color: #666666">*</span>a[i];
 </pre></div>
@@ -2392,7 +2392,7 @@ $$
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> i;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> i;
 <span style="color: #B00040">double</span> sum <span style="color: #666666">=</span> <span style="color: #666666">0.</span>;
 <span style="color: #408080; font-style: italic">/* allocating and initializing arrays */</span>
 <span style="color: #408080; font-style: italic">/* ... */</span>
@@ -2417,7 +2417,7 @@ Different threads do different tasks independently, each section is executed by 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel</span>
 {
 <span style="color: #BC7A00">#pragma omp sections</span>
 {
@@ -2444,7 +2444,7 @@ funcC ();
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp single { ... }</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp single { ... }</span>
 </pre></div>
 <p>
 The code is executed by one thread only, no guarantee which thread
@@ -2454,7 +2454,7 @@ Can introduce an implicit barrier at the end
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp master { ... }</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp master { ... }</span>
 </pre></div>
 <p>
 Code executed by the master thread, guaranteed and no implicit barrier at the end.
@@ -2471,14 +2471,14 @@ Code executed by the master thread, guaranteed and no implicit barrier at the en
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp barrier</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp barrier</span>
 </pre></div>
 <p>
 Synchronization, must be encountered by all threads in a team (or none)
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp ordered { a block of codes }</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp ordered { a block of codes }</span>
 </pre></div>
 <p>
 is another form of synchronization (in sequential order).
@@ -2486,21 +2486,21 @@ The form
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp critical { a block of codes }</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp critical { a block of codes }</span>
 </pre></div>
 <p>
 and 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp atomic { single assignment statement }</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp atomic { single assignment statement }</span>
 </pre></div>
 <p>
 is  more efficient than 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp critical</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp critical</span>
 </pre></div>
 
 </div>
@@ -2568,7 +2568,7 @@ What are the purposes of these attributes
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;100</span>; i<span style="color: #666666">++</span>)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;100</span>; i<span style="color: #666666">++</span>)
     <span style="color: #008000; font-weight: bold">for</span> (j<span style="color: #666666">=0</span>; j<span style="color: #666666">&lt;100</span>; j<span style="color: #666666">++</span>)
         a[i][j] <span style="color: #666666">=</span> b[i][j] <span style="color: #666666">+</span> c[i][j];
     }
@@ -2581,7 +2581,7 @@ What are the purposes of these attributes
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel for private(j)</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel for private(j)</span>
 <span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;100</span>; i<span style="color: #666666">++</span>)
     <span style="color: #008000; font-weight: bold">for</span> (j<span style="color: #666666">=0</span>; j<span style="color: #666666">&lt;100</span>; j<span style="color: #666666">++</span>)
        a[i][j] <span style="color: #666666">=</span> b[i][j] <span style="color: #666666">+</span> c[i][j];
@@ -2608,7 +2608,7 @@ team.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel num_threads(4)</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel num_threads(4)</span>
 {
 <span style="color: #408080; font-style: italic">/* .... */</span>
 <span style="color: #BC7A00">#pragma omp parallel num_threads(2)</span>
@@ -2631,7 +2631,7 @@ team.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp task </span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp task </span>
 <span style="color: #BC7A00">#pragma omp parallel shared(p_vec) private(i)</span>
 {
 <span style="color: #BC7A00">#pragma omp single</span>
@@ -2657,7 +2657,7 @@ Race condition
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> nthreads;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> nthreads;
 <span style="color: #BC7A00">#pragma omp parallel shared(nthreads)</span>
 {
 nthreads <span style="color: #666666">=</span> omp_get_num_threads();
@@ -2668,7 +2668,7 @@ Deadlock
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel</span>
 {
 ...
 <span style="color: #BC7A00">#pragma omp critical</span>
@@ -2697,7 +2697,7 @@ An example is finding the location and value of the largest element in an array
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>) { 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>) { 
    <span style="color: #008000; font-weight: bold">if</span> (x[i] <span style="color: #666666">&gt;</span> maxval) {
       maxval <span style="color: #666666">=</span> x[i];
       maxloc <span style="color: #666666">=</span> i; 
@@ -2724,7 +2724,7 @@ All threads are potentially accessing and changing the same values, <b>maxloc</b
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp atomic</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp atomic</span>
 </pre></div>
 <ol>
 <li> Only one thread at a time can execute the following statement (not block). We can use the critical option</li>
@@ -2733,7 +2733,7 @@ All threads are potentially accessing and changing the same values, <b>maxloc</b
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp critical</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp critical</span>
 </pre></div>
 <ol>
 <li> Only one thread at a time can execute the following block</li>
@@ -2755,7 +2755,7 @@ The first step would be to parallelize as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel for</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel for</span>
  <span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>) {
     <span style="color: #008000; font-weight: bold">if</span> (x[i] <span style="color: #666666">&gt;</span> maxval) {
       maxval <span style="color: #666666">=</span> x[i];
@@ -2779,7 +2779,7 @@ The first step would be to parallelize as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp parallel for</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp parallel for</span>
  <span style="color: #008000; font-weight: bold">for</span> (i<span style="color: #666666">=0</span>; i<span style="color: #666666">&lt;</span>n; i<span style="color: #666666">++</span>) {
 <span style="color: #BC7A00">#pragma omp critical</span>
   {
@@ -2830,7 +2830,7 @@ This is a common source of performance issues, namely the description of the met
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> maxloc[MAX_THREADS], mloc;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> maxloc[MAX_THREADS], mloc;
 <span style="color: #B00040">double</span> maxval[MAX_THREADS], mval; 
 <span style="color: #BC7A00">#pragma omp parallel shared(maxval,maxloc)</span>
 {
@@ -2859,7 +2859,7 @@ This is a common source of performance issues, namely the description of the met
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #BC7A00">#pragma omp flush (maxloc,maxval)</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#pragma omp flush (maxloc,maxval)</span>
 <span style="color: #BC7A00">#pragma omp master</span>
   {
     <span style="color: #B00040">int</span> nt <span style="color: #666666">=</span> omp_get_num_threads(); 
@@ -2884,7 +2884,7 @@ This code computes the norm of a vector using OpenMp
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">//  OpenMP program to compute vector norm by adding two other vectors
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>//  OpenMP program to compute vector norm by adding two other vectors
 #include &lt;cstdlib&gt;
 #include &lt;iostream&gt;
 #include &lt;cmath&gt;
@@ -2951,7 +2951,7 @@ This the matrix-matrix multiplication code with plain c++ memory allocation usin
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">//  Matrix-matrix multiplication and Frobenius norm of a matrix with OpenMP
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>//  Matrix-matrix multiplication and Frobenius norm of a matrix with OpenMP
 #include &lt;cstdlib&gt;
 #include &lt;iostream&gt;
 #include &lt;cmath&gt;
@@ -3068,14 +3068,14 @@ have corresponding C/C++-binding
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   MPI_Command_name
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   MPI_Command_name
 </pre></div>
 <p>
 and Fortran-binding (routine names are in uppercase, but can also be in lower case)
 <p>
 
 <!-- code=text (!bc forcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   MPI_COMMAND_NAME
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   MPI_COMMAND_NAME
 </pre></div>
 
 </div>
@@ -3121,14 +3121,14 @@ have corresponding C/C++-binding
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   MPI_Command_name
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   MPI_Command_name
 </pre></div>
 <p>
 and Fortran-binding (routine names are in uppercase, but can also be in lower case)
 <p>
 
 <!-- code=text (!bc forcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">   MPI_COMMAND_NAME
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>   MPI_COMMAND_NAME
 </pre></div>
 <p>
 The discussion in these slides focuses on the C++ binding.
@@ -3154,7 +3154,7 @@ The discussion in these slides focuses on the C++ binding.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  MPI_COMM_WORLD 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  MPI_COMM_WORLD 
 </pre></div>
 <ul>
 <li> Mechanism to identify subset of processes.</li>
@@ -3196,9 +3196,9 @@ Let every process write "Hello world" (oh not this program again!!) on the stand
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
-<span style="color: #BC7A00">#include &lt;mpi.h&gt;</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;mpi.h&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
 <span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> nargs, <span style="color: #B00040">char</span><span style="color: #666666">*</span> args[])
 {
 <span style="color: #B00040">int</span> numprocs, my_rank;
@@ -3225,7 +3225,7 @@ MPI_Finalize ();
 <p>
 
 <!-- code=text (!bc forcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">PROGRAM hello
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>PROGRAM hello
 INCLUDE &quot;mpif.h&quot;
 INTEGER:: size, my_rank, ierr
 
@@ -3268,7 +3268,7 @@ END PROGRAM hello
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> nargs, <span style="color: #B00040">char</span><span style="color: #666666">*</span> args[])
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> nargs, <span style="color: #B00040">char</span><span style="color: #666666">*</span> args[])
 {
  <span style="color: #B00040">int</span> numprocs, my_rank, i;
  MPI_Init (<span style="color: #666666">&amp;</span>nargs, <span style="color: #666666">&amp;</span>args);
@@ -3318,7 +3318,7 @@ action.
 <p>
 
 <!-- code=text (!bc ccpcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">.....
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>.....
 int numprocs, my_rank, flag;
 MPI_Status status;
 MPI_Init (&amp;nargs, &amp;args);
@@ -3352,7 +3352,7 @@ is defined as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> MPI_Send(<span style="color: #B00040">void</span> <span style="color: #666666">*</span>buf, <span style="color: #B00040">int</span> count, 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> MPI_Send(<span style="color: #B00040">void</span> <span style="color: #666666">*</span>buf, <span style="color: #B00040">int</span> count, 
              MPI_Datatype datatype, 
              <span style="color: #B00040">int</span> dest, <span style="color: #B00040">int</span> tag, MPI_Comm comm)}
 </pre></div>
@@ -3384,7 +3384,7 @@ is similar to the send call.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">int</span> MPI_Recv( <span style="color: #B00040">void</span> <span style="color: #666666">*</span>buf, <span style="color: #B00040">int</span> count, MPI_Datatype datatype, 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">int</span> MPI_Recv( <span style="color: #B00040">void</span> <span style="color: #666666">*</span>buf, <span style="color: #B00040">int</span> count, MPI_Datatype datatype, 
             <span style="color: #B00040">int</span> source, 
             <span style="color: #B00040">int</span> tag, MPI_Comm comm, MPI_Status <span style="color: #666666">*</span>status )
 </pre></div>
@@ -3440,10 +3440,10 @@ Click <a href="https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-page
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//    Trapezoidal rule and numerical integration usign MPI</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">//    Trapezoidal rule and numerical integration usign MPI</span>
 <span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std;
-<span style="color: #BC7A00">#include &lt;mpi.h&gt;</span>
-<span style="color: #BC7A00">#include &lt;iostream&gt;</span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;mpi.h&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
 
 <span style="color: #408080; font-style: italic">//     Here we define various functions called by the main program</span>
 
@@ -3472,7 +3472,7 @@ Click <a href="https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-page
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  <span style="color: #408080; font-style: italic">//  MPI initializations</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #408080; font-style: italic">//  MPI initializations</span>
   MPI_Init (<span style="color: #666666">&amp;</span>nargs, <span style="color: #666666">&amp;</span>args);
   MPI_Comm_size (MPI_COMM_WORLD, <span style="color: #666666">&amp;</span>numprocs);
   MPI_Comm_rank (MPI_COMM_WORLD, <span style="color: #666666">&amp;</span>my_rank);
@@ -3502,7 +3502,7 @@ Click <a href="https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-page
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">  total_sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  total_sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
   local_sum <span style="color: #666666">=</span> trapezoidal_rule(local_a, local_b, local_n, 
                                <span style="color: #666666">&amp;</span>int_function); 
   MPI_Reduce(<span style="color: #666666">&amp;</span>local_sum, <span style="color: #666666">&amp;</span>total_sum, <span style="color: #666666">1</span>, MPI_DOUBLE, 
@@ -3536,7 +3536,7 @@ Here we have used
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">MPI_reduce( <span style="color: #B00040">void</span> <span style="color: #666666">*</span>senddata, <span style="color: #B00040">void</span><span style="color: #666666">*</span> resultdata, <span style="color: #B00040">int</span> count, 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>MPI_reduce( <span style="color: #B00040">void</span> <span style="color: #666666">*</span>senddata, <span style="color: #B00040">void</span><span style="color: #666666">*</span> resultdata, <span style="color: #B00040">int</span> count, 
      MPI_Datatype datatype, MPI_Op, <span style="color: #B00040">int</span> root, MPI_Comm comm)
 </pre></div>
 <p>
@@ -3570,7 +3570,7 @@ If we have an array or matrix we can search for the largest og smallest element 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">MPI_Allreduce( <span style="color: #B00040">void</span> <span style="color: #666666">*</span>senddata, <span style="color: #B00040">void</span><span style="color: #666666">*</span> resultdata, <span style="color: #B00040">int</span> count, 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>MPI_Allreduce( <span style="color: #B00040">void</span> <span style="color: #666666">*</span>senddata, <span style="color: #B00040">void</span><span style="color: #666666">*</span> resultdata, <span style="color: #B00040">int</span> count, 
           MPI_Datatype datatype, MPI_Op, MPI_Comm comm)        
 </pre></div>
 
@@ -3591,7 +3591,7 @@ We use \( MPI\_reduce \) to collect data from each process. Note also the use of
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//  this function defines the function to integrate</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">//  this function defines the function to integrate</span>
 <span style="color: #B00040">double</span> <span style="color: #0000FF">int_function</span>(<span style="color: #B00040">double</span> x)
 {
   <span style="color: #B00040">double</span> value <span style="color: #666666">=</span> <span style="color: #666666">4./</span>(<span style="color: #666666">1.+</span>x<span style="color: #666666">*</span>x);
@@ -3612,7 +3612,7 @@ We use \( MPI\_reduce \) to collect data from each process. Note also the use of
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic">//  this function defines the trapezoidal rule</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">//  this function defines the trapezoidal rule</span>
 <span style="color: #B00040">double</span> <span style="color: #0000FF">trapezoidal_rule</span>(<span style="color: #B00040">double</span> a, <span style="color: #B00040">double</span> b, <span style="color: #B00040">int</span> n, 
                          <span style="color: #B00040">double</span> (<span style="color: #666666">*</span>func)(<span style="color: #B00040">double</span>))
 {
@@ -3641,7 +3641,7 @@ We use \( MPI\_reduce \) to collect data from each process. Note also the use of
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

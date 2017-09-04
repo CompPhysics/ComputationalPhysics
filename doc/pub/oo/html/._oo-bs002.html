@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -187,7 +196,7 @@ MathJax.Hub.Config({
 <a name="part0002"></a>
 <!-- !split -->
 
-<h2 id="___sec1">Object orientation </h2>
+<h2 id="___sec1" class="anchor">Object orientation </h2>
 
 <p>
 In programming languages, a polymorphic object is an entity, such as a variable or a procedure, that can hold or operate on values of differing types during the program's execution. Because a polymorphic object can operate on a variety of values and types, it can also be used in a variety of programs, sometimes with little or no change by the programmer. The idea of write once, run many, also known as code reusability, is an important characteristic to the programming paradigm known as Object-Oriented Programming (OOP).

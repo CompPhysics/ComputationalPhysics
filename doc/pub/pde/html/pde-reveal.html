@@ -1,3 +1,4 @@
+\
 <!DOCTYPE html>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -131,8 +132,8 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -162,12 +163,12 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>2016</h4></center> <!-- date -->
+<center><h4>Aug 30, 2017</h4></center> <!-- date -->
 <br>
 <p>
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2016, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 </section>
 
@@ -873,7 +874,7 @@ It is rather easy to implement this matrix-vector multiplication as seen in the 
 <p>
 
 <!-- code=text typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%">//  First we set initialise the new and old vectors
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>//  First we set initialise the new and old vectors
 //  Here we have chosen the boundary conditions to be zero.
 //  n+1 is the number of mesh points in x
 //  Armadillo notation for vectors
@@ -1220,7 +1221,7 @@ matrix.
 <p>
 
 <!-- code=text typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%">//  parts of the function for backward Euler
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>//  parts of the function for backward Euler
 void backward_euler(int n, int tsteps, double delta_x, double alpha)
 {
    double a, b, c;
@@ -1487,7 +1488,7 @@ We illustrate this in the following part of our program.
 <p>
 
 <!-- code=text typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%">void crank_nicolson(int n, int tsteps, double delta_x, double alpha)
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>void crank_nicolson(int n, int tsteps, double delta_x, double alpha)
 {
    double a, b, c;
    vec u(n+1); // This is u in Au = r
@@ -2312,7 +2313,7 @@ Eq. <a href="#mjx-eqn-17">(17)</a> is included here.
 <p>
 
 <!-- code=text typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%">....
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>....
 //  We define the step size for a square lattice with n+1 points
        double h = (xmax-xmin)/(n+1);
        double L = xmax-xmin;   // The length of the lattice
@@ -2604,7 +2605,7 @@ Let us revisit project 1 and the Thomas algorithm for solving a system of tridia
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">//  Solves linear equations for simple tridiagonal matrix using the iterative Jacobi method</span>
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">//  Solves linear equations for simple tridiagonal matrix using the iterative Jacobi method</span>
 ....
 <span style="color: #228B22">// Begin main program</span>
 <span style="color: #a7a7a7; font-weight: bold">int</span> main(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[]){
@@ -2643,15 +2644,15 @@ The following program sets up the diffusion equation solver in two spatial dimen
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">/* Simple program for solving the two-dimensional diffusion </span>
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">/* Simple program for solving the two-dimensional diffusion </span>
 <span style="color: #228B22">   equation or Poisson equation using Jacobi&#39;s iterative method</span>
 <span style="color: #228B22">   Note that this program does not contain a loop over the time </span>
 <span style="color: #228B22">   dependence.</span>
 <span style="color: #228B22">*/</span>
 
-<span style="color: #1e889b">#include &lt;iostream&gt;</span>
-<span style="color: #1e889b">#include &lt;iomanip&gt;</span>
-<span style="color: #1e889b">#include &lt;armadillo&gt;</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iomanip&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;armadillo&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 
@@ -2693,7 +2694,7 @@ The following program sets up the diffusion equation solver in two spatial dimen
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">// Function for setting up the iterative Jacobi solver</span>
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">// Function for setting up the iterative Jacobi solver</span>
 <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #a7a7a7; font-weight: bold">double</span> dx, <span style="color: #a7a7a7; font-weight: bold">double</span> dt, mat &amp;A, mat &amp;q, <span style="color: #a7a7a7; font-weight: bold">double</span> abstol)
 {
   <span style="color: #a7a7a7; font-weight: bold">int</span> MaxIterations = <span style="color: #B452CD">100000</span>;
@@ -2751,8 +2752,8 @@ and implement it in parallel.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">//  Main program first</span>
-<span style="color: #1e889b">#include &lt;mpi.h&gt;</span>
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">//  Main program first</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;mpi.h&gt;</span><span style="color: #1e889b"></span>
 
 <span style="color: #228B22">//  Omitted statements</span>
 <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> * argv[]){
@@ -2787,7 +2788,7 @@ Here follows the parallel implementation of the Jacobi algorithm
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">ParallelJacobi</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> mynode, <span style="color: #a7a7a7; font-weight: bold">int</span> numnodes, <span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #a7a7a7; font-weight: bold">double</span> **A, <span style="color: #a7a7a7; font-weight: bold">double</span> *x, <span style="color: #a7a7a7; font-weight: bold">double</span> *b, <span style="color: #a7a7a7; font-weight: bold">double</span> abstol){
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">ParallelJacobi</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> mynode, <span style="color: #a7a7a7; font-weight: bold">int</span> numnodes, <span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #a7a7a7; font-weight: bold">double</span> **A, <span style="color: #a7a7a7; font-weight: bold">double</span> *x, <span style="color: #a7a7a7; font-weight: bold">double</span> *b, <span style="color: #a7a7a7; font-weight: bold">double</span> abstol){
   <span style="color: #a7a7a7; font-weight: bold">int</span> i,j,k,i_global;
   <span style="color: #a7a7a7; font-weight: bold">int</span> maxit = <span style="color: #B452CD">100000</span>;
   <span style="color: #a7a7a7; font-weight: bold">int</span> rows_local,local_offset,last_rows_local,*count,*displacements;
@@ -2905,16 +2906,16 @@ Here follows the parallel implementation of the diffusion equation using OpenMP
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span style="color: #228B22">/* Simple program for solving the two-dimensional diffusion </span>
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">/* Simple program for solving the two-dimensional diffusion </span>
 <span style="color: #228B22">   equation or Poisson equation using Jacobi&#39;s iterative method</span>
 <span style="color: #228B22">   Note that this program does not contain a loop over the time </span>
 <span style="color: #228B22">   dependence. It uses OpenMP to parallelize</span>
 <span style="color: #228B22">*/</span>
 
-<span style="color: #1e889b">#include &lt;iostream&gt;</span>
-<span style="color: #1e889b">#include &lt;iomanip&gt;</span>
-<span style="color: #1e889b">#include &lt;armadillo&gt;</span>
-<span style="color: #1e889b">#include &lt;omp.h&gt;</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iomanip&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;armadillo&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;omp.h&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 

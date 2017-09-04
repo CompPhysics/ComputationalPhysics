@@ -24,6 +24,15 @@ Automatically generated HTML file from DocOnce source
    max-height: 400px;
    overflow-x: hidden;
 }
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -345,7 +354,7 @@ MathJax.Hub.Config({
 <a name="part0061"></a>
 <!-- !split  -->
 
-<h2 id="___sec60">Random walk </h2>
+<h2 id="___sec60" class="anchor">Random walk </h2>
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
@@ -354,7 +363,7 @@ of moving to the left or to the right by generating a random number.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #B00040">void</span> <span style="color: #0000FF">mc_sampling</span>(<span style="color: #B00040">int</span> max_trials, <span style="color: #B00040">int</span> number_walks, 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #B00040">void</span> <span style="color: #0000FF">mc_sampling</span>(<span style="color: #B00040">int</span> max_trials, <span style="color: #B00040">int</span> number_walks, 
                  <span style="color: #B00040">double</span> move_probability, <span style="color: #B00040">int</span> <span style="color: #666666">*</span>walk_cumulative, 
                  <span style="color: #B00040">int</span> <span style="color: #666666">*</span>walk2_cumulative)
 {

@@ -1,6 +1,6 @@
 TITLE: Computational Physics Lectures: How to optimize codes, from vectorization to parallelization
 AUTHOR: Morten Hjorth-Jensen {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
-DATE: 2016
+DATE: today
 
 
 !split

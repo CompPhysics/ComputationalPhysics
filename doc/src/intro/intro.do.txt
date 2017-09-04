@@ -1,6 +1,6 @@
 TITLE: Computational Physics Lectures: Introduction to the course
 AUTHOR: Morten Hjorth-Jensen  {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
-DATE: 2016
+DATE: today
 
 
 
@@ -9,10 +9,10 @@ DATE: 2016
 
 !bblock
   * Thursday: First lecture: Presentation of the course, aims and content
-  * Thursday: Second Lecture: Introduction to C++ programming and numerical precision. Exercises for first week. 
-  * Friday: Numerical precision and C++ programming, continued and exercises for first week (chapter 2 of lecture notes)
+  * Thursday: Second Lecture: Introduction to C++ programming (chapters 2 and 3 of lecture notes) and start discussion of project 1.  
+  * Friday: Numerical precision and C++ programming, continued and discussion of project 1 (chapter 2 and 3 of lecture notes)
   * Numerical differentiation and loss of numerical precision (chapter 3 lecture notes)
-  * Computer lab: Thursday and Friday. First time: Thursday and Friday this week, Presentation of hardware and software at room FV329 first hour of every labgroup and solution of first simple exercises. The first two weeks we focus on simple programming exercises and to set up github and QTcreator. This week we discuss how to set up git and obtain a github account and look at two simple programming exercises. 
+  * Computer lab: Thursday and Friday. First time: Thursday and Friday this week, Presentation of hardware and software at room FV329 first hour of every labgroup and solution of first simple exercises. The first two weeks we focus on simple programming exercises and to set up github and QTcreator. This week we discuss how to set up git and obtain a github account and look at two simple programming exercises and for those interested start with project 1. 
 !eblock
 
 !split
@@ -23,7 +23,6 @@ DATE: 2016
    * Introduction to C++ programming
    * Numerical precision and C++ programming (chapter 2 of lecture notes)
    * Numerical differentiation and loss of numerical precision (chapter 3 lecture notes)
-   * Work on warm up exercise to demonstrate several programming elements
 !eblock
 
 !split
@@ -43,26 +42,50 @@ DATE: 2016
 ===== Course Format =====
 
 !bblock
-  * Several computer exercises, 5 compulsory projects. Electronic reports only using "devilry":"https://devilry.ifi.uio.no/" to hand in projects and "Git":"https://github.com/" for repository and all your material.
+  * Five compulsory projects. Electronic reports only using "devilry":"https://devilry.ifi.uio.no/" to hand in projects and "Git":"https://github.com/" for repository and all your material.
   * Evaluation and grading: The last three projects are graded and each counts 1/3 of the final mark. No final written or oral exam.
   * The computer lab (room FV329)consists of 16 Linux PCs, but many prefer own laptops. C/C++ is the default programming language, but Fortran2008 and Python are also used. All source codes discussed during the lectures can be found at the webpage and "github address":"https://github.com/CompPhysics/ComputationalPhysics1/tree/master/doc/Programs" of the course. We recommend either C/C++, Fortran2008 or Python as languages.
 !eblock
 
 !split
-===== ComputerLab =====
+===== Teachers and ComputerLab =====
 
 !bblock
+
+_Teachers :_
+o "Giovanni Pederiva":"https://folk.uio.no/giovannp/"
+o "Haakon Emil Kristiansen":"https://www.facebook.com/hakon.e.kristiansen"
+o "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/doc/web/"
+o "Morten Ledum":"https://github.com/mortele"
+o "Vilde Moe Flugsrud":"https://folk.uio.no/vildemf/"
 
 |------------------------------------------------------|
 |      day         |            teacher                |
 |---------l-----------------------l--------------------|
-| Group 1: Thursday 10am-2pm | Anders, Morten L., Haakon Emil, MHJ |
-| Group 2: Thursday 2pm-6pm | Anders, Morten L., Haakon Emil , MHJ |
-| Group 3: Friday 10am-2pm   | Anders, Morten L., Haakon Emil, MHJ |
-| Group 4: Friday 2pm-6pm   | Anders, Morten L., Haakon Emil, MHJ |
+| Group 1: Thursday 10am-2pm | Giovanni, Haakon Emil, Morten L, Vilde, MHJ | 
+| Group 2: Thursday 2pm-6pm | Giovanni, Haakon Emil, Morten L, Vilde, MHJ | 
+| Group 3: Friday 10am-2pm   | Giovanni, Haakon Emil, Morten L, Vilde, MHJ | 
+| Group 4: Friday 2pm-6pm   | Giovanni, Haakon Emil, Morten L, Vilde, MHJ | 
 |------------------------------------------------------|
 
 !eblock
+
+!split
+===== Deadlines for projects (end of day) =====
+
+!bblock
+
+o Project 1: September 11 (not graded, only feedback)
+o Project 2: October 2 (not graded, only feedback)
+o Project 3: October 23 (graded with feedback)
+o Project 4: November 13 (graded with feedback)
+o Project 5: December 8 (graded with feedback)
+
+Projects are handed in using devilry.ifi.uio.no. We use Github as repository for codes, benchmark calculations etc. Comments and feedback on projects only via devilry. 
+
+!eblock
+
+
 
 !split
 ===== Topics covered in this course =====
@@ -100,7 +123,7 @@ DATE: 2016
   * Householder's tridiagonalization technique and finding eigenvalues based on this
   * Jacobi's method for finding eigenvalues
   * Singular value decomposition
-  * Qubic Spline interpolation
+  * Cubic Spline interpolation
 !eblock
 
 

@@ -1,6 +1,6 @@
 TITLE: Computational Physics  Lectures: Linear Algebra methods 
 AUTHOR: Morten Hjorth-Jensen {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
-DATE: 2016
+DATE: today
 
 
 !split
@@ -1019,138 +1019,87 @@ Recall that $\tilde{d}_1=2$ and $\tilde{f}_1=f_1$.  These arrays can be set up b
 The backward substitution gives then the final solution
 !bt
 \[
-u_{i-1}= \frac{i-1}{i}\left(\tilde{f}_{i-1}-u_i\right),
+u_{i-1}= \frac{i-1}{i}\left(\tilde{f}_{i-1}+u_i\right),
 \]
 !et
 with $u_n=\tilde{f}_{n}/\tilde{b}_{n}$.
 
 
 !split
-===== "Program example":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/CppQtCodesLectures/MatrixTest" =====
+===== "Program example":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Projects/2016/Project1/Examples/TridiagonalSimple.cpp" =====
 
 !bc cppcod
-/*
-**     Project1: a) and b)
-**     The algorithm for solving the tridiagonal matrix
-**     equation is implemented (O(8n) FLOPS).
-*/
-# include <iostream>
-# include <fstream>
-# include <iomanip>
-# include <cmath>
-
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <cmath>
+#include <string>
+// use namespace for output and input
 using namespace std;
+
+// object for output files
 ofstream ofile;
+// Functions used
+inline double f(double x){return 100.0*exp(-10.0*x);
+}
+inline double exact(double x) {return 1.0-(1-exp(-10))*x-exp(-10*x);}
 
-// Declaring two functions that will be used:
-double Solution(double x) {return 1.0-(1-exp(-10))*x-exp(-10*x);}
-
-double f(double x) {return 100*exp(-10*x);}
-
-// Main program reads filename and n from command line:
-int main(int argc, char* argv[]) {
-
-    // Declaration of initial variables:
-    char *outfilename;
-    int n;
-
-    // Read in output file and n,
-    // abort if there are too few command-line arguments:
-    if( argc <= 2 ){
-      cout << "Bad Usage: " << argv[0] <<
-          " read also output file and n (int) on same line" << endl;
-      exit(1);
+// Begin main program
+int main(int argc, char *argv[]){
+  int exponent; 
+    string filename;
+    // We read also the basic name for the output file and the highest power of 10^n we want
+    if( argc <= 1 ){
+          cout << "Bad Usage: " << argv[0] <<
+              " read also file name on same line and max power 10^n" << endl;
+          exit(1);
     }
-    else{
-      outfilename = argv[1]; // first command line argument.
-      n = atoi(argv[2]);  // second command line argument.
+        else{
+        filename = argv[1]; // first command line argument after name of program
+        exponent = atoi(argv[2]);
     }
-
-    // Constants of the problem:
-    double h = 1.0/(n+1.0);
-    double *x = new double[n+2];
-    double *b_twidd = new double[n+1]; // construction with n+1 points to make
-                                       // indexing close to mathematics.
-    b_twidd[0] = 0;
-
-    // The constituents of the tridiagonal matrix A:
-    // Zeroth element not needed, but included to make indexing easy:
-    int *a = new int[n+1];
-    int *b = new int[n+1];
-    int *c = new int[n+1];
-
-    // Temporal variabel in Gaussian elimination:
-    double *diag_temp = new double[n+1];
-
-    // Real solution and approximated one:
-    double *u = new double[n+2]; // Analytical solution
-    double *v = new double[n+2]; // Numerical solution
-    // Including extra points to make the indexing easy:
-    u[0] = 0;
-    v[0] = 0;
-
-    // Filling up x-array, making x[0] = 0 and x[n+1] = 1:
-    for (int i=0; i<=n+1; i++) {
-        x[i] = i*h;
-        // Could print results to check:
-        //cout << "x = " << x[i] << " and " << "h^2*f(x) = " << h*h*f(x[i]) << endl;
+    // Loop over powers of 10
+    for (int i = 1; i <= exponent; i++){
+      int  n = (int) pow(10.0,i);
+      // Declare new file name
+      string fileout = filename;
+      // Convert the power 10^i to a string
+      string argument = to_string(i);
+      // Final filename as filename-i-
+      fileout.append(argument);
+      double h = 1.0/(n);
+      double hh = h*h;
+      // Set up arrays for the simple case
+      double *d = new double [n+1]; double *b = new double [n+1]; double *solution = new double [n+1];
+      double *x = new double[n+1];
+      // Quick setup of updated diagonal elements and value of
+      d[0] = d[n] = 2; solution[0] = solution[n] = 0.0;
+      for (int i = 1; i < n; i++) d[i] = (i+1.0)/( (double) i);  
+      for (int i = 0; i <= n; i++){
+	x[i]= i*h;
+        b[i] = hh*f(i*h);
+      }
+      // Forward substitution
+      for (int i = 2; i < n; i++) b[i] = b[i] + b[i-1]/d[i-1];
+      // Backward substitution
+      solution[n-1] = b[n-1]/d[n-1];
+      for (int i = n-2; i > 0; i--) solution[i] = (b[i]+solution[i+1])/d[i];
+      ofile.open(fileout);
+      ofile << setiosflags(ios::showpoint | ios::uppercase);
+      //      ofile << "       x:             approx:          exact:       relative error" << endl;
+      for (int i = 1; i < n;i++) {
+	double xval = x[i];
+ 	 double RelativeError = fabs((exact(xval)-solution[i])/exact(xval));
+         ofile << setw(15) << setprecision(8) << xval;
+         ofile << setw(15) << setprecision(8) << solution[i];
+         ofile << setw(15) << setprecision(8) << exact(xval);
+         ofile << setw(15) << setprecision(8) << log10(RelativeError) << endl;
+      }
+      ofile.close();
+      delete [] x; delete [] d; delete [] b; delete [] solution;
     }
-
-    // Filling up b_twiddle array, i.e. right hand side of equation:
-    for (int i=1; i<=n; i++) {
-        b_twidd[i] = h*h*f(x[i]);
-        // Could print here to check:
-        //cout << "b_twidd = " << b_twidd[i] << "for x = " << x[i] << endl;
-        u[i] = Solution(x[i]);
-        //cout << "u = " << u[i] << " for x = " << x[i] <<  endl;
-        b[i] = 2;
-        a[i] = -1;
-        c[i] = -1;
-    }
-    c[n] = 0;
-    a[1] = 0;
-
-    // Algorithm for finding v:
-    // a(i)*v(i-1) + b(i)*v(i) + c(i)*v(i+1) = b_twidd(i)
-    // Row reduction; forward substitution:
-    double b_temp = b[1];
-    v[1] = b_twidd[1]/b_temp;
-    for (int i=2;i<=n;i++) {
-       // Temporary value needed also in next loop:
-       diag_temp[i] = c[i-1]/b_temp;
-       // Temporary diagonal element:
-       b_temp = b[i] - a[i]*diag_temp[i];
-       // Updating right hand side of matrix equation:
-       v[i] = (b_twidd[i]-v[i-1]*a[i])/b_temp;
-    }
-
-    // Row reduction; backward substition:
-    for (int i=n-1;i>=1;i--) {
-        v[i] -= diag_temp[i+1]*v[i+1];
-    }
-
-    // Open file and write results to file:
-    ofile.open(outfilename);
-    ofile << setiosflags(ios::showpoint | ios::uppercase);
-    ofile << "       x:             u(x):          v(x):  " << endl;
-    for (int i=1;i<=n;i++) {
-       ofile << setw(15) << setprecision(8) << x[i];
-       ofile << setw(15) << setprecision(8) << u[i];
-       ofile << setw(15) << setprecision(8) << v[i] << endl;
-    }
-    ofile.close();
-
-    delete [] x;
-    delete [] b_twidd;
-    delete [] a;
-    delete [] b;
-    delete [] c;
-    delete [] u;
-    delete [] v;
-
     return 0;
 }
-
 !ec
 
 

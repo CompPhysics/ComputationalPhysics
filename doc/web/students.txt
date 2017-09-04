@@ -1,0 +1,901 @@
+Anderssen	Mona	185	FYS3150	1	Computational Physic	
+
+
+
+
+
+
+monande@student.matnat.uio.no	
+570282				
+BOKMÅL				K	MNB-FAM	Fysikk, astronomi og meteorologi
+Baastad				Camilla Marie	185	FYS3150	  1  Computational Physic	
+
+
+
+
+
+
+camilmba@student.matnat.uio.no	
+570316				
+BOKMÅL				K	MNB-FAM	Fysikk, astronomi og meteorologi
+Bilek				Stian Dysthe	185	FYS3150	  1  Computational Physic	
+
+
+
+
+
+
+stiandb@student.matnat.uio.no	
+578389				
+BOKMÅL				M	REALFAG	Realfag lavere grad
+Bruvoll				Ragnar Bjørn Watne	185    FYS3150	1	Computational Physic	
+
+
+
+
+
+
+rbbruvol@student.matnat.uio.no	
+567676				
+BOKMÅL				M	MNB-FAM	Fysikk, astronomi og meteorologi
+Fongione			David	185	FYS3150	1	  Computational Physic	
+
+
+
+
+
+
+davidfon@student.matnat.uio.no	
+600828				
+ENGELSK				M	MNUTV	Innreisende utvekslingsstudenter MN
+Foss				Sigbjørn Lundesgaard	    185			 FYS3150	1	Computational Physic 
+
+
+
+
+
+
+sigbjolf@student.matnat.uio.no	
+570401				
+BOKMÅL				M	MNB-FAM	Fysikk, astronomi og meteorologi
+Hansen				Synne Skinnes	185	FYS3150	  1  Computational Physic	
+
+
+
+
+
+
+synnesha@student.matnat.uio.no	
+570378				
+BOKMÅL				K	MNB-MAMI	Matematikk med informatikk
+HUGOUNET			Antoine	185		FYS3150	   1   Computational Physic	
+
+
+
+
+
+
+antoineh@student.matnat.uio.no	
+600826				
+ENGELSK				M	MNUTV	Innreisende utvekslingsstudenter MN
+Ingebrigtsen			Eirik	185	FYS3150	    1			 Computational Physic	
+
+
+
+
+
+
+eiriking@student.matnat.uio.no	
+603478				
+BOKMÅL				M	MN1-REAL	Realfag
+Johannessen			Daniel Haugstad		185	FYS3150	1	Computational Physic	
+
+
+
+
+
+
+daniehj@student.matnat.uio.no	
+530833				
+BOKMÅL				M	REALFAG	Realfag lavere grad
+Johnsen				John-Magnus	185	FYS3150	1	Computational Physic	
+
+
+
+
+
+
+johnmagj@student.matnat.uio.no	
+559820				
+BOKMÅL				M	MNB-FAM	Fysikk, astronomi og meteorologi
+Jordal				Maria Rolstad	185	FYS3150	  1  Computational Physic	
+
+
+
+
+
+
+mariarj@student.matnat.uio.no	
+527155				
+BOKMÅL				K	MNB-MENA	Materialer, energi og nanoteknologi
+Jørgensen			Eina Bergem		185	    FYS3150   1	Computational Physic	
+
+
+
+
+
+
+einaj@student.matnat.uio.no	
+581496				
+BOKMÅL				K	MNB-FAM	Fysikk, astronomi og meteorologi
+Kiste				Mikael Bergedalen	185	  FYS3150	1	Computational Physic	
+
+
+
+
+
+
+mikaelbk@student.matnat.uio.no	
+562244				
+BOKMÅL				M	MNB-MENA	Materialer, energi og nanoteknologi
+Kjelseth			Ingrid Marie Endresen	185	    FYS3150   1	Computational Physic	
+
+
+
+
+
+
+imkjelse@student.matnat.uio.no	
+570337				
+BOKMÅL				K	REALMAS	Realfaglige masteremner
+Kosarifar			Maziar	185	FYS3150	    1	Computational Physic	
+
+
+
+
+
+
+maziark@student.matnat.uio.no	
+578653				
+ENGELSK				M	MNB-INFN	Informatikk: nanoelektronikk og robotikk
+Lima				Erlend	185		FYS3150	     1		     Computational Physic	
+
+
+
+
+
+
+erlenlim@student.matnat.uio.no	
+581522				
+BOKMÅL				M	MNB-FAM	Fysikk, astronomi og meteorologi
+Lund				Eirik Andreas Frivold	185	  FYS3150	1	Computational Physic	
+
+
+
+
+
+
+eaflund@student.matnat.uio.no	
+581478				
+BOKMÅL				M	MNB-FAM	Fysikk, astronomi og meteorologi
+Mellbye				Frederik Johan	185	FYS3150	  1  Computational Physic	
+
+
+
+
+
+
+frederme@student.matnat.uio.no	
+561177				
+BOKMÅL				M	MNB-FAM	Fysikk, astronomi og meteorologi
+Nardi				Federico	185	FYS3150	  1  Computational Physic	
+
+
+
+
+
+
+federicn@student.matnat.uio.no	
+600755				
+ENGELSK				M	MNUTV	Innreisende utvekslingsstudenter MN
+Olesen				Tobias Berdiin	185	    FYS3150		 1	Computational Physic	
+
+
+
+
+
+
+tobiao@student.matnat.uio.no	
+570315				
+BOKMÅL				M	MNB-FAM	Fysikk, astronomi og meteorologi
+Saccardo			Davide	185	FYS3150	1	  Computational Physic	
+
+
+
+
+
+
+davidesa@student.matnat.uio.no	
+600764				
+ENGELSK				M	MNUTV	Innreisende utvekslingsstudenter MN
+Sahraoui			Raouad	185	FYS3150	    1			 Computational Physic	
+
+
+
+
+
+
+raouads@student.matnat.uio.no	
+505273				
+BOKMÅL				M	REALMAS	Realfaglige masteremner
+Salihi				Aram Farhad Shafiq	    185	FYS3150	1	Computational Physic	
+
+
+
+
+
+
+arams@student.matnat.uio.no	
+581526				
+BOKMÅL				M	MNB-FAM	Fysikk, astronomi og meteorologi
+Sjåstad				Thomas	185	FYS3150	1	  Computational Physic	
+
+
+
+
+
+
+thomsja@student.matnat.uio.no	
+567755				
+BOKMÅL				M	MN1-REAL	Realfag
+Skeie				Hilde Solesvik		185	FYS3150	1	Computational Physic	
+
+
+
+
+
+
+h.s.skeie@usit.uio.no		
+549410				
+BOKMÅL				K	REALMAS	Realfaglige masteremner
+Skjæveland			Arnlaug Høgås	185	    FYS3150	1	Computational Physic	
+
+
+
+
+
+
+arnlaugs@student.matnat.uio.no	
+549192				
+BOKMÅL				K	MNB-FAM	Fysikk, astronomi og meteorologi
+Speri				Lorenzo	185	FYS3150	1	  Computational Physic	
+
+
+
+
+
+
+lorenzsp@student.matnat.uio.no	
+600739				
+ENGELSK				M	MNUTV	Innreisende utvekslingsstudenter MN
+Srisgantharajah			Jalini	185	FYS3150	    1			 Computational Physic	
+
+
+
+
+
+
+jalinis@student.uv.uio.no	
+559380				
+BOKMÅL				K	UVM5-LEKT	Lektorprogrammet
+Sutterud			Halvard	185		FYS3150	1	Computational Physic	
+
+
+
+
+
+
+halvarsu@student.matnat.uio.no	
+579076				
+BOKMÅL				M	MNB-FAM	Fysikk, astronomi og meteorologi
+Sveen				Christian Alexander Holm	  185	FYS3150	1	Computational Physic	
+
+
+
+
+
+
+casveen@student.matnat.uio.no	
+591159				
+BOKMÅL				M	MNB-MIT	Matematikk, informatikk og teknologi
+Villeneuve			Ethel	185	FYS3150	    1		Computational Physic	
+
+
+
+
+
+
+ethelv@student.hf.uio.no	
+600549				
+ENGELSK				K	MNUTV	Innreisende utvekslingsstudenter MN
+Vrevic				Adnan	185	FYS3150	    1			 Computational Physic	
+
+
+
+
+
+
+adnanvr@student.matnat.uio.no	
+570310				
+BOKMÅL				M	MNB-FAM	Fysikk, astronomi og meteorologi
+Wesenberg			Kamilla Øverland	185	  FYS3150	1	Computational Physic	
+
+
+
+
+
+
+kamillow@student.matnat.uio.no	
+537192				
+BOKMÅL				K	MNB-FAM	Fysikk, astronomi og meteorologi
+YUN				HYEJIN	185	FYS3150	1	  Computational Physic	
+
+
+
+
+
+
+hyejiny@student.matnat.uio.no	
+600740				
+ENGELSK				K	MNUTV	Innreisende utvekslingsstudenter MN
+Øien				Maja Agnethe	185	    FYS3150		 1	Computational Physic	
+
+
+
+
+
+
+majaao@student.matnat.uio.no	
+570291				
+BOKMÅL				K	MNB-FAM	Fysikk, astronomi og meteorologi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Aashamar			Ola Bakke	185	FYS4150	  1  Computational Physic	
+
+
+
+
+
+
+olaba@student.matnat.uio.no	
+593748				
+BOKMÅL				M	MNM2-GEO	Geofag
+Asif				Summyia Khatoon		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+summyiaa@student.matnat.uio.no	
+546247				
+ENGELSK				K	REALMAS	Realfaglige masteremner
+Aukan				Ingvild Sofie Sundby	    185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+ingvisau@student.matnat.uio.no	
+536952				
+BOKMÅL				K	MNM2-GEO	Geofag
+Bakke				Daniél Jimenez		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+danielji@student.matnat.uio.no	
+440314				
+BOKMÅL				M	MNM2-AST	Astronomi
+Berg				Hannah Christine	185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+hanna.berg@fys.uio.no		
+570326				
+BOKMÅL				K	MNM2-FYS	Fysikk
+Brodtkorb			Lars Johan		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+larsjbro@student.matnat.uio.no	
+570292				
+BOKMÅL				M	MNM2-GEO	Geofag
+Brændshøi			Jostein	185		FYS4150	1	Computational Physic	
+
+
+
+
+
+
+jostbr@student.geo.uio.no	
+559789				
+BOKMÅL				M	MNM2-GEO	Geofag
+Byre				Hanne Eline		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+hanneeby@student.geo.uio.no	
+600284				
+BOKMÅL				K	MNM2-GEO	Geofag
+Chen				Yisha	185		FYS4150	1	Computational Physic	
+
+
+
+
+
+
+yishac@student.matnat.uio.no	
+601191				
+ENGELSK				K	MNUTVMAS	Innreisende utvekslingsstudenter masternivå MN
+Christensen			Mikkel Killingmoe	185	    FYS4150		 1	    Computational Physic 
+
+
+
+
+
+
+m.k.christensen@fys.uio.no	
+570508				
+BOKMÅL				M	MNM2-MENA	Materialer, energi og nanoteknologi
+Furmyr				Frida Woldstad		185	    FYS4150   1	Computational Physic	
+
+
+
+
+
+
+f.w.furmyr@fys.uio.no		
+570342				
+BOKMÅL				K	MNM2-FYS	Fysikk
+Gonzalez			Gabriel Ryan		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+g.r.gonzalez@astro.uio.no	
+607124				
+ENGELSK				M	MNM2-AST	Astronomi
+Helland				Peder Bjærum		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+pederbh@student.matnat.uio.no	
+570340				
+BOKMÅL				M	MNM2-FYS	Fysikk
+Herman				Daniel	185		FYS4150	1	Computational Physic	
+
+
+
+
+
+
+daniel.herman@astro.uio.no	
+607125				
+ENGELSK				M	MNM2-AST	Astronomi
+Hjelmeland			Trude Bjørgås		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+t.b.hjelmeland@fys.uio.no	
+477541				
+BOKMÅL				K	MNM2-FYS	Fysikk
+Hodne				Espen	185		FYS4150	1	Computational Physic	
+
+
+
+
+
+
+espen.hodne@astro.uio.no	
+559810				
+BOKMÅL				M	MNM2-AST	Astronomi
+Holta				Vigdis	185		FYS4150	1	Computational Physic	
+
+
+
+
+
+
+vigdis.holta@fys.uio.no		
+549194				
+BOKMÅL				K	MNM2-FYS	Fysikk
+Håland				Even Simonsen		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+evensha@student.matnat.uio.no	
+572552				
+BOKMÅL				M	REALMAS	Realfaglige masteremner
+Jacobsen			Karl Åge	185	    FYS4150	1	Computational Physic	
+
+
+
+
+
+
+karlaj@student.matnat.uio.no	
+471820				
+BOKMÅL				M	MNM2-ANMAT	Anvendt matematikk og mekanikk
+Johannessen			Aina Marie		185	FYS4150	   1  Computational Physic	
+
+
+
+
+
+
+ainajoh@student.geo.uio.no	
+531018				
+BOKMÅL				K	MNM2-GEO	Geofag
+Karlsen				Kjetil	185		FYS4150	1	Computational Physic	
+
+
+
+
+
+
+kjetil.karlsen@mn.uio.no	
+570481				
+BOKMÅL				M	MNM2-MENA	Materialer, energi og nanoteknologi
+Kifle				Robin David		185	    FYS4150   1	Computational Physic	
+
+
+
+
+
+
+robinki@student.matnat.uio.no	
+602572				
+BOKMÅL				M	REALMAS	Realfaglige masteremner
+Killingstad			Peter Even	185	    FYS4150	1	Computational Physic	
+
+
+
+
+
+
+peterek@math.uio.no		
+572759				
+BOKMÅL				M	MNM2-ANMAT	Anvendt matematikk og mekanikk
+Kjølerbakken			Kai Morgan		185	FYS4150	   1  Computational Physic	
+
+
+
+
+
+
+kaimk@fys.uio.no		
+383757				
+BOKMÅL				M	PHD-MN	Ph.d. ved Det matematisk-naturvitenskapelige fakultet
+Kløvstad			Idun	185	FYS4150	  1   Computational Physic	     
+
+
+
+
+
+
+idunklo@student.matnat.uio.no	
+559829				
+BOKMÅL				K	REALFAG	Realfag lavere grad
+Kolstø				Fransis Misiu Nyka	185    FYS4150	1	Computational Physic	
+
+
+
+
+
+
+fmkolsto@student.matnat.uio.no	
+570266				
+BOKMÅL				M	REALMAS	Realfaglige masteremner
+Langrekken			Oda Kristin Berg	    185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+o.k.b.langrekken@fys.uio.no	
+559830				
+BOKMÅL				K	MNM2-FYS	Fysikk
+Losnedahl			Sander Wågønes		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+sanderl@student.matnat.uio.no	
+570393				
+BOKMÅL				M	REALMAS	Realfaglige masteremner
+Løyland				Sverre	185	FYS4150	    1	Computational Physic	
+
+
+
+
+
+
+sverre.loyland@kjemi.uio.no	
+556517				
+BOKMÅL				M	MNM2-KJEMI	Kjemi
+Mauland				Renate	185		FYS4150	1	Computational Physic	
+
+
+
+
+
+
+renate.mauland@astro.uio.no	
+570287				
+BOKMÅL				K	MNM2-AST	Astronomi
+Mehmood				Ifrah	185		FYS4150	1	Computational Physic	
+
+
+
+
+
+
+ifrahme@student.matnat.uio.no	
+548313				
+BOKMÅL				K	REALFAG	Realfag lavere grad
+Monov				Georgi Stoyanov	185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+georgism@student.matnat.uio.no	
+557252				
+ENGELSK				M	REALMAS	Realfaglige masteremner
+Mozo Lopez			Francisco Javier	    185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+francijm@student.geo.uio.no	
+574972				
+ENGELSK				M	MNM2-GEO	Geofag
+Pestana				Marc Kidwell		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+m.k.pestana@astro.uio.no	
+607126				
+ENGELSK				M	MNM2-AST	Astronomi
+Pran				Marius Beckmann		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+m.b.pran@astro.uio.no		
+567224				
+BOKMÅL				M	MNM2-AST	Astronomi
+Ramtvedt			Eirik Næsset		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+eiriknr@student.matnat.uio.no	
+553346				
+BOKMÅL				M	MNM2-GEO	Geofag
+Reinertsen			Vilde Mari		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+v.m.reinertsen@fys.uio.no	
+570512				
+BOKMÅL				K	MNM2-MENA	Materialer, energi og nanoteknologi
+Reistad				Mathias Storhaug	185	    FYS4150   1	Computational Physic	
+
+
+
+
+
+
+mathisre@student.matnat.uio.no	
+567718				
+BOKMÅL				M	MNM2-FYS	Fysikk
+Robstad				Ester Irene		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+esterrob@student.matnat.uio.no	
+459065				
+BOKMÅL				K	MNM2-FYS	Fysikk
+Skaar				Erik Fagerås		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+erikfsk@student.matnat.uio.no	
+559975				
+BOKMÅL				M	MNM2-MENA	Materialer, energi og nanoteknologi
+Skorgan				John Christian Haukenes	185	    FYS4150   1	Computational Physic	
+
+
+
+
+
+
+j.c.h.skorgan@astro.uio.no	
+570335				
+BOKMÅL				M	MNM2-AST	Astronomi
+Slang				Sigmund	185		FYS4150	1	Computational Physic	
+
+
+
+
+
+
+sigmunsl@student.matnat.uio.no	
+572781				
+BOKMÅL				M	REALMAS	Realfaglige masteremner
+Storaas				Thomas Aarflot	185	    FYS4150	1	Computational Physic	
+
+
+
+
+
+
+t.a.storaas@fys.uio.no		
+570516				
+BOKMÅL				M	MNM2-MENA	Materialer, energi og nanoteknologi
+Strøm				Elisabeth		185	    FYS4150   1	Computational Physic	
+
+
+
+
+
+
+elisabeth.strom@astro.uio.no	
+570341				
+BOKMÅL				K	MNM2-AST	Astronomi
+Svendsen			Sveinn Sandvik		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+sveinns@student.matnat.uio.no	
+454477				
+BOKMÅL				M	REALFAG	Realfag lavere grad
+Sømme				Børge Olsen-Hagen	185    FYS4150	1	Computational Physic	
+
+
+
+
+
+
+b.o.h.somme@fys.uio.no		
+570311				
+BOKMÅL				M	MNM2-FYS	Fysikk
+Tangvik				Marit-Kristine		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+maritkrt@student.matnat.uio.no	
+481349				
+BOKMÅL				K	MNM2-GEO	Geofag
+Thorkildsen			Vemund Stenbekk		185	FYS4150	1	Computational Physic	
+
+
+
+
+
+
+vemundst@student.matnat.uio.no	
+570354				
+BOKMÅL				M	REALMAS	Realfaglige masteremner
+Vahabi				Marzieh	185	FYS4150	    1	Computational Physic	
+
+
+
+
+
+
+marzieh.vahabi@fys.uio.no	
+575932				
+ENGELSK				K	MNM2-FYS	Fysikk
+Videm				Sigrid	185		FYS4150	1	Computational Physic	
+
+
+
+
+
+
+sigrivi@student.matnat.uio.no	
+563921				
+NYNORSK				K	REALMAS	Realfaglige masteremner
+Xie				Han	185	FYS4150	    1	Computational Physic	
+
+
+
+
+
+
+hanxi@math.uio.no		
+495586				
+BOKMÅL				M	MNM2-ANMAT	Anvendt matematikk og mekanikk
+Zolghadr			Maryam	185		FYS4150	1	   Computational Physic	
+
+
+
+
+
+
+maryamzo@student.matnat.uio.no	
+578597				
+ENGELSK				K	REALMAS	Realfaglige masteremner
