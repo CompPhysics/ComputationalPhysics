@@ -1,0 +1,669 @@
+TITLE: Teach yourself C++
+AUTHOR: Morten Hjorth-Jensen
+DATE: today
+
+
+
+
+===== Getting Started, compiling and linking first =====
+
+The programming language C++ is a so-called "compiled language":"https://en.wikipedia.org/wiki/Compiled_language". For help on how to use C++, we recommend highly the "cpplus website":"http://www.cplusplus.com/". 
+
+
+Assume we already have a program file, say _myprogram.cpp_. Note that C++ files have the extension _.cpp_.
+
+Here we discuss first how to obtain an executable without using IDEs like "QT":"https://www.qt.io/" creator or other types of integrated development environments ("Visual Studio":"https://www.visualstudio.com/" or other, see "list":"https://sourceforge.net/directory/development/ide/" etc).
+
+
+It means that you need to compile the program (translate the human-like instructions into machine code) and link the resulting compiled file (a so-called _object_ file) with the various libraries in order to obtain an executable file. 
+
+In order to obtain an executable file for a C++ program, the following
+instructions under Linux/Unix can be used ("similar instructions apply to the windows-like environments using DOS":"https://msdn.microsoft.com/en-us/library/ms235639.aspx").
+
+First you need to open a terminal on your unix/linux PC/laptop. You need also to have a c++ compiler installed. To check on unix/linux whether a c++ is installed or not type simply (in the terminal window)
+!bc sys
+which c++
+!ec
+If you get something like 
+!bc 
+Mortens-MacBook-Pro:~ hjensen$ which c++
+/usr/bin/c++
+!ec
+you are ok. 
+Then compile and link your program as
+!bc sys
+c++ -c -Wall myprogram.cpp
+c++ -o myprogram.exe  myprogram.o
+!ec
+where the compiler is called through the command c++/g++. The compiler
+option -Wall means that a warning is issued in case of non-standard
+language. The executable file is in this case _myprogram.exe_. The option
+`-c` is for compilation only, where the program is translated into machine code,
+while the `-o` option links the produced object file _myprogram.o_ with other libraries 
+and produces the executable _myprogram.exe_.
+
+You can skip the first step by simply writing
+!bc sys
+c++ -o myprogram.exe  myprogram.cpp
+!ec
+
+
+Also, to speed up the code use compile options like (compiler flags will be dealt with later)
+
+!bc sys
+c++ -O3 -c -Wall myprogram.cpp
+!ec
+
+
+To run your program, simply write 
+!bc sys
+myprogram.exe
+!ec
+or if you wish to avoid creating executables which by accident have the same name as operating system commands (with sometime fatal consequences) write
+!bc sys
+./myprogram.exe
+!ec
+Here, using . denotes the current directory. Since you want to run a file in your current directory and that directory is not in your $PATH, you need the ./ bit to tell the shell where the executable is.
+
+
+
+Under Linux/Unix it is often convenient to create a
+so-called makefile, which is a script which includes possible
+compiling commands.  By clicking on the link here you can see examples of "makefiles":"https://www.gnu.org/software/make/manual/make.html". 
+
+
+If you name your file for _makefile_, simply type the command
+_make_ and Linux/Unix executes all possible statements included in your makefile. 
+
+When you use an IDE like Qt, it creates automatically something similar to a makefile for you and you don't need to hardcode the above statements. 
+
+
+
+
+Our first program is the classic "Hello World":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/hellow.cpp".
+
+Here we present the C++ version using _namespace_, see shortly below here for an explanation.
+!bc cpppro
+// A comment line begins like this in C++ programs
+// Standard ANSI-C++ include files
+#include <cstdlib> // atof function 
+#include <iostream>   // input and output
+#include <cmath>      // math functions
+using namespace std;
+int main (int argc, char* argv[])
+{
+  // convert the text argv[1] to double using atof:
+  double r = atof(argv[1]);  // convert the text argv[1] to double
+  double s = sin(r);
+  cout << "Hello, World! sin(" << r << ") =" << s << endl;
+  return 0;           // success execution of the program 
+}
+!ec
+
+The compiler must see a declaration of a function before you can
+call it (the compiler checks the argument and return types).
+The declaration of library functions appears
+in so-called ``header files'' that must be included in the program, e.g.,
+
+!bc cppcod
+   #include <cstdlib> // atof function 
+!ec
+We call three functions (atof, sin, cout)
+and these are declared in three different header files. These declarations should come first. 
+
+"The main program is a function called main":"http://en.cppreference.com/w/cpp/language/return"
+with a return value set to an integer, int (0 if success).
+The operating system stores the return value,
+and other programs/utilities can check whether
+the execution was successful or not. The main program has thus to be declared as _int main()_ in standard C++. 
+The command-line arguments are transferred to the main function through
+
+!bc cppcod
+   int main (int argc, char* argv[])
+!ec
+
+The command-line arguments are transferred to the main function through
+
+!bc cppcod
+   int main (int argc, char* argv[])
+!ec
+The integer _argc_ is the number  of command-line arguments, set to
+one in our case, while
+_argv_ is a vector of strings containing the command-line arguments
+with _argv[0]_ containing  the name of the program
+and _argv[1]_, _argv[2]_, ... are the command-line args, i.e., the number of
+lines of input to the program.
+Here we define floating points, see also below,
+through the keywords _float_ for single precision real numbers and
+_double_ for double precision. The function
+_atof_ transforms a text string (_argv[1]_) to a float, either single or double precision.
+The _sine_ function is declared in <cmath>, a library which
+is not automatically included and needs to be linked when computing
+and producing the  executable file. Note that arrays in c++ begin by default with $0$. The first element is here _argv[0]_. 
+
+A one-dimensional array like _argv_ can be defined statically or dynamically. To reserve space in memory statically means defining a variable of this type as
+!bc cppcod
+char argv[10]; 
+!ec
+which contains in this case ten elements. Each element has a specific address in memory, see the discussions below on pointers. We anticipate partly the discussion here by declaring a pointer variable and allocating memory dynamically. In C++ this is done as
+
+!bc cppcod
+char *argv;  // declaring first a pointer
+argv = new char[10];   // Now reserving space for  ten elements in memory for a character variable (4 bytes or 32 bits).
+!ec
+
+For a floating point variable of  8 bytes or 64 bits we would declare a similar array as
+!bc cppcod
+double *argv;  // declaring first a pointer
+argv = new double[10];   // Now reserving space for  ten elements in memory for a character variable (4 bytes or 32 bits).
+!ec
+In similar ways we can declare integer variable, single precisions floats etc.
+We can write the above as
+!bc cppcod
+double *argv = new double[10];   
+!ec
+
+
+
+After having compiled this program as 
+!bc sys
+c++ -o hw.exe hellowd.cpp
+!ec
+we can run the executable as
+!bc sys
+Mortens-MacBook-Pro:cpp hjensen$ ./hw.exe 0.5
+Hello, World! sin(0.5) =0.479426
+!ec
+
+If we do not write the value of $x$ on the command line we would get
+!bc sys
+Mortens-MacBook-Pro:cpp hjensen$ ./hw.exe 
+Segmentation fault: 11
+!ec
+
+In this case, since reading from the command line with a number of arguments defined by the number of elements in the array _argv[]_, trying to access _argv[1]_ results in a segmentation fault. In the last case there is only one command line argument, the name of the executable program. It means that there we only have the array element _argv[0]_. The element _argv[1]_ is not defined and we are trying to access something which is outside the memory slots reserved for _argv[]_. 
+
+We can rewrite our "Hello World without the namespace usage":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/hellownonamespace.cpp". 
+
+Namespaces provide a method for preventing name conflicts in large projects and 
+symbols declared inside a namespace block are placed in a named scope that prevents them from being mistaken for identically-named symbols in other scopes.
+Multiple namespace blocks with the same name are allowed. All declarations within those blocks are declared in the named scope.  This author likes to limit the usage of namespace to some few libraries, like the standard C library _csdtlib_. 
+
+
+Here we present the C++ version without using namespace. 
+!bc cpppro
+// A comment line begins like this in C++ programs
+// Standard ANSI-C++ include files
+#include <cstdlib> // atof function 
+#include <iostream>   // input and output
+#include <cmath>      // math functions
+
+int main (int argc, char* argv[])
+{
+  // convert the text argv[1] to double using atof:
+  double r = atof(argv[1]);  // convert the text argv[1] to double
+  double s = sin(r);
+  // Note std::cout and std::endl
+  std::cout << "Hello, World! sin(" << r << ") =" << s << std::endl;
+  return 0;           // success execution of the program 
+}
+!ec
+
+I personally tend to use _namespace_ for input and output as I feel it increases the readability of my codes. Thus, all examples from here and on will have a statement like 
+
+!bc cppcod
+using namespace std;
+!ec
+
+
+
+
+
+===== Brief summary =====
+
+  * A C/C++ program begins with include statements of header files (libraries,intrinsic functions etc)
+  * Functions which are used are normally defined at the top (details below)
+  * The main program is declared as an integer, it returns 0 (everything correct) or 1 (something went wrong)
+  * Standard `if`, `while` and `for` statements as in Java, Fortran, Python...
+  * A C/C++ array begins by indexing at 0!
+  * Array allocations are done by size, not by the final index value.If you allocate an array with 10 elements, you should index them from $0,1,\dots, 9$.
+  * Initialize always an array before a computation.
+
+
+
+=== From decimal to binary representation ===
+Let us now write a program which translates an integer in the decimal representation to one in the binary representation. The mathematical formula for this is given by
+!bt
+\[
+  a_n2^n+a_{n-1}2^{n-1}  +a_{n-2}2^{n-2}  +\dots +a_{0}2^{0}.
+\]
+!et
+
+In binary notation we have thus $(417)_{10} =(110110001)_2$
+since we have
+
+!bt
+\begin{align*}
+(110100001)_2
+&=1\times2^8+1\times 2^{7}+0\times 2^{6}+1\times 2^{5}+0\times 2^{4}+0\times 2^{3}\\
+&+0\times 2^{2}+0\times 2^{2}+0\times 2^{1}+1\times 2^{0}.
+\end{align*}
+!et
+
+
+To see this, we have performed the following divisions by 2
+
+|-----------------------------------------------------------|
+|            |             |                                |
+|-----------------------------------------------------------|
+| 417/2=208  | remainder 1 | coefficient of $2^{0}$ is 1    |
+| 208/2=104  | remainder 0 | coefficient of $2^{1}$ is 0    |
+| 104/2=52   | remainder 0 | coefficient of $2^{2}$ is 0    |
+| 52/2=26    | remainder 0 | coefficient of $2^{3}$ is 0    |
+| 26/2=13    | remainder 1 | coefficient of $2^{4}$ is 0    |
+| 13/2= 6    | remainder 1 | coefficient of $2^{5}$ is 1    |
+| 6/2= 3     | remainder 0 | coefficient of $2^{6}$ is 0    |
+| 3/2= 1     | remainder 1 | coefficient of $2^{7}$ is 1    |
+| 1/2= 0     | remainder 1 | coefficient of $2^{8}$ is 1    |
+|-----------------------------------------------------------|
+
+
+Let us now look at the "code which takes as input from the command line a number in the decimal representation and converts it into the binary representation":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program2.cpp" 
+
+
+!bc cppcod
+#include <iostream>
+#include <cmath>
+#include <cstdio>
+#include <cstdlib>
+using namespace std;
+int main (int argc, char* argv[])
+{
+  int terms[32]; // storage of a0, a1, etc, up to 32 bits
+  int number = atoi(argv[1]); 
+  // initialise the term a0, a1 etc
+  for (int i=0; i < 32 ; i++) terms[i] = 0;
+  for (int i=0; i < 32 ; i++){ 
+    terms[i] = number%2;   // modulo division done by %
+    number /= 2; 
+  }
+  // write out results
+  cout << "Number of bytes used= " << sizeof(number) << endl;
+  for (i=0; i < 32 ; i++){ 
+    cout << " Term nr: " << i << "Value= " << terms[i];
+    cout << endl;
+  }
+  return 0;  
+}
+!ec
+
+To be noted here is the way we define a loop in C++. Our first encounter is
+
+!bc cppcod
+  for (i=0; i < 32 ; i++){ terms[i] = 0;}
+!ec
+The loop starts with the _for_ declaration, followed by a parenthesis hwere we declare the starting values (_i=0_) and the end value
+(_i < 32_). What would have happened if we declared the endpoint as _i <=32_?  
+
+This loop is just a oneliner that serves to initialize the array _terms[]_ to zero. Note the way we can write increment by one via _i++_.
+
+Our next loop  
+!bc cppcod
+  for (int i=0; i < 32 ; i++){ 
+    terms[i] = number%2;   // modulo division done by %
+    number /= 2; 
+  }
+!ec
+contains the actual algorithm for the translation of an integer in the decimal representation to an integer in the binary representation. We note the way we use the curly parentheses to mark where the content inside a one loop starts and where it ends. It is useful to introduce some identation (many text editors do this automatically for you when the file ends with _.cpp_) in order to increase readability.
+
+The function _sizeof()_ tells how many bytes are used to store a given variable. An integer is by default defined in terms of four bytes or 32 bits. 
+
+Our next example is a program that calculates the second derivative numerically  of a function (the exponential function here) and writes the result to a file declared by the user. The first thing to notice is declaration of the object _ofile_ which inherits all functionality from the _ofstream_ class. "This class":"http://www.cplusplus.com/reference/fstream/ofstream/" (to be discussed later below in connection with classes) overloads functions like writing to file, opening files, closing files etc. A similar class exists, the _ifstream_ class, for input variables. 
+
+!bc cppcod
+#include <iostream>
+#include <cmath>
+#include <fstream>
+#include <iomanip>
+// output file as global variable
+ofstream ofile;
+
+// Begin of main program
+
+int main(int argc, char* argv[])
+{
+  char *outfilename;
+  // Read in output file, abort if there are too few command-line arguments
+  if( argc <= 3 ){
+    cout << "Bad Usage: " << argv[0] <<
+      " read also output file, number of integration points and the final x values  on same line, four variables in total" << std::endl;
+    exit(1);
+  }
+  else{
+    outfilename=argv[1];
+  }
+  //  opening a file for the program
+  ofile.open(outfilename);
+  // extracting number of mesh points
+  int i = atoi(argv[2]);
+  double x = atof(argv[3]);  // reading x-value
+  double h = 1.0/((double) i); // setting up step size
+  double Derivative = (exp(x+h)-2.*exp(x)+exp(x-h))/(h*h);
+  double RelativeError = log10(fabs(Derivative-exp(x))/exp(x));
+  ofile <<  setw(15) << setprecision(8) << "relative error=" << RelativeError << endl;
+  ofile.close();  // close output file
+  return 0;
+}
+!ec
+
+We have in addition included some safety valves here. In case we have less than four variables on the command line, the program aborts.
+After having read the name of the output file we open the file  and by default we can write to it via the statement
+!bc cppcod
+  ofile.open(outfilename);
+!ec
+and we close it at the end by
+!bc cppcod
+  ofile.close();
+!ec
+
+We have also defined how to write to file our result in a formatted way via the statement
+!bc cppcod
+  ofile <<  setw(15) << setprecision(8) << "relative error=" << RelativeError << endl;
+!ec
+where we reserve a width of 15 characters and a precision of eight leading digits after the decimal point.
+
+The above example represents our first simple case where we write to file our results. Before we proceed now, we need to say something more about pointers. 
+
+===== Technical Matter in C/C++: Pointers =====
+
+
+A pointer specifies where a value resides in the computer's memory (like a house number specifies where a particular family resides on a street).
+
+A pointer points to an address not to a data container of any kind!
+
+Simple example declarations:
+
+!bc cppcod
+  int main()
+ {
+   // what are the differences?
+   int var;
+   cin >> var;
+   int *p, q;
+   int *s, *t;
+   int * a new[var];    // dynamic memory allocation
+   delete [] a;
+}
+!ec
+
+===== Technical Matter in C/C++: "Pointer example I":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program7.cpp" =====
+
+!bc cppcod
+int main()
+{
+  int var;
+  int *p;
+  p = &var;
+  var  = 421;
+  printf("Address of integer variable var : %p\n",&var);
+  printf("Its value: %d\n", var);
+  printf("Value of integer pointer p : %p\n",p);
+  printf("The value p points at :  %d\n",*p);
+  printf("Address of the pointer p : %p\n",&p);
+  return 0;
+}
+!ec
+
+===== Dissection: Pointer example I =====
+
+
+!bc cppcod
+int main()
+{
+  int var;     // Define an integer variable var
+  int *p;      // Define a pointer to an integer
+  p = &var;    // Extract the address of var
+  var = 421;   // Change content of var
+  printf("Address of integer variable var : %p\n", &var);
+  printf("Its value: %d\n", var);  // 421
+  printf("Value of integer pointer p : %p\n", p);  // = &var
+  // The content of the variable pointed to by p is *p
+  printf("The value p points at :  %d\n", *p);
+  // Address where the pointer is stored in memory
+  printf("Address of the pointer p : %p\n", &p);
+  return 0;
+}
+!ec
+
+===== "Pointer example II":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program8.cpp" =====
+
+
+!bc cppcod
+int matr[2];
+int *p;
+p = &matr[0];
+matr[0] = 321;
+matr[1] = 322;
+printf("\nAddress of matrix element matr[1]: %p",&matr[0]);
+printf("\nValue of the  matrix element  matr[1]; %d",matr[0]);
+printf("\nAddress of matrix element matr[2]: %p",&matr[1]);
+printf("\nValue of the matrix element  matr[2]: %d\n", matr[1]);
+printf("\nValue of the pointer p: %p",p);
+printf("\nThe value p points to: %d",*p);
+printf("\nThe value that (p+1) points to  %d\n",*(p+1));
+printf("\nAddress of pointer p : %p\n",&p);
+!ec
+
+
+!split
+===== Dissection: Pointer example II =====
+
+
+!bc cppcod
+int matr[2];    // Define integer array with two elements
+int *p;         // Define pointer to integer
+p = &matr[0];   // Point to the address of the first element in matr
+matr[0] = 321;  // Change the first element
+matr[1] = 322;  // Change the second element
+printf("\nAddress of matrix element matr[1]: %p", &matr[0]);
+printf("\nValue of the  matrix element  matr[1]; %d", matr[0]);
+printf("\nAddress of matrix element matr[2]: %p", &matr[1]);
+printf("\nValue of the matrix element  matr[2]: %d\n", matr[1]);
+printf("\nValue of the pointer p: %p", p);
+printf("\nThe value p points to: %d", *p);
+printf("\nThe value that (p+1) points to  %d\n", *(p+1));
+printf("\nAddress of pointer p : %p\n", &p);
+!ec
+
+===== Output of Pointer example II =====
+
+
+!bc
+Address of the matrix element matr[1]: 0xbfffef70
+Value of the  matrix element  matr[1]; 321
+Address of the matrix element matr[2]: 0xbfffef74
+Value of the matrix element  matr[2]: 322
+Value of the pointer: 0xbfffef70
+The value pointer points at: 321
+The value that (pointer+1) points at:  322
+Address of the pointer variable : 0xbfffef6c
+!ec
+
+===== "Example codes in c++, transfer of data using call by value and call by reference":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program6.cpp" =====
+
+!bc cppcod
+#include <iostream>
+using namespace std;
+//  Declare functions before main
+void func(int, int*);
+int main(int argc, char *argv[]) 
+{
+  int a; 
+  int *b;
+  a = 10;
+  b = new int[10];
+  for(int i = 0; i < 10; i++) {
+    b[i] = i;
+    cout <<  b[i] << endl;
+  }
+  // the variable a is transferred by call by value. This means
+  //  that the function func cannot change a in the calling function
+  func( a,b);
+  
+  delete [] b ; 
+  return 0;
+} // End: function main()
+
+void func( int x, int *y) 
+{
+  // a becomes locally x  and it can be changed locally
+  x+=7;
+  //  func gets the address of the first element of y (b)
+  // it changes y[0] to 10 and when returning control to main
+  // it changes also b[0]. Call by reference
+  *y += 10;  //  *y = *y+10;
+  //  explicit element 
+  y[6] += 10;
+  //   in this function y[0]  and y[6] have been changed and when returning 
+  // control to main  this means that b[0] and b[6] are changed.  
+  return;
+} // End: function func()
+
+!ec
+
+
+
+
+===== Call by value or reference =====
+C++ allows the programmer to use solely call by reference (note that call by reference is implemented as pointers). To see the difference between C and C++, consider the following simple examples.
+In C we would write
+
+!bc cppcod
+   int n; n =8;
+   func(&n); /* &n is a pointer to n */
+   ....
+   void func(int *i)
+   {
+     *i = 10; /* n is changed to 10 */
+     ....
+   }
+!ec
+whereas in C++ we would write
+!bc cppcod
+   int n; n =8;
+   func(n); // just transfer n itself
+   ....
+   void func(int& i)
+   {
+     i = 10; // n is changed to 10
+     ....
+   }
+!ec
+
+
+The reason why we emphasize the difference between call by value and call
+by reference is that it allows the programmer to avoid pitfalls
+like unwanted changes of variables. However, many people feel that this
+reduces the readability of the code.
+
+
+
+
+
+
+===== "Example codes in c++, writing to file and dynamic allocation for arrays":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program5.cpp" =====
+
+!bc cppcod
+#include <iostream>
+#include <cmath>
+#include <fstream>
+#include <iomanip>
+using namespace std; 
+
+// output file as global variable
+
+ofstream ofile;  
+
+// Begin of main program   
+
+int main(int argc, char* argv[])
+{
+  char *outfilename;
+  // Read in output file, abort if there are too few command-line arguments
+  if( argc <= 2 ){
+    cout << "Bad Usage: " << argv[0] << 
+      " read also output file and number of elements on same line" << endl;
+    exit(1);
+  }
+  else{
+    outfilename=argv[1];
+  }
+
+  //  opening a file for the program
+  ofile.open(outfilename); 
+  int i = atoi(argv[2]); 
+  //  int *a;
+  //a = new int[i];
+  double *a = new double[i]; 
+  cout << " bytes for i=" << sizeof(i) << endl;
+  for (int j = 0; j < i; j++) {
+    a[j] = j*exp(2.0);
+    // ofile instead of cout
+    ofile << setw(15) << setprecision(8) << "a=" << a[j] << endl;
+  }
+  delete [] a; // free memory
+  ofile.close();  // close output file
+  return 0;
+}
+
+!ec
+
+
+
+
+===== "Example codes in c++, operating on several arrays and printing time used":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" =====
+
+!bc cppcod
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#include <iomanip> 
+#include "time.h" 
+
+using namespace std; // note use of namespace                                       
+int main (int argc, char* argv[])
+{
+  int i = atoi(argv[1]); 
+  double *a, *b, *c;
+  a = new double[i]; 
+  b = new double[i]; 
+  c = new double[i]; 
+
+  clock_t start, finish;
+  start = clock();
+  for (int j = 0; j < i; j++) {
+    a[j] = cos(j*1.0);
+    b[j] = sin(j+3.0);
+    c[j] = 0.0;
+  }
+  for (int j = 0; j < i; j++) {
+    c[j] = a[j]+b[j];
+  }
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout << setiosflags(ios::showpoint | ios::uppercase);
+  cout << setprecision(10) << setw(20) << "Time used  for vector addition=" << timeused  << endl;
+  delete [] a;
+  delete [] b;
+  delete [] c;
+  return 0;           /* success execution of the program */
+}
+
+!ec
+
+
+
+
+
+
+
