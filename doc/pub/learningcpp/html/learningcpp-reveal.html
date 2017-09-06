@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Computational Physics:  Teach yourself C++">
+
+<title>Computational Physics:  Teach yourself C++</title>
+
+
+
+
+
+
+
+<!-- reveal.js: http://lab.hakim.se/reveal-js/ -->
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<!--
+<link rel="stylesheet" href="reveal.js/css/reveal.css">
+<link rel="stylesheet" href="reveal.js/css/theme/beige.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/beigesmall.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/solarized.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/serif.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/moon.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/sky.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/darkgray.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/default.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/cbc.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/simula.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
+<link rel="stylesheet" href="reveal.js/css/theme/league.css" id="theme">
+-->
+
+<!-- For syntax highlighting -->
+<link rel="stylesheet" href="reveal.js/lib/css/zenburn.css">
+
+<!-- Printing and PDF exports -->
+<script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+</script>
+
+<style type="text/css">
+    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    p.caption { width: 80%; font-size: 60%; font-style: italic; text-align: left; }
+    hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+    .reveal .alert-text-small   { font-size: 80%;  }
+    .reveal .alert-text-large   { font-size: 130%; }
+    .reveal .alert-text-normal  { font-size: 90%;  }
+    .reveal .alert {
+             padding:8px 35px 8px 14px; margin-bottom:18px;
+             text-shadow:0 1px 0 rgba(255,255,255,0.5);
+             border:5px solid #bababa;
+             -webkit-border-radius: 14px; -moz-border-radius: 14px;
+             border-radius:14px;
+             background-position: 10px 10px;
+             background-repeat: no-repeat;
+             background-size: 38px;
+             padding-left: 30px; /* 55px; if icon */
+     }
+     .reveal .alert-block {padding-top:14px; padding-bottom:14px}
+     .reveal .alert-block > p, .alert-block > ul {margin-bottom:1em}
+     /*.reveal .alert li {margin-top: 1em}*/
+     .reveal .alert-block p+p {margin-top:5px}
+     /*.reveal .alert-notice { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_notice.png); }
+     .reveal .alert-summary  { background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_summary.png); }
+     .reveal .alert-warning { background-image: url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_warning.png); }
+     .reveal .alert-question {background-image:url(http://hplgit.github.io/doconce/bundled/html_images/small_gray_question.png); } */
+
+</style>
+
+
+
+<!-- Styles for table layout of slides -->
+<style type="text/css">
+td.padding {
+  padding-top:20px;
+  padding-bottom:20px;
+  padding-right:50px;
+  padding-left:50px;
+}
+</style>
+
+</head>
+
+<body>
+<div class="reveal">
+
+<!-- Any section element inside the <div class="slides"> container
+     is displayed as a slide -->
+
+<div class="slides">
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+
+
+
+<section>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1 style="text-align: center;">Computational Physics:  Teach yourself C++</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Morten Hjorth-Jensen -->
+
+<center>
+<b>Morten Hjorth-Jensen</b> [1, 2]
+</center>
+
+<p>&nbsp;<br>
+<!-- institution(s) -->
+
+<center>[1] <b>Department of Physics, University of Oslo</b></center>
+<center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
+<br>
+<p>&nbsp;<br>
+<center><h4>Sep 6, 2017</h4></center> <!-- date -->
+<br>
+
+<h2 id="___sec0">Getting Started, compiling and linking first </h2>
+
+<p>
+The programming language C++ is a so-called <a href="https://en.wikipedia.org/wiki/Compiled_language" target="_blank">compiled language</a>. For help on how to use C++, we recommend highly the <a href="http://www.cplusplus.com/" target="_blank">cpplus website</a>.
+
+<p>
+Assume we already have a program file, say <b>myprogram.cpp</b>. Note that C++ files have the extension <b>.cpp</b>.
+
+<p>
+Here we discuss first how to obtain an executable without using IDEs like <a href="https://www.qt.io/" target="_blank">QT</a> creator or other types of integrated development environments (<a href="https://www.visualstudio.com/" target="_blank">Visual Studio</a> or other, see <a href="https://sourceforge.net/directory/development/ide/" target="_blank">list</a> etc).
+
+<p>
+It means that you need to compile the program (translate the human-like instructions into machine code) and link the resulting compiled file (a so-called <b>object</b> file) with the various libraries in order to obtain an executable file.
+
+<p>
+In order to obtain an executable file for a C++ program, the following
+instructions under Unix/Linux can be used (<a href="https://msdn.microsoft.com/en-us/library/ms235639.aspx" target="_blank">similar instructions apply to windows-like environments using DOS</a>).
+
+<p>
+First you need to open a terminal on your Unix/Linux PC/laptop. You need also to have a C++ compiler installed. To check on Unix/Linux whether a c++ is installed or not type simply (in the terminal window)
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>which c++
+</pre></div>
+<p>
+If you get something like 
+<p>
+
+<!-- code=text typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>Mortens-MacBook-Pro:~ hjensen$ which c++
+/usr/bin/c++
+</pre></div>
+<p>
+you are ok. 
+Then compile and link your program as
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>c++ -c -Wall myprogram.cpp
+c++ -o myprogram.exe  myprogram.o
+</pre></div>
+<p>
+where the compiler is called through the command c++/g++. The compiler
+option -Wall means that a warning is issued in case of non-standard
+language. The executable file is in this case <b>myprogram.exe</b>. The option
+<code>-c</code> is for compilation only, where the program is translated into machine code,
+while the <code>-o</code> option links the produced object file <b>myprogram.o</b> with other libraries 
+and produces the executable <b>myprogram.exe</b>.
+
+<p>
+You can skip the first step by simply writing
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>c++ -o myprogram.exe  myprogram.cpp
+</pre></div>
+<p>
+Also, to speed up the code use compile options like (compiler flags will be dealt with later)
+
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>c++ -O3 -c -Wall myprogram.cpp
+</pre></div>
+<p>
+To run your program, simply write 
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>myprogram.exe
+</pre></div>
+<p>
+or if you wish to avoid creating executables which by accident have the same name as operating system commands (with sometime fatal consequences) write
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>./myprogram.exe
+</pre></div>
+<p>
+Here, using . denotes the current directory. Since you want to run a file in your current directory and that directory is not in your $PATH, you need the ./ bit to tell the shell where the executable is.
+
+<p>
+Under Linux/Unix it is often convenient to create a
+so-called makefile, which is a script which includes possible
+compiling commands.  By clicking on the link here you can see examples of <a href="https://www.gnu.org/software/make/manual/make.html" target="_blank">makefiles</a>.
+
+<p>
+If you name your file for <b>makefile</b>, simply type the command
+<b>make</b> and Linux/Unix executes all possible statements included in your makefile.
+
+<p>
+When you use an IDE like Qt, it creates automatically something similar to a makefile for you and you don't need to hardcode the above statements.
+
+<p>
+Our first program is the classic <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/hellow.cpp" target="_blank">Hello World</a>.
+
+<p>
+Here we present the C++ version using <b>namespace</b>, see shortly below here for an explanation.
+<p>
+
+<!-- code=c++ (!bc cpppro) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">// A comment line begins like this in C++ programs</span>
+<span style="color: #228B22">// Standard ANSI-C++ include files</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdlib&gt; // atof function </span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;   // input and output</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;      // math functions</span><span style="color: #1e889b"></span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+{
+  <span style="color: #228B22">// convert the text argv[1] to double using atof:</span>
+  <span style="color: #a7a7a7; font-weight: bold">double</span> r = atof(argv[<span style="color: #B452CD">1</span>]);  <span style="color: #228B22">// convert the text argv[1] to double</span>
+  <span style="color: #a7a7a7; font-weight: bold">double</span> s = sin(r);
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Hello, World! sin(&quot;</span> &lt;&lt; r &lt;&lt; <span style="color: #CD5555">&quot;) =&quot;</span> &lt;&lt; s &lt;&lt; endl;
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;           <span style="color: #228B22">// success execution of the program </span>
+}
+</pre></div>
+<p>
+The compiler must see a declaration of a function before you can
+call it (the compiler checks the argument and return types).
+The declaration of library functions appears
+in so-called &quot;header files&quot; that must be included in the program, as an example the following statement includes the so-called <b>Standard Library Functions</b>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>   <span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdlib&gt; // atof function </span><span style="color: #1e889b"></span>
+</pre></div>
+<p>
+We call three functions (atof, sin, cout)
+and these are declared in three different header files. These declarations should come first. The <b>cout</b> function is included in the <b>isostream</b>. In C++, input and output (I/O) operations  are performed by using so-called streams which a <em>stream of data</em> where a  stream is an object with properties that are defined by a class. Global objects are predefined for the standard I/O channels.   The <b>sin</b> function is defined by the <b>cmath</b> library and its header file and needs to be included. For those of you familiar with <b>Python</b> this is similar to 
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">math</span> <span style="color: #8B008B; font-weight: bold">import</span> sin
+</pre></div>
+<p>
+<a href="http://en.cppreference.com/w/cpp/language/return" target="_blank">The main program is a function called main</a>
+with a return value set to an integer, int (0 if success).
+The operating system stores the return value,
+and other programs/utilities can check whether
+the execution was successful or not. The main program has thus to be declared as <b>int main()</b> in standard C++. 
+The command-line arguments are transferred to the main function through
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>   <span style="color: #a7a7a7; font-weight: bold">int</span> main (<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+</pre></div>
+<p>
+The command-line arguments are transferred to the main function through
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>   <span style="color: #a7a7a7; font-weight: bold">int</span> main (<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+</pre></div>
+<p>
+The integer <b>argc</b> is the number  of command-line arguments (two in our case) while
+<b>argv</b> is a vector of strings containing the command-line arguments
+with _argv[0]_ containing  the name of the program
+and _argv[1]_, _argv[2]_, ... are the command-line args, i.e., the number of
+arguments that are  inputs to the program.
+
+<p>
+We define floating point variables, see also below,
+through the keywords <b>float</b> for single precision real numbers and
+<b>double</b> for double precision real numbers. The function
+<b>atof</b> transforms a text string to a float, either single or double precision.
+The <b>sine</b> function is declared in <b>cmath</b>, a library which
+is not automatically included and needs to be linked when computing
+and producing the  executable file. Note that arrays in C++ begin by default with \( 0 \). The first element is here _argv[0]_.
+
+<p>
+A one-dimensional array like <b>argv</b> can be defined statically or dynamically. To reserve space in memory statically means defining a variable of this type as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">char</span> argv[<span style="color: #B452CD">10</span>]; 
+</pre></div>
+<p>
+which contains in this case ten elements. Each element has a specific address in memory, see the discussions below on pointers. We anticipate partly the discussion here by declaring a pointer variable and allocating memory dynamically. In C++ this is done as
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">char</span> *argv;  <span style="color: #228B22">// declaring first a pointer</span>
+argv = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">char</span>[<span style="color: #B452CD">10</span>];   <span style="color: #228B22">// Now reserving space for  ten elements in memory for a character variable (4 bytes or 32 bits).</span>
+</pre></div>
+<p>
+For a floating point variable of  8 bytes or 64 bits we would declare a similar array as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">double</span> *argv;  <span style="color: #228B22">// declaring first a pointer</span>
+argv = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[<span style="color: #B452CD">10</span>];   <span style="color: #228B22">// Now reserving space for  ten elements in memory for a character variable (4 bytes or 32 bits).</span>
+</pre></div>
+<p>
+In similar ways we can declare integer variable, single precisions floats etc.
+We can write the above in one line as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">double</span> *argv = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[<span style="color: #B452CD">10</span>];   
+</pre></div>
+<p>
+After having compiled this program as 
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>c++ -o hw.exe hellowd.cpp
+</pre></div>
+<p>
+we can run the executable and obtain
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>Mortens-MacBook-Pro:cpp hjensen$ ./hw.exe 0.5
+Hello, World! sin(0.5) =0.479426
+</pre></div>
+<p>
+If we do not write the value of \( x \) on the command line we would get
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>Mortens-MacBook-Pro:cpp hjensen$ ./hw.exe 
+Segmentation fault: 11
+</pre></div>
+<p>
+In this case, since reading from the command line with a number of arguments defined by the number of elements in the array _argv[]_, trying to access _argv[1]_ results in a segmentation fault. In the last case there is only one command line argument, the name of the executable program. It means that we have only the array element _argv[0]_. The element _argv[1]_ is not defined and we are trying to access something which is outside the memory slots reserved for _argv[]_.
+
+<p>
+We can rewrite our <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/hellownonamespace.cpp" target="_blank">Hello World without the namespace usage</a>.
+
+<p>
+Namespaces provide a method for preventing name conflicts in large projects and 
+symbols declared inside a namespace block are placed in a named scope that prevents them from being mistaken for identically-named symbols in other scopes.
+Multiple namespace blocks with the same name are allowed. All declarations within those blocks are declared in the named scope.  This author likes to limit the usage of namespace to some few libraries, like the standard C library <b>csdtlib</b>.
+
+<p>
+Here we present the C++ version without using namespace. 
+<p>
+
+<!-- code=c++ (!bc cpppro) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">// A comment line begins like this in C++ programs</span>
+<span style="color: #228B22">// Standard ANSI-C++ include files</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdlib&gt; // atof function </span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;   // input and output</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;      // math functions</span><span style="color: #1e889b"></span>
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+{
+  <span style="color: #228B22">// convert the text argv[1] to double using atof:</span>
+  <span style="color: #a7a7a7; font-weight: bold">double</span> r = atof(argv[<span style="color: #B452CD">1</span>]);  <span style="color: #228B22">// convert the text argv[1] to double</span>
+  <span style="color: #a7a7a7; font-weight: bold">double</span> s = sin(r);
+  <span style="color: #228B22">// Note std::cout and std::endl</span>
+  std::cout &lt;&lt; <span style="color: #CD5555">&quot;Hello, World! sin(&quot;</span> &lt;&lt; r &lt;&lt; <span style="color: #CD5555">&quot;) =&quot;</span> &lt;&lt; s &lt;&lt; std::endl;
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;           <span style="color: #228B22">// success execution of the program </span>
+}
+</pre></div>
+<p>
+I personally tend to use <b>namespace</b> for input and output as I feel it increases the readability of my codes. Thus, all examples from here and on will have a statement like
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+</pre></div>
+
+<h2 id="___sec1">Brief summary </h2>
+
+<ul>
+
+<p><li> A C/C++ program begins with include statements of header files (libraries,intrinsic functions etc). This is similar to the <b>import</b> statement in Python.</li>
+
+<p><li> Functions which are used are normally defined at the top (details below)</li>
+
+<p><li> The main program is declared as an integer, it returns 0 (everything correct) or 1 (something went wrong)</li>
+
+<p><li> Standard <code>if</code>, <code>while</code> and <code>for</code> statements as in Java, Fortran, Python...</li>
+
+<p><li> A C/C++ array begins by indexing at 0!</li>
+
+<p><li> Array allocations are done by size, not by the final index value.If you allocate an array with 10 elements, you should index them from \( 0,1,\dots, 9 \).</li>
+
+<p><li> Initialize always an array before a computation.</li>
+</ul>
+
+<h3 id="___sec2">From decimal to binary representation </h3>
+
+Let us now write a program which translates an integer in the decimal representation to one in the binary representation. The mathematical formula for this is given by
+<p>&nbsp;<br>
+$$
+  a_n2^n+a_{n-1}2^{n-1}  +a_{n-2}2^{n-2}  +\dots +a_{0}2^{0}.
+$$
+<p>&nbsp;<br>
+
+<p>
+In binary notation we have thus \( (417)_{10} =(110110001)_2 \)
+since we have
+
+<p>&nbsp;<br>
+$$
+\begin{align*}
+(110100001)_2
+&=1\times2^8+1\times 2^{7}+0\times 2^{6}+1\times 2^{5}+0\times 2^{4}+0\times 2^{3}\\
+&+0\times 2^{2}+0\times 2^{2}+0\times 2^{1}+1\times 2^{0}.
+\end{align*}
+$$
+<p>&nbsp;<br>
+
+<p>
+To see this, we have performed the following divisions by 2
+
+<p>
+<table border="1">
+<tr></tr>
+<tbody>
+<tr><td align="center">   417/2=208    </td> <td align="center">   remainder 1    </td> <td align="center">   coefficient of \( 2^{0} \) is 1    </td> </tr>
+<tr><td align="center">   208/2=104    </td> <td align="center">   remainder 0    </td> <td align="center">   coefficient of \( 2^{1} \) is 0    </td> </tr>
+<tr><td align="center">   104/2=52     </td> <td align="center">   remainder 0    </td> <td align="center">   coefficient of \( 2^{2} \) is 0    </td> </tr>
+<tr><td align="center">   52/2=26      </td> <td align="center">   remainder 0    </td> <td align="center">   coefficient of \( 2^{3} \) is 0    </td> </tr>
+<tr><td align="center">   26/2=13      </td> <td align="center">   remainder 1    </td> <td align="center">   coefficient of \( 2^{4} \) is 0    </td> </tr>
+<tr><td align="center">   13/2= 6      </td> <td align="center">   remainder 1    </td> <td align="center">   coefficient of \( 2^{5} \) is 1    </td> </tr>
+<tr><td align="center">   6/2= 3       </td> <td align="center">   remainder 0    </td> <td align="center">   coefficient of \( 2^{6} \) is 0    </td> </tr>
+<tr><td align="center">   3/2= 1       </td> <td align="center">   remainder 1    </td> <td align="center">   coefficient of \( 2^{7} \) is 1    </td> </tr>
+<tr><td align="center">   1/2= 0       </td> <td align="center">   remainder 1    </td> <td align="center">   coefficient of \( 2^{8} \) is 1    </td> </tr>
+</tbody>
+</table>
+<p>
+Let us now look at the <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program2.cpp" target="_blank">code which takes as input from the command line a number in the decimal representation and converts it into the binary representation</a>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdio&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdlib&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+{
+  <span style="color: #a7a7a7; font-weight: bold">int</span> terms[<span style="color: #B452CD">32</span>]; <span style="color: #228B22">// storage of a0, a1, etc, up to 32 bits</span>
+  <span style="color: #a7a7a7; font-weight: bold">int</span> number = atoi(argv[<span style="color: #B452CD">1</span>]); 
+  <span style="color: #228B22">// initialise the term a0, a1 etc</span>
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i &lt; <span style="color: #B452CD">32</span> ; i++) terms[i] = <span style="color: #B452CD">0</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i &lt; <span style="color: #B452CD">32</span> ; i++){ 
+    terms[i] = number%<span style="color: #B452CD">2</span>;   <span style="color: #228B22">// modulo division done by %</span>
+    number /= <span style="color: #B452CD">2</span>; 
+  }
+  <span style="color: #228B22">// write out results</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Number of bytes used= &quot;</span> &lt;&lt; <span style="color: #8B008B; font-weight: bold">sizeof</span>(number) &lt;&lt; endl;
+  <span style="color: #8B008B; font-weight: bold">for</span> (i=<span style="color: #B452CD">0</span>; i &lt; <span style="color: #B452CD">32</span> ; i++){ 
+    cout &lt;&lt; <span style="color: #CD5555">&quot; Term nr: &quot;</span> &lt;&lt; i &lt;&lt; <span style="color: #CD5555">&quot;Value= &quot;</span> &lt;&lt; terms[i];
+    cout &lt;&lt; endl;
+  }
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;  
+}
+</pre></div>
+<p>
+To be noted here is the way we define a loop in C++. Our first encounter is
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (i=<span style="color: #B452CD">0</span>; i &lt; <span style="color: #B452CD">32</span> ; i++){ terms[i] = <span style="color: #B452CD">0</span>;}
+</pre></div>
+<p>
+The loop starts with the <b>for</b> declaration, followed by a parenthesis hwere we declare the starting values (<b>i=0</b>) and the end value
+(<b>i < 32</b>). What would have happened if we declared the endpoint as <b>i <=32</b>?
+
+<p>
+This loop is just a oneliner that serves to initialize the array _terms[]_ to zero. Note the way we can write increment by one via <b>i++</b>.
+
+<p>
+Our next loop
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i &lt; <span style="color: #B452CD">32</span> ; i++){ 
+    terms[i] = number%<span style="color: #B452CD">2</span>;   <span style="color: #228B22">// modulo division done by %</span>
+    number /= <span style="color: #B452CD">2</span>; 
+  }
+</pre></div>
+<p>
+contains the actual algorithm for the translation of an integer in the decimal representation to an integer in the binary representation. We note the way we use the curly parentheses to mark where the content inside a loop starts and where it ends. It is useful to introduce some indentation (many text editors do this automatically for you when the file ends with <b>.cpp</b>) in order to increase readability.
+
+<p>
+The function <b>sizeof()</b> tells how many bytes are used to store a given variable. An integer is by default defined in terms of four bytes or 32 bits.
+
+<p>
+Our next example is a program that calculates the second derivative numerically  of a function (the exponential function here) and writes the result to a file declared by the user. The first thing to notice is declaration of the object <b>ofile</b> which inherits all functionality from the <b>ofstream</b> class. <a href="http://www.cplusplus.com/reference/fstream/ofstream/" target="_blank">This class</a> (to be discussed later below in connection with classes) overloads functions like writing to file, opening files, closing files etc. A similar class exists, the <b>ifstream</b> class, for input variables. 
+Adding the header file <b>fstream</b> gives us access to the functionality of the <b>ofstream</b> class. 
+The <b>iomanip</b> header files allows to format our output with functions like <b>setprecision</b>, <b>setw</b> etc.
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;fstream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iomanip&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #228B22">// output file as global variable</span>
+ofstream ofile;
+
+<span style="color: #228B22">// Begin of main program</span>
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+{
+  <span style="color: #a7a7a7; font-weight: bold">char</span> *outfilename;
+  <span style="color: #228B22">// Read in output file, abort if there are too few command-line arguments</span>
+  <span style="color: #8B008B; font-weight: bold">if</span>( argc &lt;= <span style="color: #B452CD">3</span> ){
+    cout &lt;&lt; <span style="color: #CD5555">&quot;Bad Usage: &quot;</span> &lt;&lt; argv[<span style="color: #B452CD">0</span>] &lt;&lt;
+      <span style="color: #CD5555">&quot; read also output file, number of integration points and the final x values  on same line, four variables in total&quot;</span> &lt;&lt; std::endl;
+    exit(<span style="color: #B452CD">1</span>);
+  }
+  <span style="color: #8B008B; font-weight: bold">else</span>{
+    outfilename=argv[<span style="color: #B452CD">1</span>];
+  }
+  <span style="color: #228B22">//  opening a file for the program</span>
+  ofile.open(outfilename);
+  <span style="color: #228B22">// extracting number of mesh points</span>
+  <span style="color: #a7a7a7; font-weight: bold">int</span> i = atoi(argv[<span style="color: #B452CD">2</span>]);
+  <span style="color: #a7a7a7; font-weight: bold">double</span> x = atof(argv[<span style="color: #B452CD">3</span>]);  <span style="color: #228B22">// reading x-value</span>
+  <span style="color: #a7a7a7; font-weight: bold">double</span> h = <span style="color: #B452CD">1.0</span>/((<span style="color: #a7a7a7; font-weight: bold">double</span>) i); <span style="color: #228B22">// setting up step size</span>
+  <span style="color: #a7a7a7; font-weight: bold">double</span> Derivative = (exp(x+h)-<span style="color: #B452CD">2.</span>*exp(x)+exp(x-h))/(h*h);
+  <span style="color: #a7a7a7; font-weight: bold">double</span> RelativeError = log10(fabs(Derivative-exp(x))/exp(x));
+  ofile &lt;&lt;  setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; <span style="color: #CD5555">&quot;relative error=&quot;</span> &lt;&lt; RelativeError &lt;&lt; endl;
+  ofile.close();  <span style="color: #228B22">// close output file</span>
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+}
+</pre></div>
+<p>
+We have in addition included some safety valves here. In case we have less than four variables on the command line, the program aborts.
+After having read the name of the output file we open the file  and by default we can write to it via the statement
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  ofile.open(outfilename);
+</pre></div>
+<p>
+and we close it at the end by
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  ofile.close();
+</pre></div>
+<p>
+We have also defined how to write to file our result in a formatted way via the statement
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  ofile &lt;&lt;  setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; <span style="color: #CD5555">&quot;relative error=&quot;</span> &lt;&lt; RelativeError &lt;&lt; endl;
+</pre></div>
+<p>
+where we reserve a field width of 15 characters and a precision of eight leading digits after the decimal point.
+
+<p>
+The above example represents our first simple case where we write our results to file. Before we proceed now, we need to say something more about pointers.
+
+<h2 id="___sec3">Technical Matter in C/C++: Pointers </h2>
+
+<p>
+Variables are stored in the memory of a computer and each location in memory is defined by a unique address. How is memory management done?
+
+<p>
+The main memory contains the program data
+
+<ul>
+<p><li> Cache memory contains a copy of the main memory data</li>
+<p><li> Cache is faster but consumes more space and power. It is normally assumed to be much faster than main memory</li>
+<p><li> Registers contain working data only</li>
+
+<ul>
+ <p><li> Modern CPUs perform most or all operations only on data in register</li>
+</ul>
+<p><li> Multiple Cache memories contain a copy of the main memory data</li>
+
+<ul>
+ <p><li> Cache items accessed by their address in main memory</li>
+ <p><li> L1 cache is the fastest but has the least capacity</li>
+ <p><li> L2, L3 provide intermediate performance/size tradeoffs</li>
+</ul>
+<p>
+</ul>
+<p>
+
+Loads and stores to memory can be as important as floating point operations when we measure performance.
+
+<ul>
+<p><li> Most communication in a computer is carried out in chunks, blocks of bytes of data that move together</li>
+<p><li> In the memory hierarchy, data moves between memory and cache, and between different levels of cache, in groups called lines</li>
+
+<ul>
+ <p><li> Lines are typically 64-128 bytes, or 8-16 double precision words</li>
+ <p><li> Even if you do not use the data, it is moved and occupies space in the cache</li>
+</ul>
+<p><li> This performance feature is not captured in most programming languages</li>
+</ul>
+<p>
+
+When we store variables in memory, each memory location is identified and referenced with an address (like a house number specifies where a particular family resides on a street).
+Pointers play a central role in understanding memory management in C++. A pointer is just another name for an address and a pointer specifies where a value resides in the computer's memory.
+
+<p>
+A pointer points to an address not to a data container of any kind! It is a variable (with its own address in memory) whose value is the address of some other memory location. C++ as programming language offers several operations that allow us to access say elements of an array in an efficient way by accessing data by their addresses.
+
+<p>
+Let us look at some simple example declarations. We define four variables and each of them is storeed in memory schematically as shown here (think of every box as a slot in memory of say 32 bits or more for each slot)
+<table border="1">
+<thead>
+<tr><th align="center">int a</th> <th align="center">int b</th> <th align="center">double c</th> <th align="center">int d</th> <th align="center">double e</th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   112      </td> <td align="center">   -1       </td> <td align="center">   3.14        </td> <td align="center">   ?        </td> <td align="center">   ?           </td> </tr>
+</tbody>
+</table>
+<p>
+We have put questions marks for the values of the variables <b>d</b> and <b>e</b>. 
+In the program here we define <b>a</b> and <b>b</b> as integers and <b>c</b> as a double. The variables <b>d</b> and <b>e</b> are declared as pointers. 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+<span style="color: #228B22">//  Declare functions before main</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[])
+{
+  <span style="color: #a7a7a7; font-weight: bold">int</span> a =<span style="color: #B452CD">112</span>, b = -<span style="color: #B452CD">1</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> c = <span style="color: #B452CD">3.14</span>;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> *d = &amp;a;
+  <span style="color: #a7a7a7; font-weight: bold">double</span>  *e = &amp;c;
+
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Address of the integer variable a :&quot;</span> &lt;&lt; &amp;a &lt;&lt;endl;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Value of the integer pointer variable d:&quot;</span> &lt;&lt; d &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Value which pointer d is pointing at :&quot;</span> &lt;&lt; *d &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Address of the double variable c :&quot;</span> &lt;&lt; &amp;c &lt;&lt;endl;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Value of the integer pointer variable e:&quot;</span> &lt;&lt; e &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Value which pointer e is pointing at :&quot;</span> &lt;&lt; *e &lt;&lt; endl;
+
+
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+} <span style="color: #228B22">// End: function main()</span>
+</pre></div>
+<p>
+Running this <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program11.cpp" target="_blank">program</a> we get the following
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>Address of the integer variable a :0x7fff56966a7c
+Value of the integer pointer variable d:0x7fff56966a7c
+Value which pointer d is pointing at :112
+Address of the double variable c :0x7fff56966a70
+Value of the integer pointer variable e:0x7fff56966a70
+Value which pointer e is pointing at :3.14
+</pre></div>
+<p>
+we see that the value of <b>d</b> is the address of <b>a</b> and it points to the value \( 112 \) stored in the memory slot reserved for <b>a</b>. Similarly, <b>e</b> is a pointer and gets as value the address of <b>c</b>, which is \( 0x7fff56966a70 \) which points to the value of \( 3.14 \). The operation
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">int</span> *d = &amp;a;
+</pre></div>
+<p>
+is called dereferencing. We could alternatively have written
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">int</span> *d;
+  d = &amp;a;
+</pre></div>
+<p>
+where the latter means that <b>d</b> gets as value the address of <b>a</b>. The print statement
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  cout &lt;&lt; <span style="color: #CD5555">&quot;Value which pointer d is pointing at :&quot;</span> &lt;&lt; *d &lt;&lt; endl;
+</pre></div>
+<p>
+then prints the actual number it points at, that is the vaue of the variable <b>a</b>.
+
+<p>
+<a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program7.cpp" target="_blank"> Another pPointer example </a> is the following program
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
+{
+  <span style="color: #a7a7a7; font-weight: bold">int</span> var;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> *p;
+  p = &amp;var;
+  var  = <span style="color: #B452CD">421</span>;
+  printf(<span style="color: #CD5555">&quot;Address of integer variable var : %p\n&quot;</span>,&amp;var);
+  printf(<span style="color: #CD5555">&quot;Its value: %d\n&quot;</span>, var);
+  printf(<span style="color: #CD5555">&quot;Value of integer pointer p : %p\n&quot;</span>,p);
+  printf(<span style="color: #CD5555">&quot;The value p points at :  %d\n&quot;</span>,*p);
+  printf(<span style="color: #CD5555">&quot;Address of the pointer p : %p\n&quot;</span>,&amp;p);
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+}
+</pre></div>
+<p>
+Dissecting it we have (now with the <b>printf</b> function from standard C)
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
+{
+  <span style="color: #a7a7a7; font-weight: bold">int</span> var;     <span style="color: #228B22">// Define an integer variable var</span>
+  <span style="color: #a7a7a7; font-weight: bold">int</span> *p;      <span style="color: #228B22">// Define a pointer to an integer</span>
+  p = &amp;var;    <span style="color: #228B22">// Extract the address of var</span>
+  var = <span style="color: #B452CD">421</span>;   <span style="color: #228B22">// Change content of var</span>
+  printf(<span style="color: #CD5555">&quot;Address of integer variable var : %p\n&quot;</span>, &amp;var);
+  printf(<span style="color: #CD5555">&quot;Its value: %d\n&quot;</span>, var);  <span style="color: #228B22">// 421</span>
+  printf(<span style="color: #CD5555">&quot;Value of integer pointer p : %p\n&quot;</span>, p);  <span style="color: #228B22">// = &amp;var</span>
+  <span style="color: #228B22">// The content of the variable pointed to by p is *p</span>
+  printf(<span style="color: #CD5555">&quot;The value p points at :  %d\n&quot;</span>, *p);
+  <span style="color: #228B22">// Address where the pointer is stored in memory</span>
+  printf(<span style="color: #CD5555">&quot;Address of the pointer p : %p\n&quot;</span>, &amp;p);
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+}
+</pre></div>
+<p>
+and running the code we get
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>Address of integer variable var : 0x7fff5cfe6ae8
+Its value: 421
+Value of integer pointer p : 0x7fff5cfe6ae8
+The value p points at :  421
+Address of the pointer p : 0x7fff5cfe6ae0
+</pre></div>
+<p>
+We see again that the value of the pointer <b>p</b> is the address of the variable <b>var</b>.
+
+<p>
+<a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program8.cpp" target="_blank">The next pointer example</a> deals with arrays and how to access array elements with pointer operations. 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> matr[<span style="color: #B452CD">2</span>];    <span style="color: #228B22">// Define integer array with two elements</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> *p;         <span style="color: #228B22">// Define pointer to integer</span>
+p = &amp;matr[<span style="color: #B452CD">0</span>];   <span style="color: #228B22">// Point to the address of the first element in matr</span>
+matr[<span style="color: #B452CD">0</span>] = <span style="color: #B452CD">321</span>;  <span style="color: #228B22">// Change the first element</span>
+matr[<span style="color: #B452CD">1</span>] = <span style="color: #B452CD">322</span>;  <span style="color: #228B22">// Change the second element</span>
+printf(<span style="color: #CD5555">&quot;\nAddress of matrix element matr[1]: %p&quot;</span>, &amp;matr[<span style="color: #B452CD">0</span>]);
+printf(<span style="color: #CD5555">&quot;\nValue of the  matrix element  matr[1]; %d&quot;</span>, matr[<span style="color: #B452CD">0</span>]);
+printf(<span style="color: #CD5555">&quot;\nAddress of matrix element matr[2]: %p&quot;</span>, &amp;matr[<span style="color: #B452CD">1</span>]);
+printf(<span style="color: #CD5555">&quot;\nValue of the matrix element  matr[2]: %d\n&quot;</span>, matr[<span style="color: #B452CD">1</span>]);
+printf(<span style="color: #CD5555">&quot;\nValue of the pointer p: %p&quot;</span>, p);
+printf(<span style="color: #CD5555">&quot;\nThe value p points to: %d&quot;</span>, *p);
+printf(<span style="color: #CD5555">&quot;\nThe value that (p+1) points to  %d\n&quot;</span>, *(p+<span style="color: #B452CD">1</span>));
+printf(<span style="color: #CD5555">&quot;\nAddress of pointer p : %p\n&quot;</span>, &amp;p);
+</pre></div>
+<p>
+Here we define an array with two elements. The pointer <b>p</b> gets as value the address of the first element. The output of this program is
+
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>Address of the matrix element matr[1]: 0xbfffef70
+Value of the  matrix element  matr[1]; 321
+Address of the matrix element matr[2]: 0xbfffef74
+Value of the matrix element  matr[2]: 322
+Value of the pointer: 0xbfffef70
+The value pointer points at: 321
+The value that (pointer+1) points at:  322
+Address of the pointer variable : 0xbfffef6c
+</pre></div>
+<p>
+We note that the operation
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>printf(<span style="color: #CD5555">&quot;\nThe value that (p+1) points to  %d\n&quot;</span>, *(p+<span style="color: #B452CD">1</span>));
+</pre></div>
+<p>
+allows us to print the address of the second array element. This is the way we can use pointers to access array elements.
+
+<p>
+Let us now discuss another subtle issue, that is transfer of data using call by value and call by reference, shown in the <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program6.cpp" target="_blank">program here</a>.
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+<span style="color: #228B22">//  Declare functions before main</span>
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">func</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span>*);
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[]) 
+{
+  <span style="color: #a7a7a7; font-weight: bold">int</span> a; 
+  <span style="color: #a7a7a7; font-weight: bold">int</span> *b;
+  a = <span style="color: #B452CD">10</span>;
+  b = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[<span style="color: #B452CD">10</span>];
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; <span style="color: #B452CD">10</span>; i++) {
+    b[i] = i;
+    cout &lt;&lt;  b[i] &lt;&lt; endl;
+  }
+  <span style="color: #228B22">// the variable a is transferred by call by value. This means</span>
+  <span style="color: #228B22">//  that the function func cannot change a in the calling function</span>
+  func( a,b);
+  
+  <span style="color: #8B008B; font-weight: bold">delete</span> [] b ; 
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+} <span style="color: #228B22">// End: function main()</span>
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">func</span>( <span style="color: #a7a7a7; font-weight: bold">int</span> x, <span style="color: #a7a7a7; font-weight: bold">int</span> *y) 
+{
+  <span style="color: #228B22">// a becomes locally x  and it can be changed locally</span>
+  x+=<span style="color: #B452CD">7</span>;
+  <span style="color: #228B22">//  func gets the address of the first element of y (b)</span>
+  <span style="color: #228B22">// it changes y[0] to 10 and when returning control to main</span>
+  <span style="color: #228B22">// it changes also b[0]. Call by reference</span>
+  *y += <span style="color: #B452CD">10</span>;  <span style="color: #228B22">//  *y = *y+10;</span>
+  <span style="color: #228B22">//  explicit element </span>
+  y[<span style="color: #B452CD">6</span>] += <span style="color: #B452CD">10</span>;
+  <span style="color: #228B22">//   in this function y[0]  and y[6] have been changed and when returning </span>
+  <span style="color: #228B22">// control to main  this means that b[0] and b[6] are changed.  </span>
+  <span style="color: #8B008B; font-weight: bold">return</span>;
+} <span style="color: #228B22">// End: function func()</span>
+</pre></div>
+<p>
+There are several things to notice here. First, we have now declared a function <b>func</b>. This declaration is placed before the main function. If we don't do that the main function does not know how this function is to be used. The function takes as input an integer and an integer pointer defined by the asterix in
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">func</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span>*);
+</pre></div>
+<p>
+This means that we transfer an address (in this case the address of the first element of the pointer <b>b</b>). This is called <b>call by reference</b>.
+It means that the function <b>func</b> can change the value of <b>b</b> upon returning the instruction pointer to the main program (or calling function).
+The other variable is transferred through what we label as  <b>call by value</b>. In this case the called function can change the value of <b>a</b> locally but cannot change the value of this variable in the calling function.
+The function <b>func</b> func gets the address of the first element of y (b) and changes y[0] to 10 and when returning control to main
+it changes also b[0]. This is done via
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  *y += <span style="color: #B452CD">10</span>;  
+</pre></div>
+<p>
+This changes only the first element. To change another element, we would write (unless we use pointer operations)
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  y[<span style="color: #B452CD">6</span>] += <span style="color: #B452CD">10</span>;
+</pre></div>
+<p>
+which changes \( \mathbf{y[6]} \)  to \( 16 \), since its orginal value was \( 6 \), as defined in the main function. Using pointer operations we could write this as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  *(y+<span style="color: #B452CD">6</span>) += <span style="color: #B452CD">10</span>;
+</pre></div>
+<p>
+and it produces the same result. It states that the value of the element which resides in \( \mathbf{y[6]} \) is to be changed to \( 16 \).
+
+<p>
+C++ allows the programmer to use solely call by reference (note that call by reference is implemented as pointers). To see the difference between C and C++, consider the following simple examples.
+In C we would write
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>   <span style="color: #a7a7a7; font-weight: bold">int</span> n; n =<span style="color: #B452CD">8</span>;
+   func(&amp;n); <span style="color: #228B22">/* &amp;n is a pointer to n */</span>
+   ....
+   <span style="color: #a7a7a7; font-weight: bold">void</span> func(<span style="color: #a7a7a7; font-weight: bold">int</span> *i)
+   {
+     *i = <span style="color: #B452CD">10</span>; <span style="color: #228B22">/* n is changed to 10 */</span>
+     ....
+   }
+</pre></div>
+<p>
+whereas in C++ we would write
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>   <span style="color: #a7a7a7; font-weight: bold">int</span> n; n =<span style="color: #B452CD">8</span>;
+   func(n); <span style="color: #228B22">// just transfer n itself</span>
+   ....
+   <span style="color: #a7a7a7; font-weight: bold">void</span> func(<span style="color: #a7a7a7; font-weight: bold">int</span>&amp; i)
+   {
+     i = <span style="color: #B452CD">10</span>; <span style="color: #228B22">// n is changed to 10</span>
+     ....
+   }
+</pre></div>
+<p>
+The reason why we emphasize the difference between call by value and call
+by reference is that it allows the programmer to avoid pitfalls
+like unwanted changes of variables. However, many people feel that this
+reduces the readability of the code.
+
+<p>
+Let us look at further Example codes in C++, with writing to file and <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program5.cpp" target="_blank">dynamic allocation for arrays</a>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;fstream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iomanip&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std; 
+
+<span style="color: #228B22">// output file as global variable</span>
+
+ofstream ofile;  
+
+<span style="color: #228B22">// Begin of main program   </span>
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+{
+  <span style="color: #a7a7a7; font-weight: bold">char</span> *outfilename;
+  <span style="color: #228B22">// Read in output file, abort if there are too few command-line arguments</span>
+  <span style="color: #8B008B; font-weight: bold">if</span>( argc &lt;= <span style="color: #B452CD">2</span> ){
+    cout &lt;&lt; <span style="color: #CD5555">&quot;Bad Usage: &quot;</span> &lt;&lt; argv[<span style="color: #B452CD">0</span>] &lt;&lt; 
+      <span style="color: #CD5555">&quot; read also output file and number of elements on same line&quot;</span> &lt;&lt; endl;
+    exit(<span style="color: #B452CD">1</span>);
+  }
+  <span style="color: #8B008B; font-weight: bold">else</span>{
+    outfilename=argv[<span style="color: #B452CD">1</span>];
+  }
+
+  <span style="color: #228B22">//  opening a file for the program</span>
+  ofile.open(outfilename); 
+  <span style="color: #a7a7a7; font-weight: bold">int</span> i = atoi(argv[<span style="color: #B452CD">2</span>]); 
+ <span style="color: #228B22">/* we can define it as </span>
+<span style="color: #228B22">  int *a;</span>
+<span style="color: #228B22">  a = new int[i];</span>
+<span style="color: #228B22">  or as</span>
+<span style="color: #228B22"> */</span>
+  <span style="color: #a7a7a7; font-weight: bold">double</span> *a = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[i]; 
+  cout &lt;&lt; <span style="color: #CD5555">&quot; bytes for i=&quot;</span> &lt;&lt; <span style="color: #8B008B; font-weight: bold">sizeof</span>(i) &lt;&lt; endl;
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; i; j++) {
+    a[j] = j*exp(<span style="color: #B452CD">2.0</span>);
+    <span style="color: #228B22">// ofile instead of cout</span>
+    ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; <span style="color: #CD5555">&quot;a=&quot;</span> &lt;&lt; a[j] &lt;&lt; endl;
+  }
+  <span style="color: #8B008B; font-weight: bold">delete</span> [] a; <span style="color: #228B22">// free memory</span>
+  ofile.close();  <span style="color: #228B22">// close output file</span>
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+}
+</pre></div>
+<p>
+Here we read from the command line the number of elements <b>i</b> via
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">int</span> i = atoi(argv[<span style="color: #B452CD">2</span>]); 
+</pre></div>
+<p>
+and allocate memory dynamically by declaring a pointer array (a vector here) <b>a</b> using
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">double</span> *a = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[i];
+</pre></div>
+<p>
+Using dynamic memory allocation we actually allow  memory to be more flexibly and explicitly managed.
+When the memory is no longer needed, the pointer is passed to free which deallocates the memory so that it can be used for other purposes. This is done by the <b>delete</b> statement
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">delete</span> [] a; <span style="color: #228B22">// free memory</span>
+</pre></div>
+<p>
+In the loop
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; i; j++) {
+    a[j] = j*exp(<span style="color: #B452CD">2.0</span>);
+    <span style="color: #228B22">// ofile instead of cout</span>
+    ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; <span style="color: #CD5555">&quot;a=&quot;</span> &lt;&lt; a[j] &lt;&lt; endl;
+  }
+</pre></div>
+<p>
+we assign a specific value to each array element and print to file.
+
+<p>
+If we wish to time our function, the following <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" target="_blank">program</a> gives a typical example. 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdlib&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iomanip&gt; </span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;time.h&quot;   // Not the use time.h</span><span style="color: #1e889b"></span>
+
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std; <span style="color: #228B22">// note use of namespace                                       </span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+{
+  <span style="color: #a7a7a7; font-weight: bold">int</span> i = atoi(argv[<span style="color: #B452CD">1</span>]); 
+  <span style="color: #a7a7a7; font-weight: bold">double</span> *a, *b, *c;
+  a = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[i]; 
+  b = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[i]; 
+  c = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[i]; 
+
+  <span style="color: #a7a7a7; font-weight: bold">clock_t</span> start, finish;
+  start = clock();
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; i; j++) {
+    a[j] = cos(j*<span style="color: #B452CD">1.0</span>);
+    b[j] = sin(j+<span style="color: #B452CD">3.0</span>);
+    c[j] = <span style="color: #B452CD">0.0</span>;
+  }
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; i; j++) {
+    c[j] = a[j]+b[j];
+  }
+  finish = clock();
+  <span style="color: #a7a7a7; font-weight: bold">double</span> timeused = (<span style="color: #a7a7a7; font-weight: bold">double</span>) (finish - start)/(CLOCKS_PER_SEC );
+  cout &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
+  cout &lt;&lt; setprecision(<span style="color: #B452CD">10</span>) &lt;&lt; setw(<span style="color: #B452CD">20</span>) &lt;&lt; <span style="color: #CD5555">&quot;Time used  for vector addition=&quot;</span> &lt;&lt; timeused  &lt;&lt; endl;
+  <span style="color: #8B008B; font-weight: bold">delete</span> [] a;
+  <span style="color: #8B008B; font-weight: bold">delete</span> [] b;
+  <span style="color: #8B008B; font-weight: bold">delete</span> [] c;
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;           <span style="color: #228B22">/* success execution of the program */</span>
+}
+</pre></div>
+<p>
+When timing the program, you should carefully plan what to time. Here we calculate the time difference from the point where we start filling in the three arrays <b>a</b>, <b>b</b> and <b>c</b> defining the starting time as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">clock_t</span> start, finish;
+  start = clock();
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; i; j++) {
+</pre></div>
+<p>
+The final time is when all operations we are interested in are concluded, namely at
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; i; j++) {
+    c[j] = a[j]+b[j];
+  }
+  finish = clock();
+</pre></div>
+<p>
+The time difference from start to end, with its granularity is defined as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">double</span> timeused = (<span style="color: #a7a7a7; font-weight: bold">double</span>) (finish - start)/(CLOCKS_PER_SEC );
+</pre></div>
+<p>
+When timing a program you should pay attention to the following:
+
+<ol>
+<p><li> Timers are not infinitely accurate</li>
+<p><li> All clocks have a granularity, the minimum time that they can measure</li>
+<p><li> The error in a time measurement, even if everything is perfect, may be the size of this granularity (sometimes called a clock tick)</li>
+<p><li> Always know what your clock granularity is</li>
+<p><li> Ensure that your measurement is for a long enough duration (say 100 times the <b>tick</b>)</li>
+</ol>
+<p>
+
+What happens when the code is executed? The assumption is that the code is ready to
+execute. But
+
+<ol>
+<p><li> Code may still be on disk, and not even read into memory.</li>
+<p><li> Data may be in slow memory rather than fast (which may be wrong or right for what you are measuring)</li>
+<p><li> Multiple tests often necessary to ensure that cold start effects are not present</li>
+<p><li> Special effort often required to ensure data in the intended part of the memory hierarchy.</li>
+</ol>
+<p>
+
+You should thus think of a numerical calculation as an experiment. To provide benchmark times you should thus run the timing measurement several times and then take the average over a series of simulations.
+
+<h2 id="___sec4">Using <b>strings</b> instead of characters </h2>
+
+<p>
+Till now we have used character variables when declaring for example filenames for output or input files. C++ offers a compact and flexible way of dealing with text strings through the <b>string</b> class. In the program below we wish for example to define several output files for our calculations byapending  to a basename read in on the command line various endings. These endings can then be used to recognize a specific calculation.
+Here we read the basic name of an ouput file and add to it the actual exponent used in a calculation by appending it to the file name. We show only the relevant parts 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;fstream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iomanip&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;string&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #228B22">// use namespace for output and input</span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+
+<span style="color: #228B22">// object for output files</span>
+ofstream ofile;
+
+
+<span style="color: #228B22">// Begin main program</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[]){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> exponent; 
+    string filename;
+    <span style="color: #228B22">// We read also the basic name for the output file and the highest power of 10^n we want</span>
+    <span style="color: #8B008B; font-weight: bold">if</span>( argc &lt;= <span style="color: #B452CD">1</span> ){
+          cout &lt;&lt; <span style="color: #CD5555">&quot;Bad Usage: &quot;</span> &lt;&lt; argv[<span style="color: #B452CD">0</span>] &lt;&lt;
+              <span style="color: #CD5555">&quot; read also file name on same line and max power 10^n&quot;</span> &lt;&lt; endl;
+          exit(<span style="color: #B452CD">1</span>);
+    }
+        <span style="color: #8B008B; font-weight: bold">else</span>{
+        filename = argv[<span style="color: #B452CD">1</span>]; <span style="color: #228B22">// first command line argument after name of program</span>
+        exponent = atoi(argv[<span style="color: #B452CD">2</span>]);
+    }
+    <span style="color: #228B22">// Loop over powers of 10</span>
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt;= exponent; i++){
+      <span style="color: #a7a7a7; font-weight: bold">int</span>  n = (<span style="color: #a7a7a7; font-weight: bold">int</span>) pow(<span style="color: #B452CD">10.0</span>,i);
+      <span style="color: #228B22">// Declare new file name</span>
+      string fileout = filename;
+      <span style="color: #228B22">// Convert the power 10^i to a string</span>
+      string argument = to_string(i);
+      <span style="color: #228B22">// Final filename as filename-i- by appending the power of 10</span>
+      fileout.append(argument);
+      ofile.open(fileout);
+      ofile &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
+      <span style="color: #228B22">//   Do something </span>
+      ofile.close();  <span style="color: #228B22">// close output file wth given ending</span>
+    }
+    <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+}
+</pre></div>
+<p>
+Instead of our earlier definition
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">char</span> *outfilename;
+</pre></div>
+<p>
+we define now the same output file via the <b>string</b> statement, inheriting thus all functionality of the <b>string</b> class by writing
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>    string filename;
+</pre></div>
+<p>
+In the statement
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>    filename = argv[<span style="color: #B452CD">1</span>]; 
+</pre></div>
+<p>
+the variable <b>filename</b> gets the name of file we declared on the command line.
+A new file for the specific calculation is then established via
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>      <span style="color: #228B22">// Declare new file name</span>
+      string fileout = filename;
+      <span style="color: #228B22">// Convert the power 10^i to a string</span>
+      string argument = to_string(i);
+      <span style="color: #228B22">// Final filename as filename-i- by appending the power of 10</span>
+      fileout.append(argument);
+      ofile.open(fileout);  <span style="color: #228B22">// then open</span>
+</pre></div>
+<p>
+We recommend using the <b>string</b> class, it gives ou much more flexibility in handling strings.
+
+<h2 id="___sec5">More information will be added </h2>
+
+<h2 id="___sec6">Optimization and profiling </h2>
+
+<p>
+Till now we have not paid much attention to speed and possible optimization possibilities
+inherent in the various compilers. We have compiled and linked as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>c++  -c  mycode.cpp
+c++  -o  mycode.exe  mycode.o
+</pre></div>
+<p>
+For Fortran replace with for example <b>gfortran</b> or <b>ifort</b>.
+This is what we call a flat compiler option and should be used when we develop the code.
+It produces normally a very large and slow code when translated to machine instructions.
+We use this option for debugging and for establishing the correct program output because
+every operation is done precisely as the user specified it.
+
+<p>
+It is instructive to look up the compiler manual for further instructions by writing
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>man c++
+</pre></div>
+<p>
+We have additional compiler options for optimization. These may include procedure inlining where 
+performance may be improved, moving constants inside loops outside the loop, 
+identify potential parallelism, include automatic vectorization or replace a division with a reciprocal
+and a multiplication if this speeds up the code.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>c++  -O3 -c  mycode.cpp
+c++  -O3 -o  mycode.exe  mycode.o
+</pre></div>
+<p>
+This (other options are -O2 or -Ofast) is the recommended option.
+
+<p>
+It is also useful to profile your program under the development stage.
+You would then compile with 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>c++  -pg -O3 -c  mycode.cpp
+c++  -pg -O3 -o  mycode.exe  mycode.o
+</pre></div>
+<p>
+After you have run the code you can obtain the profiling information via
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>gprof mycode.exe &gt;  ProfileOutput
+</pre></div>
+<p>
+When you have profiled properly your code, you must take out this option as it 
+slows down performance.
+For memory tests use <a href="http://www.valgrind.org" target="_blank">valgrind</a>. An excellent environment for all these aspects, and much  more, is  Qt creator.
+
+<p>
+Adding debugging options is a very useful alternative under the development stage of a program.
+You would then compile with 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>c++  -g -O0 -c  mycode.cpp
+c++  -g -O0 -o  mycode.exe  mycode.o
+</pre></div>
+<p>
+This option generates debugging information allowing you to trace for example if an array is properly allocated. Some compilers work best with the no optimization option <b>-O0</b>.
+
+<p>
+Depending on the compiler, one can add flags which generate code that catches integer overflow errors. 
+The flag <b>-ftrapv</b> does this for the CLANG compiler on OS X operating systems.
+
+<p>
+In general, irrespective of compiler options, it is useful to
+
+<ul>
+<p><li> avoid if tests or call to functions inside loops, if possible.</li> 
+<p><li> avoid multiplication with constants inside loops if possible</li>
+</ul>
+<p>
+
+Here is an example of a part of a program where specific operations lead to a slower code
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>k = n-<span style="color: #B452CD">1</span>;
+<span style="color: #8B008B; font-weight: bold">for</span> (i = <span style="color: #B452CD">0</span>; i &lt; n; i++){
+    a[i] = b[i] +c*d;
+    e = g[k];
+}
+</pre></div>
+<p>
+A better code is
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>temp = c*d;
+<span style="color: #8B008B; font-weight: bold">for</span> (i = <span style="color: #B452CD">0</span>; i &lt; n; i++){
+    a[i] = b[i] + temp;
+}
+e = g[n-<span style="color: #B452CD">1</span>];
+</pre></div>
+<p>
+Here we avoid a repeated multiplication inside a loop. 
+Most compilers, depending on compiler flags, identify and optimize such bottlenecks on their own, without requiring any particular action by the programmer. However, it is always useful to single out and avoid code examples like the first one discussed here.
+
+<h2 id="___sec7">Vectorization and the basic idea behind parallel computing </h2>
+
+<p>
+Present CPUs are highly parallel processors with varying levels of parallelism. The typical situation can be described via the following three statements.
+
+<ul>
+<p><li> Pursuit of shorter computation time and larger simulation size gives rise to parallel computing.</li>
+<p><li> Multiple processors are involved to solve a global problem.</li>
+<p><li> The essence is to divide the entire computation evenly among collaborative processors.  Divide and conquer.</li>
+</ul>
+<p>
+
+Before we proceed with a more detailed discussion of topics like vectorization and parallelization, we need to remind ourselves about some basic features of different hardware models. We have
+
+<ul>
+<p><li> Conventional single-processor computers are named SISD (single-instruction-single-data) machines.</li>
+<p><li> SIMD (single-instruction-multiple-data) machines incorporate the idea of parallel processing, using a large number of processing units to execute the same instruction on different data.</li>
+<p><li> Modern parallel computers are so-called MIMD (multiple-instruction-multiple-data) machines and can execute different instruction streams in parallel on different data.</li>
+</ul>
+
+<h2 id="___sec8">What is vectorization? </h2>
+
+<p>
+Vectorization is a special
+case of <b>Single Instructions Multiple Data</b> (SIMD) to denote a single
+instruction stream capable of operating on multiple data elements in
+parallel. 
+We can think of vectorization as the unrolling of loops accompanied with SIMD instructions.
+
+<p>
+Vectorization is the process of converting an algorithm that performs scalar operations
+(typically one operation at the time) to vector operations where a single operation can refer to many simultaneous operations.
+Consider the following example
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">for</span> (i = <span style="color: #B452CD">0</span>; i &lt; n; i++){
+    a[i] = b[i] + c[i];
+}
+</pre></div>
+<p>
+If the code is not vectorized, the compiler will simply start with the first element and 
+then perform subsequent additions operating on one address in memory at the time.
+
+<p>
+A SIMD instruction can operate  on multiple data elements in one single instruction.
+It uses the so-called 128-bit SIMD floating-point register. 
+In this sense,vectorization adds some form of parallelism since one instruction is applied  
+to many parts of say a vector.
+
+<p>
+The number of elements which can be operated on in parallel
+range from four single-precision floating point data elements in so-called 
+Streaming SIMD Extensions and two double-precision floating-point data
+elements in Streaming SIMD Extensions 2 to sixteen byte operations in
+a 128-bit register in Streaming SIMD Extensions 2. Thus, vector-length
+ranges from 2 to 16, depending on the instruction extensions used and
+on the data type.
+
+<p>
+We start with the simple scalar operations given by
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">for</span> (i = <span style="color: #B452CD">0</span>; i &lt; n; i++){
+    a[i] = b[i] + c[i];
+}
+</pre></div>
+<p>
+If the code is not vectorized  and we have a 128-bit register to store a 32 bits floating point number,
+it means that we have \( 3\times 32 \) bits that are not used. For the first element we have
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">  0  </th> <th align="center">   1    </th> <th align="center">   2    </th> <th align="center">   3    </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   a[0]=    </td> <td align="center">   not used    </td> <td align="center">   not used    </td> <td align="center">   not used    </td> </tr>
+<tr><td align="center">   b[0]+    </td> <td align="center">   not used    </td> <td align="center">   not used    </td> <td align="center">   not used    </td> </tr>
+<tr><td align="center">   c[0]     </td> <td align="center">   not used    </td> <td align="center">   not used    </td> <td align="center">   not used    </td> </tr>
+</tbody>
+</table>
+<p>
+We have thus unused space in our SIMD registers. These registers could hold three additional integers.
+
+<p>
+If we vectorize the code, we can perform, with a 128-bit register four simultaneous operations, that is
+we have
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">for</span> (i = <span style="color: #B452CD">0</span>; i &lt; n; i+=<span style="color: #B452CD">4</span>){
+    a[i] = b[i] + c[i];
+    a[i+<span style="color: #B452CD">1</span>] = b[i+<span style="color: #B452CD">1</span>] + c[i+<span style="color: #B452CD">1</span>];
+    a[i+<span style="color: #B452CD">2</span>] = b[i+<span style="color: #B452CD">2</span>] + c[i+<span style="color: #B452CD">2</span>];
+    a[i+<span style="color: #B452CD">3</span>] = b[i+<span style="color: #B452CD">3</span>] + c[i+<span style="color: #B452CD">3</span>];
+}
+</pre></div>
+<p>
+displayed here as
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">  0  </th> <th align="center">  1  </th> <th align="center">  2  </th> <th align="center">  3  </th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   a[0]=    </td> <td align="center">   a[1]=    </td> <td align="center">   a[2]=    </td> <td align="center">   a[3]=    </td> </tr>
+<tr><td align="center">   b[0]+    </td> <td align="center">   b[1]+    </td> <td align="center">   b[2]+    </td> <td align="center">   b[3]+    </td> </tr>
+<tr><td align="center">   c[0]     </td> <td align="center">   c[1]     </td> <td align="center">   c[2]     </td> <td align="center">   c[3]     </td> </tr>
+</tbody>
+</table>
+Four additions are now done in a single step.
+
+<h2 id="___sec9"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" target="_blank">A simple test case with and without vectorization</a> </h2>
+We implement these operations in a simple c++ program as
+
+<p>
+
+<!-- code=text (!bc cppcode) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;iomanip&gt;
+#include &quot;time.h&quot; 
+
+using namespace std; // note use of namespace                                       
+int main (int argc, char* argv[])
+{
+  int i = atoi(argv[1]); 
+  double *a, *b, *c;
+  a = new double[i]; 
+  b = new double[i]; 
+  c = new double[i]; 
+  for (int j = 0; j &lt; i; j++) {
+    a[j] = 0.0;
+    b[j] = cos(j*1.0);
+    c[j] = sin(j*3.0);
+  }
+  clock_t start, finish;
+  start = clock();
+  for (int j = 0; j &lt; i; j++) {
+    a[j] = b[j]+b[j]*c[j];
+  }
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
+  cout &lt;&lt; setprecision(10) &lt;&lt; setw(20) &lt;&lt; &quot;Time used  for vector addition and multiplication=&quot; &lt;&lt; timeused  &lt;&lt; endl;
+  delete [] a;
+  delete [] b;
+  delete [] c;
+  return 0;     
+}
+</pre></div>
+<p>
+We can compile and link without vectorization
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>c++ -o novec.x vecexample.cpp
+</pre></div>
+<p>
+vand with vectorization (and additional optimizations)
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>c++ -O3 -o  vec.x vecexample.cpp 
+</pre></div>
+<p>
+The speedup depends on the size of the vectors. In the example here we have run with \( 10^7 \) elements.
+The example here was run on a PC with ubuntu 14.04 as operating system and an Intel i7-4790 CPU running at 3.60 GHz. 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>Compphys:~ hjensen<span style="color: #a61717; background-color: #e3d2d2">$</span> ./vec.x <span style="color: #B452CD">10000000</span>
+Time used  <span style="color: #8B008B; font-weight: bold">for</span> vector addition = <span style="color: #B452CD">0.0100000</span>
+Compphys:~ hjensen<span style="color: #a61717; background-color: #e3d2d2">$</span> ./novec.x <span style="color: #B452CD">10000000</span>
+Time used  <span style="color: #8B008B; font-weight: bold">for</span> vector addition = <span style="color: #B452CD">0.03000000000</span>
+</pre></div>
+<p>
+This particular C++ compiler speeds up the above loop operations with a factor of 3. 
+Performing the same operations for \( 10^8 \) elements results only in a factor \( 1.4 \).
+The result will however vary from compiler to compiler. In general however, with optimization flags like \( -O3 \) or \( -Ofast \), we gain a considerable speedup if our code can be vectorized. Many of these operations can be done automatically by your compiler. These automatic or near automatic compiler techniques improve performance considerably.
+
+<p>
+Not all loops can be vectorized, as discussed in <a href="https://software.intel.com/en-us/articles/a-guide-to-auto-vectorization-with-intel-c-compilers" target="_blank">Intel's guide to vectorization</a>
+
+<p>
+An important criteria is that the loop counter \( n \) is known at the entry of the loop.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+    a[j] = cos(j*<span style="color: #B452CD">1.0</span>);
+  }
+</pre></div>
+<p>
+The variable \( n \) does need to be known at compile time. However, this variable must stay the same for the entire duration of the loop. It implies that an exit statement inside the loop cannot be data dependent.
+
+<p>
+An exit statement should in general be avoided. 
+If the exit statement contains data-dependent conditions, the loop cannot be vectorized. 
+The following is an example of a non-vectorizable loop
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+    a[j] = cos(j*<span style="color: #B452CD">1.0</span>);
+    <span style="color: #8B008B; font-weight: bold">if</span> (a[j] &lt; <span style="color: #B452CD">0</span> ) <span style="color: #8B008B; font-weight: bold">break</span>;
+  }
+</pre></div>
+<p>
+Avoid loop termination conditions and opt for a single entry loop variable \( n \). The lower and upper bounds have to be kept fixed within the loop.
+
+<p>
+SIMD instructions perform the same type of operations multiple times. 
+A <b>switch</b> statement leads thus to a non-vectorizable loop since different statemens cannot branch.
+The following code can however be vectorized since the <b>if</b> statement is implemented as a masked assignment.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+    <span style="color: #a7a7a7; font-weight: bold">double</span> x  = cos(j*<span style="color: #B452CD">1.0</span>);
+    <span style="color: #8B008B; font-weight: bold">if</span> (x &gt; <span style="color: #B452CD">0</span> ) {
+       a[j] =  x*sin(j*<span style="color: #B452CD">2.0</span>); 
+    }
+    <span style="color: #8B008B; font-weight: bold">else</span> {
+       a[j] = <span style="color: #B452CD">0.0</span>;
+    }
+  }
+</pre></div>
+<p>
+These operations can be performed for all data elements but only those elements which the mask evaluates as true are stored. In general, one should avoid branches such as <b>switch</b>, <b>go to</b>, or <b>return</b> statements or <b>if</b> constructs that cannot be treated as masked assignments.
+
+<p>
+Only the innermost loop of the following example is vectorized
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+           a[i][j] += b[i][j];
+      }  
+  }
+</pre></div>
+<p>
+The exception is if an original outer loop is transformed into an inner loop as the result of compiler optimizations.
+
+<p>
+Calls to programmer defined functions ruin vectorization. However, calls to intrinsic functions like
+\( \sin{x} \), \( \cos{x} \), \( \exp{x} \) etc are allowed since they are normally efficiently vectorized. 
+The following example is fully vectorizable
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
+      a[i] = log10(i)*cos(i);
+  }
+</pre></div>
+<p>
+Similarly, <b>inline</b> functions defined by the programmer, allow for vectorization since the function statements are glued into the actual place where the function is called.
+
+<p>
+One has to keep in mind that vectorization changes the order of operations inside a loop. A so-called
+read-after-write statement with an explicit flow dependency cannot be vectorized. The following code
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">double</span> b = <span style="color: #B452CD">15.</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n; i++) {
+      a[i] = a[i-<span style="color: #B452CD">1</span>] + b;
+  }
+</pre></div>
+<p>
+is an example of flow dependency and results in wrong numerical results if vectorized. For a scalar operation, the value \( a[i-1] \) computed during the iteration is loaded into the right-hand side and the results are fine. In vector mode however, with a vector length of four, the values \( a[0] \), \( a[1] \), \( a[2] \) and \( a[3] \) from the previous loop will be loaded into the right-hand side and produce wrong results. That is, we have
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>   a[<span style="color: #B452CD">1</span>] = a[<span style="color: #B452CD">0</span>] + b;
+   a[<span style="color: #B452CD">2</span>] = a[<span style="color: #B452CD">1</span>] + b;
+   a[<span style="color: #B452CD">3</span>] = a[<span style="color: #B452CD">2</span>] + b;
+   a[<span style="color: #B452CD">4</span>] = a[<span style="color: #B452CD">3</span>] + b;
+</pre></div>
+<p>
+and if the two first iterations are  executed at the same by the SIMD instruction, the value of say \( a[1] \) could be used by the second iteration before it has been calculated by the first iteration, leading thereby to wrong results.
+
+<p>
+On the other hand,  a so-called 
+write-after-read statement can be vectorized. The following code
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">double</span> b = <span style="color: #B452CD">15.</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n; i++) {
+      a[i-<span style="color: #B452CD">1</span>] = a[i] + b;
+  }
+</pre></div>
+<p>
+is an example of flow dependency that can be vectorized since no iteration with a higher value of \( i \)
+can complete before an iteration with a lower value of \( i \). However, such code leads to problems with parallelization.
+
+<p>
+For C++ programmers  it is also worth keeping in mind that an array notation is preferred to the more compact use of pointers to access array elements. The compiler can often not tell if it is safe to vectorize the code.
+
+<p>
+When dealing with arrays, you should also avoid memory stride, since this slows down considerably vectorization. When you access array element, write for example the inner loop to vectorize using unit stride, that is, access successively the next array element in memory, as shown here
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+           a[i][j] += b[i][j];
+      }  
+  }
+</pre></div>
+<p>
+We can compile and link without vectorization using the clang c++ (on OSX for example) compiler
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>clang -o novec.x vecexample.cpp
+</pre></div>
+<p>
+and with vectorization (and additional optimizations)
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>clang++ -O3 -Rpass=loop-vectorize -o  vec.x vecexample.cpp 
+</pre></div>
+<p>
+The speedup depends on the size of the vectors. In the example here we have run with \( 10^7 \) elements.
+The example here was run on an IMac17.1 with OSX El Capitan (10.11.4) as operating system and an Intel i5 3.3 GHz CPU.
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>Compphys:~ hjensen<span style="color: #a61717; background-color: #e3d2d2">$</span> ./vec.x <span style="color: #B452CD">10000000</span>
+Time used  <span style="color: #8B008B; font-weight: bold">for</span> norm computation=<span style="color: #B452CD">0.04720500000</span>
+Compphys:~ hjensen<span style="color: #a61717; background-color: #e3d2d2">$</span> ./novec.x <span style="color: #B452CD">10000000</span>
+Time used  <span style="color: #8B008B; font-weight: bold">for</span> norm computation=<span style="color: #B452CD">0.03311700000</span>
+</pre></div>
+<p>
+This particular C++ compiler speeds up the above loop operations with a factor of 1.5 
+Performing the same operations for \( 10^9 \) elements results in a smaller speedup since reading from main memory is required. The non-vectorized code is seemingly faster. 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>Compphys:~ hjensen<span style="color: #a61717; background-color: #e3d2d2">$</span> ./vec.x <span style="color: #B452CD">1000000000</span>
+Time used  <span style="color: #8B008B; font-weight: bold">for</span> norm computation=<span style="color: #B452CD">58.41391100</span>
+Compphys:~ hjensen<span style="color: #a61717; background-color: #e3d2d2">$</span> ./novec.x <span style="color: #B452CD">1000000000</span>
+Time used  <span style="color: #8B008B; font-weight: bold">for</span> norm computation=<span style="color: #B452CD">46.51295300</span>
+</pre></div>
+<p>
+We will discuss these issues below.
+
+<p>
+We can compile and link without vectorization with clang compiler
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>clang++ -o -fno-vectorize novec.x vecexample.cpp
+</pre></div>
+<p>
+and with vectorization
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>clang++ -O3 -Rpass=loop-vectorize -o  vec.x vecexample.cpp 
+</pre></div>
+<p>
+We can also add vectorization analysis, see for example
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>clang++ -O3 -Rpass-analysis=loop-vectorize -o  vec.x vecexample.cpp 
+</pre></div>
+<p>
+or figure out if vectorization was missed
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>clang++ -O3 -Rpass-missed=loop-vectorize -o  vec.x vecexample.cpp 
+</pre></div>
+
+<h2 id="___sec10">Measuring performance </h2>
+
+<p>
+How do we measure erformance? What is wrong with this code to time a loop?
+<p>
+
+<!-- code=text typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  clock_t start, finish;
+  start = clock();
+  for (int j = 0; j &lt; i; j++) {
+    a[j] = b[j]+b[j]*c[j];
+  }
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+</pre></div>
+
+<h2 id="___sec11">Problems with measuring time </h2>
+
+<ol>
+<p><li> Timers are not infinitely accurate</li>
+<p><li> All clocks have a granularity, the minimum time that they can measure</li>
+<p><li> The error in a time measurement, even if everything is perfect, may be the size of this granularity (sometimes called a clock tick)</li>
+<p><li> Always know what your clock granularity is</li>
+<p><li> Ensure that your measurement is for a long enough duration (say 100 times the <b>tick</b>)</li>
+</ol>
+
+<h2 id="___sec12">Problems with cold start </h2>
+
+<p>
+What happens when the code is executed? The assumption is that the code is ready to
+execute. But
+
+<ol>
+<p><li> Code may still be on disk, and not even read into memory.</li>
+<p><li> Data may be in slow memory rather than fast (which may be wrong or right for what you are measuring)</li>
+<p><li> Multiple tests often necessary to ensure that cold start effects are not present</li>
+<p><li> Special effort often required to ensure data in the intended part of the memory hierarchy.</li>
+</ol>
+
+<h2 id="___sec13">Problems with smart compilers </h2>
+
+<ol>
+<p><li> If the result of the computation is not used, the compiler may eliminate the code</li>
+<p><li> Performance will look impossibly fantastic</li>
+<p><li> Even worse, eliminate some of the code so the performance looks plausible</li>
+<p><li> Ensure that the results are (or may be) used.</li>
+</ol>
+
+<h2 id="___sec14">Problems with interference </h2>
+
+<ol>
+<p><li> Other activities are sharing your processor</li>
+
+<ul>
+
+<p><li> Operating system, system demons, other users</li>
+
+<ul>
+
+<p><li> Some parts of the hardware do not always perform with exactly the same performance</li>
+</ul>
+<p>
+</ul>
+<p><li> Make multiple tests and report</li>
+<p><li> Easy choices include</li>
+
+<ul>
+
+<p><li> Average tests represent what users might observe over time</li>
+</ul>
+<p>
+</ol>
+
+<h2 id="___sec15">Problems with measuring performance  </h2>
+
+<ol>
+<p><li> Accurate, reproducible performance measurement is hard</li>
+<p><li> Think carefully about your experiment:</li>
+<p><li> What is it, precisely, that you want to measure</li>
+<p><li> How representative is your test to the situation that you are trying to measure?</li>
+</ol>
+
+<h2 id="___sec16">Thomas algorithm for tridiagonal linear algebra equations </h2>
+<p>&nbsp;<br>
+$$
+\left( \begin{array}{ccccc}
+        b_0 & c_0 &        &         &         \\
+	a_0 &  b_1 &  c_1    &         &         \\
+	   &    & \ddots  &         &         \\
+	      &	    & a_{m-3} & b_{m-2} & c_{m-2} \\
+	         &    &         & a_{m-2} & b_{m-1}
+   \end{array} \right)
+\left( \begin{array}{c}
+       x_0     \\
+       x_1     \\
+       \vdots  \\
+       x_{m-2} \\
+       x_{m-1}
+   \end{array} \right)=\left( \begin{array}{c}
+       f_0     \\
+       f_1     \\
+       \vdots  \\
+       f_{m-2} \\
+       f_{m-1} \\
+   \end{array} \right)
+$$
+<p>&nbsp;<br>
+
+<p>
+The first step is to multiply the first row by \( a_0/b_0 \) and subtract it from the second row.  This is known as the forward substitution step. We obtain then
+<p>&nbsp;<br>
+$$
+	a_i = 0,
+$$
+<p>&nbsp;<br>
+
+<p>&nbsp;<br>
+$$                                 
+	b_i = b_i - \frac{a_{i-1}}{b_{i-1}}c_{i-1},
+$$
+<p>&nbsp;<br>
+
+and
+<p>&nbsp;<br>
+$$
+	f_i = f_i - \frac{a_{i-1}}{b_{i-1}}f_{i-1}.
+$$
+<p>&nbsp;<br>
+
+At this point the simplified equation, with only an upper triangular matrix takes the form
+<p>&nbsp;<br>
+$$
+\left( \begin{array}{ccccc}
+    b_0 & c_0 &        &         &         \\
+       & b_1 &  c_1    &         &         \\
+          &    & \ddots &         &         \\
+	     &     &        & b_{m-2} & c_{m-2} \\
+	        &    &        &         & b_{m-1}
+   \end{array} \right)\left( \begin{array}{c}
+       x_0     \\
+       x_1     \\
+       \vdots  \\
+       x_{m-2} \\
+       x_{m-1}
+   \end{array} \right)=\left( \begin{array}{c}
+       f_0     \\
+       f_1     \\
+       \vdots  \\
+       f_{m-2} \\
+       f_{m-1} \\
+   \end{array} \right)
+$$
+<p>&nbsp;<br>
+
+<p>
+The next step is  the backward substitution step.  The last row is multiplied by \( c_{N-3}/b_{N-2} \) and subtracted from the second to last row, thus eliminating \( c_{N-3} \) from the last row.  The general backward substitution procedure is 
+<p>&nbsp;<br>
+$$
+	c_i = 0, 
+$$
+<p>&nbsp;<br>
+
+and 
+<p>&nbsp;<br>
+$$
+	f_{i-1} = f_{i-1} - \frac{c_{i-1}}{b_i}f_i
+$$
+<p>&nbsp;<br>
+
+All that remains to be computed is the solution, which is the very straight forward process of
+<p>&nbsp;<br>
+$$
+x_i = \frac{f_i}{b_i}
+$$
+<p>&nbsp;<br>
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">   Operation   </th> <th align="center">Floating Point</th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   Memory Reads       </td> <td align="center">   \( 14(N-2) \)     </td> </tr>
+<tr><td align="center">   Memory Writes      </td> <td align="center">   \( 4(N-2) \)      </td> </tr>
+<tr><td align="center">   Subtractions       </td> <td align="center">   \( 3(N-2) \)      </td> </tr>
+<tr><td align="center">   Multiplications    </td> <td align="center">   \( 3(N-2) \)      </td> </tr>
+<tr><td align="center">   Divisions          </td> <td align="center">   \( 4(N-2) \)      </td> </tr>
+</tbody>
+</table>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">// Forward substitution    </span>
+<span style="color: #228B22">// Note that we can simplify by precalculating a[i-1]/b[i-1]</span>
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>; i &lt; n; i++) {
+     b[i] = b[i] - (a[i-<span style="color: #B452CD">1</span>]*c[i-<span style="color: #B452CD">1</span>])/b[i-<span style="color: #B452CD">1</span>];
+     f[i] = g[i] - (a[i-<span style="color: #B452CD">1</span>]*f[i-<span style="color: #B452CD">1</span>])/b[i-<span style="color: #B452CD">1</span>];
+  }
+  x[n-<span style="color: #B452CD">1</span>] = f[n-<span style="color: #B452CD">1</span>] / b[n-<span style="color: #B452CD">1</span>];
+  <span style="color: #228B22">// Backwards substitution                                                           </span>
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = n-<span style="color: #B452CD">2</span>; i &gt;= <span style="color: #B452CD">0</span>; i--) {
+     f[i] = f[i] - c[i]*f[i+<span style="color: #B452CD">1</span>]/b[i+<span style="color: #B452CD">1</span>];
+     x[i] = f[i]/b[i];
+  }
+</pre></div>
+
+<h2 id="___sec17"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Projects/2016/Project1/Examples/TridiagonalTiming.cpp" target="_blank">The specialized Thomas algorithm (Project 1)</a>  </h2>
+
+<p>
+<table border="1">
+<thead>
+<tr><th align="center">  Operation  </th> <th align="center">Floating Point</th> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   Memory Reads     </td> <td align="center">   \( 6(N-2) \)      </td> </tr>
+<tr><td align="center">   Memory Writes    </td> <td align="center">   \( 2(N-2) \)      </td> </tr>
+<tr><td align="center">   Additions        </td> <td align="center">   \( 2(N-2) \)      </td> </tr>
+<tr><td align="center">   Divisions        </td> <td align="center">   \( 2(N-2) \)      </td> </tr>
+</tbody>
+</table>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>      <span style="color: #228B22">// Forward substitution cannot be vectorized</span>
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">2</span>; i &lt; n; i++) b[i] = b[i] + b[i-<span style="color: #B452CD">1</span>]/d[i-<span style="color: #B452CD">1</span>];
+      <span style="color: #228B22">// Backward substitution  cannot be vectorized</span>
+      solution[n-<span style="color: #B452CD">1</span>] = b[n-<span style="color: #B452CD">1</span>]/d[n-<span style="color: #B452CD">1</span>];
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = n-<span style="color: #B452CD">2</span>; i &gt; <span style="color: #B452CD">0</span>; i--) solution[i] = (b[i]+solution[i+<span style="color: #B452CD">1</span>])/d[i];
+</pre></div>
+
+<h2 id="___sec18"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program8.cpp" target="_blank">Example: Transpose of a matrix</a> </h2>
+
+<p>
+
+<!-- code=text (!bc cppcode) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;iomanip&gt;
+#include &quot;time.h&quot;
+
+using namespace std; // note use of namespace
+int main (int argc, char* argv[])
+{
+  // read in dimension of square matrix
+  int n = atoi(argv[1]);
+  double **A, **B;
+  // Allocate space for the two matrices
+  A = new double*[n]; B = new double*[n];
+  for (int i = 0; i &lt; n; i++){
+    A[i] = new double[n];
+    B[i] = new double[n];
+  }
+  // Set up values for matrix A
+  for (int i = 0; i &lt; n; i++){
+    for (int j = 0; j &lt; n; j++) {
+      A[i][j] =  cos(i*1.0)*sin(j*3.0);
+    }
+  }
+  clock_t start, finish;
+  start = clock();
+  // Then compute the transpose
+  for (int i = 0; i &lt; n; i++){
+    for (int j = 0; j &lt; n; j++) {
+      B[i][j]= A[j][i];
+    }
+  }
+
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
+  cout &lt;&lt; setprecision(10) &lt;&lt; setw(20) &lt;&lt; &quot;Time used  for setting up transpose of matrix=&quot; &lt;&lt; timeused  &lt;&lt; endl;
+
+  // Free up space
+  for (int i = 0; i &lt; n; i++){
+    delete[] A[i];
+    delete[] B[i];
+  }
+  delete[] A;
+  delete[] B;
+  return 0;
+}
+</pre></div>
+
+<h2 id="___sec19"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp" target="_blank">Matrix-matrix multiplication</a> </h2>
+This the matrix-matrix multiplication code with plain c++ memory allocation. It computes at the end the Frobenius norm.
+
+<p>
+
+<!-- code=text typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>#include &lt;cstdlib&gt;
+#include &lt;iostream&gt;
+#include &lt;cmath&gt;
+#include &lt;iomanip&gt;
+#include &quot;time.h&quot;
+
+using namespace std; // note use of namespace
+int main (int argc, char* argv[])
+{
+  // read in dimension of square matrix
+  int n = atoi(argv[1]);
+  double s = 1.0/sqrt( (double) n);
+  double **A, **B, **C;
+  // Start timing
+  clock_t start, finish;
+  start = clock();
+  // Allocate space for the two matrices
+  A = new double*[n]; B = new double*[n]; C = new double*[n];
+  for (int i = 0; i &lt; n; i++){
+    A[i] = new double[n];
+    B[i] = new double[n];
+    C[i] = new double[n];
+  }
+  // Set up values for matrix A and B and zero matrix C
+  for (int i = 0; i &lt; n; i++){
+    for (int j = 0; j &lt; n; j++) {
+      double angle = 2.0*M_PI*i*j/ (( double ) n);
+      A[i][j] = s * ( sin ( angle ) + cos ( angle ) );
+      B[j][i] =  A[i][j];
+    }
+  }
+  // Then perform the matrix-matrix multiplication
+  for (int i = 0; i &lt; n; i++){
+    for (int j = 0; j &lt; n; j++) {
+      double sum = 0.0;
+       for (int k = 0; k &lt; n; k++) {
+           sum += B[i][k]*A[k][j];
+       }
+       C[i][j] = sum;
+    }
+  }
+  // Compute now the Frobenius norm
+  double Fsum = 0.0;
+  for (int i = 0; i &lt; n; i++){
+    for (int j = 0; j &lt; n; j++) {
+      Fsum += C[i][j]*C[i][j];
+    }
+  }
+  Fsum = sqrt(Fsum);
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
+  cout &lt;&lt; setprecision(10) &lt;&lt; setw(20) &lt;&lt; &quot;Time used  for matrix-matrix multiplication=&quot; &lt;&lt; timeused  &lt;&lt; endl;
+  cout &lt;&lt; &quot;  Frobenius norm  = &quot; &lt;&lt; Fsum &lt;&lt; endl;
+  // Free up space
+  for (int i = 0; i &lt; n; i++){
+    delete[] A[i];
+    delete[] B[i];
+    delete[] C[i];
+  }
+  delete[] A;
+  delete[] B;
+  delete[] C;
+  return 0;
+}
+</pre></div>
+
+<h2 id="___sec20">How do we define speedup? Simplest form </h2>
+
+<ul>
+<p><li> Speedup(code,sys,p) = \( T_b/T_p \)</li>
+<p><li> Speedup measures the ratio of performance between two objects</li>
+<p><li> Versions of same code, with different number of processors</li>
+<p><li> Serial and vector versions</li>
+<p><li> Try different programing languages, C++ and Fortran</li>
+<p><li> Two algorithms computing the <b>same</b> result</li> 
+</ul>
+<p>
+
+The key is choosing the correct baseline for comparison
+
+<ul>
+<p><li> For our serial vs. vectorization examples, using compiler-provided vectorization, the baseline is simple; the same code, with vectorization turned off</li>
+
+<ul>
+ <p><li> For parallel applications, this is much harder:</li>
+
+<ul>
+
+<p><li> Choice of algorithm, decomposition, performance of baseline case etc.</li>
+</ul>
+<p>
+</ul>
+<p>
+</ul>
+<p>
+
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+</center>
+</section>
+
+
+
+</div> <!-- class="slides" -->
+</div> <!-- class="reveal" -->
+
+<script src="reveal.js/lib/js/head.min.js"></script>
+<script src="reveal.js/js/reveal.js"></script>
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+
+    // Display navigation controls in the bottom right corner
+    controls: true,
+
+    // Display progress bar (below the horiz. slider)
+    progress: true,
+
+    // Display the page number of the current slide
+    slideNumber: true,
+
+    // Push each slide change to the browser history
+    history: false,
+
+    // Enable keyboard shortcuts for navigation
+    keyboard: true,
+
+    // Enable the slide overview mode
+    overview: true,
+
+    // Vertical centering of slides
+    //center: true,
+    center: false,
+
+    // Enables touch navigation on devices with touch input
+    touch: true,
+
+    // Loop the presentation
+    loop: false,
+
+    // Change the presentation direction to be RTL
+    rtl: false,
+
+    // Turns fragments on and off globally
+    fragments: true,
+
+    // Flags if the presentation is running in an embedded mode,
+    // i.e. contained within a limited portion of the screen
+    embedded: false,
+
+    // Number of milliseconds between automatically proceeding to the
+    // next slide, disabled when set to 0, this value can be overwritten
+    // by using a data-autoslide attribute on your slides
+    autoSlide: 0,
+
+    // Stop auto-sliding after user input
+    autoSlideStoppable: true,
+
+    // Enable slide navigation via mouse wheel
+    mouseWheel: false,
+
+    // Hides the address bar on mobile devices
+    hideAddressBar: true,
+
+    // Opens links in an iframe preview overlay
+    previewLinks: false,
+
+    // Transition style
+    transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+    // Transition speed
+    transitionSpeed: 'default', // default/fast/slow
+
+    // Transition style for full page slide backgrounds
+    backgroundTransition: 'default', // default/none/slide/concave/convex/zoom
+
+    // Number of slides away from the current that are visible
+    viewDistance: 3,
+
+    // Parallax background image
+    //parallaxBackgroundImage: '', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
+
+    // Parallax background size
+    //parallaxBackgroundSize: '' // CSS syntax, e.g. "2100px 900px"
+
+    theme: Reveal.getQueryHash().theme, // available themes are in reveal.js/css/theme
+    transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/none
+
+});
+
+Reveal.initialize({
+    dependencies: [
+        // Cross-browser shim that fully implements classList - https://github.com/eligrey/classList.js/
+        { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+
+        // Interpret Markdown in <section> elements
+        { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+
+        // Syntax highlight for <code> elements
+        { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+
+        // Zoom in and out with Alt+click
+        { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Speaker notes
+        { src: 'reveal.js/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // Remote control your reveal.js presentation using a touch device
+        //{ src: 'reveal.js/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
+
+        // MathJax
+        //{ src: 'reveal.js/plugin/math/math.js', async: true }
+    ]
+});
+
+Reveal.initialize({
+
+    // The "normal" size of the presentation, aspect ratio will be preserved
+    // when the presentation is scaled to fit different resolutions. Can be
+    // specified using percentage units.
+    width: 1170,  // original: 960,
+    height: 700,
+
+    // Factor of the display size that should remain empty around the content
+    margin: 0.1,
+
+    // Bounds for smallest/largest possible scale to apply to content
+    minScale: 0.2,
+    maxScale: 1.0
+
+});
+</script>
+
+<!-- begin footer logo
+<div style="position: absolute; bottom: 0px; left: 0; margin-left: 0px">
+<img src="somelogo.png">
+</div>
+     end footer logo -->
+
+
+
+</body>
+</html>
