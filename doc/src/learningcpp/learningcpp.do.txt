@@ -110,7 +110,7 @@ We call three functions (atof, sin, cout)
 and these are declared in three different header files. These declarations should come first. The _cout_ function is included in the _isostream_. In C++, input and output (I/O) operations  are performed by using so-called streams which a *stream of data* where a  stream is an object with properties that are defined by a class. Global objects are predefined for the standard I/O channels.   The _sin_ function is defined by the _cmath_ library and its header file and needs to be included. For those of you familiar with _Python_ this is similar to 
 !bc pycod
 from math import sin
-!ec.
+!ec
 
 "The main program is a function called main":"http://en.cppreference.com/w/cpp/language/return"
 with a return value set to an integer, int (0 if success).
@@ -404,22 +404,64 @@ Pointers play a central role in understanding memory management in C++. A pointe
 
 A pointer points to an address not to a data container of any kind! It is a variable (with its own address in memory) whose value is the address of some other memory location. C++ as programming language offers several operations that allow us to access say elements of an array in an efficient way by accessing data by their addresses.
 
-Simple example declarations:
+Let us look at some simple example declarations. We define four variables and each of them is storeed in memory schematically as shown here (think of every box as a slot in memory of say 32 bits or more for each slot)
+|-------------------------------|
+| int a | int b | double c | int d | double e | 
+|-------------------------------|
+| 112 | -1 |3.14 | ? | ? |
+|-------------------------------|
 
+We have put questions marks for the values of the variables _d_ and _e_. 
+In the program here we define _a_ and _b_ as integers and _c_ as a double. The variables _d_ and _e_ are declared as pointers. 
 !bc cppcod
-  int main()
- {
-   // what are the differences?
-   int var;
-   cin >> var;
-   int *p, q;
-   int *s, *t;
-   int * a new[var];    // dynamic memory allocation
-   delete [] a;
-}
+#include <iostream>
+using namespace std;
+//  Declare functions before main
+int main(int argc, char *argv[])
+{
+  int a =112, b = -1;
+  double c = 3.14;
+  int *d = &a;
+  double  *e = &c;
+
+  cout << "Address of the integer variable a :" << &a <<endl;
+  cout << "Value of the integer pointer variable d:" << d << endl;
+  cout << "Value which pointer d is pointing at :" << *d << endl;
+  cout << "Address of the double variable c :" << &c <<endl;
+  cout << "Value of the integer pointer variable e:" << e << endl;
+  cout << "Value which pointer e is pointing at :" << *e << endl;
+
+
+  return 0;
+} // End: function main()
 !ec
 
-===== Technical Matter in C/C++: "Pointer example I":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program7.cpp" =====
+
+Running this "program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program11.cpp" we get the following
+!bc sys
+Address of the integer variable a :0x7fff56966a7c
+Value of the integer pointer variable d:0x7fff56966a7c
+Value which pointer d is pointing at :112
+Address of the double variable c :0x7fff56966a70
+Value of the integer pointer variable e:0x7fff56966a70
+Value which pointer e is pointing at :3.14
+!ec
+we see that the value of _d_ is the address of _a_ and it points to the value $112$ stored in the memory slot reserved for _a_. Similarly, _e_ is a pointer and gets as value the address of _c_, which is $0x7fff56966a70$ which points to the value of $3.14$. The operation
+!bc cppcod
+  int *d = &a;
+!ec
+is called dereferencing. We could alternatively have written
+!bc cppcod
+  int *d;
+  d = &a;
+!ec
+where the latter means that _d_ gets as value the address of _a_. The print statement
+!bc cppcod
+  cout << "Value which pointer d is pointing at :" << *d << endl;
+!ec
+then prints the actual number it points at, that is the vaue of the variable _a_.
+
+" Another pPointer example ":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program7.cpp" is the following program
 
 !bc cppcod
 int main()
@@ -436,9 +478,7 @@ int main()
   return 0;
 }
 !ec
-
-===== Dissection: Pointer example I =====
-
+Dissecting it we have (now with the _printf_ function from standard C)
 
 !bc cppcod
 int main()
@@ -457,31 +497,17 @@ int main()
   return 0;
 }
 !ec
-
-===== "Pointer example II":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program8.cpp" =====
-
-
-!bc cppcod
-int matr[2];
-int *p;
-p = &matr[0];
-matr[0] = 321;
-matr[1] = 322;
-printf("\nAddress of matrix element matr[1]: %p",&matr[0]);
-printf("\nValue of the  matrix element  matr[1]; %d",matr[0]);
-printf("\nAddress of matrix element matr[2]: %p",&matr[1]);
-printf("\nValue of the matrix element  matr[2]: %d\n", matr[1]);
-printf("\nValue of the pointer p: %p",p);
-printf("\nThe value p points to: %d",*p);
-printf("\nThe value that (p+1) points to  %d\n",*(p+1));
-printf("\nAddress of pointer p : %p\n",&p);
+and running the code we get
+!bc sys
+Address of integer variable var : 0x7fff5cfe6ae8
+Its value: 421
+Value of integer pointer p : 0x7fff5cfe6ae8
+The value p points at :  421
+Address of the pointer p : 0x7fff5cfe6ae0
 !ec
+We see again that the value of the pointer _p_ is the address of the variable _var_. 
 
-
-
-===== Dissection: Pointer example II =====
-
-
+"The next pointer example":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program8.cpp" deals with arrays and how to access array elements with pointer operations. 
 !bc cppcod
 int matr[2];    // Define integer array with two elements
 int *p;         // Define pointer to integer
@@ -497,11 +523,9 @@ printf("\nThe value p points to: %d", *p);
 printf("\nThe value that (p+1) points to  %d\n", *(p+1));
 printf("\nAddress of pointer p : %p\n", &p);
 !ec
+Here we define an array with two elements. The pointer _p_ gets as value the address of the first element. The output of this program is
 
-===== Output of Pointer example II =====
-
-
-!bc
+!bc sys
 Address of the matrix element matr[1]: 0xbfffef70
 Value of the  matrix element  matr[1]; 321
 Address of the matrix element matr[2]: 0xbfffef74
@@ -511,8 +535,13 @@ The value pointer points at: 321
 The value that (pointer+1) points at:  322
 Address of the pointer variable : 0xbfffef6c
 !ec
+We note that the operation
+!bc cppcod
+printf("\nThe value that (p+1) points to  %d\n", *(p+1));
+!ec
+allows us to print the address of the second array element. This is the way we can use pointers to access array elements.
 
-===== "Example codes in c++, transfer of data using call by value and call by reference":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program6.cpp" =====
+Let us now discuss another subtle issue, that is transfer of data using call by value and call by reference, shown in the "program here":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program6.cpp".
 
 !bc cppcod
 #include <iostream>
@@ -554,10 +583,29 @@ void func( int x, int *y)
 
 !ec
 
+There are several things to notice here. First, we have now declared a function _func_. This declaration is placed before the main function. If we don't do that the main function does not know how this function is to be used. The function takes as input an integer and an integer pointer defined by the asterix in
+!bc cppcod
+void func(int, int*);
+!ec
+This means that we transfer an address (in this case the address of the first element of the pointer _b_). This is called _call by reference_.
+It means that the function _func_ can change the value of _b_ upon returning the instruction pointer to the main program (or calling function).
+The other variable is transferred through what we label as  _call by value_. In this case the called function can change the value of _a_ locally but cannot change the value of this variable in the calling function.
+The function _func_ func gets the address of the first element of y (b) and changes y[0] to 10 and when returning control to main
+it changes also b[0]. This is done via
+!bc cppcod
+  *y += 10;  
+!ec
+This changes only the first element. To change another element, we would write (unless we use pointer operations)
+!bc cppcod
+  y[6] += 10;
+!ec
+which changes $\mathbf{y[6]}$  to $16$, since its orginal value was $6$, as defined in the main function. Using pointer operations we could write this as
+!bc cppcod
+  *(y+6) += 10;
+!ec
+and it produces the same result. It states that the value of the element which resides in $\mathbf{y[6]}$ is to be changed to $16$. 
 
 
-
-===== Call by value or reference =====
 C++ allows the programmer to use solely call by reference (note that call by reference is implemented as pointers). To see the difference between C and C++, consider the following simple examples.
 In C we would write
 
@@ -592,9 +640,7 @@ reduces the readability of the code.
 
 
 
-
-
-===== "Example codes in c++, writing to file and dynamic allocation for arrays":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program5.cpp" =====
+Let us look at further Example codes in C++, with writing to file and "dynamic allocation for arrays":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program5.cpp"
 
 !bc cppcod
 #include <iostream>
@@ -625,8 +671,11 @@ int main(int argc, char* argv[])
   //  opening a file for the program
   ofile.open(outfilename); 
   int i = atoi(argv[2]); 
-  //  int *a;
-  //a = new int[i];
+ /* we can define it as 
+  int *a;
+  a = new int[i];
+  or as
+ */
   double *a = new double[i]; 
   cout << " bytes for i=" << sizeof(i) << endl;
   for (int j = 0; j < i; j++) {
@@ -641,17 +690,37 @@ int main(int argc, char* argv[])
 
 !ec
 
+Here we read from the command line the number of elements _i_ via
+!bc cppcod
+  int i = atoi(argv[2]); 
+!ec
+and allocate memory dynamically by declaring a pointer array (a vector here) _a_ using
+!bc cppcod
+  double *a = new double[i];
+!ec
+Using dynamic memory allocation we actually allow  memory to be more flexibly and explicitly managed.
+When the memory is no longer needed, the pointer is passed to free which deallocates the memory so that it can be used for other purposes. This is done by the _delete_ statement
+!bc cppcod
+  delete [] a; // free memory
+!ec
 
+In the loop
+!bc cppcod
+  for (int j = 0; j < i; j++) {
+    a[j] = j*exp(2.0);
+    // ofile instead of cout
+    ofile << setw(15) << setprecision(8) << "a=" << a[j] << endl;
+  }
+!ec
+we assign a specific value to each array element and print to file. 
 
-
-===== "Example codes in c++, operating on several arrays and printing time used":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" =====
-
+If we wish to time our function, the following "program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" gives a typical example. 
 !bc cppcod
 #include <cstdlib>
 #include <iostream>
 #include <cmath>
 #include <iomanip> 
-#include "time.h" 
+#include "time.h"   // Not the use time.h
 
 using namespace std; // note use of namespace                                       
 int main (int argc, char* argv[])
@@ -681,17 +750,117 @@ int main (int argc, char* argv[])
   delete [] c;
   return 0;           /* success execution of the program */
 }
-
+!ec
+When timing the program, you should carefully plan what to time. Here we calculate the time difference from the point where we start filling in the three arrays _a_, _b_ and _c_ defining the starting time as
+!bc cppcod
+  clock_t start, finish;
+  start = clock();
+  for (int j = 0; j < i; j++) {
+!ec
+The final time is when all operations we are interested in are concluded, namely at
+!bc cppcod
+  for (int j = 0; j < i; j++) {
+    c[j] = a[j]+b[j];
+  }
+  finish = clock();
+!ec
+The time difference from start to end, with its granularity is defined as
+!bc cppcod
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
 !ec
 
+When timing a program you should pay attention to the following:
+o Timers are not infinitely accurate
+o All clocks have a granularity, the minimum time that they can measure
+o The error in a time measurement, even if everything is perfect, may be the size of this granularity (sometimes called a clock tick)
+o Always know what your clock granularity is
+o Ensure that your measurement is for a long enough duration (say 100 times the _tick_)
+
+What happens when the code is executed? The assumption is that the code is ready to
+execute. But
+o Code may still be on disk, and not even read into memory.
+o Data may be in slow memory rather than fast (which may be wrong or right for what you are measuring)
+o Multiple tests often necessary to ensure that cold start effects are not present
+o Special effort often required to ensure data in the intended part of the memory hierarchy.
+
+You should thus think of a numerical calculation as an experiment. To provide benchmark times you should thus run the timing measurement several times and then take the average over a series of simulations. 
 
 
+===== Using _strings_ instead of characters =====
+
+Till now we have used character variables when declaring for example filenames for output or input files. C++ offers a compact and flexible way of dealing with text strings through the _string_ class. In the program below we wish for example to define several output files for our calculations byapending  to a basename read in on the command line various endings. These endings can then be used to recognize a specific calculation.
+Here we read the basic name of an ouput file and add to it the actual exponent used in a calculation by appending it to the file name. We show only the relevant parts 
+!bc cppcod
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <cmath>
+#include <string>
+// use namespace for output and input
+using namespace std;
+
+// object for output files
+ofstream ofile;
 
 
+// Begin main program
+int main(int argc, char *argv[]){
+  int exponent; 
+    string filename;
+    // We read also the basic name for the output file and the highest power of 10^n we want
+    if( argc <= 1 ){
+          cout << "Bad Usage: " << argv[0] <<
+              " read also file name on same line and max power 10^n" << endl;
+          exit(1);
+    }
+        else{
+        filename = argv[1]; // first command line argument after name of program
+        exponent = atoi(argv[2]);
+    }
+    // Loop over powers of 10
+    for (int i = 1; i <= exponent; i++){
+      int  n = (int) pow(10.0,i);
+      // Declare new file name
+      string fileout = filename;
+      // Convert the power 10^i to a string
+      string argument = to_string(i);
+      // Final filename as filename-i- by appending the power of 10
+      fileout.append(argument);
+      ofile.open(fileout);
+      ofile << setiosflags(ios::showpoint | ios::uppercase);
+      //   Do something 
+      ofile.close();  // close output file wth given ending
+    }
+    return 0;
+}
+!ec
 
+Instead of our earlier definition
+!bc cppcod
+  char *outfilename;
+!ec
+we define now the same output file via the _string_ statement, inheriting thus all functionality of the _string_ class by writing
+!bc cppcod
+    string filename;
+!ec
+In the statement
+!bc cppcod
+    filename = argv[1]; 
+!ec
+the variable _filename_ gets the name of file we declared on the command line.
+A new file for the specific calculation is then established via
+!bc cppcod
+      // Declare new file name
+      string fileout = filename;
+      // Convert the power 10^i to a string
+      string argument = to_string(i);
+      // Final filename as filename-i- by appending the power of 10
+      fileout.append(argument);
+      ofile.open(fileout);  // then open
+!ec
+We recommend using the _string_ class, it gives ou much more flexibility in handling strings. 
 
-
-
+===== More information will be added =====
 
 
 =====     Optimization and profiling =====
@@ -746,8 +915,8 @@ c++  -g -O0 -c  mycode.cpp
 c++  -g -O0 -o  mycode.exe  mycode.o
 !ec
 This option generates debugging information allowing you to trace for example if an array is properly allocated. Some compilers work best with the no optimization option _-O0_. 
-!eblock
-!bblock Other optimization flags 
+
+
 Depending on the compiler, one can add flags which generate code that catches integer overflow errors. 
 The flag _-ftrapv_ does this for the CLANG compiler on OS X operating systems.   
 
@@ -916,7 +1085,7 @@ We can compile and link without vectorization
 !bc cppcod
 c++ -o novec.x vecexample.cpp
 !ec
-and with vectorization (and additional optimizations)
+vand with vectorization (and additional optimizations)
 !bc cppcod
 c++ -O3 -o  vec.x vecexample.cpp 
 !ec
@@ -1258,7 +1427,6 @@ x_i = \frac{f_i}{b_i}
 !ec
 
 =====  "The specialized Thomas algorithm (Project 1)":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Projects/2016/Project1/Examples/TridiagonalTiming.cpp"  =====
-!bblock
 
 
 |-------------------------------------------------------------------------------------------|
@@ -1419,3 +1587,11 @@ The key is choosing the correct baseline for comparison
 * For our serial vs. vectorization examples, using compiler-provided vectorization, the baseline is simple; the same code, with vectorization turned off
 *  For parallel applications, this is much harder:
   * Choice of algorithm, decomposition, performance of baseline case etc.
+
+
+
+
+
+
+
+
