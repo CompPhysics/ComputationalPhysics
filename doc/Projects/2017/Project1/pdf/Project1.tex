@@ -105,7 +105,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
-Project 1, deadline  September 11
+Project 1, deadline  September 13
 \end{spacing}
 }
 \end{center}
@@ -125,7 +125,7 @@ Project 1, deadline  September 11
 
 % --- begin date ---
 \begin{center}
-Aug 23, 2017
+Sep 6, 2017
 \end{center}
 % --- end date ---
 
@@ -282,7 +282,7 @@ and forward substitution and finally a backward substitution.
 
 Your first task is to set up the general algorithm (assuming different values for the matrix elements) for solving this set of linear equations.
 Find also the precise number of floating point 
-operations needed to solve the above equations. 
+operations needed to solve the above equations. For the general algorithm you need to specify the values of the array elements $a$, $b$ and $c$ by inserting their explicit values. 
 
 
 Then you should code the above algorithm and solve the problem for matrices of the size
@@ -324,7 +324,7 @@ Comment your results.
 
 
 To compute the elapsed time in c++ you can use the following statements
-\begin{print}
+\begin{verbatim}
 ...
 #include "time.h"   //  you have to include the time.h header
 int main()
@@ -337,9 +337,9 @@ int main()
     finish = clock();
     ( (finish - start)/CLOCKS_PER_SEC );
 ...
-\end{print}
+\end{verbatim}
 Similarly, in Fortran, this simple example shows how to compute the elapsed time.
-\begin{print}
+\begin{verbatim}
 PROGRAM time
  REAL :: etime          ! Declare the type of etime()
  REAL :: elapsed(2)     ! For receiving user and system time
@@ -357,7 +357,7 @@ PROGRAM time
               ' system=', elapsed(2)
 
 END PROGRAM time
-\end{print}
+\end{verbatim}
 
 
 

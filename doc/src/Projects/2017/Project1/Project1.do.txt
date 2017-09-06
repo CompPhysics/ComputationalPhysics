@@ -1,4 +1,4 @@
-TITLE: Project 1, deadline  September 11
+TITLE: Project 1, deadline  September 13
 AUTHOR: "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo, Norway
 DATE: today
 
@@ -172,7 +172,7 @@ and forward substitution and finally a backward substitution.
 
 Your first task is to set up the general algorithm (assuming different values for the matrix elements) for solving this set of linear equations.
 Find also the precise number of floating point 
-operations needed to solve the above equations. 
+operations needed to solve the above equations. For the general algorithm you need to specify the values of the array elements $a$, $b$ and $c$ by inserting their explicit values. 
 
 
 Then you should code the above algorithm and solve the problem for matrices of the size
