@@ -1,8 +1,6 @@
-TITLE: Teach yourself C++
-AUTHOR: Morten Hjorth-Jensen
+TITLE: Computational Physics:  Teach yourself C++
+AUTHOR: Morten Hjorth-Jensen {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo & Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University
 DATE: today
-
-
 
 
 ===== Getting Started, compiling and linking first =====
@@ -18,9 +16,9 @@ Here we discuss first how to obtain an executable without using IDEs like "QT":"
 It means that you need to compile the program (translate the human-like instructions into machine code) and link the resulting compiled file (a so-called _object_ file) with the various libraries in order to obtain an executable file. 
 
 In order to obtain an executable file for a C++ program, the following
-instructions under Linux/Unix can be used ("similar instructions apply to the windows-like environments using DOS":"https://msdn.microsoft.com/en-us/library/ms235639.aspx").
+instructions under Unix/Linux can be used ("similar instructions apply to windows-like environments using DOS":"https://msdn.microsoft.com/en-us/library/ms235639.aspx").
 
-First you need to open a terminal on your unix/linux PC/laptop. You need also to have a c++ compiler installed. To check on unix/linux whether a c++ is installed or not type simply (in the terminal window)
+First you need to open a terminal on your Unix/Linux PC/laptop. You need also to have a C++ compiler installed. To check on Unix/Linux whether a c++ is installed or not type simply (in the terminal window)
 !bc sys
 which c++
 !ec
@@ -103,13 +101,16 @@ int main (int argc, char* argv[])
 The compiler must see a declaration of a function before you can
 call it (the compiler checks the argument and return types).
 The declaration of library functions appears
-in so-called ``header files'' that must be included in the program, e.g.,
+in so-called ``header files'' that must be included in the program, as an example the following statement includes the so-called _Standard Library Functions_
 
 !bc cppcod
    #include <cstdlib> // atof function 
 !ec
 We call three functions (atof, sin, cout)
-and these are declared in three different header files. These declarations should come first. 
+and these are declared in three different header files. These declarations should come first. The _cout_ function is included in the _isostream_. In C++, input and output (I/O) operations  are performed by using so-called streams which a *stream of data* where a  stream is an object with properties that are defined by a class. Global objects are predefined for the standard I/O channels.   The _sin_ function is defined by the _cmath_ library and its header file and needs to be included. For those of you familiar with _Python_ this is similar to 
+!bc pycod
+from math import sin
+!ec.
 
 "The main program is a function called main":"http://en.cppreference.com/w/cpp/language/return"
 with a return value set to an integer, int (0 if success).
@@ -127,19 +128,19 @@ The command-line arguments are transferred to the main function through
 !bc cppcod
    int main (int argc, char* argv[])
 !ec
-The integer _argc_ is the number  of command-line arguments, set to
-one in our case, while
+The integer _argc_ is the number  of command-line arguments (two in our case) while
 _argv_ is a vector of strings containing the command-line arguments
 with _argv[0]_ containing  the name of the program
 and _argv[1]_, _argv[2]_, ... are the command-line args, i.e., the number of
-lines of input to the program.
-Here we define floating points, see also below,
+arguments that are  inputs to the program.
+
+We define floating point variables, see also below,
 through the keywords _float_ for single precision real numbers and
-_double_ for double precision. The function
-_atof_ transforms a text string (_argv[1]_) to a float, either single or double precision.
-The _sine_ function is declared in <cmath>, a library which
+_double_ for double precision real numbers. The function
+_atof_ transforms a text string to a float, either single or double precision.
+The _sine_ function is declared in _cmath_, a library which
 is not automatically included and needs to be linked when computing
-and producing the  executable file. Note that arrays in c++ begin by default with $0$. The first element is here _argv[0]_. 
+and producing the  executable file. Note that arrays in C++ begin by default with $0$. The first element is here _argv[0]_. 
 
 A one-dimensional array like _argv_ can be defined statically or dynamically. To reserve space in memory statically means defining a variable of this type as
 !bc cppcod
@@ -158,7 +159,7 @@ double *argv;  // declaring first a pointer
 argv = new double[10];   // Now reserving space for  ten elements in memory for a character variable (4 bytes or 32 bits).
 !ec
 In similar ways we can declare integer variable, single precisions floats etc.
-We can write the above as
+We can write the above in one line as
 !bc cppcod
 double *argv = new double[10];   
 !ec
@@ -169,7 +170,7 @@ After having compiled this program as
 !bc sys
 c++ -o hw.exe hellowd.cpp
 !ec
-we can run the executable as
+we can run the executable and obtain
 !bc sys
 Mortens-MacBook-Pro:cpp hjensen$ ./hw.exe 0.5
 Hello, World! sin(0.5) =0.479426
@@ -181,7 +182,7 @@ Mortens-MacBook-Pro:cpp hjensen$ ./hw.exe
 Segmentation fault: 11
 !ec
 
-In this case, since reading from the command line with a number of arguments defined by the number of elements in the array _argv[]_, trying to access _argv[1]_ results in a segmentation fault. In the last case there is only one command line argument, the name of the executable program. It means that there we only have the array element _argv[0]_. The element _argv[1]_ is not defined and we are trying to access something which is outside the memory slots reserved for _argv[]_. 
+In this case, since reading from the command line with a number of arguments defined by the number of elements in the array _argv[]_, trying to access _argv[1]_ results in a segmentation fault. In the last case there is only one command line argument, the name of the executable program. It means that we have only the array element _argv[0]_. The element _argv[1]_ is not defined and we are trying to access something which is outside the memory slots reserved for _argv[]_. 
 
 We can rewrite our "Hello World without the namespace usage":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/hellownonamespace.cpp". 
 
@@ -221,7 +222,7 @@ using namespace std;
 
 ===== Brief summary =====
 
-  * A C/C++ program begins with include statements of header files (libraries,intrinsic functions etc)
+  * A C/C++ program begins with include statements of header files (libraries,intrinsic functions etc). This is similar to the _import_ statement in Python.
   * Functions which are used are normally defined at the top (details below)
   * The main program is declared as an integer, it returns 0 (everything correct) or 1 (something went wrong)
   * Standard `if`, `while` and `for` statements as in Java, Fortran, Python...
@@ -314,11 +315,13 @@ Our next loop
     number /= 2; 
   }
 !ec
-contains the actual algorithm for the translation of an integer in the decimal representation to an integer in the binary representation. We note the way we use the curly parentheses to mark where the content inside a one loop starts and where it ends. It is useful to introduce some identation (many text editors do this automatically for you when the file ends with _.cpp_) in order to increase readability.
+contains the actual algorithm for the translation of an integer in the decimal representation to an integer in the binary representation. We note the way we use the curly parentheses to mark where the content inside a loop starts and where it ends. It is useful to introduce some indentation (many text editors do this automatically for you when the file ends with _.cpp_) in order to increase readability.
 
 The function _sizeof()_ tells how many bytes are used to store a given variable. An integer is by default defined in terms of four bytes or 32 bits. 
 
 Our next example is a program that calculates the second derivative numerically  of a function (the exponential function here) and writes the result to a file declared by the user. The first thing to notice is declaration of the object _ofile_ which inherits all functionality from the _ofstream_ class. "This class":"http://www.cplusplus.com/reference/fstream/ofstream/" (to be discussed later below in connection with classes) overloads functions like writing to file, opening files, closing files etc. A similar class exists, the _ifstream_ class, for input variables. 
+Adding the header file _fstream_ gives us access to the functionality of the _ofstream_ class. 
+The _iomanip_ header files allows to format our output with functions like _setprecision_, _setw_ etc.
 
 !bc cppcod
 #include <iostream>
@@ -370,16 +373,36 @@ We have also defined how to write to file our result in a formatted way via the 
 !bc cppcod
   ofile <<  setw(15) << setprecision(8) << "relative error=" << RelativeError << endl;
 !ec
-where we reserve a width of 15 characters and a precision of eight leading digits after the decimal point.
+where we reserve a field width of 15 characters and a precision of eight leading digits after the decimal point.
 
-The above example represents our first simple case where we write to file our results. Before we proceed now, we need to say something more about pointers. 
+The above example represents our first simple case where we write our results to file. Before we proceed now, we need to say something more about pointers. 
 
 ===== Technical Matter in C/C++: Pointers =====
 
+Variables are stored in the memory of a computer and each location in memory is defined by a unique address. How is memory management done?
 
-A pointer specifies where a value resides in the computer's memory (like a house number specifies where a particular family resides on a street).
+The main memory contains the program data
+* Cache memory contains a copy of the main memory data
+* Cache is faster but consumes more space and power. It is normally assumed to be much faster than main memory
+* Registers contain working data only
+ * Modern CPUs perform most or all operations only on data in register
+* Multiple Cache memories contain a copy of the main memory data
+ * Cache items accessed by their address in main memory
+ * L1 cache is the fastest but has the least capacity
+ * L2, L3 provide intermediate performance/size tradeoffs
+Loads and stores to memory can be as important as floating point operations when we measure performance.
 
-A pointer points to an address not to a data container of any kind!
+
+* Most communication in a computer is carried out in chunks, blocks of bytes of data that move together
+* In the memory hierarchy, data moves between memory and cache, and between different levels of cache, in groups called lines
+ * Lines are typically 64-128 bytes, or 8-16 double precision words
+ * Even if you do not use the data, it is moved and occupies space in the cache
+* This performance feature is not captured in most programming languages
+
+When we store variables in memory, each memory location is identified and referenced with an address (like a house number specifies where a particular family resides on a street).
+Pointers play a central role in understanding memory management in C++. A pointer is just another name for an address and a pointer specifies where a value resides in the computer's memory. 
+
+A pointer points to an address not to a data container of any kind! It is a variable (with its own address in memory) whose value is the address of some other memory location. C++ as programming language offers several operations that allow us to access say elements of an array in an efficient way by accessing data by their addresses.
 
 Simple example declarations:
 
@@ -455,7 +478,7 @@ printf("\nAddress of pointer p : %p\n",&p);
 !ec
 
 
-!split
+
 ===== Dissection: Pointer example II =====
 
 
@@ -667,3 +690,732 @@ int main (int argc, char* argv[])
 
 
 
+
+
+
+
+=====     Optimization and profiling =====
+
+Till now we have not paid much attention to speed and possible optimization possibilities
+inherent in the various compilers. We have compiled and linked as
+!bc cppcod
+c++  -c  mycode.cpp
+c++  -o  mycode.exe  mycode.o
+!ec
+For Fortran replace with for example _gfortran_ or _ifort_.
+This is what we call a flat compiler option and should be used when we develop the code.
+It produces normally a very large and slow code when translated to machine instructions.
+We use this option for debugging and for establishing the correct program output because
+every operation is done precisely as the user specified it.
+
+It is instructive to look up the compiler manual for further instructions by writing
+!bc cppcod
+man c++
+!ec
+
+We have additional compiler options for optimization. These may include procedure inlining where 
+performance may be improved, moving constants inside loops outside the loop, 
+identify potential parallelism, include automatic vectorization or replace a division with a reciprocal
+and a multiplication if this speeds up the code.
+!bc cppcod
+c++  -O3 -c  mycode.cpp
+c++  -O3 -o  mycode.exe  mycode.o
+!ec
+This (other options are -O2 or -Ofast) is the recommended option. 
+
+
+It is also useful to profile your program under the development stage.
+You would then compile with 
+!bc cppcod
+c++  -pg -O3 -c  mycode.cpp
+c++  -pg -O3 -o  mycode.exe  mycode.o
+!ec
+After you have run the code you can obtain the profiling information via
+!bc cppcod
+gprof mycode.exe >  ProfileOutput
+!ec
+When you have profiled properly your code, you must take out this option as it 
+slows down performance.
+For memory tests use "valgrind":"http://www.valgrind.org". An excellent environment for all these aspects, and much  more, is  Qt creator.
+
+
+Adding debugging options is a very useful alternative under the development stage of a program.
+You would then compile with 
+!bc cppcod
+c++  -g -O0 -c  mycode.cpp
+c++  -g -O0 -o  mycode.exe  mycode.o
+!ec
+This option generates debugging information allowing you to trace for example if an array is properly allocated. Some compilers work best with the no optimization option _-O0_. 
+!eblock
+!bblock Other optimization flags 
+Depending on the compiler, one can add flags which generate code that catches integer overflow errors. 
+The flag _-ftrapv_ does this for the CLANG compiler on OS X operating systems.   
+
+In general, irrespective of compiler options, it is useful to
+* avoid if tests or call to functions inside loops, if possible. 
+* avoid multiplication with constants inside loops if possible
+Here is an example of a part of a program where specific operations lead to a slower code
+!bc cppcod
+k = n-1;
+for (i = 0; i < n; i++){
+    a[i] = b[i] +c*d;
+    e = g[k];
+}
+!ec
+A better code is
+!bc cppcod
+temp = c*d;
+for (i = 0; i < n; i++){
+    a[i] = b[i] + temp;
+}
+e = g[n-1];
+!ec
+Here we avoid a repeated multiplication inside a loop. 
+Most compilers, depending on compiler flags, identify and optimize such bottlenecks on their own, without requiring any particular action by the programmer. However, it is always useful to single out and avoid code examples like the first one discussed here.
+
+
+===== Vectorization and the basic idea behind parallel computing =====
+
+Present CPUs are highly parallel processors with varying levels of parallelism. The typical situation can be described via the following three statements.
+* Pursuit of shorter computation time and larger simulation size gives rise to parallel computing.
+* Multiple processors are involved to solve a global problem.
+* The essence is to divide the entire computation evenly among collaborative processors.  Divide and conquer.
+
+Before we proceed with a more detailed discussion of topics like vectorization and parallelization, we need to remind ourselves about some basic features of different hardware models. We have
+
+
+* Conventional single-processor computers are named SISD (single-instruction-single-data) machines.
+* SIMD (single-instruction-multiple-data) machines incorporate the idea of parallel processing, using a large number of processing units to execute the same instruction on different data.
+* Modern parallel computers are so-called MIMD (multiple-instruction-multiple-data) machines and can execute different instruction streams in parallel on different data.
+
+
+===== What is vectorization? ===== 
+
+Vectorization is a special
+case of _Single Instructions Multiple Data_ (SIMD) to denote a single
+instruction stream capable of operating on multiple data elements in
+parallel. 
+We can think of vectorization as the unrolling of loops accompanied with SIMD instructions.
+
+Vectorization is the process of converting an algorithm that performs scalar operations
+(typically one operation at the time) to vector operations where a single operation can refer to many simultaneous operations.
+Consider the following example
+!bc cppcod
+for (i = 0; i < n; i++){
+    a[i] = b[i] + c[i];
+}
+!ec
+If the code is not vectorized, the compiler will simply start with the first element and 
+then perform subsequent additions operating on one address in memory at the time. 
+
+
+A SIMD instruction can operate  on multiple data elements in one single instruction.
+It uses the so-called 128-bit SIMD floating-point register. 
+In this sense,vectorization adds some form of parallelism since one instruction is applied  
+to many parts of say a vector.
+
+The number of elements which can be operated on in parallel
+range from four single-precision floating point data elements in so-called 
+Streaming SIMD Extensions and two double-precision floating-point data
+elements in Streaming SIMD Extensions 2 to sixteen byte operations in
+a 128-bit register in Streaming SIMD Extensions 2. Thus, vector-length
+ranges from 2 to 16, depending on the instruction extensions used and
+on the data type. 
+
+
+We start with the simple scalar operations given by
+!bc cppcod
+for (i = 0; i < n; i++){
+    a[i] = b[i] + c[i];
+}
+!ec
+If the code is not vectorized  and we have a 128-bit register to store a 32 bits floating point number,
+it means that we have $3\times 32$ bits that are not used. For the first element we have
+
+
+|-------------------------------|
+| 0 | 1 | 2 | 3                 | 
+|-------------------------------|
+| a[0]= | not used | not used| not used|
+|-------------------------------|
+| b[0]+ | not used | not used| not used|
+|-------------------------------|
+| c[0] | not used | not used| not used|
+|-------------------------------|
+
+We have thus unused space in our SIMD registers. These registers could hold three additional integers.
+
+
+
+If we vectorize the code, we can perform, with a 128-bit register four simultaneous operations, that is
+we have
+!bc cppcod
+for (i = 0; i < n; i+=4){
+    a[i] = b[i] + c[i];
+    a[i+1] = b[i+1] + c[i+1];
+    a[i+2] = b[i+2] + c[i+2];
+    a[i+3] = b[i+3] + c[i+3];
+}
+!ec
+displayed here as
+
+|-------------------------------|
+| 0 | 1 | 2 | 3                 | 
+|-------------------------------|
+|  a[0]= | a[1]= | a[2]=| a[3]= |
+|-------------------------------|
+|  b[0]+ | b[1]+ | b[2]+| b[3]+ |
+|-------------------------------|
+| c[0]| c[1] | c[2] | c[3]      | 
+|-------------------------------|
+Four additions are now done in a single step.
+
+
+===== "A simple test case with and without vectorization":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" =====
+We implement these operations in a simple c++ program as 
+
+!bc cppcode
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include "time.h" 
+
+using namespace std; // note use of namespace                                       
+int main (int argc, char* argv[])
+{
+  int i = atoi(argv[1]); 
+  double *a, *b, *c;
+  a = new double[i]; 
+  b = new double[i]; 
+  c = new double[i]; 
+  for (int j = 0; j < i; j++) {
+    a[j] = 0.0;
+    b[j] = cos(j*1.0);
+    c[j] = sin(j*3.0);
+  }
+  clock_t start, finish;
+  start = clock();
+  for (int j = 0; j < i; j++) {
+    a[j] = b[j]+b[j]*c[j];
+  }
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout << setiosflags(ios::showpoint | ios::uppercase);
+  cout << setprecision(10) << setw(20) << "Time used  for vector addition and multiplication=" << timeused  << endl;
+  delete [] a;
+  delete [] b;
+  delete [] c;
+  return 0;     
+}
+!ec
+
+
+
+We can compile and link without vectorization
+!bc cppcod
+c++ -o novec.x vecexample.cpp
+!ec
+and with vectorization (and additional optimizations)
+!bc cppcod
+c++ -O3 -o  vec.x vecexample.cpp 
+!ec
+The speedup depends on the size of the vectors. In the example here we have run with $10^7$ elements.
+The example here was run on a PC with ubuntu 14.04 as operating system and an Intel i7-4790 CPU running at 3.60 GHz. 
+!bc cppcod 
+Compphys:~ hjensen$ ./vec.x 10000000
+Time used  for vector addition = 0.0100000
+Compphys:~ hjensen$ ./novec.x 10000000
+Time used  for vector addition = 0.03000000000
+!ec
+This particular C++ compiler speeds up the above loop operations with a factor of 3. 
+Performing the same operations for $10^8$ elements results only in a factor $1.4$.
+The result will however vary from compiler to compiler. In general however, with optimization flags like $-O3$ or $-Ofast$, we gain a considerable speedup if our code can be vectorized. Many of these operations can be done automatically by your compiler. These automatic or near automatic compiler techniques improve performance considerably. 
+
+
+Not all loops can be vectorized, as discussed in "Intel's guide to vectorization":"https://software.intel.com/en-us/articles/a-guide-to-auto-vectorization-with-intel-c-compilers"
+
+An important criteria is that the loop counter $n$ is known at the entry of the loop.
+!bc cppcod
+  for (int j = 0; j < n; j++) {
+    a[j] = cos(j*1.0);
+  }
+!ec
+The variable $n$ does need to be known at compile time. However, this variable must stay the same for the entire duration of the loop. It implies that an exit statement inside the loop cannot be data dependent.
+
+
+An exit statement should in general be avoided. 
+If the exit statement contains data-dependent conditions, the loop cannot be vectorized. 
+The following is an example of a non-vectorizable loop
+!bc cppcod
+  for (int j = 0; j < n; j++) {
+    a[j] = cos(j*1.0);
+    if (a[j] < 0 ) break;
+  }
+!ec
+Avoid loop termination conditions and opt for a single entry loop variable $n$. The lower and upper bounds have to be kept fixed within the loop. 
+
+SIMD instructions perform the same type of operations multiple times. 
+A _switch_ statement leads thus to a non-vectorizable loop since different statemens cannot branch.
+The following code can however be vectorized since the _if_ statement is implemented as a masked assignment.
+!bc cppcod
+  for (int j = 0; j < n; j++) {
+    double x  = cos(j*1.0);
+    if (x > 0 ) {
+       a[j] =  x*sin(j*2.0); 
+    }
+    else {
+       a[j] = 0.0;
+    }
+  }
+!ec
+These operations can be performed for all data elements but only those elements which the mask evaluates as true are stored. In general, one should avoid branches such as _switch_, _go to_, or _return_ statements or _if_ constructs that cannot be treated as masked assignments. 
+
+
+
+
+Only the innermost loop of the following example is vectorized
+!bc cppcod
+  for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+           a[i][j] += b[i][j];
+      }  
+  }
+!ec
+The exception is if an original outer loop is transformed into an inner loop as the result of compiler optimizations.
+
+
+
+Calls to programmer defined functions ruin vectorization. However, calls to intrinsic functions like
+$\sin{x}$, $\cos{x}$, $\exp{x}$ etc are allowed since they are normally efficiently vectorized. 
+The following example is fully vectorizable
+!bc cppcod
+  for (int i = 0; i < n; i++) {
+      a[i] = log10(i)*cos(i);
+  }
+!ec
+Similarly, _inline_ functions defined by the programmer, allow for vectorization since the function statements are glued into the actual place where the function is called. 
+
+
+
+One has to keep in mind that vectorization changes the order of operations inside a loop. A so-called
+read-after-write statement with an explicit flow dependency cannot be vectorized. The following code
+!bc cppcod
+  double b = 15.;
+  for (int i = 1; i < n; i++) {
+      a[i] = a[i-1] + b;
+  }
+!ec
+is an example of flow dependency and results in wrong numerical results if vectorized. For a scalar operation, the value $a[i-1]$ computed during the iteration is loaded into the right-hand side and the results are fine. In vector mode however, with a vector length of four, the values $a[0]$, $a[1]$, $a[2]$ and $a[3]$ from the previous loop will be loaded into the right-hand side and produce wrong results. That is, we have
+!bc cppcod
+   a[1] = a[0] + b;
+   a[2] = a[1] + b;
+   a[3] = a[2] + b;
+   a[4] = a[3] + b;
+!ec
+and if the two first iterations are  executed at the same by the SIMD instruction, the value of say $a[1]$ could be used by the second iteration before it has been calculated by the first iteration, leading thereby to wrong results.
+
+
+On the other hand,  a so-called 
+write-after-read statement can be vectorized. The following code
+!bc cppcod
+  double b = 15.;
+  for (int i = 1; i < n; i++) {
+      a[i-1] = a[i] + b;
+  }
+!ec
+is an example of flow dependency that can be vectorized since no iteration with a higher value of $i$
+can complete before an iteration with a lower value of $i$. However, such code leads to problems with parallelization.
+
+
+
+For C++ programmers  it is also worth keeping in mind that an array notation is preferred to the more compact use of pointers to access array elements. The compiler can often not tell if it is safe to vectorize the code. 
+
+When dealing with arrays, you should also avoid memory stride, since this slows down considerably vectorization. When you access array element, write for example the inner loop to vectorize using unit stride, that is, access successively the next array element in memory, as shown here
+!bc cppcod
+  for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+           a[i][j] += b[i][j];
+      }  
+  }
+!ec
+
+
+We can compile and link without vectorization using the clang c++ (on OSX for example) compiler
+!bc cppcod
+clang -o novec.x vecexample.cpp
+!ec
+and with vectorization (and additional optimizations)
+!bc cppcod
+clang++ -O3 -Rpass=loop-vectorize -o  vec.x vecexample.cpp 
+!ec
+The speedup depends on the size of the vectors. In the example here we have run with $10^7$ elements.
+The example here was run on an IMac17.1 with OSX El Capitan (10.11.4) as operating system and an Intel i5 3.3 GHz CPU.  
+!bc cppcod 
+Compphys:~ hjensen$ ./vec.x 10000000
+Time used  for norm computation=0.04720500000
+Compphys:~ hjensen$ ./novec.x 10000000
+Time used  for norm computation=0.03311700000
+!ec
+This particular C++ compiler speeds up the above loop operations with a factor of 1.5 
+Performing the same operations for $10^9$ elements results in a smaller speedup since reading from main memory is required. The non-vectorized code is seemingly faster. 
+!bc cppcod 
+Compphys:~ hjensen$ ./vec.x 1000000000
+Time used  for norm computation=58.41391100
+Compphys:~ hjensen$ ./novec.x 1000000000
+Time used  for norm computation=46.51295300
+!ec
+We will discuss these issues below.
+
+We can compile and link without vectorization with clang compiler
+!bc cppcod
+clang++ -o -fno-vectorize novec.x vecexample.cpp
+!ec
+and with vectorization
+!bc cppcod
+clang++ -O3 -Rpass=loop-vectorize -o  vec.x vecexample.cpp 
+!ec
+We can also add vectorization analysis, see for example
+!bc cppcod
+clang++ -O3 -Rpass-analysis=loop-vectorize -o  vec.x vecexample.cpp 
+!ec
+or figure out if vectorization was missed
+!bc cppcod
+clang++ -O3 -Rpass-missed=loop-vectorize -o  vec.x vecexample.cpp 
+!ec
+
+
+
+=====  Measuring performance =====
+
+How do we measure erformance? What is wrong with this code to time a loop?
+!bc
+  clock_t start, finish;
+  start = clock();
+  for (int j = 0; j < i; j++) {
+    a[j] = b[j]+b[j]*c[j];
+  }
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+!ec
+
+
+=====  Problems with measuring time =====
+o Timers are not infinitely accurate
+o All clocks have a granularity, the minimum time that they can measure
+o The error in a time measurement, even if everything is perfect, may be the size of this granularity (sometimes called a clock tick)
+o Always know what your clock granularity is
+o Ensure that your measurement is for a long enough duration (say 100 times the _tick_)
+
+
+=====  Problems with cold start =====
+
+What happens when the code is executed? The assumption is that the code is ready to
+execute. But
+o Code may still be on disk, and not even read into memory.
+o Data may be in slow memory rather than fast (which may be wrong or right for what you are measuring)
+o Multiple tests often necessary to ensure that cold start effects are not present
+o Special effort often required to ensure data in the intended part of the memory hierarchy.
+
+
+=====  Problems with smart compilers =====
+
+o If the result of the computation is not used, the compiler may eliminate the code
+o Performance will look impossibly fantastic
+o Even worse, eliminate some of the code so the performance looks plausible
+o Ensure that the results are (or may be) used.
+
+
+=====  Problems with interference =====
+o Other activities are sharing your processor
+  * Operating system, system demons, other users
+  *  Some parts of the hardware do not always perform with exactly the same performance
+o Make multiple tests and report
+o Easy choices include
+ *  Average tests represent what users might observe over time
+
+
+
+=====  Problems with measuring performance  =====
+o Accurate, reproducible performance measurement is hard
+o Think carefully about your experiment:
+o What is it, precisely, that you want to measure
+o How representative is your test to the situation that you are trying to measure?
+
+
+===== Thomas algorithm for tridiagonal linear algebra equations =====
+!bt
+\[
+\left( \begin{array}{ccccc}
+        b_0 & c_0 &        &         &         \\
+	a_0 &  b_1 &  c_1    &         &         \\
+	   &    & \ddots  &         &         \\
+	      &	    & a_{m-3} & b_{m-2} & c_{m-2} \\
+	         &    &         & a_{m-2} & b_{m-1}
+   \end{array} \right)
+\left( \begin{array}{c}
+       x_0     \\
+       x_1     \\
+       \vdots  \\
+       x_{m-2} \\
+       x_{m-1}
+   \end{array} \right)=\left( \begin{array}{c}
+       f_0     \\
+       f_1     \\
+       \vdots  \\
+       f_{m-2} \\
+       f_{m-1} \\
+   \end{array} \right)
+\]
+!et
+
+The first step is to multiply the first row by $a_0/b_0$ and subtract it from the second row.  This is known as the forward substitution step. We obtain then
+!bt
+\[
+	a_i = 0,
+\]
+!et
+
+!bt
+\[                                 
+	b_i = b_i - \frac{a_{i-1}}{b_{i-1}}c_{i-1},
+\]
+!et
+and
+!bt
+\[
+	f_i = f_i - \frac{a_{i-1}}{b_{i-1}}f_{i-1}.
+\]
+!et
+At this point the simplified equation, with only an upper triangular matrix takes the form
+!bt
+\[
+\left( \begin{array}{ccccc}
+    b_0 & c_0 &        &         &         \\
+       & b_1 &  c_1    &         &         \\
+          &    & \ddots &         &         \\
+	     &     &        & b_{m-2} & c_{m-2} \\
+	        &    &        &         & b_{m-1}
+   \end{array} \right)\left( \begin{array}{c}
+       x_0     \\
+       x_1     \\
+       \vdots  \\
+       x_{m-2} \\
+       x_{m-1}
+   \end{array} \right)=\left( \begin{array}{c}
+       f_0     \\
+       f_1     \\
+       \vdots  \\
+       f_{m-2} \\
+       f_{m-1} \\
+   \end{array} \right)
+\]
+!et
+
+The next step is  the backward substitution step.  The last row is multiplied by $c_{N-3}/b_{N-2}$ and subtracted from the second to last row, thus eliminating $c_{N-3}$ from the last row.  The general backward substitution procedure is 
+!bt
+\[
+	c_i = 0, 
+\]
+!et
+and 
+!bt
+\[
+	f_{i-1} = f_{i-1} - \frac{c_{i-1}}{b_i}f_i
+\]
+!et
+All that remains to be computed is the solution, which is the very straight forward process of
+!bt
+\[
+x_i = \frac{f_i}{b_i}
+\]
+!et
+
+|-------------------------------------------------------------------------------------------|
+|  Operation     | Floating Point | 
+|-------------------------------------------------------------------------------------------|
+| Memory Reads   |    $14(N-2)$   |
+| Memory Writes  |     $4(N-2)$   |
+| Subtractions   |     $3(N-2)$   |
+| Multiplications |     $3(N-2)$  |
+| Divisions       |     $4(N-2)$  |
+|-------------------------------------------------------------------------------------------|
+
+
+!bc cppcod
+// Forward substitution    
+// Note that we can simplify by precalculating a[i-1]/b[i-1]
+  for (int i=1; i < n; i++) {
+     b[i] = b[i] - (a[i-1]*c[i-1])/b[i-1];
+     f[i] = g[i] - (a[i-1]*f[i-1])/b[i-1];
+  }
+  x[n-1] = f[n-1] / b[n-1];
+  // Backwards substitution                                                           
+  for (int i = n-2; i >= 0; i--) {
+     f[i] = f[i] - c[i]*f[i+1]/b[i+1];
+     x[i] = f[i]/b[i];
+  }
+!ec
+
+=====  "The specialized Thomas algorithm (Project 1)":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Projects/2016/Project1/Examples/TridiagonalTiming.cpp"  =====
+!bblock
+
+
+|-------------------------------------------------------------------------------------------|
+|  Operation     | Floating Point | 
+|-------------------------------------------------------------------------------------------|
+| Memory Reads   |    $6(N-2)$   |
+| Memory Writes  |     $2(N-2)$   |
+| Additions   |     $2(N-2)$   |
+| Divisions       |     $2(N-2)$  |
+|-------------------------------------------------------------------------------------------|
+
+
+!bc cppcod
+      // Forward substitution cannot be vectorized
+      for (int i = 2; i < n; i++) b[i] = b[i] + b[i-1]/d[i-1];
+      // Backward substitution  cannot be vectorized
+      solution[n-1] = b[n-1]/d[n-1];
+      for (int i = n-2; i > 0; i--) solution[i] = (b[i]+solution[i+1])/d[i];
+!ec
+
+===== "Example: Transpose of a matrix":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program8.cpp" =====
+
+!bc cppcode
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include "time.h"
+
+using namespace std; // note use of namespace
+int main (int argc, char* argv[])
+{
+  // read in dimension of square matrix
+  int n = atoi(argv[1]);
+  double **A, **B;
+  // Allocate space for the two matrices
+  A = new double*[n]; B = new double*[n];
+  for (int i = 0; i < n; i++){
+    A[i] = new double[n];
+    B[i] = new double[n];
+  }
+  // Set up values for matrix A
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      A[i][j] =  cos(i*1.0)*sin(j*3.0);
+    }
+  }
+  clock_t start, finish;
+  start = clock();
+  // Then compute the transpose
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      B[i][j]= A[j][i];
+    }
+  }
+
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout << setiosflags(ios::showpoint | ios::uppercase);
+  cout << setprecision(10) << setw(20) << "Time used  for setting up transpose of matrix=" << timeused  << endl;
+
+  // Free up space
+  for (int i = 0; i < n; i++){
+    delete[] A[i];
+    delete[] B[i];
+  }
+  delete[] A;
+  delete[] B;
+  return 0;
+}
+
+!ec
+
+
+
+=====  "Matrix-matrix multiplication":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp" =====
+This the matrix-matrix multiplication code with plain c++ memory allocation. It computes at the end the Frobenius norm.
+
+!bc
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include "time.h"
+
+using namespace std; // note use of namespace
+int main (int argc, char* argv[])
+{
+  // read in dimension of square matrix
+  int n = atoi(argv[1]);
+  double s = 1.0/sqrt( (double) n);
+  double **A, **B, **C;
+  // Start timing
+  clock_t start, finish;
+  start = clock();
+  // Allocate space for the two matrices
+  A = new double*[n]; B = new double*[n]; C = new double*[n];
+  for (int i = 0; i < n; i++){
+    A[i] = new double[n];
+    B[i] = new double[n];
+    C[i] = new double[n];
+  }
+  // Set up values for matrix A and B and zero matrix C
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      double angle = 2.0*M_PI*i*j/ (( double ) n);
+      A[i][j] = s * ( sin ( angle ) + cos ( angle ) );
+      B[j][i] =  A[i][j];
+    }
+  }
+  // Then perform the matrix-matrix multiplication
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      double sum = 0.0;
+       for (int k = 0; k < n; k++) {
+           sum += B[i][k]*A[k][j];
+       }
+       C[i][j] = sum;
+    }
+  }
+  // Compute now the Frobenius norm
+  double Fsum = 0.0;
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      Fsum += C[i][j]*C[i][j];
+    }
+  }
+  Fsum = sqrt(Fsum);
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout << setiosflags(ios::showpoint | ios::uppercase);
+  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << timeused  << endl;
+  cout << "  Frobenius norm  = " << Fsum << endl;
+  // Free up space
+  for (int i = 0; i < n; i++){
+    delete[] A[i];
+    delete[] B[i];
+    delete[] C[i];
+  }
+  delete[] A;
+  delete[] B;
+  delete[] C;
+  return 0;
+}
+!ec
+
+
+=====  How do we define speedup? Simplest form =====
+
+* Speedup(code,sys,p) = $T_b/T_p$
+* Speedup measures the ratio of performance between two objects
+* Versions of same code, with different number of processors
+* Serial and vector versions
+* Try different programing languages, C++ and Fortran
+* Two algorithms computing the _same_ result 
+
+The key is choosing the correct baseline for comparison
+* For our serial vs. vectorization examples, using compiler-provided vectorization, the baseline is simple; the same code, with vectorization turned off
+*  For parallel applications, this is much harder:
+  * Choice of algorithm, decomposition, performance of baseline case etc.
