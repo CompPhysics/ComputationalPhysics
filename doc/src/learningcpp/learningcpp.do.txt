@@ -860,8 +860,383 @@ A new file for the specific calculation is then established via
 !ec
 We recommend using the _string_ class, it gives ou much more flexibility in handling strings. 
 
-===== More information will be added =====
+===== Matrices in C++ =====
+Another quantity we end up using again and again are matrices.
+We have  an $N\times N$ matrix A  with $N=100$
+In C/C++ this would be  defined as
 
+!bc cppcod
+   int N = 100;
+   double A[100][100];
+   //   initialize all elements to zero
+   for(i=0 ; i < N ; i++) {
+      for(j=0 ; j < N ; j++) {
+         A[i][j] = 0.0;
+
+!ec
+Note the way the matrix is organized, row-major order.
+
+We have  $N\times N$ matrices A, B and C and we wish to
+evaluate $A=B+C$.
+
+!bt
+\[
+\mathbf{A}= \mathbf{B}\pm\mathbf{C}  \Longrightarrow a_{ij} = b_{ij}\pm c_{ij},
+\]
+!et
+In C/C++ this would be coded like
+
+!bc cppcod
+   for(i=0 ; i < N ; i++) {
+      for(j=0 ; j < N ; j++) {
+         a[i][j] = b[i][j]+c[i][j]
+
+!ec
+
+We have  $N\times N$ matrices A, B and C and we wish to
+evaluate $A=BC$.
+
+!bt
+\[
+\mathbf{A}=\mathbf{BC}   \Longrightarrow a_{ij} = \sum_{k=1}^{n} b_{ik}c_{kj},
+\]
+!et
+In C/C++ this would be coded like
+
+!bc cppcod
+   for(i=0 ; i < N ; i++) {
+      for(j=0 ; j < N ; j++) {
+         for(k=0 ; k < N ; k++) {
+            a[i][j]+=b[i][k]*c[k][j];
+
+!ec
+
+The above matrices were all declared statically.
+For dynamic memory allocation in C++ there are 
+several  possibilities
+
+  * Do it yourself
+  * Use the functions provided in the library package "lib.cpp":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/cppLibrary/lib.cpp"
+  * Use Armadillo URL: "http://arma.sourceforgenet" (a C++ linear algebra library, discussion both here and at lab). 
+  * Write yur own matrix-vector class (to be discussed later.
+
+A matrix in C++ is a double pointer, a pointer to a pointer. Here is how you would do it yourself.
+!bc cppcod
+int N;
+double **  A;
+A = new double*[N]
+for ( i = 0; i < N; i++)
+    A[i] = new double[N];
+!ec
+Always free space when you don't need an array anymore.
+
+!bc cppcod
+for ( i = 0; i < N; i++)
+    delete[] A[i];
+delete[] A;
+!ec
+
+You will find Armadillo as a very convenient library. 
+
+  * Armadillo is a C++ linear algebra library (matrix maths) aiming towards a good balance between speed and ease of use. The syntax is deliberately similar to Matlab.
+  * Integer, floating point and complex numbers are supported, as well as a subset of trigonometric and statistics functions. Various matrix decompositions are provided through optional integration with LAPACK, or one of its high performance drop-in replacements (such as the multi-threaded MKL or ACML libraries).
+  * A delayed evaluation approach is employed (at compile-time) to combine several operations into one and reduce (or eliminate) the need for temporaries. This is accomplished through recursive templates and template meta-programming.
+  * Useful for conversion of research code into production environments, or if C++ has been decided as the language of choice, due to speed and/or integration capabilities.
+  * The library is open-source software, and is distributed under a license that is useful in both open-source and commercial/proprietary contexts.
+
+Here are simple examples.
+
+!bc cppcod
+#include <iostream>
+#include <armadillo>
+
+using namespace std;
+using namespace arma;
+
+int main(int argc, char** argv)
+  {
+  mat A = randu<mat>(5,5);
+  mat B = randu<mat>(5,5);
+
+  cout << A*B << endl;
+
+  return 0;
+
+!ec
+
+
+For people using Ubuntu, Debian, Linux Mint, simply go to the synaptic package manager and install
+armadillo from there.
+You may have to install Lapack as well.
+For Mac and Windows users, follow the instructions from the webpage
+URL: "http://arma.sourceforge.net".
+To compile, use for example (linux/ubuntu)
+
+!bc cppcod
+c++ -O2 -o program.x program.cpp  -larmadillo -llapack -lblas
+!ec
+where the `-l` option indicates the library you wish to link to.
+
+For OS X users you may have to declare the paths to the include files and the libraries as
+!bc cppcod
+c++ -O2 -o program.x program.cpp  -L/usr/local/lib -I/usr/local/include -larmadillo -llapack -lblas
+!ec
+
+
+!bc cppcod
+#include <iostream>
+#include "armadillo"
+using namespace arma;
+using namespace std;
+
+int main(int argc, char** argv)
+  {
+  // directly specify the matrix size (elements are uninitialised)
+  mat A(2,3);
+  // .n_rows = number of rows    (read only)
+  // .n_cols = number of columns (read only)
+  cout << "A.n_rows = " << A.n_rows << endl;
+  cout << "A.n_cols = " << A.n_cols << endl;
+  // directly access an element (indexing starts at 0)
+  A(1,2) = 456.0;
+  A.print("A:");
+  // scalars are treated as a 1x1 matrix,
+  // hence the code below will set A to have a size of 1x1
+  A = 5.0;
+  A.print("A:");
+  // if you want a matrix with all elements set to a particular value
+  // the .fill() member function can be used
+  A.set_size(3,3);
+  A.fill(5.0);  A.print("A:");
+  mat B;
+
+  // endr indicates "end of row"
+  B << 0.555950 << 0.274690 << 0.540605 << 0.798938 << endr
+    << 0.108929 << 0.830123 << 0.891726 << 0.895283 << endr
+    << 0.948014 << 0.973234 << 0.216504 << 0.883152 << endr
+    << 0.023787 << 0.675382 << 0.231751 << 0.450332 << endr;
+
+  // print to the cout stream
+  // with an optional string before the contents of the matrix
+  B.print("B:");
+
+  // the << operator can also be used to print the matrix
+  // to an arbitrary stream (cout in this case)
+  cout << "B:" << endl << B << endl;
+  // save to disk
+  B.save("B.txt", raw_ascii);
+  // load from disk
+  mat C;
+  C.load("B.txt");
+  C += 2.0 * B;
+  C.print("C:");
+  // submatrix types:
+  //
+  // .submat(first_row, first_column, last_row, last_column)
+  // .row(row_number)
+  // .col(column_number)
+  // .cols(first_column, last_column)
+  // .rows(first_row, last_row)
+
+  cout << "C.submat(0,0,3,1) =" << endl;
+  cout << C.submat(0,0,3,1) << endl;
+
+  // generate the identity matrix
+  mat D = eye<mat>(4,4);
+
+  D.submat(0,0,3,1) = C.cols(1,2);
+  D.print("D:");
+
+  // transpose
+  cout << "trans(B) =" << endl;
+  cout << trans(B) << endl;
+
+  // maximum from each column (traverse along rows)
+  cout << "max(B) =" << endl;
+  cout << max(B) << endl;
+
+  // maximum from each row (traverse along columns)
+  cout << "max(B,1) =" << endl;
+  cout << max(B,1) << endl;
+  // maximum value in B
+  cout << "max(max(B)) = " << max(max(B)) << endl;
+  // sum of each column (traverse along rows)
+  cout << "sum(B) =" << endl;
+  cout << sum(B) << endl;
+  // sum of each row (traverse along columns)
+  cout << "sum(B,1) =" << endl;
+  cout << sum(B,1) << endl;
+  // sum of all elements
+  cout << "sum(sum(B)) = " << sum(sum(B)) << endl;
+  cout << "accu(B)     = " << accu(B) << endl;
+  // trace = sum along diagonal
+  cout << "trace(B)    = " << trace(B) << endl;
+  // random matrix -- values are uniformly distributed in the [0,1] interval
+  mat E = randu<mat>(4,4);
+  E.print("E:");
+
+  // row vectors are treated like a matrix with one row
+  rowvec r;
+  r << 0.59499 << 0.88807 << 0.88532 << 0.19968;
+  r.print("r:");
+
+  // column vectors are treated like a matrix with one column
+  colvec q;
+  q << 0.81114 << 0.06256 << 0.95989 << 0.73628;
+  q.print("q:");
+
+  // dot or inner product
+  cout << "as_scalar(r*q) = " << as_scalar(r*q) << endl;
+
+    // outer product
+  cout << "q*r =" << endl;
+  cout << q*r << endl;
+
+
+  // sum of three matrices (no temporary matrices are created)
+  mat F = B + C + D;
+  F.print("F:");
+
+    return 0;
+
+!ec
+
+
+!bc cppcod
+#include <iostream>
+#include "armadillo"
+using namespace arma;
+using namespace std;
+
+int main(int argc, char** argv)
+  {
+  cout << "Armadillo version: " << arma_version::as_string() << endl;
+
+  mat A;
+
+  A << 0.165300 << 0.454037 << 0.995795 << 0.124098 << 0.047084 << endr
+    << 0.688782 << 0.036549 << 0.552848 << 0.937664 << 0.866401 << endr
+    << 0.348740 << 0.479388 << 0.506228 << 0.145673 << 0.491547 << endr
+    << 0.148678 << 0.682258 << 0.571154 << 0.874724 << 0.444632 << endr
+    << 0.245726 << 0.595218 << 0.409327 << 0.367827 << 0.385736 << endr;
+
+  A.print("A =");
+
+  // determinant
+  cout << "det(A) = " << det(A) << endl;
+  // inverse
+  cout << "inv(A) = " << endl << inv(A) << endl;
+  double k = 1.23;
+
+  mat    B = randu<mat>(5,5);
+  mat    C = randu<mat>(5,5);
+
+  rowvec r = randu<rowvec>(5);
+  colvec q = randu<colvec>(5);
+
+
+  // examples of some expressions
+  // for which optimised implementations exist
+  // optimised implementation of a trinary expression
+  // that results in a scalar
+  cout << "as_scalar( r*inv(diagmat(B))*q ) = ";
+  cout << as_scalar( r*inv(diagmat(B))*q ) << endl;
+
+  // example of an expression which is optimised
+  // as a call to the dgemm() function in BLAS:
+  cout << "k*trans(B)*C = " << endl << k*trans(B)*C;
+
+    return 0;
+
+!ec
+
+!split
+===== "How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" =====
+
+Standard C/C++: fetch the files `lib.cpp` and `lib.h`. You can make a directory where you store
+these files, and eventually its compiled version lib.o. The example here is "program1.cpp from chapter 6":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/LinAlgebra/cpp/program1.cpp" and performs the matrix inversion.
+
+!bc cppcod
+//  Simple matrix inversion example
+#include <iostream>
+#include <new>
+#include <cstdio>
+#include <cstdlib>
+#include <cmath>
+#include <cstring>
+#include "lib.h"
+
+using namespace std;
+
+/* function declarations */
+
+void inverse(double **, int);
+
+void inverse(double **a, int n)
+{
+  int          i,j, *indx;
+  double       d, *col, **y;
+  // allocate space in memory
+  indx = new int[n];
+  col  = new double[n];
+  y    = (double **) matrix(n, n, sizeof(double));
+  ludcmp(a, n, indx, &d);   // LU decompose  a[][]
+  printf("\n\nLU form of matrix of a[][]:\n");
+  for(i = 0; i < n; i++) {
+    printf("\n");
+    for(j = 0; j < n; j++) {
+      printf(" a[%2d][%2d] = %12.4E",i, j, a[i][j]);
+  // find inverse of a[][] by columns
+  for(j = 0; j < n; j++) {
+    // initialize right-side of linear equations
+    for(i = 0; i < n; i++) col[i] = 0.0;
+    col[j] = 1.0;
+    lubksb(a, n, indx, col);
+    // save result in y[][]
+    for(i = 0; i < n; i++) y[i][j] = col[i];
+  }   //j-loop over columns
+  // return the inverse matrix in a[][]
+  for(i = 0; i < n; i++) {
+    for(j = 0; j < n; j++) a[i][j] = y[i][j];
+
+  free_matrix((void **) y);     // release local memory
+  delete [] col;
+  delete []indx;
+}  // End: function inverse()
+!ec
+
+
+
+===== "Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp" =====
+!bc cppcod
+#include <iostream>
+#include "armadillo"
+using namespace arma;
+using namespace std;
+
+int main()
+  {
+   mat A = randu<mat>(5,5);
+   vec b = randu<vec>(5);
+
+  A.print("A =");
+  b.print("b=");
+  // solve Ax = b
+  vec x = solve(A,b);
+  // print x
+  x.print("x=");
+  // find LU decomp of A, if needed, P is the permutation matrix
+  mat L, U;
+  lu(L,U,A);
+  // print l
+  L.print(" L= ");
+  // print U
+  U.print(" U= ");
+  //Check that A = LU
+  (A-P*L*U).print("Test of LU decomposition");
+    return 0;
+  }
+!ec
 
 =====     Optimization and profiling =====
 

@@ -42,43 +42,51 @@ div { text-align: justify; text-justify: inter-word; }
               ('From decimal to binary representation', 3, None, '___sec2'),
               ('Technical Matter in C/C++: Pointers', 2, None, '___sec3'),
               ('Using _strings_ instead of characters', 2, None, '___sec4'),
-              ('More information will be added', 2, None, '___sec5'),
-              ('Optimization and profiling', 2, None, '___sec6'),
-              ('Vectorization and the basic idea behind parallel computing',
+              ('Matrices in C++', 2, None, '___sec5'),
+              ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"',
+               2,
+               None,
+               '___sec6'),
+              ('"Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"',
                2,
                None,
                '___sec7'),
-              ('What is vectorization?', 2, None, '___sec8'),
-              ('"A simple test case with and without vectorization":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp"',
+              ('Optimization and profiling', 2, None, '___sec8'),
+              ('Vectorization and the basic idea behind parallel computing',
                2,
                None,
                '___sec9'),
-              ('Measuring performance', 2, None, '___sec10'),
-              ('Problems with measuring time', 2, None, '___sec11'),
-              ('Problems with cold start', 2, None, '___sec12'),
-              ('Problems with smart compilers', 2, None, '___sec13'),
-              ('Problems with interference', 2, None, '___sec14'),
-              ('Problems with measuring performance', 2, None, '___sec15'),
+              ('What is vectorization?', 2, None, '___sec10'),
+              ('"A simple test case with and without vectorization":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp"',
+               2,
+               None,
+               '___sec11'),
+              ('Measuring performance', 2, None, '___sec12'),
+              ('Problems with measuring time', 2, None, '___sec13'),
+              ('Problems with cold start', 2, None, '___sec14'),
+              ('Problems with smart compilers', 2, None, '___sec15'),
+              ('Problems with interference', 2, None, '___sec16'),
+              ('Problems with measuring performance', 2, None, '___sec17'),
               ('Thomas algorithm for tridiagonal linear algebra equations',
                2,
                None,
-               '___sec16'),
+               '___sec18'),
               ('"The specialized Thomas algorithm (Project 1)":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Projects/2016/Project1/Examples/TridiagonalTiming.cpp"',
                2,
                None,
-               '___sec17'),
+               '___sec19'),
               ('"Example: Transpose of a matrix":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program8.cpp"',
                2,
                None,
-               '___sec18'),
+               '___sec20'),
               ('"Matrix-matrix multiplication":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp"',
                2,
                None,
-               '___sec19'),
+               '___sec21'),
               ('How do we define speedup? Simplest form',
                2,
                None,
-               '___sec20')]}
+               '___sec22')]}
 end of tocinfo -->
 
 <body>
@@ -120,7 +128,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Sep 6, 2017</h4></center> <!-- date -->
+<center><h4>Sep 8, 2017</h4></center> <!-- date -->
 <br>
 
 <h2 id="___sec0">Getting Started, compiling and linking first </h2>
@@ -1173,9 +1181,405 @@ A new file for the specific calculation is then established via
 <p>
 We recommend using the <b>string</b> class, it gives ou much more flexibility in handling strings.
 
-<h2 id="___sec5">More information will be added </h2>
+<h2 id="___sec5">Matrices in C++ </h2>
+Another quantity we end up using again and again are matrices.
+We have  an \( N\times N \) matrix A  with \( N=100 \)
+In C/C++ this would be  defined as
 
-<h2 id="___sec6">Optimization and profiling </h2>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>   <span style="color: #a7a7a7; font-weight: bold">int</span> N = <span style="color: #B452CD">100</span>;
+   <span style="color: #a7a7a7; font-weight: bold">double</span> A[<span style="color: #B452CD">100</span>][<span style="color: #B452CD">100</span>];
+   <span style="color: #228B22">//   initialize all elements to zero</span>
+   <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span> ; i &lt; N ; i++) {
+      <span style="color: #8B008B; font-weight: bold">for</span>(j=<span style="color: #B452CD">0</span> ; j &lt; N ; j++) {
+         A[i][j] = <span style="color: #B452CD">0.0</span>;
+</pre></div>
+<p>
+Note the way the matrix is organized, row-major order.
+
+<p>
+We have  \( N\times N \) matrices A, B and C and we wish to
+evaluate \( A=B+C \).
+
+$$
+\mathbf{A}= \mathbf{B}\pm\mathbf{C}  \Longrightarrow a_{ij} = b_{ij}\pm c_{ij},
+$$
+
+In C/C++ this would be coded like
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>   <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span> ; i &lt; N ; i++) {
+      <span style="color: #8B008B; font-weight: bold">for</span>(j=<span style="color: #B452CD">0</span> ; j &lt; N ; j++) {
+         a[i][j] = b[i][j]+c[i][j]
+</pre></div>
+<p>
+We have  \( N\times N \) matrices A, B and C and we wish to
+evaluate \( A=BC \).
+
+$$
+\mathbf{A}=\mathbf{BC}   \Longrightarrow a_{ij} = \sum_{k=1}^{n} b_{ik}c_{kj},
+$$
+
+In C/C++ this would be coded like
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>   <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span> ; i &lt; N ; i++) {
+      <span style="color: #8B008B; font-weight: bold">for</span>(j=<span style="color: #B452CD">0</span> ; j &lt; N ; j++) {
+         <span style="color: #8B008B; font-weight: bold">for</span>(k=<span style="color: #B452CD">0</span> ; k &lt; N ; k++) {
+            a[i][j]+=b[i][k]*c[k][j];
+</pre></div>
+<p>
+The above matrices were all declared statically.
+For dynamic memory allocation in C++ there are 
+several  possibilities
+
+<ul>
+  <li> Do it yourself</li>
+  <li> Use the functions provided in the library package <a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/LecturePrograms/programs/cppLibrary/lib.cpp" target="_blank">lib.cpp</a></li>
+  <li> Use Armadillo <a href="http://arma.sourceforgenet" target="_blank"><tt>http://arma.sourceforgenet</tt></a> (a C++ linear algebra library, discussion both here and at lab).</li> 
+  <li> Write yur own matrix-vector class (to be discussed later.</li>
+</ul>
+
+A matrix in C++ is a double pointer, a pointer to a pointer. Here is how you would do it yourself.
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> N;
+<span style="color: #a7a7a7; font-weight: bold">double</span> **  A;
+A = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>*[N]
+<span style="color: #8B008B; font-weight: bold">for</span> ( i = <span style="color: #B452CD">0</span>; i &lt; N; i++)
+    A[i] = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[N];
+</pre></div>
+<p>
+Always free space when you don't need an array anymore.
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">for</span> ( i = <span style="color: #B452CD">0</span>; i &lt; N; i++)
+    <span style="color: #8B008B; font-weight: bold">delete</span>[] A[i];
+<span style="color: #8B008B; font-weight: bold">delete</span>[] A;
+</pre></div>
+<p>
+You will find Armadillo as a very convenient library. 
+
+<ul>
+  <li> Armadillo is a C++ linear algebra library (matrix maths) aiming towards a good balance between speed and ease of use. The syntax is deliberately similar to Matlab.</li>
+  <li> Integer, floating point and complex numbers are supported, as well as a subset of trigonometric and statistics functions. Various matrix decompositions are provided through optional integration with LAPACK, or one of its high performance drop-in replacements (such as the multi-threaded MKL or ACML libraries).</li>
+  <li> A delayed evaluation approach is employed (at compile-time) to combine several operations into one and reduce (or eliminate) the need for temporaries. This is accomplished through recursive templates and template meta-programming.</li>
+  <li> Useful for conversion of research code into production environments, or if C++ has been decided as the language of choice, due to speed and/or integration capabilities.</li>
+  <li> The library is open-source software, and is distributed under a license that is useful in both open-source and commercial/proprietary contexts.</li>
+</ul>
+
+Here are simple examples.
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;armadillo&gt;</span><span style="color: #1e889b"></span>
+
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>** argv)
+  {
+  mat A = randu&lt;mat&gt;(<span style="color: #B452CD">5</span>,<span style="color: #B452CD">5</span>);
+  mat B = randu&lt;mat&gt;(<span style="color: #B452CD">5</span>,<span style="color: #B452CD">5</span>);
+
+  cout &lt;&lt; A*B &lt;&lt; endl;
+
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+</pre></div>
+<p>
+For people using Ubuntu, Debian, Linux Mint, simply go to the synaptic package manager and install
+armadillo from there.
+You may have to install Lapack as well.
+For Mac and Windows users, follow the instructions from the webpage
+<a href="http://arma.sourceforge.net" target="_blank"><tt>http://arma.sourceforge.net</tt></a>.
+To compile, use for example (linux/ubuntu)
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>c++ -O2 -o program.x program.cpp  -larmadillo -llapack -lblas
+</pre></div>
+<p>
+where the <code>-l</code> option indicates the library you wish to link to.
+
+<p>
+For OS X users you may have to declare the paths to the include files and the libraries as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>c++ -O2 -o program.x program.cpp  -L/usr/local/lib -I/usr/local/include -larmadillo -llapack -lblas
+</pre></div>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;armadillo&quot;</span><span style="color: #1e889b"></span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>** argv)
+  {
+  <span style="color: #228B22">// directly specify the matrix size (elements are uninitialised)</span>
+  mat A(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">3</span>);
+  <span style="color: #228B22">// .n_rows = number of rows    (read only)</span>
+  <span style="color: #228B22">// .n_cols = number of columns (read only)</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;A.n_rows = &quot;</span> &lt;&lt; A.n_rows &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;A.n_cols = &quot;</span> &lt;&lt; A.n_cols &lt;&lt; endl;
+  <span style="color: #228B22">// directly access an element (indexing starts at 0)</span>
+  A(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">2</span>) = <span style="color: #B452CD">456.0</span>;
+  A.print(<span style="color: #CD5555">&quot;A:&quot;</span>);
+  <span style="color: #228B22">// scalars are treated as a 1x1 matrix,</span>
+  <span style="color: #228B22">// hence the code below will set A to have a size of 1x1</span>
+  A = <span style="color: #B452CD">5.0</span>;
+  A.print(<span style="color: #CD5555">&quot;A:&quot;</span>);
+  <span style="color: #228B22">// if you want a matrix with all elements set to a particular value</span>
+  <span style="color: #228B22">// the .fill() member function can be used</span>
+  A.set_size(<span style="color: #B452CD">3</span>,<span style="color: #B452CD">3</span>);
+  A.fill(<span style="color: #B452CD">5.0</span>);  A.print(<span style="color: #CD5555">&quot;A:&quot;</span>);
+  mat B;
+
+  <span style="color: #228B22">// endr indicates &quot;end of row&quot;</span>
+  B &lt;&lt; <span style="color: #B452CD">0.555950</span> &lt;&lt; <span style="color: #B452CD">0.274690</span> &lt;&lt; <span style="color: #B452CD">0.540605</span> &lt;&lt; <span style="color: #B452CD">0.798938</span> &lt;&lt; endr
+    &lt;&lt; <span style="color: #B452CD">0.108929</span> &lt;&lt; <span style="color: #B452CD">0.830123</span> &lt;&lt; <span style="color: #B452CD">0.891726</span> &lt;&lt; <span style="color: #B452CD">0.895283</span> &lt;&lt; endr
+    &lt;&lt; <span style="color: #B452CD">0.948014</span> &lt;&lt; <span style="color: #B452CD">0.973234</span> &lt;&lt; <span style="color: #B452CD">0.216504</span> &lt;&lt; <span style="color: #B452CD">0.883152</span> &lt;&lt; endr
+    &lt;&lt; <span style="color: #B452CD">0.023787</span> &lt;&lt; <span style="color: #B452CD">0.675382</span> &lt;&lt; <span style="color: #B452CD">0.231751</span> &lt;&lt; <span style="color: #B452CD">0.450332</span> &lt;&lt; endr;
+
+  <span style="color: #228B22">// print to the cout stream</span>
+  <span style="color: #228B22">// with an optional string before the contents of the matrix</span>
+  B.print(<span style="color: #CD5555">&quot;B:&quot;</span>);
+
+  <span style="color: #228B22">// the &lt;&lt; operator can also be used to print the matrix</span>
+  <span style="color: #228B22">// to an arbitrary stream (cout in this case)</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;B:&quot;</span> &lt;&lt; endl &lt;&lt; B &lt;&lt; endl;
+  <span style="color: #228B22">// save to disk</span>
+  B.save(<span style="color: #CD5555">&quot;B.txt&quot;</span>, raw_ascii);
+  <span style="color: #228B22">// load from disk</span>
+  mat C;
+  C.load(<span style="color: #CD5555">&quot;B.txt&quot;</span>);
+  C += <span style="color: #B452CD">2.0</span> * B;
+  C.print(<span style="color: #CD5555">&quot;C:&quot;</span>);
+  <span style="color: #228B22">// submatrix types:</span>
+  <span style="color: #228B22">//</span>
+  <span style="color: #228B22">// .submat(first_row, first_column, last_row, last_column)</span>
+  <span style="color: #228B22">// .row(row_number)</span>
+  <span style="color: #228B22">// .col(column_number)</span>
+  <span style="color: #228B22">// .cols(first_column, last_column)</span>
+  <span style="color: #228B22">// .rows(first_row, last_row)</span>
+
+  cout &lt;&lt; <span style="color: #CD5555">&quot;C.submat(0,0,3,1) =&quot;</span> &lt;&lt; endl;
+  cout &lt;&lt; C.submat(<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">3</span>,<span style="color: #B452CD">1</span>) &lt;&lt; endl;
+
+  <span style="color: #228B22">// generate the identity matrix</span>
+  mat D = eye&lt;mat&gt;(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">4</span>);
+
+  D.submat(<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>,<span style="color: #B452CD">3</span>,<span style="color: #B452CD">1</span>) = C.cols(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">2</span>);
+  D.print(<span style="color: #CD5555">&quot;D:&quot;</span>);
+
+  <span style="color: #228B22">// transpose</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;trans(B) =&quot;</span> &lt;&lt; endl;
+  cout &lt;&lt; trans(B) &lt;&lt; endl;
+
+  <span style="color: #228B22">// maximum from each column (traverse along rows)</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;max(B) =&quot;</span> &lt;&lt; endl;
+  cout &lt;&lt; max(B) &lt;&lt; endl;
+
+  <span style="color: #228B22">// maximum from each row (traverse along columns)</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;max(B,1) =&quot;</span> &lt;&lt; endl;
+  cout &lt;&lt; max(B,<span style="color: #B452CD">1</span>) &lt;&lt; endl;
+  <span style="color: #228B22">// maximum value in B</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;max(max(B)) = &quot;</span> &lt;&lt; max(max(B)) &lt;&lt; endl;
+  <span style="color: #228B22">// sum of each column (traverse along rows)</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;sum(B) =&quot;</span> &lt;&lt; endl;
+  cout &lt;&lt; sum(B) &lt;&lt; endl;
+  <span style="color: #228B22">// sum of each row (traverse along columns)</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;sum(B,1) =&quot;</span> &lt;&lt; endl;
+  cout &lt;&lt; sum(B,<span style="color: #B452CD">1</span>) &lt;&lt; endl;
+  <span style="color: #228B22">// sum of all elements</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;sum(sum(B)) = &quot;</span> &lt;&lt; sum(sum(B)) &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;accu(B)     = &quot;</span> &lt;&lt; accu(B) &lt;&lt; endl;
+  <span style="color: #228B22">// trace = sum along diagonal</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;trace(B)    = &quot;</span> &lt;&lt; trace(B) &lt;&lt; endl;
+  <span style="color: #228B22">// random matrix -- values are uniformly distributed in the [0,1] interval</span>
+  mat E = randu&lt;mat&gt;(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">4</span>);
+  E.print(<span style="color: #CD5555">&quot;E:&quot;</span>);
+
+  <span style="color: #228B22">// row vectors are treated like a matrix with one row</span>
+  rowvec r;
+  r &lt;&lt; <span style="color: #B452CD">0.59499</span> &lt;&lt; <span style="color: #B452CD">0.88807</span> &lt;&lt; <span style="color: #B452CD">0.88532</span> &lt;&lt; <span style="color: #B452CD">0.19968</span>;
+  r.print(<span style="color: #CD5555">&quot;r:&quot;</span>);
+
+  <span style="color: #228B22">// column vectors are treated like a matrix with one column</span>
+  colvec q;
+  q &lt;&lt; <span style="color: #B452CD">0.81114</span> &lt;&lt; <span style="color: #B452CD">0.06256</span> &lt;&lt; <span style="color: #B452CD">0.95989</span> &lt;&lt; <span style="color: #B452CD">0.73628</span>;
+  q.print(<span style="color: #CD5555">&quot;q:&quot;</span>);
+
+  <span style="color: #228B22">// dot or inner product</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;as_scalar(r*q) = &quot;</span> &lt;&lt; as_scalar(r*q) &lt;&lt; endl;
+
+    <span style="color: #228B22">// outer product</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;q*r =&quot;</span> &lt;&lt; endl;
+  cout &lt;&lt; q*r &lt;&lt; endl;
+
+
+  <span style="color: #228B22">// sum of three matrices (no temporary matrices are created)</span>
+  mat F = B + C + D;
+  F.print(<span style="color: #CD5555">&quot;F:&quot;</span>);
+
+    <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+</pre></div>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;armadillo&quot;</span><span style="color: #1e889b"></span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>** argv)
+  {
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Armadillo version: &quot;</span> &lt;&lt; arma_version::as_string() &lt;&lt; endl;
+
+  mat A;
+
+  A &lt;&lt; <span style="color: #B452CD">0.165300</span> &lt;&lt; <span style="color: #B452CD">0.454037</span> &lt;&lt; <span style="color: #B452CD">0.995795</span> &lt;&lt; <span style="color: #B452CD">0.124098</span> &lt;&lt; <span style="color: #B452CD">0.047084</span> &lt;&lt; endr
+    &lt;&lt; <span style="color: #B452CD">0.688782</span> &lt;&lt; <span style="color: #B452CD">0.036549</span> &lt;&lt; <span style="color: #B452CD">0.552848</span> &lt;&lt; <span style="color: #B452CD">0.937664</span> &lt;&lt; <span style="color: #B452CD">0.866401</span> &lt;&lt; endr
+    &lt;&lt; <span style="color: #B452CD">0.348740</span> &lt;&lt; <span style="color: #B452CD">0.479388</span> &lt;&lt; <span style="color: #B452CD">0.506228</span> &lt;&lt; <span style="color: #B452CD">0.145673</span> &lt;&lt; <span style="color: #B452CD">0.491547</span> &lt;&lt; endr
+    &lt;&lt; <span style="color: #B452CD">0.148678</span> &lt;&lt; <span style="color: #B452CD">0.682258</span> &lt;&lt; <span style="color: #B452CD">0.571154</span> &lt;&lt; <span style="color: #B452CD">0.874724</span> &lt;&lt; <span style="color: #B452CD">0.444632</span> &lt;&lt; endr
+    &lt;&lt; <span style="color: #B452CD">0.245726</span> &lt;&lt; <span style="color: #B452CD">0.595218</span> &lt;&lt; <span style="color: #B452CD">0.409327</span> &lt;&lt; <span style="color: #B452CD">0.367827</span> &lt;&lt; <span style="color: #B452CD">0.385736</span> &lt;&lt; endr;
+
+  A.print(<span style="color: #CD5555">&quot;A =&quot;</span>);
+
+  <span style="color: #228B22">// determinant</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;det(A) = &quot;</span> &lt;&lt; det(A) &lt;&lt; endl;
+  <span style="color: #228B22">// inverse</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;inv(A) = &quot;</span> &lt;&lt; endl &lt;&lt; inv(A) &lt;&lt; endl;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> k = <span style="color: #B452CD">1.23</span>;
+
+  mat    B = randu&lt;mat&gt;(<span style="color: #B452CD">5</span>,<span style="color: #B452CD">5</span>);
+  mat    C = randu&lt;mat&gt;(<span style="color: #B452CD">5</span>,<span style="color: #B452CD">5</span>);
+
+  rowvec r = randu&lt;rowvec&gt;(<span style="color: #B452CD">5</span>);
+  colvec q = randu&lt;colvec&gt;(<span style="color: #B452CD">5</span>);
+
+
+  <span style="color: #228B22">// examples of some expressions</span>
+  <span style="color: #228B22">// for which optimised implementations exist</span>
+  <span style="color: #228B22">// optimised implementation of a trinary expression</span>
+  <span style="color: #228B22">// that results in a scalar</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;as_scalar( r*inv(diagmat(B))*q ) = &quot;</span>;
+  cout &lt;&lt; as_scalar( r*inv(diagmat(B))*q ) &lt;&lt; endl;
+
+  <span style="color: #228B22">// example of an expression which is optimised</span>
+  <span style="color: #228B22">// as a call to the dgemm() function in BLAS:</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;k*trans(B)*C = &quot;</span> &lt;&lt; endl &lt;&lt; k*trans(B)*C;
+
+    <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+</pre></div>
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec6"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_blank">How to use the Library functions</a> </h2>
+
+<p>
+Standard C/C++: fetch the files <code>lib.cpp</code> and <code>lib.h</code>. You can make a directory where you store
+these files, and eventually its compiled version lib.o. The example here is <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/LinAlgebra/cpp/program1.cpp" target="_blank">program1.cpp from chapter 6</a> and performs the matrix inversion.
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #228B22">//  Simple matrix inversion example</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;new&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdio&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdlib&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstring&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;lib.h&quot;</span><span style="color: #1e889b"></span>
+
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+
+<span style="color: #228B22">/* function declarations */</span>
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">inverse</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> **, <span style="color: #a7a7a7; font-weight: bold">int</span>);
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">inverse</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> **a, <span style="color: #a7a7a7; font-weight: bold">int</span> n)
+{
+  <span style="color: #a7a7a7; font-weight: bold">int</span>          i,j, *indx;
+  <span style="color: #a7a7a7; font-weight: bold">double</span>       d, *col, **y;
+  <span style="color: #228B22">// allocate space in memory</span>
+  indx = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[n];
+  col  = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n];
+  y    = (<span style="color: #a7a7a7; font-weight: bold">double</span> **) matrix(n, n, <span style="color: #8B008B; font-weight: bold">sizeof</span>(<span style="color: #a7a7a7; font-weight: bold">double</span>));
+  ludcmp(a, n, indx, &amp;d);   <span style="color: #228B22">// LU decompose  a[][]</span>
+  printf(<span style="color: #CD5555">&quot;\n\nLU form of matrix of a[][]:\n&quot;</span>);
+  <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
+    printf(<span style="color: #CD5555">&quot;\n&quot;</span>);
+    <span style="color: #8B008B; font-weight: bold">for</span>(j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+      printf(<span style="color: #CD5555">&quot; a[%2d][%2d] = %12.4E&quot;</span>,i, j, a[i][j]);
+  <span style="color: #228B22">// find inverse of a[][] by columns</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+    <span style="color: #228B22">// initialize right-side of linear equations</span>
+    <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">0</span>; i &lt; n; i++) col[i] = <span style="color: #B452CD">0.0</span>;
+    col[j] = <span style="color: #B452CD">1.0</span>;
+    lubksb(a, n, indx, col);
+    <span style="color: #228B22">// save result in y[][]</span>
+    <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">0</span>; i &lt; n; i++) y[i][j] = col[i];
+  }   <span style="color: #228B22">//j-loop over columns</span>
+  <span style="color: #228B22">// return the inverse matrix in a[][]</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
+    <span style="color: #8B008B; font-weight: bold">for</span>(j = <span style="color: #B452CD">0</span>; j &lt; n; j++) a[i][j] = y[i][j];
+
+  free_matrix((<span style="color: #a7a7a7; font-weight: bold">void</span> **) y);     <span style="color: #228B22">// release local memory</span>
+  <span style="color: #8B008B; font-weight: bold">delete</span> [] col;
+  <span style="color: #8B008B; font-weight: bold">delete</span> []indx;
+}  <span style="color: #228B22">// End: function inverse()</span>
+</pre></div>
+
+<h2 id="___sec7"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp" target="_blank">Using Armadillo to perform an LU decomposition</a> </h2>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;armadillo&quot;</span><span style="color: #1e889b"></span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
+  {
+   mat A = randu&lt;mat&gt;(<span style="color: #B452CD">5</span>,<span style="color: #B452CD">5</span>);
+   vec b = randu&lt;vec&gt;(<span style="color: #B452CD">5</span>);
+
+  A.print(<span style="color: #CD5555">&quot;A =&quot;</span>);
+  b.print(<span style="color: #CD5555">&quot;b=&quot;</span>);
+  <span style="color: #228B22">// solve Ax = b</span>
+  vec x = solve(A,b);
+  <span style="color: #228B22">// print x</span>
+  x.print(<span style="color: #CD5555">&quot;x=&quot;</span>);
+  <span style="color: #228B22">// find LU decomp of A, if needed, P is the permutation matrix</span>
+  mat L, U;
+  lu(L,U,A);
+  <span style="color: #228B22">// print l</span>
+  L.print(<span style="color: #CD5555">&quot; L= &quot;</span>);
+  <span style="color: #228B22">// print U</span>
+  U.print(<span style="color: #CD5555">&quot; U= &quot;</span>);
+  <span style="color: #228B22">//Check that A = LU</span>
+  (A-P*L*U).print(<span style="color: #CD5555">&quot;Test of LU decomposition&quot;</span>);
+    <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+  }
+</pre></div>
+
+<h2 id="___sec8">Optimization and profiling </h2>
 
 <p>
 Till now we have not paid much attention to speed and possible optimization possibilities
@@ -1284,7 +1688,7 @@ e = g[n-<span style="color: #B452CD">1</span>];
 Here we avoid a repeated multiplication inside a loop. 
 Most compilers, depending on compiler flags, identify and optimize such bottlenecks on their own, without requiring any particular action by the programmer. However, it is always useful to single out and avoid code examples like the first one discussed here.
 
-<h2 id="___sec7">Vectorization and the basic idea behind parallel computing </h2>
+<h2 id="___sec9">Vectorization and the basic idea behind parallel computing </h2>
 
 <p>
 Present CPUs are highly parallel processors with varying levels of parallelism. The typical situation can be described via the following three statements.
@@ -1303,7 +1707,7 @@ Before we proceed with a more detailed discussion of topics like vectorization a
 <li> Modern parallel computers are so-called MIMD (multiple-instruction-multiple-data) machines and can execute different instruction streams in parallel on different data.</li>
 </ul>
 
-<h2 id="___sec8">What is vectorization? </h2>
+<h2 id="___sec10">What is vectorization? </h2>
 
 <p>
 Vectorization is a special
@@ -1398,7 +1802,7 @@ displayed here as
 </table>
 Four additions are now done in a single step.
 
-<h2 id="___sec9"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" target="_blank">A simple test case with and without vectorization</a> </h2>
+<h2 id="___sec11"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp" target="_blank">A simple test case with and without vectorization</a> </h2>
 We implement these operations in a simple c++ program as
 
 <p>
@@ -1668,7 +2072,7 @@ or figure out if vectorization was missed
 <div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>clang++ -O3 -Rpass-missed=loop-vectorize -o  vec.x vecexample.cpp 
 </pre></div>
 
-<h2 id="___sec10">Measuring performance </h2>
+<h2 id="___sec12">Measuring performance </h2>
 
 <p>
 How do we measure erformance? What is wrong with this code to time a loop?
@@ -1684,7 +2088,7 @@ How do we measure erformance? What is wrong with this code to time a loop?
   double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
 </pre></div>
 
-<h2 id="___sec11">Problems with measuring time </h2>
+<h2 id="___sec13">Problems with measuring time </h2>
 
 <ol>
 <li> Timers are not infinitely accurate</li>
@@ -1694,7 +2098,7 @@ How do we measure erformance? What is wrong with this code to time a loop?
 <li> Ensure that your measurement is for a long enough duration (say 100 times the <b>tick</b>)</li>
 </ol>
 
-<h2 id="___sec12">Problems with cold start </h2>
+<h2 id="___sec14">Problems with cold start </h2>
 
 <p>
 What happens when the code is executed? The assumption is that the code is ready to
@@ -1707,7 +2111,7 @@ execute. But
 <li> Special effort often required to ensure data in the intended part of the memory hierarchy.</li>
 </ol>
 
-<h2 id="___sec13">Problems with smart compilers </h2>
+<h2 id="___sec15">Problems with smart compilers </h2>
 
 <ol>
 <li> If the result of the computation is not used, the compiler may eliminate the code</li>
@@ -1716,7 +2120,7 @@ execute. But
 <li> Ensure that the results are (or may be) used.</li>
 </ol>
 
-<h2 id="___sec14">Problems with interference </h2>
+<h2 id="___sec16">Problems with interference </h2>
 
 <ol>
 <li> Other activities are sharing your processor</li>
@@ -1739,7 +2143,7 @@ execute. But
 
 </ol>
 
-<h2 id="___sec15">Problems with measuring performance  </h2>
+<h2 id="___sec17">Problems with measuring performance  </h2>
 
 <ol>
 <li> Accurate, reproducible performance measurement is hard</li>
@@ -1748,7 +2152,7 @@ execute. But
 <li> How representative is your test to the situation that you are trying to measure?</li>
 </ol>
 
-<h2 id="___sec16">Thomas algorithm for tridiagonal linear algebra equations </h2>
+<h2 id="___sec18">Thomas algorithm for tridiagonal linear algebra equations </h2>
 $$
 \left( \begin{array}{ccccc}
         b_0 & c_0 &        &         &         \\
@@ -1857,7 +2261,7 @@ $$
   }
 </pre></div>
 
-<h2 id="___sec17"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Projects/2016/Project1/Examples/TridiagonalTiming.cpp" target="_blank">The specialized Thomas algorithm (Project 1)</a>  </h2>
+<h2 id="___sec19"><a href="https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Projects/2016/Project1/Examples/TridiagonalTiming.cpp" target="_blank">The specialized Thomas algorithm (Project 1)</a>  </h2>
 
 <p>
 <table border="1">
@@ -1881,7 +2285,7 @@ $$
       <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = n-<span style="color: #B452CD">2</span>; i &gt; <span style="color: #B452CD">0</span>; i--) solution[i] = (b[i]+solution[i+<span style="color: #B452CD">1</span>])/d[i];
 </pre></div>
 
-<h2 id="___sec18"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program8.cpp" target="_blank">Example: Transpose of a matrix</a> </h2>
+<h2 id="___sec20"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program8.cpp" target="_blank">Example: Transpose of a matrix</a> </h2>
 
 <p>
 
@@ -1935,7 +2339,7 @@ int main (int argc, char* argv[])
 }
 </pre></div>
 
-<h2 id="___sec19"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp" target="_blank">Matrix-matrix multiplication</a> </h2>
+<h2 id="___sec21"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp" target="_blank">Matrix-matrix multiplication</a> </h2>
 This the matrix-matrix multiplication code with plain c++ memory allocation. It computes at the end the Frobenius norm.
 
 <p>
@@ -2008,7 +2412,7 @@ int main (int argc, char* argv[])
 }
 </pre></div>
 
-<h2 id="___sec20">How do we define speedup? Simplest form </h2>
+<h2 id="___sec22">How do we define speedup? Simplest form </h2>
 
 <ul>
 <li> Speedup(code,sys,p) = \( T_b/T_p \)</li>
