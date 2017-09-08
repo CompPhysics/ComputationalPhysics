@@ -40,9 +40,6 @@ int main(int argc, char *argv[]){
       // Set up arrays for the simple case
       double *d = new double [n+1]; double *b = new double [n+1]; double *solution = new double [n+1];
       double *x = new double [n+1];
-      // Start timing
-      clock_t start, finish;
-      start = clock();
       // Quick setup of updated diagonal elements and value of
       d[0] = d[n] = 2; solution[0] = solution[n] = 0.0;
       for (int i = 1; i < n; i++) d[i] = (i+1.0)/( (double) i);  
@@ -50,6 +47,9 @@ int main(int argc, char *argv[]){
           x[i] = i*h;
           b[i] = hh*f(x[i]);
       }
+      // Start timing
+      clock_t start, finish;
+      start = clock();
       // Forward substitution
       for (int i = 2; i < n; i++) b[i] = b[i] + b[i-1]/d[i-1];
       // Backward substitution
