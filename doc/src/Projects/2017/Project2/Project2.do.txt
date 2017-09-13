@@ -6,13 +6,16 @@ DATE: today
 ===== Schroedinger's equation for two electrons in a three-dimensional harmonic oscillator well  =====
 
 === Introduction ===
-The aim of this project is to solve Schroedinger's equation for two
-electrons in a three-dimensional harmonic oscillator well with and
-without a repulsive Coulomb interaction.  Your task is to solve this
-equation by reformulating it in a discretized form as an eigenvalue
-equation to be solved with Jacobi's method. To achieve this you will
-have to write your own code which implements Jacobi's method.
 
+The aim of this project is to develop a program that uses Jacobi's (also called Givens') method for finding eigenvalues. We can start with the simple case of a buckling beam (or a quantum mechanical particle moving in a potential with infinite walls) and then move to  
+Schroedinger's equation for two
+electrons in a three-dimensional harmonic oscillator well with and
+without a repulsive Coulomb interaction.  The eigenvalue solver you will end up with is however rather general and can be applied to different cases.   An important aspect in being able to achieve this is to scale properly the equationsand by reformulating the equations  in a discretized form as an eigenvalue
+equation to be solved with Jacobi's method. To achieve this you will
+have to write your own code which implements Jacobi's method.   Here we will specialize to a quantum mechanical system, but for those of you less familiar with quantum mechanics you can choose to focus more on the mathematical details of the problem.
+
+
+What follows first is a longer description of the eigenvalue problem, with a specialization to the case of electrons confined to move in a potential well of the type of a harmonic oscillator.   This type of problem leads to the field of so-called quantum dots. 
 Electrons confined in small areas in semiconductors, so-called quantum
 dots, form a hot research area in modern solid-state physics, with
 applications spanning from such diverse fields as quantum
@@ -522,6 +525,7 @@ The preferred format for the report is a PDF file. You can also use DOC or posts
 Finally, 
 we encourage you to work two and two together. Optimal working groups consist of 
 2-3 students. You can then hand in a common report. 
+
 
 
 
