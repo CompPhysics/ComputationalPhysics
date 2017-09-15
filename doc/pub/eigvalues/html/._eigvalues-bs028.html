@@ -392,7 +392,7 @@ Finding the max nondiagonal element
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">//  the offdiag function, using Armadillo</span>
-<span style="color: #B00040">double</span> <span style="color: #0000FF">offdiag</span>(mat A, <span style="color: #B00040">int</span> p, <span style="color: #B00040">int</span> q, <span style="color: #B00040">int</span> n);
+<span style="color: #B00040">void</span> <span style="color: #0000FF">offdiag</span>(mat A, <span style="color: #B00040">int</span> <span style="color: #666666">*</span>p, <span style="color: #B00040">int</span> <span style="color: #666666">*</span>q, <span style="color: #B00040">int</span> n);
 {
    <span style="color: #B00040">double</span> max;
    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; <span style="color: #666666">++</span>i)
@@ -406,7 +406,6 @@ Finding the max nondiagonal element
            }
        }
    }
-   <span style="color: #008000; font-weight: bold">return</span> max;
 }
 <span style="color: #408080; font-style: italic">// more statements</span>
 </pre></div>

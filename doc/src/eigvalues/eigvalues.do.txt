@@ -626,7 +626,7 @@ int iterations = 0;
 while ( maxnondiag > tolerance && iterations <= maxiter)
 {
    int p, q;
-   maxnondiag  = offdiag(A, p, q, n);
+   offdiag(A, &p, &q, n);
    Jacobi_rotate(A, R, p, q, n);
    iterations++;
 }
@@ -641,7 +641,7 @@ while ( maxnondiag > tolerance && iterations <= maxiter)
 Finding the max nondiagonal element
 !bc cppcod
 //  the offdiag function, using Armadillo
-double offdiag(mat A, int p, int q, int n);
+void offdiag(mat A, int *p, int *q, int n);
 {
    double max;
    for (int i = 0; i < n; ++i)
@@ -655,7 +655,6 @@ double offdiag(mat A, int p, int q, int n);
            }
        }
    }
-   return max;
 }
 // more statements
 !ec

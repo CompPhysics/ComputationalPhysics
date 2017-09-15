@@ -399,7 +399,7 @@ MathJax.Hub.Config({
 <span style="color: #008000; font-weight: bold">while</span> ( maxnondiag <span style="color: #666666">&gt;</span> tolerance <span style="color: #666666">&amp;&amp;</span> iterations <span style="color: #666666">&lt;=</span> maxiter)
 {
    <span style="color: #B00040">int</span> p, q;
-   maxnondiag  <span style="color: #666666">=</span> offdiag(A, p, q, n);
+   offdiag(A, <span style="color: #666666">&amp;</span>p, <span style="color: #666666">&amp;</span>q, n);
    Jacobi_rotate(A, R, p, q, n);
    iterations<span style="color: #666666">++</span>;
 }
