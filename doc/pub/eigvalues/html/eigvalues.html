@@ -322,7 +322,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Aug 23, 2017</h4></center> <!-- date -->
+<center><h4>Sep 15, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -1060,7 +1060,7 @@ This is what we will need to code.
 <span style="color: #008000; font-weight: bold">while</span> ( maxnondiag <span style="color: #666666">&gt;</span> tolerance <span style="color: #666666">&amp;&amp;</span> iterations <span style="color: #666666">&lt;=</span> maxiter)
 {
    <span style="color: #B00040">int</span> p, q;
-   maxnondiag  <span style="color: #666666">=</span> offdiag(A, p, q, n);
+   offdiag(A, <span style="color: #666666">&amp;</span>p, <span style="color: #666666">&amp;</span>q, n);
    Jacobi_rotate(A, R, p, q, n);
    iterations<span style="color: #666666">++</span>;
 }
@@ -1082,7 +1082,7 @@ Finding the max nondiagonal element
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">//  the offdiag function, using Armadillo</span>
-<span style="color: #B00040">double</span> <span style="color: #0000FF">offdiag</span>(mat A, <span style="color: #B00040">int</span> p, <span style="color: #B00040">int</span> q, <span style="color: #B00040">int</span> n);
+<span style="color: #B00040">void</span> <span style="color: #0000FF">offdiag</span>(mat A, <span style="color: #B00040">int</span> <span style="color: #666666">*</span>p, <span style="color: #B00040">int</span> <span style="color: #666666">*</span>q, <span style="color: #B00040">int</span> n);
 {
    <span style="color: #B00040">double</span> max;
    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; <span style="color: #666666">++</span>i)
@@ -1096,7 +1096,6 @@ Finding the max nondiagonal element
            }
        }
    }
-   <span style="color: #008000; font-weight: bold">return</span> max;
 }
 <span style="color: #408080; font-style: italic">// more statements</span>
 </pre></div>

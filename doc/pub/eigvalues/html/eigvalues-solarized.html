@@ -317,7 +317,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Aug 23, 2017</h4></center> <!-- date -->
+<center><h4>Sep 15, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -1055,7 +1055,7 @@ This is what we will need to code.
 <span style="color: #8B008B; font-weight: bold">while</span> ( maxnondiag &gt; tolerance &amp;&amp; iterations &lt;= maxiter)
 {
    <span style="color: #a7a7a7; font-weight: bold">int</span> p, q;
-   maxnondiag  = offdiag(A, p, q, n);
+   offdiag(A, &amp;p, &amp;q, n);
    Jacobi_rotate(A, R, p, q, n);
    iterations++;
 }
@@ -1077,7 +1077,7 @@ Finding the max nondiagonal element
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eee8d5"><pre style="line-height: 125%"><span></span><span style="color: #228B22">//  the offdiag function, using Armadillo</span>
-<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">offdiag</span>(mat A, <span style="color: #a7a7a7; font-weight: bold">int</span> p, <span style="color: #a7a7a7; font-weight: bold">int</span> q, <span style="color: #a7a7a7; font-weight: bold">int</span> n);
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">offdiag</span>(mat A, <span style="color: #a7a7a7; font-weight: bold">int</span> *p, <span style="color: #a7a7a7; font-weight: bold">int</span> *q, <span style="color: #a7a7a7; font-weight: bold">int</span> n);
 {
    <span style="color: #a7a7a7; font-weight: bold">double</span> max;
    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; ++i)
@@ -1091,7 +1091,6 @@ Finding the max nondiagonal element
            }
        }
    }
-   <span style="color: #8B008B; font-weight: bold">return</span> max;
 }
 <span style="color: #228B22">// more statements</span>
 </pre></div>
