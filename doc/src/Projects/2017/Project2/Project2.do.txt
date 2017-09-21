@@ -261,7 +261,7 @@ Your task now is to write a function which implements Jacobi's rotation algorith
 \end{equation*}
 !et
 We can then define the angle $\theta$ so that the non-diagonal matrix elements of the transformed matrix 
-$a_{kl}$ become non-zero and
+$a_{kl}$ become zero and
 we obtain the quadratic equation (using $\cot 2\theta=1/2(\cot \theta-\tan\theta)$
 
 !bt
@@ -419,7 +419,7 @@ we can rewrite Schroedinger's equation as
 
 !bt
 \begin{equation*}
-  -\frac{d^2}{d\rho^2} \psi(\rho) + \omega_r^2\rho^2\psi(\rho) +\frac{1}{\rho} = \lambda \psi(\rho).
+  -\frac{d^2}{d\rho^2} \psi(\rho) + \omega_r^2\rho^2\psi(\rho) +\frac{1}{\rho}\psi(\rho) = \lambda \psi(\rho).
 \end{equation*}
 !et
 We treat $\omega_r$ as a parameter which reflects the strength of the oscillator potential.
@@ -450,7 +450,7 @@ see the article by "M. Taut, Phys. Rev. A 48, 3561 (1993)":"http://prola.aps.org
 
 
 
-=== Project 2 e): Analyzing and understanding the results  === 
+=== Project 2 e): Analyzing and understanding the results  ===
 In this exercise we want to plot the wave function 
 for two electrons as functions of the relative coordinate $r$ and different
 values of $\omega_r$.  With no Coulomb interaction you should have a result which corresponds to the non-interacting case. 
