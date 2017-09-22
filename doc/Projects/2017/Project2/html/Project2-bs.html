@@ -55,12 +55,18 @@ Automatically generated HTML file from DocOnce source
                None,
                '___sec4'),
               ('Project 2 d): The interacting case', 3, None, '___sec5'),
-              ('Project 2 e): Analyzing and understanding the results',
+              ('Project 2 e): First optional exercise: Quantum physics analysis of  the results',
                3,
                None,
                '___sec6'),
-              ('Project 2 f): First optional challenge', 3, None, '___sec7'),
-              ('Project 2 g): Second optional challenge', 3, None, '___sec8'),
+              ('Project 2 f): Second optional challenge: Smarter way of finding the eigenvalues',
+               3,
+               None,
+               '___sec7'),
+              ("Project 2 g): Third optional challenge: Implementing Lanczos' algorithm",
+               3,
+               None,
+               '___sec8'),
               ('Introduction to numerical projects', 2, None, '___sec9'),
               ('Format for electronic delivery of report and programs',
                2,
@@ -109,9 +115,9 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 b): Setting up a code for the non-interacting case</a></li>
      <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 c): Implementing tests in your code</a></li>
      <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 d): The interacting case</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 e): Analyzing and understanding the results</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 f): First optional challenge</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 g): Second optional challenge</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 e): First optional exercise: Quantum physics analysis of  the results</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 f): Second optional challenge: Smarter way of finding the eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 2 g): Third optional challenge: Implementing Lanczos' algorithm</a></li>
      <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;"><b>Introduction to numerical projects</b></a></li>
      <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;"><b>Format for electronic delivery of report and programs</b></a></li>
 
@@ -147,7 +153,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, University of Oslo, Norway</b></center>
 <br>
 <p>
-<center><h4>Sep 21, 2017</h4></center> <!-- date -->
+<center><h4>Sep 22, 2017</h4></center> <!-- date -->
 <br>
 <p>
 </div> <!-- end jumbotron -->
@@ -638,8 +644,9 @@ varying strengths of \( \omega_r \).
 For specific oscillator frequencies, the above equation has answers in an analytical form,
 see the article by <a href="http://prola.aps.org/abstract/PRA/v48/i5/p3561_1" target="_self">M. Taut, Phys. Rev. A 48, 3561 (1993)</a>.
 
-<h3 id="___sec6" class="anchor">Project 2 e): Analyzing and understanding the results  </h3>
+<h3 id="___sec6" class="anchor">Project 2 e): First optional exercise: Quantum physics analysis of  the results  </h3>
 
+<p>
 In this exercise we want to plot the wave function 
 for two electrons as functions of the relative coordinate \( r \) and different
 values of \( \omega_r \).  With no Coulomb interaction you should have a result which corresponds to the non-interacting case. 
@@ -655,17 +662,18 @@ omit again the  center-of-mass motion.
 The eigenvectors are normalized. 
 Plot then the normalized wave functions for different  values of \( \omega_r \) and comment the results.
 
-<h3 id="___sec7" class="anchor">Project 2 f): First optional challenge </h3>
+<h3 id="___sec7" class="anchor">Project 2 f): Second optional challenge: Smarter way of finding the eigenvalues </h3>
+
+This exercise is also optional and is an algorithmic challenge. Your matrix is already tridiagonal. 
+Can you devise a more efficient way to find the eigenvalues and eigenvectors instead of the brute force application of Jacobi's method? 
+Hint: Use the bisection method discussed in for example <a href="http://www.maths.ed.ac.uk/~aar/papers/bamawi.pdf" target="_self">Barth, Martin and Wilkinson, Numerische Mathematik 9, 386 (1967)</a>.
+
+<h3 id="___sec8" class="anchor">Project 2 g): Third optional challenge: Implementing Lanczos' algorithm </h3>
 
 This exercise is optional and is meant more as a challenge for those of you with an interest in other algorithms for solving eigenvalue problems. 
 Implement the iterative Lanczos' algorithm discussed in the lecture notes and compute the lowest eigenvalues 
 as done in exercise (d) above. Compare your results and discuss faults and merits of the iterative method versus
 direct methods like Jacobi's method.
-
-<h3 id="___sec8" class="anchor">Project 2 g): Second optional challenge </h3>
-
-This exercise is also optional and is an algorithmic challenge. Your matrix is already tridiagonal. 
-Can you devise a more efficient way to find the eigenvalues and eigenvectors instead of the brute force application of Jacobi's method?
 
 <h2 id="___sec9" class="anchor">Introduction to numerical projects </h2>
 
