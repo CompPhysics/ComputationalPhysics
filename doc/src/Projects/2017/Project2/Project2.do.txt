@@ -450,7 +450,8 @@ see the article by "M. Taut, Phys. Rev. A 48, 3561 (1993)":"http://prola.aps.org
 
 
 
-=== Project 2 e): Analyzing and understanding the results  ===
+=== Project 2 e): First optional exercise: Quantum physics analysis of  the results  ===
+
 In this exercise we want to plot the wave function 
 for two electrons as functions of the relative coordinate $r$ and different
 values of $\omega_r$.  With no Coulomb interaction you should have a result which corresponds to the non-interacting case. 
@@ -464,7 +465,14 @@ omit again the  center-of-mass motion.
 The eigenvectors are normalized. 
 Plot then the normalized wave functions for different  values of $\omega_r$ and comment the results.
 
-=== Project 2 f): First optional challenge === 
+=== Project 2 f): Second optional challenge: Smarter way of finding the eigenvalues === 
+This exercise is also optional and is an algorithmic challenge. Your matrix is already tridiagonal. 
+Can you devise a more efficient way to find the eigenvalues and eigenvectors instead of the brute force application of Jacobi's method? 
+Hint: Use the bisection method discussed in for example "Barth, Martin and Wilkinson, Numerische Mathematik 9, 386 (1967)":"http://www.maths.ed.ac.uk/~aar/papers/bamawi.pdf".
+
+
+
+=== Project 2 g): Third optional challenge: Implementing Lanczos' algorithm === 
 This exercise is optional and is meant more as a challenge for those of you with an interest in other algorithms for solving eigenvalue problems. 
 Implement the iterative Lanczos' algorithm discussed in the lecture notes and compute the lowest eigenvalues 
 as done in exercise (d) above. Compare your results and discuss faults and merits of the iterative method versus
@@ -472,10 +480,6 @@ direct methods like Jacobi's method.
 
 
 
-
-=== Project 2 g): Second optional challenge === 
-This exercise is also optional and is an algorithmic challenge. Your matrix is already tridiagonal. 
-Can you devise a more efficient way to find the eigenvalues and eigenvectors instead of the brute force application of Jacobi's method? 
 
 
 
