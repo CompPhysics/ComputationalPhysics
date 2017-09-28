@@ -86,7 +86,19 @@ div { text-align: justify; text-justify: inter-word; }
               ('How do we define speedup? Simplest form',
                2,
                None,
-               '___sec22')]}
+               '___sec22'),
+              ('Object orientation', 2, None, '___sec23'),
+              ('Overloading operators', 2, None, '___sec24'),
+              ('Templates', 2, None, '___sec25'),
+              ('A matrix-vector class, first its usage', 2, None, '___sec26'),
+              ('A matrix-vector class, the class definitions themselves',
+               2,
+               None,
+               '___sec27'),
+              ('A matrix-vector class, and finally all its functions',
+               2,
+               None,
+               '___sec28')]}
 end of tocinfo -->
 
 <body>
@@ -128,7 +140,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Sep 8, 2017</h4></center> <!-- date -->
+<center><h4>Sep 28, 2017</h4></center> <!-- date -->
 <br>
 
 <h2 id="___sec0">Getting Started, compiling and linking first </h2>
@@ -1486,8 +1498,6 @@ For OS X users you may have to declare the paths to the include files and the li
 
     <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
 </pre></div>
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
 <h2 id="___sec6"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_blank">How to use the Library functions</a> </h2>
 
@@ -2439,6 +2449,1613 @@ The key is choosing the correct baseline for comparison
 
 </ul>
 
+<h2 id="___sec23">Object orientation </h2>
+
+<p>
+Why object orientation?
+
+<ul>
+  <li> Three main topics: objects, class hierarchies and polymorphism</li>
+  <li> The aim here is to be to be able to write a more general code which can easily be tailored to new situations.</li>
+  <li> <b>Polymorphism</b> is a term used in software development to describe a variety of techniques employed by programmers to create flexible and reusable software components. The term is Greek and it loosely translates to "many forms". Strategy: try to single out the variables needed to describe a given system and those needed to describe a given solver.</li> 
+</ul>
+
+In programming languages, a polymorphic object is an entity, such as a variable or a procedure, that can hold or operate on values of differing types during the program's execution. Because a polymorphic object can operate on a variety of values and types, it can also be used in a variety of programs, sometimes with little or no change by the programmer. The idea of write once, run many, also known as code reusability, is an important characteristic to the programming paradigm known as Object-Oriented Programming (OOP).
+
+<p>
+OOP describes an approach to programming where a program is viewed as a collection of interacting, but mostly independent software components. These software components are known as objects in OOP and they are typically implemented in a programming language as an entity that encapsulates both data and procedures.
+
+<p>
+In Fortran a vector or matrix start with \( 1 \), but it is easy
+to change a vector so that it starts with zero or even a negative number.
+If we have a double precision Fortran vector  which starts at \( -10 \) and ends at \( 10 \), we could declare it as
+<code>REAL(KIND=8) ::  vector(-10:10)</code>. Similarly, if we want to start at zero and end at 10 we could write
+<code>REAL(KIND=8) ::  vector(0:10)</code>.
+We have also seen that Fortran  allows us to write a matrix addition \( \mathbf{A} = \mathbf{B}+\mathbf{C} \) as
+<code>A = B + C</code>.  This means that we have overloaded the addition operator so that it translates this operation into
+two loops and an addition of two matrix elements \( a_{ij} = b_{ij}+c_{ij} \).
+
+<p>
+The way the matrix addition is written is very close to the way we express this relation mathematically. The benefit for the
+programmer is that our code is easier to read. Furthermore, such a way of coding makes it  more likely  to spot eventual
+errors as well.
+
+<p>
+In Ansi C and C++ arrays start by default from \( i=0 \).  Moreover, if we  wish to add two matrices we need to explicitely write out
+the two loops as
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>   <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span> ; i &lt; n ; i++) {
+      <span style="color: #8B008B; font-weight: bold">for</span>(j=<span style="color: #B452CD">0</span> ; j &lt; n ; j++) {
+         a[i][j]=b[i][j]+c[i][j]
+</pre></div>
+<p>
+However,
+the strength of C++ is the possibility
+to define new data types, tailored to some particular problem.
+Via new data types and overloading of operations such as addition and subtraction, we can easily define
+sets of operations and data types which allow us to write a matrix addition in exactly the same
+way as we would do in Fortran.  We could also change the way we declare a C++ matrix elements \( a_{ij} \), from  \( a[i][j] \)
+to say \( a(i,j) \), as we would do in Fortran. Similarly, we could also change the default range from \( 0:n-1 \) to \( 1:n \).
+
+<p>
+To achieve this we need to introduce two important entities in C++ programming, classes and templates.
+
+<p>
+The function and class declarations are fundamental concepts within C++.  Functions are abstractions
+which encapsulate an algorithm or parts of it and perform specific tasks in a program.
+We have already met several examples on how to use  functions.
+Classes can be defined as abstractions which encapsulate
+data and operations on these data.
+The data can be very complex data structures  and the class can contain particular functions
+which operate on these data. Classes allow therefore for a higher level of abstraction in computing.
+The elements (or components) of the data
+type are the class data members, and the procedures are the class
+member functions.
+
+<p>
+Classes are user-defined tools used to create multi-purpose software which can be reused by other classes or functions.
+These user-defined data types contain data (variables) and
+functions operating on the data.
+
+<p>
+A simple example is that of a point in two dimensions.
+The data could be the \( x \) and \( y \) coordinates of a given  point. The functions
+we define could be simple read and write functions or the possibility to compute the distance between two points.
+
+<p>
+C++ has a class complex in its standard
+template library (STL). The standard usage in a given function could then look like
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #228B22">// Program to calculate addition and multiplication of two complex numbers</span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;complex&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
+{
+  complex&lt;<span style="color: #a7a7a7; font-weight: bold">double</span>&gt; x(<span style="color: #B452CD">6.1</span>,<span style="color: #B452CD">8.2</span>), y(<span style="color: #B452CD">0.5</span>,<span style="color: #B452CD">1.3</span>);
+  <span style="color: #228B22">// write out x+y</span>
+  cout &lt;&lt; x + y &lt;&lt; x*y  &lt;&lt; endl;
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+</pre></div>
+<p>
+where we add and multiply two complex numbers \( x=6.1+\imath 8.2 \) and \( y=0.5+\imath 1.3 \) with the obvious results
+\( z=x+y=6.6+\imath 9.5 \) and \( z=x\cdot y= -7.61+\imath 12.03 \).
+
+<p>
+We proceed by  splitting our task in three files.
+
+<p>
+We define first a header file complex.h  which contains the declarations of
+the class. The header file contains the class declaration (data and
+functions), declaration of stand-alone functions, and all inlined
+functions, starting as follows
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#ifndef Complex_H</span>
+<span style="color: #1e889b">#define Complex_H</span>
+<span style="color: #228B22">//   various include statements and definitions</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;          // Standard ANSI-C++ include files</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;new&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">....</span><span style="color: #1e889b"></span>
+
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Complex</span>
+{...
+definition of variables and their character
+};
+<span style="color: #228B22">//   declarations of various functions used by the class</span>
+...
+<span style="color: #1e889b">#endif</span>
+</pre></div>
+<p>
+Next we provide a file complex.cpp where the code and algorithms of
+different functions (except inlined functions) declared within the
+class are written.  The files <code>complex.h</code> and <code>complex.cpp</code> are normally
+placed in a directory with other classes and libraries we have
+defined.
+
+<p>
+Finally, we discuss here an example of a main program which uses this
+particular class.  An example of a program which uses our complex
+class is given below. In particular we would like our class to perform
+tasks like declaring complex variables, writing out the real and
+imaginary part and performing algebraic operations such as adding or
+multiplying two complex numbers.
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;Complex.h&quot;</span><span style="color: #1e889b"></span>
+...  other include and declarations
+<span style="color: #a7a7a7; font-weight: bold">int</span> main ()
+{
+  Complex a(<span style="color: #B452CD">0.1</span>,<span style="color: #B452CD">1.3</span>);    <span style="color: #228B22">// we declare a complex variable a</span>
+  Complex <span style="color: #008b45">b</span>(<span style="color: #B452CD">3.0</span>), c(<span style="color: #B452CD">5.0</span>,-<span style="color: #B452CD">2.3</span>);  <span style="color: #228B22">// we declare  complex variables b and c</span>
+  Complex d = b;         <span style="color: #228B22">//  we declare  a new complex variable d</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;d=&quot;</span> &lt;&lt; d &lt;&lt; <span style="color: #CD5555">&quot;, a=&quot;</span> &lt;&lt; a &lt;&lt; <span style="color: #CD5555">&quot;, b=&quot;</span> &lt;&lt; b &lt;&lt; endl;
+  d = a*c + b/a;  <span style="color: #228B22">//   we add, multiply and divide two complex numbers</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Re(d)=&quot;</span> &lt;&lt; d.Re() &lt;&lt; <span style="color: #CD5555">&quot;, Im(d)=&quot;</span> &lt;&lt; d.Im() &lt;&lt; endl;  <span style="color: #228B22">// write out of the real and imaginary parts</span>
+</pre></div>
+<p>
+We include the header file complex.h and define four different complex variables. These
+are \( a=0.1+\imath 1.3 \), \( b=3.0+\imath 0 \) (note that if you don't define a value for the imaginary part  this is set to
+zero), \( c=5.0-\imath 2.3 \) and \( d=b \).  Thereafter we have defined standard algebraic operations and the member functions
+of the class which allows us to print out the real and imaginary part of a given variable.
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Complex</span>
+{
+<span style="color: #8B008B; font-weight: bold">private</span>:
+   <span style="color: #a7a7a7; font-weight: bold">double</span> re, im; <span style="color: #228B22">// real and imaginary part</span>
+<span style="color: #8B008B; font-weight: bold">public</span>:
+   Complex ();                              <span style="color: #228B22">// Complex c;</span>
+   Complex (<span style="color: #a7a7a7; font-weight: bold">double</span> re, <span style="color: #a7a7a7; font-weight: bold">double</span> im = <span style="color: #B452CD">0.0</span>); <span style="color: #228B22">// Definition of a complex variable;</span>
+   Complex (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; c);              <span style="color: #228B22">// Usage: Complex c(a);   // equate two complex variables</span>
+   Complex&amp; <span style="color: #8B008B; font-weight: bold">operator</span>= (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; c); <span style="color: #228B22">// c = a;   //  equate two complex variables, same as previous</span>
+....
+</pre></div>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>  ~Complex () {}                        <span style="color: #228B22">// destructor</span>
+   <span style="color: #a7a7a7; font-weight: bold">double</span>   Re () <span style="color: #8B008B; font-weight: bold">const</span>;        <span style="color: #228B22">// double real_part = a.Re();</span>
+   <span style="color: #a7a7a7; font-weight: bold">double</span>   <span style="color: #008b45">Im</span> () <span style="color: #8B008B; font-weight: bold">const</span>;        <span style="color: #228B22">// double imag_part = a.Im();</span>
+   <span style="color: #a7a7a7; font-weight: bold">double</span>   <span style="color: #008b45">abs</span> () <span style="color: #8B008B; font-weight: bold">const</span>;       <span style="color: #228B22">// double m = a.abs(); // modulus</span>
+   <span style="color: #8B008B; font-weight: bold">friend</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>+ (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp;  a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b);
+   <span style="color: #8B008B; font-weight: bold">friend</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>- (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp;  a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b);
+   <span style="color: #8B008B; font-weight: bold">friend</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>* (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp;  a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b);
+   <span style="color: #8B008B; font-weight: bold">friend</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>/ (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp;  a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b);
+};
+</pre></div>
+<p>
+The class is defined via the statement <code>class Complex</code>. We must first use the key word
+<code>class</code>, which in turn is followed by the user-defined variable name  <code>Complex</code>.
+The body of the class, data and functions, is encapsulated  within the parentheses <code>{...}</code>.
+
+<p>
+Data and specific functions can be private, which means that they cannot be accessed from outside the class.
+This means also that access cannot be inherited by other functions outside the class. If we use <code>protected</code>
+instead of <code>private</code>, then data and functions can be inherited outside the class.
+
+<p>
+The key word <code>public</code> means  that data and functions can be accessed from outside the class.
+Here we have defined several functions  which can be accessed by functions outside the class.
+The declaration <code>friend</code> means that stand-alone functions can work on privately declared  variables  of the type
+<code>(re, im)</code>.  Data members of a class should be declared as private variables.
+
+<p>
+The first public function we encounter is a so-called
+constructor, which  tells how we declare a variable of type <code>Complex</code>
+and how this variable is initialized. We have chose  three possibilities in the example above:
+
+<p>
+A declaration like <code>Complex c;</code> calls the member function <code>Complex()</code> which can have the following implementation
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>Complex:: Complex () { re = im = <span style="color: #B452CD">0.0</span>; }
+</pre></div>
+<p>
+meaning that it sets the real and imaginary parts to zero. Note the
+way a member function is defined. The constructor is the first
+function that is called when an object is instantiated.
+
+<p>
+Another possibility is
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>Complex:: Complex () {}
+</pre></div>
+<p>
+which means that there is no initialization of the real and imaginary parts. The drawback is that a given compiler can then assign random values to a given variable.
+
+<p>
+A call like <code>Complex a(0.1,1.3);</code> means that we could call the member function `Complex(double, double)`as
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>Complex:: Complex (<span style="color: #a7a7a7; font-weight: bold">double</span> re_a, <span style="color: #a7a7a7; font-weight: bold">double</span> im_a) {
+    re = re_a; im = im_a; }
+</pre></div>
+<p>
+The simplest member function are those we defined to extract
+the real and imaginary part of a variable. Here you have to recall that these are private data,
+that is they invisible for users of the class.  We obtain a copy of these variables by defining the
+functions
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">double</span> Complex:: Re () <span style="color: #8B008B; font-weight: bold">const</span> { <span style="color: #8B008B; font-weight: bold">return</span> re; }} <span style="color: #228B22">//  getting the real part</span>
+<span style="color: #a7a7a7; font-weight: bold">double</span> Complex:: Im () <span style="color: #8B008B; font-weight: bold">const</span> { <span style="color: #8B008B; font-weight: bold">return</span> im; }  <span style="color: #228B22">//   and the imaginary part</span>
+</pre></div>
+<p>
+Note that we have introduced   the declaration  <code>const</code>.  What does it mean?
+This declaration means that a variabale cannot be changed within  a called function.
+
+<p>
+If we define a variable as
+<code>const double p = 3;</code> and then try to change its value, we will get an error when we
+compile our program. This means that constant arguments in functions cannot be changed.
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #228B22">// const arguments (in functions) cannot be changed:</span>
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">myfunc</span> (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; c)
+{ c.re = <span style="color: #B452CD">0.2</span>; <span style="color: #228B22">/* ILLEGAL!! compiler error... */</span>  }
+</pre></div>
+<p>
+If we declare the function and try to change the value to \( 0.2 \), the compiler will complain by sending
+an error message.
+
+<p>
+If we define a function to compute the absolute value of complex variable like
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">double</span> Complex:: abs ()  { <span style="color: #8B008B; font-weight: bold">return</span> sqrt(re*re + im*im);}
+</pre></div>
+<p>
+without the constant declaration  and define thereafter a function
+<code>myabs</code> as
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">myabs</span> (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; c)
+{ <span style="color: #8B008B; font-weight: bold">return</span> c.abs(); }   <span style="color: #228B22">// Not ok because c.abs() is not a const func.</span>
+</pre></div>
+<p>
+the compiler would not allow the c.abs() call in myabs
+since <code>Complex::abs</code> is not a constant member function.
+
+<p>
+Constant functions cannot change the object's state.
+To avoid this we declare the function <code>abs</code> as
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">double</span> Complex:: abs () <span style="color: #8B008B; font-weight: bold">const</span> { <span style="color: #8B008B; font-weight: bold">return</span> sqrt(re*re + im*im); }
+</pre></div>
+
+<h2 id="___sec24">Overloading operators </h2>
+
+<p>
+C++ (and Fortran) allow for overloading of operators. That means we
+can define algebraic operations on for example vectors or any
+arbitrary object.  As an example, a vector addition of the type 
+\( \mathbf{c} = \mathbf{a} + \mathbf{b} \) means that we need to write a small part of
+code with a for-loop over the dimension of the array.  We would rather
+like to write this statement as <code>c = a+b;</code> as this makes the code much
+more readable and close to eventual equations we want to code.  To
+achieve this we need to extend the definition of operators.
+
+<p>
+Let us study the declarations in our complex class.
+In our main function we have a statement like <code>d = b;</code>, which means
+that we call <code>d.operator= (b)</code> and we have defined a so-called assignment operator
+as a part of the class defined as
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>Complex&amp; Complex:: <span style="color: #8B008B; font-weight: bold">operator</span>= (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; c)
+{
+   re = c.re;
+   im = c.im;
+   <span style="color: #8B008B; font-weight: bold">return</span> *<span style="color: #8B008B; font-weight: bold">this</span>;
+}
+</pre></div>
+<p>
+With this function, statements like
+<code>Complex d = b;</code> or <code>Complex d(b);</code>
+make a new object \( d \), which becomes a copy of \( b \).
+We can make simple implementations in terms of the assignment
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>Complex:: Complex (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; c)
+{ *<span style="color: #8B008B; font-weight: bold">this</span> = c; }
+</pre></div>
+<p>
+which  is a pointer to "this object", <code>*this</code> is the present object,
+so <code>*this = c;</code> means setting the present object equal to \( c \), that is
+<code>this-&gt;operator= (c);</code>.
+
+<p>
+The meaning of the addition operator \( + \) for Complex objects is defined in the
+function
+<code>Complex operator+ (const Complex& a, const Complex& b); // a+b</code>
+The compiler translates <code>c = a + b;</code> into <code>c = operator+ (a, b);</code>.
+Since this implies the call to function, it brings in an additional overhead. If speed
+is crucial and this function call is performed inside a loop, then it is more difficult for a
+given compiler to perform optimizations of a loop.
+
+<p>
+The solution to this is to inline functions.   We discussed inlining in chapter
+2 of the lecture notes.
+Inlining means that the function body is copied directly into
+the calling code, thus avoiding calling the function.
+Inlining is enabled by the inline keyword
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">inline</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>+ (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b)
+{ <span style="color: #8B008B; font-weight: bold">return</span> Complex (a.re + b.re, a.im + b.im); }
+</pre></div>
+<p>
+Inline functions, with complete bodies must be written in the header file  complex.h.
+
+<p>
+Consider  the case <code>c = a + b;</code>
+that is,  <code>c.operator= (operator+ (a,b));</code>
+If <code>operator+</code>, <code>operator=</code> and the constructor <code>Complex(r,i)</code> all
+are inline functions, this transforms to
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>c.re = a.re + b.re;
+c.im = a.im + b.im;
+</pre></div>
+<p>
+by the compiler, i.e., no function calls
+
+<p>
+The stand-alone function <code>operator+</code> is a friend of the Complex  class
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Complex</span>
+{
+   ...
+   <span style="color: #8B008B; font-weight: bold">friend</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>+ (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b);
+   ...
+};
+</pre></div>
+<p>
+so it can read (and manipulate) the private data parts \( re \) and
+\( im \) via
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">inline</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>+ (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b)
+{ <span style="color: #8B008B; font-weight: bold">return</span> Complex (a.re + b.re, a.im + b.im); }
+</pre></div>
+<p>
+Since we do not need to alter the re and im variables, we can
+get the values by Re() and Im(), and there is no need to be a
+friend function
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">inline</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>+ (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b)
+{ <span style="color: #8B008B; font-weight: bold">return</span> Complex (a.Re() + b.Re(), a.Im() + b.Im()); }
+</pre></div>
+<p>
+The multiplication functionality can now be extended to imaginary numbers by the following code
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">inline</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>* (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b)
+{
+  <span style="color: #8B008B; font-weight: bold">return</span> Complex(a.re*b.re - a.im*b.im, a.im*b.re + a.re*b.im);
+</pre></div>
+<p>
+It will be convenient to inline all functions used by this operator.
+
+<p>
+To inline the complete expression <code>a*b;</code>, the constructors and
+<code>operator=</code>  must also be inlined.  This can be achieved via the following piece of code
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">inline</span> Complex:: Complex () { re = im = <span style="color: #B452CD">0.0</span>; }
+<span style="color: #8B008B; font-weight: bold">inline</span> Complex:: Complex (<span style="color: #a7a7a7; font-weight: bold">double</span> re_, <span style="color: #a7a7a7; font-weight: bold">double</span> im_)
+{ ... }
+<span style="color: #8B008B; font-weight: bold">inline</span> Complex:: Complex (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; c)
+{ ... }
+<span style="color: #8B008B; font-weight: bold">inline</span> Complex:: <span style="color: #8B008B; font-weight: bold">operator</span>= (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; c)
+{ ... }
+</pre></div>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #228B22">// e, c, d are complex</span>
+e = c*d;
+<span style="color: #228B22">// first compiler translation:</span>
+e.<span style="color: #8B008B; font-weight: bold">operator</span>= (<span style="color: #8B008B; font-weight: bold">operator</span>* (c,d));
+<span style="color: #228B22">// result of nested inline functions</span>
+<span style="color: #228B22">// operator=, operator*, Complex(double,double=0):</span>
+e.re = c.re*d.re - c.im*d.im;
+e.im = c.im*d.re + c.re*d.im;
+</pre></div>
+<p>
+The definitions <code>operator-</code> and <code>operator/</code> follow the same set up.
+
+<p>
+Finally, if we wish to write to file or another device a complex number using the simple syntax
+<code>cout &lt;&lt; c;</code>, we obtain this by defining
+the effect of \( < < \) for a Complex object as
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>ostream&amp; <span style="color: #8B008B; font-weight: bold">operator</span>&lt;&lt; (ostream&amp; o, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; c)
+{ o &lt;&lt; <span style="color: #CD5555">&quot;(&quot;</span> &lt;&lt; c.Re() &lt;&lt; <span style="color: #CD5555">&quot;,&quot;</span> &lt;&lt; c.Im() &lt;&lt; <span style="color: #CD5555">&quot;) &quot;</span>; <span style="color: #8B008B; font-weight: bold">return</span> o;}
+</pre></div>
+
+<h2 id="___sec25">Templates </h2>
+
+<p>
+What if we wanted to make a class which takes integers
+or floating point numbers with single precision?
+A simple way to achieve this is copy and paste our class and replace <code>double</code> with for
+example <code>int</code>.
+
+<p>
+C++  allows us to do this automatically via the usage of templates, which
+are the C++ constructs for parameterizing parts of
+classes. Class templates  is a template for producing classes. The declaration consists
+of the keyword <code>template</code> followed by a list of template arguments enclosed in brackets.
+
+<p>
+We can therefore make a more general class by rewriting our original example as
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">template</span>&lt;<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">T</span>&gt;
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Complex</span>
+{
+<span style="color: #8B008B; font-weight: bold">private</span>:
+   T re, im; <span style="color: #228B22">// real and imaginary part</span>
+<span style="color: #8B008B; font-weight: bold">public</span>:
+   Complex ();                              <span style="color: #228B22">// Complex c;</span>
+   Complex (T re, T im = <span style="color: #B452CD">0</span>); <span style="color: #228B22">// Definition of a complex variable;</span>
+   Complex (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; c);              <span style="color: #228B22">// Usage: Complex c(a);   // equate two complex variables</span>
+   Complex&amp; <span style="color: #8B008B; font-weight: bold">operator</span>= (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; c); <span style="color: #228B22">// c = a;   //  equate two complex variables, same as previous</span>
+  ~Complex () {}                        <span style="color: #228B22">// destructor</span>
+   T   Re () <span style="color: #8B008B; font-weight: bold">const</span>;        <span style="color: #228B22">// T real_part = a.Re();</span>
+   T   <span style="color: #008b45">Im</span> () <span style="color: #8B008B; font-weight: bold">const</span>;        <span style="color: #228B22">// T imag_part = a.Im();</span>
+   T   <span style="color: #008b45">abs</span> () <span style="color: #8B008B; font-weight: bold">const</span>;       <span style="color: #228B22">// T m = a.abs(); // modulus</span>
+   <span style="color: #8B008B; font-weight: bold">friend</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>+ (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp;  a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b);
+   <span style="color: #8B008B; font-weight: bold">friend</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>- (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp;  a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b);
+   <span style="color: #8B008B; font-weight: bold">friend</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>* (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp;  a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b);
+   <span style="color: #8B008B; font-weight: bold">friend</span> Complex <span style="color: #8B008B; font-weight: bold">operator</span>/ (<span style="color: #8B008B; font-weight: bold">const</span> Complex&amp;  a, <span style="color: #8B008B; font-weight: bold">const</span> Complex&amp; b);
+};
+</pre></div>
+<p>
+What it says is that <code>Complex</code> is a parameterized type with \( T \) as a parameter and \( T \) has to be a type such as double
+or float.
+The class complex is now a class template
+and we would define variables in a code as
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span>Complex&lt;<span style="color: #a7a7a7; font-weight: bold">double</span>&gt; a(<span style="color: #B452CD">10.0</span>,<span style="color: #B452CD">5.1</span>);
+Complex&lt;<span style="color: #a7a7a7; font-weight: bold">int</span>&gt; b(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>);
+</pre></div>
+<p>
+Member functions of our class are defined by preceding the name of the function with the <code>template</code> keyword.
+Consider the function we defined as <code>Complex:: Complex (double re_a, double im_a)</code>.
+We would rewrite this function as
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">template</span>&lt;<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">T</span>&gt;
+Complex&lt;T&gt;:: Complex (T re_a, T im_a)
+{ re = re_a; im = im_a; }
+</pre></div>
+<p>
+The member functions  are otherwise defined following ordinary member function definitions.
+
+<p>
+Here follows a very simple first class in the file squared.h
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #228B22">// Not all declarations here</span>
+<span style="color: #228B22">// Class to compute the square of a number</span>
+<span style="color: #8B008B; font-weight: bold">template</span>&lt;<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">T</span>&gt;
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Squared</span>{
+  <span style="color: #8B008B; font-weight: bold">public</span>:
+    <span style="color: #228B22">// Default constructor, not used here</span>
+    Squared(){}
+
+    <span style="color: #228B22">// Overload the function operator()</span>
+    T <span style="color: #8B008B; font-weight: bold">operator</span>()(T x){<span style="color: #8B008B; font-weight: bold">return</span> x*x;}
+
+};
+</pre></div>
+<p>
+and we would use it as
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;squared.h&quot;</span><span style="color: #1e889b"></span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(){
+  Squared&lt;<span style="color: #a7a7a7; font-weight: bold">double</span>&gt; s;
+  cout &lt;&lt; s(<span style="color: #B452CD">3</span>) &lt;&lt; endl;
+</pre></div>
+
+<h2 id="___sec26">A matrix-vector class, first its usage </h2>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;fstream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iomanip&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;/Users/hjensen/Teaching/fys4411/programs/cgm/vectorclass.h&quot;</span><span style="color: #1e889b"></span>
+
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span>  std;
+
+  Vector <span style="color: #008b45">ConjugateGradient</span>(Matrix A, Vector b, Vector x0){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> dim = x0.Dimension();
+  <span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">double</span> tolerance = <span style="color: #B452CD">1.0e-14</span>;
+  Vector x(dim),r(dim),v(dim),z(dim);
+  <span style="color: #a7a7a7; font-weight: bold">double</span> c,t,d;
+
+  x = x0;
+  r = b - A*x;
+  v = r;
+  c = dot(r,r);
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dim;i++){
+    <span style="color: #8B008B; font-weight: bold">if</span>(sqrt(dot(v,v))&lt;tolerance){
+      cerr &lt;&lt; <span style="color: #CD5555">&quot;An error has occurred in ConjugateGradient: execution of function terminated&quot;</span> &lt;&lt; endl;
+      <span style="color: #8B008B; font-weight: bold">break</span>;
+    }
+    z = A*v;
+    t = c/dot(v,z);
+    x = x + t*v;
+    r = r - t*z;
+    d = dot(r,r);
+    <span style="color: #8B008B; font-weight: bold">if</span>(sqrt(d) &lt; tolerance)
+      <span style="color: #8B008B; font-weight: bold">break</span>;
+    v = r + (d/c)*v;
+    c = d;
+  }
+  <span style="color: #8B008B; font-weight: bold">return</span> x;
+}
+
+
+Vector <span style="color: #008b45">SteepestDescent</span>(Matrix A, Vector b, Vector x0){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> IterMax, i;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> dim = x0.Dimension();
+  <span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">double</span> tolerance = <span style="color: #B452CD">1.0e-14</span>;
+  Vector x(dim),f(dim),z(dim);
+  <span style="color: #a7a7a7; font-weight: bold">double</span> c,alpha,d;
+  IterMax = <span style="color: #B452CD">30</span>;
+  x = x0;
+  f = A*x-b;
+  i = <span style="color: #B452CD">0</span>;
+  <span style="color: #8B008B; font-weight: bold">while</span> (i &lt;= IterMax || sqrt(dot(f,f)) &lt; tolerance ){
+    <span style="color: #8B008B; font-weight: bold">if</span>(sqrt(dot(f,f))&lt;tolerance){
+       cerr &lt;&lt; <span style="color: #CD5555">&quot;An error has occurred: execution of function terminated&quot;</span> &lt;&lt; endl;
+       <span style="color: #8B008B; font-weight: bold">break</span>;
+    }
+    z = A*f;
+    c = dot(f,f);
+    alpha = c/dot(f,z);
+    x = x - alpha*f;
+    f =  A*x-b;
+    <span style="color: #8B008B; font-weight: bold">if</span>(sqrt(dot(f,f)) &lt; tolerance) <span style="color: #8B008B; font-weight: bold">break</span>;
+    i++;
+  }
+  <span style="color: #8B008B; font-weight: bold">return</span> x;
+}
+
+<span style="color: #228B22">//   Main function begins here</span>
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>  argc, <span style="color: #a7a7a7; font-weight: bold">char</span> * argv[]){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> dim = <span style="color: #B452CD">2</span>;
+  Vector x(dim),xsd(dim), b(dim),x0(dim);
+  Matrix A(dim,dim);
+
+  <span style="color: #228B22">// Set our initial guess</span>
+  x0(<span style="color: #B452CD">0</span>) = x0(<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">0</span>;
+  <span style="color: #228B22">// Set the matrix</span>
+  A(<span style="color: #B452CD">0</span>,<span style="color: #B452CD">0</span>) =  <span style="color: #B452CD">3</span>;    A(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">0</span>) =  <span style="color: #B452CD">2</span>;   A(<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>) =  <span style="color: #B452CD">2</span>;   A(<span style="color: #B452CD">1</span>,<span style="color: #B452CD">1</span>) =  <span style="color: #B452CD">6</span>;
+
+  cout &lt;&lt; <span style="color: #CD5555">&quot;The Matrix A that we are using: &quot;</span> &lt;&lt; endl;
+  A.Print();
+  cout &lt;&lt; endl;
+
+  Vector y(dim);
+  y(<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">2.</span>;
+  y(<span style="color: #B452CD">1</span>) = -<span style="color: #B452CD">2.</span>;
+
+  cout &lt;&lt; <span style="color: #CD5555">&quot;The exact solution is: &quot;</span> &lt;&lt; endl;
+  y.Print();
+  cout &lt;&lt; endl;
+  b = A*y;
+
+  cout &lt;&lt; <span style="color: #CD5555">&quot;The right hand side, b, of the expression Ax=b: &quot;</span> &lt;&lt; endl;
+  b.Print();
+  cout &lt;&lt; endl;
+
+  x = ConjugateGradient(A,b,x0);
+
+  xsd = SteepestDescent(A,b,x0);
+
+  cout &lt;&lt; <span style="color: #CD5555">&quot;The approximate solution using Conjugate Gradient is: &quot;</span> &lt;&lt; endl;
+  x.Print();
+  cout &lt;&lt; endl;
+
+  cout &lt;&lt; <span style="color: #CD5555">&quot;The approximate solution using Steepest Descent is: &quot;</span> &lt;&lt; endl;
+  xsd.Print();
+  cout &lt;&lt; endl;
+}
+</pre></div>
+
+<h2 id="___sec27">A matrix-vector class, the class definitions themselves </h2>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#ifndef _vectorclass</span>
+<span style="color: #1e889b">#define _vectorclass</span>
+
+
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span>  std;
+
+
+
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Point</span>;
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Vector</span>;
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Matrix</span>;
+
+
+<span style="color: #228B22">/********************************/</span>
+<span style="color: #228B22">/*        Point Class        */</span>
+<span style="color: #228B22">/********************************/</span>
+
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Point</span>{
+ <span style="color: #8B008B; font-weight: bold">private</span>:
+  <span style="color: #a7a7a7; font-weight: bold">int</span>   dimension;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> *data;
+  
+ <span style="color: #8B008B; font-weight: bold">public</span>:
+  Point(<span style="color: #a7a7a7; font-weight: bold">int</span> dim);
+  Point(<span style="color: #8B008B; font-weight: bold">const</span> Point&amp; v);
+  ~Point();
+  
+  <span style="color: #a7a7a7; font-weight: bold">int</span>    <span style="color: #008b45">Dimension</span>() <span style="color: #8B008B; font-weight: bold">const</span>;
+
+  <span style="color: #228B22">//************************</span>
+  <span style="color: #228B22">// User Defined Operators</span>
+  <span style="color: #228B22">//************************</span>
+  <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #8B008B; font-weight: bold">operator</span>==(<span style="color: #8B008B; font-weight: bold">const</span> Point&amp; v) <span style="color: #8B008B; font-weight: bold">const</span>;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #8B008B; font-weight: bold">operator</span>!=(<span style="color: #8B008B; font-weight: bold">const</span> Point&amp; v) <span style="color: #8B008B; font-weight: bold">const</span>;
+  Point &amp; <span style="color: #8B008B; font-weight: bold">operator</span>=(<span style="color: #8B008B; font-weight: bold">const</span> Point&amp; v);
+
+  <span style="color: #a7a7a7; font-weight: bold">double</span>  <span style="color: #008b45">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i) <span style="color: #8B008B; font-weight: bold">const</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; <span style="color: #8B008B; font-weight: bold">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i);
+
+  <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Print</span>() <span style="color: #8B008B; font-weight: bold">const</span>;
+};
+
+
+
+<span style="color: #228B22">/********************************/</span>
+<span style="color: #228B22">/*        Vector Class        */</span>
+<span style="color: #228B22">/********************************/</span>
+
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Vector</span>{
+ <span style="color: #8B008B; font-weight: bold">private</span>:
+  <span style="color: #a7a7a7; font-weight: bold">int</span>   dimension;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> *data;
+  
+ <span style="color: #8B008B; font-weight: bold">public</span>:
+  Vector();
+  Vector(<span style="color: #a7a7a7; font-weight: bold">int</span> dim);
+  Vector(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v);
+  Vector(<span style="color: #a7a7a7; font-weight: bold">int</span> col, <span style="color: #8B008B; font-weight: bold">const</span> Matrix &amp;A);
+  ~Vector();
+  
+  <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Initialize</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> dim);
+  <span style="color: #a7a7a7; font-weight: bold">int</span>    <span style="color: #008b45">Dimension</span>() <span style="color: #8B008B; font-weight: bold">const</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">Length</span>();     <span style="color: #228B22">/* Euclidean Norm of the Vector */</span>
+  <span style="color: #a7a7a7; font-weight: bold">void</span>   <span style="color: #008b45">Normalize</span>();
+
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">Norm_l1</span>();
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">Norm_l2</span>();
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">Norm_linf</span>();
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">MaxMod</span>();
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">ElementofMaxMod</span>();
+  <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">MaxModindex</span>();
+  
+  <span style="color: #228B22">//************************</span>
+  <span style="color: #228B22">// User Defined Operators</span>
+  <span style="color: #228B22">//************************</span>
+  <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #8B008B; font-weight: bold">operator</span>==(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v) <span style="color: #8B008B; font-weight: bold">const</span>;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #8B008B; font-weight: bold">operator</span>!=(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v) <span style="color: #8B008B; font-weight: bold">const</span>;
+  Vector &amp; <span style="color: #8B008B; font-weight: bold">operator</span>=(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v);
+
+  <span style="color: #a7a7a7; font-weight: bold">double</span>  <span style="color: #008b45">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i) <span style="color: #8B008B; font-weight: bold">const</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; <span style="color: #8B008B; font-weight: bold">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i);
+
+  <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Print</span>() <span style="color: #8B008B; font-weight: bold">const</span>;
+  <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Initialize</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> a);
+  <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Initialize</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> *v);
+};
+
+
+
+<span style="color: #228B22">/********************************/</span>
+<span style="color: #228B22">/*        Matrix Class        */</span>
+<span style="color: #228B22">/********************************/</span>
+
+<span style="color: #8B008B; font-weight: bold">class</span> <span style="color: #008b45; font-weight: bold">Matrix</span> {
+<span style="color: #8B008B; font-weight: bold">private</span>:
+  <span style="color: #a7a7a7; font-weight: bold">int</span> rows, columns;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> **data;
+  
+<span style="color: #8B008B; font-weight: bold">public</span>:
+
+  Matrix(<span style="color: #a7a7a7; font-weight: bold">int</span> dim);
+  Matrix(<span style="color: #a7a7a7; font-weight: bold">int</span> rows1, <span style="color: #a7a7a7; font-weight: bold">int</span> columns1);
+  Matrix(<span style="color: #8B008B; font-weight: bold">const</span> Matrix&amp; m);
+  Matrix(<span style="color: #a7a7a7; font-weight: bold">int</span> num_vectors, <span style="color: #8B008B; font-weight: bold">const</span> Vector * q);
+  Matrix(<span style="color: #a7a7a7; font-weight: bold">int</span> rows1, <span style="color: #a7a7a7; font-weight: bold">int</span> columns1, <span style="color: #a7a7a7; font-weight: bold">double</span> **rowptrs);
+  ~Matrix();
+
+  <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">Rows</span>() <span style="color: #8B008B; font-weight: bold">const</span>;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">Columns</span>() <span style="color: #8B008B; font-weight: bold">const</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> ** <span style="color: #008b45">GetPointer</span>();
+  <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">GetColumn</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> col, Vector &amp;x);
+  <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">GetColumn</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> col, Vector &amp;x, <span style="color: #a7a7a7; font-weight: bold">int</span> rowoffset);
+  <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">PutColumn</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> col, <span style="color: #8B008B; font-weight: bold">const</span> Vector &amp;x);
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">Norm_l1</span>();
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">Norm_linf</span>();
+
+  <span style="color: #228B22">//************************</span>
+  <span style="color: #228B22">// User Defined Operators</span>
+  <span style="color: #228B22">//************************</span>
+  Matrix&amp; <span style="color: #8B008B; font-weight: bold">operator</span>=(<span style="color: #8B008B; font-weight: bold">const</span> Matrix&amp; m);
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i, <span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> j) <span style="color: #8B008B; font-weight: bold">const</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; <span style="color: #8B008B; font-weight: bold">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i, <span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> j);
+
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">MaxModInRow</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> row);
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">MaxModInRow</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> row, <span style="color: #a7a7a7; font-weight: bold">int</span> starting_column);
+  <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">MaxModInRowindex</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> row);
+  <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">MaxModInRowindex</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> row, <span style="color: #a7a7a7; font-weight: bold">int</span> starting_column);
+ 
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">MaxModInColumn</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> column);
+  <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">MaxModInColumn</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> column, <span style="color: #a7a7a7; font-weight: bold">int</span> starting_row);
+  <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">MaxModInColumnindex</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> column);
+  <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">MaxModInColumnindex</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> column, <span style="color: #a7a7a7; font-weight: bold">int</span> starting_row);
+
+  <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">RowSwap</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> row1, <span style="color: #a7a7a7; font-weight: bold">int</span> row2);
+
+  <span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Print</span>() <span style="color: #8B008B; font-weight: bold">const</span>;
+
+};
+
+
+<span style="color: #228B22">/********************************/</span>
+<span style="color: #228B22">/*   Operator Declarations      */</span>
+<span style="color: #228B22">/********************************/</span>
+
+<span style="color: #228B22">// Unitary operator -</span>
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>-(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v);
+
+<span style="color: #228B22">// Binary operator +,-</span>
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>+(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v1, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v2);
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>-(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v1, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v2);
+
+<span style="color: #228B22">// Vector Scaling (multiplication by a scaler : defined commutatively)</span>
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>*(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">double</span> s, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v);
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>*(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v, <span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">double</span> s);
+
+<span style="color: #228B22">// Vector Scaling (division by a scaler)</span>
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>/(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v, <span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">double</span> s);
+
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>*(<span style="color: #8B008B; font-weight: bold">const</span> Matrix&amp; A, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; x); 
+
+
+<span style="color: #228B22">/********************************/</span>
+<span style="color: #228B22">/*   Function Declarations      */</span>
+<span style="color: #228B22">/********************************/</span>
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">min_dimension</span>(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; u, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v);
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">dot</span>(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; u, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v); 
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">dot</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #a7a7a7; font-weight: bold">double</span> *a, <span style="color: #a7a7a7; font-weight: bold">double</span> *b);
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">dot</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #8B008B; font-weight: bold">const</span> Vector &amp;u, <span style="color: #8B008B; font-weight: bold">const</span> Vector &amp;v); 
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Swap</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> &amp;a, <span style="color: #a7a7a7; font-weight: bold">double</span> &amp;b);
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">Sign</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x);
+
+<span style="color: #228B22">/* Misc. useful functions to have */</span>
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">log2</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x);
+<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">GammaF</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x);
+<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">Factorial</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> n);
+<span style="color: #a7a7a7; font-weight: bold">double</span> ** <span style="color: #008b45">CreateMatrix</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> m, <span style="color: #a7a7a7; font-weight: bold">int</span> n);
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">DestroyMatrix</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> ** mat, <span style="color: #a7a7a7; font-weight: bold">int</span> m, <span style="color: #a7a7a7; font-weight: bold">int</span> n); 
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> ** <span style="color: #008b45">ICreateMatrix</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> m, <span style="color: #a7a7a7; font-weight: bold">int</span> n);
+<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">IDestroyMatrix</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> ** mat, <span style="color: #a7a7a7; font-weight: bold">int</span> m, <span style="color: #a7a7a7; font-weight: bold">int</span> n);
+
+<span style="color: #1e889b">#endif</span>
+</pre></div>
+
+<h2 id="___sec28">A matrix-vector class, and finally all its functions </h2>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&quot;vectorclass.h&quot;</span><span style="color: #1e889b"></span>
+
+Point::Point(<span style="color: #a7a7a7; font-weight: bold">int</span> dim){
+  dimension = dim;
+  data = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[dimension];
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dimension;i++)
+    data[i] = <span style="color: #B452CD">0.0</span>;
+}
+
+
+Point::Point(<span style="color: #8B008B; font-weight: bold">const</span> Point &amp;v){
+  dimension = v.Dimension();
+  data = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[dimension];
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dimension;i++)
+    data[i] = v.data[i];
+}
+
+
+Point::~Point(){
+  dimension = <span style="color: #B452CD">0</span>;
+  <span style="color: #8B008B; font-weight: bold">delete</span>[] data;
+  data = <span style="color: #658b00">NULL</span>;
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> Point::Dimension() <span style="color: #8B008B; font-weight: bold">const</span>{
+  <span style="color: #8B008B; font-weight: bold">return</span>(dimension);
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Point::<span style="color: #8B008B; font-weight: bold">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i) <span style="color: #8B008B; font-weight: bold">const</span>{
+  <span style="color: #8B008B; font-weight: bold">if</span>(i&gt;=<span style="color: #B452CD">0</span> &amp;&amp; i&lt;dimension)
+    <span style="color: #8B008B; font-weight: bold">return</span> data[i];
+
+  cerr &lt;&lt; <span style="color: #CD5555">&quot;Point::Invalid index &quot;</span> &lt;&lt; i &lt;&lt; <span style="color: #CD5555">&quot; for Point of dimension &quot;</span> &lt;&lt; dimension &lt;&lt; endl;
+  <span style="color: #8B008B; font-weight: bold">return</span>(<span style="color: #B452CD">0</span>);
+}
+
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span>&amp; Point::<span style="color: #8B008B; font-weight: bold">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i){
+  <span style="color: #8B008B; font-weight: bold">if</span>(i&gt;=<span style="color: #B452CD">0</span> &amp;&amp; i&lt;dimension)
+    <span style="color: #8B008B; font-weight: bold">return</span> data[i];
+
+  cerr &lt;&lt; <span style="color: #CD5555">&quot;Point::Invalid index &quot;</span> &lt;&lt; i &lt;&lt; <span style="color: #CD5555">&quot; for Point of dimension &quot;</span> &lt;&lt; dimension &lt;&lt; endl;
+  <span style="color: #8B008B; font-weight: bold">return</span>(data[<span style="color: #B452CD">0</span>]);
+}
+
+
+Point&amp; Point::<span style="color: #8B008B; font-weight: bold">operator</span>=(<span style="color: #8B008B; font-weight: bold">const</span> Point &amp;v) {
+  dimension = v.Dimension();
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dimension;i++)
+    data[i] = v.data[i];
+  <span style="color: #8B008B; font-weight: bold">return</span> *<span style="color: #8B008B; font-weight: bold">this</span>;
+};
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Point::Print() <span style="color: #8B008B; font-weight: bold">const</span>{
+  cout &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;[ &quot;</span>;
+  <span style="color: #8B008B; font-weight: bold">if</span>(dimension&gt;<span style="color: #B452CD">0</span>)
+    cout &lt;&lt; data[<span style="color: #B452CD">0</span>];
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>;i&lt;dimension;i++)
+    cout &lt;&lt; <span style="color: #CD5555">&quot;; &quot;</span> &lt;&lt; data[i];
+  cout &lt;&lt; <span style="color: #CD5555">&quot; ]&quot;</span> &lt;&lt; endl;
+}
+
+Vector::Vector(){
+  dimension = <span style="color: #B452CD">0</span>;
+  data = <span style="color: #658b00">NULL</span>;
+}
+
+
+Vector::Vector(<span style="color: #a7a7a7; font-weight: bold">int</span> dim){
+  dimension = dim;
+  data = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[dimension];
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dimension;i++)
+    data[i] = <span style="color: #B452CD">0.0</span>;
+}
+
+
+Vector::Vector(<span style="color: #8B008B; font-weight: bold">const</span> Vector &amp;v){
+  dimension = v.Dimension();
+  data = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[dimension];
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dimension;i++)
+    data[i] = v.data[i];
+}
+
+
+Vector::Vector(<span style="color: #a7a7a7; font-weight: bold">int</span> col, <span style="color: #8B008B; font-weight: bold">const</span> Matrix &amp;A){
+  dimension = A.Rows();
+
+  data = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[dimension];
+  
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;A.Rows();i++)
+    data[i] = A(i,col);
+
+}
+
+
+Vector::~Vector(){
+  dimension = <span style="color: #B452CD">0</span>;
+  <span style="color: #8B008B; font-weight: bold">delete</span>[] data;
+  data = <span style="color: #658b00">NULL</span>;
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Vector::Initialize(<span style="color: #a7a7a7; font-weight: bold">int</span> dim){
+  <span style="color: #8B008B; font-weight: bold">if</span>(dimension!=<span style="color: #B452CD">0</span>)
+    <span style="color: #8B008B; font-weight: bold">delete</span>[] data;
+
+  dimension = dim;
+  data = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[dimension];
+  
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dimension;i++)
+    data[i] = <span style="color: #B452CD">0.0</span>;
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> Vector::Dimension() <span style="color: #8B008B; font-weight: bold">const</span>{
+  <span style="color: #8B008B; font-weight: bold">return</span>(dimension);
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Vector::<span style="color: #8B008B; font-weight: bold">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i) <span style="color: #8B008B; font-weight: bold">const</span>{
+  <span style="color: #8B008B; font-weight: bold">if</span>(i&gt;=<span style="color: #B452CD">0</span> &amp;&amp; i&lt;dimension)
+    <span style="color: #8B008B; font-weight: bold">return</span> data[i];
+
+  cerr &lt;&lt; <span style="color: #CD5555">&quot;Vector::Invalid index &quot;</span> &lt;&lt; i &lt;&lt; <span style="color: #CD5555">&quot; for Vector of dimension &quot;</span> &lt;&lt; dimension &lt;&lt; endl;
+  <span style="color: #8B008B; font-weight: bold">return</span>(<span style="color: #B452CD">0</span>);
+}
+
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span>&amp; Vector::<span style="color: #8B008B; font-weight: bold">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i){
+  <span style="color: #8B008B; font-weight: bold">if</span>(i&gt;=<span style="color: #B452CD">0</span> &amp;&amp; i&lt;dimension)
+    <span style="color: #8B008B; font-weight: bold">return</span> data[i];
+
+  cerr &lt;&lt; <span style="color: #CD5555">&quot;Vector::Invalid index &quot;</span> &lt;&lt; i &lt;&lt; <span style="color: #CD5555">&quot; for Vector of dimension &quot;</span> &lt;&lt; dimension &lt;&lt; endl;
+  <span style="color: #8B008B; font-weight: bold">return</span>(data[<span style="color: #B452CD">0</span>]);
+}
+
+
+Vector&amp; Vector::<span style="color: #8B008B; font-weight: bold">operator</span>=(<span style="color: #8B008B; font-weight: bold">const</span> Vector &amp;v) {
+  dimension = v.Dimension();
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dimension;i++)
+    data[i] = v.data[i];
+  <span style="color: #8B008B; font-weight: bold">return</span> *<span style="color: #8B008B; font-weight: bold">this</span>;
+};
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Vector::Print() <span style="color: #8B008B; font-weight: bold">const</span>{
+  cout &lt;&lt; endl;
+  cout &lt;&lt; <span style="color: #CD5555">&quot;[ &quot;</span>;
+  <span style="color: #8B008B; font-weight: bold">if</span>(dimension&gt;<span style="color: #B452CD">0</span>)
+    cout &lt;&lt; data[<span style="color: #B452CD">0</span>];
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>;i&lt;dimension;i++)
+    cout &lt;&lt; <span style="color: #CD5555">&quot;; &quot;</span> &lt;&lt; data[i];
+  cout &lt;&lt; <span style="color: #CD5555">&quot; ]&quot;</span> &lt;&lt; endl;
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Vector::Norm_l1(){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dimension;i++)
+    sum += fabs(data[i]);
+  <span style="color: #8B008B; font-weight: bold">return</span>(sum);
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Vector::Norm_l2(){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dimension;i++)
+    sum += data[i]*data[i];
+  <span style="color: #8B008B; font-weight: bold">return</span>(sqrt(sum));
+}
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Vector::Normalize(){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> tmp = <span style="color: #B452CD">1.0</span>/Norm_l2();
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dimension;i++)
+    data[i] = data[i]*tmp;
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Vector::Norm_linf(){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxval = <span style="color: #B452CD">0.0</span>,tmp;
+  
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;dimension;i++){
+    tmp = fabs(data[i]);
+    maxval = (maxval &gt; tmp)?maxval:tmp;
+  }
+  <span style="color: #8B008B; font-weight: bold">return</span>(maxval);
+}
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Vector::MaxMod(){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxm = -<span style="color: #B452CD">1.0e+10</span>;
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;dimension; i++)
+    maxm = (maxm &gt; fabs(data[i]))?maxm:fabs(data[i]);
+  
+  <span style="color: #8B008B; font-weight: bold">return</span> maxm;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Vector::ElementofMaxMod(){
+  <span style="color: #8B008B; font-weight: bold">return</span>(data[MaxModindex()]);
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> Vector::MaxModindex(){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxm = -<span style="color: #B452CD">1.0e+10</span>;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> maxmindex = <span style="color: #B452CD">0</span>;
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;dimension; i++){
+    <span style="color: #8B008B; font-weight: bold">if</span>(maxm&lt;fabs(data[i])){
+      maxm = fabs(data[i]);
+      maxmindex = i;
+    }
+  }
+  
+  <span style="color: #8B008B; font-weight: bold">return</span> maxmindex;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Vector::Initialize(<span style="color: #a7a7a7; font-weight: bold">double</span> a){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;dimension; i++)
+    data[i] = a;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Vector::Initialize(<span style="color: #a7a7a7; font-weight: bold">double</span> *v){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;dimension; i++)
+    data[i] = v[i];
+}
+
+Matrix::Matrix(<span style="color: #a7a7a7; font-weight: bold">int</span> dim){
+  rows = dim;
+  columns = dim;
+  data = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>*[rows];
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++){
+    data[i] = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[columns];
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j&lt;columns;j++)
+      data[i][j] = <span style="color: #B452CD">0.0</span>;
+  }
+}
+
+  
+Matrix::Matrix(<span style="color: #a7a7a7; font-weight: bold">int</span> rows1, <span style="color: #a7a7a7; font-weight: bold">int</span> columns1){
+  rows = rows1;
+  columns = columns1;
+
+  data = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>*[rows];
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++){
+    data[i] = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[columns];
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j&lt;columns;j++)
+      data[i][j] = <span style="color: #B452CD">0.0</span>;
+  }
+}
+
+Matrix::Matrix(<span style="color: #8B008B; font-weight: bold">const</span> Matrix&amp; m){
+  rows = m.rows;
+  columns = m.columns;
+
+  data = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>*[rows];
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++){
+    data[i] = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[columns];
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>; j&lt;columns; j++)
+      data[i][j] = m.data[i][j];
+  }
+}
+
+Matrix::Matrix(<span style="color: #a7a7a7; font-weight: bold">int</span> num_Vectors, <span style="color: #8B008B; font-weight: bold">const</span> Vector * q){
+  rows = q[<span style="color: #B452CD">0</span>].Dimension();
+  columns = num_Vectors;
+
+  data = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>*[rows];
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++){
+    data[i] = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[columns];
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>; j&lt;columns; j++)
+      data[i][j] = q[j](i);
+  }
+}
+
+Matrix::Matrix(<span style="color: #a7a7a7; font-weight: bold">int</span> rows1, <span style="color: #a7a7a7; font-weight: bold">int</span> columns1, <span style="color: #a7a7a7; font-weight: bold">double</span> **rowptrs){
+  rows = rows1;
+  columns = columns1;
+
+  data = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>*[rows];
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++)
+    data[i] = rowptrs[i];
+}
+
+
+Matrix::~Matrix(){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++)
+    <span style="color: #8B008B; font-weight: bold">delete</span>[] data[i];
+
+  rows = <span style="color: #B452CD">0</span>;
+  columns = <span style="color: #B452CD">0</span>;
+  <span style="color: #8B008B; font-weight: bold">delete</span>[] data;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> Matrix::Rows() <span style="color: #8B008B; font-weight: bold">const</span>{
+  <span style="color: #8B008B; font-weight: bold">return</span>(rows);
+}  
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> Matrix::Columns() <span style="color: #8B008B; font-weight: bold">const</span>{
+  <span style="color: #8B008B; font-weight: bold">return</span>(columns);
+}  
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> **Matrix::GetPointer(){
+  <span style="color: #8B008B; font-weight: bold">return</span>(data);
+}
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Matrix::GetColumn(<span style="color: #a7a7a7; font-weight: bold">int</span> col, Vector &amp;x){
+  x.Initialize(<span style="color: #B452CD">0.0</span>);
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++)
+    x(i) = data[i][col];
+}
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Matrix::GetColumn(<span style="color: #a7a7a7; font-weight: bold">int</span> col, Vector &amp;x, <span style="color: #a7a7a7; font-weight: bold">int</span> rowoffset){
+  x.Initialize(<span style="color: #B452CD">0.0</span>);
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows-rowoffset;i++)
+    x(i) = data[i+rowoffset][col];
+}
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Matrix::PutColumn(<span style="color: #a7a7a7; font-weight: bold">int</span> col, <span style="color: #8B008B; font-weight: bold">const</span> Vector &amp;x){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++)
+    data[i][col] = x(i);
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Matrix::Norm_linf(){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxval = <span style="color: #B452CD">0.0</span>,sum;
+  
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++){
+    sum = <span style="color: #B452CD">0.0</span>;
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j&lt;columns;j++)
+      sum += fabs(data[i][j]);
+    maxval = (maxval &gt; sum)?maxval:sum;
+  }
+  <span style="color: #8B008B; font-weight: bold">return</span>(maxval);
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Matrix::Norm_l1(){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxval = <span style="color: #B452CD">0.0</span>,sum;
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j&lt;columns;j++){
+    sum = <span style="color: #B452CD">0.0</span>;
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++)
+      sum += fabs(data[i][j]);
+    maxval = (maxval &gt; sum)?maxval:sum;
+  }
+  <span style="color: #8B008B; font-weight: bold">return</span>(maxval);
+}
+
+
+
+Matrix&amp; Matrix::<span style="color: #8B008B; font-weight: bold">operator</span>=(<span style="color: #8B008B; font-weight: bold">const</span> Matrix &amp;m){
+  <span style="color: #8B008B; font-weight: bold">if</span>( (rows == m.rows) &amp;&amp; (columns == m.columns)){
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;rows; i++)
+      <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j&lt;columns;j++){
+	data[i][j] = m.data[i][j];
+      }
+  }
+  <span style="color: #8B008B; font-weight: bold">else</span>
+    cerr &lt;&lt; <span style="color: #CD5555">&quot;Matrix Error: Cannot equate matrices of different sizes\n&quot;</span>;
+  <span style="color: #8B008B; font-weight: bold">return</span> *<span style="color: #8B008B; font-weight: bold">this</span>;
+}
+
+  
+<span style="color: #a7a7a7; font-weight: bold">double</span> Matrix::<span style="color: #8B008B; font-weight: bold">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i, <span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> j) <span style="color: #8B008B; font-weight: bold">const</span> {
+  <span style="color: #8B008B; font-weight: bold">if</span>( (i&gt;=<span style="color: #B452CD">0</span>) &amp;&amp; (j&gt;=<span style="color: #B452CD">0</span>) &amp;&amp; (i&lt;rows) &amp;&amp; (j&lt;columns))
+    <span style="color: #8B008B; font-weight: bold">return</span>(data[i][j]);  
+  <span style="color: #8B008B; font-weight: bold">else</span>
+    cerr &lt;&lt; <span style="color: #CD5555">&quot;Matrix Error: Invalid Matrix indices (&quot;</span> &lt;&lt; i &lt;&lt; <span style="color: #CD5555">&quot;,&quot;</span> &lt;&lt; j &lt;&lt; 
+      <span style="color: #CD5555">&quot;), for Matrix of size &quot;</span> &lt;&lt; rows &lt;&lt; <span style="color: #CD5555">&quot; X &quot;</span> &lt;&lt; columns &lt;&lt; endl;
+  <span style="color: #8B008B; font-weight: bold">return</span>((<span style="color: #a7a7a7; font-weight: bold">double</span>)<span style="color: #B452CD">0</span>);
+}
+  
+
+<span style="color: #a7a7a7; font-weight: bold">double</span>&amp; Matrix::<span style="color: #8B008B; font-weight: bold">operator</span>()(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> i, <span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">int</span> j) {
+  <span style="color: #8B008B; font-weight: bold">if</span>( (i&gt;=<span style="color: #B452CD">0</span>) &amp;&amp; (j&gt;=<span style="color: #B452CD">0</span>) &amp;&amp; (i&lt;rows) &amp;&amp; (j&lt;columns))
+    <span style="color: #8B008B; font-weight: bold">return</span>(data[i][j]);  
+  <span style="color: #8B008B; font-weight: bold">else</span>
+    cerr &lt;&lt; <span style="color: #CD5555">&quot;Matrix Error: Invalid Matrix indices (&quot;</span> &lt;&lt; i &lt;&lt; <span style="color: #CD5555">&quot;,&quot;</span> &lt;&lt; j &lt;&lt; 
+      <span style="color: #CD5555">&quot;), for Matrix of size &quot;</span> &lt;&lt; rows &lt;&lt; <span style="color: #CD5555">&quot; X &quot;</span> &lt;&lt; columns &lt;&lt; endl;;
+  <span style="color: #8B008B; font-weight: bold">return</span>(data[<span style="color: #B452CD">0</span>][<span style="color: #B452CD">0</span>]);
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Matrix::Print() <span style="color: #8B008B; font-weight: bold">const</span>{
+  cout &lt;&lt; endl;
+
+
+  cout &lt;&lt; <span style="color: #CD5555">&quot;[ &quot;</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++){
+    cout &lt;&lt; data[i][<span style="color: #B452CD">0</span>];
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">1</span>;j&lt;columns;j++)
+      cout &lt;&lt; <span style="color: #CD5555">&quot; &quot;</span> &lt;&lt; data[i][j];
+    <span style="color: #8B008B; font-weight: bold">if</span>(i!=(rows-<span style="color: #B452CD">1</span>))
+      cout &lt;&lt; <span style="color: #CD5555">&quot;;\n&quot;</span>;
+  }
+  cout &lt;&lt; <span style="color: #CD5555">&quot; ]&quot;</span> &lt;&lt; endl;
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Matrix::MaxModInRow(<span style="color: #a7a7a7; font-weight: bold">int</span> row){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxv = -<span style="color: #B452CD">1.0e+10</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;columns;i++)
+    maxv = (fabs(data[row][i])&gt;maxv)?fabs(data[row][i]):maxv;
+
+  <span style="color: #8B008B; font-weight: bold">return</span> maxv;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Matrix::MaxModInRow(<span style="color: #a7a7a7; font-weight: bold">int</span> row, <span style="color: #a7a7a7; font-weight: bold">int</span> starting_column){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxv = -<span style="color: #B452CD">1.0e+10</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=starting_column;i&lt;columns;i++)
+    maxv = (fabs(data[row][i])&gt;maxv)?fabs(data[row][i]):maxv;
+
+  <span style="color: #8B008B; font-weight: bold">return</span> maxv;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> Matrix::MaxModInRowindex(<span style="color: #a7a7a7; font-weight: bold">int</span> row){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> maxvindex = <span style="color: #B452CD">0</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxv = -<span style="color: #B452CD">1.0e+10</span>;
+  
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;columns;i++){
+    <span style="color: #8B008B; font-weight: bold">if</span>(maxv &lt; fabs(data[row][i])){
+      maxv = fabs(data[row][i]);
+      maxvindex = i;
+    }
+  }
+
+  <span style="color: #8B008B; font-weight: bold">return</span> maxvindex;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> Matrix::MaxModInRowindex(<span style="color: #a7a7a7; font-weight: bold">int</span> row, <span style="color: #a7a7a7; font-weight: bold">int</span> starting_column){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> maxvindex = <span style="color: #B452CD">0</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxv = -<span style="color: #B452CD">1.0e+10</span>;
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=starting_column;i&lt;columns;i++){
+    <span style="color: #8B008B; font-weight: bold">if</span>(maxv &lt; fabs(data[row][i])){
+      maxv = fabs(data[row][i]);
+      maxvindex = i;
+    }
+  }
+  
+  <span style="color: #8B008B; font-weight: bold">return</span> maxvindex;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Matrix::MaxModInColumn(<span style="color: #a7a7a7; font-weight: bold">int</span> column){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxv = -<span style="color: #B452CD">1.0e+10</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++)
+    maxv = (fabs(data[i][column])&gt;maxv)?fabs(data[i][column]):maxv;
+
+  <span style="color: #8B008B; font-weight: bold">return</span> maxv;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Matrix::MaxModInColumn(<span style="color: #a7a7a7; font-weight: bold">int</span> column, <span style="color: #a7a7a7; font-weight: bold">int</span> starting_row){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxv = -<span style="color: #B452CD">1.0e+10</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=starting_row;i&lt;rows;i++)
+    maxv = (fabs(data[i][column])&gt;maxv)?fabs(data[i][column]):maxv;
+
+  <span style="color: #8B008B; font-weight: bold">return</span> maxv;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> Matrix::MaxModInColumnindex(<span style="color: #a7a7a7; font-weight: bold">int</span> column){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> maxvindex = <span style="color: #B452CD">0</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxv = -<span style="color: #B452CD">1.0e+10</span>;
+  
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++){
+    <span style="color: #8B008B; font-weight: bold">if</span>(maxv &lt; fabs(data[i][column])){
+      maxv = fabs(data[i][column]);
+      maxvindex = i;
+    }
+  }
+
+  <span style="color: #8B008B; font-weight: bold">return</span> maxvindex;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> Matrix::MaxModInColumnindex(<span style="color: #a7a7a7; font-weight: bold">int</span> column, <span style="color: #a7a7a7; font-weight: bold">int</span> starting_column){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> maxvindex = <span style="color: #B452CD">0</span>;
+  <span style="color: #a7a7a7; font-weight: bold">double</span> maxv = -<span style="color: #B452CD">1.0e+10</span>;
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=starting_column;i&lt;rows;i++){
+    <span style="color: #8B008B; font-weight: bold">if</span>(maxv &lt; fabs(data[i][column])){
+      maxv = fabs(data[i][column]);
+      maxvindex = i;
+    }
+  }
+  
+  <span style="color: #8B008B; font-weight: bold">return</span> maxvindex;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Matrix::RowSwap(<span style="color: #a7a7a7; font-weight: bold">int</span> row1, <span style="color: #a7a7a7; font-weight: bold">int</span> row2){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> * tmp = data[row1];
+  data[row1] = data[row2];
+  data[row2] = tmp;
+}
+
+
+
+<span style="color: #228B22">/****************************************************************/</span>
+<span style="color: #228B22">/*                 Operator Definitions                         */</span>
+<span style="color: #228B22">/****************************************************************/</span>
+
+
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>-(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v){
+  Vector x(v.Dimension());
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;v.Dimension();i++)
+    x(i) = -v(i);
+  <span style="color: #8B008B; font-weight: bold">return</span> x;
+}
+
+
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>+(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v1, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v2){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> min_dim = min_dimension(v1,v2);
+  Vector <span style="color: #008b45">x</span>(min_dim);
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;min_dim;i++)
+    x(i) = v1(i) + v2(i);
+  <span style="color: #8B008B; font-weight: bold">return</span> x;
+}
+
+
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>-(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v1, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v2){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> min_dim = min_dimension(v1,v2);
+  Vector <span style="color: #008b45">x</span>(min_dim);
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;min_dim;i++)
+    x(i) = v1(i) - v2(i);
+  <span style="color: #8B008B; font-weight: bold">return</span> x;
+}
+
+
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>/(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v, <span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">double</span> s) {
+  Vector x(v.Dimension());
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;v.Dimension();i++)
+    x(i) = v(i)/s;
+  <span style="color: #8B008B; font-weight: bold">return</span> x;
+}
+
+
+
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>*(<span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">double</span> s, <span style="color: #8B008B; font-weight: bold">const</span> Vector &amp;v) {
+  Vector x(v.Dimension());
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;v.Dimension();i++)
+    x(i) = s*v(i);
+  <span style="color: #8B008B; font-weight: bold">return</span> x;
+}
+
+
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>*(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v, <span style="color: #8B008B; font-weight: bold">const</span> <span style="color: #a7a7a7; font-weight: bold">double</span> s) {
+  Vector x(v.Dimension());
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;v.Dimension();i++)
+    x(i) = s*v(i);
+  <span style="color: #8B008B; font-weight: bold">return</span> x;
+}
+
+Vector <span style="color: #8B008B; font-weight: bold">operator</span>*(<span style="color: #8B008B; font-weight: bold">const</span> Matrix&amp; A, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; x){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> rows = A.Rows(), columns = A.Columns();
+  <span style="color: #a7a7a7; font-weight: bold">int</span> dim = x.Dimension();
+  Vector <span style="color: #008b45">b</span>(dim);
+  
+  <span style="color: #8B008B; font-weight: bold">if</span>(columns != dim){
+    cerr &lt;&lt; <span style="color: #CD5555">&quot;Invalid dimensions given in matrix-vector multiply&quot;</span> &lt;&lt; endl;
+    <span style="color: #8B008B; font-weight: bold">return</span>(b);
+  }
+  
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;rows;i++){
+    b(i) = <span style="color: #B452CD">0.0</span>;
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j&lt;columns;j++){
+      b(i) += A(i,j)*x(j);
+    }
+  }
+  
+  <span style="color: #8B008B; font-weight: bold">return</span> b;
+}
+
+
+<span style="color: #228B22">/****************************************************************/</span>
+<span style="color: #228B22">/*                 Function Definitions                         */</span>
+<span style="color: #228B22">/****************************************************************/</span>
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> min_dimension(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v1, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v2){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> min_dim = (v1.Dimension()&lt;v2.Dimension())?v1.Dimension():v2.Dimension();
+  <span style="color: #8B008B; font-weight: bold">return</span>(min_dim);
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> dot(<span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; u, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+  <span style="color: #a7a7a7; font-weight: bold">int</span> min_dim = min_dimension(u,v);
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;min_dim;i++)
+    sum += u(i)*v(i);
+  
+  <span style="color: #8B008B; font-weight: bold">return</span> sum; 
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> dot(<span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; u, <span style="color: #8B008B; font-weight: bold">const</span> Vector&amp; v){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;N;i++)
+    sum += u(i)*v(i);
+  
+  <span style="color: #8B008B; font-weight: bold">return</span> sum;
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> dot(<span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #a7a7a7; font-weight: bold">double</span> *a, <span style="color: #a7a7a7; font-weight: bold">double</span> *b){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+  
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;N;i++)
+    sum += a[i]*b[i];
+
+  <span style="color: #8B008B; font-weight: bold">return</span> sum;
+}
+
+
+<span style="color: #228B22">/*******************************/</span>
+<span style="color: #228B22">/*   Log base 2 of a number    */</span>
+<span style="color: #228B22">/*******************************/</span>
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> log2(<span style="color: #a7a7a7; font-weight: bold">double</span> x){
+  <span style="color: #8B008B; font-weight: bold">return</span>(log(x)/log(<span style="color: #B452CD">2.0</span>));
+}
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> Swap(<span style="color: #a7a7a7; font-weight: bold">double</span> &amp;a, <span style="color: #a7a7a7; font-weight: bold">double</span> &amp;b){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> tmp = a;
+  a = b;
+  b = tmp;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> Sign(<span style="color: #a7a7a7; font-weight: bold">double</span> x){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> xs;
+
+  xs = (x&gt;=<span style="color: #B452CD">0.0</span>)?<span style="color: #B452CD">1.0</span>:-<span style="color: #B452CD">1.0</span>;
+
+  <span style="color: #8B008B; font-weight: bold">return</span> xs;
+}
+
+<span style="color: #228B22">//GammaF function valid for x integer, or x (integer+0.5)</span>
+<span style="color: #a7a7a7; font-weight: bold">double</span> GammaF(<span style="color: #a7a7a7; font-weight: bold">double</span> x){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> gamma = <span style="color: #B452CD">1.0</span>;
+  
+  <span style="color: #8B008B; font-weight: bold">if</span> (x == -<span style="color: #B452CD">0.5</span>) 
+    gamma = -<span style="color: #B452CD">2.0</span>*sqrt(M_PI);
+  <span style="color: #8B008B; font-weight: bold">else</span> <span style="color: #008b45">if</span> (!x) <span style="color: #8B008B; font-weight: bold">return</span> gamma;
+  <span style="color: #8B008B; font-weight: bold">else</span> <span style="color: #008b45">if</span> ((x-(<span style="color: #a7a7a7; font-weight: bold">int</span>)x) == <span style="color: #B452CD">0.5</span>){ 
+    <span style="color: #a7a7a7; font-weight: bold">int</span> n = (<span style="color: #a7a7a7; font-weight: bold">int</span>) x;
+    <span style="color: #a7a7a7; font-weight: bold">double</span> tmp = x;
+    
+    gamma = sqrt(M_PI);
+    <span style="color: #8B008B; font-weight: bold">while</span>(n--){
+      tmp   -= <span style="color: #B452CD">1.0</span>;
+      gamma *= tmp;
+    }
+  }
+  <span style="color: #8B008B; font-weight: bold">else</span> <span style="color: #008b45">if</span> ((x-(<span style="color: #a7a7a7; font-weight: bold">int</span>)x) == <span style="color: #B452CD">0.0</span>){
+    <span style="color: #a7a7a7; font-weight: bold">int</span> n = (<span style="color: #a7a7a7; font-weight: bold">int</span>) x;
+    <span style="color: #a7a7a7; font-weight: bold">double</span> tmp = x;
+    
+    <span style="color: #8B008B; font-weight: bold">while</span>(--n){
+      tmp   -= <span style="color: #B452CD">1.0</span>;
+      gamma *= tmp;
+    }
+  }  
+  
+  <span style="color: #8B008B; font-weight: bold">return</span> gamma;
+}
+
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> Factorial(<span style="color: #a7a7a7; font-weight: bold">int</span> n){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> value=<span style="color: #B452CD">1</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=n;i&gt;<span style="color: #B452CD">0</span>;i--)
+    value = value*i;
+
+  <span style="color: #8B008B; font-weight: bold">return</span> value;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">double</span> ** CreateMatrix(<span style="color: #a7a7a7; font-weight: bold">int</span> m, <span style="color: #a7a7a7; font-weight: bold">int</span> n){
+  <span style="color: #a7a7a7; font-weight: bold">double</span> ** mat;
+  mat = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>*[m];
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;m;i++){
+    mat[i] = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n];
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j&lt;m;j++)
+      mat[i][j] = <span style="color: #B452CD">0.0</span>;
+  }
+  <span style="color: #8B008B; font-weight: bold">return</span> mat;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">int</span> ** ICreateMatrix(<span style="color: #a7a7a7; font-weight: bold">int</span> m, <span style="color: #a7a7a7; font-weight: bold">int</span> n){
+  <span style="color: #a7a7a7; font-weight: bold">int</span> ** mat;
+  mat = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>*[m];
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;m;i++){
+    mat[i] = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[n];
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j&lt;m;j++)
+      mat[i][j] = <span style="color: #B452CD">0</span>;
+  }
+  <span style="color: #8B008B; font-weight: bold">return</span> mat;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> DestroyMatrix(<span style="color: #a7a7a7; font-weight: bold">double</span> ** mat, <span style="color: #a7a7a7; font-weight: bold">int</span> m, <span style="color: #a7a7a7; font-weight: bold">int</span> n){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;m;i++)
+    <span style="color: #8B008B; font-weight: bold">delete</span>[] mat[i];
+  <span style="color: #8B008B; font-weight: bold">delete</span>[] mat;
+}
+
+<span style="color: #a7a7a7; font-weight: bold">void</span> IDestroyMatrix(<span style="color: #a7a7a7; font-weight: bold">int</span> ** mat, <span style="color: #a7a7a7; font-weight: bold">int</span> m, <span style="color: #a7a7a7; font-weight: bold">int</span> n){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;m;i++)
+    <span style="color: #8B008B; font-weight: bold">delete</span>[] mat[i];
+  <span style="color: #8B008B; font-weight: bold">delete</span>[] mat;
+}
+</pre></div>
+<p>
 
 <!-- ------------------- end of main content --------------- -->
 
