@@ -8,7 +8,7 @@ DATE: Fall semester 2017
 === Introduction ===
 
 The aim of this project is to develop a code for simulating the solar system using a widely popular algorithm for solving coupled ordinary differential equations, the so-called velocity Verlet
-algorithm. An important aspect in this project is to be abe to object orient your code. There will be many coupled ordinary differenatial equations where the basic equations, except for varios physical constants and variables, are rather similar. Thus, write once and run many times, one of the central points of object orientation, is something which makes our program eaiser to extend and build upon  when we add more planets or moons or other astronomical objects. The basic equations which govern the system are rather simple, a set of coupled equations that codify Newton's law of motion due  the gravitational force.   
+algorithm. An important aspect of this project is to be able to object orient your code. There are several coupled ordinary differenatial equations where the basic equations, except for various physical constants and variables, are rather similar. Thus, write once and run many times, one of the central points of object orientation, is something which makes our program easier to extend and build upon  when we add more planets or moons or other astronomical objects. The basic equations which govern the system are rather simple, a set of coupled equations that codify Newton's law of motion due  the gravitational force.   
 
 In the first part however, we will limit ourselves (in order to test the algorithm) 
 to a hypothetical solar system
