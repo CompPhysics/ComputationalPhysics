@@ -163,7 +163,7 @@ ${text_types(ch)}
 | Week 38 | Eigenvalue problems, iterative and power methods |   | Sections 7.4-7.7 |  Object orientation |
 |         | Differential equations                    |                                   | Sections 8.1-8.3 |  
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 39|  Ordinary differential equations  | _Project 3, deadline October 23_ | Sections 8.3-8.7  |   Object orientation (OO) |
+| Week 39|  Ordinary differential equations  | _Project 3, deadline October 25_ | Sections 8.3-8.7  |   Object orientation (OO) |
 |        |                                 |                                  |                   |  Finalize project 2   |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 40|  Numerical integration           |                                   | Sections 5.1-5.3  | OO and  Vectorization  |
@@ -172,7 +172,7 @@ ${text_types(ch)}
 | Week 41  |  Numerical integration  and parallelization       |                |  Section 5.5  | Parallelization with OpenMP  |
 |          |  Introduction to Monte Carlo methods              |                |  Sections 11.1-11.2 |                       |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 42  |  Introduction to Monte Carlo methods              | _Project 4, deadline November 13_ | Sections 11.3-11.5 |  Parallelization with MPI |
+| Week 42  |  Introduction to Monte Carlo methods              | _Project 4, deadline November 15_ | Sections 11.3-11.5 |  Parallelization with MPI |
 |          |  Random walks and the Metropolis algorithm        |                                   |  Sections 12.1-12.3 |  Finalize project 3   |   
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 43 |  Random walks and the Metropolis algorithm         |                                   | Sections 12.4-12.5  | Start project 4    | 
