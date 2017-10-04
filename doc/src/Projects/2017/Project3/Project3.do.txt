@@ -39,7 +39,7 @@ We will use so-called astronomical units when rewriting our equations.
 Using astronomical units (AU as abbreviation)it means that 
 one astronomical unit of length, known as 1 AU, is the average distance between the Sun and Earth, that is
 $1$ AU = $1.5\times 10^{11}$ m.  It can also be convenient to use years instead of seconds since years match
-better the time evolution of the solar system. The mass of the Sun is $M_{\mathrm{sun}}=M_{\odot}=2\times 10^{30}$ kg. The masses all relevant planets and their distances from the sun are listed in the table here in kg and AU.
+better the time evolution of the solar system. The mass of the Sun is $M_{\mathrm{sun}}=M_{\odot}=2\times 10^{30}$ kg. The masses of all relevant planets and their distances from the sun are listed in the table here in kg and AU.
 
 |----------------------------------------------------|
 | Planet |  Mass in kg |  Distance to  sun in AU     |
