@@ -121,78 +121,72 @@ $(function () {
                2,
                None,
                '___sec25'),
-              ('Building a code for the solar system, gravitational force and constants',
-               2,
-               None,
-               '___sec26'),
-              ('Building a code for the solar system, force equations',
-               2,
-               None,
-               '___sec27'),
-              ('Building a code for the solar system, coupled equations',
-               2,
-               None,
-               '___sec28'),
-              ('Building a code for the solar system, final coupled equations',
-               2,
-               None,
-               '___sec29'),
-              ('Building a code for the solar system, discretized equations',
-               2,
-               None,
-               '___sec30'),
-              ('Building a code for the solar system, adding Jupiter',
-               2,
-               None,
-               '___sec31'),
-              ('Building a code for the solar system, adding Jupiter',
-               2,
-               None,
-               '___sec32'),
-              ('How can I get the initial velocities and positions of the planets',
-               2,
-               None,
-               '___sec33'),
-              ('How do we develop a larger numerical project',
-               2,
-               None,
-               '___sec34'),
-              ('More on large numerical projects', 2, None, '___sec35'),
-              ('A few words on unit testing', 2, None, '___sec36'),
-              ('Unit tests with "Catch":"https://github.com/philsquared/Catch"',
-               2,
-               None,
-               '___sec37'),
               ('A simple Example first, Block tied to a Wall',
                2,
                None,
-               '___sec38'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec39'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec40'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec41'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec42'),
-              ('Simple Example, Block tied to a Wall', 2, None, '___sec43'),
+               '___sec26'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec27'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec28'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec29'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec30'),
+              ('Simple Example, Block tied to a Wall', 2, None, '___sec31'),
               ('Simple Example, Block tied to a Wall, python code',
                2,
                None,
-               '___sec44'),
+               '___sec32'),
               ('The second example: The classical pendulum and scaling the equations',
                2,
                None,
+               '___sec33'),
+              ('More on the Pendulum', 2, None, '___sec34'),
+              ('More on the Pendulum', 2, None, '___sec35'),
+              ('More on the Pendulum', 2, None, '___sec36'),
+              ('Building a code for the solar system, gravitational force and constants',
+               2,
+               None,
+               '___sec37'),
+              ('Building a code for the solar system, force equations',
+               2,
+               None,
+               '___sec38'),
+              ('Building a code for the solar system, coupled equations',
+               2,
+               None,
+               '___sec39'),
+              ('Building a code for the solar system, final coupled equations',
+               2,
+               None,
+               '___sec40'),
+              ('Building a code for the solar system, discretized equations',
+               2,
+               None,
+               '___sec41'),
+              ('Building a code for the solar system, adding Jupiter',
+               2,
+               None,
+               '___sec42'),
+              ('Building a code for the solar system, adding Jupiter',
+               2,
+               None,
+               '___sec43'),
+              ('How can I get the initial velocities and positions of the planets',
+               2,
+               None,
+               '___sec44'),
+              ('How do we develop a larger numerical project',
+               2,
+               None,
                '___sec45'),
-              ('More on the Pendulum', 2, None, '___sec46'),
-              ('More on the Pendulum', 2, None, '___sec47'),
-              ('More on the Pendulum', 2, None, '___sec48'),
-              ('How to start our solar system project', 2, None, '___sec49'),
+              ('More on large numerical projects', 2, None, '___sec46'),
+              ('How to start our solar system project', 2, None, '___sec47'),
               ('How to start our solar system project, the simple Euler equations',
                2,
                None,
-               '___sec50'),
-              ('Where do we go from here?', 2, None, '___sec51'),
-              ('Adaptive methods', 2, None, '___sec52'),
-              ('Adaptive methods', 2, None, '___sec53'),
-              ('Adaptive methods', 2, None, '___sec54'),
-              ('Adaptive methods', 2, None, '___sec55')]}
+               '___sec48'),
+              ('Adaptive methods', 2, None, '___sec49'),
+              ('Adaptive methods', 2, None, '___sec50'),
+              ('Adaptive methods', 2, None, '___sec51'),
+              ('Adaptive methods', 2, None, '___sec52')]}
 end of tocinfo -->
 
 <body>
@@ -234,7 +228,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Aug 23, 2017</h4></center> <!-- date -->
+<center><h4>Oct 5, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -1063,323 +1057,7 @@ size by \( h/2 \) and calculate \( k_2 \), then \( k_3 \) and finally \( k_4 \).
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec26">Building a code for the solar system, gravitational force and constants </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-We start with a simpler case first, the Earth-Sun system  in two dimensions only.  The gravitational force \( F_G \) is  
-$$
-      F=\frac{GM_{\odot}M_E}{r^2},
-  $$
-
-where \( G \) is the gravitational constant, 
-$$
-M_E=6\times 10^{24}\mathrm{Kg},
-$$
-
-the mass of Earth, 
-$$
-M_{\odot}=2\times 10^{30}\mathrm{Kg}, 
-$$
-
-the mass of the Sun and 
-$$
-r=1.5\times 10^{11}\mathrm{m}, 
-$$
-
-is the distance between Earth and the Sun. The latter defines what we call an astronomical unit <b>AU</b>.
-From Newton's second law we have then for the \( x \) direction
-$$
-   \frac{d^2x}{dt^2}=\frac{F_{x}}{M_E},
-  $$
-
-and
-$$
-   \frac{d^2y}{dt^2}=\frac{F_{y}}{M_E},
-  $$
-
-for the \( y \) direction.
-</div>
-
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec27">Building a code for the solar system, force equations </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-Introducing \( x=r\cos{(\theta)} \), \( y=r\sin{(\theta)} \) and
-$$
-r = \sqrt{x^2+y^2},
-$$
-
-we can rewrite 
-$$
-   F_{x}=-\frac{GM_{\odot}M_E}{r^2}\cos{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}x,
-  $$
-
-and
-$$
-     F_{y}=-\frac{GM_{\odot}M_E}{r^2}\sin{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}y,
-  $$
-
-for the \( y \) direction.
-</div>
-
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec28">Building a code for the solar system, coupled equations </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-We can rewrite these two equations
-$$
-   F_{x}=-\frac{GM_{\odot}M_E}{r^2}\cos{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}x,
-  $$
-
-and
-$$
-     F_{y}=-\frac{GM_{\odot}M_E}{r^2}\sin{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}y,
-  $$
-
-as four first-order coupled differential equations
-$$
-   \frac{dv_x}{dt}=-\frac{GM_{\odot}}{r^3}x,
-$$
-
-$$
-   \frac{dx}{dt}=v_x,
-$$
-
-$$
-   \frac{dv_y}{dt}=-\frac{GM_{\odot}}{r^3}y,
-$$
-
-$$
-   \frac{dy}{dt}=v_y.
-$$
-</div>
-
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec29">Building a code for the solar system, final coupled equations </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-The four coupled differential equations
-$$
-   \frac{dv_x}{dt}=-\frac{GM_{\odot}}{r^3}x,
-$$
-
-$$
-   \frac{dx}{dt}=v_x,
-$$
-
-$$
-   \frac{dv_y}{dt}=-\frac{GM_{\odot}}{r^3}y,
-$$
-
-$$
-   \frac{dy}{dt}=v_y,
-$$
-
-can be turned into dimensionless equations (as we did in project 2) or we can introduce astronomical units with \( 1 \) AU = \( 1.5\times 10^{11} \).
-
-<p>
-Using the equations from circular motion (with \( r =1\mathrm{AU} \)) 
-$$
-\frac{M_E v^2}{r} = F = \frac{GM_{\odot}M_E}{r^2},
-$$
-
-we have
-$$
-GM_{\odot}=v^2r,
-$$
-
-and using that the velocity of Earth (assuming circular motion) is
-\( v = 2\pi r/\mathrm{yr}=2\pi\mathrm{AU}/\mathrm{yr} \), we have
-$$
-GM_{\odot}= v^2r = 4\pi^2 \frac{(\mathrm{AU})^3}{\mathrm{yr}^2}.
-$$
-</div>
-
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec30">Building a code for the solar system, discretized equations </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-The four coupled differential equations can then be discretized using Euler's method as (with step length \( h \))
-$$
-   v_{x,i+1}=v_{x,i}-h\frac{4\pi^2}{r_i^3}x_i,
-$$
-
-$$
-   x_{i+1}=x_i+hv_{x,i},
-$$
-
-$$
-   v_{y,i+1}=v_{y,i}-h\frac{4\pi^2}{r_i^3}y_i,
-$$
-
-$$
-   y_{i+1}=y_i+hv_{y,i},
-$$
-
-
-</div>
-
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec31">Building a code for the solar system, adding Jupiter </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-It is rather straightforward to add a new planet, say Jupiter.
-Jupiter has mass
-$$
-M_J=1.9\times 10^{27}\mathrm{kg},
-$$
-
-and distance to the Sun of \( 5.2 \) AU. 
-The additional gravitational force the Earth feels from Jupiter in the \( x \)-direction is
-$$
-   F_{x}^{EJ}=-\frac{GM_JM_E}{r_{EJ}^3}(x_E-x_J),
-  $$
-
-where \( E \) stands for Earth, \( J \) for Jupiter, \( r_{EJ} \) is distance between Earth and Jupiter
-$$
-r_{EJ} = \sqrt{(x_E-x_J)^2+(y_E-y_J)^2},
-$$
-
-and \( x_E \) and \( y_E \) are the \( x \) and \( y \) coordinates of Earth, respectively, and 
-\( x_J \) and \( y_J \) are the \( x \) and \( y \) coordinates of Jupiter, respectively.
-The \( x \)-component of the velocity of Earth changes thus to
-$$
-   \frac{dv_x^E}{dt}=-\frac{GM_{\odot}}{r^3}x_E-\frac{GM_J}{r_{EJ}^3}(x_E-x_J).
-$$
-</div>
-
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec32">Building a code for the solar system, adding Jupiter </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-We can rewrite 
-$$
-   \frac{dv_x^E}{dt}=-\frac{GM_{\odot}}{r^3}x_E-\frac{GM_J}{r_{EJ}^3}(x_E-x_J).
-$$
-
-to
-$$
-   \frac{dv_x^E}{dt}=-\frac{4\pi^2}{r^3}x_E-\frac{4\pi^2M_J/M_{\odot}}{r_{EJ}^3}(x_E-x_J),
-$$
-
-where we used 
-$$
-GM_J = GM_{\odot}\left(\frac{M_J}{M_{\odot}}\right)=4\pi^2 \frac{M_J}{M_{\odot}}.
-$$
-
-Similarly, for the velocity in \( y \)-direction we have 
-$$
-   \frac{dv_y^E}{dt}=-\frac{4\pi^2}{r^3}y_E-\frac{4\pi^2M_J/M_{\odot}}{r_{EJ}^3}(y_E-y_J).
-$$
-
-Similar expressions apply for Jupiter. The equations for \( x \) and \( y \) 
-derivatives are unchanged. This equations are similar for all other planets and as we will see later, it will be convenient to object orient this part when we program the full solar system.
-</div>
-
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec33">How can I get the initial velocities and positions of the planets </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-<a href="http://www.nasa.gov/index.html" target="_blank">NASA</a> has an excellent site at <a href="http://ssd.jpl.nasa.gov/horizons.cgi#top" target="_blank"><tt>http://ssd.jpl.nasa.gov/horizons.cgi#top</tt></a>.
-From there you can extract initial conditions in order to start your differential equation solver.
-At the above website you need to change from <b>OBSERVER</b> to <b>VECTOR</b> and then write in the planet you are interested in.
-The generated data contain the \( x \), \( y \) and \( z \) values as well as their corresponding velocities. The velocities are in units of AU per day.
-Alternatively they can be obtained in terms of km and km/s.
-
-<p>
-For the first simple system involving the Earth and the Sun, you could just initialize the position with say \( x=1 \) AU
-and \( y=0 \) AU.
-</div>
-
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec34">How do we develop a larger numerical project  </h2>
-
-<p>
-When building up a numerical project there are several elements you should think of, amongst these we take the liberty of mentioning the following.
-
-<ol>
- <li> How to structure a code in terms of functions and modules</li>
- <li> How to read input data flexibly from the command line</li>
- <li> Find tests and how to write unit tests (test functions). A very good example is <a href="https://github.com/philsquared/Catch" target="_blank">Catch</a>, a modern, C++-native, header-only, framework for unit-tests. Try to find suitable tests of the mathematical algorithms as well as tests which reflect the physics of the system.</li> 
- <li> It takes one quick command to let all your code undergo heavy testing</li>
- <li> How to refactor code in terms of classes (instead of functions only)</li>
- <li> How to conduct and automate large-scale numerical experiments</li>
-</ol>
-
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec35">More on large numerical projects  </h2>
-The conventions and techniques outlined here will save you a lot of time when you incrementally extend software over time from simpler to more complicated problems.
-
-<ol>
-<li> Scale your equations in order to simplify, make for example the equations dimensionless or scale them in convenient units</li>
-<li> New code is added in a modular fashion to a library (modules)</li>
-<li> Programs are run through convenient user interfaces</li>
-<li> Tedious manual work with running programs is automated,</li>
-<li> Your scientific investigations are reproducible, scientific reports with top quality typesetting are produced both for paper and electronic devices.</li>
-</ol>
-
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec36">A few words on unit testing </h2>
-A very good and simple framework for unit testing is <a href="https://github.com/philsquared/Catch" target="_blank">Catch</a>.
-Unit Testing is the practice of testing the smallest testable parts,
-called units, of an application individually and independently to
-determine if they behave exactly as expected. Unit tests (short code
-fragments) are usually written such that they can be performed at any
-time during the development to continually verify the behavior of the
-code. In this way, possible bugs will be identified early in the
-development cycle, making the debugging at later stage much
-easier.
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec37">Unit tests with <a href="https://github.com/philsquared/Catch" target="_blank">Catch</a> </h2>
-There are many benefits associated with Unit Testing since it  increases confidence in changing and maintaining code. Big changes can be made to the code quickly, since the tests will ensure that everything still is working properly.
-
-<ul>
- <li> Since the code needs to be modular to make Unit Testing possible, the code will be easier to reuse. This improves the code design.</li>
- <li> Debugging is easier, since when a test fails, only the latest changes need to be debugged.</li>
- <li> Different parts of a project can be tested without the need to wait for the other parts to be available.</li>
- <li> A unit test can serve as a documentation on the functionality of a unit of the code.</li>
-</ul>
-
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec38">A simple Example first, Block tied to a Wall </h2>
+<h2 id="___sec26">A simple Example first, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1415,7 +1093,7 @@ solution and the development of a program for more complicated cases which canno
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec39">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec27">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1437,7 +1115,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec40">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec28">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1461,7 +1139,7 @@ Observe that \( T \) depends only on \( k/m \) and not on the amplitude of the s
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec41">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec29">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1488,7 +1166,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec42">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec30">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1527,7 +1205,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec43">Simple Example, Block tied to a Wall </h2>
+<h2 id="___sec31">Simple Example, Block tied to a Wall </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1709,7 +1387,7 @@ void runge_kutta_4(double *y, double *dydx, int n, double x, double h,
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec44">Simple Example, Block tied to a Wall, python code </h2>
+<h2 id="___sec32">Simple Example, Block tied to a Wall, python code </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1811,7 +1489,7 @@ ofile.close()
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec45">The second example: The classical pendulum and scaling the equations </h2>
+<h2 id="___sec33">The second example: The classical pendulum and scaling the equations </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1845,7 +1523,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec46">More on the Pendulum </h2>
+<h2 id="___sec34">More on the Pendulum </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1875,7 +1553,7 @@ the angular frequency respectively. The latter is called the driving frequency.
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec47">More on the Pendulum </h2>
+<h2 id="___sec35">More on the Pendulum </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1909,7 +1587,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec48">More on the Pendulum </h2>
+<h2 id="___sec36">More on the Pendulum </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1936,7 +1614,297 @@ These are the equations to be solved.  The factor \( Q \) represents the number 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec49">How to start our solar system project  </h2>
+<h2 id="___sec37">Building a code for the solar system, gravitational force and constants </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We start with a simpler case first, the Earth-Sun system  in two dimensions only.  The gravitational force \( F_G \) is  
+$$
+      F=\frac{GM_{\odot}M_E}{r^2},
+  $$
+
+where \( G \) is the gravitational constant, 
+$$
+M_E=6\times 10^{24}\mathrm{Kg},
+$$
+
+the mass of Earth, 
+$$
+M_{\odot}=2\times 10^{30}\mathrm{Kg}, 
+$$
+
+the mass of the Sun and 
+$$
+r=1.5\times 10^{11}\mathrm{m}, 
+$$
+
+is the distance between Earth and the Sun. The latter defines what we call an astronomical unit <b>AU</b>.
+From Newton's second law we have then for the \( x \) direction
+$$
+   \frac{d^2x}{dt^2}=\frac{F_{x}}{M_E},
+  $$
+
+and
+$$
+   \frac{d^2y}{dt^2}=\frac{F_{y}}{M_E},
+  $$
+
+for the \( y \) direction.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec38">Building a code for the solar system, force equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+Introducing \( x=r\cos{(\theta)} \), \( y=r\sin{(\theta)} \) and
+$$
+r = \sqrt{x^2+y^2},
+$$
+
+we can rewrite 
+$$
+   F_{x}=-\frac{GM_{\odot}M_E}{r^2}\cos{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}x,
+  $$
+
+and
+$$
+     F_{y}=-\frac{GM_{\odot}M_E}{r^2}\sin{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}y,
+  $$
+
+for the \( y \) direction.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec39">Building a code for the solar system, coupled equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We can rewrite these two equations
+$$
+   F_{x}=-\frac{GM_{\odot}M_E}{r^2}\cos{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}x,
+  $$
+
+and
+$$
+     F_{y}=-\frac{GM_{\odot}M_E}{r^2}\sin{(\theta)}=-\frac{GM_{\odot}M_E}{r^3}y,
+  $$
+
+as four first-order coupled differential equations
+$$
+   \frac{dv_x}{dt}=-\frac{GM_{\odot}}{r^3}x,
+$$
+
+$$
+   \frac{dx}{dt}=v_x,
+$$
+
+$$
+   \frac{dv_y}{dt}=-\frac{GM_{\odot}}{r^3}y,
+$$
+
+$$
+   \frac{dy}{dt}=v_y.
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec40">Building a code for the solar system, final coupled equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The four coupled differential equations
+$$
+   \frac{dv_x}{dt}=-\frac{GM_{\odot}}{r^3}x,
+$$
+
+$$
+   \frac{dx}{dt}=v_x,
+$$
+
+$$
+   \frac{dv_y}{dt}=-\frac{GM_{\odot}}{r^3}y,
+$$
+
+$$
+   \frac{dy}{dt}=v_y,
+$$
+
+can be turned into dimensionless equations (as we did in project 2) or we can introduce astronomical units with \( 1 \) AU = \( 1.5\times 10^{11} \).
+
+<p>
+Using the equations from circular motion (with \( r =1\mathrm{AU} \)) 
+$$
+\frac{M_E v^2}{r} = F = \frac{GM_{\odot}M_E}{r^2},
+$$
+
+we have
+$$
+GM_{\odot}=v^2r,
+$$
+
+and using that the velocity of Earth (assuming circular motion) is
+\( v = 2\pi r/\mathrm{yr}=2\pi\mathrm{AU}/\mathrm{yr} \), we have
+$$
+GM_{\odot}= v^2r = 4\pi^2 \frac{(\mathrm{AU})^3}{\mathrm{yr}^2}.
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec41">Building a code for the solar system, discretized equations </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+The four coupled differential equations can then be discretized using Euler's method as (with step length \( h \))
+$$
+   v_{x,i+1}=v_{x,i}-h\frac{4\pi^2}{r_i^3}x_i,
+$$
+
+$$
+   x_{i+1}=x_i+hv_{x,i},
+$$
+
+$$
+   v_{y,i+1}=v_{y,i}-h\frac{4\pi^2}{r_i^3}y_i,
+$$
+
+$$
+   y_{i+1}=y_i+hv_{y,i},
+$$
+
+
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec42">Building a code for the solar system, adding Jupiter </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+It is rather straightforward to add a new planet, say Jupiter.
+Jupiter has mass
+$$
+M_J=1.9\times 10^{27}\mathrm{kg},
+$$
+
+and distance to the Sun of \( 5.2 \) AU. 
+The additional gravitational force the Earth feels from Jupiter in the \( x \)-direction is
+$$
+   F_{x}^{EJ}=-\frac{GM_JM_E}{r_{EJ}^3}(x_E-x_J),
+  $$
+
+where \( E \) stands for Earth, \( J \) for Jupiter, \( r_{EJ} \) is distance between Earth and Jupiter
+$$
+r_{EJ} = \sqrt{(x_E-x_J)^2+(y_E-y_J)^2},
+$$
+
+and \( x_E \) and \( y_E \) are the \( x \) and \( y \) coordinates of Earth, respectively, and 
+\( x_J \) and \( y_J \) are the \( x \) and \( y \) coordinates of Jupiter, respectively.
+The \( x \)-component of the velocity of Earth changes thus to
+$$
+   \frac{dv_x^E}{dt}=-\frac{GM_{\odot}}{r^3}x_E-\frac{GM_J}{r_{EJ}^3}(x_E-x_J).
+$$
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec43">Building a code for the solar system, adding Jupiter </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+We can rewrite 
+$$
+   \frac{dv_x^E}{dt}=-\frac{GM_{\odot}}{r^3}x_E-\frac{GM_J}{r_{EJ}^3}(x_E-x_J).
+$$
+
+to
+$$
+   \frac{dv_x^E}{dt}=-\frac{4\pi^2}{r^3}x_E-\frac{4\pi^2M_J/M_{\odot}}{r_{EJ}^3}(x_E-x_J),
+$$
+
+where we used 
+$$
+GM_J = GM_{\odot}\left(\frac{M_J}{M_{\odot}}\right)=4\pi^2 \frac{M_J}{M_{\odot}}.
+$$
+
+Similarly, for the velocity in \( y \)-direction we have 
+$$
+   \frac{dv_y^E}{dt}=-\frac{4\pi^2}{r^3}y_E-\frac{4\pi^2M_J/M_{\odot}}{r_{EJ}^3}(y_E-y_J).
+$$
+
+Similar expressions apply for Jupiter. The equations for \( x \) and \( y \) 
+derivatives are unchanged. This equations are similar for all other planets and as we will see later, it will be convenient to object orient this part when we program the full solar system.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec44">How can I get the initial velocities and positions of the planets </h2>
+<div class="alert alert-block alert-block alert-text-normal">
+<b></b>
+<p>
+<a href="http://www.nasa.gov/index.html" target="_blank">NASA</a> has an excellent site at <a href="http://ssd.jpl.nasa.gov/horizons.cgi#top" target="_blank"><tt>http://ssd.jpl.nasa.gov/horizons.cgi#top</tt></a>.
+From there you can extract initial conditions in order to start your differential equation solver.
+At the above website you need to change from <b>OBSERVER</b> to <b>VECTOR</b> and then write in the planet you are interested in.
+The generated data contain the \( x \), \( y \) and \( z \) values as well as their corresponding velocities. The velocities are in units of AU per day.
+Alternatively they can be obtained in terms of km and km/s.
+
+<p>
+For the first simple system involving the Earth and the Sun, you could just initialize the position with say \( x=1 \) AU
+and \( y=0 \) AU.
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec45">How do we develop a larger numerical project  </h2>
+
+<p>
+When building up a numerical project there are several elements you should think of, amongst these we take the liberty of mentioning the following.
+
+<ol>
+ <li> How to structure a code in terms of functions and modules</li>
+ <li> How to read input data flexibly from the command line</li>
+ <li> Find tests and how to write unit tests (test functions). A very good example is <a href="https://github.com/philsquared/Catch" target="_blank">Catch</a>, a modern, C++-native, header-only, framework for unit-tests. Try to find suitable tests of the mathematical algorithms as well as tests which reflect the physics of the system.</li> 
+ <li> It takes one quick command to let all your code undergo heavy testing</li>
+ <li> How to refactor code in terms of classes (instead of functions only)</li>
+ <li> How to conduct and automate large-scale numerical experiments</li>
+</ol>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec46">More on large numerical projects  </h2>
+The conventions and techniques outlined here will save you a lot of time when you incrementally extend software over time from simpler to more complicated problems.
+
+<ol>
+<li> Scale your equations in order to simplify, make for example the equations dimensionless or scale them in convenient units</li>
+<li> New code is added in a modular fashion to a library (modules)</li>
+<li> Programs are run through convenient user interfaces</li>
+<li> Tedious manual work with running programs is automated,</li>
+<li> Your scientific investigations are reproducible, scientific reports with top quality typesetting are produced both for paper and electronic devices.</li>
+</ol>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec47">How to start our solar system project  </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1967,7 +1935,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec50">How to start our solar system project, the simple Euler equations  </h2>
+<h2 id="___sec48">How to start our solar system project, the simple Euler equations  </h2>
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
@@ -2037,24 +2005,7 @@ ofstream ofile;
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec51">Where do we go from here? </h2>
-<div class="alert alert-block alert-block alert-text-normal">
-<b></b>
-<p>
-
-<ul>
-<li> Our next step could be to simply replace the brute force coding of the positions and velocities using the vector class discussed in the solar system  <a href="https://github.com/mortele/solar-system-fys3150" target="_blank">class example</a>. That is, we continue with the above Euler code and simply replace the variables \( x \), \( y \), \( vx \) and \( vy \) with vectors defined in the <b>vec3</b> class.</li>
-<li> It is important to have a simple working code that is well tested and understood before we move on to new additions. In this part it is useful to introduce possible unit tests.</li> 
-<li> The next step is to add a class about for example celestial bodies, as discussed in the simple extension of the Euler method for the <a href="https://github.com/andeplane/solar-system" target="_blank">Earth-Sun system</a>. This will discussed during the lab sessions.</li>
-<li> Thereafter we can add the full complexity as discussed in the solar system <a href="https://github.com/mortele/solar-system-fys3150" target="_blank">class example</a> to be discussed during the lab sessions.</li> 
-</ul>
-</div>
-
-
-<p>
-<!-- !split --><br><br><br><br><br><br><br><br><br><br>
-
-<h2 id="___sec52">Adaptive methods </h2>
+<h2 id="___sec49">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2065,7 +2016,7 @@ In case the function to integrate varies slowly or fast in different integration
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec53">Adaptive methods </h2>
+<h2 id="___sec50">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2104,7 +2055,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec54">Adaptive methods </h2>
+<h2 id="___sec51">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2141,7 +2092,7 @@ $$
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec55">Adaptive methods </h2>
+<h2 id="___sec52">Adaptive methods </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
