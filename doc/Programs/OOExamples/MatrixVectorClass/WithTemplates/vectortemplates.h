@@ -1,3 +1,5 @@
+//  Vector class with templates
+
 #ifndef _vectorclass
 #define _vectorclass
 #include <cmath>
@@ -18,38 +20,29 @@ class Vector{
   Vector(int dim);
   Vector(const Vector<T>& v);
   ~Vector();
-  
   int    Dimension() const;
-  //  T Length();     /* Euclidean Norm of the Vector */
   void   Normalize();
-
-  T Norm_l1();
-  T Norm_l2();
-  T Norm_linf();
+  T VectorNorm1();
+  T VectorNorm2();
+  T VectorNormInf();
   T MaxMod();
   T ElementofMaxMod();
   int MaxModindex();
   T operator()(const int i) const;
   T& operator()(const int i);
   void Print() const;
-  T Length();     /* Euclidean Norm of the Vector */
-  Vector<T>& operator=(const Vector<T>& v);
-
-// Unitary operator -
-Vector<T> operator-(const Vector<T>& v);
-
-// Binary operator +,-
-Vector<T> operator+(const Vector<T>& v1, const Vector<T>& v2);
-Vector<T> operator-(const Vector<T>& v1, const Vector<T>& v2);
-
-// Vector Scaling (multiplication by a scalar : defined commutatively)
-Vector<T> operator*(const T s, const Vector<T>& v);
-Vector<T> operator*(const Vector<T>& v, const T s);
-// Vector Scaling (division by a scalar)
-Vector<T> operator/(const Vector<T>& v, const T s);
+  // overloading the equality  operator, here as a template function defned below
+  const Vector<T>  operator=(const Vector<T>& v);
+  // overloading the binary  operator, here as a friend function
+  friend  Vector<T> operator+(const Vector<T>& v1, const Vector<T>& v2){
+    int min_dim = (v1.Dimension()<v2.Dimension())?v1.Dimension():v2.Dimension();
+    Vector x(min_dim);
+    for(int i=0;i < min_dim;i++)
+      x(i) = v1(i) + v2(i);
+    return x;
+  };
+  //  You can now define many more functions
 };
-
-
 #endif
 
 
@@ -67,7 +60,7 @@ void Vector<T>::Print() const{
 template <class T>
 Vector<T>::Vector(){
   dimension = 0;
-  data = NULL;
+  data = NULL;  // change to c++11 nullptr later
 }
 
 template <class T>
@@ -93,10 +86,8 @@ template <class T>
 Vector<T>::~Vector(){
   dimension = 0;
   delete[] data;
-  data = NULL;
+  data = NULL;   //  change to c++11 nullptr
 }
-
-
 
 template <class T>
 int Vector<T>::Dimension() const{
@@ -105,8 +96,9 @@ int Vector<T>::Dimension() const{
 
 
 
+
 template <class T>
-T Vector<T>::Norm_l1(){
+T Vector<T>::VectorNorm1(){
   T sum = 0.0;
   for(int i=0; i < dimension;i++)
     sum += fabs(data[i]);
@@ -114,7 +106,7 @@ T Vector<T>::Norm_l1(){
 }
 
 template <class T>
-T Vector<T>::Norm_l2(){
+T Vector<T>::VectorNorm2(){
   T sum = 0.0;
   for(int i=0;i < dimension;i++)
     sum += data[i]*data[i];
@@ -123,14 +115,14 @@ T Vector<T>::Norm_l2(){
 
 template <class T>
 void Vector<T>::Normalize(){
-  T tmp = 1.0/Norm_l2();
+  T tmp = 1.0/VectorNorm2();
   for(int i=0;i<dimension;i++)
     data[i] = data[i]*tmp;
 }
 
 template <class T>
-T Vector<T>::Norm_linf(){
-  T maxval = 0.0,tmp;
+T Vector<T>::VectorNormInf(){
+  T maxval = 0.0, tmp;
   
   for(int i=0;i<dimension;i++){
     tmp = fabs(data[i]);
@@ -154,6 +146,11 @@ T Vector<T>::ElementofMaxMod(){
   return(data[MaxModindex()]);
 }
 
+
+
+
+
+
 template <class T>
 int Vector<T>::MaxModindex(){
   T maxm = -1.0e+10;
@@ -165,47 +162,9 @@ int Vector<T>::MaxModindex(){
       maxmindex = i;
     }
   }
-  
   return maxmindex;
 }
 
-
-template <class T>
-int min_dimension(const Vector<T>& v1, const Vector<T>& v2){
-  int min_dim = (v1.Dimension()<v2.Dimension())?v1.Dimension():v2.Dimension();
-  return(min_dim);
-}
-
-template <class T>
-T dot(const Vector<T>& u, const Vector<T>& v){
-  T sum = 0.0;
-  int min_dim = min_dimension(u,v);
-
-  for(int i=0;i<min_dim;i++)
-    sum += u(i)*v(i);
-  
-  return sum; 
-}
-
-template <class T>
-T dot(int N, const Vector<T>& u, const Vector<T>& v){
-  T sum = 0.0;
-
-  for(int i=0;i<N;i++)
-    sum += u(i)*v(i);
-  
-  return sum;
-}
-
-template <class T>
-T dot(int N, double *a, double *b){
-  T sum = 0.0;
-  
-  for(int i=0;i<N;i++)
-    sum += a[i]*b[i];
-
-  return sum;
-}
 
 
 template <class T>
@@ -228,6 +187,11 @@ T& Vector<T>::operator()(const int i){
 }
 
 
-
-
+template <class T>
+const Vector<T> Vector<T>::operator=(const Vector<T>& v){
+  dimension = v.Dimension();
+  for(int i=0;i<dimension;i++)
+    data[i] = v.data[i];
+  return *this;
+};
 
