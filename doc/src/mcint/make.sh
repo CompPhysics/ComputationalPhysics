@@ -47,7 +47,7 @@ system doconce format html $name --html_style=bootstrap --pygments_html_style=de
 system doconce split_html $html.html --method=split --pagination --nav_button=bottom
 
 # IPython notebook
-system doconce format ipynb $name $opt
+#system doconce format ipynb $name $opt
 
 # LaTeX Beamer slides
 beamertheme=red_plain
