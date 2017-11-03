@@ -1591,7 +1591,10 @@ performing appropriate operations on one or more uniform deviates, as we will se
 in subsequent sections. So, a reliable source of random uniform deviates, the subject
 of this section, is an essential building block for any sort of stochastic modeling
 or Monte Carlo computer work.
+FIGURE: [figslides/random.gif, width=500 frac=0.6] 
 !eblock
+
+
 
 
 !split
@@ -3141,6 +3144,8 @@ print "Montecarlo result = %10.8E" % int_mc
 print "Sigma             = %10.8E" % sigma
 !ec
 !eblock
+
+
 
 
 
