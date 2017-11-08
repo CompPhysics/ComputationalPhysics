@@ -266,3 +266,16 @@ running preprocess -DFORMAT=html -DDEVICE=screen  course.do.txt > tmp_preprocess
 running mako on tmp_preprocess__course.do.txt to make tmp_mako__course.do.txt
 translating doconce text in tmp_mako__course.do.txt to html
 output in course.html
+ERROR: DocOnce requires preprocess >= 1.2.2
+Install a newer version with:
+sudo pip install -U git+https://github.com/doconce/preprocess#egg=preprocess
+ERROR: DocOnce requires preprocess >= 1.2.2
+Install a newer version with:
+sudo pip install -U git+https://github.com/doconce/preprocess#egg=preprocess
+ERROR: DocOnce requires preprocess >= 1.2.2
+Install a newer version with:
+sudo pip install -U git+https://github.com/doconce/preprocess#egg=preprocess
+running preprocess -DFORMAT=html -DDEVICE=screen  course.do.txt > tmp_preprocess__course.do.txt
+running mako on tmp_preprocess__course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html

@@ -118,7 +118,7 @@ ${text_types(ch)}
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project3/ipynb/Project3.ipynb"
 
-=== Project 4 ===
+=== Project 4, Deadline November 19 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/pdf/Project4.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/pdf/Project4.pdf"
@@ -129,7 +129,7 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/ipynb/Project4.ipynb"
 
 
-=== Project 5 To be filled in ===
+=== Project 5, Deadline December 10 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.pdf"
@@ -172,7 +172,7 @@ ${text_types(ch)}
 | Week 41  |  Numerical integration  and parallelization       |                |  Section 5.5  | Parallelization with OpenMP  |
 |          |  Introduction to Monte Carlo methods              |                |  Sections 11.1-11.2 |                       |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 42  |  Introduction to Monte Carlo methods              | _Project 4, deadline November 15_ | Sections 11.3-11.5 |  Parallelization with MPI |
+| Week 42  |  Introduction to Monte Carlo methods              | _Project 4, deadline November 19_ | Sections 11.3-11.5 |  Parallelization with MPI |
 |          |  Random walks and the Metropolis algorithm        |                                   |  Sections 12.1-12.3 |  Finalize project 3   |   
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 43 |  Random walks and the Metropolis algorithm         |                                   | Sections 12.4-12.5  | Start project 4    | 
@@ -180,7 +180,7 @@ ${text_types(ch)}
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 44|   Project 4 and statistical mechanics               |                                   | Sections 13.4-13.7 |  Parallelization and high-performance computing |   
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 45|  Variational Monte Carlo                            | _Project 5, deadline December 8_ |  Sections 14.1-14.4  | Finalize project 4 |
+| Week 45|  Variational Monte Carlo                            | _Project 5, deadline December 10_ |  Sections 14.1-14.4  | Finalize project 4 |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 46| Variational Monte Carlo                             |                                  | Section 14.5     | Work on project 5 |
 |        |  Presentation of final projects                     |                                  |                  |       |   
