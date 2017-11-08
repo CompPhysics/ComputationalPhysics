@@ -1,4 +1,4 @@
-TITLE: Project 4, deadline  November 15
+TITLE: Project 4, deadline  November 19
 AUTHOR: "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo, Norway
 DATE: Fall semester 2017
 
@@ -184,7 +184,7 @@ parallelize the code using MPI (recommended). Alternatively OpenMP can be used. 
 Use Eq. (ref{eq:tc}) and the exact result
 $\nu=1$ in order to estimate $T_C$ in the thermodynamic limit 
 $L\rightarrow \infty$
-using your simulations with $L=40$, $L=60$, $L=100$ and $L=140$
+using your simulations with $L=40$, $L=60$, $L=80$ and $L=100$
 The exact result for the critical temperature ("after Lars Onsager":"http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117") is
 $kT_C/J=2/ln(1+\sqrt{2})\approx 2.269$ with $\nu=1$.
 
