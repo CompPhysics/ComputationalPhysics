@@ -16,7 +16,7 @@ int main (int argc, char* argv[])
   int thread_num;
   double wtime, Norm2, s, angle;
   cout << "  Perform addition of two vectors and compute the norm-2." << endl;
-  omp_set_num_threads(4);
+  omp_set_num_threads(2);
   thread_num = omp_get_max_threads ();
   cout << "  The number of processors available = " << omp_get_num_procs () << endl ;
   cout << "  The number of threads available    = " << thread_num <<  endl;
@@ -27,24 +27,28 @@ int main (int argc, char* argv[])
   // Allocate space for the vectors to be used
   a = new double [n]; b = new double [n]; c = new double [n];
   // Define parallel region
-# pragma omp parallel for default(shared) private (angle, i) reduction(+:Norm2)
+# pragma omp parallel default(shared) private (angle, i) reduction(+:Norm2)
+{ //  indicate where parallel region begins
   // Set up values for vectors  a and b
+# pragma omp for
   for (i = 0; i < n; i++){
       angle = 2.0*M_PI*i/ (( double ) n);
       a[i] = s*(sin(angle) + cos(angle));
       b[i] =  s*sin(2.0*angle);
       c[i] = 0.0;
   }
+# pragma omp for
   // Then perform the vector addition
   for (i = 0; i < n; i++){
      c[i] += a[i]+b[i];
   }
   // Compute now the norm-2
   Norm2 = 0.0;
+# pragma omp for
   for (i = 0; i < n; i++){
      Norm2  += c[i]*c[i];
   }
-// end parallel region and letting only one thread perform I/O
+  }// end parallel region and letting only one thread perform I/O
   wtime = omp_get_wtime ( ) - wtime;
   cout << setiosflags(ios::showpoint | ios::uppercase);
   cout << setprecision(10) << setw(20) << "Time used  for norm-2 computation=" << wtime  << endl;
