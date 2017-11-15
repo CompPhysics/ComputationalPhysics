@@ -1,3 +1,4 @@
+\
 <!DOCTYPE html>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -116,8 +117,8 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -147,7 +148,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>Sep 4, 2017</h4></center> <!-- date -->
+<center><h4>Nov 6, 2017</h4></center> <!-- date -->
 <br>
 <p>
 
@@ -439,8 +440,8 @@ In C/C++ this would be  defined as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>   <span style="color: #a7a7a7; font-weight: bold">int</span> N = <span style="color: #B452CD">100</span>;
-   <span style="color: #a7a7a7; font-weight: bold">double</span> A[<span style="color: #B452CD">100</span>][<span style="color: #B452CD">100</span>];
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>   <span style="color: #00688B; font-weight: bold">int</span> N = <span style="color: #B452CD">100</span>;
+   <span style="color: #00688B; font-weight: bold">double</span> A[<span style="color: #B452CD">100</span>][<span style="color: #B452CD">100</span>];
    <span style="color: #228B22">//   initialize all elements to zero</span>
    <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span> ; i &lt; N ; i++) {
       <span style="color: #8B008B; font-weight: bold">for</span>(j=<span style="color: #B452CD">0</span> ; j &lt; N ; j++) {
@@ -579,11 +580,11 @@ At least three possibilities in this course
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> N;
-<span style="color: #a7a7a7; font-weight: bold">double</span> **  A;
-A = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>*[N]
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #00688B; font-weight: bold">int</span> N;
+<span style="color: #00688B; font-weight: bold">double</span> **  A;
+A = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span>*[N]
 <span style="color: #8B008B; font-weight: bold">for</span> ( i = <span style="color: #B452CD">0</span>; i &lt; N; i++)
-    A[i] = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[N];
+    A[i] = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span>[N];
 </pre></div>
 <p>
 Always free space when you don't need an array anymore.
@@ -630,7 +631,7 @@ Always free space when you don't need an array anymore.
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>** argv)
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span>** argv)
   {
   mat A = randu&lt;mat&gt;(<span style="color: #B452CD">5</span>,<span style="color: #B452CD">5</span>);
   mat B = randu&lt;mat&gt;(<span style="color: #B452CD">5</span>,<span style="color: #B452CD">5</span>);
@@ -682,7 +683,7 @@ For OS X users you may have to declare the paths to the include files and the li
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>** argv)
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span>** argv)
   {
   <span style="color: #228B22">// directly specify the matrix size (elements are uninitialised)</span>
   mat A(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">3</span>);
@@ -844,7 +845,7 @@ For OS X users you may have to declare the paths to the include files and the li
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>** argv)
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span>** argv)
   {
   cout &lt;&lt; <span style="color: #CD5555">&quot;Armadillo version: &quot;</span> &lt;&lt; arma_version::as_string() &lt;&lt; endl;
 
@@ -872,7 +873,7 @@ For OS X users you may have to declare the paths to the include files and the li
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #228B22">// inverse</span>
   cout &lt;&lt; <span style="color: #CD5555">&quot;inv(A) = &quot;</span> &lt;&lt; endl &lt;&lt; inv(A) &lt;&lt; endl;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> k = <span style="color: #B452CD">1.23</span>;
+  <span style="color: #00688B; font-weight: bold">double</span> k = <span style="color: #B452CD">1.23</span>;
 
   mat    B = randu&lt;mat&gt;(<span style="color: #B452CD">5</span>,<span style="color: #B452CD">5</span>);
   mat    C = randu&lt;mat&gt;(<span style="color: #B452CD">5</span>,<span style="color: #B452CD">5</span>);
@@ -1491,13 +1492,13 @@ with \( u_n=\tilde{f}_{n}/\tilde{b}_{n} \).
 <span style="color: #228B22">// object for output files</span>
 ofstream ofile;
 <span style="color: #228B22">// Functions used</span>
-<span style="color: #8B008B; font-weight: bold">inline</span> <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">f</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x){<span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">100.0</span>*exp(-<span style="color: #B452CD">10.0</span>*x);
+<span style="color: #8B008B; font-weight: bold">inline</span> <span style="color: #00688B; font-weight: bold">double</span> <span style="color: #008b45">f</span>(<span style="color: #00688B; font-weight: bold">double</span> x){<span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">100.0</span>*exp(-<span style="color: #B452CD">10.0</span>*x);
 }
-<span style="color: #8B008B; font-weight: bold">inline</span> <span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">exact</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x) {<span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">1.0</span>-(<span style="color: #B452CD">1</span>-exp(-<span style="color: #B452CD">10</span>))*x-exp(-<span style="color: #B452CD">10</span>*x);}
+<span style="color: #8B008B; font-weight: bold">inline</span> <span style="color: #00688B; font-weight: bold">double</span> <span style="color: #008b45">exact</span>(<span style="color: #00688B; font-weight: bold">double</span> x) {<span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">1.0</span>-(<span style="color: #B452CD">1</span>-exp(-<span style="color: #B452CD">10</span>))*x-exp(-<span style="color: #B452CD">10</span>*x);}
 
 <span style="color: #228B22">// Begin main program</span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[]){
-  <span style="color: #a7a7a7; font-weight: bold">int</span> exponent; 
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span> *argv[]){
+  <span style="color: #00688B; font-weight: bold">int</span> exponent; 
     string filename;
     <span style="color: #228B22">// We read also the basic name for the output file and the highest power of 10^n we want</span>
     <span style="color: #8B008B; font-weight: bold">if</span>( argc &lt;= <span style="color: #B452CD">1</span> ){
@@ -1510,37 +1511,37 @@ ofstream ofile;
         exponent = atoi(argv[<span style="color: #B452CD">2</span>]);
     }
     <span style="color: #228B22">// Loop over powers of 10</span>
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt;= exponent; i++){
-      <span style="color: #a7a7a7; font-weight: bold">int</span>  n = (<span style="color: #a7a7a7; font-weight: bold">int</span>) pow(<span style="color: #B452CD">10.0</span>,i);
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt;= exponent; i++){
+      <span style="color: #00688B; font-weight: bold">int</span>  n = (<span style="color: #00688B; font-weight: bold">int</span>) pow(<span style="color: #B452CD">10.0</span>,i);
       <span style="color: #228B22">// Declare new file name</span>
       string fileout = filename;
       <span style="color: #228B22">// Convert the power 10^i to a string</span>
       string argument = to_string(i);
       <span style="color: #228B22">// Final filename as filename-i-</span>
       fileout.append(argument);
-      <span style="color: #a7a7a7; font-weight: bold">double</span> h = <span style="color: #B452CD">1.0</span>/(n);
-      <span style="color: #a7a7a7; font-weight: bold">double</span> hh = h*h;
+      <span style="color: #00688B; font-weight: bold">double</span> h = <span style="color: #B452CD">1.0</span>/(n);
+      <span style="color: #00688B; font-weight: bold">double</span> hh = h*h;
       <span style="color: #228B22">// Set up arrays for the simple case</span>
-      <span style="color: #a7a7a7; font-weight: bold">double</span> *d = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span> [n+<span style="color: #B452CD">1</span>]; <span style="color: #a7a7a7; font-weight: bold">double</span> *b = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span> [n+<span style="color: #B452CD">1</span>]; <span style="color: #a7a7a7; font-weight: bold">double</span> *solution = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span> [n+<span style="color: #B452CD">1</span>];
-      <span style="color: #a7a7a7; font-weight: bold">double</span> *x = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n+<span style="color: #B452CD">1</span>];
+      <span style="color: #00688B; font-weight: bold">double</span> *d = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span> [n+<span style="color: #B452CD">1</span>]; <span style="color: #00688B; font-weight: bold">double</span> *b = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span> [n+<span style="color: #B452CD">1</span>]; <span style="color: #00688B; font-weight: bold">double</span> *solution = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span> [n+<span style="color: #B452CD">1</span>];
+      <span style="color: #00688B; font-weight: bold">double</span> *x = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span>[n+<span style="color: #B452CD">1</span>];
       <span style="color: #228B22">// Quick setup of updated diagonal elements and value of</span>
       d[<span style="color: #B452CD">0</span>] = d[n] = <span style="color: #B452CD">2</span>; solution[<span style="color: #B452CD">0</span>] = solution[n] = <span style="color: #B452CD">0.0</span>;
-      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n; i++) d[i] = (i+<span style="color: #B452CD">1.0</span>)/( (<span style="color: #a7a7a7; font-weight: bold">double</span>) i);  
-      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt;= n; i++){
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n; i++) d[i] = (i+<span style="color: #B452CD">1.0</span>)/( (<span style="color: #00688B; font-weight: bold">double</span>) i);  
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt;= n; i++){
 	x[i]= i*h;
         b[i] = hh*f(i*h);
       }
       <span style="color: #228B22">// Forward substitution</span>
-      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">2</span>; i &lt; n; i++) b[i] = b[i] + b[i-<span style="color: #B452CD">1</span>]/d[i-<span style="color: #B452CD">1</span>];
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">2</span>; i &lt; n; i++) b[i] = b[i] + b[i-<span style="color: #B452CD">1</span>]/d[i-<span style="color: #B452CD">1</span>];
       <span style="color: #228B22">// Backward substitution</span>
       solution[n-<span style="color: #B452CD">1</span>] = b[n-<span style="color: #B452CD">1</span>]/d[n-<span style="color: #B452CD">1</span>];
-      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = n-<span style="color: #B452CD">2</span>; i &gt; <span style="color: #B452CD">0</span>; i--) solution[i] = (b[i]+solution[i+<span style="color: #B452CD">1</span>])/d[i];
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = n-<span style="color: #B452CD">2</span>; i &gt; <span style="color: #B452CD">0</span>; i--) solution[i] = (b[i]+solution[i+<span style="color: #B452CD">1</span>])/d[i];
       ofile.open(fileout);
       ofile &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
       <span style="color: #228B22">//      ofile &lt;&lt; &quot;       x:             approx:          exact:       relative error&quot; &lt;&lt; endl;</span>
-      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n;i++) {
-	<span style="color: #a7a7a7; font-weight: bold">double</span> xval = x[i];
- 	 <span style="color: #a7a7a7; font-weight: bold">double</span> RelativeError = fabs((exact(xval)-solution[i])/exact(xval));
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n;i++) {
+	<span style="color: #00688B; font-weight: bold">double</span> xval = x[i];
+ 	 <span style="color: #00688B; font-weight: bold">double</span> RelativeError = fabs((exact(xval)-solution[i])/exact(xval));
          ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; xval;
          ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; solution[i];
          ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; exact(xval);
@@ -1897,7 +1898,7 @@ these files, and eventually its compiled version lib.o. The example here is <a h
 
 <span style="color: #228B22">/* function declarations */</span>
 
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">inverse</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> **, <span style="color: #a7a7a7; font-weight: bold">int</span>);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">inverse</span>(<span style="color: #00688B; font-weight: bold">double</span> **, <span style="color: #00688B; font-weight: bold">int</span>);
 </pre></div>
 </section>
 
@@ -1908,14 +1909,14 @@ these files, and eventually its compiled version lib.o. The example here is <a h
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">inverse</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> **a, <span style="color: #a7a7a7; font-weight: bold">int</span> n)
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">inverse</span>(<span style="color: #00688B; font-weight: bold">double</span> **a, <span style="color: #00688B; font-weight: bold">int</span> n)
 {
-  <span style="color: #a7a7a7; font-weight: bold">int</span>          i,j, *indx;
-  <span style="color: #a7a7a7; font-weight: bold">double</span>       d, *col, **y;
+  <span style="color: #00688B; font-weight: bold">int</span>          i,j, *indx;
+  <span style="color: #00688B; font-weight: bold">double</span>       d, *col, **y;
   <span style="color: #228B22">// allocate space in memory</span>
-  indx = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[n];
-  col  = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[n];
-  y    = (<span style="color: #a7a7a7; font-weight: bold">double</span> **) matrix(n, n, <span style="color: #8B008B; font-weight: bold">sizeof</span>(<span style="color: #a7a7a7; font-weight: bold">double</span>));
+  indx = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">int</span>[n];
+  col  = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span>[n];
+  y    = (<span style="color: #00688B; font-weight: bold">double</span> **) matrix(n, n, <span style="color: #8B008B; font-weight: bold">sizeof</span>(<span style="color: #00688B; font-weight: bold">double</span>));
   ludcmp(a, n, indx, &amp;d);   <span style="color: #228B22">// LU decompose  a[][]</span>
   printf(<span style="color: #CD5555">&quot;\n\nLU form of matrix of a[][]:\n&quot;</span>);
   <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
@@ -1945,7 +1946,7 @@ these files, and eventually its compiled version lib.o. The example here is <a h
   <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
     <span style="color: #8B008B; font-weight: bold">for</span>(j = <span style="color: #B452CD">0</span>; j &lt; n; j++) a[i][j] = y[i][j];
 
-  free_matrix((<span style="color: #a7a7a7; font-weight: bold">void</span> **) y);     <span style="color: #228B22">// release local memory</span>
+  free_matrix((<span style="color: #00688B; font-weight: bold">void</span> **) y);     <span style="color: #228B22">// release local memory</span>
   <span style="color: #8B008B; font-weight: bold">delete</span> [] col;
   <span style="color: #8B008B; font-weight: bold">delete</span> []indx;
 }  <span style="color: #228B22">// End: function inverse()</span>
@@ -1967,11 +1968,11 @@ For Fortran users:
   <span style="color: #8B008B; font-weight: bold">USE </span>F90library
   <span style="color: #8B008B; font-weight: bold">IMPLICIT NONE</span>
   <span style="color: #228B22">!      The definition of the matrix, using dynamic allocation</span>
-  <span style="color: #a7a7a7; font-weight: bold">REAL</span>(DP), <span style="color: #8B008B; font-weight: bold">ALLOCATABLE</span>, <span style="color: #8B008B; font-weight: bold">DIMENSION</span>(:,:) <span style="color: #8B008B; font-weight: bold">::</span> a, ainv, unity
+  <span style="color: #00688B; font-weight: bold">REAL</span>(DP), <span style="color: #8B008B; font-weight: bold">ALLOCATABLE</span>, <span style="color: #8B008B; font-weight: bold">DIMENSION</span>(:,:) <span style="color: #8B008B; font-weight: bold">::</span> a, ainv, unity
   <span style="color: #228B22">!      the determinant</span>
-  <span style="color: #a7a7a7; font-weight: bold">REAL</span>(DP) <span style="color: #8B008B; font-weight: bold">::</span> d
+  <span style="color: #00688B; font-weight: bold">REAL</span>(DP) <span style="color: #8B008B; font-weight: bold">::</span> d
   <span style="color: #228B22">!      The size of the matrix</span>
-  <span style="color: #a7a7a7; font-weight: bold">INTEGER</span> <span style="color: #8B008B; font-weight: bold">::</span> n
+  <span style="color: #00688B; font-weight: bold">INTEGER</span> <span style="color: #8B008B; font-weight: bold">::</span> n
   ....
   <span style="color: #228B22">!      Allocate now place in heap for a</span>
   <span style="color: #8B008B; font-weight: bold">ALLOCATE</span> ( a(n,n), ainv(n,n), unity(n,n) )
@@ -2014,7 +2015,7 @@ For Fortran users:
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
   {
    mat A = randu&lt;mat&gt;(<span style="color: #B452CD">5</span>,<span style="color: #B452CD">5</span>);
    vec b = randu&lt;vec&gt;(<span style="color: #B452CD">5</span>);
@@ -2561,7 +2562,7 @@ In order to use cubic spline interpolation you need first to call
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>spline(<span style="color: #a7a7a7; font-weight: bold">double</span> x[], <span style="color: #a7a7a7; font-weight: bold">double</span> y[], <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> yp1,  <span style="color: #a7a7a7; font-weight: bold">double</span> yp2, <span style="color: #a7a7a7; font-weight: bold">double</span> y2[])
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>spline(<span style="color: #00688B; font-weight: bold">double</span> x[], <span style="color: #00688B; font-weight: bold">double</span> y[], <span style="color: #00688B; font-weight: bold">int</span> n, <span style="color: #00688B; font-weight: bold">double</span> yp1,  <span style="color: #00688B; font-weight: bold">double</span> yp2, <span style="color: #00688B; font-weight: bold">double</span> y2[])
 </pre></div>
 <p>
 This function takes as
@@ -2586,7 +2587,7 @@ Thereafter, if you wish to make  various interpolations, you need to call the fu
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>splint(<span style="color: #a7a7a7; font-weight: bold">double</span> x[], <span style="color: #a7a7a7; font-weight: bold">double</span> y[], <span style="color: #a7a7a7; font-weight: bold">double</span> y2a[], <span style="color: #a7a7a7; font-weight: bold">int</span> n, <span style="color: #a7a7a7; font-weight: bold">double</span> x, <span style="color: #a7a7a7; font-weight: bold">double</span> *y)
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>splint(<span style="color: #00688B; font-weight: bold">double</span> x[], <span style="color: #00688B; font-weight: bold">double</span> y[], <span style="color: #00688B; font-weight: bold">double</span> y2a[], <span style="color: #00688B; font-weight: bold">int</span> n, <span style="color: #00688B; font-weight: bold">double</span> x, <span style="color: #00688B; font-weight: bold">double</span> *y)
 </pre></div>
 <p>
 which takes as input
