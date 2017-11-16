@@ -3,9 +3,9 @@ AUTHOR: The Rossby wave equation in a basin
 DATE: Fall semester 2017
 
 
-
 _For this project you can collaborate with fellow students and you can  hand in a common report._
 This project (together with projects 3 and 4) counts 1/3 of the final mark.
+
 
 ===== Theoretical background and description of the system =====
 
@@ -21,12 +21,30 @@ Hemisphere and positive in the Northern (and vanishes at the equator).
 As a result of this variation, fluid parcels experience a change in
 their spin or *vorticity* if they move to different latitudes.
 
+We will use the shorthand notations
+!bt
+\[
+\partial_t = \frac{\partial }{\partial t},
+\]
+!et
+!bt
+\[
+\partial_x = \frac{\partial }{\partial x}
+\]
+!et
+!bt
+\[
+\partial_{xx} = \frac{\partial^2 }{\partial x^2}
+\]
+!et
+etc. 
+
 The equation governing the vorticity is:
 
 !bt
 \begin{equation}
   label{eq:Rossby1}
-	\partial_t \zeta  + \beta \partial_x\psi = 0.
+   \partial_t \zeta  + \beta \partial_x\psi = 0.
  \end{equation}
 !et
 where $\zeta$ is the vorticity and $\psi$ is the streamfunction, which determines the velocities:
@@ -43,7 +61,7 @@ defined:
 !bt
 \begin{equation}
 label{eq:Rossby2}
-	\zeta = \partial_x v -\partial_y u = \nabla_H \psi.
+	\zeta = \partial_x v -\partial_y u = \nabla_H^2 \psi.
 \end{equation}
 !et
 Thus the vorticity is the Laplacian of the streamfunction. 
@@ -76,7 +94,7 @@ the streamfunction, thus:
 !bt
 \begin{equation}
   label{eq:Rossby}
-\partial_t \nabla_H \psi  + \beta \partial_x\psi = 0
+\partial_t \nabla_H^2 \psi  + \beta \partial_x\psi = 0
  \end{equation}
 !et
 This is the *barotropic Rossby wave equation*.
@@ -342,7 +360,7 @@ deem appropriate.
 
 Use an explicit scheme for (ref{eq:Rossby10}). To solve
 (ref{eq:Rossby11}) you need to use for example an iterative method
-like Jacobi's method or the Successive Over Relaxation (SOR).
+like Jacobi's method or the Successive Over Relaxation (SOR). The Jacobi method is described in the lecture notes, see chapters 6 and 10.
 
 Outline the algorithm for solving the two-dimensional equations and
 implement the scheme as function of $\Delta x$ (assuming $\Delta x =
