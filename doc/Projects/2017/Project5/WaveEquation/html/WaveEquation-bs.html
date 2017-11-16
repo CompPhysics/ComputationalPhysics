@@ -183,12 +183,28 @@ As a result of this variation, fluid parcels experience a change in
 their spin or <em>vorticity</em> if they move to different latitudes.
 
 <p>
+We will use the shorthand notations
+$$
+\partial_t = \frac{\partial }{\partial t},
+$$
+
+$$
+\partial_x = \frac{\partial }{\partial x}
+$$
+
+$$
+\partial_{xx} = \frac{\partial^2 }{\partial x^2}
+$$
+
+etc.
+
+<p>
 The equation governing the vorticity is:
 
 $$
 \begin{equation}
 \tag{1}
-	\partial_t \zeta  + \beta \partial_x\psi = 0.
+   \partial_t \zeta  + \beta \partial_x\psi = 0.
  \end{equation}
 $$
 
@@ -208,7 +224,7 @@ defined:
 $$
 \begin{equation}
 \tag{3}
-	\zeta = \partial_x v -\partial_y u = \nabla_H \psi.
+	\zeta = \partial_x v -\partial_y u = \nabla_H^2 \psi.
 \end{equation}
 $$
 
@@ -248,7 +264,7 @@ the streamfunction, thus:
 $$
 \begin{equation}
 \tag{6}
-\partial_t \nabla_H \psi  + \beta \partial_x\psi = 0
+\partial_t \nabla_H^2 \psi  + \beta \partial_x\psi = 0
  \end{equation}
 $$
 
@@ -555,7 +571,7 @@ deem appropriate.
 <p>
 Use an explicit scheme for <a href="#mjx-eqn-23">(23)</a>. To solve
 <a href="#mjx-eqn-24">(24)</a> you need to use for example an iterative method
-like Jacobi's method or the Successive Over Relaxation (SOR).
+like Jacobi's method or the Successive Over Relaxation (SOR). The Jacobi method is described in the lecture notes, see chapters 6 and 10.
 
 <p>
 Outline the algorithm for solving the two-dimensional equations and
