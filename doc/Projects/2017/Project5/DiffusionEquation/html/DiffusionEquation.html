@@ -6,9 +6,9 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
-<meta name="description" content="Project 5, deadline  December 9, 2016">
+<meta name="description" content="Project 5, deadline  December 10, 2017">
 
-<title>Project 5, deadline  December 9, 2016</title>
+<title>Project 5, deadline  December 10, 2017</title>
 
 
 <style type="text/css">
@@ -55,16 +55,25 @@ div { text-align: justify; text-justify: inter-word; }
                3,
                None,
                '___sec6'),
-              ('Adding boundary conditions for geological studies, this will be added soon',
+              ('Project 5g) Temperature distribution in the lithosphere (this part is optional and gives an additional score of 30 points)',
                3,
                None,
                '___sec7'),
-              ('References', 3, None, '___sec8'),
-              ('Introduction to numerical projects', 2, None, '___sec9'),
+              ('Parameters of the model', 3, None, '___sec8'),
+              ('Temperature distribution before radioactive enrichment',
+               3,
+               None,
+               '___sec9'),
+              ('Temperature distribution after radioactive enrichment',
+               3,
+               None,
+               '___sec10'),
+              ('References', 3, None, '___sec11'),
+              ('Introduction to numerical projects', 2, None, '___sec12'),
               ('Format for electronic delivery of report and programs',
                2,
                None,
-               '___sec10')]}
+               '___sec13')]}
 end of tocinfo -->
 
 <body>
@@ -90,7 +99,7 @@ MathJax.Hub.Config({
 
 
 
-<center><h1>Project 5, deadline  December 9, 2016</h1></center>  <!-- document title -->
+<center><h1>Project 5, deadline  December 10, 2017</h1></center>  <!-- document title -->
 
 <p>
 <!-- author(s): Partial Differential equations -->
@@ -104,7 +113,7 @@ MathJax.Hub.Config({
 
 <br>
 <p>
-<center><h4>Fall semester 2016</h4></center> <!-- date -->
+<center><h4>Fall semester 2017</h4></center> <!-- date -->
 <br>
 
 <h2 id="___sec0">Theoretical background and description of the system </h2>
@@ -113,6 +122,13 @@ MathJax.Hub.Config({
 This project is more numerically directed, with tests
 of algorithms for solving partial differential equations using finite difference schemes. 
 Chapter 10 of the lecture notes provides the necessary theoretical background.
+
+<p>
+<b>For this project you can collaborate with fellow students and you can  hand in a common report.</b>
+This project (together with projects 3 and 4) counts 1/3 of the final mark.
+
+<p>
+The project has a strong mathematical axis. However, for those interested, it should be straightforward to replace the dimensionless analysis in  parts 5a-5f) with specific boundary and initial conditions. This is done in part 5g), with a focus on the heat equation and geophysical processes. That part is optional, but gives an additional 30 points to a score of 100.
 
 <p>
 The physical problem can be that of the temperature gradient in a rod of length \( L=1 \) or that of channel flow
@@ -236,10 +252,6 @@ $$
 
 Note well that we are using a time-centered scheme wih \( t+\Delta t/2 \) as center.
 
-<p>
-<b>For this project you can collaborate with fellow students and you can  hand in a common report.</b>
-This project (together with projects 3 and 4) counts 1/3 of the final mark.
-
 <h3 id="___sec1">Project 5a): Setting up the algorithms  </h3>
 
 Write down the algorithms for these three methods and the equations you need to implement.
@@ -294,14 +306,93 @@ of the solution as function of different values of \( \Delta x \)  and \( \Delta
 <p>
 You should, if you have time, try to  parallelize the equations using MPI or OpenMP.
 
-<h3 id="___sec7">Adding boundary conditions for geological studies, this will be added soon </h3>
+<h3 id="___sec7">Project 5g) Temperature distribution in the lithosphere (this part is optional and gives an additional score of 30 points) </h3>
 
-<h3 id="___sec8">References </h3>
+<p>
+The Scientific background is  based on geological evidence at the surface. Geologists have proposed
+that there was an active subduction zone on the western coast of
+Norway about 1Gy ago. When subducting, the oceanic lithosphere
+releases water and other chemical components that go mostly to the
+surface but may also be trapped in the mantle above the subducting
+slab. This process is called the refertilization of the mantle wedge
+(see Figure). These chemical components contain more radioactive
+elements than the normal mantle. We can therefore expect that ancient
+mantle wedges are enriched in radioactive elements and therefore
+warmer than normal mantle. The question is how much warmer they are
+and if we can find evidence for this enrichment in geophysical
+studies.
+
+<p>
+<center>  <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 1:  Cartoon of the enrichment of the mantle by a subduction slab. </p></center>
+<p><img src="figslides/slab.jpg" align="bottom" width=500></p>
+</center>
+
+<p>
+The purpose of this part is to 
+calculate the thermal evolution of the lithosphere up to present following the emplacement of radioactive elements in the mantle wedge 1 Gy ago.
+
+<p>
+The equation to compute is the time evolution of the temperature distribution is the heat equation, which will be used only in 2D here, namely
+
+$$
+\begin{equation}
+\vec \nabla(k \vec \nabla T) + Q = \rho c_p \frac{\partial T}{\partial t} 
+\label{eq:heat2D}
+\end{equation}
+$$
+
+where \( T \) is the temperature, \( \rho \) is the density, \( k \) is the thermal conductivity, \( c_p \) is the specific heat capacity and \( Q \) is the heat production.
+
+<p>
+With the boundary conditions and initial conditions, you should rescale your equations in order to use the results from parts 5a-5f). The paramaters of the model are described here.
+
+<h3 id="___sec8">Parameters of the model </h3>
+
+<p>
+The boundary conditions are \( 8^{\circ}\,C \) at the surface and \( 1300^{\circ}C \) at the bottom at a depth of 120 km.
+
+<p>
+In this study, we assume a constant density for the lithosphere of \( 3.5 10^3\,Kg/m^3 \),
+a constant thermal conductivity of \( 2.5\,W/m/^{\circ}C \)
+and a constant specific heat capacity of \( 1000\,J/Kg/^{\circ}C^{-1} \).
+
+<p>
+The heat production, caused by radioactive decay, cannot be taken as uniform in the whole lithosphere as radioactive elements are much more abundant in the crust than in the mantle.
+We need therefore to separate the lithosphere in 3 units: the upper crust from 0 to 20 km depth, the lower crust from 20 to 40 km depth and the mantle from 40 to 120 km depth, where the heat production is set respectively to \( 1.4\,\mu W/m^3 \), \( 0.35\,\mu W/m^3 \) and \( 0.05\,\mu W/m^3 \).
+
+<h3 id="___sec9">Temperature distribution before radioactive enrichment </h3>
+
+<p>
+Before radioactive enrichment, the temperature is steady-state and depends only on depth. In order to test your results you should
+try to obtain analytical results for  the temperature profile as function of depth neglecting the presence of radioactice sources and. Compare thereafter these results with your numerical results.  Include then the radioactive sources and compare eventual analytical results with numerical calculations.
+
+<h3 id="___sec10">Temperature distribution after radioactive enrichment </h3>
+
+<p>
+We assume that the lithosphere above the slab gets enriched in
+radioactive elements U, Th and K 1 Gy ago and that this results in an
+additional heat production of \( 0.5\mu W/m^3 \) over the whole depth of
+the mantle (not the crust) in a 150 km wide area above the
+slab. Neglecting all other thermal perturbations that this slab could
+produce, and assuming that the heat production will remain constant
+over geological time, compute the thermal evolution of the lithosphere
+from 1 Gy to present.
+
+<p>
+The radioactivity will decrease with time. Assuming that the
+additional heat is produced at 40% by U, 40% by Th and 20% by K,
+which have halflives of 4.47 Gy, 14.0 Gy and 1.25 Gy respectively,
+compute the thermal evolution of the lithosphere and compare with the
+result obtained above.
+
+<h3 id="___sec11">References </h3>
 
 <p>
 A very good reference is the textbook by <a href="http://www.springer.com/us/book/9783540225515" target="_blank">Winther and Tveito on partial differential equations</a>. It is available online <a href="https://vpn2.uio.no/+CSCO+0h756767633A2F2F797661782E66636576617472652E70627A++/book/10.1007/b138016/page/1" target="_blank">from the University library</a>.
 
-<h2 id="___sec9">Introduction to numerical projects </h2>
+<h2 id="___sec12">Introduction to numerical projects </h2>
 
 <p>
 Here follows a brief recipe and recommendation on how to write a report for each
@@ -319,7 +410,7 @@ project.
   <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
 </ul>
 
-<h2 id="___sec10">Format for electronic delivery of report and programs </h2>
+<h2 id="___sec13">Format for electronic delivery of report and programs </h2>
 
 <p>
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
