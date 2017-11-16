@@ -129,15 +129,42 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/ipynb/Project4.ipynb"
 
 
-=== Project 5, Deadline December 10 ===
+=== Project 5, Deadline December 10, four different versions ===
+
+=== Project 5 Molecular Dynamics ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/MolecularDynamics/pdf/MolecularDynamics.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/MolecularDynamics/pdf/MolecularDynamics.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/html/QuantumMonteCarlo.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/html/QuantumMonteCarlo-bs.html"
- * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/QuantumMonteCarlo/ipynb/QuantumMonteCarlo.ipynb"
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/MolecularDynamics/html/MolecularDynamics.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/MolecularDynamics/html/MolecularDynamics-bs.html"
+
+=== Project 5 Monte Carlo Modeling of Transactions ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/FinancialEngineering/pdf/FinancialEngineering.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/FinancialEngineering/pdf/FinancialEngineering.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/FinancialEngineering/html/FinancialEngineering.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/FinancialEngineering/html/FinancialEngineering-bs.html"
+
+
+=== Project 5 Partial Differential Equations with geo applications ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/DiffusionEquation/pdf/DiffusionEquation.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/DiffusionEquation/pdf/DiffusionEquation.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/DiffusionEquation/html/DiffusionEquation.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/DiffusionEquation/html/DiffusionEquation-bs.html"
+
+
+=== Project 5 Wave equation project ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/WaveEquation/pdf/WaveEquation.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/WaveEquation/pdf/WaveEquation.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/WaveEquation/html/WaveEquation.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/WaveEquation/html/WaveEquation-bs.html"
+
 
 
 
@@ -232,6 +259,8 @@ All programs are available at the github address of the "course":"https://github
 
 
  
+
+
 
 
 
