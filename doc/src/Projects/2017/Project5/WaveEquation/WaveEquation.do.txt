@@ -123,14 +123,14 @@ The *phase speed* is the speed at which the Rossby waves move. To see how this c
 !bt
 \begin{equation}
   label{eq:Rossby7}
-	\th = \frac{n\pi x}{L} - \omega t.
+	\theta = \frac{n\pi x}{L} - \omega t.
 \end{equation}
 !et
-For instance, if $\th=2\pi$, then $\psi = A\cos(2\pi) = A$. This is a maximum or ``high pressure'' point. To see how this moves, we solve (ref{eq:Rossby7}) for $x$:
+For instance, if $\theta=2\pi$, then $\psi = A\cos(2\pi) = A$. This is a maximum or ``high pressure'' point. To see how this moves, we solve (ref{eq:Rossby7}) for $x$:
 
 !bt
 \begin{equation}
-	x = \frac{\th L}{2n\pi} + \frac{\omega tL}{2n\pi}.
+	x = \frac{\theta L}{2n\pi} + \frac{\omega tL}{2n\pi}.
 \end{equation}
 !et
 Taking a time derivative, we obtain
