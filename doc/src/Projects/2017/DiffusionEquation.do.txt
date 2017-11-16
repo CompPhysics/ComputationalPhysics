@@ -165,6 +165,7 @@ of the solution as function of different values of $\Delta x$  and $\Delta t$.
 
 You should, if you have time, try to  parallelize the equations using MPI or OpenMP. 
 
+===  Adding boundary conditions for geological studies, this will be added soon ===
 
 === References ===
 
