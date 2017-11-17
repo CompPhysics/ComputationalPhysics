@@ -187,7 +187,7 @@ Then there is the Coriolis parameter, defined as:
 
 $$
 \begin{equation}
-f = 2 \Omega sin(\theta)
+f = 2 \Omega \sin{(\theta)}
 \label{_auto2}
 \end{equation}
 $$
@@ -203,8 +203,8 @@ f \approx f_0 + \beta y
 \end{equation}
 $$
 
-where \( f_0 = 2 \Omega sin(\theta_0) \), \( \beta = 2 \Omega
-cos(\theta_0)/R_e \) and \( y = R_e (\theta - \theta_0) \), if \( R_e \) is the
+where \( f_0 = 2 \Omega \sin{(\theta_0)} \), \( \beta = 2 \Omega
+\cos{(\theta_0)}/R_e \) and \( y = R_e (\theta - \theta_0) \), if \( R_e \) is the
 Earth's radius. This linear representation is called the
 \( \beta \)-plane approximation, and accounts for the \( \beta \) term in
 \eqref{eq:Rossby1}.
@@ -216,7 +216,7 @@ the streamfunction, thus:
 $$
 \begin{equation}
 \label{eq:Rossby}
-\partial_t \nabla_H^2 \psi  + \beta \partial_x\psi = 0
+\boxed{\partial_t \nabla_H^2 \psi  + \beta \partial_x\psi = 0.}
  \end{equation}
 $$
 
@@ -241,7 +241,7 @@ form:
 $$
 \begin{equation}
 \label{eq:Rossby5}
-	\psi = A \cos(\frac{2n\pi x}{L} - \omega t), 
+	\psi = A \cos{(\frac{2n\pi x}{L} - \omega t)}, 
 \end{equation}
 $$
 
@@ -273,7 +273,7 @@ $$
 \end{equation}
 $$
 
-For instance, if \( \theta=2\pi \), then \( \psi = A\cos(2\pi) = A \). This is a maximum or &quot;high pressure&quot; point. To see how this moves, we solve \eqref{eq:Rossby7} for \( x \):
+For instance, if \( \theta=2\pi \), then \( \psi = A\cos{(2\pi)} = A \). This is a maximum or &quot;high pressure&quot; point. To see how this moves, we solve \eqref{eq:Rossby7} for \( x \):
 
 $$
 \begin{equation}
@@ -304,14 +304,14 @@ a wave solution with the form:
 
 $$
 \begin{equation}
-	\psi = A(x)\cos(kx - \omega t), 
+	\psi = A(x)\cos{(kx - \omega t)}, 
 \label{_auto6}
 \end{equation}
 $$
 
 where \( k \) is the wavenumber. Substitute this into equation
-\eqref{eq:Rossby}. You'll obtain terms multiplied by \( sin(kx - \omega
-t) \) and others multiplied by \( sin(kx - \omega t) \). Set each of these
+\eqref{eq:Rossby}. You'll obtain terms multiplied by \( \sin{(kx - \omega
+t)} \) and others multiplied by \( \sin{(kx - \omega t)} \). Set each of these
 expressions to zero. One will give you the dispersion relation for the
 waves. The other will give you the form for \( A(x) \), which must satisfy
 the boundary conditions. You see that \( k \) will be <em>quantized</em>:
@@ -407,7 +407,7 @@ $$
 
 These are obtained by <em>scaling</em> each term by typical values.
 Doing this, the domain extends from \( x=0 \) to \( x=1 \), which is
-much simpler than worrying about realistic sizes.
+much simpler than worrying about realistic sizes.   For the latter equation you can use your code from project 1.
 
 <p>
 For the boundary conditions, we'll consider both the periodic
@@ -436,7 +436,7 @@ conditions, a sine wave:
 
 $$
 \begin{equation}
-\psi(x,0) = \sin\left( 4\pi x \right)
+\psi(x,0) = \sin{\left( 4\pi x \right)}
 \label{_auto13}
 \end{equation}
 $$
@@ -445,7 +445,7 @@ and a Gaussian:
 
 $$
 \begin{equation}
-\psi = e^{-\left(\frac{x-x0}{\sigma}\right)^2},
+\psi = \exp{-\left(\frac{x-x0}{\sigma}\right)^2},
 \label{_auto14}
 \end{equation}
 $$
@@ -506,11 +506,11 @@ and
 $$
 \begin{equation}
 \label{eq:Rossby11}
-	\partial_t\left( \partial_{xx}\psi + \partial_{yy}\psi \right) = \zeta, \quad \textrm{$t > 0$ and} \quad x,y\in [0,1],
+	\left( \partial_{xx}\psi + \partial_{yy}\psi \right) = \zeta, \quad \textrm{$t > 0$ and} \quad x,y\in [0,1],
 \end{equation}
 $$
 
-where we now have made a model with a square lattice for \( x \) and \( y \).
+where we now have made a model with a square lattice for \( x \) and \( y \). The last equation is just another example of Poisson's equation which can be solved by Jacobi's method, or the Gauss-Seidel method or the so-called Successive Over Relaxation method discussed in chapters 6 and 10 of the lecture notes.
 
 <p>
 How would you extend the boundary conditions from one dimension to two
@@ -523,7 +523,7 @@ deem appropriate.
 <p>
 Use an explicit scheme for \eqref{eq:Rossby10}. To solve
 \eqref{eq:Rossby11} you need to use for example an iterative method
-like Jacobi's method or the Successive Over Relaxation (SOR). The Jacobi method is described in the lecture notes, see chapters 6 and 10.
+like Jacobi's or Gauss-Seidel method or the Successive Over Relaxation (SOR) method. These methods are described in the lecture notes, see chapters 6 and 10.
 
 <p>
 Outline the algorithm for solving the two-dimensional equations and

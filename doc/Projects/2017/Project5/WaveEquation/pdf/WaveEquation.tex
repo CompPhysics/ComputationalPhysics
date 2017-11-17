@@ -160,7 +160,7 @@ Thus the vorticity is the Laplacian of the streamfunction.
 Then there is the Coriolis parameter, defined as:
 
 \begin{equation}
-f = 2 \Omega sin(\theta)
+f = 2 \Omega \sin{(\theta)}
 \end{equation}
 where $\theta$ is the latitude and $\Omega$ is the rotation
 rate of the Earth, $\Omega=2 \pi/day$. We often approximate
@@ -169,8 +169,8 @@ $f$ as a linear function, centered on a latitude $\theta_0$:
 \begin{equation}
 f \approx f_0 + \beta y
 \end{equation}
-where $f_0 = 2 \Omega sin(\theta_0)$, $\beta = 2 \Omega
-cos(\theta_0)/R_e$ and $y = R_e (\theta - \theta_0)$, if $R_e$ is the
+where $f_0 = 2 \Omega \sin{(\theta_0)}$, $\beta = 2 \Omega
+\cos{(\theta_0)}/R_e$ and $y = R_e (\theta - \theta_0)$, if $R_e$ is the
 Earth's radius. This linear representation is called the
 $\beta$-plane approximation, and accounts for the $\beta$ term in
 (\ref{eq:Rossby1}).
@@ -180,7 +180,7 @@ the streamfunction, thus:
 
 \begin{equation}
   \label{eq:Rossby}
-\partial_t \nabla_H^2 \psi  + \beta \partial_x\psi = 0
+\boxed{\partial_t \nabla_H^2 \psi  + \beta \partial_x\psi = 0.}
  \end{equation}
 This is the \emph{barotropic Rossby wave equation}.
 
@@ -200,7 +200,7 @@ form:
 
 \begin{equation}
   \label{eq:Rossby5}
-	\psi = A \cos(\frac{2n\pi x}{L} - \omega t), 
+	\psi = A \cos{(\frac{2n\pi x}{L} - \omega t)}, 
 \end{equation}
 where $n$ is an integer ($=1,2,\cdots$), and where $\omega$ is the
 wave frequency and $A$ is the amplitude.
@@ -222,7 +222,7 @@ The \emph{phase speed} is the speed at which the Rossby waves move. To see how t
   \label{eq:Rossby7}
 	\theta = \frac{n\pi x}{L} - \omega t.
 \end{equation}
-For instance, if $\theta=2\pi$, then $\psi = A\cos(2\pi) = A$. This is a maximum or ``high pressure'' point. To see how this moves, we solve (\ref{eq:Rossby7}) for $x$:
+For instance, if $\theta=2\pi$, then $\psi = A\cos{(2\pi)} = A$. This is a maximum or ``high pressure'' point. To see how this moves, we solve (\ref{eq:Rossby7}) for $x$:
 
 \begin{equation}
 	x = \frac{\theta L}{2n\pi} + \frac{\omega tL}{2n\pi}.
@@ -243,11 +243,11 @@ simple Dirichlet conditions: $\psi=0$ at $x=0$ and $x=L$. Use
 a wave solution with the form:
 
 \begin{equation}
-	\psi = A(x)\cos(kx - \omega t), 
+	\psi = A(x)\cos{(kx - \omega t)}, 
 \end{equation}
 where $k$ is the wavenumber. Substitute this into equation
-(\ref{eq:Rossby}). You'll obtain terms multiplied by $sin(kx - \omega
-t)$ and others multiplied by $sin(kx - \omega t)$. Set each of these
+(\ref{eq:Rossby}). You'll obtain terms multiplied by $\sin{(kx - \omega
+t)}$ and others multiplied by $\sin{(kx - \omega t)}$. Set each of these
 expressions to zero. One will give you the dispersion relation for the
 waves. The other will give you the form for $A(x)$, which must satisfy
 the boundary conditions. You see that $k$ will be \emph{quantized}:
@@ -316,7 +316,7 @@ direction. When calculating these, it is convenient to use
 \end{align}
 These are obtained by \emph{scaling} each term by typical values.
 Doing this, the domain extends from $x=0$ to $x=1$, which is
-much simpler than worrying about realistic sizes.
+much simpler than worrying about realistic sizes.   For the latter equation you can use your code from project 1. 
 
 For the boundary conditions, we'll consider both the periodic
 domain (that wraps around) and the bounded domain (with solid
@@ -341,12 +341,12 @@ Hereafter we'll use two (non-dimensional) initial
 conditions, a sine wave:
 
 \begin{equation}
-\psi(x,0) = \sin\left( 4\pi x \right)
+\psi(x,0) = \sin{\left( 4\pi x \right)}
 \end{equation}
 and a Gaussian:
 
 \begin{equation}
-\psi = e^{-\left(\frac{x-x0}{\sigma}\right)^2},
+\psi = \exp{-\left(\frac{x-x0}{\sigma}\right)^2},
 \end{equation}
 Here $\sigma = 0.1$ the width of the Gaussian.
 
@@ -393,9 +393,9 @@ and
 
 \begin{equation}
   \label{eq:Rossby11}
-	\partial_t\left( \partial_{xx}\psi + \partial_{yy}\psi \right) = \zeta, \quad \textrm{$t > 0$ and} \quad x,y\in [0,1],
+	\left( \partial_{xx}\psi + \partial_{yy}\psi \right) = \zeta, \quad \textrm{$t > 0$ and} \quad x,y\in [0,1],
 \end{equation}
-where we now have made a model with a square lattice for $x$ and $y$.
+where we now have made a model with a square lattice for $x$ and $y$. The last equation is just another example of Poisson's equation which can be solved by Jacobi's method, or the Gauss-Seidel method or the so-called Successive Over Relaxation method discussed in chapters 6 and 10 of the lecture notes.
 
 How would you extend the boundary conditions from one dimension to two
 dimensions? And can you find a closed form solution here as well?  It
@@ -405,7 +405,7 @@ deem appropriate.
 \paragraph{Project 5h): Solving the two-dimensional equations numerically.}
 Use an explicit scheme for (\ref{eq:Rossby10}). To solve
 (\ref{eq:Rossby11}) you need to use for example an iterative method
-like Jacobi's method or the Successive Over Relaxation (SOR). The Jacobi method is described in the lecture notes, see chapters 6 and 10.
+like Jacobi's or Gauss-Seidel method or the Successive Over Relaxation (SOR) method. These methods are described in the lecture notes, see chapters 6 and 10.
 
 Outline the algorithm for solving the two-dimensional equations and
 implement the scheme as function of $\Delta x$ (assuming $\Delta x =
