@@ -33,10 +33,10 @@ system doconce split_html $html.html --method=space10
 # Bootstrap style
 html=${name}-bs
 system doconce format html $name --html_style=bootstrap --pygments_html_style=default --html_admon=bootstrap_panel --html_output=$html $opt
-system doconce split_html $html.html --method=split --pagination --nav_button=bottom
+#system doconce split_html $html.html --method=split --pagination --nav_button=bottom
 
 # IPython notebook
-#system doconce format ipynb $name $opt
+system doconce format ipynb $name $opt
 
 # Ordinary plain LaTeX document
 system doconce format pdflatex $name --print_latex_style=trac --latex_admon=paragraph $opt
