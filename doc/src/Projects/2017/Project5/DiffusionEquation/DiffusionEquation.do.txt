@@ -43,14 +43,14 @@ boundary conditions are
 
 !bt
 \begin{equation*}
-u(0,t)= 0 \hspace{0.5cm} t > 0,
+u(0,t)= 0 \hspace{0.5cm} t \ge 0,
 \end{equation*}
 !et
 and
 
 !bt
 \begin{equation*}
-u(L,t)= 1 \hspace{0.5cm} t > 0.
+u(L,t)= 1 \hspace{0.5cm} t \ge 0.
 \end{equation*}
 !et
 The function $u(x,t)$  can be the temperature gradient of a  rod or represent the fluid velocity 
