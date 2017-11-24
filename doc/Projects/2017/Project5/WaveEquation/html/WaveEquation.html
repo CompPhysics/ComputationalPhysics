@@ -44,11 +44,13 @@ div { text-align: justify; text-justify: inter-word; }
                None,
                '___sec0'),
               ('Analytical solutions', 2, None, '___sec1'),
-              ('Project 5a): Solution to the Rossby equation in a periodic domain',
+              ('Project 5a): Solution to the Rossby equation in a periodic '
+               'domain',
                3,
                None,
                '___sec2'),
-              ('Project 5b): Solution to the Rossby equation with solid boundaries',
+              ('Project 5b): Solution to the Rossby equation with solid '
+               'boundaries',
                3,
                None,
                '___sec3'),
@@ -59,10 +61,7 @@ div { text-align: justify; text-justify: inter-word; }
                None,
                '___sec6'),
               ('Project 5e): Implementation', 3, None, '___sec7'),
-              ('Project 5f): Visualization and discussion',
-               3,
-               None,
-               '___sec8'),
+              ('Project 5f): Visualization and discussion', 3, None, '___sec8'),
               ('Project 5g): Moving to two dimensions', 3, None, '___sec9'),
               ('Project 5h): Solving the two-dimensional equations numerically',
                3,
@@ -362,7 +361,7 @@ the spatial derivatives, we use centered-differences:
 
 $$
 \begin{align}
-	\partial_x\psi &\approx \frac{\psi_{j+1}^{n} - \psi_{j-1}^{n}}{\Delta x}, 
+	\partial_x\psi &\approx \frac{\psi_{j+1}^{n} - \psi_{j-1}^{n}}{2\Delta x}, 
 \label{_auto9}\\
 	\partial_{xx}\psi &\approx \frac{\psi_{j+1}^{n} - 2\psi_{j}^{n} + \psi_{j-1}^{n}}{\Delta x^2},
 \label{_auto10}
@@ -456,7 +455,7 @@ Here \( \sigma = 0.1 \) the width of the Gaussian.
 Compare the time-stepping routines, using the sine wave in the
 periodic domain. Use \( \Delta x=1/40 \) and \( \Delta t \) as determined from the
 results of (5d). Store the results at three times, in addition to the
-initial condition, e.g. $t=$0, 50, 100 and 150.  Is one of the
+initial condition, e.g. \( t=0 \), \( t=50 \), \( t=100 \) and \( t=150 \).  Is one of the
 time-stepping routines better than the other?
 
 <h3 id="___sec8">Project 5f): Visualization and discussion </h3>
@@ -492,7 +491,7 @@ domain. How does this compare to the sine wave in the same domain?
 <p>
 Extend the code you have developed here to two dimensions, that is,
 \( \psi = \psi(x,y,t) \) and \( \zeta = \zeta(x,y,t) \). It means that we deal
-with a \( 2+1 \) dimensional problem. Our differential equation becomes
+with a \( 2+1 \) dimensional problem. Our differential equations become
 
 $$
 \begin{equation}

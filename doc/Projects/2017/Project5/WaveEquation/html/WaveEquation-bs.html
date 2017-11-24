@@ -45,11 +45,13 @@ Automatically generated HTML file from DocOnce source
                None,
                '___sec0'),
               ('Analytical solutions', 2, None, '___sec1'),
-              ('Project 5a): Solution to the Rossby equation in a periodic domain',
+              ('Project 5a): Solution to the Rossby equation in a periodic '
+               'domain',
                3,
                None,
                '___sec2'),
-              ('Project 5b): Solution to the Rossby equation with solid boundaries',
+              ('Project 5b): Solution to the Rossby equation with solid '
+               'boundaries',
                3,
                None,
                '___sec3'),
@@ -60,10 +62,7 @@ Automatically generated HTML file from DocOnce source
                None,
                '___sec6'),
               ('Project 5e): Implementation', 3, None, '___sec7'),
-              ('Project 5f): Visualization and discussion',
-               3,
-               None,
-               '___sec8'),
+              ('Project 5f): Visualization and discussion', 3, None, '___sec8'),
               ('Project 5g): Moving to two dimensions', 3, None, '___sec9'),
               ('Project 5h): Solving the two-dimensional equations numerically',
                3,
@@ -84,7 +83,7 @@ end of tocinfo -->
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
-     equationNumbers: {  autoNumber: "none"  },
+     equationNumbers: {  autoNumber: "AMS"  },
      extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
   }
 });
@@ -138,7 +137,6 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0000"></a>
 <!-- ------------------- main content ---------------------- -->
 
 
@@ -203,7 +201,7 @@ The equation governing the vorticity is:
 
 $$
 \begin{equation}
-\tag{1}
+\label{eq:Rossby1}
    \partial_t \zeta  + \beta \partial_x\psi = 0.
  \end{equation}
 $$
@@ -213,7 +211,7 @@ where \( \zeta \) is the vorticity and \( \psi \) is the streamfunction, which d
 $$
 \begin{equation}
 	u = -\partial_y \psi \quad,\quad v = \partial_x \psi,
-\tag{2}
+\label{_auto1}
 \end{equation}
 $$
 
@@ -223,7 +221,7 @@ defined:
 
 $$
 \begin{equation}
-\tag{3}
+\label{eq:Rossby2}
 	\zeta = \partial_x v -\partial_y u = \nabla_H^2 \psi.
 \end{equation}
 $$
@@ -236,7 +234,7 @@ Then there is the Coriolis parameter, defined as:
 $$
 \begin{equation}
 f = 2 \Omega \sin{(\theta)}
-\tag{4}
+\label{_auto2}
 \end{equation}
 $$
 
@@ -247,7 +245,7 @@ rate of the Earth, \( \Omega=2 \pi/day \). We often approximate
 $$
 \begin{equation}
 f \approx f_0 + \beta y
-\tag{5}
+\label{_auto3}
 \end{equation}
 $$
 
@@ -255,7 +253,7 @@ where \( f_0 = 2 \Omega \sin{(\theta_0)} \), \( \beta = 2 \Omega
 \cos{(\theta_0)}/R_e \) and \( y = R_e (\theta - \theta_0) \), if \( R_e \) is the
 Earth's radius. This linear representation is called the
 \( \beta \)-plane approximation, and accounts for the \( \beta \) term in
-<a href="#mjx-eqn-1">(1)</a>.
+\eqref{eq:Rossby1}.
 
 <p>
 Thus the vorticity equation can be written in terms of one variable,
@@ -263,7 +261,7 @@ the streamfunction, thus:
 
 $$
 \begin{equation}
-\tag{6}
+\label{eq:Rossby}
 \boxed{\partial_t \nabla_H^2 \psi  + \beta \partial_x\psi = 0.}
  \end{equation}
 $$
@@ -281,14 +279,14 @@ closed domain has walls, like the continents bounding the oceans.
 <h3 id="___sec2" class="anchor">Project 5a): Solution to the Rossby equation in a periodic domain </h3>
 
 <p>
-Consider the vorticity equation <a href="#mjx-eqn-6">(6)</a> in one dimension
+Consider the vorticity equation \eqref{eq:Rossby} in one dimension
 (we'll add the second dimension later). Say the periodic domain
 extends from \( x=[0,L] \) (east-west). A suitable wave solution has the
 form:
 
 $$
 \begin{equation}
-\tag{7}
+\label{eq:Rossby5}
 	\psi = A \cos{(\frac{2n\pi x}{L} - \omega t)}, 
 \end{equation}
 $$
@@ -299,12 +297,12 @@ wave frequency and \( A \) is the amplitude.
 <p>
 Show that the solution is the same at the two boundaries, so that it
 satisfies the periodic boundary conditions. Then use this wave solution
-in equation <a href="#mjx-eqn-6">(6)</a> and solve for \( \omega \). Use the
+in equation \eqref{eq:Rossby} and solve for \( \omega \). Use the
 one-dimensional form for the vorticity:
 
 $$
 \begin{equation}
-\tag{8}
+\label{eq:Rossby6}
 	\zeta = \partial_x v = \partial_{xx} \psi
 \end{equation}
 $$
@@ -316,17 +314,17 @@ The <em>phase speed</em> is the speed at which the Rossby waves move. To see how
 
 $$
 \begin{equation}
-\tag{9}
+\label{eq:Rossby7}
 	\theta = \frac{n\pi x}{L} - \omega t.
 \end{equation}
 $$
 
-For instance, if \( \theta=2\pi \), then \( \psi = A\cos{(2\pi)} = A \). This is a maximum or &quot;high pressure&quot; point. To see how this moves, we solve <a href="#mjx-eqn-9">(9)</a> for \( x \):
+For instance, if \( \theta=2\pi \), then \( \psi = A\cos{(2\pi)} = A \). This is a maximum or &quot;high pressure&quot; point. To see how this moves, we solve \eqref{eq:Rossby7} for \( x \):
 
 $$
 \begin{equation}
 	x = \frac{\theta L}{2n\pi} + \frac{\omega tL}{2n\pi}.
-\tag{10}
+\label{_auto4}
 \end{equation}
 $$
 
@@ -335,7 +333,7 @@ Taking a time derivative, we obtain
 $$
 \begin{equation}
 	c = \frac{dx}{dt} = \frac{\omega L}{2n\pi}
-\tag{11}
+\label{_auto5}
 \end{equation}
 $$
 
@@ -353,12 +351,12 @@ a wave solution with the form:
 $$
 \begin{equation}
 	\psi = A(x)\cos{(kx - \omega t)}, 
-\tag{12}
+\label{_auto6}
 \end{equation}
 $$
 
 where \( k \) is the wavenumber. Substitute this into equation
-<a href="#mjx-eqn-6">(6)</a>. You'll obtain terms multiplied by \( \sin{(kx - \omega
+\eqref{eq:Rossby}. You'll obtain terms multiplied by \( \sin{(kx - \omega
 t)} \) and others multiplied by \( \sin{(kx - \omega t)} \). Set each of these
 expressions to zero. One will give you the dispersion relation for the
 waves. The other will give you the form for \( A(x) \), which must satisfy
@@ -371,15 +369,15 @@ can be calculated as in the preceding problem. What is it? Discuss the
 structure of the wave (which is unusual).
 
 <h2 id="___sec4" class="anchor">Numerical solution </h2>
-Now we consider solving equation <a href="#mjx-eqn-6">(6)</a> numerically. This
+Now we consider solving equation \eqref{eq:Rossby} numerically. This
 involves two steps. If we know the velocity or streamfunction
 initially, we can advance the vorticity in time to a new time. Then
 the streamfunction at the new time is found by inverting
-<a href="#mjx-eqn-3">(3)</a>. Having done this we may advance the vorticity to
-the next time level using <a href="#mjx-eqn-6">(6)</a>, and so forth. We note
-that <a href="#mjx-eqn-6">(6)</a> is a <em>prognostic equation</em> and may
+\eqref{eq:Rossby2}. Having done this we may advance the vorticity to
+the next time level using \eqref{eq:Rossby}, and so forth. We note
+that \eqref{eq:Rossby} is a <em>prognostic equation</em> and may
 therefore be solved numerically using a time stepping method. In
-contrast, <a href="#mjx-eqn-3">(3)</a> is a <em>diagnostic equation</em>. We will
+contrast, \eqref{eq:Rossby2} is a <em>diagnostic equation</em>. We will
 solve this using an elliptic solver.
 
 <p>
@@ -389,7 +387,7 @@ points:
 $$
 \begin{equation}
 x_j = j\Delta x
-\tag{13}
+\label{_auto7}
 \end{equation}
 $$
 
@@ -398,7 +396,7 @@ where \( \Delta x \) is the grid spacing. We discretize time in a similar way:
 $$
 \begin{equation}
 t^n = n\Delta t
-\tag{14}
+\label{_auto8}
 \end{equation}
 $$
 
@@ -410,10 +408,10 @@ the spatial derivatives, we use centered-differences:
 
 $$
 \begin{align}
-	\partial_x\psi &\approx \frac{\psi_{j+1}^{n} - \psi_{j-1}^{n}}{\Delta x}, 
-\tag{15}\\
+	\partial_x\psi &\approx \frac{\psi_{j+1}^{n} - \psi_{j-1}^{n}}{2\Delta x}, 
+\label{_auto9}\\
 	\partial_{xx}\psi &\approx \frac{\psi_{j+1}^{n} - 2\psi_{j}^{n} + \psi_{j-1}^{n}}{\Delta x^2},
-\tag{16}
+\label{_auto10}
 \end{align}
 $$
 
@@ -422,7 +420,7 @@ forward difference:
 
 $$
 \begin{equation}
-\tag{17}
+\label{eq:Rossby3}
   \partial_t\psi \approx \frac{\psi_{j}^{n+1} - \psi_{j}^{n}}{\Delta t} ,
 \end{equation}
 $$
@@ -431,7 +429,7 @@ while the second involves a centered difference:
 
 $$
 \begin{align}
-\tag{18}
+\label{eq:Rossby4}
 	\partial_t\psi &\approx \frac{\psi_{j}^{n+1} - \psi_{j}^{n-1}}{2\Delta t}.
 \end{align}
 $$
@@ -447,9 +445,9 @@ direction. When calculating these, it is convenient to use
 $$
 \begin{align}
 	\partial_t\zeta + \partial_x\psi &= 0. 
-\tag{19}\\
+\label{_auto11}\\
 	\partial_{xx}\psi &= \zeta.
-\tag{20}
+\label{_auto12}
 \end{align}
 $$
 
@@ -485,7 +483,7 @@ conditions, a sine wave:
 $$
 \begin{equation}
 \psi(x,0) = \sin{\left( 4\pi x \right)}
-\tag{21}
+\label{_auto13}
 \end{equation}
 $$
 
@@ -494,7 +492,7 @@ and a Gaussian:
 $$
 \begin{equation}
 \psi = \exp{-\left(\frac{x-x0}{\sigma}\right)^2},
-\tag{22}
+\label{_auto14}
 \end{equation}
 $$
 
@@ -504,7 +502,7 @@ Here \( \sigma = 0.1 \) the width of the Gaussian.
 Compare the time-stepping routines, using the sine wave in the
 periodic domain. Use \( \Delta x=1/40 \) and \( \Delta t \) as determined from the
 results of (5d). Store the results at three times, in addition to the
-initial condition, e.g. $t=$0, 50, 100 and 150.  Is one of the
+initial condition, e.g. \( t=0 \), \( t=50 \), \( t=100 \) and \( t=150 \).  Is one of the
 time-stepping routines better than the other?
 
 <h3 id="___sec8" class="anchor">Project 5f): Visualization and discussion </h3>
@@ -540,11 +538,11 @@ domain. How does this compare to the sine wave in the same domain?
 <p>
 Extend the code you have developed here to two dimensions, that is,
 \( \psi = \psi(x,y,t) \) and \( \zeta = \zeta(x,y,t) \). It means that we deal
-with a \( 2+1 \) dimensional problem. Our differential equation becomes
+with a \( 2+1 \) dimensional problem. Our differential equations become
 
 $$
 \begin{equation}
-\tag{23}
+\label{eq:Rossby10}
 	\partial_t\zeta + \partial_x\psi = 0, \quad \textrm{$t > 0$ and} \quad x,y\in [0,1],
 \end{equation}
 $$
@@ -553,7 +551,7 @@ and
 
 $$
 \begin{equation}
-\tag{24}
+\label{eq:Rossby11}
 	\left( \partial_{xx}\psi + \partial_{yy}\psi \right) = \zeta, \quad \textrm{$t > 0$ and} \quad x,y\in [0,1],
 \end{equation}
 $$
@@ -569,8 +567,8 @@ deem appropriate.
 <h3 id="___sec10" class="anchor">Project 5h): Solving the two-dimensional equations numerically </h3>
 
 <p>
-Use an explicit scheme for <a href="#mjx-eqn-23">(23)</a>. To solve
-<a href="#mjx-eqn-24">(24)</a> you need to use for example an iterative method
+Use an explicit scheme for \eqref{eq:Rossby10}. To solve
+\eqref{eq:Rossby11} you need to use for example an iterative method
 like Jacobi's or Gauss-Seidel method or the Successive Over Relaxation (SOR) method. These methods are described in the lecture notes, see chapters 6 and 10.
 
 <p>
@@ -623,11 +621,6 @@ we encourage you to work two and two together. Optimal working groups consist of
 
 <p>
 
-<p>
-<!-- navigation buttons at the bottom of the page -->
-<ul class="pagination">
-  <li class="active"><a href="._WaveEquation-bs000.html">1</a></li>
-</ul>
 <!-- ------------------- end of main content --------------- -->
 
 </div>  <!-- end container -->
