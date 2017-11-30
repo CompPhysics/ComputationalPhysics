@@ -69,12 +69,14 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                None,
                '___sec0'),
-              ('"What did I learn in school this year":"https://www.youtube.com/watch?v=ZTxmDV_njsc"',
+              ('"What did I learn in school this '
+               'year":"https://www.youtube.com/watch?v=ZTxmDV_njsc"',
                2,
                None,
                '___sec1'),
               ('Topics we have covered this year', 2, None, '___sec2'),
-              ('Linear algebra and eigenvalue problems, chapters 6.1-6.5 and 7.1-7.5',
+              ('Linear algebra and eigenvalue problems, chapters 6.1-6.5 and '
+               '7.1-7.5',
                2,
                None,
                '___sec3'),
@@ -95,22 +97,36 @@ div { text-align: justify; text-justify: inter-word; }
                None,
                '___sec7'),
               ('Additional learning outcomes', 2, None, '___sec8'),
+              ('Disasters attributable to poor code', 2, None, '___sec9'),
               ('Other courses in Computational Science at UiO',
                2,
                None,
-               '___sec9'),
-              ('"New Master of Science program at UiO in Computational Science from Fall 2018":"http://mhjensen.github.io/CPMLS/doc/pub/Masterprogram/html/Masterprogram.html"',
-               2,
-               None,
                '___sec10'),
-              ('The program opens up for flexible backgrounds',
+              ('New Courses in Computational Science at UiO from fall 2018',
                2,
                None,
                '___sec11'),
-              ('Best wishes to you all and thanks so much for your heroic efforts this semester',
+              ('"New Master of Science program at UiO in Computational Science '
+               'from Fall '
+               '2018":"http://www.uio.no/english/studies/programmes/computational-science-master/index.html"',
                2,
                None,
-               '___sec12')]}
+               '___sec12'),
+              ('The program opens up for flexible backgrounds',
+               2,
+               None,
+               '___sec13'),
+              ('"New Master of Science program at UiO in Data Science from '
+               'Fall '
+               '2018":"http://www.uio.no/english/studies/programmes/datascience-master/"',
+               2,
+               None,
+               '___sec14'),
+              ('Best wishes to you all and thanks so much for your heroic '
+               'efforts this semester',
+               2,
+               None,
+               '___sec15')]}
 end of tocinfo -->
 
 <body>
@@ -136,7 +152,7 @@ end of tocinfo -->
 <center>[2] <b>National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Aug 23, 2017</h4></center> <!-- date -->
+<center><h4>Nov 30, 2017</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -177,6 +193,7 @@ Does that match the experiences you have made this semester?
 <li> Know Gaussian elimination and LU decomposition   (project 1)</li>
 <li> How to solve linear equations   (project 1)</li>
 <li> How to obtain the inverse and the determinant of a real symmetric matrix</li>
+<li> Iterative solvers (project 5)</li>
 <li> Cubic spline</li>
 <li> Tridiagonal matrix decomposition   (project 1)</li>
 <li> Householder's tridiagonalization technique and finding eigenvalues based on this (project 2)</li>
@@ -189,9 +206,10 @@ Does that match the experiences you have made this semester?
 
 <ul>
 <li> Random walks and Markov chains</li>
-<li> Metropolis algorithm (projects 4 and 5)</li>
+<li> Metropolis algorithm (project 4)</li>
 <li> Applications to statistical physics systems (project 4)</li>
-<li> Applications to quantum mechanical systems (project 5)</li>
+<li> Monte Carlo sampling (project 4 and 5)</li>
+<li> No applications to quantum mechanical systems with MC methods this year</li>
 </ul>
 
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -201,7 +219,7 @@ Does that match the experiences you have made this semester?
 <ul>
 <li> Euler's method and improved Euler's method, truncation errors (project 3)</li>
 <li> Runge Kutta methods, 2nd and 4th order, truncation errors</li>
-<li> Leap-frog and Verlet algoritm (projects 3 and 5)</li>
+<li> Verlet algoritm (projects 3 and 5)</li>
 <li> How to implement and solve a second-order differential equation,  both linear and non-linear (projects 3 and 5).</li>
 <li> How to make your equations dimensionless (projects 2, 3, 4 and 5).</li>
 </ul>
@@ -215,6 +233,7 @@ Does that match the experiences you have made this semester?
 <li> Set up the mathematical model and algorithms for these equations, with boundary and initial conditions. The stability conditions for the diffusion equation.</li>
 <li> Explicit, implicit and Crank-Nicolson schemes, and how to solve them. Remember that they result in triangular matrices (project 5).</li>  
 <li> Diffusion equation in two dimensions (project 5).</li>  
+<li> Poisson equation in two dimensions (project 5)</li>
 </ul>
 
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -255,7 +274,24 @@ Does that match the experiences you have made this semester?
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec9">Other courses in Computational Science at UiO </h2>
+<h2 id="___sec9">Disasters attributable to poor code </h2>
+
+<p>
+Hopefully, after this course, you may be aware of some of the problems below
+
+<p>
+Have you been paying attention in your numerical analysis or scientific computation courses? If not, it could be a costly mistake. Here are some real life examples of what can happen when numerical algorithms are not correctly applied.
+
+<ol>
+<li> <a href="http://www-users.math.umn.edu/~arnold/disasters/patriot.html" target="_blank">The Patriot Missile failure</a>, in Dharan, Saudi Arabia, on February 25, 1991 which resulted in 28 deaths, is ultimately attributable to poor handling of rounding errors.</li>
+<li> <a href="http://www-users.math.umn.edu/~arnold/disasters/ariane.html" target="_blank">The explosion of the Ariane 5 rocket</a> just after lift-off on its maiden voyage off French Guiana, on June 4, 1996, was ultimately the consequence of a simple overflow.</li>
+<li> <a href="http://www-users.math.umn.edu/~arnold/disasters/sleipner.html" target="_blank">The sinking of the Sleipner A</a> offshore platform in Gandsfjorden near Stavanger, Norway, on August 23, 1991, resulted in a loss of nearly one billion dollars. It was found to be the result of inaccurate finite element analysis.</li>
+<li> <a href="https://www.cs.tau.ac.il/~nachumd/horror.html" target="_blank">Read more here</a></li>
+</ol>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec10">Other courses in Computational Science at UiO </h2>
 
 <p>
 <div class="alert alert-block alert-block alert-text-normal">
@@ -279,22 +315,39 @@ Does that match the experiences you have made this semester?
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec10"><a href="http://mhjensen.github.io/CPMLS/doc/pub/Masterprogram/html/Masterprogram.html" target="_blank">New Master of Science program at UiO in Computational Science from Fall 2018</a>  </h2>
-The program aims at offering thesis projects in a variety of fields. The scientists involved in this program can offer thesis
-topics that cover several disciplines. The program has 60 study places and the study directions are
+<h2 id="___sec11">New Courses in Computational Science at UiO from fall 2018 </h2>
+
+<p>
+<div class="alert alert-block alert-block alert-text-normal">
+<b>Bachelor/Master/PhD Courses.</b>
+<p>
 
 <ul>
-<li> Computational Science:  Applied Mathematics and Risk Analysis (14)</li>
-<li> Computational Science:  Astrophysics  (2)</li>
-<li> Computational Science:  Bioinformatics (5)</li>
-<li> Computational Science:  Bioscience   (4)</li>
-<li> Computational Science:  Chemistry (4)</li>
-<li> Computational Science:  Geoscience  (5)</li>
-<li> Computational Science:  Imaging and Biomedical computing (8)</li>
-<li> Computational Science:  Material Science (2)</li>
-<li> Computational Science:  Mechanics (8)</li>
-<li> Computational Science:  Physics  (8)</li>
-<li> Computational Science:  Economy and Finance (not clear yet)</li>
+  <li> <a href="https://compphysics.github.io/MachineLearning/doc/web/course.html" target="_blank">FYS-MAT3155/4155</a> Data Analysis and Machine Learning</li>
+  <li> IN3XXX/4XXX, High-performance Computing</li>
+  <li> <a href="http://www.uio.no/studier/emner/matnat/math/MAT-IN3110/index-eng.html" target="_blank">MAT-IN3110</a>, Introduction to numerical analysis</li>
+</ul>
+</div>
+
+
+<p>
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec12"><a href="http://www.uio.no/english/studies/programmes/computational-science-master/index.html" target="_blank">New Master of Science program at UiO in Computational Science from Fall 2018</a>  </h2>
+The program aims at offering thesis projects in a variety of fields. The scientists involved in this program can offer thesis
+topics that cover several disciplines. 
+
+<ul>
+<li> Computational Science:  Applied Mathematics and Risk Analysis</li> 
+<li> Computational Science:  Astrophysics</li> 
+<li> Computational Science:  Bioinformatics</li>
+<li> Computational Science:  Bioscience</li>
+<li> Computational Science:  Chemistry</li>
+<li> Computational Science:  Geoscience</li>
+<li> Computational Science:  Imaging and Biomedical computing</li>
+<li> Computational Science:  Materials Science</li>
+<li> Computational Science:  Mechanics</li>
+<li> Computational Science:  Physics</li>
 </ul>
 
 The thesis projects will be tailored to the student's needs, wishes and scientific background. The projects can easily incorporate topics from more than one discipline.
@@ -302,7 +355,7 @@ The thesis projects will be tailored to the student's needs, wishes and scientif
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec11">The program opens up for flexible backgrounds  </h2>
+<h2 id="___sec13">The program opens up for flexible backgrounds  </h2>
 
 <p>
 While discipline-based master's programs tend to introduce very strict
@@ -317,7 +370,20 @@ have a minimum course requirement of 120 ECTS (European Credit Transfer System) 
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
 
-<h2 id="___sec12">Best wishes to you all and thanks so much for your heroic efforts this semester </h2>
+<h2 id="___sec14"><a href="http://www.uio.no/english/studies/programmes/datascience-master/" target="_blank">New Master of Science program at UiO in Data Science from Fall 2018</a>  </h2>
+
+<p>
+Three specializations
+
+<ul>
+<li> Statistics and Machine Learning</li>
+<li> Database Integration and Semantic Web</li>
+<li> Data Science and Life Science</li>
+</ul>
+
+<!-- !split --><br><br><br><br><br><br><br><br><br><br>
+
+<h2 id="___sec15">Best wishes to you all and thanks so much for your heroic efforts this semester </h2>
 
 <p>
 <br /><br /><center><p><img src="figures/Nebbdyr2.png" align="bottom" width=500></p></center><br /><br />

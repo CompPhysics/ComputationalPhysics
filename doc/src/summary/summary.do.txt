@@ -30,6 +30,7 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 * Know Gaussian elimination and LU decomposition   (project 1)
 * How to solve linear equations   (project 1)
 * How to obtain the inverse and the determinant of a real symmetric matrix
+* Iterative solvers (project 5)
 * Cubic spline
 * Tridiagonal matrix decomposition   (project 1)
 * Householder's tridiagonalization technique and finding eigenvalues based on this (project 2)
@@ -38,9 +39,10 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 !split
 ===== Monte Carlo methods in physics (Chapters 11, 12 and 13) =====
 * Random walks and Markov chains
-* Metropolis algorithm (projects 4 and 5)
+* Metropolis algorithm (project 4)
 * Applications to statistical physics systems (project 4)
-* Applications to quantum mechanical systems (project 5)
+* Monte Carlo sampling (project 4 and 5)
+* No applications to quantum mechanical systems with MC methods this year
 
 
 !split
@@ -48,7 +50,7 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 
 * Euler's method and improved Euler's method, truncation errors (project 3)
 * Runge Kutta methods, 2nd and 4th order, truncation errors
-* Leap-frog and Verlet algoritm (projects 3 and 5)
+* Verlet algoritm (projects 3 and 5)
 * How to implement and solve a second-order differential equation,  both linear and non-linear (projects 3 and 5).
 * How to make your equations dimensionless (projects 2, 3, 4 and 5).
 
@@ -58,6 +60,7 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 * Set up the mathematical model and algorithms for these equations, with boundary and initial conditions. The stability conditions for the diffusion equation.
 * Explicit, implicit and Crank-Nicolson schemes, and how to solve them. Remember that they result in triangular matrices (project 5).  
 * Diffusion equation in two dimensions (project 5).  
+* Poisson equation in two dimensions (project 5)
 
 !split
 ===== Learning outcomes and overarching aims of this course =====
@@ -87,6 +90,23 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 !eblock
 
 
+!split
+===== Disasters attributable to poor code =====
+
+Hopefully, after this course, you may be aware of some of the problems below
+
+Have you been paying attention in your numerical analysis or scientific computation courses? If not, it could be a costly mistake. Here are some real life examples of what can happen when numerical algorithms are not correctly applied.
+
+o "The Patriot Missile failure":"http://www-users.math.umn.edu/~arnold/disasters/patriot.html", in Dharan, Saudi Arabia, on February 25, 1991 which resulted in 28 deaths, is ultimately attributable to poor handling of rounding errors.
+
+o "The explosion of the Ariane 5 rocket":"http://www-users.math.umn.edu/~arnold/disasters/ariane.html" just after lift-off on its maiden voyage off French Guiana, on June 4, 1996, was ultimately the consequence of a simple overflow.
+
+o "The sinking of the Sleipner A":"http://www-users.math.umn.edu/~arnold/disasters/sleipner.html" offshore platform in Gandsfjorden near Stavanger, Norway, on August 23, 1991, resulted in a loss of nearly one billion dollars. It was found to be the result of inaccurate finite element analysis.
+
+o "Read more here":"https://www.cs.tau.ac.il/~nachumd/horror.html"
+
+
+
 
 !split
 ===== Other courses in Computational Science at UiO =====
@@ -104,23 +124,33 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 !eblock
 
 
+!split
+===== New Courses in Computational Science at UiO from fall 2018 =====
+
+!bblock Bachelor/Master/PhD Courses
+  * "FYS-MAT3155/4155":"https://compphysics.github.io/MachineLearning/doc/web/course.html" Data Analysis and Machine Learning
+  * IN3XXX/4XXX, High-performance Computing
+  * "MAT-IN3110":"http://www.uio.no/studier/emner/matnat/math/MAT-IN3110/index-eng.html", Introduction to numerical analysis
+!eblock
+
+
+
 
 !split
-===== "New Master of Science program at UiO in Computational Science from Fall 2018":"http://mhjensen.github.io/CPMLS/doc/pub/Masterprogram/html/Masterprogram.html"  =====
+===== "New Master of Science program at UiO in Computational Science from Fall 2018":"http://www.uio.no/english/studies/programmes/computational-science-master/index.html"  =====
 The program aims at offering thesis projects in a variety of fields. The scientists involved in this program can offer thesis
-topics that cover several disciplines. The program has 60 study places and the study directions are
+topics that cover several disciplines. 
 
-* Computational Science:  Applied Mathematics and Risk Analysis (14)
-* Computational Science:  Astrophysics  (2)
-* Computational Science:  Bioinformatics (5)
-* Computational Science:  Bioscience   (4)
-* Computational Science:  Chemistry (4)
-* Computational Science:  Geoscience  (5)
-* Computational Science:  Imaging and Biomedical computing (8)
-* Computational Science:  Material Science (2)
-* Computational Science:  Mechanics (8)
-* Computational Science:  Physics  (8)
-* Computational Science:  Economy and Finance (not clear yet)
+* Computational Science:  Applied Mathematics and Risk Analysis 
+* Computational Science:  Astrophysics 
+* Computational Science:  Bioinformatics
+* Computational Science:  Bioscience
+* Computational Science:  Chemistry
+* Computational Science:  Geoscience
+* Computational Science:  Imaging and Biomedical computing
+* Computational Science:  Materials Science
+* Computational Science:  Mechanics
+* Computational Science:  Physics
 
 The thesis projects will be tailored to the student's needs, wishes and scientific background. The projects can easily incorporate topics from more than one discipline.
 
@@ -143,41 +173,22 @@ have a minimum course requirement of 120 ECTS (European Credit Transfer System) 
 
 
 
+!split
+===== "New Master of Science program at UiO in Data Science from Fall 2018":"http://www.uio.no/english/studies/programmes/datascience-master/"  =====
+
+Three specializations
+* Statistics and Machine Learning
+* Database Integration and Semantic Web
+* Data Science and Life Science
+
+
+
+
 
 !split
 =====  Best wishes to you all and thanks so much for your heroic efforts this semester =====
 
 FIGURE: [figures/Nebbdyr2.png, width=500 frac=0.6]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
