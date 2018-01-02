@@ -56,8 +56,8 @@ int main(int argc, char *argv[]){
       }
      A(n-2,n-1) = -1.0; A(n-1,n-2) = -1.0;
   // solve Ax = b by iteration with a random starting vector
-     int maxiter = 100; double diff = 1.0; 
-     double epsilon = 1.0e-10;  int iter = 0;
+     int maxiter = 10; double diff = 1.0; 
+     double epsilon = 1.0e-5;  int iter = 0;
       vec SolutionOld  = randu<vec>(n);
       vec SolutionNew  = zeros<vec>(n);
       while (iter <= maxiter || diff > epsilon){
