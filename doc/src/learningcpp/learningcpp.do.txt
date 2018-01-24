@@ -936,7 +936,220 @@ for ( i = 0; i < N; i++)
 delete[] A;
 !ec
 
-You will find Armadillo as a very convenient library. 
+
+Before we discuss a library like Armadillo (see below) and classes (we will discuss how to write our own matrix-vector class) it is instructive to look at two examples. The first program is an example of a single _main_ function where we allocate and deallocate memory for three matrices using what we will call the basic C++ way of allocating and deallocating matrices. 
+"The first program":":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp"
+
+!bc cppcod 
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include "time.h"
+
+using namespace std; // note use of namespace
+int main (int argc, char* argv[])
+{
+  // read in dimension of square matrix
+  int n = atoi(argv[1]);
+  double s = 1.0/sqrt( (double) n);
+  double **A, **B, **C;
+  // Start timing
+  clock_t start, finish;
+  start = clock();
+  // Allocate space for the three matrices
+  A = new double*[n]; B = new double*[n]; C = new double*[n];
+  for (int i = 0; i < n; i++){
+    A[i] = new double[n];
+    B[i] = new double[n];
+    C[i] = new double[n];
+  }
+  // Set up values for matrix A and B and zero matrix C
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      double angle = 2.0*M_PI*i*j/ (( double ) n);
+      A[i][j] = s * ( sin ( angle ) + cos ( angle ) );
+      B[j][i] =  A[i][j];
+    }
+  }
+  // Then perform the matrix-matrix multiplication
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      double sum = 0.0;
+       for (int k = 0; k < n; k++) {
+           sum += B[i][k]*A[k][j];
+       }
+       C[i][j] = sum;
+    }
+  }
+  // Compute now the Frobenius norm
+  double Fsum = 0.0;
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      Fsum += C[i][j]*C[i][j];
+    }
+  }
+  Fsum = sqrt(Fsum);
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout << setiosflags(ios::showpoint | ios::uppercase);
+  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << timeused  << endl;
+  cout << "  Frobenius norm  = " << Fsum << endl;
+  // Free up space
+  for (int i = 0; i < n; i++){
+    delete[] A[i];
+    delete[] B[i];
+    delete[] C[i];
+  }
+  delete[] A;
+  delete[] B;
+  delete[] C;
+  return 0;
+}
+!ec
+computes the Froebenius norm of a matrix. Here we have defined three different matrices which we declare as double pointers as
+!bc cppcod 
+  // Allocate space for the three matrices
+  A = new double*[n]; B = new double*[n]; C = new double*[n];
+  for (int i = 0; i < n; i++){
+    A[i] = new double[n];
+    B[i] = new double[n];
+    C[i] = new double[n];
+  }
+....
+// and finally we free space
+  // Free up space
+  for (int i = 0; i < n; i++){
+    delete[] A[i];
+    delete[] B[i];
+    delete[] C[i];
+  }
+  delete[] A;
+  delete[] B;
+  delete[] C;
+!ec
+
+The matrices are defined as real $n\times n$ matrices. It is easy to imagine that if we are to need many more matrices either in the main function or other user defined functions, we would have to write these operations again and again. This is something which can easily lead to errors. In the "next program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program10.cpp"  we have written four functions that allow us to hide these operations. 
+Tow of the functions allocated and deallocate memory for a matrix declared as a floating point variable, while the other two functions do the same for an integer type matrix. As you can see this leads to some less elegant copy and paste of functions.
+With classes we can generalize these operations to just two functions, as well as being able to add much more functionality. 
+We will come back to this below. Our new program 
+!bc cppcod
+// This program uses its own function for allocating and freeing memory for matrices
+// It can be seen as an intermediate step towards the construction of a more general 
+// matrix vector class
+
+#include <cstdlib>
+#include <iostream>
+#include <cmath>
+#include <iomanip>
+#include "time.h"
+
+//  Declaring functions to allocate and free space for a matrix
+
+double ** CreateMatrix(int m, int n);
+void DestroyMatrix(double ** mat, int m, int n); 
+
+int ** ICreateMatrix(int m, int n);
+void IDestroyMatrix(int ** mat, int m, int n);
+
+
+using namespace std; // note use of namespace
+int main (int argc, char* argv[])
+{
+  // read in dimension of square matrix
+  int n = atoi(argv[1]);
+  double s = 1.0/sqrt( (double) n);
+  double **A, **B, **C;
+  // Start timing
+  clock_t start, finish;
+  start = clock();
+  // Allocate space for the three matrices
+  A = CreateMatrix(n, n);
+  B = CreateMatrix(n, n);
+  C = CreateMatrix(n, n);
+  // Set up values for matrix A and B and zero matrix C
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      double angle = 2.0*M_PI*i*j/ (( double ) n);
+      A[i][j] = s * ( sin ( angle ) + cos ( angle ) );
+      B[j][i] =  A[i][j];
+    }
+  }
+  // Then perform the matrix-matrix multiplication
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      double sum = 0.0;
+       for (int k = 0; k < n; k++) {
+           sum += B[i][k]*A[k][j];
+       }
+       C[i][j] = sum;
+    }
+  }
+  // Compute now the Frobenius norm
+  double Fsum = 0.0;
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      Fsum += C[i][j]*C[i][j];
+    }
+  }
+  Fsum = sqrt(Fsum);
+  finish = clock();
+  double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout << setiosflags(ios::showpoint | ios::uppercase);
+  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << timeused  << endl;
+  cout << "  Frobenius norm  = " << Fsum << endl;
+  // Free up space
+  DestroyMatrix(A, n, n);   DestroyMatrix(B, n, n);   DestroyMatrix(C, n, n);
+  return 0;
+}
+
+
+//  Allocating space for a double type matrix
+double ** CreateMatrix(int m, int n){
+  double ** mat;
+  mat = new double*[m];
+  for(int i=0;i<m;i++){
+    mat[i] = new double[n];
+    for(int j=0;j<m;j++)
+      mat[i][j] = 0.0;
+  }
+  return mat;
+}
+
+//  Allocating space for an integer type  matrix
+int ** ICreateMatrix(int m, int n){
+  int ** mat;
+  mat = new int*[m];
+  for(int i=0;i<m;i++){
+    mat[i] = new int[n];
+    for(int j=0;j<m;j++)
+      mat[i][j] = 0;
+  }
+  return mat;
+}
+
+// Freeing space for a double type matrix 
+void DestroyMatrix(double ** mat, int m, int n){
+  for(int i=0;i<m;i++)
+    delete[] mat[i];
+  delete[] mat;
+}
+
+// Freeing space for an integer type matrix 
+void IDestroyMatrix(int ** mat, int m, int n){
+  for(int i=0;i<m;i++)
+    delete[] mat[i];
+  delete[] mat;
+}
+!ec 
+has now the desired functionality. A simple call like 
+!bc cppcod
+  A = CreateMatrix(n, n);
+!ec
+allocates now space for matrix $\hat{A}$ of dimensionality $n\ times n$. This increases the readibility of the program and makes easier to declare and delete matrices.  
+
+Before we venture into the world of object orientation, you 
+you will find Armadillo as a very convenient library. 
 
   * Armadillo is a C++ linear algebra library (matrix maths) aiming towards a good balance between speed and ease of use. The syntax is deliberately similar to Matlab.
   * Integer, floating point and complex numbers are supported, as well as a subset of trigonometric and statistics functions. Various matrix decompositions are provided through optional integration with LAPACK, or one of its high performance drop-in replacements (such as the multi-threaded MKL or ACML libraries).
