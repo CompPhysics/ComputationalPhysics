@@ -10,15 +10,15 @@ The programming language C++ is a so-called "compiled language":"https://en.wiki
 
 Assume we already have a program file, say _myprogram.cpp_. Note that C++ files have the extension _.cpp_.
 
-Here we discuss first how to obtain an executable without using IDEs like "QT":"https://www.qt.io/" creator or other types of integrated development environments ("Visual Studio":"https://www.visualstudio.com/" or other, see "list":"https://sourceforge.net/directory/development/ide/" etc).
+Here we discuss first how to obtain an executable without using IDEs like "QT":"https://www.qt.io/" creator or other types of integrated development environments ("Visual Studio":"https://www.visualstudio.com/" or other, see "list here":"https://sourceforge.net/directory/development/ide/" etc).
 
 
-It means that you need to compile the program (translate the human-like instructions into machine code) and link the resulting compiled file (a so-called _object_ file) with the various libraries in order to obtain an executable file. 
+It means that you need to compile the program (translate the human-like instructions into machine code) and link the resulting compiled file (a so-called _object_ file) with various libraries in order to obtain an executable file. 
 
 In order to obtain an executable file for a C++ program, the following
 instructions under Unix/Linux can be used ("similar instructions apply to windows-like environments using DOS":"https://msdn.microsoft.com/en-us/library/ms235639.aspx").
 
-First you need to open a terminal on your Unix/Linux PC/laptop. You need also to have a C++ compiler installed. To check on Unix/Linux whether a c++ is installed or not type simply (in the terminal window)
+First you need to open a terminal on your Unix/Linux PC/laptop. You need also to have a C++ compiler installed. To check on Unix/Linux whether a C++ is installed or not simply type (in the terminal window)
 !bc sys
 which c++
 !ec
@@ -937,9 +937,13 @@ delete[] A;
 !ec
 
 
-Before we discuss a library like Armadillo (see below) and classes (we will discuss how to write our own matrix-vector class) it is instructive to look at two examples. The first program is an example of a single _main_ function where we allocate and deallocate memory for three matrices using what we will call the basic C++ way of allocating and deallocating matrices. 
-"The first program":":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp"
-
+Before we discuss a library like Armadillo (see below) and classes (we will discuss how to write our own matrix-vector class) it is instructive to look at the following two examples. The first program is an example of a single _main_ function where we allocate and deallocate memory for three matrices using what we will call the basic C++ way of allocating and deallocating matrices. 
+"The first program":":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp" is listed here. Both programs  compute the Froebenius norm of a matrix given by
+!bt
+\[
+\vert\vert A \vert\vert_F = \sqrt{\sum{ij} a_{ij}^2}.
+\] 
+!et
 !bc cppcod 
 #include <cstdlib>
 #include <iostream>
@@ -1007,7 +1011,7 @@ int main (int argc, char* argv[])
   return 0;
 }
 !ec
-computes the Froebenius norm of a matrix. Here we have defined three different matrices which we declare as double pointers as
+Here we have defined three different matrices which we have declared as double pointers 
 !bc cppcod 
   // Allocate space for the three matrices
   A = new double*[n]; B = new double*[n]; C = new double*[n];
@@ -1030,7 +1034,7 @@ computes the Froebenius norm of a matrix. Here we have defined three different m
 !ec
 
 The matrices are defined as real $n\times n$ matrices. It is easy to imagine that if we are to need many more matrices either in the main function or other user defined functions, we would have to write these operations again and again. This is something which can easily lead to errors. In the "next program":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program10.cpp"  we have written four functions that allow us to hide these operations. 
-Tow of the functions allocated and deallocate memory for a matrix declared as a floating point variable, while the other two functions do the same for an integer type matrix. As you can see this leads to some less elegant copy and paste of functions.
+Two of the functions allocate and deallocate memory for a matrix declared as a floating point variable, while the other two functions do the same for an integer type matrix. The allocation functions for the doubles and integers are practically identical except for the the matrices being either doubles or integer. This is not a very elegant way of programming. 
 With classes we can generalize these operations to just two functions, as well as being able to add much more functionality. 
 We will come back to this below. Our new program 
 !bc cppcod
@@ -1146,10 +1150,35 @@ has now the desired functionality. A simple call like
 !bc cppcod
   A = CreateMatrix(n, n);
 !ec
-allocates now space for matrix $\hat{A}$ of dimensionality $n\ times n$. This increases the readibility of the program and makes easier to declare and delete matrices.  
+allocates now space for matrix $\hat{A}$ of dimensionality $n\ times n$. This increases the readibility of the program and makes easier to declare and delete matrices.  In order to allocated memory for a floating point variable matrix we have defined the function 
+!bc cppcod
+//  Allocating space for a double type matrix
+double ** CreateMatrix(int m, int n){
+  double ** mat;
+  mat = new double*[m];
+  for(int i=0;i<m;i++){
+    mat[i] = new double[n];
+    for(int j=0;j<m;j++)
+      mat[i][j] = 0.0;
+  }
+  return mat;
+}
+!ec
+Note that here we initialize the matrix elements to zero. We always recommend to initialize variables in order to avoid random initialization values. Similarly, we free memory by
+!bc cppcod
+// Freeing space for a double type matrix 
+void DestroyMatrix(double ** mat, int m, int n){
+  for(int i=0;i<m;i++)
+    delete[] mat[i];
+  delete[] mat;
+}
+!ec
 
-Before we venture into the world of object orientation, you 
-you will find Armadillo as a very convenient library. 
+
+
+
+Before we venture into the world of object orientation, we would like to introduce to you the popular  linear algebra library
+"Armadillo":"http://arma.sourceforge.net/".
 
   * Armadillo is a C++ linear algebra library (matrix maths) aiming towards a good balance between speed and ease of use. The syntax is deliberately similar to Matlab.
   * Integer, floating point and complex numbers are supported, as well as a subset of trigonometric and statistics functions. Various matrix decompositions are provided through optional integration with LAPACK, or one of its high performance drop-in replacements (such as the multi-threaded MKL or ACML libraries).
@@ -1182,7 +1211,7 @@ For people using Ubuntu, Debian, Linux Mint, simply go to the synaptic package m
 armadillo from there.
 You may have to install Lapack as well.
 For Mac and Windows users, follow the instructions from the webpage
-URL: "http://arma.sourceforge.net".
+URL: "http://arma.sourceforge.net".  For MacOSX users we strongly recommend using "Brew":"https://brew.sh/"  to install additional software.
 To compile, use for example (linux/ubuntu)
 
 !bc cppcod
