@@ -11,9 +11,9 @@ Automatically generated HTML file from DocOnce source
 <title>Computational Physics:  Teach yourself C++</title>
 
 <!-- Bootstrap style: bootstrap -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
 
 <style type="text/css">
@@ -49,11 +49,13 @@ Automatically generated HTML file from DocOnce source
               ('Technical Matter in C/C++: Pointers', 2, None, '___sec3'),
               ('Using _strings_ instead of characters', 2, None, '___sec4'),
               ('Matrices in C++', 2, None, '___sec5'),
-              ('"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"',
+              ('"How to use the Library '
+               'functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"',
                2,
                None,
                '___sec6'),
-              ('"Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"',
+              ('"Using Armadillo to perform an LU '
+               'decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"',
                2,
                None,
                '___sec7'),
@@ -63,7 +65,8 @@ Automatically generated HTML file from DocOnce source
                None,
                '___sec9'),
               ('What is vectorization?', 2, None, '___sec10'),
-              ('"A simple test case with and without vectorization":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp"',
+              ('"A simple test case with and without '
+               'vectorization":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program7.cpp"',
                2,
                None,
                '___sec11'),
@@ -77,22 +80,22 @@ Automatically generated HTML file from DocOnce source
                2,
                None,
                '___sec18'),
-              ('"The specialized Thomas algorithm (Project 1)":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Projects/2016/Project1/Examples/TridiagonalTiming.cpp"',
+              ('"The specialized Thomas algorithm (Project '
+               '1)":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Projects/2016/Project1/Examples/TridiagonalTiming.cpp"',
                2,
                None,
                '___sec19'),
-              ('"Example: Transpose of a matrix":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program8.cpp"',
+              ('"Example: Transpose of a '
+               'matrix":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program8.cpp"',
                2,
                None,
                '___sec20'),
-              ('"Matrix-matrix multiplication":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp"',
+              ('"Matrix-matrix '
+               'multiplication":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp"',
                2,
                None,
                '___sec21'),
-              ('How do we define speedup? Simplest form',
-               2,
-               None,
-               '___sec22'),
+              ('How do we define speedup? Simplest form', 2, None, '___sec22'),
               ('Object orientation', 2, None, '___sec23'),
               ('Overloading operators', 2, None, '___sec24'),
               ('Templates', 2, None, '___sec25'),
@@ -119,8 +122,8 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -205,7 +208,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Sep 28, 2017</h4></center> <!-- date -->
+<center><h4>Jan 24, 2018</h4></center> <!-- date -->
 <br>
 <p>
 </div> <!-- end jumbotron -->
@@ -1356,7 +1359,231 @@ Always free space when you don't need an array anymore.
 <span style="color: #008000; font-weight: bold">delete</span>[] A;
 </pre></div>
 <p>
-You will find Armadillo as a very convenient library. 
+Before we discuss a library like Armadillo (see below) and classes (we will discuss how to write our own matrix-vector class) it is instructive to look at two examples. The first program is an example of a single <b>main</b> function where we allocate and deallocate memory for three matrices using what we will call the basic C++ way of allocating and deallocating matrices. 
+"The first program<a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp" target="_self">:</a>
+
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdlib&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;time.h&quot;</span><span style="color: #BC7A00"></span>
+
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std; <span style="color: #408080; font-style: italic">// note use of namespace</span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
+{
+  <span style="color: #408080; font-style: italic">// read in dimension of square matrix</span>
+  <span style="color: #B00040">int</span> n <span style="color: #666666">=</span> atoi(argv[<span style="color: #666666">1</span>]);
+  <span style="color: #B00040">double</span> s <span style="color: #666666">=</span> <span style="color: #666666">1.0/</span>sqrt( (<span style="color: #B00040">double</span>) n);
+  <span style="color: #B00040">double</span> <span style="color: #666666">**</span>A, <span style="color: #666666">**</span>B, <span style="color: #666666">**</span>C;
+  <span style="color: #408080; font-style: italic">// Start timing</span>
+  <span style="color: #B00040">clock_t</span> start, finish;
+  start <span style="color: #666666">=</span> clock();
+  <span style="color: #408080; font-style: italic">// Allocate space for the three matrices</span>
+  A <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span><span style="color: #666666">*</span>[n]; B <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span><span style="color: #666666">*</span>[n]; C <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span><span style="color: #666666">*</span>[n];
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    A[i] <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[n];
+    B[i] <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[n];
+    C[i] <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[n];
+  }
+  <span style="color: #408080; font-style: italic">// Set up values for matrix A and B and zero matrix C</span>
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+      <span style="color: #B00040">double</span> angle <span style="color: #666666">=</span> <span style="color: #666666">2.0*</span>M_PI<span style="color: #666666">*</span>i<span style="color: #666666">*</span>j<span style="color: #666666">/</span> (( <span style="color: #B00040">double</span> ) n);
+      A[i][j] <span style="color: #666666">=</span> s <span style="color: #666666">*</span> ( sin ( angle ) <span style="color: #666666">+</span> cos ( angle ) );
+      B[j][i] <span style="color: #666666">=</span>  A[i][j];
+    }
+  }
+  <span style="color: #408080; font-style: italic">// Then perform the matrix-matrix multiplication</span>
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+      <span style="color: #B00040">double</span> sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+       <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> k <span style="color: #666666">=</span> <span style="color: #666666">0</span>; k <span style="color: #666666">&lt;</span> n; k<span style="color: #666666">++</span>) {
+           sum <span style="color: #666666">+=</span> B[i][k]<span style="color: #666666">*</span>A[k][j];
+       }
+       C[i][j] <span style="color: #666666">=</span> sum;
+    }
+  }
+  <span style="color: #408080; font-style: italic">// Compute now the Frobenius norm</span>
+  <span style="color: #B00040">double</span> Fsum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+      Fsum <span style="color: #666666">+=</span> C[i][j]<span style="color: #666666">*</span>C[i][j];
+    }
+  }
+  Fsum <span style="color: #666666">=</span> sqrt(Fsum);
+  finish <span style="color: #666666">=</span> clock();
+  <span style="color: #B00040">double</span> timeused <span style="color: #666666">=</span> (<span style="color: #B00040">double</span>) (finish <span style="color: #666666">-</span> start)<span style="color: #666666">/</span>(CLOCKS_PER_SEC );
+  cout <span style="color: #666666">&lt;&lt;</span> setiosflags(ios<span style="color: #666666">::</span>showpoint <span style="color: #666666">|</span> ios<span style="color: #666666">::</span>uppercase);
+  cout <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">10</span>) <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">20</span>) <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Time used  for matrix-matrix multiplication=&quot;</span> <span style="color: #666666">&lt;&lt;</span> timeused  <span style="color: #666666">&lt;&lt;</span> endl;
+  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;  Frobenius norm  = &quot;</span> <span style="color: #666666">&lt;&lt;</span> Fsum <span style="color: #666666">&lt;&lt;</span> endl;
+  <span style="color: #408080; font-style: italic">// Free up space</span>
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    <span style="color: #008000; font-weight: bold">delete</span>[] A[i];
+    <span style="color: #008000; font-weight: bold">delete</span>[] B[i];
+    <span style="color: #008000; font-weight: bold">delete</span>[] C[i];
+  }
+  <span style="color: #008000; font-weight: bold">delete</span>[] A;
+  <span style="color: #008000; font-weight: bold">delete</span>[] B;
+  <span style="color: #008000; font-weight: bold">delete</span>[] C;
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+</pre></div>
+<p>
+computes the Froebenius norm of a matrix. Here we have defined three different matrices which we declare as double pointers as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #408080; font-style: italic">// Allocate space for the three matrices</span>
+  A <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span><span style="color: #666666">*</span>[n]; B <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span><span style="color: #666666">*</span>[n]; C <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span><span style="color: #666666">*</span>[n];
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    A[i] <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[n];
+    B[i] <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[n];
+    C[i] <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[n];
+  }
+....
+<span style="color: #408080; font-style: italic">// and finally we free space</span>
+  <span style="color: #408080; font-style: italic">// Free up space</span>
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    <span style="color: #008000; font-weight: bold">delete</span>[] A[i];
+    <span style="color: #008000; font-weight: bold">delete</span>[] B[i];
+    <span style="color: #008000; font-weight: bold">delete</span>[] C[i];
+  }
+  <span style="color: #008000; font-weight: bold">delete</span>[] A;
+  <span style="color: #008000; font-weight: bold">delete</span>[] B;
+  <span style="color: #008000; font-weight: bold">delete</span>[] C;
+</pre></div>
+<p>
+The matrices are defined as real \( n\times n \) matrices. It is easy to imagine that if we are to need many more matrices either in the main function or other user defined functions, we would have to write these operations again and again. This is something which can easily lead to errors. In the <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program10.cpp" target="_self">next program</a>  we have written four functions that allow us to hide these operations. 
+Tow of the functions allocated and deallocate memory for a matrix declared as a floating point variable, while the other two functions do the same for an integer type matrix. As you can see this leads to some less elegant copy and paste of functions.
+With classes we can generalize these operations to just two functions, as well as being able to add much more functionality. 
+We will come back to this below. Our new program 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// This program uses its own function for allocating and freeing memory for matrices</span>
+<span style="color: #408080; font-style: italic">// It can be seen as an intermediate step towards the construction of a more general </span>
+<span style="color: #408080; font-style: italic">// matrix vector class</span>
+
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cstdlib&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;cmath&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;time.h&quot;</span><span style="color: #BC7A00"></span>
+
+<span style="color: #408080; font-style: italic">//  Declaring functions to allocate and free space for a matrix</span>
+
+<span style="color: #B00040">double</span> <span style="color: #666666">**</span> <span style="color: #0000FF">CreateMatrix</span>(<span style="color: #B00040">int</span> m, <span style="color: #B00040">int</span> n);
+<span style="color: #B00040">void</span> <span style="color: #0000FF">DestroyMatrix</span>(<span style="color: #B00040">double</span> <span style="color: #666666">**</span> mat, <span style="color: #B00040">int</span> m, <span style="color: #B00040">int</span> n); 
+
+<span style="color: #B00040">int</span> <span style="color: #666666">**</span> <span style="color: #0000FF">ICreateMatrix</span>(<span style="color: #B00040">int</span> m, <span style="color: #B00040">int</span> n);
+<span style="color: #B00040">void</span> <span style="color: #0000FF">IDestroyMatrix</span>(<span style="color: #B00040">int</span> <span style="color: #666666">**</span> mat, <span style="color: #B00040">int</span> m, <span style="color: #B00040">int</span> n);
+
+
+<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span> std; <span style="color: #408080; font-style: italic">// note use of namespace</span>
+<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span> (<span style="color: #B00040">int</span> argc, <span style="color: #B00040">char</span><span style="color: #666666">*</span> argv[])
+{
+  <span style="color: #408080; font-style: italic">// read in dimension of square matrix</span>
+  <span style="color: #B00040">int</span> n <span style="color: #666666">=</span> atoi(argv[<span style="color: #666666">1</span>]);
+  <span style="color: #B00040">double</span> s <span style="color: #666666">=</span> <span style="color: #666666">1.0/</span>sqrt( (<span style="color: #B00040">double</span>) n);
+  <span style="color: #B00040">double</span> <span style="color: #666666">**</span>A, <span style="color: #666666">**</span>B, <span style="color: #666666">**</span>C;
+  <span style="color: #408080; font-style: italic">// Start timing</span>
+  <span style="color: #B00040">clock_t</span> start, finish;
+  start <span style="color: #666666">=</span> clock();
+  <span style="color: #408080; font-style: italic">// Allocate space for the three matrices</span>
+  A <span style="color: #666666">=</span> CreateMatrix(n, n);
+  B <span style="color: #666666">=</span> CreateMatrix(n, n);
+  C <span style="color: #666666">=</span> CreateMatrix(n, n);
+  <span style="color: #408080; font-style: italic">// Set up values for matrix A and B and zero matrix C</span>
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+      <span style="color: #B00040">double</span> angle <span style="color: #666666">=</span> <span style="color: #666666">2.0*</span>M_PI<span style="color: #666666">*</span>i<span style="color: #666666">*</span>j<span style="color: #666666">/</span> (( <span style="color: #B00040">double</span> ) n);
+      A[i][j] <span style="color: #666666">=</span> s <span style="color: #666666">*</span> ( sin ( angle ) <span style="color: #666666">+</span> cos ( angle ) );
+      B[j][i] <span style="color: #666666">=</span>  A[i][j];
+    }
+  }
+  <span style="color: #408080; font-style: italic">// Then perform the matrix-matrix multiplication</span>
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+      <span style="color: #B00040">double</span> sum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+       <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> k <span style="color: #666666">=</span> <span style="color: #666666">0</span>; k <span style="color: #666666">&lt;</span> n; k<span style="color: #666666">++</span>) {
+           sum <span style="color: #666666">+=</span> B[i][k]<span style="color: #666666">*</span>A[k][j];
+       }
+       C[i][j] <span style="color: #666666">=</span> sum;
+    }
+  }
+  <span style="color: #408080; font-style: italic">// Compute now the Frobenius norm</span>
+  <span style="color: #B00040">double</span> Fsum <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>){
+    <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
+      Fsum <span style="color: #666666">+=</span> C[i][j]<span style="color: #666666">*</span>C[i][j];
+    }
+  }
+  Fsum <span style="color: #666666">=</span> sqrt(Fsum);
+  finish <span style="color: #666666">=</span> clock();
+  <span style="color: #B00040">double</span> timeused <span style="color: #666666">=</span> (<span style="color: #B00040">double</span>) (finish <span style="color: #666666">-</span> start)<span style="color: #666666">/</span>(CLOCKS_PER_SEC );
+  cout <span style="color: #666666">&lt;&lt;</span> setiosflags(ios<span style="color: #666666">::</span>showpoint <span style="color: #666666">|</span> ios<span style="color: #666666">::</span>uppercase);
+  cout <span style="color: #666666">&lt;&lt;</span> setprecision(<span style="color: #666666">10</span>) <span style="color: #666666">&lt;&lt;</span> setw(<span style="color: #666666">20</span>) <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Time used  for matrix-matrix multiplication=&quot;</span> <span style="color: #666666">&lt;&lt;</span> timeused  <span style="color: #666666">&lt;&lt;</span> endl;
+  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;  Frobenius norm  = &quot;</span> <span style="color: #666666">&lt;&lt;</span> Fsum <span style="color: #666666">&lt;&lt;</span> endl;
+  <span style="color: #408080; font-style: italic">// Free up space</span>
+  DestroyMatrix(A, n, n);   DestroyMatrix(B, n, n);   DestroyMatrix(C, n, n);
+  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>;
+}
+
+
+<span style="color: #408080; font-style: italic">//  Allocating space for a double type matrix</span>
+<span style="color: #B00040">double</span> <span style="color: #666666">**</span> <span style="color: #0000FF">CreateMatrix</span>(<span style="color: #B00040">int</span> m, <span style="color: #B00040">int</span> n){
+  <span style="color: #B00040">double</span> <span style="color: #666666">**</span> mat;
+  mat <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span><span style="color: #666666">*</span>[m];
+  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>;i<span style="color: #666666">&lt;</span>m;i<span style="color: #666666">++</span>){
+    mat[i] <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[n];
+    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> j<span style="color: #666666">=0</span>;j<span style="color: #666666">&lt;</span>m;j<span style="color: #666666">++</span>)
+      mat[i][j] <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+  }
+  <span style="color: #008000; font-weight: bold">return</span> mat;
+}
+
+<span style="color: #408080; font-style: italic">//  Allocating space for an integer type  matrix</span>
+<span style="color: #B00040">int</span> <span style="color: #666666">**</span> <span style="color: #0000FF">ICreateMatrix</span>(<span style="color: #B00040">int</span> m, <span style="color: #B00040">int</span> n){
+  <span style="color: #B00040">int</span> <span style="color: #666666">**</span> mat;
+  mat <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">int</span><span style="color: #666666">*</span>[m];
+  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>;i<span style="color: #666666">&lt;</span>m;i<span style="color: #666666">++</span>){
+    mat[i] <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">int</span>[n];
+    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> j<span style="color: #666666">=0</span>;j<span style="color: #666666">&lt;</span>m;j<span style="color: #666666">++</span>)
+      mat[i][j] <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
+  }
+  <span style="color: #008000; font-weight: bold">return</span> mat;
+}
+
+<span style="color: #408080; font-style: italic">// Freeing space for a double type matrix </span>
+<span style="color: #B00040">void</span> <span style="color: #0000FF">DestroyMatrix</span>(<span style="color: #B00040">double</span> <span style="color: #666666">**</span> mat, <span style="color: #B00040">int</span> m, <span style="color: #B00040">int</span> n){
+  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>;i<span style="color: #666666">&lt;</span>m;i<span style="color: #666666">++</span>)
+    <span style="color: #008000; font-weight: bold">delete</span>[] mat[i];
+  <span style="color: #008000; font-weight: bold">delete</span>[] mat;
+}
+
+<span style="color: #408080; font-style: italic">// Freeing space for an integer type matrix </span>
+<span style="color: #B00040">void</span> <span style="color: #0000FF">IDestroyMatrix</span>(<span style="color: #B00040">int</span> <span style="color: #666666">**</span> mat, <span style="color: #B00040">int</span> m, <span style="color: #B00040">int</span> n){
+  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>;i<span style="color: #666666">&lt;</span>m;i<span style="color: #666666">++</span>)
+    <span style="color: #008000; font-weight: bold">delete</span>[] mat[i];
+  <span style="color: #008000; font-weight: bold">delete</span>[] mat;
+}
+</pre></div>
+<p>
+has now the desired functionality. A simple call like 
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  A <span style="color: #666666">=</span> CreateMatrix(n, n);
+</pre></div>
+<p>
+allocates now space for matrix \( \hat{A} \) of dimensionality \( n\ times n \). This increases the readibility of the program and makes easier to declare and delete matrices.
+
+<p>
+Before we venture into the world of object orientation, you 
+you will find Armadillo as a very convenient library. 
 
 <ul>
   <li> Armadillo is a C++ linear algebra library (matrix maths) aiming towards a good balance between speed and ease of use. The syntax is deliberately similar to Matlab.</li>
@@ -4163,8 +4390,8 @@ Vector <span style="color: #008000; font-weight: bold">operator</span><span styl
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>
@@ -4174,7 +4401,7 @@ Vector <span style="color: #008000; font-weight: bold">operator</span><span styl
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2018, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 
