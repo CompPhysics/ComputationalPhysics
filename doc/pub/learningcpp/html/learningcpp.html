@@ -160,17 +160,17 @@ The programming language C++ is a so-called <a href="https://en.wikipedia.org/wi
 Assume we already have a program file, say <b>myprogram.cpp</b>. Note that C++ files have the extension <b>.cpp</b>.
 
 <p>
-Here we discuss first how to obtain an executable without using IDEs like <a href="https://www.qt.io/" target="_blank">QT</a> creator or other types of integrated development environments (<a href="https://www.visualstudio.com/" target="_blank">Visual Studio</a> or other, see <a href="https://sourceforge.net/directory/development/ide/" target="_blank">list</a> etc).
+Here we discuss first how to obtain an executable without using IDEs like <a href="https://www.qt.io/" target="_blank">QT</a> creator or other types of integrated development environments (<a href="https://www.visualstudio.com/" target="_blank">Visual Studio</a> or other, see <a href="https://sourceforge.net/directory/development/ide/" target="_blank">list here</a> etc).
 
 <p>
-It means that you need to compile the program (translate the human-like instructions into machine code) and link the resulting compiled file (a so-called <b>object</b> file) with the various libraries in order to obtain an executable file.
+It means that you need to compile the program (translate the human-like instructions into machine code) and link the resulting compiled file (a so-called <b>object</b> file) with various libraries in order to obtain an executable file.
 
 <p>
 In order to obtain an executable file for a C++ program, the following
 instructions under Unix/Linux can be used (<a href="https://msdn.microsoft.com/en-us/library/ms235639.aspx" target="_blank">similar instructions apply to windows-like environments using DOS</a>).
 
 <p>
-First you need to open a terminal on your Unix/Linux PC/laptop. You need also to have a C++ compiler installed. To check on Unix/Linux whether a c++ is installed or not type simply (in the terminal window)
+First you need to open a terminal on your Unix/Linux PC/laptop. You need also to have a C++ compiler installed. To check on Unix/Linux whether a C++ is installed or not simply type (in the terminal window)
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
@@ -1287,8 +1287,11 @@ Always free space when you don't need an array anymore.
 <span style="color: #008000; font-weight: bold">delete</span>[] A;
 </pre></div>
 <p>
-Before we discuss a library like Armadillo (see below) and classes (we will discuss how to write our own matrix-vector class) it is instructive to look at two examples. The first program is an example of a single <b>main</b> function where we allocate and deallocate memory for three matrices using what we will call the basic C++ way of allocating and deallocating matrices. 
-"The first program<a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp" target="_blank">:</a>
+Before we discuss a library like Armadillo (see below) and classes (we will discuss how to write our own matrix-vector class) it is instructive to look at the following two examples. The first program is an example of a single <b>main</b> function where we allocate and deallocate memory for three matrices using what we will call the basic C++ way of allocating and deallocating matrices. 
+"The first program<a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program9.cpp" target="_blank">:</a> is listed here. Both programs  compute the Froebenius norm of a matrix given by
+$$
+\vert\vert A \vert\vert_F = \sqrt{\sum{ij} a_{ij}^2}.
+$$
 
 <p>
 
@@ -1360,7 +1363,7 @@ Before we discuss a library like Armadillo (see below) and classes (we will disc
 }
 </pre></div>
 <p>
-computes the Froebenius norm of a matrix. Here we have defined three different matrices which we declare as double pointers as
+Here we have defined three different matrices which we have declared as double pointers 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
@@ -1385,7 +1388,7 @@ computes the Froebenius norm of a matrix. Here we have defined three different m
 </pre></div>
 <p>
 The matrices are defined as real \( n\times n \) matrices. It is easy to imagine that if we are to need many more matrices either in the main function or other user defined functions, we would have to write these operations again and again. This is something which can easily lead to errors. In the <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/Classes/cpp/program10.cpp" target="_blank">next program</a>  we have written four functions that allow us to hide these operations. 
-Tow of the functions allocated and deallocate memory for a matrix declared as a floating point variable, while the other two functions do the same for an integer type matrix. As you can see this leads to some less elegant copy and paste of functions.
+Two of the functions allocate and deallocate memory for a matrix declared as a floating point variable, while the other two functions do the same for an integer type matrix. The allocation functions for the doubles and integers are practically identical except for the the matrices being either doubles or integer. This is not a very elegant way of programming. 
 With classes we can generalize these operations to just two functions, as well as being able to add much more functionality. 
 We will come back to this below. Our new program 
 <p>
@@ -1507,11 +1510,37 @@ has now the desired functionality. A simple call like
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  A <span style="color: #666666">=</span> CreateMatrix(n, n);
 </pre></div>
 <p>
-allocates now space for matrix \( \hat{A} \) of dimensionality \( n\ times n \). This increases the readibility of the program and makes easier to declare and delete matrices.
-
+allocates now space for matrix \( \hat{A} \) of dimensionality \( n\ times n \). This increases the readibility of the program and makes easier to declare and delete matrices.  In order to allocated memory for a floating point variable matrix we have defined the function 
 <p>
-Before we venture into the world of object orientation, you 
-you will find Armadillo as a very convenient library. 
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">//  Allocating space for a double type matrix</span>
+<span style="color: #B00040">double</span> <span style="color: #666666">**</span> <span style="color: #0000FF">CreateMatrix</span>(<span style="color: #B00040">int</span> m, <span style="color: #B00040">int</span> n){
+  <span style="color: #B00040">double</span> <span style="color: #666666">**</span> mat;
+  mat <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span><span style="color: #666666">*</span>[m];
+  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>;i<span style="color: #666666">&lt;</span>m;i<span style="color: #666666">++</span>){
+    mat[i] <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">double</span>[n];
+    <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> j<span style="color: #666666">=0</span>;j<span style="color: #666666">&lt;</span>m;j<span style="color: #666666">++</span>)
+      mat[i][j] <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
+  }
+  <span style="color: #008000; font-weight: bold">return</span> mat;
+}
+</pre></div>
+<p>
+Note that here we initialize the matrix elements to zero. We always recommend to initialize variables in order to avoid random initialization values. Similarly, we free memory by
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">// Freeing space for a double type matrix </span>
+<span style="color: #B00040">void</span> <span style="color: #0000FF">DestroyMatrix</span>(<span style="color: #B00040">double</span> <span style="color: #666666">**</span> mat, <span style="color: #B00040">int</span> m, <span style="color: #B00040">int</span> n){
+  <span style="color: #008000; font-weight: bold">for</span>(<span style="color: #B00040">int</span> i<span style="color: #666666">=0</span>;i<span style="color: #666666">&lt;</span>m;i<span style="color: #666666">++</span>)
+    <span style="color: #008000; font-weight: bold">delete</span>[] mat[i];
+  <span style="color: #008000; font-weight: bold">delete</span>[] mat;
+}
+</pre></div>
+<p>
+Before we venture into the world of object orientation, we would like to introduce to you the popular  linear algebra library
+<a href="http://arma.sourceforge.net/" target="_blank">Armadillo</a>.
 
 <ul>
   <li> Armadillo is a C++ linear algebra library (matrix maths) aiming towards a good balance between speed and ease of use. The syntax is deliberately similar to Matlab.</li>
@@ -1546,7 +1575,7 @@ For people using Ubuntu, Debian, Linux Mint, simply go to the synaptic package m
 armadillo from there.
 You may have to install Lapack as well.
 For Mac and Windows users, follow the instructions from the webpage
-<a href="http://arma.sourceforge.net" target="_blank"><tt>http://arma.sourceforge.net</tt></a>.
+<a href="http://arma.sourceforge.net" target="_blank"><tt>http://arma.sourceforge.net</tt></a>.  For MacOSX users we strongly recommend using <a href="https://brew.sh/" target="_blank">Brew</a>  to install additional software.
 To compile, use for example (linux/ubuntu)
 
 <p>
