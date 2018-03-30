@@ -117,8 +117,8 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -148,12 +148,12 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>Aug 23, 2017</h4></center> <!-- date -->
+<center><h4>Mar 30, 2018</h4></center> <!-- date -->
 <br>
 <p>
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2018, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 </section>
 
@@ -596,7 +596,7 @@ An important criteria is that the loop counter \( n \) is known at the entry of 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
     a[j] = cos(j*<span style="color: #B452CD">1.0</span>);
   }
 </pre></div>
@@ -615,7 +615,7 @@ The following is an example of a non-vectorizable loop
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
     a[j] = cos(j*<span style="color: #B452CD">1.0</span>);
     <span style="color: #8B008B; font-weight: bold">if</span> (a[j] &lt; <span style="color: #B452CD">0</span> ) <span style="color: #8B008B; font-weight: bold">break</span>;
   }
@@ -633,8 +633,8 @@ The following code can however be vectorized since the <b>if</b> statement is im
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
-    <span style="color: #a7a7a7; font-weight: bold">double</span> x  = cos(j*<span style="color: #B452CD">1.0</span>);
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+    <span style="color: #00688B; font-weight: bold">double</span> x  = cos(j*<span style="color: #B452CD">1.0</span>);
     <span style="color: #8B008B; font-weight: bold">if</span> (x &gt; <span style="color: #B452CD">0</span> ) {
        a[j] =  x*sin(j*<span style="color: #B452CD">2.0</span>); 
     }
@@ -656,8 +656,8 @@ Only the innermost loop of the following example is vectorized
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
-      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
            a[i][j] += b[i][j];
       }  
   }
@@ -677,7 +677,7 @@ The following example is fully vectorizable
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
       a[i] = log10(i)*cos(i);
   }
 </pre></div>
@@ -695,8 +695,8 @@ read-after-write statement with an explicit flow dependency cannot be vectorized
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">double</span> b = <span style="color: #B452CD">15.</span>;
-  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n; i++) {
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #00688B; font-weight: bold">double</span> b = <span style="color: #B452CD">15.</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n; i++) {
       a[i] = a[i-<span style="color: #B452CD">1</span>] + b;
   }
 </pre></div>
@@ -724,8 +724,8 @@ write-after-read statement can be vectorized. The following code
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #a7a7a7; font-weight: bold">double</span> b = <span style="color: #B452CD">15.</span>;
-  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n; i++) {
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #00688B; font-weight: bold">double</span> b = <span style="color: #B452CD">15.</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n; i++) {
       a[i-<span style="color: #B452CD">1</span>] = a[i] + b;
   }
 </pre></div>
@@ -746,8 +746,8 @@ When dealing with arrays, you should also avoid memory stride, since this slows 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
-      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
            a[i][j] += b[i][j];
       }  
   }
@@ -1115,13 +1115,13 @@ $$
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">// Forward substitution    </span>
 <span style="color: #228B22">// Note that we can simplify by precalculating a[i-1]/b[i-1]</span>
-  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>; i &lt; n; i++) {
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>; i &lt; n; i++) {
      b[i] = b[i] - (a[i-<span style="color: #B452CD">1</span>]*c[i-<span style="color: #B452CD">1</span>])/b[i-<span style="color: #B452CD">1</span>];
      f[i] = g[i] - (a[i-<span style="color: #B452CD">1</span>]*f[i-<span style="color: #B452CD">1</span>])/b[i-<span style="color: #B452CD">1</span>];
   }
   x[n-<span style="color: #B452CD">1</span>] = f[n-<span style="color: #B452CD">1</span>] / b[n-<span style="color: #B452CD">1</span>];
   <span style="color: #228B22">// Backwards substitution                                                           </span>
-  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = n-<span style="color: #B452CD">2</span>; i &gt;= <span style="color: #B452CD">0</span>; i--) {
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = n-<span style="color: #B452CD">2</span>; i &gt;= <span style="color: #B452CD">0</span>; i--) {
      f[i] = f[i] - c[i]*f[i+<span style="color: #B452CD">1</span>]/b[i+<span style="color: #B452CD">1</span>];
      x[i] = f[i]/b[i];
   }
@@ -1157,10 +1157,10 @@ $$
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>      <span style="color: #228B22">// Forward substitution cannot be vectorized</span>
-      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">2</span>; i &lt; n; i++) b[i] = b[i] + b[i-<span style="color: #B452CD">1</span>]/d[i-<span style="color: #B452CD">1</span>];
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">2</span>; i &lt; n; i++) b[i] = b[i] + b[i-<span style="color: #B452CD">1</span>]/d[i-<span style="color: #B452CD">1</span>];
       <span style="color: #228B22">// Backward substitution  cannot be vectorized</span>
       solution[n-<span style="color: #B452CD">1</span>] = b[n-<span style="color: #B452CD">1</span>]/d[n-<span style="color: #B452CD">1</span>];
-      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = n-<span style="color: #B452CD">2</span>; i &gt; <span style="color: #B452CD">0</span>; i--) solution[i] = (b[i]+solution[i+<span style="color: #B452CD">1</span>])/d[i];
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = n-<span style="color: #B452CD">2</span>; i &gt; <span style="color: #B452CD">0</span>; i--) solution[i] = (b[i]+solution[i+<span style="color: #B452CD">1</span>])/d[i];
 </pre></div>
 
 </div>
@@ -1784,7 +1784,7 @@ OpenMP supports several different ways to specify thread parallelism
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;omp.h&gt;</span><span style="color: #1e889b"></span>
 main ()
 {
-<span style="color: #a7a7a7; font-weight: bold">int</span> var1, var2, var3;
+<span style="color: #00688B; font-weight: bold">int</span> var1, var2, var3;
 <span style="color: #228B22">/* serial code */</span>
 <span style="color: #228B22">/* ... */</span>
 <span style="color: #228B22">/* start of a parallel region */</span>
@@ -1843,9 +1843,9 @@ main ()
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;omp.h&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdio&gt;</span><span style="color: #1e889b"></span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[])
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span> *argv[])
 {
-<span style="color: #a7a7a7; font-weight: bold">int</span> th_id, nthreads;
+<span style="color: #00688B; font-weight: bold">int</span> th_id, nthreads;
 <span style="color: #1e889b">#pragma omp parallel private(th_id) shared(nthreads)</span>
 {
 th_id = omp_get_thread_num();
@@ -1873,13 +1873,13 @@ printf(<span style="color: #CD5555">&quot;There are %d threads\n&quot;</span>,nt
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdio&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;omp.h&gt;</span><span style="color: #1e889b"></span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[]) 
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span> *argv[]) 
 {
  omp_set_num_threads(<span style="color: #B452CD">4</span>); 
 <span style="color: #1e889b">#pragma omp parallel</span>
  {
-   <span style="color: #a7a7a7; font-weight: bold">int</span> id = omp_get_thread_num();
-   <span style="color: #a7a7a7; font-weight: bold">int</span> nproc = omp_get_num_threads(); 
+   <span style="color: #00688B; font-weight: bold">int</span> id = omp_get_thread_num();
+   <span style="color: #00688B; font-weight: bold">int</span> nproc = omp_get_num_threads(); 
    cout &lt;&lt; <span style="color: #CD5555">&quot;Hello world with id number and processes &quot;</span> &lt;&lt;  id &lt;&lt;  nproc &lt;&lt; endl;
  } 
 <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
@@ -1928,7 +1928,7 @@ Private clause can be used to make thread- private versions of such variables:
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#pragma omp parallel private(id)</span>
 {
- <span style="color: #a7a7a7; font-weight: bold">int</span> id = omp_get_thread_num();
+ <span style="color: #00688B; font-weight: bold">int</span> id = omp_get_thread_num();
  cout &lt;&lt; <span style="color: #CD5555">&quot;My thread num&quot;</span> &lt;&lt; id &lt;&lt; endl; 
 }
 </pre></div>
@@ -1954,7 +1954,7 @@ It is often useful to have only one thread execute some of the code in a paralle
 {
   <span style="color: #1e889b">#pragma omp master</span>
    {
-      <span style="color: #a7a7a7; font-weight: bold">int</span> id = omp_get_thread_num();
+      <span style="color: #00688B; font-weight: bold">int</span> id = omp_get_thread_num();
       cout &lt;&lt; <span style="color: #CD5555">&quot;My thread num&quot;</span> &lt;&lt; id &lt;&lt; endl; 
    } 
 }
@@ -2053,10 +2053,10 @@ and  OpenMP defines three choices of loop scheduling:
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;omp.h&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #1e889b">#define CHUNKSIZE 100</span>
 <span style="color: #1e889b">#define N 1000</span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[])
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span> *argv[])
 {
-<span style="color: #a7a7a7; font-weight: bold">int</span> i, chunk;
-<span style="color: #a7a7a7; font-weight: bold">float</span> a[N], b[N], c[N];
+<span style="color: #00688B; font-weight: bold">int</span> i, chunk;
+<span style="color: #00688B; font-weight: bold">float</span> a[N], b[N], c[N];
 <span style="color: #8B008B; font-weight: bold">for</span> (i=<span style="color: #B452CD">0</span>; i &lt; N; i++) a[i] = b[i] = i * <span style="color: #B452CD">1.0</span>;
 chunk = CHUNKSIZE;
 <span style="color: #1e889b">#pragma omp parallel shared(a,b,c,chunk) private(i)</span>
@@ -2081,10 +2081,10 @@ chunk = CHUNKSIZE;
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;omp.h&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #1e889b">#define CHUNKSIZE 100</span>
 <span style="color: #1e889b">#define N 1000</span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[])
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span> *argv[])
 {
-<span style="color: #a7a7a7; font-weight: bold">int</span> i, chunk;
-<span style="color: #a7a7a7; font-weight: bold">float</span> a[N], b[N], c[N];
+<span style="color: #00688B; font-weight: bold">int</span> i, chunk;
+<span style="color: #00688B; font-weight: bold">float</span> a[N], b[N], c[N];
 <span style="color: #8B008B; font-weight: bold">for</span> (i=<span style="color: #B452CD">0</span>; i &lt; N; i++) a[i] = b[i] = i * <span style="color: #B452CD">1.0</span>;
 chunk = CHUNKSIZE;
 <span style="color: #1e889b">#pragma omp parallel shared(a,b,c,chunk) private(i)</span>
@@ -2174,8 +2174,8 @@ $$
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> i;
-<span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.</span>;
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #00688B; font-weight: bold">int</span> i;
+<span style="color: #00688B; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.</span>;
 <span style="color: #228B22">/* allocating and initializing arrays */</span>
 <span style="color: #228B22">/* ... */</span>
 <span style="color: #1e889b">#pragma omp parallel for default(shared) private(i) reduction(+:sum)</span>
@@ -2399,7 +2399,7 @@ team.
 <span style="color: #1e889b">#pragma omp single</span>
 {
 <span style="color: #8B008B; font-weight: bold">for</span> (i=<span style="color: #B452CD">0</span>; i&lt;N; i++) {
-  <span style="color: #a7a7a7; font-weight: bold">double</span> r = random_number();
+  <span style="color: #00688B; font-weight: bold">double</span> r = random_number();
   <span style="color: #8B008B; font-weight: bold">if</span> (p_vec[i] &gt; r) {
 <span style="color: #1e889b">#pragma omp task</span>
    do_work (p_vec[i]);
@@ -2418,7 +2418,7 @@ Race condition
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> nthreads;
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #00688B; font-weight: bold">int</span> nthreads;
 <span style="color: #1e889b">#pragma omp parallel shared(nthreads)</span>
 {
 nthreads = omp_get_num_threads();
@@ -2586,14 +2586,14 @@ This is a common source of performance issues, namely the description of the met
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> maxloc[MAX_THREADS], mloc;
-<span style="color: #a7a7a7; font-weight: bold">double</span> maxval[MAX_THREADS], mval; 
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #00688B; font-weight: bold">int</span> maxloc[MAX_THREADS], mloc;
+<span style="color: #00688B; font-weight: bold">double</span> maxval[MAX_THREADS], mval; 
 <span style="color: #1e889b">#pragma omp parallel shared(maxval,maxloc)</span>
 {
-  <span style="color: #a7a7a7; font-weight: bold">int</span> id = omp_get_thread_num(); 
+  <span style="color: #00688B; font-weight: bold">int</span> id = omp_get_thread_num(); 
   maxval[id] = -<span style="color: #B452CD">1.0e30</span>;
 <span style="color: #1e889b">#pragma omp for</span>
-   <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;n; i++) {
+   <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i&lt;n; i++) {
        <span style="color: #8B008B; font-weight: bold">if</span> (x[i] &gt; maxval[id]) { 
            maxloc[id] = i;
            maxval[id] = x[i]; 
@@ -2616,10 +2616,10 @@ This is a common source of performance issues, namely the description of the met
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #1e889b">#pragma omp flush (maxloc,maxval)</span>
 <span style="color: #1e889b">#pragma omp master</span>
   {
-    <span style="color: #a7a7a7; font-weight: bold">int</span> nt = omp_get_num_threads(); 
+    <span style="color: #00688B; font-weight: bold">int</span> nt = omp_get_num_threads(); 
     mloc = maxloc[<span style="color: #B452CD">0</span>]; 
     mval = maxval[<span style="color: #B452CD">0</span>]; 
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>; i&lt;nt; i++) {
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>; i&lt;nt; i++) {
         <span style="color: #8B008B; font-weight: bold">if</span> (maxval[i] &gt; mval) { 
            mval = maxval[i]; 
            mloc = maxloc[i];
@@ -2942,9 +2942,9 @@ Let every process write "Hello world" (oh not this program again!!) on the stand
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 <span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;mpi.h&gt;</span><span style="color: #1e889b"></span>
 <span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> nargs, <span style="color: #a7a7a7; font-weight: bold">char</span>* args[])
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #00688B; font-weight: bold">int</span> nargs, <span style="color: #00688B; font-weight: bold">char</span>* args[])
 {
-<span style="color: #a7a7a7; font-weight: bold">int</span> numprocs, my_rank;
+<span style="color: #00688B; font-weight: bold">int</span> numprocs, my_rank;
 <span style="color: #228B22">//   MPI initializations</span>
 MPI_Init (&amp;nargs, &amp;args);
 MPI_Comm_size (MPI_COMM_WORLD, &amp;numprocs);
@@ -3004,9 +3004,9 @@ END PROGRAM hello
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> nargs, <span style="color: #a7a7a7; font-weight: bold">char</span>* args[])
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #00688B; font-weight: bold">int</span> nargs, <span style="color: #00688B; font-weight: bold">char</span>* args[])
 {
- <span style="color: #a7a7a7; font-weight: bold">int</span> numprocs, my_rank, i;
+ <span style="color: #00688B; font-weight: bold">int</span> numprocs, my_rank, i;
  MPI_Init (&amp;nargs, &amp;args);
  MPI_Comm_size (MPI_COMM_WORLD, &amp;numprocs);
  MPI_Comm_rank (MPI_COMM_WORLD, &amp;my_rank);
@@ -3080,9 +3080,9 @@ is defined as
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> MPI_Send(<span style="color: #a7a7a7; font-weight: bold">void</span> *buf, <span style="color: #a7a7a7; font-weight: bold">int</span> count, 
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #00688B; font-weight: bold">int</span> MPI_Send(<span style="color: #00688B; font-weight: bold">void</span> *buf, <span style="color: #00688B; font-weight: bold">int</span> count, 
              MPI_Datatype datatype, 
-             <span style="color: #a7a7a7; font-weight: bold">int</span> dest, <span style="color: #a7a7a7; font-weight: bold">int</span> tag, MPI_Comm comm)}
+             <span style="color: #00688B; font-weight: bold">int</span> dest, <span style="color: #00688B; font-weight: bold">int</span> tag, MPI_Comm comm)}
 </pre></div>
 <p>
 This single command allows the passing of any kind of variable, even a large array, to any group of tasks. 
@@ -3109,9 +3109,9 @@ is similar to the send call.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> MPI_Recv( <span style="color: #a7a7a7; font-weight: bold">void</span> *buf, <span style="color: #a7a7a7; font-weight: bold">int</span> count, MPI_Datatype datatype, 
-            <span style="color: #a7a7a7; font-weight: bold">int</span> source, 
-            <span style="color: #a7a7a7; font-weight: bold">int</span> tag, MPI_Comm comm, MPI_Status *status )
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #00688B; font-weight: bold">int</span> MPI_Recv( <span style="color: #00688B; font-weight: bold">void</span> *buf, <span style="color: #00688B; font-weight: bold">int</span> count, MPI_Datatype datatype, 
+            <span style="color: #00688B; font-weight: bold">int</span> source, 
+            <span style="color: #00688B; font-weight: bold">int</span> tag, MPI_Comm comm, MPI_Status *status )
 </pre></div>
 <p>
 The arguments that are different from those in MPI\_SEND are
@@ -3167,15 +3167,15 @@ Click <a href="https://github.com/CompPhysics/ComputationalPhysics2/blob/gh-page
 
 <span style="color: #228B22">//     Here we define various functions called by the main program</span>
 
-<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">int_function</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> );
-<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">trapezoidal_rule</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> , <span style="color: #a7a7a7; font-weight: bold">double</span> , <span style="color: #a7a7a7; font-weight: bold">int</span> , <span style="color: #a7a7a7; font-weight: bold">double</span> (*)(<span style="color: #a7a7a7; font-weight: bold">double</span>));
+<span style="color: #00688B; font-weight: bold">double</span> <span style="color: #008b45">int_function</span>(<span style="color: #00688B; font-weight: bold">double</span> );
+<span style="color: #00688B; font-weight: bold">double</span> <span style="color: #008b45">trapezoidal_rule</span>(<span style="color: #00688B; font-weight: bold">double</span> , <span style="color: #00688B; font-weight: bold">double</span> , <span style="color: #00688B; font-weight: bold">int</span> , <span style="color: #00688B; font-weight: bold">double</span> (*)(<span style="color: #00688B; font-weight: bold">double</span>));
 
 <span style="color: #228B22">//   Main function begins here</span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> nargs, <span style="color: #a7a7a7; font-weight: bold">char</span>* args[])
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span> (<span style="color: #00688B; font-weight: bold">int</span> nargs, <span style="color: #00688B; font-weight: bold">char</span>* args[])
 {
-  <span style="color: #a7a7a7; font-weight: bold">int</span> n, local_n, numprocs, my_rank; 
-  <span style="color: #a7a7a7; font-weight: bold">double</span> a, b, h, local_a, local_b, total_sum, local_sum;   
-  <span style="color: #a7a7a7; font-weight: bold">double</span>  time_start, time_end, total_time;
+  <span style="color: #00688B; font-weight: bold">int</span> n, local_n, numprocs, my_rank; 
+  <span style="color: #00688B; font-weight: bold">double</span> a, b, h, local_a, local_b, total_sum, local_sum;   
+  <span style="color: #00688B; font-weight: bold">double</span>  time_start, time_end, total_time;
 </pre></div>
 
 </div>
@@ -3247,8 +3247,8 @@ Here we have used
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>MPI_reduce( <span style="color: #a7a7a7; font-weight: bold">void</span> *senddata, <span style="color: #a7a7a7; font-weight: bold">void</span>* resultdata, <span style="color: #a7a7a7; font-weight: bold">int</span> count, 
-     MPI_Datatype datatype, MPI_Op, <span style="color: #a7a7a7; font-weight: bold">int</span> root, MPI_Comm comm)
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>MPI_reduce( <span style="color: #00688B; font-weight: bold">void</span> *senddata, <span style="color: #00688B; font-weight: bold">void</span>* resultdata, <span style="color: #00688B; font-weight: bold">int</span> count, 
+     MPI_Datatype datatype, MPI_Op, <span style="color: #00688B; font-weight: bold">int</span> root, MPI_Comm comm)
 </pre></div>
 <p>
 The two variables \( senddata \) and \( resultdata \) are obvious, besides the fact that one sends the address
@@ -3280,7 +3280,7 @@ If we have an array or matrix we can search for the largest og smallest element 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>MPI_Allreduce( <span style="color: #a7a7a7; font-weight: bold">void</span> *senddata, <span style="color: #a7a7a7; font-weight: bold">void</span>* resultdata, <span style="color: #a7a7a7; font-weight: bold">int</span> count, 
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span>MPI_Allreduce( <span style="color: #00688B; font-weight: bold">void</span> *senddata, <span style="color: #00688B; font-weight: bold">void</span>* resultdata, <span style="color: #00688B; font-weight: bold">int</span> count, 
           MPI_Datatype datatype, MPI_Op, MPI_Comm comm)        
 </pre></div>
 
@@ -3299,9 +3299,9 @@ We use \( MPI\_reduce \) to collect data from each process. Note also the use of
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">//  this function defines the function to integrate</span>
-<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">int_function</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> x)
+<span style="color: #00688B; font-weight: bold">double</span> <span style="color: #008b45">int_function</span>(<span style="color: #00688B; font-weight: bold">double</span> x)
 {
-  <span style="color: #a7a7a7; font-weight: bold">double</span> value = <span style="color: #B452CD">4.</span>/(<span style="color: #B452CD">1.</span>+x*x);
+  <span style="color: #00688B; font-weight: bold">double</span> value = <span style="color: #B452CD">4.</span>/(<span style="color: #B452CD">1.</span>+x*x);
   <span style="color: #8B008B; font-weight: bold">return</span> value;
 } <span style="color: #228B22">// end of function to evaluate</span>
 </pre></div>
@@ -3318,13 +3318,13 @@ We use \( MPI\_reduce \) to collect data from each process. Note also the use of
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">//  this function defines the trapezoidal rule</span>
-<span style="color: #a7a7a7; font-weight: bold">double</span> <span style="color: #008b45">trapezoidal_rule</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> a, <span style="color: #a7a7a7; font-weight: bold">double</span> b, <span style="color: #a7a7a7; font-weight: bold">int</span> n, 
-                         <span style="color: #a7a7a7; font-weight: bold">double</span> (*func)(<span style="color: #a7a7a7; font-weight: bold">double</span>))
+<span style="color: #00688B; font-weight: bold">double</span> <span style="color: #008b45">trapezoidal_rule</span>(<span style="color: #00688B; font-weight: bold">double</span> a, <span style="color: #00688B; font-weight: bold">double</span> b, <span style="color: #00688B; font-weight: bold">int</span> n, 
+                         <span style="color: #00688B; font-weight: bold">double</span> (*func)(<span style="color: #00688B; font-weight: bold">double</span>))
 {
-  <span style="color: #a7a7a7; font-weight: bold">double</span> trapez_sum;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> fa, fb, x, step;
-  <span style="color: #a7a7a7; font-weight: bold">int</span>    j;
-  step=(b-a)/((<span style="color: #a7a7a7; font-weight: bold">double</span>) n);
+  <span style="color: #00688B; font-weight: bold">double</span> trapez_sum;
+  <span style="color: #00688B; font-weight: bold">double</span> fa, fb, x, step;
+  <span style="color: #00688B; font-weight: bold">int</span>    j;
+  step=(b-a)/((<span style="color: #00688B; font-weight: bold">double</span>) n);
   fa=(*func)(a)/<span style="color: #B452CD">2.</span> ;
   fb=(*func)(b)/<span style="color: #B452CD">2.</span> ;
   trapez_sum=<span style="color: #B452CD">0.</span>;
