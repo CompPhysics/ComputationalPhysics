@@ -80,96 +80,65 @@ ${text_types(ch)}
 
 
 !split
-===== New for  Fall 2017: teach yourself C++ =====
+===== Teach yourself C++ =====
  * HTML format only:
    * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/pub/learningcpp/html/learningcpp-bs.html"
 
 
 !split
-===== Projects Fall 2017 =====
+===== Projects Fall 2018 =====
 
 === Project 1 ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project1/pdf/Project1.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project1/pdf/Project1.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project1/pdf/Project1.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project1/pdf/Project1.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project1/html/Project1.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project1/html/Project1-bs.html"
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project1/html/Project1.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project1/html/Project1-bs.html"
  * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project1/ipynb/Project1.ipynb"
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project1/ipynb/Project1.ipynb"
 
 === Project 2 ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project2/pdf/Project2.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project2/pdf/Project2.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project2/pdf/Project2.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project2/pdf/Project2.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project2/html/Project2.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project2/html/Project2-bs.html"
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project2/html/Project2.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project2/html/Project2-bs.html"
  * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project2/ipynb/Project2.ipynb"
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project2/ipynb/Project2.ipynb"
 
 === Project 3 ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project3/pdf/Project3.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project3/pdf/Project3.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project3/pdf/Project3.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project3/pdf/Project3.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project3/html/Project3.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project3/html/Project3-bs.html"
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project3/html/Project3.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project3/html/Project3-bs.html"
  * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project3/ipynb/Project3.ipynb"
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project3/ipynb/Project3.ipynb"
 
 === Project 4, Deadline November 19 ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/pdf/Project4.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/pdf/Project4.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project4/pdf/Project4.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project4/pdf/Project4.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/html/Project4.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/html/Project4-bs.html"
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project4/html/Project4.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project4/html/Project4-bs.html"
  * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project4/ipynb/Project4.ipynb"
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project4/ipynb/Project4.ipynb"
 
-
-=== Project 5, Deadline December 10, four different versions ===
-
-=== Project 5 Molecular Dynamics ===
+=== Project 5 to be determined, more variants may be available ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/MolecularDynamics/pdf/MolecularDynamics.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/MolecularDynamics/pdf/MolecularDynamics.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project5/DiffusionEquation/pdf/DiffusionEquation.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project5/DiffusionEquation/pdf/DiffusionEquation.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/MolecularDynamics/html/MolecularDynamics.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/MolecularDynamics/html/MolecularDynamics-bs.html"
-
-=== Project 5 Monte Carlo Modeling of Transactions ===
- * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/FinancialEngineering/pdf/FinancialEngineering.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/FinancialEngineering/pdf/FinancialEngineering.pdf"
- * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/FinancialEngineering/html/FinancialEngineering.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/FinancialEngineering/html/FinancialEngineering-bs.html"
-
-
-=== Project 5 Partial Differential Equations with geo applications ===
- * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/DiffusionEquation/pdf/DiffusionEquation.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/DiffusionEquation/pdf/DiffusionEquation.pdf"
- * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/DiffusionEquation/html/DiffusionEquation.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/DiffusionEquation/html/DiffusionEquation-bs.html"
-
-
-=== Project 5 Wave equation project ===
- * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/WaveEquation/pdf/WaveEquation.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/WaveEquation/pdf/WaveEquation.pdf"
- * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/WaveEquation/html/WaveEquation.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2017/Project5/WaveEquation/html/WaveEquation-bs.html"
-
-
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project5/DiffusionEquation/html/DiffusionEquation.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project5/DiffusionEquation/html/DiffusionEquation-bs.html"
 
 
 !split
-===== Teaching schedule Fall 2017 =====
+===== Teaching schedule Fall 2018 =====
 
 |----------------------------------------------------------------------------------------------------------------------------|
 |  Week and days  |  Topics to be covered | Projects and deadlines | Reading assignments|  Lab  activities                   |
