@@ -146,20 +146,20 @@ ${text_types(ch)}
 | Week 34|   Introduction to programming  | Warm-up exercise  |    Chapters 2 and 3.1 and 3.2  | presentation of Git and github|
 |        |   Numerical derivation         |                   |    From lecture notes          | Installing c++              |
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 35 | Linear algebra, Gaussian elemination, LU decomposition | _Project 1, deadline September 10_ | Sections 2.5, 3.1, 6.3, 6.4  | Installing and using Qt |
+| Week 35 | Linear algebra, Gaussian elemination, LU decomposition | _Project 1, deadline September 11_ | Sections 2.5, 3.1, 6.3, 6.4  | Installing and using Qt |
 |         | Discussion of pointers and arrays    |                                 |                              | Work on project 1 |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 36|  Linear algebra, Gaussian elimination |      |  Sections 6.4, 6.5 and 6.6 | How to write a good report and more git and Qt stuff |
 |        |  Spline interpolation and iterative methods| Discussed during lab sessions | Read slides on how to write a report |  
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 37 | Eigenvalue problems, Jacobi's method             |   _Project 2, deadline October 1_ |  Sections 7.1-7.4 | Object orientation with examples |
+| Week 37 | Eigenvalue problems, Jacobi's method             |   _Project 2, deadline October 2_ |  Sections 7.1-7.4 | Object orientation with examples |
 |----------------------------------------------------------------------------------------------------------------------------|
 |   | Householder's and Given's methods               |                                   |  Read slides on object orientation and section 3.3 | Finalize project 1 |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 38 | Eigenvalue problems, iterative and power methods |   | Sections 7.4-7.7 |  Object orientation |
 |         | Differential equations                    |                                   | Sections 8.1-8.3 |  
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 39|  Ordinary differential equations  | _Project 3, deadline October 22_ | Sections 8.3-8.7  |   Object orientation (OO) |
+| Week 39|  Ordinary differential equations  | _Project 3, deadline October 25_ | Sections 8.3-8.7  |   Object orientation (OO) |
 |        |                                 |                                  |                   |  Finalize project 2   |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 40|  Numerical integration           |                                   | Sections 5.1-5.3  | OO and  Vectorization  |
