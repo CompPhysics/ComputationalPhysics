@@ -53,19 +53,20 @@ DATE: today
 !bblock
 
 _Teachers :_
-o "Giovanni Pederiva":"https://folk.uio.no/giovannp/"
-o "Haakon Emil Kristiansen":"https://www.facebook.com/hakon.e.kristiansen"
+o "Anna Gribovskaya":"https://www.mn.uio.no/fysikk/?vrtx=person-view&uid=annagrib"
 o "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/doc/web/"
-o "Morten Ledum":"https://github.com/mortele"
-o "Vilde Moe Flugsrud":"https://folk.uio.no/vildemf/"
+o "Anders Johansson":"https://www.mn.uio.no/fysikk/?vrtx=person-view&uid=anjohan"
+o "Mathias M. Vege":"https://www.mn.uio.no/fysikk/?vrtx=person-view&uid=hmvege"
+o "Sebastian G. Winther-Larsen":"https://www.mn.uio.no/fysikk/?vrtx=person-view&uid=sebastwi"
+
 
 |------------------------------------------------------|
 |      day         |            teacher                |
 |---------l-----------------------l--------------------|
-| Group 1: Thursday 10am-2pm | Giovanni, Haakon Emil, Morten L, Vilde, MHJ | 
-| Group 2: Thursday 2pm-6pm | Giovanni, Haakon Emil, Morten L, Vilde, MHJ | 
-| Group 3: Friday 10am-2pm   | Giovanni, Haakon Emil, Morten L, Vilde, MHJ | 
-| Group 4: Friday 2pm-6pm   | Giovanni, Haakon Emil, Morten L, Vilde, MHJ | 
+| Group 1: Thursday 10am-2pm | Anders, Anna, Mathias, MHJ, Sebastian | 
+| Group 2: Thursday 2pm-6pm |  Anders, Anna, Mathias, MHJ, Sebastian | 
+| Group 3: Friday 10am-2pm   |  Anders, Anna, Mathias, MHJ, Sebastian | 
+| Group 4: Friday 2pm-6pm   |  Anders, Anna, Mathias, MHJ, Sebastian | 
 |------------------------------------------------------|
 
 !eblock
@@ -75,11 +76,11 @@ o "Vilde Moe Flugsrud":"https://folk.uio.no/vildemf/"
 
 !bblock
 
-o Project 1: September 11 (not graded, only feedback)
-o Project 2: October 2 (not graded, only feedback)
-o Project 3: October 23 (graded with feedback)
-o Project 4: November 13 (graded with feedback)
-o Project 5: December 8 (graded with feedback)
+o Project 1: September 10 (not graded, only feedback)
+o Project 2: October 1 (not graded, only feedback)
+o Project 3: October 22 (graded with feedback)
+o Project 4: November 12 (graded with feedback)
+o Project 5: December 10 (graded with feedback)
 
 Projects are handed in using devilry.ifi.uio.no. We use Github as repository for codes, benchmark calculations etc. Comments and feedback on projects only via devilry. 
 

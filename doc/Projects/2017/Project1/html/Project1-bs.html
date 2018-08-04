@@ -6,14 +6,14 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
-<meta name="description" content="Project 1, deadline  September 13">
+<meta name="description" content="Project 1, deadline  September 10">
 
-<title>Project 1, deadline  September 13</title>
+<title>Project 1, deadline  September 10</title>
 
 <!-- Bootstrap style: bootstrap -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
 
 <style type="text/css">
@@ -45,7 +45,7 @@ Automatically generated HTML file from DocOnce source
               ('Project 1 b):', 3, None, '___sec2'),
               ('Project 1 c):', 3, None, '___sec3'),
               ('Project 1 d):', 3, None, '___sec4'),
-              ('Project 1 d):', 3, None, '___sec5'),
+              ('Project 1 e):', 3, None, '___sec5'),
               ('Introduction to numerical projects', 2, None, '___sec6'),
               ('Format for electronic delivery of report and programs',
                2,
@@ -65,8 +65,8 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -80,7 +80,7 @@ MathJax.Hub.Config({
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="Project1-bs.html">Project 1, deadline  September 13</a>
+    <a class="navbar-brand" href="Project1-bs.html">Project 1, deadline  September 10</a>
   </div>
 
   <div class="navbar-collapse collapse navbar-responsive-collapse">
@@ -93,7 +93,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 b):</a></li>
      <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 c):</a></li>
      <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 d):</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 d):</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 e):</a></li>
      <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;"><b>Introduction to numerical projects</b></a></li>
      <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;"><b>Format for electronic delivery of report and programs</b></a></li>
 
@@ -114,7 +114,7 @@ MathJax.Hub.Config({
 
 
 <div class="jumbotron">
-<center><h1>Project 1, deadline  September 13</h1></center>  <!-- document title -->
+<center><h1>Project 1, deadline  September 10</h1></center>  <!-- document title -->
 
 <p>
 <!-- author(s): <a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_self">Computational Physics I FYS3150/FYS4150</a> -->
@@ -129,7 +129,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, University of Oslo, Norway</b></center>
 <br>
 <p>
-<center><h4>Sep 6, 2017</h4></center> <!-- date -->
+<center><h4>Aug 4, 2018</h4></center> <!-- date -->
 <br>
 <p>
 </div> <!-- end jumbotron -->
@@ -301,17 +301,29 @@ $$
                       \end{bmatrix}.
 $$
 
-Note well that we do not include the endpoints since the boundary conditions are used resulting in a fixed value for \( v_i \).
-A tridiagonal matrix is a special form of banded matrix where all the elements are zero except for 
-those on and immediately above and below the leading diagonal.
-Develop a general algorithm first which does not assume that we have a matrix with the same elements along the diagonal and the non-diagonal elements.
-The algorithm for solving this set of equations is rather simple and requires two steps only, a decomposition 
-and forward substitution and finally a backward substitution.
+<p>
+Note well that we do not include the endpoints since the boundary
+conditions are used resulting in a fixed value for \( v_i \).  A
+tridiagonal matrix is a special form of banded matrix where all the
+elements are zero except for those on and immediately above and below
+the leading diagonal.  Develop a general algorithm first which does
+not assume that we have a matrix with the same elements along the
+diagonal and the non-diagonal elements.  The algorithm for solving
+this set of equations is rather simple and requires two steps only, a
+decomposition and forward substitution and finally a backward
+substitution.
 
 <p>
-Your first task is to set up the general algorithm (assuming different values for the matrix elements) for solving this set of linear equations.
-Find also the precise number of floating point 
-operations needed to solve the above equations. For the general algorithm you need to specify the values of the array elements \( a \), \( b \) and \( c \) by inserting their explicit values.
+Before we proceed with the solution of the differential equation, you should now plan the organization of your data flow. Here you will find it convenient to define vectors that will contain the matrix elements, the solution to the problem and the function \( f(x) \) when discretized. You should also plan on to read input data, whether you do this from the command line or from a selected file. We recommend strongly that you use dynamical memory allocation.
+An example of a C++ program which reads from the command line various input parameters can <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Projects/2018/Project1/CodeExamples/TridiagonalSimple.cpp" target="_self">be found here</a>
+
+<p>
+Your first task is to set up the general algorithm (assuming different
+values for the matrix elements) for solving this set of linear
+equations.  Find also the precise number of floating point operations
+needed to solve the above equations. For the general algorithm you
+need to specify the values of the array elements \( a \), \( b \) and \( c \) by
+inserting their explicit values.
 
 <p>
 Then you should code the above algorithm and solve the problem for matrices of the size
@@ -343,7 +355,7 @@ For each step length extract the max value of the relative error.
 Try to increase \( n \) to \( n=10^7 \).  Make a table of the results and 
 comment your results. You can use either the algorithm from b) or c).
 
-<h3 id="___sec5" class="anchor">Project 1 d): </h3>
+<h3 id="___sec5" class="anchor">Project 1 e): </h3>
 
 Compare your results with those from the LU decomposition codes for the matrix of sizes \( 10\times 10 \), \( 100\times 100 \) and
 \( 1000\times 1000 \). Here you should use the library functions provided  on the webpage of the course. Alternatively, if you use armadillo as a library, you can use the similar function for LU decomposition.  The armadillo function for the LU decomposition is called \( LU \) while the function for solving linear sets of equations is called \( solve \).
@@ -447,8 +459,8 @@ we encourage you to work two and two together. Optimal working groups consist of
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>
@@ -458,7 +470,7 @@ we encourage you to work two and two together. Optimal working groups consist of
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2017, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2018, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 

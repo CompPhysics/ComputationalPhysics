@@ -6,10 +6,13 @@ int main()
 {
   Complex<double> a(0.1,1.3);   
   Complex<double> b(3.0,5.0), c(5.0,-2.3);  
+  Complex<double> d(b);
+  Complex<double> e = c;
   cout << "Re(a)=" << a.Re() << ", Im(a)=" << a.Im() << endl;  
   cout << "Re(b)=" << b.Re() << ", Im(b)=" << b.Im() << endl;  
   cout << "Abs(a)=" << a.abs() << endl;  
   cout << "Abs(c)=" << c.abs() << endl;  
   cout << "Re(a*b)=" << (a*b).Re() << ", Im(a*b)=" << (a*b).Im() << endl; 
+  cout << "Re(a+e)=" << (a+e).Re() << ", Im(a+e)=" << (a+e).Im() << endl; 
   return 0;
 }

@@ -1,0 +1,21 @@
+# Strange way of testing for vortex...
+# #ifdef NON_VORTEX
+TITLE: Overview of course material: PHY 480 and 905, Computational Physics
+
+TOC: off
+# #else
+TITLE: Participants and preferred lab sessions
+AUTHOR: Computational Physics Fall 2018 at Department of Physics, University of Oslo, Norway
+# #endif
+
+o Group I = Thursday 10am-2pm
+o Group II = Thursday 2pm-6pm
+o Group III = Friday 10am-2pm
+o Group IV  = Friday 2pm-6pm
+
+|----------------------------------------------------------------------------------------------------------------------------|
+| Last name | First name | Computer lab session | 
+|----------------------------------------------------------------------------------------------------------------------------|
+| |	 |   |
+|-----------------------------------------------------------------------------|
+	
