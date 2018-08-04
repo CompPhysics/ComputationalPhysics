@@ -79,14 +79,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
 % Ensure copyright on titlepage (article style) and chapter pages (book style)
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2017, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2018, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
 %  \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
 % Ensure copyright on titlepages with \thispagestyle{empty}
 \fancypagestyle{empty}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2017, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2018, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
@@ -129,7 +129,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
-Project 2, deadline  October 2
+Project 2, deadline  October 1
 \end{spacing}
 }
 \end{center}
@@ -149,31 +149,161 @@ Project 2, deadline  October 2
 
 % --- begin date ---
 \begin{center}
-Sep 22, 2017
+Aug 4, 2018
 \end{center}
 % --- end date ---
 
 \vspace{1cm}
 
 
-\subsection{Schroedinger's equation for two electrons in a three-dimensional harmonic oscillator well}
+\subsection{Eigenvalue problems, from the equations of a buckling beam to Schroedinger's equation for two electrons in a three-dimensional harmonic oscillator well}
 
 \paragraph{Introduction.}
-The aim of this project is to develop a program that uses Jacobi's (also called Givens') method for finding eigenvalues. We can start with the simple case of a buckling beam (or a quantum mechanical particle moving in a potential with infinite walls) and then move to  
-Schroedinger's equation for two
-electrons in a three-dimensional harmonic oscillator well with and
-without a repulsive Coulomb interaction.  The eigenvalue solver you will end up with is however rather general and can be applied to different cases.   An important aspect in being able to achieve this is to scale properly the equationsand by reformulating the equations  in a discretized form as an eigenvalue
-equation to be solved with Jacobi's method. To achieve this you will
-have to write your own code which implements Jacobi's method.   Here we will specialize to a quantum mechanical system, but for those of you less familiar with quantum mechanics you can choose to focus more on the mathematical details of the problem.
+The aim of this project is to develop your own code for solving eigenvalue problems. The matrix to diagonalize is the same as the one we encountered in project one, a so-called tridiagonal Toeplitz matrix. This matrix has analytical eigenpairs (eigenvalues and eigenvectors) and gives us an excellent testing ground for our algorithms. In this project we will develop an eigenvalue solver based on Jacobi's method. The project will also introduce you to units tests and we will compare our results against other eigenvalue solvers (from LAPACK and/or numpy). 
 
+This project aims also at introducing to you the concept of \href{{http://www.springer.com/us/book/9783319327259}}{scaling of equations}. This means often either making various variables dimensionless or introducing units which are more convenient. 
 
-What follows first is a longer description of the eigenvalue problem, with a specialization to the case of electrons confined to move in a potential well of the type of a harmonic oscillator.   This type of problem leads to the field of so-called quantum dots. 
+We will start with the two-point boundary value problem of a buckling beam or a spring fastened at both ends. This is one of the problems which has analytical solutions. Thereafter, by simply adding a new variable along the diagonal elements, we can study quantum mechanical problems. In particular, we will study the harmonic oscillator problem in three dimensions, with one or two electrons. For the latter case we can study the role of the repulsive Coulomb interaction and extract interesting physics results. For selected frequencies, even this interacting two-electron problem exhibits analytical solutions, see \href{{http://prola.aps.org/abstract/PRA/v48/i5/p3561_1}}{M. Taut, Phys. Rev. A 48, 3561 (1993)}.
+
 Electrons confined in small areas in semiconductors, so-called quantum
 dots, form a hot research area in modern solid-state physics, with
 applications spanning from such diverse fields as quantum
 nano-medicine to the contruction of quantum gates. 
 The article on quantum computing with quantum dots by \href{{http://journals.aps.org/pra/abstract/10.1103/PhysRevA.57.120}}{Loss and DiVincenzo} is an excellent read.
 
+
+
+\paragraph{The buckling beam problem.}
+We start with the following differential equation, namely 
+\[
+\gamma \frac{d^2 u(x)}{dx^2} = -F u(x),
+\]
+where $u(x)$ is the vertical displacement of the beam in the $y$ direction. 
+The beam has length $L$, $x\in [0,L]$ and $F$ is a force applied at $(L,0)$ in the direction towards the origin. 
+The parameter $\gamma$ is a constant defined by properties like the rigidity of the beam. 
+We apply again so-called Dirichlet boundary conditions and set $u(0)=u(L)=0$.
+
+In this specific case all parameters $\gamma$, $F$ and $L$ are known. We define then a dimensional variable
+\[
+ \rho = \frac{x}{L}, 
+\]
+meaning that we have $\rho \in [0,1]$.    By reordering the equation as 
+\[
+ \frac{d^2 u(\rho)}{d\rho^2} = -\frac{FL^2}{R} u(\rho)=-\lambda u(\rho),
+\]
+with $\lambda= FL^2/R$ we have an equation that when discretized, becomes an eigenvalue problem.
+We use the same 
+expression for the second derivative of a function $u$ as we did in project 1, namely
+\begin{equation}
+    u''=\frac{u(\rho+h) -2u(\rho) +u(\rho-h)}{h^2} +O(h^2),
+    \label{eq:diffoperation}
+\end{equation}
+where $h$ is our step.
+Next we define minimum and maximum values for the variable $\rho$,
+$\rho_{\mathrm{min}}=0$  and $\rho_{\mathrm{max}}=1$, respectively.
+With a given number of mesh points, $N$, we 
+define the step length $h$ as, with $\rho_{\mathrm{min}}=\rho_0$  and $\rho_{\mathrm{max}}=\rho_N$,
+\begin{equation*}
+  h=\frac{\rho_N-\rho_0 }{N}.
+\end{equation*}
+The value of $\rho$ at a point $i$ is then 
+\[
+    \rho_i= \rho_0 + ih \hspace{1cm} i=1,2,\dots , N.
+\]
+We can rewrite the differential equation for a value $\rho_i$ as
+\[
+-\frac{u(\rho_i+h) -2u(\rho_i) +u(\rho_i-h)}{h^2}  = \lambda u(\rho_i),
+\]
+or in  a more compact way as
+\[
+-\frac{u_{i+1} -2u_i +u_{i-1} }{h^2}  = \lambda u_i.
+\]
+Following our approach from project 1, we can rewrite this equation in a more a general form, but now 
+as an eigenvalue problem, that is
+\begin{equation}
+    \begin{bmatrix} d& a & 0   & 0    & \dots  &0     & 0 \\
+                                a & d & a & 0    & \dots  &0     &0 \\
+                                0   & a & d & a  &0       &\dots & 0\\
+                                \dots  & \dots & \dots & \dots  &\dots      &\dots & \dots\\
+                                0   & \dots & \dots & \dots  &a  &d & a\\
+                                0   & \dots & \dots & \dots  &\dots       &a & d\end{bmatrix} 
+                                 \begin{bmatrix} u_1 \\ u_2 \\ u_3 \\ \dots \\ u_{N-2} \\ u_{N-1}\end{bmatrix} = \lambda \begin{bmatrix} u_1 \\ u_2 \\ u_3 \\ \dots \\ u_{N-2} \\ u_{N-1}\end{bmatrix} . 
+\label{eq:matrixse} 
+\end{equation}
+As in project 1, we have not included the endpoints $u_0$ and $u_N$. 
+We have defined $d=2/h^2$ and the non-diagonal ones as $a=-1/h^2$. This eigenvalue problem has analytical eigenpairs, with eigenvalues given as 
+\[
+\lambda_j = d+2a\cos{(\frac{j\pi}{N+1})} \hspace{0.1cm} j=1,2,\dots N-1.
+\]
+
+
+\paragraph{Project 2 a): Mathematical intermezzo.}
+A unitary transformation preserves  the orthogonality of the obtained eigenvectors. To see this consider first a basis of vectors $\mathbf{v}_i$,
+\[
+\mathbf{v}_i = \begin{bmatrix} v_{i1} \\ \dots \\ \dots \\v_{in} \end{bmatrix}
+\]
+We assume that the basis is orthogonal, that is 
+\[
+\mathbf{v}_j^T\mathbf{v}_i = \delta_{ij}.
+\]
+Show that an orthogonal or unitary transformation
+\[
+\mathbf{w}_i=\mathbf{U}\mathbf{v}_i,
+\]
+preserves the dot product and orthogonality. 
+
+\paragraph{Project 2 b): Setting up a code for tridiagonal Toeplitz matrix.}
+Your task now is to write a function which implements Jacobi's rotation algorithm (see Lecture notes chapter 7)  in order to solve Eq. (\ref{eq:matrixse}).  
+However, the first simple check is to set up the matrix to diagonalize for a given $N$ and use either armadillo's or numpy's functions for diagonalizing a matrix. You can then check that you obtain the analytical eigenvalues. 
+
+For Jacobi's method,
+we define the quantities $\tan\theta = t= s/c$, with $s=\sin\theta$ and $c=\cos\theta$ and
+\begin{equation*}\cot 2\theta=\tau = \frac{a_{ll}-a_{kk}}{2a_{kl}}.
+\end{equation*}
+We can then define the angle $\theta$ so that the non-diagonal matrix elements of the transformed matrix 
+$a_{kl}$ become non-zero and
+we obtain the quadratic equation (using $\cot 2\theta=1/2(\cot \theta-\tan\theta)$
+
+\begin{equation*}
+t^2+2\tau t-1= 0,
+\end{equation*}
+resulting in
+
+\begin{equation*}
+  t = -\tau \pm \sqrt{1+\tau^2},
+\end{equation*}
+and $c$ and $s$ are easily obtained via
+
+\begin{equation*}
+   c = \frac{1}{\sqrt{1+t^2}},
+\end{equation*}
+and $s=tc$.  
+
+
+How many similarity transformations are needed before you reach a 
+result where all non-diagonal matrix elements are essentially zero?
+Try to estimate the number of transformations and extract a behavior as function
+of the dimensionality of the matrix. Compare your results with the analytical ones.
+
+You can check your results against the Armadillo function for solving 
+eigenvalue problems. The armadillo function \emph{eigsys} can be used to find eigenvalues and eigenvectors.
+A Python program which solves this part of the project is available under the \href{{http://compphysics.github.io/ComputationalPhysics/doc/pub/projectwriting/html/projectwriting.html}}{project writing slides}. 
+
+
+
+Comment your results (here you could for example compute the time needed for 
+both algorithms for a given dimensionality of the matrix).  
+
+
+\paragraph{Project 2 c): Implementing tests in your code.}
+In this project (and later ones as well) we will implement so-called \textbf{unit} tests. Our unit tests are mainly meant to test mathematical properties of our algorithm. During the development phase of a program it is useful to devise tests that your program should pass. One of these is to make sure that for a given simple test matrix (say a $5\times 5$ matrix) our algorithm for searching for the largest non-diagonal element always returns the correct answer. Furthermore, for a known simple matrix, irrespective of changes made, we should always get the same and correct eigenvalues. Another test is to make sure that the orthogonality shown in exercise (a) is preserved. Try to figure out other tests your code should pass, based either on the mathematical properties of the algorithms or more program specific tests. Implement at least two unit tests in this project. 
+
+
+
+
+
+
+\paragraph{Extending our machinery to quantum mechanics.}
 Here we will assume that these electrons move in a three-dimensional harmonic
 oscillator potential (they are confined by for example quadrupole fields)
 and repel  each other via the static Coulomb interaction.  
@@ -260,14 +390,7 @@ This is the first equation to solve numerically. In three dimensions
 the eigenvalues for $l=0$ are 
 $\lambda_0=3,\lambda_1=7,\lambda_2=11,\dots .$
 
-We use the by now standard
-expression for the second derivative of a function $u$
-\begin{equation}
-    u''=\frac{u(\rho+h) -2u(\rho) +u(\rho-h)}{h^2} +O(h^2),
-    \label{eq:diffoperation}
-\end{equation}
-where $h$ is our step.
-Next we define minimum and maximum values for the variable $\rho$,
+We define minimum and maximum values for the variable $\rho$,
 $\rho_{\mathrm{min}}=0$  and $\rho_{\mathrm{max}}$, respectively.
 You need to check your results for the energies against different values
 $\rho_{\mathrm{max}}$, since we cannot set
@@ -330,81 +453,16 @@ latter equation as a matrix eigenvalue problem
              \end{bmatrix}.  
       \label{eq:sematrix}
 \end{equation}
-Since the values of $u$ at the two endpoints are known via the boundary conditions, we can skip the rows and columns that involve these values. Inserting the values for $d_i$ and $e_i$ we have the following matrix
-\begin{equation}
-    \begin{bmatrix} \frac{2}{h^2}+V_1 & -\frac{1}{h^2} & 0   & 0    & \dots  &0     & 0 \\
-                                -\frac{1}{h^2} & \frac{2}{h^2}+V_2 & -\frac{1}{h^2} & 0    & \dots  &0     &0 \\
-                                0   & -\frac{1}{h^2} & \frac{2}{h^2}+V_3 & -\frac{1}{h^2}  &0       &\dots & 0\\
-                                \dots  & \dots & \dots & \dots  &\dots      &\dots & \dots\\
-                                0   & \dots & \dots & \dots  &-\frac{1}{h^2}  &\frac{2}{h^2}+V_{N-2} & -\frac{1}{h^2}\\
-                                0   & \dots & \dots & \dots  &\dots       &-\frac{1}{h^2} & \frac{2}{h^2}+V_{N-1}
-             \end{bmatrix}
-\label{eq:matrixse} 
-\end{equation}
 
-\paragraph{Project 2 a): Mathematical intermezzo.}
-A unitary transformation preserves  the orthogonality of the obtained eigenvectors. To see this consider first a basis of vectors $\mathbf{v}_i$,
-\[
-\mathbf{v}_i = \begin{bmatrix} v_{i1} \\ \dots \\ \dots \\v_{in} \end{bmatrix}
-\]
-We assume that the basis is orthogonal, that is 
-\[
-\mathbf{v}_j^T\mathbf{v}_i = \delta_{ij}.
-\]
-Show that an orthogonal or unitary transformation
-\[
-\mathbf{w}_i=\mathbf{U}\mathbf{v}_i,
-\]
-preserves the dot product and orthogonality. 
+\paragraph{Project 2 d): Quantum dots in three dimensions, one electron.}
+Add the harmonic oscillator potential to your tridiagonal Toeplitz matrix from 2a-2c and diagonalize the matrix.
+Study the results as functions of the number of integration points $N$ and your approximation to $\rho_{\mathrm{max}}$. 
+The analytical results with our scaling for the one-electron energies are $\lambda=3,7,11,15,\dots$. How many integration points do you need in order to reproduce the analytical results with say four leading digits after the decimal point?
 
-\paragraph{Project 2 b): Setting up a code for the non-interacting case.}
-Your task now is to write a function which implements Jacobi's rotation algorithm (see Lecture notes chapter 7)  in order to solve Eq. (\ref{eq:sematrix}).  We define the quantities $\tan\theta = t= s/c$, with $s=\sin\theta$ and $c=\cos\theta$ and
-\begin{equation*}\cot 2\theta=\tau = \frac{a_{ll}-a_{kk}}{2a_{kl}}.
-\end{equation*}
-We can then define the angle $\theta$ so that the non-diagonal matrix elements of the transformed matrix 
-$a_{kl}$ become zero and
-we obtain the quadratic equation (using $\cot 2\theta=1/2(\cot \theta-\tan\theta)$
+You can reuse the code you wrote for part (b), 
+but you need to add  the potential $\rho^2$ to the diagonal elements. 
 
-\begin{equation*}
-t^2+2\tau t-1= 0,
-\end{equation*}
-resulting in
-
-\begin{equation*}
-  t = -\tau \pm \sqrt{1+\tau^2},
-\end{equation*}
-and $c$ and $s$ are easily obtained via
-
-\begin{equation*}
-   c = \frac{1}{\sqrt{1+t^2}},
-\end{equation*}
-and $s=tc$.  
-
-Check how many mesh points $N$ you need in order to get the lowest three eigenvalues 
-with approximately four leading digits after the decimal point. Remember to check the eigenvalues for 
-the dependency on the choice of $\rho_{\mathrm{max}}=\rho_N$.
-
-How many similarity transformations are needed before you reach a 
-result where all non-diagonal matrix elements are essentially zero?
-Try to estimate the number of transformations and extract a behavior as function
-of the dimensionality of the matrix.
-
-You can check your results against the Armadillo function for solving 
-eigenvalue problems. The armadillo function \emph{eigsys} can be used to find eigenvalues and eigenvectors.
-A Python program which solves this part of the project is available under the \href{{http://compphysics.github.io/ComputationalPhysics/doc/pub/projectwriting/html/projectwriting.html}}{project writing slides}. 
-
-
-
-Comment your results (here you could for example compute the time needed for 
-both algorithms for a given dimensionality of the matrix).  
-
-
-\paragraph{Project 2 c): Implementing tests in your code.}
-In this project (and later ones as well) we will implement so-called \textbf{unit} tests. Our unit tests are mainly meant to test mathematical properties of our algorithm. During the development phase of a program it is useful to devise tests that your program should pass. One of these is to make sure that for a given simple test matrix (say a $5\times 5$ matrix) our algorithm for searching for the largest non-diagonal element always returns the correct answer. Furthermore, for a known simple matrix, irrespective of changes made, we should always get the same and correct eigenvalues. Another test is to make sure that the orthogonality shown in exercise (a) is preserved. Try to figure out other tests your code should pass, based either on the mathematical properties of the algorithms or more program specific tests. Implement at least two unit tests in this project. 
-
-
-
-\paragraph{Project 2 d): The interacting case.}
+\paragraph{Project 2 e): Quantum dots in three dimensions, two electrons.}
 We will now study two electrons in a harmonic oscillator well which
 also interact via a repulsive Coulomb interaction.
 Let us start with the single-electron equation written as
@@ -491,7 +549,7 @@ Defining
 we can rewrite Schroedinger's equation as
 
 \begin{equation*}
-  -\frac{d^2}{d\rho^2} \psi(\rho) + \omega_r^2\rho^2\psi(\rho) +\frac{1}{\rho}\psi(\rho) = \lambda \psi(\rho).
+  -\frac{d^2}{d\rho^2} \psi(\rho) + \omega_r^2\rho^2\psi(\rho) +\frac{1}{\rho} = \lambda \psi(\rho).
 \end{equation*}
 We treat $\omega_r$ as a parameter which reflects the strength of the oscillator potential.
 
@@ -510,7 +568,7 @@ We are only interested in the ground state with $l=0$. We omit the
 center-of-mass energy.
 
 You can reuse the code you wrote for part (b), 
-but you need to change the potential from $\rho^2$ to $\omega_r^2\rho^2+1/\rho$. 
+but you need to add  the potential $\omega_r^2\rho^2+1/\rho$ to the diagonal elements. 
 
 Comment the results for the lowest state (ground state) as function of
 varying strengths of $\omega_r$. 
@@ -518,7 +576,6 @@ varying strengths of $\omega_r$.
 
 For specific oscillator frequencies, the above equation has answers in an analytical form,
 see the article by \href{{http://prola.aps.org/abstract/PRA/v48/i5/p3561_1}}{M. Taut, Phys. Rev. A 48, 3561 (1993)}.
-
 
 
 \paragraph{Project 2 e): First optional exercise: Quantum physics analysis of  the results.}
@@ -600,6 +657,14 @@ Finally,
 we encourage you to work two and two together. Optimal working groups consist of 
 2-3 students. You can then hand in a common report. 
 
+
+
+
+
+
+\paragraph{Project 2 g): Optional challenge.}
+This exercise is optional and is an algorithmic challenge. Your matrix is already tridiagonal. 
+Can you devise a more efficient way to find the eigenvalues and eigenvectors instead of the brute force application of Jacobi's method? 
 
 
 

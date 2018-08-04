@@ -1,3 +1,5 @@
+// This code uses standard c++ allocation of arrays
+
 #define _USE_MATH_DEFINES
 #include <iostream>
 #include <cmath>

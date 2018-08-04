@@ -56,14 +56,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
 % Ensure copyright on titlepage (article style) and chapter pages (book style)
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2017, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2018, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
 %  \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
 % Ensure copyright on titlepages with \thispagestyle{empty}
 \fancypagestyle{empty}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2017, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2018, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
@@ -105,7 +105,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
-Project 1, deadline  September 13
+Project 1, deadline  September 10
 \end{spacing}
 }
 \end{center}
@@ -125,7 +125,7 @@ Project 1, deadline  September 13
 
 % --- begin date ---
 \begin{center}
-Sep 6, 2017
+Aug 4, 2018
 \end{center}
 % --- end date ---
 
@@ -272,17 +272,30 @@ Our linear equation reads
                            \tilde{b}_n\\
                       \end{bmatrix}.
 \]
-Note well that we do not include the endpoints since the boundary conditions are used resulting in a fixed value for $v_i$.
-A tridiagonal matrix is a special form of banded matrix where all the elements are zero except for 
-those on and immediately above and below the leading diagonal.
-Develop a general algorithm first which does not assume that we have a matrix with the same elements along the diagonal and the non-diagonal elements.
-The algorithm for solving this set of equations is rather simple and requires two steps only, a decomposition 
-and forward substitution and finally a backward substitution. 
 
 
-Your first task is to set up the general algorithm (assuming different values for the matrix elements) for solving this set of linear equations.
-Find also the precise number of floating point 
-operations needed to solve the above equations. For the general algorithm you need to specify the values of the array elements $a$, $b$ and $c$ by inserting their explicit values. 
+
+
+Note well that we do not include the endpoints since the boundary
+conditions are used resulting in a fixed value for $v_i$.  A
+tridiagonal matrix is a special form of banded matrix where all the
+elements are zero except for those on and immediately above and below
+the leading diagonal.  Develop a general algorithm first which does
+not assume that we have a matrix with the same elements along the
+diagonal and the non-diagonal elements.  The algorithm for solving
+this set of equations is rather simple and requires two steps only, a
+decomposition and forward substitution and finally a backward
+substitution.
+
+Before we proceed with the solution of the differential equation, you should now plan the organization of your data flow. Here you will find it convenient to define vectors that will contain the matrix elements, the solution to the problem and the function $f(x)$ when discretized. You should also plan on to read input data, whether you do this from the command line or from a selected file. We recommend strongly that you use dynamical memory allocation.
+An example of a C++ program which reads from the command line various input parameters can \href{{https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Projects/2018/Project1/CodeExamples/TridiagonalSimple.cpp}}{be found here}
+
+Your first task is to set up the general algorithm (assuming different
+values for the matrix elements) for solving this set of linear
+equations.  Find also the precise number of floating point operations
+needed to solve the above equations. For the general algorithm you
+need to specify the values of the array elements $a$, $b$ and $c$ by
+inserting their explicit values.
 
 
 Then you should code the above algorithm and solve the problem for matrices of the size
@@ -291,6 +304,7 @@ $n=1000$ grid points.
 
 Compare your results (make plots) with the closed-form solution for the different number of grid points  in the 
 interval $x\in(0,1)$.  The different number of grid points corresponds to different step lengths $h$.
+
 
 \paragraph{Project 1 c):}
 Use thereafter the fact that the matrix has identical matrix elements along the diagonal and identical (but different) values for the non-diagonal elements. Specialize your algorithm to the special case and find the number of floating point operations
@@ -308,7 +322,7 @@ For each step length extract the max value of the relative error.
 Try to increase $n$ to $n=10^7$.  Make a table of the results and 
 comment your results. You can use either the algorithm from b) or c). 
 
-\paragraph{Project 1 d):}
+\paragraph{Project 1 e):}
 Compare your results with those from the LU decomposition codes for the matrix of sizes $10\times 10$, $100\times 100$ and
 $1000\times 1000$. Here you should use the library functions provided  on the webpage of the course. Alternatively, if you use armadillo as a library, you can use the similar function for LU decomposition.  The armadillo function for the LU decomposition is called $LU$ while the function for solving linear sets of equations is called $solve$.
 Use for example the unix function \emph{time} when you run your codes 
@@ -324,7 +338,7 @@ Comment your results.
 
 
 To compute the elapsed time in c++ you can use the following statements
-\begin{verbatim}
+\begin{print}
 ...
 #include "time.h"   //  you have to include the time.h header
 int main()
@@ -337,9 +351,9 @@ int main()
     finish = clock();
     ( (finish - start)/CLOCKS_PER_SEC );
 ...
-\end{verbatim}
+\end{print}
 Similarly, in Fortran, this simple example shows how to compute the elapsed time.
-\begin{verbatim}
+\begin{print}
 PROGRAM time
  REAL :: etime          ! Declare the type of etime()
  REAL :: elapsed(2)     ! For receiving user and system time
@@ -357,7 +371,7 @@ PROGRAM time
               ' system=', elapsed(2)
 
 END PROGRAM time
-\end{verbatim}
+\end{print}
 
 
 
@@ -410,6 +424,14 @@ The preferred format for the report is a PDF file. You can also use DOC or posts
 Finally, 
 we encourage you to work two and two together. Optimal working groups consist of 
 2-3 students. You can then hand in a common report. 
+
+
+
+
+
+
+
+
 
 
 
