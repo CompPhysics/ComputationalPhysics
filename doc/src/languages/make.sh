@@ -19,10 +19,7 @@ name=$1
 rm -f *.tar.gz
 
 opt="--encoding=utf-8"
-# Note: Makefile examples contain constructions like ${PROG} which
-# looks like Mako constructions, but they are not. Use --no_mako
-# to turn off Mako processing.
-opt="--no_mako"
+opt=
 
 rm -f *.aux
 
@@ -52,7 +49,7 @@ system doconce format ipynb $name $opt
 # LaTeX Beamer slides
 beamertheme=red_plain
 system doconce format pdflatex $name --latex_title_layout=beamer --latex_table_format=footnotesize $opt
-system doconce ptex2tex $name envir=minted
+system doconce ptex2tex $name envir=print
 # Add special packages
 doconce subst "% Add user's preamble" "\g<1>\n\\usepackage{simplewick}" $name.tex
 system doconce slides_beamer $name --beamer_slide_theme=$beamertheme
@@ -63,27 +60,27 @@ cp $name.tex ${name}-beamer.tex
 
 # Handouts
 system doconce format pdflatex $name --latex_title_layout=beamer --latex_table_format=footnotesize $opt
-system doconce ptex2tex $name envir=minted
+system doconce ptex2tex $name envir=print
 # Add special packages
 doconce subst "% Add user's preamble" "\g<1>\n\\usepackage{simplewick}" $name.tex
 system doconce slides_beamer $name --beamer_slide_theme=red_shadow --handout
 system pdflatex -shell-escape $name
 pdflatex -shell-escape $name
 pdflatex -shell-escape $name
-pdfnup --nup 2x3 --frame true --delta "1cm 1cm" --scale 0.9 --outfile ${name}-beamer-handouts2x3.pdf ${name}.pdf
+pdfnup --nup 2x3 --frame true --delta "1cm 1cm" --scale 0.9 --outfile ${name}-print6.pdf ${name}.pdf
 rm -f ${name}.pdf
 
 # Ordinary plain LaTeX document
 rm -f *.aux  # important after beamer
-system doconce format pdflatex $name --minted_latex_style=trac --latex_admon=paragraph $opt
-system doconce ptex2tex $name envir=minted
+system doconce format pdflatex $name --print_latex_style=trac --latex_admon=paragraph $opt
+system doconce ptex2tex $name envir=print
 # Add special packages
 doconce subst "% Add user's preamble" "\g<1>\n\\usepackage{simplewick}" $name.tex
 doconce replace 'section{' 'section*{' $name.tex
 pdflatex -shell-escape $name
 pdflatex -shell-escape $name
-mv -f $name.pdf ${name}-minted.pdf
-cp $name.tex ${name}-plain-minted.tex
+mv -f $name.pdf ${name}-print.pdf
+cp $name.tex ${name}-plain-print.tex
 
 
 

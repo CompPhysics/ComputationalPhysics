@@ -61,26 +61,7 @@ c++ -O3 -c -Wall myprogram.cpp
 
 Under Linux/Unix it is often convenient to create a
 so-called makefile, which is a script which includes possible
-compiling commands.
-
-!bc cppcod
-# Comment lines
-# General makefile for c - choose PROG =   name of given program
-# Here we define compiler option, libraries and the  target
-CC= g++ -Wall
-PROG= myprogram
-# this is the math library in C, not necessary for C++
-LIB = -lm
-# Here we make the executable file
-${PROG} :          ${PROG}.o
-                   ${CC} ${PROG}.o ${LIB} -o ${PROG}
-# whereas here we create the object file
-${PROG}.o :       ${PROG}.c
-                  ${CC} -c ${PROG}.c
-!ec
-If you name your file for `makefile`, simply type the command
-`make` and Linux/Unix executes all of the statements in the above
-makefile. Note that C++ files have the extension `.cpp`.
+compiling commands. More about this later.
 
 !split
 ===== "Hello world":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/IntroProgramming/cpp/program1.cpp" =====
@@ -1065,7 +1046,6 @@ Our total error becomes
 \[
    \left|\epsilon_{\mbox{tot}}\right|\le  \frac{2 \epsilon_M}{h^2} +
                           \frac{f_0^{(4)}}{12}h^{2}.
-    label{eq:experror}
 \]
 !et
 It is then natural to ask which value of $h$ yields the smallest
