@@ -88,7 +88,7 @@ ${text_types(ch)}
 !split
 ===== Projects Fall 2018 =====
 
-=== Project 1 ===
+=== Project 1, Deadline September 10 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project1/pdf/Project1.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project1/pdf/Project1.pdf"
@@ -98,7 +98,7 @@ ${text_types(ch)}
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project1/ipynb/Project1.ipynb"
 
-=== Project 2 ===
+=== Project 2, Deadline October 1 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project2/pdf/Project2.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project2/pdf/Project2.pdf"
@@ -108,7 +108,7 @@ ${text_types(ch)}
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project2/ipynb/Project2.ipynb"
 
-=== Project 3 ===
+=== Project 3, Deadline October 22 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project3/pdf/Project3.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project3/pdf/Project3.pdf"
@@ -128,7 +128,7 @@ ${text_types(ch)}
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project4/ipynb/Project4.ipynb"
 
-=== Project 5 to be determined, more variants may be available ===
+=== Project 5 to be determined, more variants may be available, deadline December 10 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project5/DiffusionEquation/pdf/DiffusionEquation.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project5/DiffusionEquation/pdf/DiffusionEquation.pdf"
