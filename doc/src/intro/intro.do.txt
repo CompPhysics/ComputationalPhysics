@@ -224,7 +224,7 @@ FIGURE: [fig-intro/Nebbdyr2.pdf, width=500 frac=0.6]
 ===== Other courses in Computational Science at UiO =====
 
 !bblock Bachelor/Master/PhD Courses
-  * "FYS-STK4155":"http://www.uio.no/studier/emner/matnat/fys/FYS-STK3150/" Applied data analysis and machine learning, fall semester
+  * "FYS-STK3155/4155":"http://www.uio.no/studier/emner/matnat/fys/FYS-STK3150/" Applied data analysis and machine learning, fall semester
   * "FYS4411":"http://www.uio.no/studier/emner/matnat/fys/FYS4411/" Computational physics II (Parallelization (MPI), object orientation, quantum mechanical systems with many interacting particles), spring semester
   * "FYS4460":"http://www.uio.no/studier/emner/matnat/fys/FYS4460/" Computational physics III (Parallelization (MPI), object orientation, classical statistical physics, simulation of phase transitions, spring semester
   * "INF-MAT4130":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4130/index-eng.html" Numerical linear algebra
