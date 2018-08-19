@@ -228,10 +228,11 @@ FIGURE: [fig-intro/Nebbdyr2.pdf, width=500 frac=0.6]
   * "FYS4411":"http://www.uio.no/studier/emner/matnat/fys/FYS4411/" Computational physics II (Parallelization (MPI), object orientation, quantum mechanical systems with many interacting particles), spring semester
   * "FYS4460":"http://www.uio.no/studier/emner/matnat/fys/FYS4460/" Computational physics III (Parallelization (MPI), object orientation, classical statistical physics, simulation of phase transitions, spring semester
   * "INF-MAT4130":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4130/index-eng.html" Numerical linear algebra
+  * "MAT4110":"http://www.uio.no/studier/emner/matnat/math/MAT4110/index-eng.html" Introduction to Numerical Analysis
   * "MAT-INF3360":"http://www.uio.no/studier/emner/matnat/math/MAT-INF3360/index-eng.html" - Introduction to Partial Differential Equations
   * "IN5620":"http://www.uio.no/studier/emner/matnat/ifi/IN5620/index-eng.html" Numerical methods for PDEs, finite element method
   * "INF3331/4331":"http://www.uio.no/studier/emner/matnat/ifi/INF3331/" Problem solving with high-level languages (Python), fall semester
-  * "INF3380":"http://www.uio.no/studier/emner/matnat/ifi/INF3380/index-eng.html" Parallel computing for problems in the Natural Sciences (mostly PDEs), spring semester
+  * "IN3200/4200":"http://www.uio.no/studier/emner/matnat/ifi/IN3200/index-eng.html" Parallel computing for problems in the Natural Sciences (mostly PDEs), spring semester
 !eblock
 
 
