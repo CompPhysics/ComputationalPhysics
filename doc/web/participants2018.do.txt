@@ -16,6 +16,144 @@ o Group IV  = Friday 2pm-6pm
 |----------------------------------------------------------------------------------------------------------------------------|
 | Last name | First name | Computer lab session | 
 |----------------------------------------------------------------------------------------------------------------------------|
-| |	 |   |
-|-----------------------------------------------------------------------------|
-	
+| Ahmadigoltapeh | 	Sajjad |  |
+| Baastad	| Camilla Marie  |  |
+| Benitah	| Thomas |  |
+| Berger	| Alexandre |  |
+| Bergsbak	| Ingvild |  |
+| Bonten	| Niels |  |
+| Borg	        | Jakob |  |
+| Borowska	| Jowita |  |
+| Cabrera	| Gabriel Sigurd |  |
+| Capel	| Henriette Louise |  |
+| Caprani | 	Lorenzo Felice Andrea |  |
+| Christensen | 	Elisabeth |  |
+| Dalen	Bendik |  Steinsvåg |  |
+| Davidov | 	Aleksandar |  |
+| Dreierstad | 	Christer |  |
+| Dreyer | 	Lars Willas |  |
+| Ekstrøm | 	Linus |  |
+| Flatby | 	Joakim |  |
+| Fløde	|  Bernt Jonas |  |
+| Foschi | 	Marianna |  |
+| Foss	|  Sigbjørn Lundesgaard |  |
+| Foyn	|  Stig-Nicolai |  |
+| Gjerberg | 	Torbjørn Lode |  |
+| Gjermestad | 	Christian Sant  |  |
+| Glad	|  Hans Erlend Bakken |  |
+| Grunnvåg | 	Håvard Gulestø |  |
+| Grøstad | 	Ola Fosheim |  |
+| Hamraz | 	Belal |  |
+| Hardersen | 	Hanne Alida Fossen  |  |
+| Haug	|  Nicolai  |  |
+| Hauge	|  Eirill Strand |  |
+| Haugerud | 	Ivar Svalheim |  |
+| Hebnes | 	Oliver Lerstøl |  |
+| Hellemo | 	Håkon |  |
+| Hoel	| Terje |  |
+|  Hommedal	| Ylva Knausgård |  |
+| Husom	| Erik Johannes Bjørnson Løvensk |  |
+| Hustoft | 	Håvard |  |
+| Håpnes | 	Simen |  |
+| Isaksen | 	Amund |  |
+| Ismail | 	Mohamed Sheik Mohomud |  |
+| Johnsen | 	John-Magnus |  |
+| Julton | 	Anders |  |
+| Kallmyr | 	Jan-Adrian Henriksen |  |
+| Karlsen | 	Nicholas |  |
+| Khalid | 	Moonis Ali |  |
+| Kolstad | 	Feyu Kebede |  |
+| Kosarifar | 	Maziar |  |
+| Køller | 	Egil Sperstad  |  |
+| Liu	|  Chenghao |  |
+| Longva | 	Erlend Andreas  |  |
+| Lotfi	|  Amirhossien  |  |
+| Magnusson	|  Steinn Hauser  |  |
+| Martinussen | 	Mari  |  |
+| Mc Gloin	| Martin Håkon Marthinsen  |  |
+| Mikkelsen	| Nils Johannes  |  |
+| Mortensen	| Henrik  |  |
+| Nereng	| Johan  |  |
+| Oldfield	| Noah Daniel Hegerland |  |
+| Phillips	| Hunter  |  |
+| Reichelt	| Marie  |  |
+| Remman	| Stefan  |  |
+| Ryen	| Kai  |  |
+| Rｿmcke | 	Erik Natchanon  |  |
+| Sakthivel	|  Abinaya Abbi  |  |
+| Seip	| Ulrik Berg Arup  |  |
+| Serrera Pardueles	| Guillermo |  |
+| Sexton	| Alexander Harold |  |
+| Sigorini	| Stefano |  |
+| Sjur	| Anna Lina Petruseviciute |  |
+| Slongo | 	Francesco  |  |
+| Stokke | 	Rein Egil Andersson
+| Stølen | 	Rune
+| Velasco-Zavala | 	Jorge Eduardo
+| White	| Jeremy Jack
+| Wold	| Kristian
+|  Åkerholm | 	Jan Ole Fiksdal
+| Aabø	| Heine Olsson
+| Aasmundtveit	| Jan Fredrik
+| Asprusten	| Markus Leira
+| Aurbakken	| Einar
+| Baldelli	| Beatrice
+| Barkost	| Per Harald
+| Beckstrøm	| Geir Håkon
+| Birgisson	| Hilmar Yngvi
+| Bjurstedt	| Andreas
+| Bjørklund	| Markus
+| Braseth	| Lasse Lorentz
+| Bratli	| Eirik
+| Ekeberg	| Hannah Lovise Okstad
+| Fossheim	| Håkon
+| Garvin	| Kristine
+| Glittum	| Cecilie
+| Grorud	| Amund
+| Hall	| Erlend
+| Hauge	| Eirill Strand
+| Helland | 	Andreas
+| Holm	| Marius
+| Hovden | 	Martin Krokan
+| Isachsen | 	Stian Mortenssｿnn
+| Iversen | 	Silje Christine
+| James	|  Roystan
+| Julsrud | 	Ingeborg Rian
+| Kanagaratnam	|  Raveendra
+| Kjelseth	|  Ingrid Marie Endresen
+| Kollstuen	|  Marit
+| Kvasnes	|  Lasse Nygaard
+| Langvatn	|  Johannes Tobiassen
+| Larsen	| Haakon Waag
+| Liahjell	|  Gunnar Thorsen
+| Lillegraven	|  Bjørn Gilje
+| Løyland	|  Sverre
+| Markova	|  Maria
+| Mehren	|  Johanne
+| Myklebust	| Lena
+| Nguyen Minh	| Chien
+| Nieweglowski	| Adam Andrzej
+| Nistor	| Cristina-Iuliana
+| Nordeng	| Fredrik Jaibeer Mahal
+| Nozari Mirarkolaei	|  Kosar
+| Olofsson	|  Andreas Connor
+| Ousdal	|  Erlend Lemva
+| Paulsen	| Wanja
+| Raniseth	| Johan Midtgard
+| Rasmussen	|  Maren
+| Reitan	|  Audun Tahina
+| Sagen	| Stine
+| San	| Metin
+| Silverberg	|  Fred Marcus John
+| Stabell | 	Dina
+| Sｿdahl | 	Elin Dypvik
+| Taube	| Gregor
+| Thingwall | 	Julie
+| Thorsrud | 	Eirik
+| Torp	| Sondre
+| Vahabi | 	Marzieh
+| Wagner | 	Raphael
+| Winness | 	Eirik Vetle
+| Wyrwoll | 	Vanessa
+| Ziegenhorn	|  Alexander
+|-----------------------------------------------------------------------------| 
