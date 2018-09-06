@@ -1,5 +1,5 @@
 GCC= c++ 
-PROG= invers
+PROG= program2
 
 ${PROG} :	   ${PROG}.o lib.o
 		   ${GCC} ${PROG}.o lib.o -o ${PROG}

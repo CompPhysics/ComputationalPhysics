@@ -294,7 +294,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._linalg-bs056.html#___sec55" style="font-size: 80%;">LU Decomposition, the inverse</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs057.html#___sec56" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs058.html#___sec57" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec58" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"</a></li>
+     <!-- navigation toc: --> <li><a href="._linalg-bs059.html#___sec58" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary"</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs060.html#___sec59" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary"</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs061.html#___sec60" style="font-size: 80%;">"How to use the Library functions":"https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/FortranLibrary"</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs062.html#___sec61" style="font-size: 80%;">"Using Armadillo to perform an LU decomposition":"https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/CppQtCodesLectures/MatrixTest/main.cpp"</a></li>
@@ -317,7 +317,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._linalg-bs079.html#___sec78" style="font-size: 80%;">Splines</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs080.html#___sec79" style="font-size: 80%;">Splines</a></li>
      <!-- navigation toc: --> <li><a href="._linalg-bs081.html#___sec80" style="font-size: 80%;">Splines</a></li>
-     <!-- navigation toc: --> <li><a href="._linalg-bs082.html#___sec81" style="font-size: 80%;">Splines</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec81" style="font-size: 80%;">Splines</a></li>
 
         </ul>
       </li>
@@ -330,60 +330,43 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0059"></a>
+<a name="part0082"></a>
 <!-- !split -->
 
-<h2 id="___sec58" class="anchor"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/tree/master/doc/Programs/LecturePrograms/programs/cppLibrary" target="_self">How to use the Library functions</a> </h2>
-
+<h2 id="___sec81" class="anchor">Splines </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+Thereafter, if you wish to make  various interpolations, you need to call the function 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  <span style="color: #408080; font-style: italic">// find inverse of a[][] by columns</span>
-  <span style="color: #008000; font-weight: bold">for</span>(j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) {
-    <span style="color: #408080; font-style: italic">// initialize right-side of linear equations</span>
-    <span style="color: #008000; font-weight: bold">for</span>(i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) col[i] <span style="color: #666666">=</span> <span style="color: #666666">0.0</span>;
-    col[j] <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>;
-    lubksb(a, n, indx, col);
-    <span style="color: #408080; font-style: italic">// save result in y[][]</span>
-    <span style="color: #008000; font-weight: bold">for</span>(i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) y[i][j] <span style="color: #666666">=</span> col[i];
-  }   <span style="color: #408080; font-style: italic">//j-loop over columns</span>
-  <span style="color: #408080; font-style: italic">// return the inverse matrix in a[][]</span>
-  <span style="color: #008000; font-weight: bold">for</span>(i <span style="color: #666666">=</span> <span style="color: #666666">0</span>; i <span style="color: #666666">&lt;</span> n; i<span style="color: #666666">++</span>) {
-    <span style="color: #008000; font-weight: bold">for</span>(j <span style="color: #666666">=</span> <span style="color: #666666">0</span>; j <span style="color: #666666">&lt;</span> n; j<span style="color: #666666">++</span>) a[i][j] <span style="color: #666666">=</span> y[i][j];
-
-  free_matrix((<span style="color: #B00040">void</span> <span style="color: #666666">**</span>) y);     <span style="color: #408080; font-style: italic">// release local memory</span>
-  <span style="color: #008000; font-weight: bold">delete</span> [] col;
-  <span style="color: #008000; font-weight: bold">delete</span> []indx;
-}  <span style="color: #408080; font-style: italic">// End: function inverse()</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>splint(<span style="color: #B00040">double</span> x[], <span style="color: #B00040">double</span> y[], <span style="color: #B00040">double</span> y2a[], <span style="color: #B00040">int</span> n, <span style="color: #B00040">double</span> x, <span style="color: #B00040">double</span> <span style="color: #666666">*</span>y)
 </pre></div>
 <p>
+which takes as input
+the tabulated values \( x[0,..,n - 1] \) and \( y[0,..,n - 1] \) and the output 
+y2a[0,..,n - 1] from <em>spline</em>. It returns the value \( y \) corresponding
+to the point \( x \).
+</div>
+</div>
+
+
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
-<li><a href="._linalg-bs058.html">&laquo;</a></li>
+<li><a href="._linalg-bs081.html">&laquo;</a></li>
   <li><a href="._linalg-bs000.html">1</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._linalg-bs051.html">52</a></li>
-  <li><a href="._linalg-bs052.html">53</a></li>
-  <li><a href="._linalg-bs053.html">54</a></li>
-  <li><a href="._linalg-bs054.html">55</a></li>
-  <li><a href="._linalg-bs055.html">56</a></li>
-  <li><a href="._linalg-bs056.html">57</a></li>
-  <li><a href="._linalg-bs057.html">58</a></li>
-  <li><a href="._linalg-bs058.html">59</a></li>
-  <li class="active"><a href="._linalg-bs059.html">60</a></li>
-  <li><a href="._linalg-bs060.html">61</a></li>
-  <li><a href="._linalg-bs061.html">62</a></li>
-  <li><a href="._linalg-bs062.html">63</a></li>
-  <li><a href="._linalg-bs063.html">64</a></li>
-  <li><a href="._linalg-bs064.html">65</a></li>
-  <li><a href="._linalg-bs065.html">66</a></li>
-  <li><a href="._linalg-bs066.html">67</a></li>
-  <li><a href="._linalg-bs067.html">68</a></li>
-  <li><a href="._linalg-bs068.html">69</a></li>
-  <li><a href="">...</a></li>
-  <li><a href="._linalg-bs082.html">83</a></li>
-  <li><a href="._linalg-bs060.html">&raquo;</a></li>
+  <li><a href="._linalg-bs074.html">75</a></li>
+  <li><a href="._linalg-bs075.html">76</a></li>
+  <li><a href="._linalg-bs076.html">77</a></li>
+  <li><a href="._linalg-bs077.html">78</a></li>
+  <li><a href="._linalg-bs078.html">79</a></li>
+  <li><a href="._linalg-bs079.html">80</a></li>
+  <li><a href="._linalg-bs080.html">81</a></li>
+  <li><a href="._linalg-bs081.html">82</a></li>
+  <li class="active"><a href="._linalg-bs082.html">83</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 

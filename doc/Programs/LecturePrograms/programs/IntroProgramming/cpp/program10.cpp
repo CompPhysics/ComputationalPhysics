@@ -7,10 +7,10 @@ int main(int argc, char *argv[])
   int a;
   int *b;
   a = 10;
-  b = new int[10];
+  //  b = new int[10];
   for(int i = 0; i < 10; i++) {
-    b[i] = i;
-    cout <<  b[i] << endl;
+        b[i] = i;
+        cout <<  b[i] << endl;
   }
   cout << "a before being sent to func:" << a << endl;
   // the variable a is transferred by call by value. This means
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
   cout << "a after being used by func:" << a << endl;
   cout <<  " Change in array b after having called func" << endl;
   for(int i = 0; i < 10; i++) {
-    cout <<  b[i] << endl;
+       cout <<  b[i] << endl;
   }
   delete [] b ;
   return 0;

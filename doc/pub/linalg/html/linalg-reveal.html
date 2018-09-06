@@ -148,7 +148,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>Aug 6, 2018</h4></center> <!-- date -->
+<center><h4>Sep 6, 2018</h4></center> <!-- date -->
 <br>
 <p>
 
@@ -2042,7 +2042,250 @@ For Fortran users:
 
 
 <section>
-<h2 id="___sec62">Iterative methods, Chapter 6 </h2>
+<h2 id="___sec62"><a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Programs/LecturePrograms/programs/LinAlgebra/cpp/program2.cpp" target="_blank">Using standard functions to perform an LU decomposition</a> </h2>
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">// This program sets up a simple matrix with random values for the matrix elements</span>
+<span style="color: #228B22">// Matrices are always given by upper case variables</span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;iostream&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;new&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdio&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstdlib&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cmath&gt;</span><span style="color: #1e889b"></span>
+<span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;cstring&gt;</span><span style="color: #1e889b"></span>
+
+<span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
+<span style="color: #1e889b">#define   ZERO       1.0E-15</span>
+
+<span style="color: #228B22">/* function declarations */</span>
+<span style="color: #00688B; font-weight: bold">double</span> ** <span style="color: #008b45">AllocateMatrix</span>(<span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">int</span>);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">DeallocateMatrix</span>(<span style="color: #00688B; font-weight: bold">double</span> **, <span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">int</span>); 
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">MatrixInverse</span>(<span style="color: #00688B; font-weight: bold">double</span> **, <span style="color: #00688B; font-weight: bold">int</span>);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">WriteMatrix</span>(<span style="color: #00688B; font-weight: bold">double</span> **, <span style="color: #00688B; font-weight: bold">int</span>);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">MatrixMultiplication</span>(<span style="color: #00688B; font-weight: bold">double</span> **, <span style="color: #00688B; font-weight: bold">double</span> **, <span style="color: #00688B; font-weight: bold">int</span>);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">LUDecomposition</span>(<span style="color: #00688B; font-weight: bold">double</span> **, <span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">int</span> *);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">LUBackwardSubstitution</span>(<span style="color: #00688B; font-weight: bold">double</span> **, <span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">int</span> *, <span style="color: #00688B; font-weight: bold">double</span> *);
+
+<span style="color: #228B22">// Begin main function, reads from terminal mode the dimension</span>
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span> *argv[])
+{
+  <span style="color: #228B22">// Read from terminal the size of the matrix</span>
+  <span style="color: #00688B; font-weight: bold">int</span> n = atoi(argv[<span style="color: #B452CD">1</span>]); 
+  <span style="color: #228B22">// Memory for  matrix to invert and copy of it</span>
+  <span style="color: #00688B; font-weight: bold">double</span> **A = AllocateMatrix(n, n);
+  <span style="color: #00688B; font-weight: bold">double</span> **B = AllocateMatrix(n, n);
+  <span style="color: #228B22">// Define period and seed for standard random number generator</span>
+  <span style="color: #00688B; font-weight: bold">double</span> invers_period = <span style="color: #B452CD">1.</span>/RAND_MAX; <span style="color: #228B22">// initialise the random number generator</span>
+  srand(time(<span style="color: #658b00">NULL</span>));  <span style="color: #228B22">// This produces the so-called seed in MC jargon</span>
+  <span style="color: #228B22">// Setting general square matrices with random matrix elements</span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {                
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++){   
+      <span style="color: #00688B; font-weight: bold">double</span> x = <span style="color: #00688B; font-weight: bold">double</span>(rand())*invers_period; 
+      A[i][j] = x;
+      B[i][j] = A[i][j];
+    }
+  }
+  <span style="color: #228B22">// Write out original matrix</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot; Initial matrix A:&quot;</span> &lt;&lt; endl;  
+  WriteMatrix(A, n);
+  <span style="color: #228B22">// calculate and return inverse matrix  </span>
+  MatrixInverse(B, n);     
+  <span style="color: #228B22">// Write out inverse matrix</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Inverse  matrix of A:&quot;</span> &lt;&lt; endl;
+  WriteMatrix(B, n);
+  <span style="color: #228B22">// Check that A^-1A = identity matrix</span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;Check that we get an identity matrix &quot;</span> &lt;&lt; endl;
+  MatrixMultiplication(A,B,n);
+  <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
+
+} <span style="color: #228B22">// End: function main() </span>
+
+<span style="color: #228B22">/* </span>
+<span style="color: #228B22">   The function MatrixInverse() performs a matrix inversion </span>
+<span style="color: #228B22">   of a square matrix a[][] of  dimension n. </span>
+<span style="color: #228B22">*/</span>
+
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">MatrixInverse</span>(<span style="color: #00688B; font-weight: bold">double</span> **A, <span style="color: #00688B; font-weight: bold">int</span> n)
+{        
+  <span style="color: #228B22">// allocate space in memory</span>
+  <span style="color: #00688B; font-weight: bold">int</span> *indx;  
+  <span style="color: #00688B; font-weight: bold">double</span> *column;
+  indx = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">int</span>[n];
+  column  = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span>[n];
+  <span style="color: #00688B; font-weight: bold">double</span> **Y    = AllocateMatrix(n,n);
+  <span style="color: #228B22">// Perform the LU decomposition </span>
+  LUDecomposition(A, n, indx);   <span style="color: #228B22">// LU decompose  a[][] </span>
+  cout &lt;&lt; <span style="color: #CD5555">&quot;LU decomposed matrix  A:&quot;</span> &lt;&lt; endl;
+  WriteMatrix(A,n);
+  <span style="color: #228B22">// find inverse of a[][] by columns </span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+    <span style="color: #228B22">// initialize right-side of linear equations </span>
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) column[i] = <span style="color: #B452CD">0.0</span>;
+    column[j] = <span style="color: #B452CD">1.0</span>;
+    LUBackwardSubstitution(A, n, indx, column);
+    <span style="color: #228B22">// save result in y[][] </span>
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) Y[i][j] = column[i];
+  } 
+  <span style="color: #228B22">// return the inverse matrix in A[][] </span>
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; n; j++) A[i][j] = Y[i][j];
+  } 
+  DeallocateMatrix(Y, n, n);     <span style="color: #228B22">// release local memory </span>
+  <span style="color: #8B008B; font-weight: bold">delete</span> [] column;
+  <span style="color: #8B008B; font-weight: bold">delete</span> []indx;
+
+}  <span style="color: #228B22">// End: function MatrixInverse()</span>
+
+
+<span style="color: #228B22">// Allocate memory for a matrix and initialize the elements to zero</span>
+
+<span style="color: #00688B; font-weight: bold">double</span> ** <span style="color: #008b45">AllocateMatrix</span>(<span style="color: #00688B; font-weight: bold">int</span> m, <span style="color: #00688B; font-weight: bold">int</span> n){
+  <span style="color: #00688B; font-weight: bold">double</span> ** Matrix;
+  Matrix = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span>*[m];
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;m;i++){
+    Matrix[i] = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span>[n];
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j&lt;m;j++)
+      Matrix[i][j] = <span style="color: #B452CD">0.0</span>;
+  }
+  <span style="color: #8B008B; font-weight: bold">return</span> Matrix;
+}
+
+<span style="color: #228B22">// Free memory</span>
+
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">DeallocateMatrix</span>(<span style="color: #00688B; font-weight: bold">double</span> ** Matrix, <span style="color: #00688B; font-weight: bold">int</span> m, <span style="color: #00688B; font-weight: bold">int</span> n){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i&lt;m;i++)
+    <span style="color: #8B008B; font-weight: bold">delete</span>[] Matrix[i];
+  <span style="color: #8B008B; font-weight: bold">delete</span>[] Matrix;
+}
+
+<span style="color: #228B22">// Write out a given matrix</span>
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">WriteMatrix</span>(<span style="color: #00688B; font-weight: bold">double</span> ** Matrix, <span style="color: #00688B; font-weight: bold">int</span> n){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i &lt; n;i++){
+    cout &lt;&lt; endl;
+     <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span> ; j &lt; n;j++){
+        printf(<span style="color: #CD5555">&quot;  A[%2d][%2d] = %12.4E&quot;</span>,i, j, Matrix[i][j]);
+     }
+  }
+    cout &lt;&lt; endl;
+}
+
+<span style="color: #228B22">// Straightforward matrix-matrix multiplication</span>
+
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">MatrixMultiplication</span>(<span style="color: #00688B; font-weight: bold">double</span> ** a, <span style="color: #00688B; font-weight: bold">double</span> **b, <span style="color: #00688B; font-weight: bold">int</span> n){
+  <span style="color: #00688B; font-weight: bold">double</span> **c = AllocateMatrix(n, n);
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>;i &lt; n;i++){
+     <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span> ; j &lt; n;j++){
+       <span style="color: #00688B; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+       <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> k = <span style="color: #B452CD">0</span>; k &lt; n; k++) sum += a[i][k]*b[k][j];
+       c[i][j] = sum;
+     }
+  }
+  WriteMatrix(c,n);
+}
+
+<span style="color: #228B22">/*</span>
+<span style="color: #228B22">    The function</span>
+<span style="color: #228B22">    void LUDecomposition(double **a, int n, int *indx)</span>
+<span style="color: #228B22">    takes as input a two-dimensional matrix a[][] of dimension n and</span>
+<span style="color: #228B22">    replaces it by the LU decomposition of a rowwise permutation of</span>
+<span style="color: #228B22">    itself. The results is stored in a[][]</span>
+<span style="color: #228B22">    The vector</span>
+<span style="color: #228B22">    indx[] records the row permutation effected by the partial pivoting.</span>
+<span style="color: #228B22">*/</span>
+
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">LUDecomposition</span>(<span style="color: #00688B; font-weight: bold">double</span> **a, <span style="color: #00688B; font-weight: bold">int</span> n, <span style="color: #00688B; font-weight: bold">int</span> *indx)
+{
+   <span style="color: #00688B; font-weight: bold">int</span>      i, imax, j, k;
+   <span style="color: #00688B; font-weight: bold">double</span>   big, dum, sum, temp, *vv;
+
+  vv = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span> [n];
+   <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">0</span>; i &lt; n; i++) {     <span style="color: #228B22">// loop over rows to get scaling information</span>
+      big = ZERO;
+      <span style="color: #8B008B; font-weight: bold">for</span>(j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {
+         <span style="color: #8B008B; font-weight: bold">if</span>((temp = fabs(a[i][j])) &gt; big) big = temp;
+      }
+      <span style="color: #8B008B; font-weight: bold">if</span>(big == ZERO) {
+         printf(<span style="color: #CD5555">&quot;\n\nSingular matrix in routine ludcmp()\n&quot;</span>);
+         exit(<span style="color: #B452CD">1</span>);
+      }               
+      vv[i] = <span style="color: #B452CD">1.0</span>/big;        
+   } 
+
+   <span style="color: #8B008B; font-weight: bold">for</span>(j = <span style="color: #B452CD">0</span>; j &lt; n; j++) {     <span style="color: #228B22">// loop over columns of Crout&#39;s method</span>
+      <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">0</span>; i&lt; j; i++) {   <span style="color: #228B22">// not i = j</span>
+         sum = a[i][j];    
+	 <span style="color: #8B008B; font-weight: bold">for</span>(k = <span style="color: #B452CD">0</span>; k &lt; i; k++) sum -= a[i][k]*a[k][j];
+	 a[i][j] = sum;
+      }
+      big = ZERO;   <span style="color: #228B22">// initialization for search for largest pivot element</span>
+      <span style="color: #8B008B; font-weight: bold">for</span>(i = j; i&lt; n; i++) {
+         sum = a[i][j];
+	 <span style="color: #8B008B; font-weight: bold">for</span>(k = <span style="color: #B452CD">0</span>; k &lt; j; k++) sum -= a[i][k]*a[k][j];
+	 a[i][j] = sum;
+	 <span style="color: #8B008B; font-weight: bold">if</span>((dum = vv[i]*fabs(sum)) &gt;= big) {
+  	    big = dum;
+	    imax = i;
+	 }
+      } <span style="color: #228B22">// end i-loop</span>
+      <span style="color: #8B008B; font-weight: bold">if</span>(j != imax) {    <span style="color: #228B22">// do we need to interchange rows ?</span>
+         <span style="color: #8B008B; font-weight: bold">for</span>(k = <span style="color: #B452CD">0</span>;k&lt; n; k++) {       <span style="color: #228B22">// yes</span>
+	    dum        = a[imax][k];
+	    a[imax][k] = a[j][k];
+	    a[j][k]    = dum;
+	 }
+	 vv[imax] = vv[j];         <span style="color: #228B22">// also interchange scaling factor </span>
+      }
+      indx[j] = imax;
+      <span style="color: #8B008B; font-weight: bold">if</span>(fabs(a[j][j]) &lt; ZERO)  a[j][j] = ZERO;
+      <span style="color: #8B008B; font-weight: bold">if</span>(j &lt; (n - <span style="color: #B452CD">1</span>)) {                   <span style="color: #228B22">// divide by pivot element </span>
+         dum = <span style="color: #B452CD">1.0</span>/a[j][j];
+	 <span style="color: #8B008B; font-weight: bold">for</span>(i=j+<span style="color: #B452CD">1</span>;i &lt; n; i++) a[i][j] *= dum;
+      }
+   } <span style="color: #228B22">// end j-loop over columns</span>
+   <span style="color: #8B008B; font-weight: bold">delete</span> [] vv;   <span style="color: #228B22">// release local memory</span>
+}
+ 
+
+<span style="color: #228B22">/*</span>
+<span style="color: #228B22">     The function </span>
+<span style="color: #228B22">       void LUBackwardSubstitution(double **a, int n, int *indx, double *b)</span>
+<span style="color: #228B22">     solves the set of linear equations A X = B of dimension n.</span>
+<span style="color: #228B22">     a[][] is input, not as the matrix A[][] but rather as </span>
+<span style="color: #228B22">     its LU decomposition, indx[] is input as the permutation vector returned by </span>
+<span style="color: #228B22">     ludcmp(). b[] is input as the right-hand side vector B,</span>
+<span style="color: #228B22">     The solution X is returned in B. The input data a[][],</span>
+<span style="color: #228B22">     n and indx[] are not modified. This routine takes into </span>
+<span style="color: #228B22">     account the possibility that b[] will begin with many</span>
+<span style="color: #228B22">     zero elements, so it is efficient for use in matrix</span>
+<span style="color: #228B22">     inversion.</span>
+<span style="color: #228B22">*/</span>
+
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">LUBackwardSubstitution</span>(<span style="color: #00688B; font-weight: bold">double</span> **a, <span style="color: #00688B; font-weight: bold">int</span> n, <span style="color: #00688B; font-weight: bold">int</span> *indx, <span style="color: #00688B; font-weight: bold">double</span> *b)
+{
+   <span style="color: #00688B; font-weight: bold">int</span>        i, ii = -<span style="color: #B452CD">1</span>, ip, j;
+   <span style="color: #00688B; font-weight: bold">double</span>     sum;
+
+   <span style="color: #8B008B; font-weight: bold">for</span>(i = <span style="color: #B452CD">0</span>; i&lt; n; i++) {
+      ip    = indx[i];
+      sum   = b[ip];
+      b[ip] = b[i];
+      <span style="color: #8B008B; font-weight: bold">if</span>(ii &gt; -<span style="color: #B452CD">1</span>)   <span style="color: #8B008B; font-weight: bold">for</span>(j = ii; j &lt; i; j++) sum -= a[i][j] * b[j];
+      <span style="color: #8B008B; font-weight: bold">else</span> <span style="color: #8B008B; font-weight: bold">if</span>(sum) ii = i;
+      b[i] = sum;
+   }
+   <span style="color: #8B008B; font-weight: bold">for</span>(i = n - <span style="color: #B452CD">1</span>; i &gt;= <span style="color: #B452CD">0</span>; i--) {
+      sum = b[i];
+      <span style="color: #8B008B; font-weight: bold">for</span>(j = i+<span style="color: #B452CD">1</span>; j &lt; n; j++) sum -= a[i][j] * b[j];
+      b[i] = sum/a[i][i];
+   }
+}
+</pre></div>
+</section>
+
+
+<section>
+<h2 id="___sec63">Iterative methods, Chapter 6 </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <ul>
@@ -2055,7 +2298,7 @@ For Fortran users:
 
 
 <section>
-<h2 id="___sec63">Iterative methods, Jacobi's method </h2>
+<h2 id="___sec64">Iterative methods, Jacobi's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2090,7 +2333,7 @@ If the matrix \( \mathbf{A} \) is positive definite or diagonally dominant, one 
 
 
 <section>
-<h2 id="___sec64">Iterative methods, Jacobi's method </h2>
+<h2 id="___sec65">Iterative methods, Jacobi's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2124,7 +2367,7 @@ $$
 
 
 <section>
-<h2 id="___sec65">Iterative methods, Jacobi's method </h2>
+<h2 id="___sec66">Iterative methods, Jacobi's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2149,7 +2392,7 @@ matrix.
 
 
 <section>
-<h2 id="___sec66">Iterative methods, Gauss-Seidel's method </h2>
+<h2 id="___sec67">Iterative methods, Gauss-Seidel's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2184,7 +2427,7 @@ behavior and leads to the Gauss-Seidel method!
 
 
 <section>
-<h2 id="___sec67">Iterative methods, Gauss-Seidel's method </h2>
+<h2 id="___sec68">Iterative methods, Gauss-Seidel's method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2219,7 +2462,7 @@ Both methods sometimes converge even if these conditions are not satisfied.
 
 
 <section>
-<h2 id="___sec68">Iterative methods, Successive over-relaxation </h2>
+<h2 id="___sec69">Iterative methods, Successive over-relaxation </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2241,7 +2484,7 @@ $$
 
 
 <section>
-<h2 id="___sec69">Iterative methods, Successive over-relaxation </h2>
+<h2 id="___sec70">Iterative methods, Successive over-relaxation </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2272,7 +2515,7 @@ for a constant \( \omega > 1 \).
 
 
 <section>
-<h2 id="___sec70">Iterative methods, Successive over-relaxation </h2>
+<h2 id="___sec71">Iterative methods, Successive over-relaxation </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2296,7 +2539,7 @@ The choice of relaxation factor is not necessarily easy, and depends upon the pr
 
 
 <section>
-<h2 id="___sec71">Cubic Splines, Chapter 6 </h2>
+<h2 id="___sec72">Cubic Splines, Chapter 6 </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2326,7 +2569,7 @@ as follows
 
 
 <section>
-<h2 id="___sec72">Splines </h2>
+<h2 id="___sec73">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2352,7 +2595,7 @@ function values.
 
 
 <section>
-<h2 id="___sec73">Splines </h2>
+<h2 id="___sec74">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2382,7 +2625,7 @@ yielding \( 4n \) coefficients to determine.
 
 
 <section>
-<h2 id="___sec74">Splines </h2>
+<h2 id="___sec75">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2423,7 +2666,7 @@ freedom to be determined.
 
 
 <section>
-<h2 id="___sec75">Splines </h2>
+<h2 id="___sec76">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2462,7 +2705,7 @@ $$
 
 
 <section>
-<h2 id="___sec76">Splines </h2>
+<h2 id="___sec77">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2486,7 +2729,7 @@ $$
 
 
 <section>
-<h2 id="___sec77">Splines </h2>
+<h2 id="___sec78">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2517,7 +2760,7 @@ solved  through e.g., Gaussian elemination
 
 
 <section>
-<h2 id="___sec78">Splines </h2>
+<h2 id="___sec79">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2552,7 +2795,7 @@ through only \( O(n) \) operations.
 
 
 <section>
-<h2 id="___sec79">Splines </h2>
+<h2 id="___sec80">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2579,7 +2822,7 @@ and is called only once.
 
 
 <section>
-<h2 id="___sec80">Splines </h2>
+<h2 id="___sec81">Splines </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
