@@ -38,7 +38,8 @@
 	.share-reveal,
 	.state-background,
 	.reveal .progress,
-	.reveal .backgrounds {
+	.reveal .backgrounds,
+	.reveal .slide-number {
 		display: none !important;
 	}
 
@@ -141,7 +142,7 @@
 	.reveal .slides section {
 		visibility: visible !important;
 		position: static !important;
-		width: 100% !important;
+		width: auto !important;
 		height: auto !important;
 		display: block !important;
 		overflow: visible !important;
