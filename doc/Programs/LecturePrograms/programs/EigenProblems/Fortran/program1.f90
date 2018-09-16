@@ -6,6 +6,15 @@
 !     define variables, where we have chosen to use atomic units for 
 !     m=c=hbar=k=1.  
 
+!    This module contains all constants and declarations 
+!    of variables read in by the function read_data. These
+!    variables are used by many functions.
+
+MODULE constants
+  INTEGER,  PARAMETER :: dp = KIND(1.0D0)
+  INTEGER, PARAMETER :: dpc = KIND((1.0D0,1.0D0))
+END MODULE constants
+
 MODULE parameters     
   USE constants
   !  the step
@@ -25,7 +34,7 @@ END MODULE parameters
 PROGRAM schroedinger_equation
   USE constants
   USE parameters
-  USE f90library
+!  USE f90library
   IMPLICIT NONE
   REAL(DP) :: potential, const1, const2
   REAL(DP), DIMENSION(:), ALLOCATABLE :: w, r
@@ -203,8 +212,95 @@ END SUBROUTINE plot
 
 
 
+  REAL (DP) FUNCTION pythag(a,b)
+    USE constants
+    REAL(DP)  :: a,b
+    REAL(DP)  :: absa,absb
+    absa=ABS(a)
+    absb=ABS(b)
+    IF(absa > absb) THEN
+       pythag=absa*sqrt(1.+(absb/absa)**2)
+    ELSE
+       IF(absb == 0.) THEN
+          pythag=0.
+       ELSE
+          pythag=absb*sqrt(1.+(absa/absb)**2)
+       ENDIF
+    ENDIF
+
+  END FUNCTION pythag
 
 
+  !     determine eigenvalues and eigenvectors of a real symmetric
+  !     tri-diagonal matrix, or a real, symmetric matrix previously
+  !     reduced by function tred2 to tri-diagonal form. On input,
+  !     d[] contains the diagonal element and e[] the sub-diagonal
+  !     of the tri-diagonal matrix. On output d[] contains the
+  !     eigenvalues and  e[] is destroyed. If eigenvectors are
+  !     desired z[][] on input contains the identity matrix. If
+  !     eigenvectors of a matrix reduced by tred2() are required,
+  !     then z[][] on input is the matrix output from tred2().
+  !     On output, the k'th column returns the normalized eigenvector
+  !     corresponding to d[k]. 
+  !     The function is modified from the version in Numerical recipe.
 
+  SUBROUTINE tqli(d,e,n,z)
+    USE constants
+    IMPLICIT NONE
+    INTEGER :: n 
+    REAL(DP)  :: d(n),e(n),z(n,n)
+    INTEGER :: i,iter,k,l,m
+    REAL(DP)  :: b,c,dd,f,g,p,r,s,pythag,one
+    DO i=2,n
+       e(i-1)=e(i)
+    ENDDO
+    one=1.
+    DO l=1,n
+       iter=0
+       ITERATE : DO
+          DO m=l,n-1
+             dd=ABS(d(m))+ABS(d(m+1))
+             IF (ABS(e(m))+dd == dd) EXIT
+          ENDDO
+          IF(m == l) EXIT ITERATE
+          IF(iter == 30) STOP 'too many iterations in tqli'
+          iter=iter+1
+          g=(d(l+1)-d(l))/(2.*e(l))
+          r=pythag(g,one)
+          g=d(m)-d(l)+e(l)/(g+sign(r,g))
+          s=1.
+          c=1.
+          p=0.
+          DO i=m-1,l,-1
+             f=s*e(i)
+             b=c*e(i)
+             r=pythag(f,g)
+             e(i+1)=r
+             IF(r == 0.) THEN
+                d(i+1)=d(i+1)-p
+                e(m)=0.
+                CYCLE ITERATE
+             ENDIF
+             s=f/r
+             c=g/r
+             g=d(i+1)-p
+             r=(d(i)-g)*s+2.*c*b
+             p=s*r
+             d(i+1)=g+p
+             g=c*r-b
+             !     Omit lines from here ...
+             DO k=1,n
+                f=z(k,i+1)
+                z(k,i+1)=s*z(k,i)+c*f
+                z(k,i)=c*z(k,i)-s*f
+             ENDDO
+             !     ... to here when finding only eigenvalues.
+          ENDDO
+          d(l)=d(l)-p
+          e(l)=g
+          e(m)=0.
+       ENDDO ITERATE
+    ENDDO
 
+  END SUBROUTINE tqli
 

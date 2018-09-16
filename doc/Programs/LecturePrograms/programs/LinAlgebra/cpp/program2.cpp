@@ -133,7 +133,7 @@ void MatrixMultiplication(double ** a, double **b, int n){
        c[i][j] = sum;
      }
   }
-  WriteMatrix(c,n);
+  //  WriteMatrix(c,n);
 }
 
 /*
