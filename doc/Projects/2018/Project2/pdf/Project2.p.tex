@@ -149,7 +149,7 @@ Project 2, deadline  October 1
 
 % --- begin date ---
 \begin{center}
-Aug 6, 2018
+Sep 25, 2018
 \end{center}
 % --- end date ---
 
@@ -233,7 +233,7 @@ as an eigenvalue problem, that is
 As in project 1, we have not included the endpoints $u_0$ and $u_N$. 
 We have defined $d=2/h^2$ and the non-diagonal ones as $a=-1/h^2$. This eigenvalue problem has analytical eigenpairs, with eigenvalues given as 
 \[
-\lambda_j = d+2a\cos{(\frac{j\pi}{N+1})} \hspace{0.1cm} j=1,2,\dots N-1.
+\lambda_j = d+2a\cos{(\frac{j\pi}{N+1})} \hspace{0.1cm} j=1,2,\dots N.
 \]
 
 
@@ -431,7 +431,7 @@ In this case the non-diagonal matrix elements are given by a mere constant.
 With these definitions the Schroedinger equation takes the following form
 
 \begin{equation*}
-d_iu_i+e_{i-1}u_{i-1}+e_{i+1}u_{i+1}  = \lambda u_i,
+d_iu_i+e_{i}u_{i-1}+e_{i}u_{i+1}  = \lambda u_i,
 \end{equation*}
 where $u_i$ is unknown. We can write the 
 latter equation as a matrix eigenvalue problem
