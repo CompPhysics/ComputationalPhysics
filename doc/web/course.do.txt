@@ -108,7 +108,7 @@ ${text_types(ch)}
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project2/ipynb/Project2.ipynb"
 
-=== Project 3, Deadline October 22 ===
+=== Project 3, Deadline October 24 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project3/pdf/Project3.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project3/pdf/Project3.pdf"
@@ -159,7 +159,7 @@ ${text_types(ch)}
 | Week 38 | Eigenvalue problems, iterative and power methods |   | Sections 7.4-7.7 |  Object orientation |
 |         | Differential equations                    |                                   | Sections 8.1-8.3 |  
 |----------------------------------------------------------------------------------------------------------------------------|
-| Week 39|  Ordinary differential equations  | _Project 3, deadline October 22_ | Sections 8.3-8.7  |   Object orientation (OO) |
+| Week 39|  Ordinary differential equations  | _Project 3, deadline October 24_ | Sections 8.3-8.7  |   Object orientation (OO) |
 |        |                                 |                                  |                   |  Finalize project 2   |
 |----------------------------------------------------------------------------------------------------------------------------|
 | Week 40|  Numerical integration           |                                   | Sections 5.1-5.3  | OO and  Vectorization  |
