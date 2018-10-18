@@ -54,7 +54,7 @@ double gaussian_deviate(long * idum)
   static double gset;
   double fac, rsq, v1, v2;
 
-  if ( idum < 0) iset =0;
+  if ( *idum < 0) iset =0;
   if (iset == 0) {
     do {
       v1 = 2.*ran0(idum) -1.0;
