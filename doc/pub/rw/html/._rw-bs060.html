@@ -11,9 +11,9 @@ Automatically generated HTML file from DocOnce source
 <title>Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm</title>
 
 <!-- Bootstrap style: bootstrap -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
 
 <style type="text/css">
@@ -36,8 +36,8 @@ Automatically generated HTML file from DocOnce source
 </style>
 
 
-<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
-<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
 <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 <script>
 $(function () {
@@ -55,16 +55,19 @@ $(function () {
 
 <!-- tocinfo
 {'highest level': 2,
- 'sections': [('Why Markov chains, Brownian motion and the Metropolis algorithm',
+ 'sections': [('Why Markov chains, Brownian motion and the Metropolis '
+               'algorithm',
                2,
                None,
                '___sec0'),
-              ('Why Markov chains, Brownian motion and the Metropolis algorithm',
+              ('Why Markov chains, Brownian motion and the Metropolis '
+               'algorithm',
                2,
                None,
                '___sec1'),
               ('Brownian motion and Markov processes', 2, None, '___sec2'),
-              ('Brownian motion and Markov processes, Ergodicity and Detailed balance',
+              ('Brownian motion and Markov processes, Ergodicity and Detailed '
+               'balance',
                2,
                None,
                '___sec3'),
@@ -95,10 +98,7 @@ $(function () {
                2,
                None,
                '___sec15'),
-              ('An Illustrative Example, iterative steps',
-               2,
-               None,
-               '___sec16'),
+              ('An Illustrative Example, iterative steps', 2, None, '___sec16'),
               ('An Illustrative Example, what does it mean?',
                2,
                None,
@@ -205,41 +205,40 @@ $(function () {
                None,
                '___sec43'),
               ('Brief Summary', 2, None, '___sec44'),
-              ('Diffusion', 2, None, '___sec45'),
-              ('Diffusion Equation', 2, None, '___sec46'),
-              ('Diffusion Equation, continuity equation',
+              ('Simple example, particle in one dimension',
                2,
                None,
-               '___sec47'),
-              ('Diffusion Equation, expectation values', 2, None, '___sec48'),
+               '___sec45'),
+              ('Diffusion', 2, None, '___sec46'),
+              ('Diffusion Equation', 2, None, '___sec47'),
+              ('Diffusion Equation, continuity equation', 2, None, '___sec48'),
+              ('Diffusion Equation, expectation values', 2, None, '___sec49'),
               ('Diffusion Equation, other expectation values',
                2,
                None,
-               '___sec49'),
+               '___sec50'),
               ('Diffusion Equation, normalization condition',
                2,
                None,
-               '___sec50'),
-              ('Diffusion Equation', 2, None, '___sec51'),
-              ('Diffusion Equation, the variance', 2, None, '___sec52'),
+               '___sec51'),
+              ('Diffusion Equation', 2, None, '___sec52'),
+              ('Diffusion Equation, the variance', 2, None, '___sec53'),
               ('Diffusion Equation, final expression for the variance',
                2,
                None,
-               '___sec53'),
-              ('Diffusion Equation, interpretation', 2, None, '___sec54'),
-              ('Diffusion Equation, simple illustration',
-               2,
-               None,
-               '___sec55'),
-              ('Random Walks', 2, None, '___sec56'),
+               '___sec54'),
+              ('Diffusion Equation, interpretation', 2, None, '___sec55'),
+              ('Diffusion Equation, simple illustration', 2, None, '___sec56'),
               ('Random Walks', 2, None, '___sec57'),
               ('Random Walks', 2, None, '___sec58'),
-              ('Random Walks, simple program', 2, None, '___sec59'),
-              ('Random walk', 2, None, '___sec60'),
-              ('Simple python code with visualization of one-dimensional random walk',
+              ('Random Walks', 2, None, '___sec59'),
+              ('Random Walks, simple program', 2, None, '___sec60'),
+              ('Random walk', 2, None, '___sec61'),
+              ('Simple python code with visualization of one-dimensional '
+               'random walk',
                2,
                None,
-               '___sec61')]}
+               '___sec62')]}
 end of tocinfo -->
 
 <body>
@@ -254,8 +253,8 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -322,23 +321,24 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._rw-bs043.html#___sec42" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
      <!-- navigation toc: --> <li><a href="._rw-bs044.html#___sec43" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
      <!-- navigation toc: --> <li><a href="._rw-bs045.html#___sec44" style="font-size: 80%;">Brief Summary</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs046.html#___sec45" style="font-size: 80%;">Diffusion</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs047.html#___sec46" style="font-size: 80%;">Diffusion Equation</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs048.html#___sec47" style="font-size: 80%;">Diffusion Equation, continuity equation</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs049.html#___sec48" style="font-size: 80%;">Diffusion Equation, expectation values</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs050.html#___sec49" style="font-size: 80%;">Diffusion Equation, other expectation values</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs051.html#___sec50" style="font-size: 80%;">Diffusion Equation, normalization condition</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs052.html#___sec51" style="font-size: 80%;">Diffusion Equation</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs053.html#___sec52" style="font-size: 80%;">Diffusion Equation, the variance</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs054.html#___sec53" style="font-size: 80%;">Diffusion Equation, final expression for the variance</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs055.html#___sec54" style="font-size: 80%;">Diffusion Equation, interpretation</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs056.html#___sec55" style="font-size: 80%;">Diffusion Equation, simple illustration</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs057.html#___sec56" style="font-size: 80%;">Random Walks</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs046.html#___sec45" style="font-size: 80%;">Simple example, particle in one dimension</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs047.html#___sec46" style="font-size: 80%;">Diffusion</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs048.html#___sec47" style="font-size: 80%;">Diffusion Equation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs049.html#___sec48" style="font-size: 80%;">Diffusion Equation, continuity equation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs050.html#___sec49" style="font-size: 80%;">Diffusion Equation, expectation values</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs051.html#___sec50" style="font-size: 80%;">Diffusion Equation, other expectation values</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs052.html#___sec51" style="font-size: 80%;">Diffusion Equation, normalization condition</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs053.html#___sec52" style="font-size: 80%;">Diffusion Equation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs054.html#___sec53" style="font-size: 80%;">Diffusion Equation, the variance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs055.html#___sec54" style="font-size: 80%;">Diffusion Equation, final expression for the variance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs056.html#___sec55" style="font-size: 80%;">Diffusion Equation, interpretation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs057.html#___sec56" style="font-size: 80%;">Diffusion Equation, simple illustration</a></li>
      <!-- navigation toc: --> <li><a href="._rw-bs058.html#___sec57" style="font-size: 80%;">Random Walks</a></li>
      <!-- navigation toc: --> <li><a href="._rw-bs059.html#___sec58" style="font-size: 80%;">Random Walks</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec59" style="font-size: 80%;">Random Walks, simple program</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs061.html#___sec60" style="font-size: 80%;">Random walk</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs062.html#___sec61" style="font-size: 80%;">Simple python code with visualization of one-dimensional random walk</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec59" style="font-size: 80%;">Random Walks</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs061.html#___sec60" style="font-size: 80%;">Random Walks, simple program</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs062.html#___sec61" style="font-size: 80%;">Random walk</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs063.html#___sec62" style="font-size: 80%;">Simple python code with visualization of one-dimensional random walk</a></li>
 
         </ul>
       </li>
@@ -354,69 +354,21 @@ MathJax.Hub.Config({
 <a name="part0060"></a>
 <!-- !split -->
 
-<h2 id="___sec59" class="anchor">Random Walks, simple program </h2>
+<h2 id="___sec59" class="anchor">Random Walks </h2>
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-The main program reads the name of the output file from screen and sets up the arrays
-containing the walker's position after a given number of steps. The corresponding program for a two-dimensional
-random walk (not listed in the main text) is found under programs/chapter12/program2.cpp
-<p>
+In Eq. <a href="._rw-bs059.html#mjx-eqn-7">(7)</a> the variable \( n \) represents the number of time
+steps. If we define \( n=t/\Delta t \), we can then couple the variance result 
+from a random walk
+in one dimension with the variance  from the diffusion equation of Eq. <a href="._rw-bs055.html#mjx-eqn-6">(6)</a>
+by defining the diffusion constant as
 
-<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">/*</span>
-<span style="color: #408080; font-style: italic">  1-dim random walk program. </span>
-<span style="color: #408080; font-style: italic">  A walker makes several trials steps with</span>
-<span style="color: #408080; font-style: italic">  a given number of walks per trial</span>
-<span style="color: #408080; font-style: italic">*/</span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iostream&gt;</span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;fstream&gt;</span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;iomanip&gt;</span><span style="color: #BC7A00"></span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;lib.h&quot;</span><span style="color: #BC7A00"></span>
-<span style="color: #008000; font-weight: bold">using</span> <span style="color: #008000; font-weight: bold">namespace</span>  std;
-
-<span style="color: #408080; font-style: italic">// Function to read in data from screen, note call by reference</span>
-<span style="color: #B00040">void</span> <span style="color: #0000FF">initialise</span>(<span style="color: #B00040">int</span><span style="color: #666666">&amp;</span>, <span style="color: #B00040">int</span><span style="color: #666666">&amp;</span>, <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span>) ;
-<span style="color: #408080; font-style: italic">// The Mc sampling for random walks</span>
-<span style="color: #B00040">void</span>  <span style="color: #0000FF">mc_sampling</span>(<span style="color: #B00040">int</span>, <span style="color: #B00040">int</span>, <span style="color: #B00040">double</span>, <span style="color: #B00040">int</span> <span style="color: #666666">*</span>, <span style="color: #B00040">int</span> <span style="color: #666666">*</span>);
-<span style="color: #408080; font-style: italic">// prints to screen the results of the calculations </span>
-<span style="color: #B00040">void</span>  <span style="color: #0000FF">output</span>(<span style="color: #B00040">int</span>, <span style="color: #B00040">int</span>, <span style="color: #B00040">int</span> <span style="color: #666666">*</span>, <span style="color: #B00040">int</span> <span style="color: #666666">*</span>);
-
-<span style="color: #B00040">int</span> <span style="color: #0000FF">main</span>()
-{
-  <span style="color: #B00040">int</span> max_trials, number_walks; 
-  <span style="color: #B00040">double</span> move_probability;
-  <span style="color: #408080; font-style: italic">// Read in data </span>
-  initialise(max_trials, number_walks, move_probability) ;
-  <span style="color: #B00040">int</span> <span style="color: #666666">*</span>walk_cumulative <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">int</span> [number_walks<span style="color: #666666">+1</span>];
-  <span style="color: #B00040">int</span> <span style="color: #666666">*</span>walk2_cumulative <span style="color: #666666">=</span> <span style="color: #008000; font-weight: bold">new</span> <span style="color: #B00040">int</span> [number_walks<span style="color: #666666">+1</span>];
-  <span style="color: #008000; font-weight: bold">for</span> (<span style="color: #B00040">int</span> walks <span style="color: #666666">=</span> <span style="color: #666666">1</span>; walks <span style="color: #666666">&lt;=</span> number_walks; walks<span style="color: #666666">++</span>){   
-    walk_cumulative[walks] <span style="color: #666666">=</span> walk2_cumulative[walks] <span style="color: #666666">=</span> <span style="color: #666666">0</span>;
-  } <span style="color: #408080; font-style: italic">// end initialization of vectors</span>
-  <span style="color: #408080; font-style: italic">// Do the mc sampling  </span>
-  mc_sampling(max_trials, number_walks, move_probability, 
-              walk_cumulative, walk2_cumulative);
-  <span style="color: #408080; font-style: italic">// Print out results </span>
-  output(max_trials, number_walks, walk_cumulative, 
-         walk2_cumulative);
-  <span style="color: #008000; font-weight: bold">delete</span> [] walk_cumulative; <span style="color: #408080; font-style: italic">// free memory</span>
-  <span style="color: #008000; font-weight: bold">delete</span> [] walk2_cumulative; 
-  <span style="color: #008000; font-weight: bold">return</span> <span style="color: #666666">0</span>; 
-} <span style="color: #408080; font-style: italic">// end main function</span>
-\end{lstlisting}
-The  input and output functions are 
-\begin{lstlisting} 
-<span style="color: #B00040">void</span> initialise(<span style="color: #B00040">int</span><span style="color: #666666">&amp;</span> max_trials, <span style="color: #B00040">int</span><span style="color: #666666">&amp;</span> number_walks, <span style="color: #B00040">double</span><span style="color: #666666">&amp;</span> move_probability) 
-{
-  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Number of Monte Carlo trials =&quot;</span>; 
-  cin <span style="color: #666666">&gt;&gt;</span> max_trials;
-  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Number of attempted walks=&quot;</span>;
-  cin <span style="color: #666666">&gt;&gt;</span> number_walks;
-  cout <span style="color: #666666">&lt;&lt;</span> <span style="color: #BA2121">&quot;Move probability=&quot;</span>;
-  cin <span style="color: #666666">&gt;&gt;</span> move_probability;
-}  <span style="color: #408080; font-style: italic">// end of function initialise   </span>
-</pre></div>
-<p>
+$$
+\begin{equation*}
+   D = \frac{l^2}{\Delta t}.
+\end{equation*}
+$$
 </div>
 </div>
 
@@ -439,14 +391,15 @@ The  input and output functions are
   <li class="active"><a href="._rw-bs060.html">61</a></li>
   <li><a href="._rw-bs061.html">62</a></li>
   <li><a href="._rw-bs062.html">63</a></li>
+  <li><a href="._rw-bs063.html">64</a></li>
   <li><a href="._rw-bs061.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>

@@ -11,9 +11,9 @@ Automatically generated HTML file from DocOnce source
 <title>Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm</title>
 
 <!-- Bootstrap style: bootstrap -->
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- not necessary
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
 
 <style type="text/css">
@@ -36,8 +36,8 @@ Automatically generated HTML file from DocOnce source
 </style>
 
 
-<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
-<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
 <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 <script>
 $(function () {
@@ -55,16 +55,19 @@ $(function () {
 
 <!-- tocinfo
 {'highest level': 2,
- 'sections': [('Why Markov chains, Brownian motion and the Metropolis algorithm',
+ 'sections': [('Why Markov chains, Brownian motion and the Metropolis '
+               'algorithm',
                2,
                None,
                '___sec0'),
-              ('Why Markov chains, Brownian motion and the Metropolis algorithm',
+              ('Why Markov chains, Brownian motion and the Metropolis '
+               'algorithm',
                2,
                None,
                '___sec1'),
               ('Brownian motion and Markov processes', 2, None, '___sec2'),
-              ('Brownian motion and Markov processes, Ergodicity and Detailed balance',
+              ('Brownian motion and Markov processes, Ergodicity and Detailed '
+               'balance',
                2,
                None,
                '___sec3'),
@@ -95,10 +98,7 @@ $(function () {
                2,
                None,
                '___sec15'),
-              ('An Illustrative Example, iterative steps',
-               2,
-               None,
-               '___sec16'),
+              ('An Illustrative Example, iterative steps', 2, None, '___sec16'),
               ('An Illustrative Example, what does it mean?',
                2,
                None,
@@ -205,41 +205,40 @@ $(function () {
                None,
                '___sec43'),
               ('Brief Summary', 2, None, '___sec44'),
-              ('Diffusion', 2, None, '___sec45'),
-              ('Diffusion Equation', 2, None, '___sec46'),
-              ('Diffusion Equation, continuity equation',
+              ('Simple example, particle in one dimension',
                2,
                None,
-               '___sec47'),
-              ('Diffusion Equation, expectation values', 2, None, '___sec48'),
+               '___sec45'),
+              ('Diffusion', 2, None, '___sec46'),
+              ('Diffusion Equation', 2, None, '___sec47'),
+              ('Diffusion Equation, continuity equation', 2, None, '___sec48'),
+              ('Diffusion Equation, expectation values', 2, None, '___sec49'),
               ('Diffusion Equation, other expectation values',
                2,
                None,
-               '___sec49'),
+               '___sec50'),
               ('Diffusion Equation, normalization condition',
                2,
                None,
-               '___sec50'),
-              ('Diffusion Equation', 2, None, '___sec51'),
-              ('Diffusion Equation, the variance', 2, None, '___sec52'),
+               '___sec51'),
+              ('Diffusion Equation', 2, None, '___sec52'),
+              ('Diffusion Equation, the variance', 2, None, '___sec53'),
               ('Diffusion Equation, final expression for the variance',
                2,
                None,
-               '___sec53'),
-              ('Diffusion Equation, interpretation', 2, None, '___sec54'),
-              ('Diffusion Equation, simple illustration',
-               2,
-               None,
-               '___sec55'),
-              ('Random Walks', 2, None, '___sec56'),
+               '___sec54'),
+              ('Diffusion Equation, interpretation', 2, None, '___sec55'),
+              ('Diffusion Equation, simple illustration', 2, None, '___sec56'),
               ('Random Walks', 2, None, '___sec57'),
               ('Random Walks', 2, None, '___sec58'),
-              ('Random Walks, simple program', 2, None, '___sec59'),
-              ('Random walk', 2, None, '___sec60'),
-              ('Simple python code with visualization of one-dimensional random walk',
+              ('Random Walks', 2, None, '___sec59'),
+              ('Random Walks, simple program', 2, None, '___sec60'),
+              ('Random walk', 2, None, '___sec61'),
+              ('Simple python code with visualization of one-dimensional '
+               'random walk',
                2,
                None,
-               '___sec61')]}
+               '___sec62')]}
 end of tocinfo -->
 
 <body>
@@ -254,8 +253,8 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -322,23 +321,24 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._rw-bs043.html#___sec42" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
      <!-- navigation toc: --> <li><a href="._rw-bs044.html#___sec43" style="font-size: 80%;">The Metropolis Algorithm and Detailed Balance</a></li>
      <!-- navigation toc: --> <li><a href="._rw-bs045.html#___sec44" style="font-size: 80%;">Brief Summary</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec45" style="font-size: 80%;">Diffusion</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs047.html#___sec46" style="font-size: 80%;">Diffusion Equation</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs048.html#___sec47" style="font-size: 80%;">Diffusion Equation, continuity equation</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs049.html#___sec48" style="font-size: 80%;">Diffusion Equation, expectation values</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs050.html#___sec49" style="font-size: 80%;">Diffusion Equation, other expectation values</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs051.html#___sec50" style="font-size: 80%;">Diffusion Equation, normalization condition</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs052.html#___sec51" style="font-size: 80%;">Diffusion Equation</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs053.html#___sec52" style="font-size: 80%;">Diffusion Equation, the variance</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs054.html#___sec53" style="font-size: 80%;">Diffusion Equation, final expression for the variance</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs055.html#___sec54" style="font-size: 80%;">Diffusion Equation, interpretation</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs056.html#___sec55" style="font-size: 80%;">Diffusion Equation, simple illustration</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs057.html#___sec56" style="font-size: 80%;">Random Walks</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec45" style="font-size: 80%;">Simple example, particle in one dimension</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs047.html#___sec46" style="font-size: 80%;">Diffusion</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs048.html#___sec47" style="font-size: 80%;">Diffusion Equation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs049.html#___sec48" style="font-size: 80%;">Diffusion Equation, continuity equation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs050.html#___sec49" style="font-size: 80%;">Diffusion Equation, expectation values</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs051.html#___sec50" style="font-size: 80%;">Diffusion Equation, other expectation values</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs052.html#___sec51" style="font-size: 80%;">Diffusion Equation, normalization condition</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs053.html#___sec52" style="font-size: 80%;">Diffusion Equation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs054.html#___sec53" style="font-size: 80%;">Diffusion Equation, the variance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs055.html#___sec54" style="font-size: 80%;">Diffusion Equation, final expression for the variance</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs056.html#___sec55" style="font-size: 80%;">Diffusion Equation, interpretation</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs057.html#___sec56" style="font-size: 80%;">Diffusion Equation, simple illustration</a></li>
      <!-- navigation toc: --> <li><a href="._rw-bs058.html#___sec57" style="font-size: 80%;">Random Walks</a></li>
      <!-- navigation toc: --> <li><a href="._rw-bs059.html#___sec58" style="font-size: 80%;">Random Walks</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs060.html#___sec59" style="font-size: 80%;">Random Walks, simple program</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs061.html#___sec60" style="font-size: 80%;">Random walk</a></li>
-     <!-- navigation toc: --> <li><a href="._rw-bs062.html#___sec61" style="font-size: 80%;">Simple python code with visualization of one-dimensional random walk</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs060.html#___sec59" style="font-size: 80%;">Random Walks</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs061.html#___sec60" style="font-size: 80%;">Random Walks, simple program</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs062.html#___sec61" style="font-size: 80%;">Random walk</a></li>
+     <!-- navigation toc: --> <li><a href="._rw-bs063.html#___sec62" style="font-size: 80%;">Simple python code with visualization of one-dimensional random walk</a></li>
 
         </ul>
       </li>
@@ -354,23 +354,54 @@ MathJax.Hub.Config({
 <a name="part0046"></a>
 <!-- !split -->
 
-<h2 id="___sec45" class="anchor">Diffusion </h2>
-
+<h2 id="___sec45" class="anchor">Simple example, particle in one dimension </h2>
 <p>
-Diffusion and the diffusion equation are central topics in both Physics and Mathematics,
-and their ranges of applicability span from stellar dynamics to the diffusion 
-of particles governed by Schroedinger's equation. The latter is, for a free particle, 
-nothing but the diffusion equation in complex time!
 
-<p>
-Let us consider the one-dimensional diffusion equation. We study a large ensemble of particles
-performing Brownian motion along the \( x \)-axis. There is no interaction between the particles.
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Program to test the Metropolis algorithm with one particle at given temp in one dimension</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.mlab</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">mlab</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">random</span>
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">math</span> <span style="color: #008000; font-weight: bold">import</span> sqrt, exp, log
+<span style="color: #408080; font-style: italic"># initialize the rng with a seed</span>
+random<span style="color: #666666">.</span>seed()
+<span style="color: #408080; font-style: italic"># Hard coding of input parameters</span>
+MCcycles <span style="color: #666666">=</span> <span style="color: #666666">100000</span>
+Temperature <span style="color: #666666">=</span> <span style="color: #666666">2.0</span>
+beta <span style="color: #666666">=</span> <span style="color: #666666">1./</span>Temperature
+InitialVelocity <span style="color: #666666">=</span> <span style="color: #666666">-2.0</span>
+CurrentVelocity <span style="color: #666666">=</span> InitialVelocity
+Energy <span style="color: #666666">=</span> <span style="color: #666666">0.5*</span>InitialVelocity<span style="color: #666666">*</span>InitialVelocity
+VelocityRange <span style="color: #666666">=</span> <span style="color: #666666">10*</span>sqrt(Temperature)
+VelocityStep <span style="color: #666666">=</span> <span style="color: #666666">2*</span>VelocityRange<span style="color: #666666">/10.</span>
+AverageEnergy <span style="color: #666666">=</span> Energy
+AverageEnergy2 <span style="color: #666666">=</span> Energy<span style="color: #666666">*</span>Energy
+VelocityValues <span style="color: #666666">=</span> np<span style="color: #666666">.</span>zeros(MCcycles)
+<span style="color: #408080; font-style: italic"># The Monte Carlo sampling with Metropolis starts here</span>
+<span style="color: #008000; font-weight: bold">for</span> i <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span> (<span style="color: #666666">1</span>, MCcycles, <span style="color: #666666">1</span>):
+    TrialVelocity <span style="color: #666666">=</span> CurrentVelocity <span style="color: #666666">+</span> (<span style="color: #666666">2.0*</span>random<span style="color: #666666">.</span>random() <span style="color: #666666">-</span> <span style="color: #666666">1.0</span>)<span style="color: #666666">*</span>VelocityStep
+    EnergyChange <span style="color: #666666">=</span> <span style="color: #666666">0.5*</span>(TrialVelocity<span style="color: #666666">*</span>TrialVelocity <span style="color: #666666">-</span>CurrentVelocity<span style="color: #666666">*</span>CurrentVelocity);
+    <span style="color: #008000; font-weight: bold">if</span> random<span style="color: #666666">.</span>random() <span style="color: #666666">&lt;=</span> exp(<span style="color: #666666">-</span>beta<span style="color: #666666">*</span>EnergyChange):
+        CurrentVelocity <span style="color: #666666">=</span> TrialVelocity
+        Energy <span style="color: #666666">+=</span> EnergyChange
+        VelocityValues[i] <span style="color: #666666">=</span> CurrentVelocity
+    AverageEnergy <span style="color: #666666">+=</span> Energy
+    AverageEnergy2 <span style="color: #666666">+=</span> Energy<span style="color: #666666">*</span>Energy
+<span style="color: #408080; font-style: italic">#Final averages</span>
+AverageEnergy <span style="color: #666666">=</span> AverageEnergy<span style="color: #666666">/</span>MCcycles
+AverageEnergy2 <span style="color: #666666">=</span> AverageEnergy2<span style="color: #666666">/</span>MCcycles
+Variance <span style="color: #666666">=</span> AverageEnergy2 <span style="color: #666666">-</span> AverageEnergy<span style="color: #666666">*</span>AverageEnergy
+<span style="color: #008000; font-weight: bold">print</span>(AverageEnergy, Variance)
+n, bins, patches <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>hist(VelocityValues, <span style="color: #666666">400</span>, facecolor<span style="color: #666666">=</span><span style="color: #BA2121">&#39;green&#39;</span>)
 
-<p>
-We define \( w(x,t)dx \) as the probability of finding a given number of particles in an
-interval of length \( dx \) in \( x\in [x, x+dx] \) at a time \( t \). This quantity is our probability
-distribution function (PDF).
-
+plt<span style="color: #666666">.</span>xlabel(<span style="color: #BA2121">&#39;$v$&#39;</span>)
+plt<span style="color: #666666">.</span>ylabel(<span style="color: #BA2121">&#39;Velocity distribution P(v)&#39;</span>)
+plt<span style="color: #666666">.</span>title(<span style="color: #BA2121">r&#39;Velocity histogram at $k_BT=2$&#39;</span>)
+plt<span style="color: #666666">.</span>axis([<span style="color: #666666">-5</span>, <span style="color: #666666">5</span>, <span style="color: #666666">0</span>, <span style="color: #666666">600</span>])
+plt<span style="color: #666666">.</span>grid(<span style="color: #008000">True</span>)
+plt<span style="color: #666666">.</span>show()
+</pre></div>
 <p>
 <p>
 <!-- navigation buttons at the bottom of the page -->
@@ -397,15 +428,15 @@ distribution function (PDF).
   <li><a href="._rw-bs054.html">55</a></li>
   <li><a href="._rw-bs055.html">56</a></li>
   <li><a href="">...</a></li>
-  <li><a href="._rw-bs062.html">63</a></li>
+  <li><a href="._rw-bs063.html">64</a></li>
   <li><a href="._rw-bs047.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 
 </div>  <!-- end container -->
 <!-- include javascript, jQuery *first* -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
 <!-- Bootstrap footer
 <footer>

@@ -10,8 +10,8 @@
 
 
 
-<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
-<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
 <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 <script>
 $(function () {
@@ -132,8 +132,8 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -163,12 +163,12 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>Aug 23, 2017</h4></center> <!-- date -->
+<center><h4>Oct 31, 2018</h4></center> <!-- date -->
 <br>
 <p>
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2018, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 </section>
 
@@ -787,9 +787,9 @@ for, in this case, a \( 5\times 5 \) matrix. The largest eigenvalue is \( 1 \).
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
 {
-  <span style="color: #a7a7a7; font-weight: bold">int</span> dim = <span style="color: #B452CD">5</span>;
+  <span style="color: #00688B; font-weight: bold">int</span> dim = <span style="color: #B452CD">5</span>;
   mat W = zeros&lt;mat&gt;(dim,dim);
   vec wold = zeros&lt;mat&gt;(dim);
   vec wnew = zeros&lt;mat&gt;(dim);
@@ -802,10 +802,10 @@ for, in this case, a \( 5\times 5 \) matrix. The largest eigenvalue is \( 1 \).
   W(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.5</span>; W(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">1.0</span>; W(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">2</span>) = <span style="color: #B452CD">0.</span>; W(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">3</span>) = <span style="color: #B452CD">0.5</span>; W(<span style="color: #B452CD">2</span>,<span style="color: #B452CD">4</span>) = <span style="color: #B452CD">0.</span>;       
   W(<span style="color: #B452CD">3</span>,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.0</span>; W(<span style="color: #B452CD">3</span>,<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">0.</span>; W(<span style="color: #B452CD">3</span>,<span style="color: #B452CD">2</span>) = <span style="color: #B452CD">0.25</span>; W(<span style="color: #B452CD">3</span>,<span style="color: #B452CD">3</span>) = <span style="color: #B452CD">0.</span>;  W(<span style="color: #B452CD">3</span>,<span style="color: #B452CD">4</span>) = <span style="color: #B452CD">0.</span>;      
   W(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.5</span>; W(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">0.</span>; W(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">2</span>) = <span style="color: #B452CD">0.25</span>; W(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">3</span>) = <span style="color: #B452CD">0.5</span>;  W(<span style="color: #B452CD">4</span>,<span style="color: #B452CD">4</span>) = <span style="color: #B452CD">1.0</span>;      
-  <span style="color: #a7a7a7; font-weight: bold">double</span> eps = <span style="color: #B452CD">1.0E-10</span>;
+  <span style="color: #00688B; font-weight: bold">double</span> eps = <span style="color: #B452CD">1.0E-10</span>;
   W.print(<span style="color: #CD5555">&quot;W =&quot;</span>);
-  <span style="color: #a7a7a7; font-weight: bold">double</span> difference  = norm(wold-wnew, <span style="color: #B452CD">2</span>);
-  <span style="color: #a7a7a7; font-weight: bold">int</span> count = <span style="color: #B452CD">0</span>; 
+  <span style="color: #00688B; font-weight: bold">double</span> difference  = norm(wold-wnew, <span style="color: #B452CD">2</span>);
+  <span style="color: #00688B; font-weight: bold">int</span> count = <span style="color: #B452CD">0</span>; 
   <span style="color: #8B008B; font-weight: bold">do</span>{
     <span style="color: #228B22">// Multiplying the old vector with the transition probability</span>
     count += <span style="color: #B452CD">1</span>; 
@@ -1678,7 +1678,59 @@ $$
 
 
 <section>
-<h2 id="___sec45">Diffusion </h2>
+<h2 id="___sec45">Simple example, particle in one dimension </h2>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22"># Program to test the Metropolis algorithm with one particle at given temp in one dimension</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">np</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.mlab</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">mlab</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">random</span>
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">math</span> <span style="color: #8B008B; font-weight: bold">import</span> sqrt, exp, log
+<span style="color: #228B22"># initialize the rng with a seed</span>
+random.seed()
+<span style="color: #228B22"># Hard coding of input parameters</span>
+MCcycles = <span style="color: #B452CD">100000</span>
+Temperature = <span style="color: #B452CD">2.0</span>
+beta = <span style="color: #B452CD">1.</span>/Temperature
+InitialVelocity = -<span style="color: #B452CD">2.0</span>
+CurrentVelocity = InitialVelocity
+Energy = <span style="color: #B452CD">0.5</span>*InitialVelocity*InitialVelocity
+VelocityRange = <span style="color: #B452CD">10</span>*sqrt(Temperature)
+VelocityStep = <span style="color: #B452CD">2</span>*VelocityRange/<span style="color: #B452CD">10.</span>
+AverageEnergy = Energy
+AverageEnergy2 = Energy*Energy
+VelocityValues = np.zeros(MCcycles)
+<span style="color: #228B22"># The Monte Carlo sampling with Metropolis starts here</span>
+<span style="color: #8B008B; font-weight: bold">for</span> i <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span> (<span style="color: #B452CD">1</span>, MCcycles, <span style="color: #B452CD">1</span>):
+    TrialVelocity = CurrentVelocity + (<span style="color: #B452CD">2.0</span>*random.random() - <span style="color: #B452CD">1.0</span>)*VelocityStep
+    EnergyChange = <span style="color: #B452CD">0.5</span>*(TrialVelocity*TrialVelocity -CurrentVelocity*CurrentVelocity);
+    <span style="color: #8B008B; font-weight: bold">if</span> random.random() &lt;= exp(-beta*EnergyChange):
+        CurrentVelocity = TrialVelocity
+        Energy += EnergyChange
+        VelocityValues[i] = CurrentVelocity
+    AverageEnergy += Energy
+    AverageEnergy2 += Energy*Energy
+<span style="color: #228B22">#Final averages</span>
+AverageEnergy = AverageEnergy/MCcycles
+AverageEnergy2 = AverageEnergy2/MCcycles
+Variance = AverageEnergy2 - AverageEnergy*AverageEnergy
+<span style="color: #8B008B; font-weight: bold">print</span>(AverageEnergy, Variance)
+n, bins, patches = plt.hist(VelocityValues, <span style="color: #B452CD">400</span>, facecolor=<span style="color: #CD5555">&#39;green&#39;</span>)
+
+plt.xlabel(<span style="color: #CD5555">&#39;$v$&#39;</span>)
+plt.ylabel(<span style="color: #CD5555">&#39;Velocity distribution P(v)&#39;</span>)
+plt.title(<span style="color: #CD5555">r&#39;Velocity histogram at $k_BT=2$&#39;</span>)
+plt.axis([-<span style="color: #B452CD">5</span>, <span style="color: #B452CD">5</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">600</span>])
+plt.grid(<span style="color: #658b00">True</span>)
+plt.show()
+</pre></div>
+</section>
+
+
+<section>
+<h2 id="___sec46">Diffusion </h2>
 
 <p>
 Diffusion and the diffusion equation are central topics in both Physics and Mathematics,
@@ -1698,7 +1750,7 @@ distribution function (PDF).
 
 
 <section>
-<h2 id="___sec46">Diffusion Equation </h2>
+<h2 id="___sec47">Diffusion Equation </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1721,7 +1773,7 @@ where \( D \) is the so-called diffusion constant, with dimensionality length$^2
 
 
 <section>
-<h2 id="___sec47">Diffusion Equation, continuity equation </h2>
+<h2 id="___sec48">Diffusion Equation, continuity equation </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1753,7 +1805,7 @@ which is the diffusion equation in one dimension.
 
 
 <section>
-<h2 id="___sec48">Diffusion Equation, expectation values </h2>
+<h2 id="___sec49">Diffusion Equation, expectation values </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1781,7 +1833,7 @@ these expectation values are time-dependent.
 
 
 <section>
-<h2 id="___sec49">Diffusion Equation, other expectation values </h2>
+<h2 id="___sec50">Diffusion Equation, other expectation values </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1812,7 +1864,7 @@ imposes significant constraints on \( w(x,t) \).
 
 
 <section>
-<h2 id="___sec50">Diffusion Equation, normalization condition </h2>
+<h2 id="___sec51">Diffusion Equation, normalization condition </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1851,7 +1903,7 @@ $$
 
 
 <section>
-<h2 id="___sec51">Diffusion Equation </h2>
+<h2 id="___sec52">Diffusion Equation </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1874,7 +1926,7 @@ distribution remains centered around \( \langle x\rangle= 0 \) as function of ti
 
 
 <section>
-<h2 id="___sec52">Diffusion Equation, the variance </h2>
+<h2 id="___sec53">Diffusion Equation, the variance </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1897,7 +1949,7 @@ for \( \frac{\partial \langle x\rangle}{\partial t} \).
 
 
 <section>
-<h2 id="___sec53">Diffusion Equation, final expression for the variance </h2>
+<h2 id="___sec54">Diffusion Equation, final expression for the variance </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1944,7 +1996,7 @@ $$
 
 
 <section>
-<h2 id="___sec54">Diffusion Equation, interpretation </h2>
+<h2 id="___sec55">Diffusion Equation, interpretation </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -1959,7 +2011,7 @@ escapes much more slowly from the starting point than would a free particle.
 
 
 <section>
-<h2 id="___sec55">Diffusion Equation, simple illustration </h2>
+<h2 id="___sec56">Diffusion Equation, simple illustration </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>&nbsp;<br>
@@ -1980,7 +2032,7 @@ of 2.
 
 
 <section>
-<h2 id="___sec56">Random Walks </h2>
+<h2 id="___sec57">Random Walks </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2011,7 +2063,7 @@ $$
 
 
 <section>
-<h2 id="___sec57">Random Walks </h2>
+<h2 id="___sec58">Random Walks </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2051,7 +2103,7 @@ $$
 
 
 <section>
-<h2 id="___sec58">Random Walks </h2>
+<h2 id="___sec59">Random Walks </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2073,7 +2125,7 @@ $$
 
 
 <section>
-<h2 id="___sec59">Random Walks, simple program </h2>
+<h2 id="___sec60">Random Walks, simple program </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2095,21 +2147,21 @@ random walk (not listed in the main text) is found under programs/chapter12/prog
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span>  std;
 
 <span style="color: #228B22">// Function to read in data from screen, note call by reference</span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">initialise</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">int</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;) ;
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">initialise</span>(<span style="color: #00688B; font-weight: bold">int</span>&amp;, <span style="color: #00688B; font-weight: bold">int</span>&amp;, <span style="color: #00688B; font-weight: bold">double</span>&amp;) ;
 <span style="color: #228B22">// The Mc sampling for random walks</span>
-<span style="color: #a7a7a7; font-weight: bold">void</span>  <span style="color: #008b45">mc_sampling</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">int</span> *, <span style="color: #a7a7a7; font-weight: bold">int</span> *);
+<span style="color: #00688B; font-weight: bold">void</span>  <span style="color: #008b45">mc_sampling</span>(<span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">double</span>, <span style="color: #00688B; font-weight: bold">int</span> *, <span style="color: #00688B; font-weight: bold">int</span> *);
 <span style="color: #228B22">// prints to screen the results of the calculations </span>
-<span style="color: #a7a7a7; font-weight: bold">void</span>  <span style="color: #008b45">output</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span> *, <span style="color: #a7a7a7; font-weight: bold">int</span> *);
+<span style="color: #00688B; font-weight: bold">void</span>  <span style="color: #008b45">output</span>(<span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">int</span> *, <span style="color: #00688B; font-weight: bold">int</span> *);
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>()
 {
-  <span style="color: #a7a7a7; font-weight: bold">int</span> max_trials, number_walks; 
-  <span style="color: #a7a7a7; font-weight: bold">double</span> move_probability;
+  <span style="color: #00688B; font-weight: bold">int</span> max_trials, number_walks; 
+  <span style="color: #00688B; font-weight: bold">double</span> move_probability;
   <span style="color: #228B22">// Read in data </span>
   initialise(max_trials, number_walks, move_probability) ;
-  <span style="color: #a7a7a7; font-weight: bold">int</span> *walk_cumulative = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span> [number_walks+<span style="color: #B452CD">1</span>];
-  <span style="color: #a7a7a7; font-weight: bold">int</span> *walk2_cumulative = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span> [number_walks+<span style="color: #B452CD">1</span>];
-  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> walks = <span style="color: #B452CD">1</span>; walks &lt;= number_walks; walks++){   
+  <span style="color: #00688B; font-weight: bold">int</span> *walk_cumulative = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">int</span> [number_walks+<span style="color: #B452CD">1</span>];
+  <span style="color: #00688B; font-weight: bold">int</span> *walk2_cumulative = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">int</span> [number_walks+<span style="color: #B452CD">1</span>];
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> walks = <span style="color: #B452CD">1</span>; walks &lt;= number_walks; walks++){   
     walk_cumulative[walks] = walk2_cumulative[walks] = <span style="color: #B452CD">0</span>;
   } <span style="color: #228B22">// end initialization of vectors</span>
   <span style="color: #228B22">// Do the mc sampling  </span>
@@ -2125,7 +2177,7 @@ random walk (not listed in the main text) is found under programs/chapter12/prog
 <span style="color: #a61717; background-color: #e3d2d2">\</span>end{lstlisting}
 The  input and output functions are 
 <span style="color: #a61717; background-color: #e3d2d2">\</span>begin{lstlisting} 
-<span style="color: #a7a7a7; font-weight: bold">void</span> initialise(<span style="color: #a7a7a7; font-weight: bold">int</span>&amp; max_trials, <span style="color: #a7a7a7; font-weight: bold">int</span>&amp; number_walks, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; move_probability) 
+<span style="color: #00688B; font-weight: bold">void</span> initialise(<span style="color: #00688B; font-weight: bold">int</span>&amp; max_trials, <span style="color: #00688B; font-weight: bold">int</span>&amp; number_walks, <span style="color: #00688B; font-weight: bold">double</span>&amp; move_probability) 
 {
   cout &lt;&lt; <span style="color: #CD5555">&quot;Number of Monte Carlo trials =&quot;</span>; 
   cin &gt;&gt; max_trials;
@@ -2141,7 +2193,7 @@ The  input and output functions are
 
 
 <section>
-<h2 id="___sec60">Random walk </h2>
+<h2 id="___sec61">Random walk </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2150,15 +2202,15 @@ of moving to the left or to the right by generating a random number.
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">mc_sampling</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> max_trials, <span style="color: #a7a7a7; font-weight: bold">int</span> number_walks, 
-                 <span style="color: #a7a7a7; font-weight: bold">double</span> move_probability, <span style="color: #a7a7a7; font-weight: bold">int</span> *walk_cumulative, 
-                 <span style="color: #a7a7a7; font-weight: bold">int</span> *walk2_cumulative)
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">mc_sampling</span>(<span style="color: #00688B; font-weight: bold">int</span> max_trials, <span style="color: #00688B; font-weight: bold">int</span> number_walks, 
+                 <span style="color: #00688B; font-weight: bold">double</span> move_probability, <span style="color: #00688B; font-weight: bold">int</span> *walk_cumulative, 
+                 <span style="color: #00688B; font-weight: bold">int</span> *walk2_cumulative)
 {
-  <span style="color: #a7a7a7; font-weight: bold">long</span> idum;
+  <span style="color: #00688B; font-weight: bold">long</span> idum;
   idum=-<span style="color: #B452CD">1</span>;  <span style="color: #228B22">// initialise random number generator</span>
-  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> trial=<span style="color: #B452CD">1</span>; trial &lt;= max_trials; trial++){
-    <span style="color: #a7a7a7; font-weight: bold">int</span> position = <span style="color: #B452CD">0</span>;
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> walks = <span style="color: #B452CD">1</span>; walks &lt;= number_walks; walks++){   
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> trial=<span style="color: #B452CD">1</span>; trial &lt;= max_trials; trial++){
+    <span style="color: #00688B; font-weight: bold">int</span> position = <span style="color: #B452CD">0</span>;
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> walks = <span style="color: #B452CD">1</span>; walks &lt;= number_walks; walks++){   
       <span style="color: #8B008B; font-weight: bold">if</span> (ran0(&amp;idum) &lt;= move_probability) {
 	position += <span style="color: #B452CD">1</span>;
       } 
@@ -2177,7 +2229,7 @@ of moving to the left or to the right by generating a random number.
 
 
 <section>
-<h2 id="___sec61">Simple python code with visualization of one-dimensional random walk </h2>
+<h2 id="___sec62">Simple python code with visualization of one-dimensional random walk </h2>
 The python code here is just a mere rewriting of the above c++ code, with the difference that 
 it employs matplotlib and gives the final plot. 
 <p>
