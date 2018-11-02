@@ -95,7 +95,8 @@ $(function () {
                2,
                None,
                '___sec5'),
-              ('Stochastic variables and the main concepts, the continuous case',
+              ('Stochastic variables and the main concepts, the continuous '
+               'case',
                2,
                None,
                '___sec6'),
@@ -112,19 +113,23 @@ $(function () {
                2,
                None,
                '___sec13'),
-              ('Stochastic variables and the main concepts, central moments, the variance',
+              ('Stochastic variables and the main concepts, central moments, '
+               'the variance',
                2,
                None,
                '___sec14'),
-              ('First Illustration of the Use of Monte-Carlo Methods, integration',
+              ('First Illustration of the Use of Monte-Carlo Methods, '
+               'integration',
                2,
                None,
                '___sec15'),
-              ('First Illustration of the Use of Monte-Carlo Methods, integration',
+              ('First Illustration of the Use of Monte-Carlo Methods, '
+               'integration',
                2,
                None,
                '___sec16'),
-              ('First Illustration of the Use of Monte-Carlo Methods, variance in integration',
+              ('First Illustration of the Use of Monte-Carlo Methods, variance '
+               'in integration',
                2,
                None,
                '___sec17'),
@@ -132,33 +137,19 @@ $(function () {
                2,
                None,
                '___sec18'),
-              ('First Illustration of the Use of Monte-Carlo Methods, integration',
+              ('First Illustration of the Use of Monte-Carlo Methods, '
+               'integration',
                2,
                None,
                '___sec19'),
-              ('Important aspects of Monte-Carlo Methods',
-               2,
-               None,
-               '___sec20'),
+              ('Important aspects of Monte-Carlo Methods', 2, None, '___sec20'),
               ('Why Monte Carlo integration?', 2, None, '___sec21'),
               ('Why Monte Carlo integration?', 2, None, '___sec22'),
               ('Why Monte Carlo integration? Example', 2, None, '___sec23'),
-              ('Monte Carlo integration, simple  example',
-               2,
-               None,
-               '___sec24'),
-              ('Monte Carlo integration, simple  example',
-               2,
-               None,
-               '___sec25'),
-              ('Monte Carlo integration, simple  example',
-               2,
-               None,
-               '___sec26'),
-              ('Monte Carlo integration, simple  example',
-               2,
-               None,
-               '___sec27'),
+              ('Monte Carlo integration, simple  example', 2, None, '___sec24'),
+              ('Monte Carlo integration, simple  example', 2, None, '___sec25'),
+              ('Monte Carlo integration, simple  example', 2, None, '___sec26'),
+              ('Monte Carlo integration, simple  example', 2, None, '___sec27'),
               ('Monte Carlo integration, algorithm', 2, None, '___sec28'),
               ('Monte Carlo integration, simple  example, the program',
                2,
@@ -168,7 +159,8 @@ $(function () {
                2,
                None,
                '___sec30'),
-              ('Testing against the trapezoidal rule for a one-dimensional integral',
+              ('Testing against the trapezoidal rule for a one-dimensional '
+               'integral',
                2,
                None,
                '___sec31'),
@@ -199,11 +191,13 @@ $(function () {
                2,
                None,
                '___sec43'),
-              ('Probability Distribution Functions, the cumulative distribution',
+              ('Probability Distribution Functions, the cumulative '
+               'distribution',
                2,
                None,
                '___sec44'),
-              ('Probability Distribution Functions, other important distribution',
+              ('Probability Distribution Functions, other important '
+               'distribution',
                2,
                None,
                '___sec45'),
@@ -220,22 +214,13 @@ $(function () {
                None,
                '___sec48'),
               ('Meet the  covariance!', 2, None, '___sec49'),
-              ('Meet the  covariance in matrix disguise',
-               2,
-               None,
-               '___sec50'),
+              ('Meet the  covariance in matrix disguise', 2, None, '___sec50'),
               ('Meet the  covariance, uncorrelated events',
                2,
                None,
                '___sec51'),
-              ('Numerical experiments and the covariance',
-               2,
-               None,
-               '___sec52'),
-              ('Numerical experiments and the covariance',
-               2,
-               None,
-               '___sec53'),
+              ('Numerical experiments and the covariance', 2, None, '___sec52'),
+              ('Numerical experiments and the covariance', 2, None, '___sec53'),
               ('Numerical experiments and the covariance, actual situations',
                2,
                None,
@@ -248,7 +233,8 @@ $(function () {
                2,
                None,
                '___sec56'),
-              ('Numerical experiments and the covariance, central limit theorem',
+              ('Numerical experiments and the covariance, central limit '
+               'theorem',
                2,
                None,
                '___sec57'),
@@ -268,7 +254,8 @@ $(function () {
                2,
                None,
                '___sec61'),
-              ('Definition of Correlation Functions and Standard Deviation, sample variance',
+              ('Definition of Correlation Functions and Standard Deviation, '
+               'sample variance',
                2,
                None,
                '___sec62'),
@@ -323,11 +310,13 @@ $(function () {
                2,
                None,
                '___sec80'),
-              ('Correlation function and which random number generators should I use',
+              ('Correlation function and which random number generators should '
+               'I use',
                2,
                None,
                '___sec81'),
-              ('Correlation function and which random number generators should I use',
+              ('Correlation function and which random number generators should '
+               'I use',
                2,
                None,
                '___sec82'),
@@ -432,7 +421,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Nov 3, 2017</h4></center> <!-- date -->
+<center><h4>Nov 2, 2018</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -2426,7 +2415,7 @@ performing appropriate operations on one or more uniform deviates, as we will se
 in subsequent sections. So, a reliable source of random uniform deviates, the subject
 of this section, is an essential building block for any sort of stochastic modeling
 or Monte Carlo computer work.
-<br /><br /><center><p><img src="figslides/random.gif" align="bottom" width=500></p></center><br /><br />
+<br /><br /><center><p><img src="figslides/random.png" align="bottom" width=500></p></center><br /><br />
 </div>
 
 
@@ -3087,19 +3076,19 @@ The following part of a c++ code (from project 4) sets up the uniform distributi
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">/*</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic">/*</span>
 
 <span style="color: #408080; font-style: italic">//  You need this </span>
-<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&lt;random&gt;</span><span style="color: #BC7A00"></span>
+<span style="color: #408080; font-style: italic">#include &lt;random&gt;</span>
 
 <span style="color: #408080; font-style: italic">// Initialize the seed and call the Mersienne algo</span>
-std<span style="color: #666666">::</span>random_device rd;
-std<span style="color: #666666">::</span>mt19937_64 gen(rd());
+<span style="color: #408080; font-style: italic">std::random_device rd;</span>
+<span style="color: #408080; font-style: italic">std::mt19937_64 gen(rd());</span>
 <span style="color: #408080; font-style: italic">// Set up the uniform distribution for x \in [[0, 1]</span>
-std<span style="color: #666666">::</span>uniform_real_distribution<span style="color: #666666">&lt;</span><span style="color: #B00040">double</span><span style="color: #666666">&gt;</span> RandomNumberGenerator(<span style="color: #666666">0.0</span>,<span style="color: #666666">1.0</span>);
+<span style="color: #408080; font-style: italic">std::uniform_real_distribution&lt;double&gt; RandomNumberGenerator(0.0,1.0);</span>
 
 <span style="color: #408080; font-style: italic">// Now use the RNG</span>
-<span style="color: #B00040">int</span> ix <span style="color: #666666">=</span> (<span style="color: #B00040">int</span>) (RandomNumberGenerator(gen)<span style="color: #666666">*</span>NSpins);
+<span style="color: #408080; font-style: italic">int ix = (int) (RandomNumberGenerator(gen)*NSpins);</span>
 </pre></div>
 
 </div>
@@ -4370,7 +4359,7 @@ print "Sigma             = %10.8E" % sigma
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2018, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 
