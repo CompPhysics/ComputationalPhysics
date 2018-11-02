@@ -156,9 +156,9 @@ void WriteResultstoFile(int NSpins, int MCcycles, double temperature, vec Expect
   ofile << setiosflags(ios::showpoint | ios::uppercase);
   ofile << setw(15) << setprecision(8) << temperature;
   ofile << setw(15) << setprecision(8) << E_ExpectationValues/NSpins/NSpins;
-  ofile << setw(15) << setprecision(8) << Evariance/temperature/temperature;
-  ofile << setw(15) << setprecision(8) << M_ExpectationValues/NSpins/NSpins;
-  ofile << setw(15) << setprecision(8) << Mvariance/temperature;
+  ofile << setw(15) << setprecision(8) << E2_ExpectationValues/NSpins/NSpins;//Evariance/temperature/temperature;
+  ofile << setw(15) << setprecision(8) << M_ExpectationValues/NSpins/NSpins;//M_ExpectationValues/NSpins/NSpins;
+  ofile << setw(15) << setprecision(8) << M2_ExpectationValues/NSpins/NSpins; //Mvariance/temperature;
   ofile << setw(15) << setprecision(8) << Mabs_ExpectationValues/NSpins/NSpins << endl;
 } // end output function
 
