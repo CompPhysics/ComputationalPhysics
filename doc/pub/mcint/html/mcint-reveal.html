@@ -2245,7 +2245,60 @@ more practically oriented methods like the blocking technique.
 
 
 <section>
-<h1 id="___sec64">Random Numbers </h1>
+<h2 id="___sec64">Example of the central limit theorem </h2>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "perldoc" -->
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">numpy</span> <span style="color: #8B008B; font-weight: bold">import</span> *
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">numpy.random</span> <span style="color: #8B008B; font-weight: bold">import</span> randint, randn
+<span style="color: #8B008B; font-weight: bold">from</span> <span style="color: #008b45; text-decoration: underline">time</span> <span style="color: #8B008B; font-weight: bold">import</span> time
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.mlab</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">mlab</span>
+<span style="color: #8B008B; font-weight: bold">import</span> <span style="color: #008b45; text-decoration: underline">matplotlib.pyplot</span> <span style="color: #8B008B; font-weight: bold">as</span> <span style="color: #008b45; text-decoration: underline">plt</span>
+
+<span style="color: #228B22"># Returns mean of bootstrap samples                                                                                                                                                </span>
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">stat</span>(data):
+    <span style="color: #8B008B; font-weight: bold">return</span> mean(data)
+
+<span style="color: #228B22"># Bootstrap algorithm                                                                                                                                                              </span>
+<span style="color: #8B008B; font-weight: bold">def</span> <span style="color: #008b45">bootstrap</span>(data, statistic, R):
+    t = zeros(R); n = <span style="color: #658b00">len</span>(data); inds = arange(n); t0 = time()
+
+    <span style="color: #228B22"># non-parametric bootstrap                                                                                                                                                     </span>
+    <span style="color: #8B008B; font-weight: bold">for</span> i <span style="color: #8B008B">in</span> <span style="color: #658b00">range</span>(R):
+        t[i] = statistic(data[randint(<span style="color: #B452CD">0</span>,n,n)])
+
+    <span style="color: #228B22"># analysis                                                                                                                                                                     </span>
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Runtime: %g sec&quot;</span> % (time()-t0)); <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Bootstrap Statistics :&quot;</span>)
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;original           bias      std. error&quot;</span>)
+    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;%8g %8g %14g %15g&quot;</span> % (statistic(data), std(data),\
+                             mean(t), \
+                             std(t)))
+    <span style="color: #8B008B; font-weight: bold">return</span> t
+
+
+mu, sigma = <span style="color: #B452CD">100</span>, <span style="color: #B452CD">15</span>
+datapoints = <span style="color: #B452CD">10000</span>
+x = mu + sigma*random.randn(datapoints)
+<span style="color: #228B22"># bootstrap returns the data sample                                                                                    </span>
+t = bootstrap(x, stat, datapoints)
+<span style="color: #228B22"># the histogram of the bootstrapped  data                                                                              </span>
+n, binsboot, patches = plt.hist(t, <span style="color: #B452CD">50</span>, normed=<span style="color: #B452CD">1</span>, facecolor=<span style="color: #CD5555">&#39;red&#39;</span>, alpha=<span style="color: #B452CD">0.75</span>)
+
+<span style="color: #228B22"># add a &#39;best fit&#39; line                                                                                                                                                          </span>
+y = mlab.normpdf( binsboot, mean(t), std(t))
+lt = plt.plot(binsboot, y, <span style="color: #CD5555">&#39;r--&#39;</span>, linewidth=<span style="color: #B452CD">1</span>)
+plt.xlabel(<span style="color: #CD5555">&#39;Smarts&#39;</span>)
+plt.ylabel(<span style="color: #CD5555">&#39;Probability&#39;</span>)
+plt.axis([<span style="color: #B452CD">99.5</span>, <span style="color: #B452CD">100.6</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">3.0</span>])
+plt.grid(<span style="color: #658b00">True</span>)
+
+plt.show()
+</pre></div>
+</section>
+
+
+<section>
+<h1 id="___sec65">Random Numbers </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2265,7 +2318,7 @@ or Monte Carlo computer work.
 
 
 <section>
-<h1 id="___sec65">Random Numbers, better name: pseudo random numbers  </h1>
+<h1 id="___sec66">Random Numbers, better name: pseudo random numbers  </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2291,7 +2344,7 @@ numbers, hopefully abiding to the following criteria:
 
 
 <section>
-<h1 id="___sec66">Random number generator RNG  </h1>
+<h1 id="___sec67">Random number generator RNG  </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2328,7 +2381,7 @@ of the division \( 13/9 \), namely \( 4 \).
 
 
 <section>
-<h1 id="___sec67">Random number generator RNG and periodic outputs </h1>
+<h1 id="___sec68">Random number generator RNG and periodic outputs </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2368,7 +2421,7 @@ just \( 2 \).
 
 
 <section>
-<h1 id="___sec68">Random number generator RNG and its period  </h1>
+<h1 id="___sec69">Random number generator RNG and its period  </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2392,7 +2445,7 @@ $$
 
 
 <section>
-<h1 id="___sec69">Random number generator RNG, other examples </h1>
+<h1 id="___sec70">Random number generator RNG, other examples </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2428,7 +2481,7 @@ which according to the authors has a period larger than \( 2^{94} \).
 
 
 <section>
-<h1 id="___sec70">Random number generator RNG, other examples </h1>
+<h1 id="___sec71">Random number generator RNG, other examples </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2459,7 +2512,7 @@ it is given by \( m\wedge n \).
 
 
 <section>
-<h1 id="___sec71">Random number generator RNG, RAN0 </h1>
+<h1 id="___sec72">Random number generator RNG, RAN0 </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2510,7 +2563,7 @@ where the brackets denote integer division. In the code below the numbers
 
 
 <section>
-<h1 id="___sec72">Random number generator RNG, RAN0 </h1>
+<h1 id="___sec73">Random number generator RNG, RAN0 </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2532,7 +2585,7 @@ The last term \( [N_{i-1}/q]M\mathrm{MOD}(M) \) is zero since the integer divisi
 
 
 <section>
-<h1 id="___sec73">Random number generator RNG, RAN0 </h1>
+<h1 id="___sec74">Random number generator RNG, RAN0 </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2573,7 +2626,7 @@ $$
 
 
 <section>
-<h1 id="___sec74">Random number generator RNG, RAN0 </h1>
+<h1 id="___sec75">Random number generator RNG, RAN0 </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2594,7 +2647,7 @@ set to \( 0 \).
 
 
 <section>
-<h1 id="___sec75">Random number generator RNG, RAN0 code </h1>
+<h1 id="___sec76">Random number generator RNG, RAN0 code </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2633,7 +2686,7 @@ set to \( 0 \).
 
 
 <section>
-<h2 id="___sec76">Properties of Selected Random Number Generators </h2>
+<h2 id="___sec77">Properties of Selected Random Number Generators </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2657,7 +2710,7 @@ Two additional measures are the standard deviation \( \sigma \) and the mean
 
 
 <section>
-<h2 id="___sec77">Properties of Selected Random Number Generators </h2>
+<h2 id="___sec78">Properties of Selected Random Number Generators </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2685,7 +2738,7 @@ $$
 
 
 <section>
-<h2 id="___sec78">Properties of Selected Random Number Generators </h2>
+<h2 id="___sec79">Properties of Selected Random Number Generators </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2718,7 +2771,7 @@ these limiting values.
 
 
 <section>
-<h2 id="___sec79">Simple demonstration of RNGs using python </h2>
+<h2 id="___sec80">Simple demonstration of RNGs using python </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2757,7 +2810,7 @@ plt.show()
 
 
 <section>
-<h2 id="___sec80">Properties of Selected Random Number Generators </h2>
+<h2 id="___sec81">Properties of Selected Random Number Generators </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2797,7 +2850,7 @@ assumption for approximating \( \sigma_N \) in Eq. <a href="#mjx-eqn-3">(3)</a> 
 
 
 <section>
-<h2 id="___sec81">Correlation function and which random number generators should I use </h2>
+<h2 id="___sec82">Correlation function and which random number generators should I use </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2878,7 +2931,7 @@ ofstream ofile;
 
 
 <section>
-<h2 id="___sec82">Correlation function and which random number generators should I use </h2>
+<h2 id="___sec83">Correlation function and which random number generators should I use </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2910,7 +2963,7 @@ plt.show()
 
 
 <section>
-<h1 id="___sec83">Which RNG should I use?  </h1>
+<h1 id="___sec84">Which RNG should I use?  </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <ul>
@@ -2922,7 +2975,7 @@ plt.show()
 
 
 <section>
-<h2 id="___sec84">How to use the Mersenne generator </h2>
+<h2 id="___sec85">How to use the Mersenne generator </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2950,7 +3003,7 @@ The following part of a c++ code (from project 4) sets up the uniform distributi
 
 
 <section>
-<h1 id="___sec85">Improved Monte Carlo Integration </h1>
+<h1 id="___sec86">Improved Monte Carlo Integration </h1>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -2978,7 +3031,7 @@ upon the above simple brute force approach with the uniform distribution, namely
 
 
 <section>
-<h2 id="___sec86">Change of Variables </h2>
+<h2 id="___sec87">Change of Variables </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3010,7 +3063,7 @@ All random number generators  use the uniform distribution to generate numbers \
 
 
 <section>
-<h2 id="___sec87">Change of Variables </h2>
+<h2 id="___sec88">Change of Variables </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3061,7 +3114,7 @@ $$
 
 
 <section>
-<h2 id="___sec88">Transformed Uniform Distribution </h2>
+<h2 id="___sec89">Transformed Uniform Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3113,7 +3166,7 @@ a well-known result!
 
 
 <section>
-<h2 id="___sec89">Exponential Distribution </h2>
+<h2 id="___sec90">Exponential Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3165,7 +3218,7 @@ $$
 
 
 <section>
-<h2 id="___sec90">Exponential Distribution </h2>
+<h2 id="___sec91">Exponential Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3204,7 +3257,7 @@ where \( x_i \) is a random number in the interval \( [0,1] \).
 
 
 <section>
-<h2 id="___sec91">Exponential Distribution </h2>
+<h2 id="___sec92">Exponential Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3235,7 +3288,7 @@ y=-log(<span style="color: #B452CD">1.</span>-x);
 
 
 <section>
-<h2 id="___sec92">Normal Distribution </h2>
+<h2 id="___sec93">Normal Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3265,7 +3318,7 @@ Both <a href="http://www.cplusplus.com/reference/cmath/erfc/" target="_blank">c+
 
 
 <section>
-<h2 id="___sec93">Normal Distribution </h2>
+<h2 id="___sec94">Normal Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3302,7 +3355,7 @@ multiplying random numbers
 
 
 <section>
-<h2 id="___sec94">Normal Distribution </h2>
+<h2 id="___sec95">Normal Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3344,7 +3397,7 @@ where \( x' \) is a random number generated for \( x'\in [0,1] \).
 
 
 <section>
-<h2 id="___sec95">Normal Distribution </h2>
+<h2 id="___sec96">Normal Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3391,7 +3444,7 @@ with \( x'\in [0,1] \) and \( \theta \in 2\pi [0,1] \).
 
 
 <section>
-<h2 id="___sec96">Normal Distribution </h2>
+<h2 id="___sec97">Normal Distribution </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3414,7 +3467,7 @@ y=radius*sin(theta);
 
 
 <section>
-<h2 id="___sec97">Importance Sampling </h2>
+<h2 id="___sec98">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3449,7 +3502,7 @@ $$
 
 
 <section>
-<h2 id="___sec98">Importance Sampling </h2>
+<h2 id="___sec99">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3479,7 +3532,7 @@ If we can invert \( x(y) \), we find \( y(x) \) as well.
 
 
 <section>
-<h2 id="___sec99">Importance Sampling </h2>
+<h2 id="___sec100">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3507,7 +3560,7 @@ $$
 
 
 <section>
-<h2 id="___sec100">Importance Sampling </h2>
+<h2 id="___sec101">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3533,7 +3586,7 @@ are
 
 
 <section>
-<h2 id="___sec101">Importance Sampling </h2>
+<h2 id="___sec102">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3561,7 +3614,7 @@ $$
 
 
 <section>
-<h2 id="___sec102">Importance Sampling </h2>
+<h2 id="___sec103">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3621,7 +3674,7 @@ with \( y_i\in [0,1] \),
 
 
 <section>
-<h2 id="___sec103">Importance Sampling, a simple example </h2>
+<h2 id="___sec104">Importance Sampling, a simple example </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3668,7 +3721,7 @@ We have that when \( y=0 \) then  \( x=0 \) and when  \( y=1 \) we have \( x=1 \
 
 
 <section>
-<h2 id="___sec104">Importance Sampling, a simple example, a simple plot </h2>
+<h2 id="___sec105">Importance Sampling, a simple example, a simple plot </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3712,7 +3765,7 @@ plt.show()
 
 
 <section>
-<h2 id="___sec105">Importance Sampling, a simple example, the code part </h2>
+<h2 id="___sec106">Importance Sampling, a simple example, the code part </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3736,7 +3789,7 @@ plt.show()
 
 
 <section>
-<h2 id="___sec106">Importance Sampling, a simple example, and the results </h2>
+<h2 id="___sec107">Importance Sampling, a simple example, and the results </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3765,7 +3818,7 @@ However, it is unfair to study one-dimensional integrals with MC methods!
 
 
 <section>
-<h2 id="___sec107">Acceptance-Rejection Method </h2>
+<h2 id="___sec108">Acceptance-Rejection Method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3802,7 +3855,7 @@ in the latter equation again.
 
 
 <section>
-<h2 id="___sec108">Acceptance-Rejection Method </h2>
+<h2 id="___sec109">Acceptance-Rejection Method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3826,7 +3879,7 @@ multiplied by the area of the rectangle, should approximate the chosen integral.
 
 
 <section>
-<h2 id="___sec109">Acceptance-Rejection Method </h2>
+<h2 id="___sec110">Acceptance-Rejection Method </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3855,7 +3908,7 @@ easy to implement this numerically, as shown in the following code.
 
 
 <section>
-<h2 id="___sec110">Monte Carlo Integration of Multidimensional Integrals </h2>
+<h2 id="___sec111">Monte Carlo Integration of Multidimensional Integrals </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3888,7 +3941,7 @@ if we were to use the uniform distribution on the interval \( [0,1] \).
 
 
 <section>
-<h2 id="___sec111">Monte Carlo Integration of Multidimensional Integrals </h2>
+<h2 id="___sec112">Monte Carlo Integration of Multidimensional Integrals </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3918,7 +3971,7 @@ $$
 
 
 <section>
-<h2 id="___sec112">Monte Carlo Integration of Multidimensional Integrals </h2>
+<h2 id="___sec113">Monte Carlo Integration of Multidimensional Integrals </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3948,7 +4001,7 @@ with  \( d=6 \).
 
 
 <section>
-<h2 id="___sec113">Monte Carlo Integration of Multidimensional Integrals </h2>
+<h2 id="___sec114">Monte Carlo Integration of Multidimensional Integrals </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -3980,7 +4033,7 @@ $$
 
 
 <section>
-<h2 id="___sec114">Monte Carlo Integration of Multidimensional Integrals </h2>
+<h2 id="___sec115">Monte Carlo Integration of Multidimensional Integrals </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -4007,7 +4060,7 @@ $$
 
 
 <section>
-<h2 id="___sec115">Brute Force Integration </h2>
+<h2 id="___sec116">Brute Force Integration </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -4071,7 +4124,7 @@ and the other employing importance sampling with a gaussian distribution.
 
 
 <section>
-<h2 id="___sec116">Importance Sampling </h2>
+<h2 id="___sec117">Importance Sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -4159,7 +4212,7 @@ random numbers from a gaussian distribution.
 
 
 <section>
-<h2 id="___sec117">Python codes </h2>
+<h2 id="___sec118">Python codes </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
@@ -4225,7 +4278,7 @@ print "Sigma             = %10.8E" % sigma
 
 
 <section>
-<h2 id="___sec118">Python codes, importance sampling </h2>
+<h2 id="___sec119">Python codes, importance sampling </h2>
 <div class="alert alert-block alert-block alert-text-normal">
 <b></b>
 <p>
