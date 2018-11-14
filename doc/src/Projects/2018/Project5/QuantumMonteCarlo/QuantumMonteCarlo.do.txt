@@ -1,0 +1,355 @@
+TITLE: Project 5, deadline  December 10, 2018
+AUTHOR: Quantum Monte Carlo of confined electrons
+DATE: Fall semester 2018
+
+_For this project you can collaborate with fellow students and you can  hand in a common report._
+This project (together with projects 3 and 4) counts 1/3 of the final mark.
+
+===== Theoretical background and description of the physical system =====
+
+The aim of this project is to use the Variational Monte Carlo (VMC)
+method to evaluate the ground state energy, the relative distance between two electrons and
+expectation values of the kinetic and potential energies of a quantum dots with $N=2$
+electrons in three dimensions. It can be seen as a continuation of project 2, but instead of using eigenvalue solvers
+we will use a stochastic approach.
+
+
+
+The systems we will focus on is thus  a three-dimensional one, with two electrons
+confined to move in harmonic oscillator like traps. As in project 2, we have analytical
+results for the energy for specific frequencies, see Taut's article in the reference list below.
+Furthermore, for other frequencies, we have our results from project 2
+which can be used to test our Monte Carlo results. 
+
+These systems are called "quantum dots":"http://en.wikipedia.org/wiki/Quantum_dot" and constitute a lively research
+area in condensed matter physics and materials science, with
+applications spanning from the contruction of quantum circuits to
+applications to solar cells and nano-medicine. Although most studies are done for electrons in two dimensions,
+we will limit ourselves to the three-dimensional case since it allows us to compare our variational Monte Carlo (VMC)
+results with what we did in project 2. 
+
+Our aim here is to use the variational Monte Carlo method to study
+such systems, with an emphasis on understanding correlations due to
+the repulsive interaction between electrons.
+The advantage of the VMC approach is that we can carry out our calculations using cartesian coordinates. 
+
+The relevant background material can be found in chapter 14 of the lecture notes.
+
+
+We consider a system of electrons confined in a pure three-dimensional
+isotropic harmonic oscillator potential, with an idealized  total Hamiltonian given by
+
+!bt
+\begin{equation}
+  label{eq:finalH}
+  \hat{H}=\sum_{i=1}^{N} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right)+\sum_{i<j}\frac{1}{r_{ij}},
+\end{equation}
+!et
+where natural units ($\hbar=c=e=m_e=1$) are used and all energies are
+in so-called atomic units a.u. It means that all distances 
+$r_i$ and $r_{ij}$ are dimensionless.
+
+
+We will study various trial wave functions for  two electrons
+($N=2$) as functions of the oscillator frequency $\omega$ using the above
+Hamiltonian.  The Hamiltonian includes a standard harmonic oscillator
+part
+
+!bt
+\begin{equation*}
+\hat{H}_0=\sum_{i=1}^{N} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right),
+\end{equation*}
+!et
+and the repulsive interaction between two electrons given by
+
+!bt
+\begin{equation*}
+\hat{H}_1=\sum_{i<j}\frac{1}{r_{ij}},
+\end{equation*}
+!et
+with the distance between electrons given by $r_{ij}=\sqrt{\mathbf{r}_1-\mathbf{r}_2}$. We define the
+modulus of the positions of the electrons (for a given electron $i$) as $r_i = \sqrt{x_i^2+y_i^2+z_i^2}$.
+
+
+_For this project you can collaborate with fellow students and you can  hand in a common report._
+This project (together with projects 3 and 4) counts 1/3 of the final mark.
+
+=== Project 5a): Non-interacting system  ===
+We will first deal with a system of
+  two electrons in a quantum dot with a frequency of $\hbar\omega = 1$.
+  If we only include  the harmonic oscillator part of the Hamiltonian,
+  the so-called unperturbed part,  for $N=2$
+!bt
+\begin{equation*} \hat{H}_0=\sum_{i=1}^{N} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right),\end{equation*}
+!et
+  the exact energy is $3$ a.u.  This serves as an excellent benchmark when we develop our code.
+  The wave function for one electron in an oscillator potential in three dimensions is
+
+!bt
+\begin{equation*}
+  \phi_{n_x,n_y,n_z}(x,y,z) = A H_{n_x}(\sqrt{\omega}x)H_{n_y}(\sqrt{\omega}y)H_{n_z}(\sqrt{\omega}z)\exp{(-\omega(x^2+y^2+z^2)/2}.
+  \end{equation*}
+!et
+  The functions $H_{n_x}(\sqrt{\omega}x)$ etc are so-called Hermite polynomials, discussed below  here while $A$ is a normalization constant.
+  For the lowest-lying state we have $n_x=n_y=n_z=0$ and an energy $\epsilon_{n_x,n_y,n_x}=\omega(n_x+n_y+n_z+3/2) = 3/2\omega$.
+  Convince yourself that the lowest-lying energy for the two-electron system  is simply $3\omega$. This results provides a useful benchmark for your code.
+
+  The unperturbed wave function for the ground state of the two-electron system is given by
+
+!bt
+\begin{equation*}
+  \Phi(\mathbf{r}_1,\mathbf{r}_2) = C\exp{\left(-\omega(r_1^2+r_2^2)/2\right)},
+  \end{equation*}
+!et
+  with $C$ being a normalization constant and $r_i = \sqrt{x_i^2+y_i^2+z_i^2}$. Note that the vector $\mathbf{r}_i$
+  refers to the $x$, $y$ and $z$ coordinates for a given particle.
+  What is the total spin of this wave function? Find arguments for why the ground state should have
+  this specific total spin.
+
+
+=== Project 5b): Analytical form for the trial wave functions and local energy ===
+
+Find closed form expressions for the local energy (see below) for the 
+two trial wave functions presented here and explain shortly if these
+trial functions satisfy 
+the so-called cusp condition when $r_{12}\rightarrow 0$.
+The first wave function
+!bt
+\[
+   \Psi_{T1}(\mathbf{r}_1,\mathbf{r}_2) = C\exp{\left(-\alpha\omega(r_1^2+r_2^2)/2\right)},
+\]
+!et
+while the second trial function is
+!bt
+\[
+    \Psi_{T2}(\mathbf{r}_1,\mathbf{r}_2) =
+    C\exp{\left(-\alpha\omega(r_1^2+r_2^2)/2\right)}
+    \exp{\left(\frac{r_{12}}{2(1+\beta r_{12})}\right)},
+\]
+!et
+where $\alpha$ and $\beta$ are variational parameters.
+Show that the first trial function gives an analytical expression for the local energy given by
+gives a closed-form expression
+!bt
+\[ 
+E_{L1} = \frac{1}{2}\omega^2\left( r_1^2+r_2^2\right)\left(1-\alpha^2\right) +3\alpha\omega.
+\]
+!et
+Use this expression when developing your program. 
+For the first trial function it will give you the exact analytical result when you exclude the Coulomb interaction. The exact result for the ground state is then $3\omega$. 
+Adding the repulsive Coulomb interaction gives us then
+!bt
+\[ 
+E_{L1} = \frac{1}{2}\omega^2\left( r_1^2+r_2^2\right)\left(1-\alpha^2\right) +3\alpha\omega+\frac{1}{r_{12}}.
+\]
+!et
+When you study the final energy for the first trial function, this is the result you should compare the second trial function with.
+The analytical expression for the second trial wave function (with $E_{L1}$ now including the Coulomb repulsion)
+!bt
+\[ 
+E_{L2} = E_{L1}+\frac{1}{2(1+\beta r_{12})^2}\left\{\alpha\omega r_{12}-\frac{1}{2(1+\beta r_{12})^2}-\frac{2}{r_{12}}+\frac{2\beta}{1+\beta r_{12}}\right\}
+\]
+!et
+The exact ground state energy for $\omega =1 $ is $3.558$ a.u. Check this result against your results from project 2 and remember to add the contribution from the center-of-mass energy, which is 1.5 a.u.
+
+You will need to program both equations when computing the expectation value of the energy and the energy variance.
+
+=== Project 5c):   ===
+We want to perform  a Variational Monte Carlo calculation of the ground state of two electrons in a quantum dot well with different oscillator energies, assuming total spin $S=0$.
+Compute then
+!bt
+\[
+\langle H \rangle = \frac{\int d{\bf
+R}\Psi^{\ast}_T({\bf R})H({\bf R})\Psi_T({\bf R})}
+{\int d{\bf
+R}\Psi^{\ast}_T({\bf R})\Psi_T({\bf R})},
+\]
+!et
+for the two-electron
+system using a variational Monte Carlo method employing the Metropolis
+algorithm to sample over different states.  You will have to calculate
+!bt
+\[
+\langle H \rangle =\int P({\bf R})E_L({\bf R})d{\bf R},
+\]
+!et
+where $E_L$ is the local energy.  Here all
+calculations are performed with the trial wave function
+$\psi_{T1}({\bf r_1},{\bf r_2}, {\bf r_{12}})$ only.  Study the
+stability of your calculation as function of the number of Monte Carlo
+cycles and compare these results with the exact results from project
+2 (remember to add the center-of-mass energy for the results from project 2)
+Your Monte Carlo moves are determined by
+!bt
+\[
+{\bf R}' = {\bf R} +\delta\times r
+\]
+!et
+where $r$ is a random number from the uniform distribution and
+$\delta$ a chosen step length.  In solving this
+		       exercise you need to devise an algorithm which
+		       finds an optimal value of $\delta$ for each
+		       variational parameter $\alpha$, resulting in
+		       roughly $50\%$ accepted moves.
+
+Plot the energy as a function of the variational parameter $\alpha$ and discuss your results. Plot the variance as well
+and find the energy and variance minima as functions of $\alpha$. Discuss your results.  
+
+Compute also the expectation value of the mean distance at the energy minimun 
+  $r_{12}=\sqrt{\mathbf{r}_1-\mathbf{r}_2}$ between the two electrons for the optimal set of the variational parameters using $\omega=0.01$,
+  $\omega=0.5$ and $\omega=1.0$.  Comment your results. 
+You will find it convenient to object orient your code.
+
+
+=== Project 5d):  ===
+
+Use thereafter the  optimal value for  $\alpha$ as a starting point for
+computing the ground state energy of the two-electron quantum dot using the trial wave functions
+$\psi_{T2}({\bf r_1},{\bf r_2}, {\bf r_{12}})$. Use the analytical expression for the local energy.
+In this case you need to vary both $\alpha$ and $\beta$.
+The strategy here is to use
+$\alpha$ from the previous exercise, [5c)] and then
+vary $\beta$ in order to find the lowest energy as function of
+$\beta$. Thereafter you change
+$\alpha$ in order to see whether you find an even lower energy and so forth.
+
+
+With the optimal parameters for the ground state wave function, compute the expectation values of the  energy and the variance using $\omega=0.01$,
+  $\omega=0.5$ and $\omega=1.0$. How important are the correlations introduced by the Jastrow factor? Comment your results. Compare the best VMC results wth those from project 2 for the same frequencies.  Compute also the expectation value of the mean distance at the energy minimun 
+  $r_{12}=\sqrt{\mathbf{r}_1-\mathbf{r}_2}$ between the two electrons for the optimal set of the variational parameters using $\omega=0.01$,
+  $\omega=0.5$ and $\omega=1.0$.  Comment your results and compare the results with and without the Jastrow factor.
+
+=== Project 5e):   ===
+Finally, we want to test the virial theorem for a range of frequencies. The virial theorem states that the expectation value of the total kinetic energy $\langle T \rangle$ is proportional to the expectation value of the total potential energy $\langle V \rangle$. For a pure harmonic oscillator this proportionality is given by
+
+!bt
+\begin{equation*}
+  \langle T \rangle= \langle V \rangle.
+  \end{equation*}
+!et
+  Use your optimal results for $\omega=0.01$,
+  $\omega=0.5$ and $\omega=1.0$ and add to these other values in the range  $\omega\in [0.01,1]$
+  and   compute the expectation value of the kinetic energy and potential energy with and without the
+  repulsive interaction between electrons for $N=2$. Plot the
+  ratio $\langle T \rangle/\langle V \rangle$ as function of
+  $\omega$ and comment your results.
+
+===== Background literature =====
+
+  *  "M. Taut, Phys. Rev. A 48, 3561 (1993)":"http://journals.aps.org/pra/abstract/10.1103/PhysRevA.48.3561".
+
+  *  B. L. Hammond, W. A. Lester and P. J. Reynolds, Monte Carlo methods   in Ab Initio Quantum Chemistry, World Scientific, Singapore, 1994, chapters   2-5 and appendix B.
+
+
+
+===== Additional material on Hermite polynomials =====
+
+The Hermite polynomials are the solutions of the following differential
+equation
+
+!bt
+\begin{equation}
+  \frac{d^2H(x)}{dx^2}-2x\frac{dH(x)}{dx}+
+  (\lambda-1)H(x)=0.
+  label{eq:hermite}
+\end{equation}
+!et
+The first few polynomials are
+
+!bt
+\begin{equation*}
+H_0(x)=1,
+\end{equation*}
+!et
+
+!bt
+\begin{equation*}
+H_1(x)=2x,
+\end{equation*}
+!et
+
+!bt
+\begin{equation*}
+H_2(x)=4x^2-2,
+\end{equation*}
+!et
+
+!bt
+\begin{equation*}
+H_3(x)=8x^3-12x,
+\end{equation*}
+!et
+and
+
+!bt
+\begin{equation*}
+H_4(x)=16x^4-48x^2+12.
+\end{equation*}
+!et
+They fulfil the orthogonality relation
+
+!bt
+\begin{equation*}
+\int_{-\infty}^{\infty}e^{-x^2}H_n(x)^2dx=2^nn!\sqrt{\pi},
+\end{equation*}
+!et
+and the recursion relation
+
+!bt
+\begin{equation*}
+H_{n+1}(x)=2xH_{n}(x)-2nH_{n-1}(x).
+\end{equation*}
+!et
+
+
+
+
+
+===== Introduction to numerical projects =====
+
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+  * Give a short description of the nature of the problem and the eventual  numerical methods you have used.
+
+  * Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.
+
+  * Include the source code of your program. Comment your program properly.
+
+  * If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.
+
+  * Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.
+
+  * Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
+
+  * Try to give an interpretation of you results in your answers to  the problems.
+
+  * Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.
+
+  * Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.
+
+
+
+
+
+===== Format for electronic delivery of report and programs =====
+
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+  * Use Devilry to hand in your projects, log in  at  URL:"http://devilry.ifi.uio.no" with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.
+
+  * Upload _only_ the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.
+
+  * In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parametxers.
+
+  * In this and all later projects, you should include tests (for example unit tests) of your code(s).
+
+  * Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.
+
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. For this specific report you can  hand in a common report.
+
+
+
+
