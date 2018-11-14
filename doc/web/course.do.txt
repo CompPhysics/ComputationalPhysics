@@ -137,6 +137,15 @@ ${text_types(ch)}
    * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project5/WaveEquation/html/WaveEquation-bs.html"
 
 
+=== Project 5 Diffusion equation, deadline December 10 ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project5/DiffusionEquation/pdf/DiffusionEquation.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project5/DiffusionEquation/pdf/DiffusionEquation.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project5/DiffusionEquation/html/DiffusionEquation.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2018/Project5/DiffusionEquation/html/DiffusionEquation-bs.html"
+
+
 
 
 === Project 5 Variational Monte Carlo, deadline December 10 ===
