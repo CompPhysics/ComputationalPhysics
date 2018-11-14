@@ -1,6 +1,6 @@
-TITLE: Project 5, deadline  December 10, 2017
+TITLE: Project 5, deadline  December 10, 2018
 AUTHOR: Molecular Dynamics project
-DATE: Fall semester 2017
+DATE: Fall semester 2018
 
 
 ===== Theoretical background and description of the physical system =====
@@ -265,5 +265,110 @@ we encourage you to work two and two together. Optimal working groups consist of
 2-3 students. For this specific report you can  hand in a common report.
 
 
+
+
+
+
+
+In this project, you will learn the basics of a simulation technique
+called molecular dynamics (MD). Molecular dynamics is a method
+actively used in research here at the Department of Physics, yet its
+basic principle can be understood and implemented with the background
+of a first-year physics student.
+
+Molecular dynamics is based on the assumption that even atoms move
+according to the laws of Newton, given the correct model for
+interactions. The goal of this project is to model an argon gas, where
+the atoms interact according to the famous Lennard-Jones potential,
+
+!bt
+\begin{equation}
+    U(r) = 4\varepsilon\qty(\qty(\frac{\sigma}{r})^{12} - \qty(\frac{\sigma}{r})^6), label{eq:lj}
+\end{equation}
+!et
+where $r$ is the distance between two atoms, $r=\norm{\bm{r}_i-\bm{r}_j}$. The quantity 
+$\sigma$ and $\varepsilon$ are parameters which determine which chemical compound is modelled. This potential is a good approximation for noble gases.
+
+===== Understanding the potential  =====
+
+  * Plot the potential as a function of \(r\) with \(\varepsilon=1\) and \(\sigma=1\).
+
+  * The behaviour of \(U(r)\) is vastly different for \(r \ll \sigma\) and \(r \gg \sigma\). Which term in the potential, \vref{eq:lj}, dominates in each case and what is the effect?
+
+  * Find and characterize the equilibrium points of the potential.
+
+  * Describe the shape of the potential close to the stable equilibrium point. Can you think of other force(s) with the same behaviour?
+
+
+
+===== Forces and equations of motion =====
+
+  * Find the force on atom $i$ at position $\bm{r}_i$ from atom $j$ at position $\bm{r}_j$.
+
+  * Show that the equation of motion for atom $i$ is      
+!bt 
+\begin{equation}         
+\dv[2]{\bm{r}_i}{t} = \frac{24\varepsilon}{m} \sum_{j \neq i} \qty(2\qty(\frac{\sigma}{\norm{\bm{r}_i-\bm{r}_j}})^{12}-\qty(\frac{\sigma}{\norm{\bm{r}_i-\bm{r}_j}})^6)\frac{\bm{r}_i-\bm{r}_j}{\norm{\bm{r}_i-\bm{r}_j}^2}.
+
+\end{equation}
+!et
+
+
+===== Units =====
+
+As you may remember from MAT-INF1100, numerical accuracy is reduced when computing with values which are many orders of magnitude apart. This is often an issue in physics, and molecular dynamics is no exception. For example, the mass of argon is smaller than \(10^{-25}\ \si{\kg}\), while typical length scales are on the order of nanometres, \(10^{-9}\ \si{\m}\).
+
+
+  * Introduce the scaled coordinates $\bm{r}_i\,'=\bm{r}_i/\sigma$ and show that the equation of motion can be rewritten in terms of these coordinates as      
+!bt 
+\begin{equation}         
+\dv[2]{\bm{r}_i\,'}{{t'}} = 24 \sum_{j \neq i} \qty(2\norm{\bm{r}_i\,'-\bm{r}_j\,'}^{-12}-\norm{\bm{r}_i\,'-\bm{r}_j\,'}^{-6})\frac{\bm{r}_i\,'-\bm{r}_j\,'}{\norm{\bm{r}_i\,'-\bm{r}_j\,'}^2}, label{eq:undim}
+
+\end{equation}
+!et
+    where \(t'=t/\tau\) for a suitable choice of \(\tau\).
+  * What is the characteristic time scale \(\tau\), and what is its value for argon, which has \(\sigma=\SI{3.405}{\angstrom}\) (\(\SI{1}{\angstrom}=\SI{1e-10}{\m}\)), \(m = \SI{39.95}{\atomicmassunit}\) (\(\SI{1}{\atomicmassunit} = \SI{1.66e-27}{\kg}\)) and \(\varepsilon=\SI{1.0318e-2}{\eV}\) (\(\SI{1}{\eV}=\SI{1.602e-19}{\J}\))?
+
+
+
+
+===== Motion} label{subsec:2motion =====
+
+  * Simulate the motion of two atoms which start at rest separated by a distance of \(\num{1.5}\sigma\). Use \(\Delta t'=\num{0.01}\), simulate until \(t'=5\) and integrate with the Euler-Cromer method.
+
+  * Plot the distance between the atoms as a function of time.
+
+  * How does the motion fit with your expectations from \vref{subsec:understanding}?
+
+  * Repeat the previous tasks, but now with an initial separation of \(\num{0.95}\sigma\). Explain your results.
+
+
+
+===== Energy =====
+
+  * Plot the kinetic, potential and total energy as a function of time for the two cases in the previous section.
+
+  * Theoretically speaking, should the total energy be conserved? Why, or why not? What about momentum?
+
+  * Does your program fulfil this? If not, what could be the cause?
+
+  * Simulate the same system as in \vref{subsec:2motion} with the Euler, Euler-Cromer and Velocity Verlet algorithms, and compare graphs of the total energy as a function of time.
+
+  * Find the largest time step that keeps stable motion and conserves energy for all three methods (small fluctuations in energy are allowed as long as they are periodic and don't increase/decrease with time). Discuss your results.
+
+  * Link your experimentation to a brief discussion of the pros and cons of the three methods, both physically and computationally.
+
+
+
+===== Boundary conditions =====
+
+In the previous exercise, you probably observed that the atoms immediately spread out into a large volume, possibly with some continuing to infinity (and beyond). This is not the behaviour we want. Ideally, we would like to model the bulk behaviour of argon by the use of periodic boundary conditions, but it is finicky to implement this efficiently.
+
+Instead, we will model atoms which are forced to remain inside a box by the use of reflective boundary conditions. This gives reasonable results for the quantities that we want to measure.
+Having reflective boundary conditions simply means that atoms that would otherwise leave the box, are turned around.
+
+  * Implement reflective boundary conditions in your program.
+
+  * Run a simulation with \(108\) atoms and verify visually that your implementation works. Give the atoms some initial velocities of your own choosing.
 
 
