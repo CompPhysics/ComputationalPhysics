@@ -113,25 +113,34 @@ o "Read more here":"https://www.cs.tau.ac.il/~nachumd/horror.html"
 
 !bblock Bachelor/Master/PhD Courses
   * "INF-MAT4130":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4130/index-eng.html" Numerical linear algebra
-  * "MAT-INF4300":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4300/index-eng.html", PDEs and Sobolev spaces I
-  * "MAT-INF4310":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4310/index-eng.html", PDEs and Sobolev spaces II
-  * "MAT-INF3360":"http://www.uio.no/studier/emner/matnat/math/MAT-INF3360/index-eng.html" - Introduction to Partial Differential Equations
+  * "MAT3360":"https://www.uio.no/studier/emner/matnat/math/MAT3360/index-eng.html". Introduction to Partial Differential Equations
   * "INF5620":"http://www.uio.no/studier/emner/matnat/ifi/INF5620/index-eng.html" Numerical methods for PDEs, finite element method
   * "FYS4411":"http://www.uio.no/studier/emner/matnat/fys/FYS4411/" Computational physics II (Parallelization (MPI), object orientation, quantum mechanical systems with many interacting particles), spring semester
   * "FYS4460":"http://www.uio.no/studier/emner/matnat/fys/FYS4460/" Computational physics III (Parallelization (MPI), object orientation, classical statistical physics, simulation of phase transitions, spring semester
   * "INF3331/4331":"http://www.uio.no/studier/emner/matnat/ifi/INF3331/" Problem solving with high-level languages (Python), fall semester
-  * "INF3380":"http://www.uio.no/studier/emner/matnat/ifi/INF3380/index-eng.html" Parallel computing for problems in the Natural Sciences (mostly PDEs), spring semester
+  * "IN3200/4200":"http://www.uio.no/studier/emner/matnat/ifi/IN4200/index-eng.html", High-Performance Computing and Numerical Projects. Spring semester
 !eblock
 
 
 !split
-===== New Courses in Computational Science at UiO from fall 2018 =====
+===== New Courses in Computational Science and Data Science  =====
 
-!bblock Bachelor/Master/PhD Courses
-  * "FYS-MAT3155/4155":"https://compphysics.github.io/MachineLearning/doc/web/course.html" Data Analysis and Machine Learning
-  * IN3XXX/4XXX, High-performance Computing
-  * "MAT-IN3110":"http://www.uio.no/studier/emner/matnat/math/MAT-IN3110/index-eng.html", Introduction to numerical analysis
-!eblock
+o "STK2100 Machine learning and statistical methods for prediction and classification":"http://www.uio.no/studier/emner/matnat/math/STK2100/index-eng.html". 
+o "IN3050 Introduction to Artificial Intelligence and Machine Learning":"https://www.uio.no/studier/emner/matnat/ifi/IN3050/index-eng.html". Introductory course in machine learning and AI with an algorithmic approach. 
+o "STK-INF3000/4000 Selected Topics in Data Science":"http://www.uio.no/studier/emner/matnat/math/STK-INF3000/index-eng.html". The course provides insight into selected contemporary relevant topics within Data Science. 
+o "IN4080 Natural Language Processing":"https://www.uio.no/studier/emner/matnat/ifi/IN4080/index.html". Probabilistic and machine learning techniques applied to natural language processing. 
+o "STK-IN4300 – Statistical learning methods in Data Science":"https://www.uio.no/studier/emner/matnat/math/STK-IN4300/index-eng.html". An advanced introduction to statistical and machine learning. For students with a good mathematics and statistics background.
+o "INF4490 Biologically Inspired Computing":"http://www.uio.no/studier/emner/matnat/ifi/INF4490/". An introduction to self-adapting methods also called artificial intelligence or machine learning. 
+o "IN-STK5000  Adaptive Methods for Data-Based Decision Making":"https://www.uio.no/studier/emner/matnat/ifi/IN-STK5000/index-eng.html". Methods for adaptive collection and processing of data based on machine learning techniques. 
+o "IN5400/INF5860 – Machine Learning for Image Analysis":"https://www.uio.no/studier/emner/matnat/ifi/IN5400/". An introduction to deep learning with particular emphasis on applications within Image analysis, but useful for other application areas too.
+o "TEK5040 – Dyp læring for autonome systemer":"https://www.uio.no/studier/emner/matnat/its/TEK5040/". The course addresses advanced algorithms and architectures for deep learning with neural networks. The course provides an introduction to how deep-learning techniques can be used in the construction of key parts of advanced autonomous systems that exist in physical environments and cyber environments.
+
+!split
+===== Additional courses of interest =====
+
+o "STK4051 Computational Statistics":"https://www.uio.no/studier/emner/matnat/math/STK4051/index-eng.html"
+o "STK4021 Applied Bayesian Analysis and Numerical Methods":"https://www.uio.no/studier/emner/matnat/math/STK4021/index-eng.html"
+
 
 
 
