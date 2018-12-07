@@ -314,3 +314,7 @@ running preprocess -DFORMAT=html -DDEVICE=screen  course.do.txt > tmp_preprocess
 running mako on tmp_preprocess__course.do.txt to make tmp_mako__course.do.txt
 translating doconce text in tmp_mako__course.do.txt to html
 output in course.html
+running preprocess -DFORMAT=html -DDEVICE=screen  course.do.txt > tmp_preprocess__course.do.txt
+running mako on tmp_preprocess__course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
