@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
   // initialise constants
   step    = (r_max - r_min) / max_step; 
   const_2 = -1.0 / (step * step);
-  const_1 =  - 2.0 * const_2;
+  const_1 =  2.0 * const_2;
   orb_factor = orb_l * (orb_l + 1);
   
   // local memory for r and the potential w[r] 
@@ -84,7 +84,7 @@ int main(int argc, char* argv[])
 
 double potential(double x)
 {
-   return -2./x;
+   return x*x;
 
 } // End: function potential()  
 
