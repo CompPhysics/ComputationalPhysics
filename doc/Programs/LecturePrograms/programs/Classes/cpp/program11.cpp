@@ -22,7 +22,10 @@ int main (int argc, char* argv[])
   vector <vector<double> > A(n, vector<double>(n));
   vector <vector<double> > B(n, vector<double>(n));
   vector <vector<double> > C(n, vector<double>(n));
-
+  
+  for(auto& row : A) fill(row.begin(),row.end(),0.0);
+  for(auto& row : B) fill(row.begin(),row.end(),0.0);
+  for(auto& row : C) fill(row.begin(),row.end(),0.0);
   // Set up values for matrix A and B and zero matrix C
   for (int i = 0; i < n; i++){
     for (int j = 0; j < n; j++) {
