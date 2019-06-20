@@ -17,7 +17,6 @@ int main (int argc, char* argv[])
   double s = 1.0/sqrt( (double) n);
   // Start timing
   clock_t start, finish;
-  start = clock();
   // Allocate space for the three matrices
   vector <vector<double> > A(n, vector<double>(n));
   vector <vector<double> > B(n, vector<double>(n));
@@ -30,9 +29,7 @@ int main (int argc, char* argv[])
   for(auto vec : A){
     for(auto x : vec){  
        x = 0.0;
-       cout << x;
     }
-    cout << endl;
   }
   // Set up values for matrix A and B and zero matrix C
   for (auto i = 0; i < n; i++){
@@ -42,43 +39,32 @@ int main (int argc, char* argv[])
       B[j][i] =  A[i][j];
     }
   }
+  start = clock();
   // Then perform the matrix-matrix multiplication
-  for (int i = 0; i < n; i++){
-    for (int j = 0; j < n; j++) {
+  for (auto i = 0; i < n; i++){
+    for (auto j = 0; j < n; j++) {
       double sum = 0.0;
-       for (int k = 0; k < n; k++) {
+       for (auto k = 0; k < n; k++) {
            sum += B[i][k]*A[k][j];
        }
        C[i][j] = sum;
     }
   }
-  // Compute now the Frobenius norm
-  double Fsum = 0.0;
-  for (int i = 0; i < n; i++){
-    for (int j = 0; j < n; j++) {
-      Fsum += C[i][j]*C[i][j];
-    }
-  }
-  Fsum = sqrt(Fsum);
   finish = clock();
   double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
   cout << setiosflags(ios::showpoint | ios::uppercase);
   cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << timeused  << endl;
+  // Compute now the Frobenius norm
+  double Fsum = 0.0;
+  for (auto i = 0; i < n; i++){
+    for (auto j = 0; j < n; j++) {
+      Fsum += C[i][j]*C[i][j];
+    }
+  }
+  Fsum = sqrt(Fsum);
   cout << "  Frobenius norm  = " << Fsum << endl;
   return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
