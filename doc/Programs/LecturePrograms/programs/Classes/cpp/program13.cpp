@@ -43,26 +43,27 @@ int main (int argc, char* argv[])
   // Then perform the matrix-matrix multiplication
   for (auto i = 0; i < n; i++){
     for (auto j = 0; j < n; j++) {
-      double sum = 0.0;
-       for (auto k = 0; k < n; k++) {
-           sum += B[i][k]*A[k][j];
+        C[i][j] = B[i][j]+A[i][j];
        }
-       C[i][j] = sum;
-    }
   }
   finish = clock();
   double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
   cout << setiosflags(ios::showpoint | ios::uppercase);
-  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << timeused  << endl;
-  // Compute now the Frobenius norm
-  double Fsum = 0.0;
+  cout << setprecision(10) << setw(20) << "Time used  for matrix addition=" << timeused  << endl;
+
+
+  start = clock();
+  // Then perform the matrix-matrix multiplication
   for (auto i = 0; i < n; i++){
     for (auto j = 0; j < n; j++) {
-      Fsum += C[i][j]*C[i][j];
-    }
+        C[i][j] = B[j][i]+A[j][i];
+       }
   }
-  Fsum = sqrt(Fsum);
-  cout << "  Frobenius norm  = " << Fsum << endl;
+  finish = clock();
+  timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
+  cout << setiosflags(ios::showpoint | ios::uppercase);
+  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication with memory stride=" << timeused  << endl;
+
   return 0;
 }
 
