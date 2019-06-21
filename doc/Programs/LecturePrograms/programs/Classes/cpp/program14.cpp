@@ -22,15 +22,9 @@ int main (int argc, char* argv[])
   vector <vector<double> > B(n, vector<double>(n));
   vector <vector<double> > C(n, vector<double>(n));
   // Set all elements to zero, this is one possible alternative
-  //  for(auto& row : A) fill(row.begin(),row.end(),0.0);
+  for(auto& row : A) fill(row.begin(),row.end(),0.0);
   for(auto& row : B) fill(row.begin(),row.end(),0.0);
   for(auto& row : C) fill(row.begin(),row.end(),0.0);
-  // Alternatively, we can also set the matrix elements to zero as follow
-  for(auto vec : A){
-    for(auto x : vec){  
-       x = 0.0;
-    }
-  }
   // Set up values for matrix A and B and zero matrix C
   for (auto i = 0; i < n; i++){
     for (auto j = 0; j < n; j++) {
@@ -39,33 +33,53 @@ int main (int argc, char* argv[])
       B[j][i] =  A[i][j];
     }
   }
+  // Then perform the matrix-matrix multiplication
   start = clock();
-  // Then perform the matrix summations without memory stride
-  for (auto i = 0; i < n; i++){
-    for (auto j = 0; j < n; j++) {
-        C[i][j] = B[i][j]+A[i][j];
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      double sum = 0.0;
+       for (int k = 0; k < n; k++) {
+           sum += B[i][k]*A[k][j];
        }
+       C[i][j] = sum;
+    }
   }
   finish = clock();
   double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
   cout << setiosflags(ios::showpoint | ios::uppercase);
-  cout << setprecision(10) << setw(20) << "Time used  for matrix addition=" << timeused  << endl;
+  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << timeused  << endl;
 
 
+  // Then perform the matrix-matrix multiplication but now with column major order
   start = clock();
-  // Then repeat with memory stride
-  for (auto i = 0; i < n; i++){
-    for (auto j = 0; j < n; j++) {
-        C[i][j] = B[j][i]+A[j][i];
+  for (int i = 0; i < n; i++){
+    for (int j = 0; j < n; j++) {
+      double sum = 0.0;
+       for (int k = 0; k < n; k++) {
+           sum += B[j][k]*A[k][i];
        }
+       C[j][i] = sum;
+    }
   }
   finish = clock();
   timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
   cout << setiosflags(ios::showpoint | ios::uppercase);
-  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication with memory stride=" << timeused  << endl;
+  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << timeused  << endl;
 
   return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
