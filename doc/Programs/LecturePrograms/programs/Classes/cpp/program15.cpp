@@ -9,13 +9,6 @@
 #include <vector>
 #include "time.h"
 
-extern "C"
-{
-  int dgemm_(char *, char *, int *, int *, int *, double *, std::vector <double>, int *, 
-	     std::vector <double>, int *, double *, std::vector <double>, int *);
-}
-
-//dgemm_(&transA, &transB, &n, &n, &n, &one, A, &n, B, &n, &zero, C, &n);
 
 using namespace std; // note use of namespace
 int main (int argc, char* argv[])
@@ -39,10 +32,10 @@ int main (int argc, char* argv[])
   }
   // Then perform the matrix-matrix multiplication
   start = clock();
-  for (int i = 0; i < n; i++){
-    for (int j = 0; j < n; j++) {
+  for (auto i = 0; i < n; i++){
+    for (auto j = 0; j < n; j++) {
       double sum = 0.0;
-       for (int k = 0; k < n; k++) {
+       for (auto k = 0; k < n; k++) {
            sum += A[k*n+j]*B[k+n*i];
        }
        C[i*n+j] = sum;
@@ -51,19 +44,7 @@ int main (int argc, char* argv[])
   finish = clock();
   double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
   cout << setiosflags(ios::showpoint | ios::uppercase);
-  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << timeused  << endl;
-
-
-char transA = 'N', transB = 'N';
-double one = 1.0, zero = 0.0;
- 
-  start = clock(); 
-  dgemm_(&transA, &transB, &n, &n, &n, &one, A, &n, B, &n, &zero, C, &n);
-  finish = clock();
-  timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
-  cout << setiosflags(ios::showpoint | ios::uppercase);
-  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication with BLAS=" << timeused  << endl;
-
+  cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication using vectors=" << timeused  << endl;
   return 0;
 }
 
