@@ -16,12 +16,12 @@ int main (int argc, char* argv[])
 {
   // read in dimension of square matrix
   int n = atoi(argv[1]);
-  double s = 1.0/sqrt( (double) n);
+  auto s = 1/sqrt( (double) n);
   // Start timing
   clock_t start, finish;
   // Allocate space for the three matrices
   mat A(n,n), B(n,n), C(n,n);
-  // Set up values for matrix A and B and zero matrix C
+  // Set up values for matrix A and B
   for (auto i = 0; i < n; i++){
     for (auto j = 0; j < n; j++) {
       double angle = 2.0*M_PI*i*j/ (( double ) n);
@@ -29,6 +29,7 @@ int main (int argc, char* argv[])
       B(j,i) =  A(i,j);
     }
   }
+  C = 0.0;
   // Then perform the matrix-matrix multiplication
   start = clock();
   C = A*B;
