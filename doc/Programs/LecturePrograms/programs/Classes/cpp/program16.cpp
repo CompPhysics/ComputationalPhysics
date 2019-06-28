@@ -30,7 +30,7 @@ int main (int argc, char* argv[])
     }
   }
   C = 0.0;
-  // Then perform the matrix-matrix multiplication
+  // Then perform the matrix-matrix multiplication using DGEMM
   start = clock();
   C = A*B;
   finish = clock();
