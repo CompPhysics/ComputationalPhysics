@@ -1,7 +1,3 @@
-// This program uses its own function for allocating and freeing memory for matrices
-// It can be seen as an intermediate step towards the construction of a more general 
-// matrix vector class
-
 #include <cstdlib>
 #include <armadillo>
 #include <iostream>
@@ -37,7 +33,6 @@ int main (int argc, char* argv[])
   double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
   cout << setiosflags(ios::showpoint | ios::uppercase);
   cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << timeused  << endl;
-
   return 0;
 }
 
