@@ -29,10 +29,12 @@ int main (int argc, char* argv[])
   // Then perform the matrix-matrix multiplication using DGEMM
   start = clock();
   C = A*B;
+  auto TraceMat = trace(C);
   finish = clock();
   double timeused = (double) (finish - start)/(CLOCKS_PER_SEC );
   cout << setiosflags(ios::showpoint | ios::uppercase);
   cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication=" << timeused  << endl;
+  cout << setprecision(10) << setw(20) << "Trace of Matrix=" << TraceMat  << endl;
   return 0;
 }
 
