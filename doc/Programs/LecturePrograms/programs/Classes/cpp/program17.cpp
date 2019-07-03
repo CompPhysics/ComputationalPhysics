@@ -21,7 +21,7 @@ int main (int argc, char* argv[])
   vector <vector<double> > A(n, vector<double>(n));
   vector <vector<double> > B(n, vector<double>(n));
   vector <vector<double> > C(n, vector<double>(n));
-  // Set all elements to zero, this is one possible alternative
+  // Set all elements to zero
   for(auto& row : A) fill(row.begin(),row.end(),0.0);
   for(auto& row : B) fill(row.begin(),row.end(),0.0);
   for(auto& row : C) fill(row.begin(),row.end(),0.0);
