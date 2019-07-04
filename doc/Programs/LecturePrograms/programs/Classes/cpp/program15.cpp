@@ -22,7 +22,7 @@ int main (int argc, char* argv[])
   vector <double> A(n*n);
   vector <double> B(n*n);
   vector <double> C(n*n);
-  // Set up values for matrix A and B and zero matrix C
+  // Set up values for matrix A
   for (auto i = 0; i < n; i++){
     for (auto j = 0; j < n; j++) {
       double angle = 2.0*M_PI*i*j/ (( double ) n);
@@ -32,13 +32,12 @@ int main (int argc, char* argv[])
   }
   // Then perform the matrix-matrix multiplication
   start = clock();
-  for (auto i = 0; i < n; i++){
-    for (auto j = 0; j < n; j++) {
-      double sum = 0.0;
-       for (auto k = 0; k < n; k++) {
-           sum += A[k*n+j]*B[k+n*i];
-       }
-       C[i*n+j] = sum;
+  for(auto i=0;i<n;i++){
+    for(auto j=0;j<n;j++){
+      C[i*n+j] = 0.0;
+      for(auto k=0;k<n;k++){
+	C[i*n+j]+=A[k*n+j]*B[k+n*i];
+      }
     }
   }
   finish = clock();
@@ -47,16 +46,6 @@ int main (int argc, char* argv[])
   cout << setprecision(10) << setw(20) << "Time used  for matrix-matrix multiplication using vectors=" << timeused  << endl;
   return 0;
 }
-
-
- 
- 
-
- 
-
-
-
-
 
 
 

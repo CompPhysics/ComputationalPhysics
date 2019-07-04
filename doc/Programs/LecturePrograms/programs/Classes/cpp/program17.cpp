@@ -13,8 +13,8 @@ using namespace std; // note use of namespace
 int main (int argc, char* argv[])
 {
   // read in dimension of square matrix
-  int n = atoi(argv[1]);
-  double s = 1.0/sqrt( (double) n);
+  auto n = atoi(argv[1]);
+  auto s = 1.0/sqrt( (double) n);
   // Start timing
   clock_t start, finish;
   // Allocate space for the three matrices
@@ -35,10 +35,10 @@ int main (int argc, char* argv[])
   }
   // Then perform the matrix-matrix multiplication
   start = clock();
-  for (int i = 0; i < n; i++){
-    for (int j = 0; j < n; j++) {
+  for (auto i = 0; i < n; i++){
+    for (auto j = 0; j < n; j++) {
       double sum = 0.0;
-       for (int k = 0; k < n; k++) {
+       for (auto k = 0; k < n; k++) {
            sum += B[i][k]*A[k][j];
        }
        C[i][j] = sum;
