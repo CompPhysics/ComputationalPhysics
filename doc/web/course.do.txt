@@ -38,9 +38,7 @@ chapters = {
 
  * LaTeX PDF:
    * For printing:
-     * "Standard one-page format": "${pub_url}/${name}/pdf/${name}-print.pdf", compact: "6 pages per sheet": "${pub_url}/${name}/pdf/${name}-print6.pdf"
-   * For screen viewing:
-     * "standard Beamer format": "${pub_url}/${name}/pdf/${name}-beamer.pdf"
+     * "Standard one-page format": "${pub_url}/${name}/pdf/${name}-print.pdf"
  * HTML:
    * "Plain html": "${pub_url}/${name}/html/${name}.html"
    * "reveal.js beige slide style": "${pub_url}/${name}/html/${name}-reveal.html"
