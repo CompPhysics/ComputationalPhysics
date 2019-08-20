@@ -1,45 +1,37 @@
-var http        = require('http');
 var express		= require('express');
 var fs			= require('fs');
 var io			= require('socket.io');
 var crypto		= require('crypto');
 
-var app       	= express();
-var staticDir 	= express.static;
-var server    	= http.createServer(app);
+var app			= express.createServer();
+var staticDir	= express.static;
 
-io = io(server);
+io				= io.listen(app);
 
 var opts = {
 	port: process.env.PORT || 1948,
 	baseDir : __dirname + '/../../'
 };
 
-io.on( 'connection', function( socket ) {
-	socket.on('multiplex-statechanged', function(data) {
-		if (typeof data.secret == 'undefined' || data.secret == null || data.secret === '') return;
-		if (createHash(data.secret) === data.socketId) {
-			data.secret = null;
-			socket.broadcast.emit(data.socketId, data);
+io.sockets.on('connection', function(socket) {
+	socket.on('slidechanged', function(slideData) {
+		if (typeof slideData.secret == 'undefined' || slideData.secret == null || slideData.secret === '') return;
+		if (createHash(slideData.secret) === slideData.socketId) {
+			slideData.secret = null;
+			socket.broadcast.emit(slideData.socketId, slideData);
 		};
 	});
 });
 
-[ 'css', 'js', 'plugin', 'lib' ].forEach(function(dir) {
-	app.use('/' + dir, staticDir(opts.baseDir + dir));
+app.configure(function() {
+	[ 'css', 'js', 'plugin', 'lib' ].forEach(function(dir) {
+		app.use('/' + dir, staticDir(opts.baseDir + dir));
+	});
 });
 
 app.get("/", function(req, res) {
 	res.writeHead(200, {'Content-Type': 'text/html'});
-
-	var stream = fs.createReadStream(opts.baseDir + '/index.html');
-	stream.on('error', function( error ) {
-		res.write('<style>body{font-family: sans-serif;}</style><h2>reveal.js multiplex server.</h2><a href="/token">Generate token</a>');
-		res.end();
-	});
-	stream.on('readable', function() {
-		stream.pipe(res);
-	});
+	fs.createReadStream(opts.baseDir + '/index.html').pipe(res);
 });
 
 app.get("/token", function(req,res) {
@@ -55,7 +47,7 @@ var createHash = function(secret) {
 };
 
 // Actually listen
-server.listen( opts.port || null );
+app.listen(opts.port || null);
 
 var brown = '\033[33m',
 	green = '\033[32m',

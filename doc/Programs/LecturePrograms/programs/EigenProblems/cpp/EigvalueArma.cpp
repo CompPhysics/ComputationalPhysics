@@ -25,10 +25,10 @@ int main(int argc, char* argv[])
   // With spherical coordinates RMin = 0 always
   RMin = 0.0;
 
-  RMax = 10.0;  lOrbital = 0;  Dim =2000;  
+  RMax = 10.0;  lOrbital = 0;  Dim =100;  
   mat Hamiltonian = zeros<mat>(Dim,Dim);
   // Integration step length
-  Step    = RMax/ Dim;
+  Step    = RMax/ (Dim+1);
   DiagConst = 2.0 / (Step*Step);
   NondiagConst =  -1.0 / (Step*Step);
   OrbitalFactor = lOrbital * (lOrbital + 1.0);
