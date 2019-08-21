@@ -32,7 +32,7 @@ DATE: today
   * Weekly reading assignments needed to solve projects.
   * First hour of each lab session may be used to discuss technicalities, address questions etc linked with projects.
   * Detailed lecture notes, exercises, all programs presented, projects etc can be found at the homepage of the course.
-  * Computerlab: Thursday (10am-6pm) and Friday (10am-6pm). Depending on the number of participants, we may extend to more lab sessions. Please bring your own laptops to the lab sessions.
+  * Computerlab: Thursday (10am-6pm, room FV203, Dept of Physics) and Friday (10am-6pm, room FØ434, Dept of Physics). Depending on the number of participants, we may extend to more lab sessions. Please bring your own laptops to the lab sessions.
   * Weekly plans and all other information are on the official webpage.
   * No final exam, the last three projects are graded.  In total five projects which all have to be approved. 
 !eblock
@@ -71,7 +71,7 @@ o Halvard Sutterud
 !eblock
 
 !split
-===== Deadlines for projects (end of day) =====
+===== Deadlines for projects (end of day, tentative deadlines) =====
 
 !bblock
 
@@ -226,11 +226,10 @@ FIGURE: [fig-intro/Nebbdyr2.pdf, width=500 frac=0.6]
   * "FYS-STK3155/4155":"http://www.uio.no/studier/emner/matnat/fys/FYS-STK3150/" Applied data analysis and machine learning, fall semester
   * "FYS4411":"http://www.uio.no/studier/emner/matnat/fys/FYS4411/" Computational physics II (Parallelization (MPI), object orientation, quantum mechanical systems with many interacting particles), spring semester
   * "FYS4460":"http://www.uio.no/studier/emner/matnat/fys/FYS4460/" Computational physics III (Parallelization (MPI), object orientation, classical statistical physics, simulation of phase transitions, spring semester
-  * "INF-MAT4130":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4130/index-eng.html" Numerical linear algebra
   * "MAT4110":"http://www.uio.no/studier/emner/matnat/math/MAT4110/index-eng.html" Introduction to Numerical Analysis
-  * "MAT-INF3360":"http://www.uio.no/studier/emner/matnat/math/MAT-INF3360/index-eng.html" - Introduction to Partial Differential Equations
-  * "IN5620":"http://www.uio.no/studier/emner/matnat/ifi/IN5620/index-eng.html" Numerical methods for PDEs, finite element method
-  * "INF3331/4331":"http://www.uio.no/studier/emner/matnat/ifi/INF3331/" Problem solving with high-level languages (Python), fall semester
+  * "MAT3360":"https://www.uio.no/studier/emner/matnat/math/MAT3360/index.html" - Introduction to Partial Differential Equations
+  * "IN5270":"http://www.uio.no/studier/emner/matnat/ifi/IN5270/index-eng.html" Numerical methods for PDEs, finite element method
+  * "IN3110":"https://www.uio.no/studier/emner/matnat/ifi/IN3110/index.html" Problem solving with high-level languages (Python), fall semester
   * "IN3200/4200":"http://www.uio.no/studier/emner/matnat/ifi/IN3200/index-eng.html" Parallel computing for problems in the Natural Sciences (mostly PDEs), spring semester
 !eblock
 
