@@ -1,0 +1,480 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Project 1, deadline  September 9">
+
+<title>Project 1, deadline  September 9</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Introduction', 2, None, '___sec0'),
+              ('Project 1 a):', 3, None, '___sec1'),
+              ('Project 1 b):', 3, None, '___sec2'),
+              ('Project 1 c):', 3, None, '___sec3'),
+              ('Project 1 d):', 3, None, '___sec4'),
+              ('Project 1 e):', 3, None, '___sec5'),
+              ('Introduction to numerical projects', 2, None, '___sec6'),
+              ('Format for electronic delivery of report and programs',
+               2,
+               None,
+               '___sec7')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="Project1-bs.html">Project 1, deadline  September 9</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Introduction</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 a):</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 b):</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 c):</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 d):</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 e):</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;"><b>Introduction to numerical projects</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;"><b>Format for electronic delivery of report and programs</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0000"></a>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Project 1, deadline  September 9</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): <a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_self">Computational Physics I FYS3150/FYS4150</a> -->
+
+<center>
+<b><a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_self">Computational Physics I FYS3150/FYS4150</a></b> 
+</center>
+
+<p>
+<!-- institution -->
+
+<center><b>Department of Physics, University of Oslo, Norway</b></center>
+<br>
+<p>
+<center><h4>Aug 22, 2019</h4></center> <!-- date -->
+<br>
+<p>
+</div> <!-- end jumbotron -->
+
+<h2 id="___sec0" class="anchor">Introduction </h2>
+The aim of this project is to get familiar with various vector and matrix operations,
+from dynamic memory allocation to the usage of programs in the library
+package of the course. 
+For Fortran users memory handling and most matrix and vector operations
+are included in the ANSI standard of Fortran 90/95. Array handling in Python is also rather trivial. For C++ user however,
+there are several possible options. Two are listed here.
+
+<ul>
+  <li> For this exercise we recommend that you make your own functions for dynamic memory allocation of a  vector and a matrix. You don't need to write a class for this operations.  Use then the  library package lib.cpp with its header file  lib.hpp for obtaining LU-decomposed matrices, solve linear equations etc.</li>
+  <li> A very good and often recommended library for C++ handling of arrays is the library Armadillo, to be found at \url{arma.sourceforge.net}.  We will discuss the usage of this library during the lab sessions and lectures. Armadillo has also an interface to Lapack functions for solving systems of linear equations.</li>
+</ul>
+
+Your program, whether it is written in C++, Python, Fortran or other languages, should include
+dynamic memory handling of matrices and vectors.
+
+<p>
+The material needed for this project is covered by chapter 6 of the lecture notes, in particular section 6.4 and subsequent sections.
+
+<p>
+Many important differential equations in  Science can be written as 
+linear second-order differential equations
+
+$$
+\begin{equation*}
+\frac{d^2y}{dx^2}+k^2(x)y = f(x),
+\end{equation*}
+$$
+
+where \( f \) is normally called the inhomogeneous term and \( k^2 \) is a real function.
+
+<p>
+A classical equation from electromagnetism is Poisson's equation.
+The electrostatic potential \( \Phi \) is generated by a localized charge
+distribution \( \rho (\mathbf{r}) \).   In three dimensions 
+it reads
+
+$$
+\begin{equation*}
+\nabla^2 \Phi = -4\pi \rho (\mathbf{r}).
+\end{equation*}
+$$
+
+With a spherically symmetric \( \Phi \) and \( \rho (\mathbf{r}) \)  the equations
+simplifies to a one-dimensional equation in \( r \), namely
+
+$$
+\begin{equation*}
+\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d\Phi}{dr}\right) = -4\pi \rho(r),
+\end{equation*}
+$$
+
+which can be rewritten via a substitution \( \Phi(r)= \phi(r)/r \) as
+
+$$
+\begin{equation*}
+\frac{d^2\phi}{dr^2}= -4\pi r\rho(r).
+\end{equation*}
+$$
+
+The inhomogeneous term \( f \) or source term is given by the charge distribution
+\( \rho \)  multiplied by \( r \) and the constant \( -4\pi \).
+
+<p>
+We will rewrite this equation by letting \( \phi\rightarrow u \) and 
+\( r\rightarrow x \). 
+The general one-dimensional Poisson equation reads then
+
+$$
+\begin{equation*}
+-u''(x) = f(x).
+\end{equation*}
+$$
+
+<h3 id="___sec1" class="anchor">Project 1 a): </h3>
+
+In this project we will solve the one-dimensional Poisson equation
+with Dirichlet boundary conditions by rewriting it as a set of linear equations.
+
+<p>
+To be more explicit we will solve the equation
+
+$$
+\begin{equation*}
+-u''(x) = f(x), \hspace{0.5cm} x\in(0,1), \hspace{0.5cm} u(0) = u(1) = 0.
+\end{equation*}
+$$
+
+and we define the discretized approximation  to \( u \) as \( v_i \)  with 
+grid points \( x_i=ih \)   in the interval from \( x_0=0 \) to \( x_{n+1}=1 \).
+The step length or spacing is defined as \( h=1/(n+1) \). 
+We have then the boundary conditions \( v_0 = v_{n+1} = 0 \).
+We  approximate the second
+derivative of \( u \) with
+
+$$
+\begin{equation*}
+   -\frac{v_{i+1}+v_{i-1}-2v_i}{h^2} = f_i  \hspace{0.5cm} \mathrm{for} \hspace{0.1cm} i=1,\dots, n,
+\end{equation*}
+$$
+
+where \( f_i=f(x_i) \).
+Show that you can rewrite this equation as a linear set of equations of the form
+
+$$
+\begin{equation*}
+   \mathbf{A}\mathbf{v} = \tilde{\mathbf{b}},
+\end{equation*}
+$$
+
+where \( \mathbf{A} \) is an \( n\times n \)  tridiagonal matrix which we rewrite as
+
+$$
+    \mathbf{A} = \begin{bmatrix}
+                           2& -1& 0 &\dots   & \dots &0 \\
+                           -1 & 2 & -1 &0 &\dots &\dots \\
+                           0&-1 &2 & -1 & 0 & \dots \\
+                           & \dots   & \dots &\dots   &\dots & \dots \\
+                           0&\dots   &  &-1 &2& -1 \\
+                           0&\dots    &  & 0  &-1 & 2 \\
+                      \end{bmatrix},
+$$
+
+and \( \tilde{b}_i=h^2f_i \).
+
+<p>
+In our case we will assume  that the source term is 
+\( f(x) = 100e^{-10x} \), and keep the same interval and boundary 
+conditions. Then the above differential equation
+has a closed-form  solution given by \( u(x) = 1-(1-e^{-10})x-e^{-10x} \) (convince yourself that this is correct by inserting the
+solution in the Poisson equation).  We will compare
+our numerical solution with this result in the next exercise.
+
+<h3 id="___sec2" class="anchor">Project 1 b): </h3>
+
+<p>
+We can rewrite our matrix \( \mathbf{A} \) in terms of one-dimensional vectors \( a,b,c \)  
+of length \( 1:n \). 
+Our linear equation reads
+
+$$
+    \mathbf{A} = \begin{bmatrix}
+                           b_1& c_1 & 0 &\dots   & \dots &\dots \\
+                           a_1 & b_2 & c_2 &\dots &\dots &\dots \\
+                           & a_2 & b_3 & c_3 & \dots & \dots \\
+                           & \dots   & \dots &\dots   &\dots & \dots \\
+                           &   &  &a_{n-2}  &b_{n-1}& c_{n-1} \\
+                           &    &  &   &a_{n-1} & b_n \\
+                      \end{bmatrix}\begin{bmatrix}
+                           v_1\\
+                           v_2\\
+                           \dots \\
+                          \dots  \\
+                          \dots \\
+                           v_n\\
+                      \end{bmatrix}
+  =\begin{bmatrix}
+                           \tilde{b}_1\\
+                           \tilde{b}_2\\
+                           \dots \\
+                           \dots \\
+                          \dots \\
+                           \tilde{b}_n\\
+                      \end{bmatrix}.
+$$
+
+<p>
+Note well that we do not include the endpoints since the boundary
+conditions are used resulting in a fixed value for \( v_i \).  A
+tridiagonal matrix is a special form of banded matrix where all the
+elements are zero except for those on and immediately above and below
+the leading diagonal.  Develop a general algorithm first which does
+not assume that we have a matrix with the same elements along the
+diagonal and the non-diagonal elements.  The algorithm for solving
+this set of equations is rather simple and requires two steps only, a
+decomposition and forward substitution and finally a backward
+substitution.
+
+<p>
+Before we proceed with the solution of the differential equation, you should now plan the organization of your data flow. Here you will find it convenient to define vectors that will contain the matrix elements, the solution to the problem and the function \( f(x) \) when discretized. You should also plan on to read input data, whether you do this from the command line or from a selected file. We recommend strongly that you use dynamical memory allocation.
+An example of a C++ program which reads from the command line various input parameters can <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Projects/2018/Project1/CodeExamples/TridiagonalSimple.cpp" target="_self">be found here</a>
+
+<p>
+Your first task is to set up the general algorithm (assuming different
+values for the matrix elements) for solving this set of linear
+equations.  Find also the precise number of floating point operations
+needed to solve the above equations. For the general algorithm you
+need to specify the values of the array elements \( a \), \( b \) and \( c \) by
+inserting their explicit values.
+
+<p>
+Then you should code the above algorithm and solve the problem for matrices of the size
+\( 10\times 10 \), \( 100\times 100 \) and \( 1000\times 1000 \).  That means that you select \( n=10 \), \( n=100 \) and
+\( n=1000 \) grid points.
+
+<p>
+Compare your results (make plots) with the closed-form solution for the different number of grid points  in the 
+interval \( x\in(0,1) \).  The different number of grid points corresponds to different step lengths \( h \).
+
+<h3 id="___sec3" class="anchor">Project 1 c): </h3>
+
+<p>
+Use thereafter the fact that the matrix has identical matrix elements along the diagonal and identical (but different) values for the non-diagonal elements. Specialize your algorithm to the special case and find the number of floating point operations
+for this specific tri-diagonal matrix. Compare the CPU time with the general algorithm from the previous point for matrices up to  \( n=10^6 \) grid points.
+
+<h3 id="___sec4" class="anchor">Project 1 d): </h3>
+
+<p>
+Compute the relative error  in the data set \( i=1,\dots, n \),by setting up
+
+$$
+   \epsilon_i=log_{10}\left(\left|\frac{v_i-u_i}
+                 {u_i}\right|\right),
+$$
+
+as function of \( log_{10}(h) \) for the function values \( u_i \) and \( v_i \).
+For each step length extract the max value of the relative error.  
+Try to increase \( n \) to \( n=10^7 \).  Make a table of the results and 
+comment your results. You can use either the algorithm from b) or c).
+
+<h3 id="___sec5" class="anchor">Project 1 e): </h3>
+
+Compare your results with those from the LU decomposition codes for the matrix of sizes \( 10\times 10 \), \( 100\times 100 \) and
+\( 1000\times 1000 \). Here you should use the library functions provided  on the webpage of the course. Alternatively, if you use armadillo as a library, you can use the similar function for LU decomposition.  The armadillo function for the LU decomposition is called \( LU \) while the function for solving linear sets of equations is called \( solve \).
+Use for example the unix function <em>time</em> when you run your codes 
+and compare the time usage between LU decomposition and  your
+tridiagonal solver.   Alternatively, you can use the functions in C++, Fortran or Python that measure the time used.
+
+<p>
+Make a table of the results and comment the differences
+in execution time
+How many floating point operations does the LU decomposition use to solve the set of linear equations?
+Can you run the standard LU decomposition
+for a matrix of the size \( 10^5\times 10^5 \)?
+Comment your results.
+
+<p>
+To compute the elapsed time in c++ you can use the following statements
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>...
+<span style="color: #BC7A00">#include</span> <span style="color: #408080; font-style: italic">&quot;time.h&quot;   //  you have to include the time.h header</span><span style="color: #BC7A00"></span>
+<span style="color: #B00040">int</span> main()
+{
+    <span style="color: #408080; font-style: italic">// declarations of variables </span>
+    ...
+    <span style="color: #B00040">clock_t</span> start, finish;  <span style="color: #408080; font-style: italic">//  declare start and final time</span>
+    start <span style="color: #666666">=</span> clock();
+    <span style="color: #408080; font-style: italic">// your code is here, do something and then get final time</span>
+    finish <span style="color: #666666">=</span> clock();
+    ( (finish <span style="color: #666666">-</span> start)<span style="color: #666666">/</span>CLOCKS_PER_SEC );
+...
+</pre></div>
+<p>
+Similarly, in Fortran, this simple example shows how to compute the elapsed time.
+<p>
+
+<!-- code=fortran (!bc fcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">PROGRAM </span><span style="color: #008000">time</span>
+<span style="color: #008000"> </span><span style="color: #B00040">REAL</span> <span style="color: #008000; font-weight: bold">::</span> <span style="color: #008000">etime</span>          <span style="color: #408080; font-style: italic">! Declare the type of etime()</span>
+ <span style="color: #B00040">REAL</span> <span style="color: #008000; font-weight: bold">::</span> elapsed(<span style="color: #666666">2</span>)     <span style="color: #408080; font-style: italic">! For receiving user and system time</span>
+ <span style="color: #B00040">REAL</span> <span style="color: #008000; font-weight: bold">::</span> total          <span style="color: #408080; font-style: italic">! For receiving total time</span>
+ <span style="color: #B00040">INTEGER</span> <span style="color: #008000; font-weight: bold">::</span> i, j
+
+ <span style="color: #008000; font-weight: bold">WRITE</span>(<span style="color: #666666">*</span>,<span style="color: #666666">*</span>) <span style="color: #BA2121">&#39;Start&#39;</span>
+
+ <span style="color: #008000; font-weight: bold">DO </span>i <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #666666">5000000</span>  
+      j <span style="color: #666666">=</span> j <span style="color: #666666">+</span> <span style="color: #666666">1</span>
+ ENDDO
+
+ total <span style="color: #666666">=</span> <span style="color: #008000">ETIME</span>(elapsed)
+ <span style="color: #008000; font-weight: bold">WRITE</span>(<span style="color: #666666">*</span>,<span style="color: #666666">*</span>) <span style="color: #BA2121">&#39;End: total=&#39;</span>, total, <span style="color: #BA2121">&#39; user=&#39;</span>, elapsed(<span style="color: #666666">1</span>), &amp;
+              <span style="color: #BA2121">&#39; system=&#39;</span>, elapsed(<span style="color: #666666">2</span>)
+
+<span style="color: #008000; font-weight: bold">END PROGRAM </span><span style="color: #008000">time</span>
+</pre></div>
+
+<h2 id="___sec6" class="anchor">Introduction to numerical projects </h2>
+
+<p>
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+<ul>
+  <li> Give a short description of the nature of the problem and the eventual  numerical methods you have used.</li>
+  <li> Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.</li>
+  <li> Include the source code of your program. Comment your program properly.</li>
+  <li> If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.</li>
+  <li> Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.</li>
+  <li> Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.</li>
+  <li> Try to give an interpretation of you results in your answers to  the problems.</li>
+  <li> Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.</li>
+  <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
+</ul>
+
+<h2 id="___sec7" class="anchor">Format for electronic delivery of report and programs </h2>
+
+<p>
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+<ul>
+  <li> Use Devilry to hand in your projects, log in  at  <a href="http://devilry.ifi.uio.no" target="_self"><tt>http://devilry.ifi.uio.no</tt></a> with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.</li>
+  <li> Upload <b>only</b> the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.</li>
+  <li> In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parameters.</li>
+  <li> In this and all later projects, you should include tests (for example unit tests) of your code(s).</li>
+  <li> Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.</li>
+</ul>
+
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. You can then hand in a common report.
+
+<p>
+
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+  <li class="active"><a href="._Project1-bs000.html">1</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2019, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+
