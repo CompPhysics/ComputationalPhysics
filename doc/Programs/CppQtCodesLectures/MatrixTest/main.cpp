@@ -5,8 +5,8 @@ using namespace std;
 
 int main()
   {
-   mat A = randu<mat>(5,5);
-   vec b = randu<vec>(5);
+   mat A = randu<mat>(100,100);
+   vec b = randu<vec>(100);
 
   A.print("A =");
   b.print("b=");
