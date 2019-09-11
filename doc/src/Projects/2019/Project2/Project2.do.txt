@@ -1,4 +1,4 @@
-TITLE: Project 2, deadline  October 1
+TITLE: Project 2, deadline  September 30
 AUTHOR: "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo, Norway
 DATE: today
 
@@ -6,21 +6,42 @@ DATE: today
 
 === Introduction ===
 
-The aim of this project is to develop your own code for solving eigenvalue problems. The matrix to diagonalize is the same as the one we encountered in project one, a so-called tridiagonal Toeplitz matrix. This matrix has analytical eigenpairs (eigenvalues and eigenvectors) and gives us an excellent testing ground for our algorithms. In this project we will develop an eigenvalue solver based on Jacobi's method. The project will also introduce you to units tests and we will compare our results against other eigenvalue solvers (from LAPACK and/or numpy). 
+The aim of this project is to develop your own code for solving
+eigenvalue problems. The matrix to diagonalize is the same as the one
+we encountered in project one, a so-called tridiagonal Toeplitz
+matrix. This matrix has analytical eigenpairs (eigenvalues and
+eigenvectors) and gives us an excellent testing ground for our
+algorithms. In this project we will develop an eigenvalue solver based
+on Jacobi's method. The project will also introduce you to units tests
+and we will compare our results against other eigenvalue solvers (from
+LAPACK and/or numpy).
 
-This project aims also at introducing to you the concept of "scaling of equations":"http://www.springer.com/us/book/9783319327259". This means often either making various variables dimensionless or introducing units which are more convenient. 
+This project aims also at introducing to you the concept of "scaling
+of equations":"http://www.springer.com/us/book/9783319327259". This
+means often either making various variables dimensionless or
+introducing units which are more convenient.
 
-We will start with the two-point boundary value problem of a buckling beam or a spring fastened at both ends. This is one of the problems which has analytical solutions. Thereafter, by simply adding a new variable along the diagonal elements, we can study quantum mechanical problems. In particular, we will study the harmonic oscillator problem in three dimensions, with one or two electrons. For the latter case we can study the role of the repulsive Coulomb interaction and extract interesting physics results. For selected frequencies, even this interacting two-electron problem exhibits analytical solutions, see "M. Taut, Phys. Rev. A 48, 3561 (1993)":"http://prola.aps.org/abstract/PRA/v48/i5/p3561_1".
+We will start with the two-point boundary value problem of a buckling
+beam or a spring fastened at both ends. This is one of the problems
+which has analytical solutions. Thereafter, by simply adding a new
+variable along the diagonal elements, we can study quantum mechanical
+problems. In particular, we will study the harmonic oscillator problem
+in three dimensions, with one or two electrons. For the latter case we
+can study the role of the repulsive Coulomb interaction and extract
+interesting physics results. For selected frequencies, this
+interacting two-electron problem exhibits analytical solutions, one of the few cases of an interacting system where wecan find analytical solutions. See
+"M. Taut, Phys. Rev. A 48, 3561
+(1993)":"http://prola.aps.org/abstract/PRA/v48/i5/p3561_1" for the derivation of analytical expressions for the eigenpairs..
 
 Electrons confined in small areas in semiconductors, so-called quantum
 dots, form a hot research area in modern solid-state physics, with
 applications spanning from such diverse fields as quantum
 nano-medicine to the contruction of quantum gates. 
-The article on quantum computing with quantum dots by "Loss and DiVincenzo":"http://journals.aps.org/pra/abstract/10.1103/PhysRevA.57.120" is an excellent read.
+The article on quantum computing with quantum dots by "Loss and DiVincenzo":"http://journals.aps.org/pra/abstract/10.1103/PhysRevA.57.120" is an excellent read for those interested in this exciting topic.
 
 
 
-=== The buckling beam problem ===
+=== The buckling beam problem, a classical wave function problem in one dimension ===
 
 We start with the following differential equation, namely 
 !bt
@@ -179,7 +200,21 @@ both algorithms for a given dimensionality of the matrix).
 
 
 === Project 2 c): Implementing tests in your code === 
-In this project (and later ones as well) we will implement so-called _unit_ tests. Our unit tests are mainly meant to test mathematical properties of our algorithm. During the development phase of a program it is useful to devise tests that your program should pass. One of these is to make sure that for a given simple test matrix (say a $5\times 5$ matrix) our algorithm for searching for the largest non-diagonal element always returns the correct answer. Furthermore, for a known simple matrix, irrespective of changes made, we should always get the same and correct eigenvalues. Another test is to make sure that the orthogonality shown in exercise (a) is preserved. Try to figure out other tests your code should pass, based either on the mathematical properties of the algorithms or more program specific tests. Implement at least two unit tests in this project. 
+
+
+In this project (and later ones as well) we will implement so-called
+_unit_ tests. Our unit tests are mainly meant to test mathematical
+properties of our algorithm. During the development phase of a program
+it is useful to devise tests that your program should pass. One of
+these is to make sure that for a given simple test matrix (say a
+$5\times 5$ matrix) our algorithm for searching for the largest
+non-diagonal element always returns the correct answer. Furthermore,
+for a known simple matrix, irrespective of changes made, we should
+always get the same and correct eigenvalues. Another test is to make
+sure that the orthogonality shown in exercise (a) is preserved. Try to
+figure out other tests your code should pass, based either on the
+mathematical properties of the algorithms or more program specific
+tests. Implement at least two unit tests in this project.
 
 
 
@@ -191,7 +226,7 @@ In this project (and later ones as well) we will implement so-called _unit_ test
 Here we will assume that these electrons move in a three-dimensional harmonic
 oscillator potential (they are confined by for example quadrupole fields)
 and repel  each other via the static Coulomb interaction.  
-We assume spherical symmetry.  
+We assume spherical symmetry.  You don't need to think of quantum mechanics when solving this project, look at it as another diagonalization problem. 
 
 We are first interested in the solution of the radial part of Schroedinger's equation for one electron. This equation reads
 
@@ -355,25 +390,27 @@ where $u_i$ is unknown. We can write the
 latter equation as a matrix eigenvalue problem
 !bt
 \begin{equation}
-    \begin{bmatrix}d_0 & e_0 & 0   & 0    & \dots  &0     & 0 \\
-                                e_1 & d_1 & e_1 & 0    & \dots  &0     &0 \\
-                                0   & e_2 & d_2 & e_2  &0       &\dots & 0\\
+    \begin{bmatrix}d_1 & e_1 & 0   & 0    & \dots  &0     & 0 \\
+                                e_1 & d_2 & e_2 & 0    & \dots  &0     &0 \\
+                                0   & e_2 & d_3 & e_3  &0       &\dots & 0\\
                                 \dots  & \dots & \dots & \dots  &\dots      &\dots & \dots\\
-                                0   & \dots & \dots & \dots  &\dots  e_{N-1}     &d_{N-1} & e_{N-1}\\
-                                0   & \dots & \dots & \dots  &\dots       &e_{N} & d_{N}
+                                0   & \dots & \dots & \dots  &\dots  e_{N-3}     &d_{N-2} & e_{N-2}\\
+                                0   & \dots & \dots & \dots  &\dots       &e_{N-2} & d_{N-1}
 
-             \end{bmatrix}  \begin{bmatrix} u_{0} \\
-                                                              u_{1} \\
+             \end{bmatrix}  \begin{bmatrix} u_{1} \\
+                                                              u_{2} \\
                                                               \dots\\ \dots\\ \dots\\
-                                                              u_{N}
-             \end{bmatrix}=\lambda \begin{bmatrix} u_{0} \\
-                                                              u_{1} \\
+                                                              u_{N-1}
+             \end{bmatrix}=\lambda \begin{bmatrix} u_{1} \\
+                                                              u_{2} \\
                                                               \dots\\ \dots\\ \dots\\
-                                                              u_{N}
+                                                              u_{N-1}
              \end{bmatrix}.  
       label{eq:sematrix}
 \end{equation}
 !et 
+
+Note here that we have not included the endpoints since we assume that they are knowm (as we did in project 1). The matrix is also symmetric in this case.
 
 === Project 2 d): Quantum dots in three dimensions, one electron  === 
 
@@ -384,7 +421,11 @@ The analytical results with our scaling for the one-electron energies are $\lamb
 You can reuse the code you wrote for part (b), 
 but you need to add  the potential $\rho^2$ to the diagonal elements. 
 
+
+
 === Project 2 e): Quantum dots in three dimensions, two electrons  === 
+
+Note: if you are not interested in the explicit quantum physics case here, you can replace this part with either 2g or 2h below. The latter ones are optional exercises if you do this.
 
 We will now study two electrons in a harmonic oscillator well which
 also interact via a repulsive Coulomb interaction.
@@ -525,8 +566,9 @@ For specific oscillator frequencies, the above equation has answers in an analyt
 see the article by "M. Taut, Phys. Rev. A 48, 3561 (1993)":"http://prola.aps.org/abstract/PRA/v48/i5/p3561_1".
 
 
-=== Project 2 e): First optional exercise: Quantum physics analysis of  the results  ===
+=== Project 2 f): First optional exercise: Quantum physics analysis of  the results  ===
 
+This exercise is a continuation of the previous and adds more quantum physics to the analysis. 
 In this exercise we want to plot the wave function 
 for two electrons as functions of the relative coordinate $r$ and different
 values of $\omega_r$.  With no Coulomb interaction you should have a result which corresponds to the non-interacting case. 
@@ -540,17 +582,17 @@ omit again the  center-of-mass motion.
 The eigenvectors are normalized. 
 Plot then the normalized wave functions for different  values of $\omega_r$ and comment the results.
 
-=== Project 2 f): Second optional challenge: Smarter way of finding the eigenvalues === 
+=== Project 2 g): Second optional challenge: Smarter way of finding the eigenvalues === 
 This exercise is also optional and is an algorithmic challenge. Your matrix is already tridiagonal. 
 Can you devise a more efficient way to find the eigenvalues and eigenvectors instead of the brute force application of Jacobi's method? 
 Hint: Use the bisection method discussed in for example "Barth, Martin and Wilkinson, Numerische Mathematik 9, 386 (1967)":"http://www.maths.ed.ac.uk/~aar/papers/bamawi.pdf".
 
 
 
-=== Project 2 g): Third optional challenge: Implementing Lanczos' algorithm === 
+=== Project 2 h): Third optional challenge: Implementing Lanczos' algorithm === 
 This exercise is optional and is meant more as a challenge for those of you with an interest in other algorithms for solving eigenvalue problems. 
 Implement the iterative Lanczos' algorithm discussed in the lecture notes and compute the lowest eigenvalues 
-as done in exercise (d) above. Compare your results and discuss faults and merits of the iterative method versus
+as done in exercise (c) or (d) above. Compare your results and discuss faults and merits of the iterative method versus
 direct methods like Jacobi's method. 
 
 
