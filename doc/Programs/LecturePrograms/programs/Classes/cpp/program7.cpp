@@ -11,9 +11,7 @@ int main (int argc, char* argv[])
   int n = atoi(argv[1]);
   double s = 1.0/sqrt( (double) n);
   double *a, *b, *c;
-  // Start timing
-  clock_t start, finish;
-  start = clock();
+
 // Allocate space for the vectors to be used
     a = new double [n]; b = new double [n]; c = new double [n];
   // Define parallel region
@@ -24,6 +22,10 @@ int main (int argc, char* argv[])
     b[i] =  s*sin(2.0*angle);
     c[i] = 0.0;
   }
+
+  // Start timing
+  clock_t start, finish;
+  start = clock();
   // Then perform the vector addition
   for (int i = 0; i < n; i++){
     c[i] += a[i]+b[i];
