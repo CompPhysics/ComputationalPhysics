@@ -179,7 +179,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, University of Oslo, Norway</b></center>
 <br>
 <p>
-<center><h4>Sep 11, 2019</h4></center> <!-- date -->
+<center><h4>Sep 18, 2019</h4></center> <!-- date -->
 <br>
 <p>
 </div> <!-- end jumbotron -->
@@ -239,17 +239,20 @@ The parameter \( \gamma \) is a constant defined by properties like the rigidity
 We apply again so-called Dirichlet boundary conditions and set \( u(0)=u(L)=0 \).
 
 <p>
-In this specific case all parameters \( \gamma \), \( F \) and \( L \) are known. We define then a dimensional variable
+In this specific case two of the  parameters \( \gamma \), \( F \) and \( L \) are known. As an example, assume we know \( F \) and \( L \). Then the eigenvalue problem we set up below will allow us to find \( \gamma \).
+
+<p>
+We define a dimensional variable
 $$
  \rho = \frac{x}{L}, 
 $$
 
 meaning that we have \( \rho \in [0,1] \).    By reordering the equation as 
 $$
- \frac{d^2 u(\rho)}{d\rho^2} = -\frac{FL^2}{R} u(\rho)=-\lambda u(\rho),
+ \frac{d^2 u(\rho)}{d\rho^2} = -\frac{FL^2}{\gamma} u(\rho)=-\lambda u(\rho),
 $$
 
-with \( \lambda= FL^2/R \) we have an equation that when discretized, becomes an eigenvalue problem.
+with \( \lambda= FL^2/\gamma \) we have an equation that when discretized, becomes an eigenvalue problem.
 We use the same 
 expression for the second derivative of a function \( u \) as we did in project 1, namely
 $$
