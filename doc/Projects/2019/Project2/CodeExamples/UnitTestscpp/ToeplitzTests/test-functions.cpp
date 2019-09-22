@@ -20,7 +20,7 @@ TEST_CASE("Testing eigenvalues of Toeplitz matrix"){
     
     REQUIRE(EigvalueNum(0)==Approx(Exact(0)).epsilon(0.000000000001));
     REQUIRE(EigvalueNum[1]==Approx(Exact(1)).epsilon(0.000000000001));
-    REQUIRE(EigvalueNum[2]==Approx(Exact(2)).epsilon(0.000000000001));
+    REQUIRE(EigvalueNum[2]==Approx(Exact(2)).epsilon(0.000000000000001));
 }
 
 
