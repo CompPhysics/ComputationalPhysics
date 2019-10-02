@@ -5,7 +5,7 @@ import numpy as np
 def initialize():
     RMin = 0.0
     RMax = 1.0
-    Dim = 20
+    Dim = 100
     return RMin, RMax, Dim
 
 #Get the boundary and number of integration points
