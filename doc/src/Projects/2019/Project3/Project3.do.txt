@@ -83,9 +83,9 @@ for each variable $x_1,y_1,z_1,x_2,y_2,z_2$ from $-\infty$ to
 $\infty$.  How many mesh points do you need before the results
 converges at the level of the third leading digit?  Hint: the
 single-particle wave function $e^{-\alpha r_i}$ is more or less zero
-at $r_i \approx ?$ (find the appropriate limit).  You can therefore
-replace the integration limits $-\infty$ and $\infty$ with $-?$ and
-$?$, respectively.  You need to check that this approximation is
+at $r_i \approx \lambda$ (find the appropriate limit).  You can therefore
+replace the integration limits $-\infty$ and $\infty$ with $-\lambda$ and
+$+\lambda$, respectively.  You need to check that this approximation is
 satisfactory, that is, make a plot of the function and check if the
 abovementioned limits are appropriate.  You need also to account for
 the potential problems which may arise when $|{\bf r}_1-{\bf r}_2|=0$.
@@ -123,7 +123,7 @@ cos(\beta) = cos(\theta_1)cos(\theta_2)+sin(\theta_1)sin(\theta_2)cos(\phi_1-\ph
 
 we can rewrite the above integral with different integration
 limits. Find these limits and replace the Gauss-Legendre approach in
-a) with Laguerre polynomials.  The function gauss-laguerre.cpp in the _CodeExamples_ folded can be
+a) with Laguerre polynomials.  The function gauss-laguerre.cpp in the "CodeExamples":"https://github.com/CompPhysics/ComputationalPhysics/tree/master/doc/Projects/2019/Project3/CodeExamples" folded can be
 used.  Do your results
 improve? Compare with the results from a).
 
