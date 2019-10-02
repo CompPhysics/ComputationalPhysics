@@ -1,0 +1,363 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Project 3, deadline  October 21 at midnight (11.59pm/23.59)">
+
+<title>Project 3, deadline  October 21 at midnight (11.59pm/23.59)</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Project 3, numerical integration, deadline  October 21',
+               2,
+               None,
+               '___sec0'),
+              ('Project  3a): Gauss-Legendre Quadrature', 3, None, '___sec1'),
+              ('Project  3b): Improved Gauss-Quadrature', 3, None, '___sec2'),
+              ('Project  3c): Monte Carlo Integration', 3, None, '___sec3'),
+              ('Project  3d): Improved Monte Carlo Integration',
+               3,
+               None,
+               '___sec4'),
+              ('Project  3e): Improved Monte Carlo Integration and '
+               'Parallization',
+               3,
+               None,
+               '___sec5'),
+              ('Introduction to numerical projects', 2, None, '___sec6'),
+              ('Format for electronic delivery of report and programs',
+               2,
+               None,
+               '___sec7')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="Project3-bs.html">Project 3, deadline  October 21 at midnight (11.59pm/23.59)</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Project 3, numerical integration, deadline  October 21</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project  3a): Gauss-Legendre Quadrature</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project  3b): Improved Gauss-Quadrature</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project  3c): Monte Carlo Integration</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project  3d): Improved Monte Carlo Integration</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project  3e): Improved Monte Carlo Integration and Parallization</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;"><b>Introduction to numerical projects</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;"><b>Format for electronic delivery of report and programs</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0000"></a>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Project 3, deadline  October 21 at midnight (11.59pm/23.59)</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): <a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_self">Computational Physics I FYS3150/FYS4150</a> -->
+
+<center>
+<b><a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_self">Computational Physics I FYS3150/FYS4150</a></b> 
+</center>
+
+<p>
+<!-- institution -->
+
+<center><b>Department of Physics, University of Oslo, Norway</b></center>
+<br>
+<p>
+<center><h4>Fall semester 2019</h4></center> <!-- date -->
+<br>
+<p>
+</div> <!-- end jumbotron -->
+
+<h2 id="___sec0" class="anchor">Project 3, numerical integration, deadline  October 21  </h2>
+
+<p>
+The task of this project is to integrate first in a brute force manner
+a six-dimensional integral which is used to determine the ground state
+correlation energy between two electrons in a helium atom.  The
+integral appears in many quantum mechanical applications.  However, if
+you are not too familiar with quantum mechanics, you can simply look
+at the mathematical details.  We will employ both Gauss-Legendre and
+Gauss-Laguerre quadrature and Monte-Carlo integration.  Furthermore,
+you will need to parallelize your codes.
+
+<p>
+We assume that the wave function of each electron can be modelled like
+the single-particle wave function of an electron in the hydrogen
+atom. The single-particle wave function for an electron \( i \) in the
+\( 1s \) state is given in terms of a dimensionless variable (the wave
+function is not properly normalized)
+
+$$
+   {\bf r}_i =  x_i {\bf e}_x + y_i {\bf e}_y +z_i {\bf e}_z ,
+$$
+
+as
+$$
+   \psi_{1s}({\bf r}_i)  =   e^{-\alpha r_i},
+$$
+
+where \( \alpha \) is a parameter and 
+$$
+r_i = \sqrt{x_i^2+y_i^2+z_i^2}.
+$$
+
+<p>
+We will fix \( \alpha=2 \), which should correspond to the charge of the helium atom \( Z=2 \).
+
+<p>
+The ansatz for the wave function for two electrons is then given by the product of two 
+so-called 
+\( 1s \) wave functions as 
+
+$$
+   \Psi({\bf r}_1,{\bf r}_2)  =   e^{-\alpha (r_1+r_2)}.
+$$
+
+<p>
+Note that it is not possible to find a closed-form or analytical
+solution to Schr\"odinger's equation for two interacting electrons in
+the helium atom.
+
+<p>
+The integral we need to solve is the quantum mechanical expectation
+value of the correlation energy between two electrons which repel each
+other via the classical Coulomb interaction, namely
+
+$$
+\begin{equation}\tag{1}
+   \langle \frac{1}{|{\bf r}_1-{\bf r}_2|} \rangle =
+   \int_{-\infty}^{\infty} d{\bf r}_1d{\bf r}_2  e^{-2\alpha (r_1+r_2)}\frac{1}{|{\bf r}_1-{\bf r}_2|}.
+\end{equation}
+$$
+
+<p>
+Note that our wave function is not normalized. There is a
+normalization factor missing, but for this project we don't need to
+worry about that.
+
+<p>
+This integral can be solved in closed form and the answer is
+\( 5\pi^2/16^2 \). Can you derive this value?
+
+<p>
+<b>For this project you can hand in collaborative reports and programs.</b>
+
+<h3 id="___sec1" class="anchor">Project  3a): Gauss-Legendre Quadrature </h3>
+
+<p>
+Use Gauss-Legendre quadrature and compute the integral by integrating
+for each variable \( x_1,y_1,z_1,x_2,y_2,z_2 \) from \( -\infty \) to
+\( \infty \).  How many mesh points do you need before the results
+converges at the level of the third leading digit?  Hint: the
+single-particle wave function \( e^{-\alpha r_i} \) is more or less zero
+at \( r_i \approx ? \) (find the appropriate limit).  You can therefore
+replace the integration limits \( -\infty \) and \( \infty \) with \( -? \) and
+\( ? \), respectively.  You need to check that this approximation is
+satisfactory, that is, make a plot of the function and check if the
+abovementioned limits are appropriate.  You need also to account for
+the potential problems which may arise when \( |{\bf r}_1-{\bf r}_2|=0 \).
+
+<h3 id="___sec2" class="anchor">Project  3b): Improved Gauss-Quadrature </h3>
+
+<p>
+The Legendre polynomials are defined for \( x\in [-1,1] \). The previous
+exercise gave a very unsatisfactory ad hoc procedure. We wish to
+improve our results. It can therefore be useful to change to another
+coordinate frame and employ the Laguerre polynomials. The Laguerre
+polynomials are defined for \( x\in [0,\infty) \) and if we change to
+spherical coordinates
+
+$$
+   d{\bf r}_1d{\bf r}_2  = r_1^2dr_1 r_2^2dr_2 dcos(\theta_1)dcos(\theta_2)d\phi_1d\phi_2,
+$$
+
+<p>
+with
+
+$$
+   \frac{1}{r_{12}}= \frac{1}{\sqrt{r_1^2+r_2^2-2r_1r_2cos(\beta)}}
+$$
+
+<p>
+and 
+
+$$
+cos(\beta) = cos(\theta_1)cos(\theta_2)+sin(\theta_1)sin(\theta_2)cos(\phi_1-\phi_2))
+$$
+
+<p>
+we can rewrite the above integral with different integration
+limits. Find these limits and replace the Gauss-Legendre approach in
+a) with Laguerre polynomials.  The function gauss-laguerre.cpp in the <b>CodeExamples</b> folded can be
+used.  Do your results
+improve? Compare with the results from a).
+
+<p>
+<b>Important notice for c++ programmers</b>: the function which computes the Gauss-Laguerre integration points and weights returns arrays which start at \( 1 \) and end \( n \) instead of the default values \( 0 \) and \( n-1 \). You need to declare an array of length \( n+1 \).
+
+<h3 id="___sec3" class="anchor">Project  3c): Monte Carlo Integration  </h3>
+
+<p>
+Compute the same integral but now with brute force Monte Carlo
+and compare your results with those from the previous points. Discuss the differences.
+With bruce force we mean that you should use the uniform distribution.
+
+<h3 id="___sec4" class="anchor">Project  3d): Improved Monte Carlo Integration  </h3>
+
+<p>
+Improve your brute force Monte Carlo calculation by using importance sampling.
+Hint: use the exponential distribution and transform to spherical coordinates.
+Does the variance decrease? Does the CPU time used compared with the brute force 
+Monte Carlo decrease in order to achieve the same accuracy? Comment your results
+and make a list over the time each method uses. Compare the results also.
+
+<h3 id="___sec5" class="anchor">Project  3e): Improved Monte Carlo Integration and Parallization  </h3>
+
+<p>
+Finally, for the last exercise you should parallelize your code using
+openMP or MPI. Time your program with various compiler flags and
+comment these results as well. In particular, we want to see whether
+you achieve an optimal speed-up or not.
+
+<h2 id="___sec6" class="anchor">Introduction to numerical projects </h2>
+
+<p>
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+<ul>
+  <li> Give a short description of the nature of the problem and the eventual  numerical methods you have used.</li>
+  <li> Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.</li>
+  <li> Include the source code of your program. Comment your program properly.</li>
+  <li> If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.</li>
+  <li> Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.</li>
+  <li> Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.</li>
+  <li> Try to give an interpretation of you results in your answers to  the problems.</li>
+  <li> Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.</li>
+  <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
+</ul>
+
+<h2 id="___sec7" class="anchor">Format for electronic delivery of report and programs </h2>
+
+<p>
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+<ul>
+  <li> Use Devilry to hand in your projects, log in  at  <a href="http://devilry.ifi.uio.no" target="_self"><tt>http://devilry.ifi.uio.no</tt></a> with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.</li>
+  <li> Upload <b>only</b> the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.</li>
+  <li> In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parametxers.</li>
+  <li> In this and all later projects, you should include tests (for example unit tests) of your code(s).</li>
+  <li> Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.</li>
+</ul>
+
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. You can then hand in a common report.
+
+<p>
+
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+  <li class="active"><a href="._Project3-bs000.html">1</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2019, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+

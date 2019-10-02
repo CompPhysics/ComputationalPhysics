@@ -3,7 +3,7 @@
 
 
 TEST_CASE("Testing eigenvalues of Toeplitz matrix"){
-    int Dim = 10;
+    int Dim = 3;
     //    Set up the exact eigenvalues
     vec Exact(Dim);
     double pi = acos(-1.0);
@@ -17,10 +17,11 @@ TEST_CASE("Testing eigenvalues of Toeplitz matrix"){
     //get numerical eigenvalues
     vec EigvalueNum(Dim);
     EigvalueNum = GetEigenvalues(Dim);
+    cout << EigvalueNum(0) << Exact(0) << endl;
     
-    REQUIRE(EigvalueNum(0)==Approx(Exact(0)).epsilon(0.000000000001));
-    REQUIRE(EigvalueNum[1]==Approx(Exact(1)).epsilon(0.000000000001));
-    REQUIRE(EigvalueNum[2]==Approx(Exact(2)).epsilon(0.000000000001));
+    REQUIRE(EigvalueNum(0)==Approx(Exact(0)).epsilon(0.00000001));
+    REQUIRE(EigvalueNum[1]==Approx(Exact(1)).epsilon(0.00000001));
+    REQUIRE(EigvalueNum[2]==Approx(Exact(2)).epsilon(0.00000001));
 }
 
 
