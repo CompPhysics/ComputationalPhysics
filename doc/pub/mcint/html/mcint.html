@@ -6,6 +6,7 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Computational Physics Lectures: Introduction to Monte Carlo methods">
 
 <title>Computational Physics Lectures: Introduction to Monte Carlo methods</title>
@@ -422,7 +423,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Nov 2, 2018</h4></center> <!-- date -->
+<center><h4>Oct 4, 2019</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -808,7 +809,7 @@ $$
 for a continuous distribution and 
 $$
 \begin{equation*}
-\langle x\rangle  = \mu \equiv \frac{1}{N}\sum_{i=1}^N x_i p(x_i),
+\langle x\rangle  = \mu \equiv \sum_{i=1}^N x_i p(x_i),
 \end{equation*}
 $$
 
@@ -911,12 +912,11 @@ where \( x_{i-1/2} \) are the midpoint values of \( x \).
 Introducing the concept of the average of the function \( f \) for a given PDF \( p(x) \) as
 $$
 \begin{equation*}
-   \langle f \rangle = \frac{1}{N}\sum_{i=1}^Nf(x_i)p(x_i),
+   \langle f \rangle = \sum_{i=1}^Nf(x_i)p(x_i),
 \end{equation*}
 $$
 
-and identify \( p(x) \) with the uniform distribution, viz
-$ p(x)=1$ when \( x\in [0,1] \) and zero for all other values of \( x \).
+and identify \( p(x) \) with the uniform distribution, viz. \( p(x)=1 \) when \( x\in [0,1] \) and zero for all other values of \( x \).
 The integral is 
 is then  the average of \( f \) over the interval \( x \in [0,1] \)
 
@@ -943,7 +943,7 @@ of the integral with \( f \) for a uniform distribution in the interval
 \( x \in [0,1] \) to be
 $$
 \begin{equation*}
-  \sigma^2_f=\frac{1}{N}\sum_{i=1}^N(f(x_i)-\langle f\rangle)^2p(x_i), 
+  \sigma^2_f=\sum_{i=1}^N(f(x_i)-\langle f\rangle)^2p(x_i), 
 \end{equation*}
 $$
 
@@ -1659,8 +1659,8 @@ while \( P(x) \) is the cumulative probability.
 <tr><td align="left">   Domain           </td> <td align="center">   \( \left\{x_1, x_2, x_3, \dots, x_N\right\} \)    </td> <td align="center">   \( [a,b] \)                                   </td> </tr>
 <tr><td align="left">   Probability      </td> <td align="center">   \( p(x_i) \)                                      </td> <td align="center">   \( p(x)dx \)                                  </td> </tr>
 <tr><td align="left">   Cumulative       </td> <td align="center">   \( P_i=\sum_{l=1}^ip(x_l) \)                      </td> <td align="center">   \( P(x)=\int_a^xp(t)dt \)                     </td> </tr>
-<tr><td align="left">   Positivity       </td> <td align="center">   $ 0\le p(x_i)\le 1$                               </td> <td align="center">   $ p(x) \ge 0$                                 </td> </tr>
-<tr><td align="left">   Positivity       </td> <td align="center">   $ 0\le P_i\le 1$                                  </td> <td align="center">   $ 0\le P(x)\le 1$                             </td> </tr>
+<tr><td align="left">   Positivity       </td> <td align="center">   \( 0\le p(x_i)\le 1 \)                            </td> <td align="center">   \( p(x) \ge 0 \)                              </td> </tr>
+<tr><td align="left">   Positivity       </td> <td align="center">   \( 0\le P_i\le 1 \)                               </td> <td align="center">   \( 0\le P(x)\le 1 \)                          </td> </tr>
 <tr><td align="left">   Monotonic        </td> <td align="center">   \( P_i\ge P_j \) if \( x_i\ge x_j \)              </td> <td align="center">   \( P(x_i)\ge P(x_j) \) if \( x_i\ge x_j \)    </td> </tr>
 <tr><td align="left">   Normalization    </td> <td align="center">   \( P_N=1 \)                                       </td> <td align="center">   \( P(b)=1 \)                                  </td> </tr>
 </tbody>
@@ -1680,7 +1680,7 @@ With a PDF we can compute expectation values of selected quantities such as
 
 $$
 \begin{equation*}
-    \langle x^k\rangle=\frac{1}{N}\sum_{i=1}^{N}x_i^kp(x_i),
+    \langle x^k\rangle=\sum_{i=1}^{N}x_i^kp(x_i),
 \end{equation*}
 $$
 
@@ -4412,7 +4412,7 @@ print "Sigma             = %10.8E" % sigma
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2018, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2019, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 
