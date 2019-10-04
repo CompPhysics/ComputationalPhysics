@@ -295,7 +295,7 @@ and often denoted by the letter $\mu$
 for a continuous distribution and 
 !bt
 \begin{equation*}
-\langle x\rangle  = \mu \equiv \frac{1}{N}\sum_{i=1}^N x_i p(x_i),
+\langle x\rangle  = \mu \equiv \sum_{i=1}^N x_i p(x_i),
 \end{equation*}
 !et
 for a discrete distribution. 
@@ -377,11 +377,10 @@ where $x_{i-1/2}$ are the midpoint values of $x$.
 Introducing the concept of the average of the function $f$ for a given PDF $p(x)$ as
 !bt
 \begin{equation*}
-   \langle f \rangle = \frac{1}{N}\sum_{i=1}^Nf(x_i)p(x_i),
+   \langle f \rangle = \sum_{i=1}^Nf(x_i)p(x_i),
 \end{equation*}
 !et
-and identify $p(x)$ with the uniform distribution, viz
-$ p(x)=1$ when $x\in [0,1]$ and zero for all other values of $x$.
+and identify $p(x)$ with the uniform distribution, viz. $p(x)=1$ when $x\in [0,1]$ and zero for all other values of $x$.
 The integral is 
 is then  the average of $f$ over the interval $x \in [0,1]$
 
@@ -403,7 +402,7 @@ of the integral with $f$ for a uniform distribution in the interval
 $x \in [0,1]$ to be
 !bt
 \begin{equation*}
-  \sigma^2_f=\frac{1}{N}\sum_{i=1}^N(f(x_i)-\langle f\rangle)^2p(x_i), 
+  \sigma^2_f=\sum_{i=1}^N(f(x_i)-\langle f\rangle)^2p(x_i), 
 \end{equation*}
 !et
 and inserting the uniform distribution this yields
@@ -989,8 +988,8 @@ while $P(x)$ is the cumulative probability.
 | Domain                                     | $\left\{x_1, x_2, x_3, \dots, x_N\right\}$ | $[a,b]$                                    |
 | Probability                                | $p(x_i)$                                   | $p(x)dx$                                   |
 | Cumulative                                 | $P_i=\sum_{l=1}^ip(x_l)$                   | $P(x)=\int_a^xp(t)dt$                      |
-| Positivity                                 | $ 0\le p(x_i)\le 1$                      | $ p(x) \ge 0$                              |
-| Positivity                                 | $ 0\le P_i\le 1$                         | $ 0\le P(x)\le 1$                        |
+| Positivity                                 | $0\le p(x_i)\le 1$                      | $p(x) \ge 0$                              |
+| Positivity                                 | $0\le P_i\le 1$                         | $0\le P(x)\le 1$                        |
 | Monotonic                                  | $P_i\ge P_j$ if $x_i\ge x_j$             | $P(x_i)\ge P(x_j)$ if $x_i\ge x_j$       |
 | Normalization                              | $P_N=1$                                    | $P(b)=1$                                   |
 |--------------------------------------------------------------------------------------------------------------------------------------|
@@ -1005,7 +1004,7 @@ With a PDF we can compute expectation values of selected quantities such as
 
 !bt
 \begin{equation*}
-    \langle x^k\rangle=\frac{1}{N}\sum_{i=1}^{N}x_i^kp(x_i),
+    \langle x^k\rangle=\sum_{i=1}^{N}x_i^kp(x_i),
 \end{equation*}
 !et
 if we have a discrete PDF or
