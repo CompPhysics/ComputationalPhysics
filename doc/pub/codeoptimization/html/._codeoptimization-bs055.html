@@ -6,6 +6,7 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Computational Physics Lectures: How to optimize codes, from vectorization to parallelization">
 
 <title>Computational Physics Lectures: How to optimize codes, from vectorization to parallelization</title>
@@ -450,13 +451,20 @@ on your laptop/PC, we recommend the following:
 
 <ul>
 <li> For OpenMP, the compile option <b>-fopenmp</b> is included automatically in recent versions of the C++ compiler and Fortran compilers. For users of different Linux distributions, siply use the available C++ or Fortran compilers and add the above compiler instructions, see also code examples below.</li> 
-<li> For OS X users however, use for example</li> 
+<li> For OS X users however, install <b>libomp</b></li> 
 </ul>
 
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  brew install clang<span style="color: #666666">-</span>omp
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  brew install libomp
+</pre></div>
+<p>
+and compile and link as
+<p>
+
+<!-- code=c++ (!bc cppcod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c<span style="color: #666666">++</span> <span style="color: #666666">-</span>o <span style="color: #666666">&lt;</span>name executable<span style="color: #666666">&gt;</span> <span style="color: #666666">&lt;</span>name program.cpp<span style="color: #666666">&gt;</span>  <span style="color: #666666">-</span>lomp 
 </pre></div>
 <p>
 </div>
