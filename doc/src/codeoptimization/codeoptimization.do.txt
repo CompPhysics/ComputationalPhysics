@@ -1035,10 +1035,15 @@ When you have made sure you have installed MPI on your PC/laptop,
 If you wish to install MPI and OpenMP 
 on your laptop/PC, we recommend the following:
 * For OpenMP, the compile option _-fopenmp_ is included automatically in recent versions of the C++ compiler and Fortran compilers. For users of different Linux distributions, siply use the available C++ or Fortran compilers and add the above compiler instructions, see also code examples below. 
-* For OS X users however, use for example 
+* For OS X users however, install _libomp_ 
 !bc cppcod
-  brew install clang-omp
+  brew install libomp
 !ec
+and compile and link as
+!bc cppcod
+c++ -o <name executable> <name program.cpp>  -lomp 
+!ec
+
 !eblock
 
 
