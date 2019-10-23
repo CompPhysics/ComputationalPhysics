@@ -80,7 +80,7 @@ o Halvard Sutterud
 o Project 1: September 9 (not graded, only feedback)
 o Project 2: September 30 (not graded, only feedback)
 o Project 3: October 21 (graded with feedback)
-o Project 4: November 11 (graded with feedback)
+o Project 4: November 18 (graded with feedback)
 o Project 5: December 9 (graded with feedback)
 
 Projects are handed in using devilry.ifi.uio.no. We use Github as repository for codes, benchmark calculations etc. Comments and feedback on projects only via devilry. 
