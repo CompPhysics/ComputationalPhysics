@@ -1,6 +1,6 @@
-TITLE: Project 4, deadline  November 19
+TITLE: Project 4, deadline  November 18
 AUTHOR: "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo, Norway
-DATE: Fall semester 2018
+DATE: Fall semester 2019
 
 
 ===== Studies of phase transitions in magnetic systems  =====
@@ -26,8 +26,7 @@ nearest neighbors only. We will assume that we have a ferromagnetic
 ordering, viz $J> 0$.  We will use periodic boundary conditions and
 the Metropolis algorithm only. The material on the Ising model can be found in chapter 13 of the lecture notes. The Metropolis algorithm is discussed in chapter 12. 
 
-
-_For this project you can collaborate with fellow students but you have to hand in an individual report._
+_For this project you can hand in collaborative reports and programs._
 This project (together with projects 3 and 5) counts 1/3 of the final mark.
 
 === Project 4a): A simple $2\times 2$ lattice, analytical expressions  ===
@@ -291,13 +290,13 @@ If you use OpenMP, for linux users, compile and link with for example
 !bc vrb
 c++ -O3 -fopenmp -o <executable>  <programname.cpp>
 !ec
-For OS X users, you need to install clang-omp using brew, that is
+For OS X users, you need to install libomp using brew, that is
 !bc vrb
 brew install clang-omp
 !ec
 and then compile and link with for example
 !bc vrb
-clang-omp++ -O3 -fopenmp -o <executable>  <programname.cpp>
+c++ -O3 -lomp -o <executable>  <programname.cpp>
 !ec
 
 If you program in Fortran and use _gfortran_, compile as for example
