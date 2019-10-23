@@ -1,0 +1,545 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Project 4, deadline  November 18">
+
+<title>Project 4, deadline  November 18</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Studies of phase transitions in magnetic systems',
+               2,
+               None,
+               '___sec0'),
+              ('Introduction', 3, None, '___sec1'),
+              ('Project 4a): A simple $2\\times 2$ lattice, analytical '
+               'expressions',
+               3,
+               None,
+               '___sec2'),
+              ('Project 4b): Writing a code for the Ising model',
+               3,
+               None,
+               '___sec3'),
+              ('Project 4c): When is the most likely state reached?',
+               3,
+               None,
+               '___sec4'),
+              ('Project 4d): Analyzing the probability distribution',
+               3,
+               None,
+               '___sec5'),
+              ('Studies of phase transitions', 3, None, '___sec6'),
+              ('Project 4e): Numerical studies of phase transitions',
+               3,
+               None,
+               '___sec7'),
+              ('Project 4f): Extracting the critical temperature',
+               3,
+               None,
+               '___sec8'),
+              ('Background literature', 2, None, '___sec9'),
+              ('Introduction to numerical projects', 2, None, '___sec10'),
+              ('Format for electronic delivery of report and programs',
+               2,
+               None,
+               '___sec11'),
+              ('How to install openmpi and/or OpenMP on your PC/laptop',
+               2,
+               None,
+               '___sec12')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="Project4-bs.html">Project 4, deadline  November 18</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Studies of phase transitions in magnetic systems</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Introduction</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 4a): A simple \( 2\times 2 \) lattice, analytical expressions</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 4b): Writing a code for the Ising model</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 4c): When is the most likely state reached?</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 4d): Analyzing the probability distribution</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Studies of phase transitions</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 4e): Numerical studies of phase transitions</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 4f): Extracting the critical temperature</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec9" style="font-size: 80%;"><b>Background literature</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec10" style="font-size: 80%;"><b>Introduction to numerical projects</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec11" style="font-size: 80%;"><b>Format for electronic delivery of report and programs</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec12" style="font-size: 80%;"><b>How to install openmpi and/or OpenMP on your PC/laptop</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0000"></a>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Project 4, deadline  November 18</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): <a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_self">Computational Physics I FYS3150/FYS4150</a> -->
+
+<center>
+<b><a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_self">Computational Physics I FYS3150/FYS4150</a></b> 
+</center>
+
+<p>
+<!-- institution -->
+
+<center><b>Department of Physics, University of Oslo, Norway</b></center>
+<br>
+<p>
+<center><h4>Fall semester 2019</h4></center> <!-- date -->
+<br>
+<p>
+</div> <!-- end jumbotron -->
+
+<h2 id="___sec0" class="anchor">Studies of phase transitions in magnetic systems  </h2>
+
+<h3 id="___sec1" class="anchor">Introduction </h3>
+
+<p>
+The aim of this project is to study a widely popular model to simulate phase transitions, the so-called Ising model in two dimensions. At a given critical temperature, this model exhbits a phase transition from a magnetic phase (a system with a finite magnetic moment) to a phase with zero magnetization.
+This is a so-called binary system where the objects at each lattice site can only take two values. These could be \( 0 \) and \( 1 \) or other values. Here we will use spins pointing up or down as the model for our system. But we could replace the spins with blue and green balls for example.
+The <a href="https://en.wikipedia.org/wiki/Ising_model" target="_self">Ising model</a> has been extremely popular, with applications spanning from studies of phase transitions to simulations in statistics. In one and two dimensions its has analytical solutions to several expectation values and it gives a qualitatively  good underatanding of several types of phase transitions.
+
+<p>
+In its simplest form
+the energy of the Ising model is expressed as, without an externally applied magnetic field, 
+$$
+E=-J\sum_{< kl >}^{N}s_ks_l 
+$$
+
+with
+\( s_k=\pm 1 \). The quantity \( N \) represents the total number of spins and \( J \) is a coupling
+constant expressing the strength of the interaction between
+neighboring spins.  The symbol \( < kl> \) indicates that we sum over
+nearest neighbors only. We will assume that we have a ferromagnetic
+ordering, viz \( J> 0 \).  We will use periodic boundary conditions and
+the Metropolis algorithm only. The material on the Ising model can be found in chapter 13 of the lecture notes. The Metropolis algorithm is discussed in chapter 12.
+
+<p>
+<b>For this project you can hand in collaborative reports and programs.</b>
+This project (together with projects 3 and 5) counts 1/3 of the final mark.
+
+<h3 id="___sec2" class="anchor">Project 4a): A simple \( 2\times 2 \) lattice, analytical expressions  </h3>
+
+Assume we have only two spins in each dimension, that is \( L=2 \).
+Find the analytical expression 
+for the partition function and the corresponding
+expectations values for the energy \( E \), the mean absolute value of the magnetic moment \( \vert M\vert \) (we will refer to this as the mean magnetization), 
+the specific heat \( C_V \) and the susceptibility \( \chi \) 
+as functions of  \( T \) using periodic boundary conditions. These results will serve as benchmark calculations for our next steps.
+
+<h3 id="___sec3" class="anchor">Project 4b): Writing a code for the Ising model  </h3>
+
+Write now a code for the Ising model which computes the mean energy 
+\( E \), mean magnetization 
+\( \vert M\vert \), the specific heat \( C_V \) and the susceptibility \( \chi \) 
+as functions of  \( T \) using periodic boundary conditions for 
+\( L=2 \) in the \( x \) and \( y \) directions. 
+Compare your results with the expressions from a)
+for  a  temperature \( T=1.0 \) (in units of \( kT/J \)).
+
+<p>
+How many Monte Carlo cycles do you need in order to achieve a 
+good agreeement?
+
+<h3 id="___sec4" class="anchor">Project 4c): When is the most likely state reached?  </h3>
+
+We choose now a square lattice with \( L=20 \) spins in the \( x \) and \( y \) directions.
+
+<p>
+In the previous exercise  we did not study carefully how many Monte Carlo cycles were needed in order to reach the most likely state. Here
+we want to perform a study of the time (here it corresponds to the number 
+of Monte Carlo sweeps of the lattice) one needs before one reaches an equilibrium situation 
+and can start computing various expectations values. Our 
+first attempt is a rough and plain graphical
+one, where we plot various expectations values as functions of the number of Monte Carlo cycles.
+
+<p>
+Choose first a temperature of \( T=1.0 \) (in units of \( kT/J \)) and study the 
+mean energy and magnetisation (absolute value) as functions of the number of Monte Carlo cycles. Let the number of Monte Carlo cycles (sweeps per lattice)
+represent time.
+Use both an ordered (all spins pointing in one direction) and a random
+spin orientation as starting configuration. 
+How many Monte Carlo cycles do you need before you reach an equilibrium situation?
+Repeat this analysis for \( T=2.4 \). 
+Can you, based on these values estimate an equilibration time?
+Make also a plot of the total number of accepted configurations 
+as function of the total number of Monte Carlo cycles. How does the number of
+accepted configurations behave as function of temperature \( T \)?
+
+<h3 id="___sec5" class="anchor">Project 4d): Analyzing the probability distribution  </h3>
+
+<p>
+Compute thereafter the probability
+\( P(E) \) for the previous system with \( L=20 \) and the same temperatures, that is at \( T=1.0 \) and \( T=2.4 \).
+You compute this probability by simply counting the number of times a 
+given energy appears in your computation. Start the computation after 
+the steady state situation has been reached.
+Compare your results with the computed variance in energy 
+\( \sigma^2_E \) and discuss the behavior you observe.
+
+<h3 id="___sec6" class="anchor">Studies of phase transitions </h3>
+
+<p>
+Near \( T_C \) we can characterize the behavior of many physical quantities
+by a power law behavior.
+As an example, for the Ising class of models, 
+the mean magnetization is given by
+$$
+  \langle M(T) \rangle \sim \left(T-T_C\right)^{\beta},
+$$
+
+where \( \beta=1/8 \) is a so-called critical exponent. A similar relation
+applies to the heat capacity
+
+$$
+  C_V(T) \sim \left|T_C-T\right|^{\alpha},
+$$
+
+and the susceptibility
+$$
+\begin{equation}
+  \chi(T) \sim \left|T_C-T\right|^{\gamma},
+\tag{1}
+\end{equation}
+$$
+
+with \( \alpha = 0 \) and \( \gamma = 7/4 \).
+Another important quantity is the correlation length, which is expected
+to be of the order of the lattice spacing for \( T>> T_C \). Because the spins
+become more and more correlated as \( T \) approaches \( T_C \), the correlation
+length increases as we get closer to the critical temperature. The divergent
+behavior of \( \xi \) near \( T_C \) 
+is
+
+$$
+\begin{equation}
+  \xi(T) \sim \left|T_C-T\right|^{-\nu}.
+\tag{2}
+\end{equation}
+$$
+
+A second-order phase transition is characterized by a
+correlation length which spans the whole system.
+Since we are always limited to a finite lattice, \( \xi \) will
+be proportional with the size of the lattice. 
+Through so-called finite size scaling relations
+it is possible to relate the behavior at finite lattices with the 
+results for an infinitely large lattice.
+The critical temperature scales then as
+
+$$
+\begin{equation}
+ T_C(L)-T_C(L=\infty) = aL^{-1/\nu},
+\tag{3}
+\end{equation}
+$$
+
+with  \( a \) a constant and  \( \nu \) defined in Eq. <a href="#mjx-eqn-2">(2)</a>.
+We set \( T=T_C \) and obtain a mean magnetisation
+
+$$
+\begin{equation}
+  \langle {\cal M}(T) \rangle \sim \left(T-T_C\right)^{\beta}
+  \rightarrow L^{-\beta/\nu},
+\tag{4}
+\end{equation}
+$$
+
+a heat capacity
+
+$$
+\begin{equation}
+  C_V(T) \sim \left|T_C-T\right|^{-\gamma} \rightarrow L^{\alpha/\nu},
+\tag{5}
+\end{equation}
+$$
+
+and susceptibility
+
+$$
+\begin{equation}
+  \chi(T) \sim \left|T_C-T\right|^{-\alpha} \rightarrow L^{\gamma/\nu}.
+\tag{6}
+\end{equation}
+$$
+
+<h3 id="___sec7" class="anchor">Project 4e): Numerical studies of phase transitions </h3>
+
+We wish to study the behavior of the Ising model
+in two dimensions close to the critical temperature as a function of
+the lattice size \( L\times L \). Calculate the expectation values for
+\( \langle E\rangle \) and \( \langle \vert M\vert \rangle \), the specific heat
+\( C_V \) and the susceptibility \( \chi \) as functions of \( T \) for \( L=40 \),
+\( L=60 \), \( L=80 \) and \( L=100 \) for \( T\in [2.0,2.3] \) with a step in
+temperature \( \Delta T=0.05 \) or smaller.  You may find it convenient to narrow the domain for \( T \).
+
+<p>
+Plot \( \langle E\rangle \),
+\( \langle \vert M\vert\rangle \), \( C_V \) and \( \chi \) as functions of \( T \). Can
+you see an indication of a phase transition?  Use the absolute value
+\( \langle \vert M\vert\rangle \) when you evaluate \( \chi \).  For these production runs you should
+parallelize the code using MPI (recommended). Alternatively OpenMP can be used. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code.
+
+<h3 id="___sec8" class="anchor">Project 4f): Extracting the critical temperature  </h3>
+
+<p>
+Use Eq. <a href="#mjx-eqn-3">(3)</a> and the exact result
+\( \nu=1 \) in order to estimate \( T_C \) in the thermodynamic limit 
+\( L\rightarrow \infty \)
+using your simulations with \( L=40 \), \( L=60 \), \( L=80 \) and \( L=100 \)
+The exact result for the critical temperature (<a href="http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117" target="_self">after Lars Onsager</a>) is
+\( kT_C/J=2/ln(1+\sqrt{2})\approx 2.269 \) with \( \nu=1 \).
+
+<h2 id="___sec9" class="anchor">Background literature </h2>
+
+<p>
+If you wish to read more about the Ising model and statistical physics here are three suggestions.
+
+<ul>
+  <li> <a href="http://www.worldscientific.com/worldscibooks/10.1142/5660" target="_self">M. Plischke and B. Bergersen</a>, <em>Equilibrium Statistical Physics</em>, World Scientific, see chapters 5 and 6.</li>
+  <li> <a href="http://www.cambridge.org/no/academic/subjects/physics/computational-science-and-modelling/guide-monte-carlo-simulations-statistical-physics-4th-edition?format=HB" target="_self">D. P. Landau and K. Binder</a>, <em>A Guide to Monte Carlo Simulations in Statistical Physics</em>, Cambridge, see chapters 2,3 and 4.</li>
+  <li> <a href="https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&" target="_self">M. E. J. Newman and T. Barkema</a>, <em>Monte Carlo Methods in Statistical Physics</em>, Oxford, see chapters 3 and 4.</li>
+</ul>
+
+<h2 id="___sec10" class="anchor">Introduction to numerical projects </h2>
+
+<p>
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+<ul>
+  <li> Give a short description of the nature of the problem and the eventual  numerical methods you have used.</li>
+  <li> Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.</li>
+  <li> Include the source code of your program. Comment your program properly.</li>
+  <li> If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.</li>
+  <li> Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.</li>
+  <li> Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.</li>
+  <li> Try to give an interpretation of you results in your answers to  the problems.</li>
+  <li> Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.</li>
+  <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
+</ul>
+
+<h2 id="___sec11" class="anchor">Format for electronic delivery of report and programs </h2>
+
+<p>
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+<ul>
+  <li> Use Devilry to hand in your projects, log in  at  <a href="http://devilry.ifi.uio.no" target="_self"><tt>http://devilry.ifi.uio.no</tt></a> with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.</li>
+  <li> Upload <b>only</b> the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.</li>
+  <li> In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parametxers.</li>
+  <li> In this and all later projects, you should include tests (for example unit tests) of your code(s).</li>
+  <li> Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.</li>
+</ul>
+
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. For this specific report you need to hand in an individual report.
+
+<h2 id="___sec12" class="anchor">How to install openmpi and/or OpenMP on your PC/laptop </h2>
+
+<p>
+If you use your own laptop, for linux/ubuntu users, you need to install two packages (alternatively use the synaptic package manager)
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>  sudo apt-get install libopenmpi-dev
+  sudo apt-get install openmpi-bin
+</pre></div>
+<p>
+For OS X users, install brew (after having installed xcode and gcc, needed for the 
+gfortran compiler of openmpi) and then run
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>brew install open-mpi
+</pre></div>
+<p>
+When compiling from the command line, depending on your choice of programming language you need to compile and link as for example
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpic++ -O3 -o &lt;executable&gt; &lt;programname.cpp&gt;
+</pre></div>
+<p>
+if you use c++ (alternatively mpicxx) and
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpif90 -O3 -o &lt;executable&gt; &lt;programname.f90&gt;
+</pre></div>
+<p>
+if you use Fortran90.
+
+<p>
+When running an executable, run as
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>mpirun -n 10 ./&lt;executable&gt;
+</pre></div>
+<p>
+where -n indicates the number of processes, 10 here.
+
+<p>
+With openmpi installed, when using Qt, add to your .pro file the instructions at <a href="http://dragly.org/2012/03/14/developing-mpi-applications-in-qt-creator/" target="_self">Svenn-Arne Dragly's site</a>
+
+<p>
+You may need to tell Qt where opempi is stored.
+
+<p>
+For the machines at the computer lab, openmpi is located  at /usr/lib64/openmpi/bin
+Add to your .bashrc file the following
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>export PATH=/usr/lib64/openmpi/bin:$PATH 
+</pre></div>
+<p>
+For Windows users we recommend to follow the instructions at the <a href="https://www.open-mpi.org/software/ompi/v1.6/ms-windows.php" target="_self">Open MPI site</a>.
+
+<p>
+If you use OpenMP, for linux users, compile and link with for example
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c++ -O3 -fopenmp -o &lt;executable&gt;  &lt;programname.cpp&gt;
+</pre></div>
+<p>
+For OS X users, you need to install libomp using brew, that is
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>brew install clang-omp
+</pre></div>
+<p>
+and then compile and link with for example
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>c++ -O3 -lomp -o &lt;executable&gt;  &lt;programname.cpp&gt;
+</pre></div>
+<p>
+If you program in Fortran and use <b>gfortran</b>, compile as for example
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>gfortran -O3 -fopenmp -o &lt;executable&gt;  &lt;programname.f90&gt;
+</pre></div>
+<p>
+If you have access to Intel's <b>ifort</b> compiler, compile as 
+<p>
+
+<!-- code=text (!bc vrb) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>ifort -O3 -fopenmp -o &lt;executable&gt;  &lt;programname.f90&gt;
+</pre></div>
+<p>
+
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+  <li class="active"><a href="._Project4-bs000.html">1</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 1999-2019, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+
