@@ -1,0 +1,105 @@
+TITLE: Project 5, deadline  December 15, 2019
+AUTHOR: "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo, Norway
+DATE: Fall semester 2019
+
+
+===== Studies of social interactions using the Ising model =====
+
+More text will come
+
+=== Introduction ===
+
+The aim of this project is to study a widely popular model to simulate phase transitions, the so-called Ising model in two dimensions and apply it to modeling of electoral patterns and social interactions.
+
+In its simplest form
+the energy of the Ising model is expressed as, without an externally applied magnetic field, 
+!bt 
+\[
+E=-J\sum_{< kl >}^{N}s_ks_l 
+\]
+!et 
+with
+$s_k=\pm 1$. The quantity $N$ represents the total number of spins and $J$ is a coupling
+constant expressing the strength of the interaction between
+neighboring spins.  The symbol $<kl>$ indicates that we sum over
+nearest neighbors only. We will assume that we have a ferromagnetic
+ordering, viz $J> 0$.  We will use periodic boundary conditions and
+the Metropolis algorithm only. The material on the Ising model can be found in chapter 13 of the lecture notes. The Metropolis algorithm is discussed in chapter 12. 
+
+_For this project you can hand in collaborative reports and programs._
+This project (together with projects 3 and 4) counts 1/3 of the final mark.
+
+=== Project 5a):  ===
+
+=== Project 5b): Writing a code for the Ising model  ===
+
+
+=== Project 5c): When is the most likely state reached?  ===
+
+=== Project 5d): Analyzing the probability distribution  ===
+
+
+=== Project 5e): === 
+
+===== Background literature =====
+
+If you wish to read more about the Ising model and statistical physics here are three suggestions.
+
+  * "M. Plischke and B. Bergersen":"http://www.worldscientific.com/worldscibooks/10.1142/5660", *Equilibrium Statistical Physics*, World Scientific, see chapters 5 and 6.
+
+  * "D. P. Landau and K. Binder":"http://www.cambridge.org/no/academic/subjects/physics/computational-science-and-modelling/guide-monte-carlo-simulations-statistical-physics-4th-edition?format=HB", *A Guide to Monte Carlo Simulations in Statistical Physics*, Cambridge, see chapters 2,3 and 4.
+
+  * "M. E. J. Newman and T. Barkema":"https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&", *Monte Carlo Methods in Statistical Physics*, Oxford, see chapters 3 and 4.
+
+
+===== Introduction to numerical projects =====
+
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+  * Give a short description of the nature of the problem and the eventual  numerical methods you have used.
+
+  * Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.
+
+  * Include the source code of your program. Comment your program properly.
+
+  * If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.
+
+  * Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.
+
+  * Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
+
+  * Try to give an interpretation of you results in your answers to  the problems.
+
+  * Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.
+
+  * Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.
+
+
+
+
+
+===== Format for electronic delivery of report and programs =====
+
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+  * Use Devilry to hand in your projects, log in  at  URL:"http://devilry.ifi.uio.no" with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.
+
+  * Upload _only_ the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.
+
+  * In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parametxers.
+
+  * In this and all later projects, you should include tests (for example unit tests) of your code(s).
+
+  * Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.
+
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. 
+
+
+
+
+
+
+
