@@ -1,0 +1,341 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Project 5, deadline  December 15, 2019">
+
+<title>Project 5, deadline  December 15, 2019</title>
+
+
+<style type="text/css">
+/* bloodish style */
+
+body {
+  font-family: Helvetica, Verdana, Arial, Sans-serif;
+  color: #404040;
+  background: #ffffff;
+}
+h1 { font-size: 1.8em;  color: #8A0808; }
+h2 { font-size: 1.6em;  color: #8A0808; }
+h3 { font-size: 1.4em;  color: #8A0808; }
+h4 { color: #8A0808; }
+a { color: #8A0808; text-decoration:none; }
+tt { font-family: "Courier New", Courier; }
+/* pre style removed because it will interfer with pygments */
+p { text-indent: 0px; }
+hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+p.caption { width: 80%; font-style: normal; text-align: left; }
+hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
+
+div { text-align: justify; text-justify: inter-word; }
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Theoretical background and description of the system',
+               2,
+               None,
+               '___sec0'),
+              ('Project 5a): Simulation of Transactions', 3, None, '___sec1'),
+              ('Project 5b): Recognizing the distribution', 3, None, '___sec2'),
+              ('Project 5c): Transactions and savings', 3, None, '___sec3'),
+              ('Project 5d): Nearest neighbor interactions',
+               3,
+               None,
+               '___sec4'),
+              ('Project 5e): Nearest neighbors and former  transactions',
+               3,
+               None,
+               '___sec5'),
+              ('Background literature', 2, None, '___sec6'),
+              ('Introduction to numerical projects', 2, None, '___sec7'),
+              ('Format for electronic delivery of report and programs',
+               2,
+               None,
+               '___sec8')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "AMS"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<center><h1>Project 5, deadline  December 15, 2019</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Stock Market model -->
+
+<center>
+<b>Stock Market model</b> 
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+<p>
+<center><h4>Fall semester 2019</h4></center> <!-- date -->
+<br>
+
+<h2 id="___sec0">Theoretical background and description of the system </h2>
+
+<p>
+The aim of this project is to simulate financial transactions among financial agents
+using Monte Carlo methods. The final goal is to extract a distribution of income  as function
+of the income \( m \).   From Pareto's work (<a href="http://www.institutcoppet.org/2012/05/08/cours-deconomie-politique-1896-de-vilfredo-pareto" target="_blank">V.&nbsp;Pareto, 1897</a>) it is known from empirical studies
+that the higher end of the distribution of money follows a distribution 
+$$
+w_m\propto m^{-1-\alpha},
+$$
+
+with \( \alpha\in [1,2] \). We will here follow the analysis made by <a href="http://www.sciencedirect.com/science/article/pii/S0378437104004327" target="_blank">Patriarca and collaborators</a>.
+
+<p>
+Here we will study numerically the relation between the micro-dynamic relations among financial 
+agents and the  resulting macroscopic money distribution.
+
+<p>
+We assume we have \( N \) agents that exchange money in pairs \( (i,j) \). We assume also that all agents
+start with the same amount of money \( m_0 > 0 \). At a given 'time step', we choose randomly a pair
+of agents \( (i,j) \) and let a transaction take place. This means that agent \( i \)'s money \( m_i \) changes
+to \( m_i' \) and similarly we have \( m_j\rightarrow m_j' \). 
+Money is conserved during a transaction, meaning that
+$$
+\begin{equation}
+  m_i+m_j=m_i'+m_j'.
+\label{eq:conserve}
+\end{equation}
+$$
+
+The change is done via a random reassignement (a random number) \( \epsilon \), meaning that
+
+$$
+\begin{equation*}
+m_i' = \epsilon(m_i+m_j),
+\end{equation*}
+$$
+
+leading to
+
+$$
+\begin{equation*}
+m_j'= (1-\epsilon)(m_i+m_j).
+\end{equation*}
+$$
+
+The number \( \epsilon \) is extracted from a uniform distribution.
+In this simple model, no agents are left with a debt, that is \( m\ge 0 \).
+Due to the conservation law above, one can show that the system relaxes toward an equilibrium
+state given by a Gibbs distribution
+
+$$
+\begin{equation*}
+w_m=\beta \exp{(-\beta m)},
+\end{equation*}
+$$
+
+with
+
+$$
+\begin{equation*}
+\beta = \frac{1}{\langle m\rangle},
+\end{equation*}
+$$
+
+and \( \langle m\rangle=\sum_i m_i/N=m_0 \), the average money.
+It means that after equilibrium has been reached that the majority of agents is left with a small
+number of money, while the number of richest agents, those with \( m \) larger than a specific value \( m' \),
+exponentially decreases with \( m' \).
+
+<p>
+We assume that we have \( N=500 \) agents.   In each simulation, we need a sufficiently large number of transactions, say \( 10^7 \). Our aim is find the final equilibrium distribution \( w_m \). In order to do that we would need
+several runs of the above simulations, at least \( 10^3-10^4 \) runs (experiments).
+
+<p>
+<b>For this project you can collaborate with fellow students and you can  hand in a common report.</b>
+This project (together with projects 3 and 4) counts 1/3 of the final mark.
+
+<h3 id="___sec1">Project 5a): Simulation of Transactions   </h3>
+
+Your task is to first set up an algorithm which simulates the above transactions with an initial
+  amount \( m_0 \).
+  The challenge here is to figure out a Monte Carlo  simulation  based on the
+  above equations.
+  You will in particular need to make an algorithm which sets up a histogram as function of \( m \).
+  This histogram contains the number of times a value \( m \) is registered and represents
+  \( w_m\Delta m \). You will need to set up a value for the interval \( \Delta m \)  (typically \( 0.01-0.05 \)).
+  That means you need to account for the number of times you register an income in the interval
+  \( m,m+\Delta m \). The number of times you register this income, represents the value that enters the histogram.
+  You will also need to find a criterion for when the equilibrium situation has been reached.
+
+<h3 id="___sec2">Project 5b): Recognizing the distribution   </h3>
+
+Make thereafter a plot of  \( \log{(w_m)} \) as function of \( m \)
+  and see if you get a straight line.
+  Comment the result.
+
+<h3 id="___sec3">Project 5c): Transactions and savings   </h3>
+
+We can then change our model to allow for a saving criterion, meaning that the agents save
+  a fraction \( \lambda \) of the money they have before the transaction is made. The final distribution will then no longer be given by Gibbs distribution. It could also include a taxation on financial transactions.
+
+<p>
+  The conservation law of Eq. \eqref{eq:conserve} holds, but the money to be shared in a transaction between
+  agent \( i \) and agent \( j \) is now \( (1-\lambda)(m_i+m_j) \). This means that we have
+
+$$
+\begin{equation*}
+  m_i' = \lambda m_i+\epsilon(1-\lambda)(m_i+m_j),
+  \end{equation*}
+$$
+
+  and
+
+$$
+\begin{equation*}
+  m_j' = \lambda m_j+(1-\epsilon)(1-\lambda)(m_i+m_j),
+  \end{equation*}
+$$
+
+  which can be written as
+
+$$
+\begin{equation*}
+  m_i'=m_i+\delta m
+  \end{equation*}
+$$
+
+  and
+
+$$
+\begin{equation*}
+  m_j'=m_j-\delta m,
+  \end{equation*}
+$$
+
+  with
+
+$$
+\begin{equation*}
+  \delta m=(1-\lambda)(\epsilon m_j-(1-\epsilon)m_i),
+  \end{equation*}
+$$
+
+  showing how money is conserved during a transaction.
+  Select values of \( \lambda =0.25,0.5 \) and \( \lambda=0.9 \) and try to extract the corresponding
+  equilibrium distributions and compare these with the Gibbs distribution. Comment your results.
+Extract a parametrization of the above curves, see for example <a href="http://www.sciencedirect.com/science/article/pii/S0378437104004327" target="_blank">Patriarca and collaborators</a> and see if you can parametrize the high-end tails of the distributions in terms of power laws. Comment your results.
+
+<h3 id="___sec4">Project 5d): Nearest neighbor interactions   </h3>
+
+In the rest of this project we will follow the work of <a href="http://www.sciencedirect.com/science/article/pii/S0378437114006967" target="_blank">Goswami and Sen</a>. 
+In the studies above the agents were selected randomly, irrespective of whether we allowed for
+saving or not during a transaction. What is often observed is that various agents tend to make preferences for for whom to interact with. We will now study the evolution of the distribution of wealth \( w_m \) by assuming that there is a likelihood 
+$$
+p_{ij} \propto \vert m_i-m_j\vert^{-\alpha},
+$$
+
+for an interaction between agents \( i \) and \( j \) with respective wealths \( m_i \) and \( m_j \). The parameter  \( \alpha >  0 \). For \( \alpha=0 \) we recover our model from part 5a). 
+Perform the same analysis as previously with \( N=500 \) as well as with \( N=1000 \) agents and study the distribution of wealth for \( \alpha =0.5 \), \( \alpha =1.0 \), \( \alpha =1.5 \) and \( \alpha =2.0 \). 
+You should try to reproduce Figure 1 of <a href="http://www.sciencedirect.com/science/article/pii/S0378437114006967" target="_blank">Goswami and Sen</a>. 
+Extract the tail of the distribution and see if it follows a Pareto distribution
+$$
+w_m\propto m^{-1-\alpha}. 
+$$
+
+What happens if \( \alpha \gg 1 \)?
+
+<p>
+Perform the analysis with and without a saving \( \lambda \) on each transaction and comment your results.
+
+<h3 id="___sec5">Project 5e): Nearest neighbors and former  transactions  </h3>
+
+We add to the previous probability the possibility that two agents who interact have performed similar transactions earlier. That is, in addition to being financially close, we assume that the likelihood for interacting increases if two agents have interacted earlier. 
+We add this feature by modifying the previous likelihood to
+$$
+p_{ij} \propto \vert m_i-m_j\vert^{-\alpha}\left(c_{ij}+1\right)^{\gamma},
+$$
+
+where \( c_{ij} \) represents the number of  previous interactions that have taken place between \( i \) and \( j \). The factor \( 1 \) is added in order to ensure that if they have not interacted earlier they can still interact.  Perform similar studies as above with \( N=1000 \), \( \alpha=1.0 \) and \( \alpha=2.0 \) using \( \gamma = 0.0, 1.0, 2.0, 3.0 \) and \( 4.0 \). Plot the wealth distributions for these cases and try to extract eventual power law tails with and without a saving \( \lambda \) in each transaction. Comment your results and compare them with figures 5 and 6 of <a href="http://www.sciencedirect.com/science/article/pii/S0378437114006967" target="_blank">Goswami and Sen</a>.
+
+<p>
+Finally, (this part is optional) if you have time, which features would you add to these models in order to make them even more realistic?
+
+<h2 id="___sec6">Background literature </h2>
+
+<ul>
+  <li> <a href="http://www.institutcoppet.org/2012/05/08/cours-deconomie-politique-1896-de-vilfredo-pareto" target="_blank">V. Pareto, Cours d'economie politique, Lausanne, 1897</a>.</li>
+  <li> <a href="http://www.sciencedirect.com/science/article/pii/S0378437104004327" target="_blank">M. Patriarca, A. Chakraborti, K. Kaski, Physica A <b>340</b>, 334 (2004)</a>.</li>
+  <li> <a href="http://www.sciencedirect.com/science/article/pii/S0378437114006967" target="_blank">S. Goswami and P. Sen, Physica A <b>415</b>, 514 (2014)</a>.</li>
+</ul>
+
+<h2 id="___sec7">Introduction to numerical projects </h2>
+
+<p>
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+<ul>
+  <li> Give a short description of the nature of the problem and the eventual  numerical methods you have used.</li>
+  <li> Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.</li>
+  <li> Include the source code of your program. Comment your program properly.</li>
+  <li> If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.</li>
+  <li> Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.</li>
+  <li> Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.</li>
+  <li> Try to give an interpretation of you results in your answers to  the problems.</li>
+  <li> Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.</li>
+  <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
+</ul>
+
+<h2 id="___sec8">Format for electronic delivery of report and programs </h2>
+
+<p>
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+<ul>
+  <li> Use Devilry to hand in your projects, log in  at  <a href="http://devilry.ifi.uio.no" target="_blank"><tt>http://devilry.ifi.uio.no</tt></a> with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.</li>
+  <li> Upload <b>only</b> the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.</li>
+  <li> In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parametxers.</li>
+  <li> In this and all later projects, you should include tests (for example unit tests) of your code(s).</li>
+  <li> Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.</li>
+</ul>
+
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. For this specific report you can  hand in a common report.
+
+<p>
+
+<!-- ------------------- end of main content --------------- -->
+
+
+</body>
+</html>
+    
+
