@@ -126,7 +126,7 @@ ${text_types(ch)}
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project4/ipynb/Project4.ipynb"
 
-=== Project 5 Wave equation (Ross waves), deadline December 13 ===
+=== Project 5 Wave equation (Ross waves), deadline December 15 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/WaveEquation/pdf/WaveEquation.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/WaveEquation/pdf/WaveEquation.pdf"
@@ -135,7 +135,7 @@ ${text_types(ch)}
    * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/WaveEquation/html/WaveEquation-bs.html"
 
 
-=== Project 5 Diffusion equation, deadline December 13 ===
+=== Project 5 Diffusion equation, deadline December 15 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/DiffusionEquation/pdf/DiffusionEquation.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/DiffusionEquation/pdf/DiffusionEquation.pdf"
@@ -146,7 +146,7 @@ ${text_types(ch)}
 
 
 
-=== Project 5 Variational Monte Carlo, deadline December 13 ===
+=== Project 5 Variational Monte Carlo, deadline December 15 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.pdf"
@@ -157,18 +157,18 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/QuantumMonteCarlo/ipynb/QuantumMonteCarlo.ipynb"
 
 
-=== Project 5 Molecular Dynamics, deadline December 13 ===
+=== Project 5 Solar System, deadline December 15 ===
  * LaTeX and PDF:
-     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/MolecularDynamics/pdf/MolecularDynamics.tex"
-     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/MolecularDynamics/pdf/MolecularDynamics.pdf"
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/SolarSystem/pdf/SolarSystem.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/SolarSystem/pdf/SolarSystem.pdf"
  * HTML:
-   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/MolecularDynamics/html/MolecularDynamics.html"
-   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/MolecularDynamics/html/MolecularDynamics-bs.html"
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/SolarSystem/html/SolarSystem.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/SolarSystem/html/SolarSystem-bs.html"
  * iPython notebook:
-   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/MolecularDynamics/ipynb/MolecularDynamics.ipynb"
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/SolarSystem/ipynb/SolarSystem.ipynb"
 
 
-=== Project 5 Monte Carlo Modeling of Transactions, deadline December 13 ===
+=== Project 5 Monte Carlo Modeling of Transactions, deadline December 15 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/FinancialEngineering/pdf/FinancialEngineering.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/FinancialEngineering/pdf/FinancialEngineering.pdf"
@@ -178,7 +178,7 @@ ${text_types(ch)}
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/FinancialEngineering/ipynb/FinancialEngineering.ipynb"
 
-=== Project 5 Disease modeling, deadline December 13 ===
+=== Project 5 Disease modeling, deadline December 15 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/DiseaseModeling/pdf/DiseaseModeling.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/DiseaseModeling/pdf/DiseaseModeling.pdf"
@@ -187,6 +187,17 @@ ${text_types(ch)}
    * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/DiseaseModeling/html/DiseaseModeling-bs.html"
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/DiseaseModeling/ipynb/DiseaseModeling.ipynb"
+
+
+=== Project 5 Ising model for modeling elections, deadline December 15 ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/IsingSocial/pdf/IsingSocial.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/IsingSocial/pdf/IsingSocial.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/IsingSocial/html/IsingSocial.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/IsingSocial/html/IsingSocial-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2019/Project5/IsingSocial/ipynb/IsingSocial.ipynb"
 
 
 
