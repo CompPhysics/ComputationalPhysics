@@ -25,7 +25,7 @@ inline int periodic(int i, int limit, int add) {
 // Function to initialise energy and magnetization
 void initialize(int, int **, double&, double&);
 // The metropolis algorithm 
-void Metropolis(int, long&, int **, double&, double&, double *);
+void Metropolis(int, int **, double&, double&, double *);
 // prints to file the results of the calculations  
 void output(int, int, double, double, double, double, double, double);
 //  Matrix memory allocation
@@ -41,7 +41,7 @@ double ran2(long *);
 int main(int argc, char* argv[])
 {
   char *outfilename;
-  long idum;
+
   int **spin_matrix, n_spins, mcs;
   double w[17], initial_temp, final_temp, E, M, temp_step;
 
@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
     outfilename=argv[1];
     ofile.open(outfilename); 
   }
-  n_spins = 20; mcs = 1000000;  initial_temp = 2.1; final_temp = 2.4; temp_step =0.05;
+  n_spins = 2; mcs = 100000;  initial_temp = 1.0; final_temp = 2.4; temp_step =0.1;
   cout << "  C++/OpenMP version" << endl;
   cout << "  Ising model with OpenMP" << endl;
   int thread_num = omp_get_max_threads ( );
@@ -66,7 +66,7 @@ int main(int argc, char* argv[])
   spin_matrix = (int**) matrix(n_spins, n_spins, sizeof(int));
   // every node has its own seed for the random numbers, this is important else
   // if one starts with the same seed, one ends with the same random numbers
-  idum = -1;  // random starting point
+
   // Start Monte Carlo sampling by looping over T first
   for ( double temperature = initial_temp; temperature <= final_temp; temperature+=temp_step){
     //    initialise energy and magnetization 
@@ -79,14 +79,14 @@ int main(int argc, char* argv[])
     int cycles; 
     // start Monte Carlo computation and parallel region
     double totalE, totalM, Mabs, totalE2, totalM2;    
-# pragma omp parallel default(shared) private (cycles, E, M) reduction(+:totalE,totalM,totalE2,totalM2,Mabs)
+# pragma omp parallel default(shared) private (cycles, E, M) reduction(+:totalE)//,totalM,totalE2,totalM2,Mabs)
     E = M = 0.;
-    totalE = totalM = Mabs = totalE2 = totalM2 = 0.0;
+    totalE = 0.0; totalM = Mabs = totalE2 = totalM2 = 0.0;
 # pragma omp for 
     for (cycles = 1; cycles <= mcs; cycles++){
-      Metropolis(n_spins, idum, spin_matrix, E, M, w);
+      Metropolis(n_spins, spin_matrix, E, M, w);
       // update expectation values
-      totalE += E;    totalE2 += E*E;
+      totalE += E; totalE2 += E*E;
       totalM += M;    totalM2 += M*M; Mabs += fabs(M);
     }
     output(n_spins, mcs, temperature, totalE, totalM, Mabs, totalE2, totalM2);
@@ -119,8 +119,10 @@ void initialize(int n_spins, int **spin_matrix,
   }
 }// end function initialise
 
-void Metropolis(int n_spins, long& idum, int **spin_matrix, double& E, double&M, double *w)
+void Metropolis(int n_spins, int **spin_matrix, double& E, double&M, double *w)
 {
+  long idum;
+  idum = -1;  // random starting point
   // loop over all spins
   for(int y =0; y < n_spins; y++) {
     for (int x= 0; x < n_spins; x++){

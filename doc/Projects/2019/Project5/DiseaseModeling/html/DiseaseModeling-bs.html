@@ -1,0 +1,505 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Project 5, deadline  December 15, 2019">
+
+<title>Project 5, deadline  December 15, 2019</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Theoretical background and description of the system',
+               2,
+               None,
+               '___sec0'),
+              ('Part a) setting up the differential equations',
+               3,
+               None,
+               '___sec1'),
+              ('Part b), moving to a Monte Carlo simulation',
+               3,
+               None,
+               '___sec2'),
+              ('Part c) Improvements, vital dynamics', 3, None, '___sec3'),
+              ('Part d) Seasonal Variation', 3, None, '___sec4'),
+              ('Part e) Vaccination', 3, None, '___sec5'),
+              ('Introduction to numerical projects', 2, None, '___sec6'),
+              ('Format for electronic delivery of report and programs',
+               2,
+               None,
+               '___sec7')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="DiseaseModeling-bs.html">Project 5, deadline  December 15, 2019</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Theoretical background and description of the system</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Part a) setting up the differential equations</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Part b), moving to a Monte Carlo simulation</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Part c) Improvements, vital dynamics</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Part d) Seasonal Variation</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Part e) Vaccination</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;"><b>Introduction to numerical projects</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;"><b>Format for electronic delivery of report and programs</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0000"></a>
+<!-- ------------------- main content ---------------------- -->
+
+
+
+<div class="jumbotron">
+<center><h1>Project 5, deadline  December 15, 2019</h1></center>  <!-- document title -->
+
+<p>
+<!-- author(s): Disease Modeling -->
+
+<center>
+<b>Disease Modeling</b> 
+</center>
+
+<p>
+<!-- institution(s) -->
+
+<br>
+<p>
+<center><h4>Fall semester 2019</h4></center> <!-- date -->
+<br>
+<p>
+</div> <!-- end jumbotron -->
+
+<h2 id="___sec0" class="anchor">Theoretical background and description of the system </h2>
+
+<p>
+The goal of this project was to develop a Monte Carlo simulation of
+the spread of an infectious disease. The classical SIRS model of
+epidemiology was studied and used to develop the necessary transition
+probabilities for the simulation. Interpreting the simulation requires
+a thorough understanding of the SIRS model, so a deterministic
+approach was used in conjunction with the Monte Carlo methods.
+
+<p>
+The main purpose of creating such a simulation is to investigate how a
+disease spreads throughout a given population over time. Then we can
+make predictions about whether or not a certain disease has the
+capacity to establish itself within the population, i.e. a fraction of
+the population remains infected after the system reaches
+equilibrium.
+
+<p>
+The <a href="https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology" target="_self">SIRS model</a> considers an isolated population of \( N \) people which are divided into three separate groups: 
+
+<ul>
+  <li> Susceptible (S): those without immunity to the disease,</li>
+  <li> Infected (I): those who are currently infected with the disease,</li>
+  <li> Recovered (R): those who have been infected in the past and have developed an immunity to the disease.</li>
+</ul>
+
+A person can move from one group to another only in the cyclic order
+suggested by the name of the model 
+\( S\rightarrow I \rightarrow R\rightarrow S \). 
+The rate of transmission \( a \), the rate of recovery \( b \)
+and the rate of immunity loss \( c \) help describe the flow of people
+moving between the three groups. The population is assumed to mix
+homogeneously and total population is assumed to remain constant so
+that
+
+$$
+\begin{equation}
+N = S(t)+I(t)+R(t).
+\tag{1}
+\end{equation}
+$$
+
+<p>
+For the simple case, we will assume that the dynamics of the epidemic
+occur during a time scale much smaller than the average person's
+lifetime. Hence the effect of the birth and death rate of the
+population is ignored.
+
+<p>
+From these assumptions, a set of coupled differential equations can be constructed to form the classical SIRS model:
+
+$$
+\begin{equation}
+\begin{split}
+S'&=cR-\frac{aSI}{N}\\
+I'&=\frac{aSI}{N}-bI\\
+R'&=bI-cR\\
+\end{split}
+\tag{2}
+\end{equation}
+$$
+
+<p>
+Note that for small populations, one may choose to write \( aSI \) instead
+of \( \frac{aSI}{N} \) since the number of susceptibles which become
+infected depend more on the absolute number of infected people rather
+than the infected fraction of the population.
+
+<p>
+Though this set does not have analytic solutions like the
+closely-related SIR model, the equilibrium solutions are simple to
+obtain. The constraint in (1) reduces this three dimensional system
+into a two dimensional one so that the equation for \( R' \) can just be
+omitted:
+
+$$
+\begin{equation}
+\begin{split}
+S'&=c(N-S-I)-\frac{aSI}{N}\\
+I'&=\frac{aSI}{N}-bI\\
+\end{split}
+\tag{3}
+\end{equation}
+$$
+
+<p>
+The steady state is found by setting both equations in (3) equal to
+zero. Let \( s \), \( i \), and \( r \) denote the fractions of people in \( S \),
+\( I \), and \( R \), respectively. Then the fractions of people in each group
+at equilibrium are:
+
+$$
+\begin{equation}
+\begin{split}
+s^* &= \frac{b}{a},\\
+i^* &= \frac{1-\frac{b}{a}}{1+\frac{b}{c}},\\
+r^* &= \frac{b}{c}\frac{1-\frac{b}{a}}{1+\frac{b}{c}}.
+\end{split}
+\tag{4}
+\end{equation}
+$$
+
+<p>
+Here, the asterisk (\( ^* \)) signifies that these fractions are at
+equilibrium. Notice that each fraction must be a number between 0 and
+1, and that the three fractions must add up to 1. Thus the equations
+in (4) suggest that the rate of recovery \( b \) must be less than the
+rate of transmission \( a \) for the number of infected people at
+equilibrium to be greater than zero. In other words, the disease
+establishes itself in the population only if \( b < a \).
+
+<p>
+<b>For this project you can collaborate with fellow students and you can  hand in a common report.</b>
+This project (together with projects 3 and 4) counts 1/3 of the final mark.
+
+<h3 id="___sec1" class="anchor">Part a) setting up the differential equations </h3>
+
+<p>
+We will create four different populations to investigate the effect of
+increasing the rate of recovery \( b \) and crossing the "threshold". Each
+population consists of 400 people, 100 of which were initially
+infected and 300 of which were initially susceptible. We fix the  rate of
+transmission \( a \) and the rate of immunity loss \( c \) 
+between populations, but let the rate of recovery \( b \) be varied because
+it is the one parameter which can be reasonably controlled by the
+actions of human society (access to health care, development of new
+medicines, etc). Note that the rates have units of inverse time. 
+The table here lists a possible set of parameters for the four different populations.
+
+<p>
+
+<div class="row">
+  <div class="col-xs-5">
+    <table class="table table-striped table-hover table-condensed">
+<thead>
+<tr><td align="center"><b><b>Rate</b></b></td> <td align="center"><b><b>A</b></b></td> <td align="center"><b><b>B</b></b></td> <td align="center"><b><b>C</b></b></td> <td align="center"><b><b>D</b></b></td> </tr>
+</thead>
+<tbody>
+<tr><td align="center">   a              </td> <td align="center">   4           </td> <td align="center">   4           </td> <td align="center">   4           </td> <td align="center">   4           </td> </tr>
+<tr><td align="center">   b              </td> <td align="center">   1           </td> <td align="center">   2           </td> <td align="center">   3           </td> <td align="center">   4           </td> </tr>
+<tr><td align="center">   c              </td> <td align="center">   0.5         </td> <td align="center">   0.5         </td> <td align="center">   0.5         </td> <td align="center">   0.5         </td> </tr>
+</tbody>
+    </table>
+  </div> <!-- col-xs-5 -->
+</div> <!-- cell row -->
+<p>
+The rates of transmission are given by the parameter \( a \), recovery by \( b \), and immunity loss \( c \) for populations \( A \), \( B \), \( C \), and \( D \).
+
+<p>
+We treat the population as a continuous variable. Develop a Runge-Kutta fourth order code
+to solve the above equations.
+
+<p>
+Discuss your results and present your interpreations.
+
+<h3 id="___sec2" class="anchor">Part b), moving to a Monte Carlo simulation </h3>
+
+<p>
+The set of differential equations in (2) inherently assume that \( S \),
+\( I \), and \( R \) are continuous variables, when they are discrete in
+reality. We can use the idea of randomness to remedy this issue by
+defining a set of transition probabilities for the possible moves a
+person can take from one state to another: \( S\rightarrow I \), \( I
+\rightarrow R \), and \( R \rightarrow S \). To obtain the specific values
+for each probability, we first notice from (2) that in a small time
+step \( \Delta t \), the number of people moving from \( S \) to \( I \) is
+approximately \( \frac{aSI}{N}\Delta t \). Likewise, about \( bI\Delta t \)
+move from \( I \) to \( R \) and \( cR\Delta t \) move from \( R \) to \( S \).
+
+<p>
+Now we let \( \Delta t \) be small enough so that <em>at most</em> one person moves from a given group to another. Since
+
+$$
+\begin{equation}
+\begin{split}
+&\max \Big\{ \frac{aSI}{N}\Delta t \Big\} = \frac{a}{N}\left(\frac{N}{2}\right)^2\Delta t=\frac{aN}{4}\Delta t,\\
+&\max \Big\{ bI\Delta t \Big\} = bN\Delta t,\\
+&\max \Big\{ cR\Delta t \Big\} = cN\Delta t,\\
+\end{split}
+\tag{5}
+\end{equation}
+$$
+
+the time step is then given by
+
+$$
+\begin{equation}
+\Delta t = \min \Big\{ \frac{4}{aN}, \frac{1}{bN}, \frac{1}{cN} \Big\}.
+\tag{6}
+\end{equation}
+$$
+
+This construction allows us to reinterpret the values \( \frac{aSI}{N}\Delta t \), \( bI\Delta t \), and \( cR\Delta t \) as transition probabilties:
+
+$$
+\begin{equation}
+\begin{split}
+P(S\rightarrow I) &= \frac{aSI}{N}\Delta t,\\
+P(I \rightarrow R) &= bI\Delta t,\\
+P(R \rightarrow S) &= cR\Delta t.\\
+\end{split}
+\tag{7}
+\end{equation}
+$$
+
+For each possible move, a random number between 0 and 1 is generated. If the number is less than the probability for the move, the move is taken.
+
+<p>
+Develop now a Monte Carlo algorithm which implements the last
+equations using the same parameters \( N \), \( a \), \( b \), and \( c \) for each
+population. Compare your results to those obtained with the
+deterministic differential equation solver and discuss your findings.
+
+<p>
+You will need to find the
+fraction of people when the system has been equilibrated.  You will
+need to find the equlibrium expectation values and corresonding
+standard deviations.
+
+<h3 id="___sec3" class="anchor">Part c) Improvements, vital dynamics </h3>
+
+<p>
+The same principles used in this simple model can be extended to
+include more details about the population and disease.
+
+<p>
+For instance, vital dynamics can be easily added to the system so that
+the model can describe the spread of diseases which occur over longer
+stretches of time. If \( b \) is the birth rate, \( d \) is the death rate,
+and \( d_I \) is the death rate of infected people due to the disease,
+then the modified differential equations are given by:
+
+$$
+\begin{equation}
+\begin{split}
+S'&=cR-\frac{aSI}{N}-dS+eN\\
+I'&=\frac{aSI}{N}-bI-dI-d_I I\\
+R'&=bI-cR-dR\\
+\end{split}
+\tag{8}
+\end{equation}
+$$
+
+Here, we have assumed that all the babies born into the population are initially susceptible.
+
+<p>
+Add now these additions to your ODE solver and Monte Carlo solver and discuss the results.
+
+<h3 id="___sec4" class="anchor">Part d) Seasonal Variation </h3>
+
+<p>
+For diseases such as influenza, the rate of transmission depends
+largely on the time of year. During the colder months, individuals are
+more likely to spend time in closer proximity to one another,
+resulting in a rate of transmission which oscillates. So we can let
+\( a \) be given by
+
+$$
+\begin{equation}
+a(t)=Acos(\omega t) + a_0,
+\tag{9}
+\end{equation}
+$$
+
+<p>
+where \( a_0 \) is the average transmission rate, \( A \) is the maximum
+deviation from \( a_0 \), and \( \omega \) is the frequency of oscillation.
+Study the the effect of seasonal variations as well, with both the ODE
+and Monte Carlo solver. Try different values of the above new
+parameters and discuss your results.
+
+<h3 id="___sec5" class="anchor">Part e) Vaccination </h3>
+
+<p>
+Diseases with available vaccinations allow people to move directly
+from \( S \) to \( R \), breaking the cyclic structure of the SIRS model. We
+assume that a susceptible individual's choice to become vaccinated
+does not depend on how many other susceptibles are vaccinated. We may,
+however, assume that the rate of vaccination \( f \) can depend on the
+time, since this rate may oscillate during the course of a year and/or
+increase as awareness and medical research increases. Then the system
+of differential equations become
+
+$$
+\begin{equation}
+\begin{split}
+S'&=cR-\frac{aSI}{N}-f\\
+I'&=\frac{aSI}{N}-bI\\
+R'&=bI-cR+f\\
+\end{split}
+\tag{10}
+\end{equation}
+$$
+
+<p>
+Add now the effect of vaccination via the parameter \( f \) and discuss
+again your results.  Play around with different values of the
+parameter \( f \).
+
+<h2 id="___sec6" class="anchor">Introduction to numerical projects </h2>
+
+<p>
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+<ul>
+  <li> Give a short description of the nature of the problem and the eventual  numerical methods you have used.</li>
+  <li> Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.</li>
+  <li> Include the source code of your program. Comment your program properly.</li>
+  <li> If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.</li>
+  <li> Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.</li>
+  <li> Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.</li>
+  <li> Try to give an interpretation of you results in your answers to  the problems.</li>
+  <li> Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.</li>
+  <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
+</ul>
+
+<h2 id="___sec7" class="anchor">Format for electronic delivery of report and programs </h2>
+
+<p>
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+<ul>
+  <li> Use Devilry to hand in your projects, log in  at  <a href="http://devilry.ifi.uio.no" target="_self"><tt>http://devilry.ifi.uio.no</tt></a> with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.</li>
+  <li> Upload <b>only</b> the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.</li>
+  <li> In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parametxers.</li>
+  <li> In this and all later projects, you should include tests (for example unit tests) of your code(s).</li>
+  <li> Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.</li>
+</ul>
+
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. For this specific report you can  hand in a common report.
+
+<p>
+
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+  <li class="active"><a href="._DiseaseModeling-bs000.html">1</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+</body>
+</html>
+    
+

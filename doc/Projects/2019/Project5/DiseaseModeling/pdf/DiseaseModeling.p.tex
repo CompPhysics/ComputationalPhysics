@@ -1,0 +1,439 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Project 5, deadline  December 15, 2019
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf Disease Modeling${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+
+% --- begin date ---
+\begin{center}
+Fall semester 2019
+\end{center}
+% --- end date ---
+
+\vspace{1cm}
+
+
+\subsection{Theoretical background and description of the system}
+
+The goal of this project was to develop a Monte Carlo simulation of
+the spread of an infectious disease. The classical SIRS model of
+epidemiology was studied and used to develop the necessary transition
+probabilities for the simulation. Interpreting the simulation requires
+a thorough understanding of the SIRS model, so a deterministic
+approach was used in conjunction with the Monte Carlo methods. 
+
+The main purpose of creating such a simulation is to investigate how a
+disease spreads throughout a given population over time. Then we can
+make predictions about whether or not a certain disease has the
+capacity to establish itself within the population, i.e.~a fraction of
+the population remains infected after the system reaches
+equilibrium. 
+
+
+The \href{{https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology}}{SIRS model} considers an isolated population of $N$ people which are divided into three separate groups: 
+
+\begin{itemize}
+  \item Susceptible (S): those without immunity to the disease,
+
+  \item Infected (I): those who are currently infected with the disease,
+
+  \item Recovered (R): those who have been infected in the past and have developed an immunity to the disease.
+\end{itemize}
+
+\noindent
+A person can move from one group to another only in the cyclic order
+suggested by the name of the model 
+$S\rightarrow I \rightarrow R\rightarrow S$. 
+The rate of transmission $a$, the rate of recovery $b$
+and the rate of immunity loss $c$ help describe the flow of people
+moving between the three groups. The population is assumed to mix
+homogeneously and total population is assumed to remain constant so
+that
+
+\begin{equation}
+N = S(t)+I(t)+R(t).
+\end{equation}
+
+For the simple case, we will assume that the dynamics of the epidemic
+occur during a time scale much smaller than the average person's
+lifetime. Hence the effect of the birth and death rate of the
+population is ignored.
+
+From these assumptions, a set of coupled differential equations can be constructed to form the classical SIRS model:
+
+\begin{equation}
+\begin{split}
+S'&=cR-\frac{aSI}{N}\\
+I'&=\frac{aSI}{N}-bI\\
+R'&=bI-cR\\
+\end{split}
+\end{equation}
+
+Note that for small populations, one may choose to write $aSI$ instead
+of $\frac{aSI}{N}$ since the number of susceptibles which become
+infected depend more on the absolute number of infected people rather
+than the infected fraction of the population.
+
+Though this set does not have analytic solutions like the
+closely-related SIR model, the equilibrium solutions are simple to
+obtain. The constraint in (1) reduces this three dimensional system
+into a two dimensional one so that the equation for $R'$ can just be
+omitted:
+
+\begin{equation}
+\begin{split}
+S'&=c(N-S-I)-\frac{aSI}{N}\\
+I'&=\frac{aSI}{N}-bI\\
+\end{split}
+\end{equation}
+
+The steady state is found by setting both equations in (3) equal to
+zero. Let $s$, $i$, and $r$ denote the fractions of people in $S$,
+$I$, and $R$, respectively. Then the fractions of people in each group
+at equilibrium are:
+
+\begin{equation}
+\begin{split}
+s^* &= \frac{b}{a},\\
+i^* &= \frac{1-\frac{b}{a}}{1+\frac{b}{c}},\\
+r^* &= \frac{b}{c}\frac{1-\frac{b}{a}}{1+\frac{b}{c}}.
+\end{split}
+\end{equation}
+
+Here, the asterisk ($^*$) signifies that these fractions are at
+equilibrium. Notice that each fraction must be a number between 0 and
+1, and that the three fractions must add up to 1. Thus the equations
+in (4) suggest that the rate of recovery $b$ must be less than the
+rate of transmission $a$ for the number of infected people at
+equilibrium to be greater than zero. In other words, the disease
+establishes itself in the population only if $b<a$. 
+
+
+\textbf{For this project you can collaborate with fellow students and you can  hand in a common report.}
+This project (together with projects 3 and 4) counts 1/3 of the final mark.
+
+
+\paragraph{Part a) setting up the differential equations.}
+We will create four different populations to investigate the effect of
+increasing the rate of recovery $b$ and crossing the "threshold". Each
+population consists of 400 people, 100 of which were initially
+infected and 300 of which were initially susceptible. We fix the  rate of
+transmission $a$ and the rate of immunity loss $c$ 
+between populations, but let the rate of recovery $b$ be varied because
+it is the one parameter which can be reasonably controlled by the
+actions of human society (access to health care, development of new
+medicines, etc). Note that the rates have units of inverse time. 
+The table here lists a possible set of parameters for the four different populations.
+
+
+\begin{quote}
+\begin{tabular}{ccccc}
+\hline
+\multicolumn{1}{c}{ \textbf{Rate} } & \multicolumn{1}{c}{ \textbf{A} } & \multicolumn{1}{c}{ \textbf{B} } & \multicolumn{1}{c}{ \textbf{C} } & \multicolumn{1}{c}{ \textbf{D} } \\
+\hline
+a             & 4          & 4          & 4          & 4          \\
+b             & 1          & 2          & 3          & 4          \\
+c             & 0.5        & 0.5        & 0.5        & 0.5        \\
+\hline
+\end{tabular}
+\end{quote}
+
+\noindent
+The rates of transmission are given by the parameter $a$, recovery by $b$, and immunity loss $c$ for populations $A$, $B$, $C$, and $D$.
+
+We treat the population as a continuous variable. Develop a Runge-Kutta fourth order code
+to solve the above equations.
+
+Discuss your results and present your interpreations.
+
+\paragraph{Part b), moving to a Monte Carlo simulation.}
+The set of differential equations in (2) inherently assume that $S$,
+$I$, and $R$ are continuous variables, when they are discrete in
+reality. We can use the idea of randomness to remedy this issue by
+defining a set of transition probabilities for the possible moves a
+person can take from one state to another: $S\rightarrow I$, $I
+\rightarrow R$, and $R \rightarrow S$. To obtain the specific values
+for each probability, we first notice from (2) that in a small time
+step $\Delta t$, the number of people moving from $S$ to $I$ is
+approximately $\frac{aSI}{N}\Delta t$. Likewise, about $bI\Delta t$
+move from $I$ to $R$ and $cR\Delta t$ move from $R$ to $S$. 
+
+Now we let $\Delta t$ be small enough so that \emph{at most} one person moves from a given group to another. Since
+
+\begin{equation}
+\begin{split}
+&\max \Big\{ \frac{aSI}{N}\Delta t \Big\} = \frac{a}{N}\left(\frac{N}{2}\right)^2\Delta t=\frac{aN}{4}\Delta t,\\
+&\max \Big\{ bI\Delta t \Big\} = bN\Delta t,\\
+&\max \Big\{ cR\Delta t \Big\} = cN\Delta t,\\
+\end{split}
+\end{equation}
+the time step is then given by
+
+\begin{equation}
+\Delta t = \min \Big\{ \frac{4}{aN}, \frac{1}{bN}, \frac{1}{cN} \Big\}.
+\end{equation}
+This construction allows us to reinterpret the values $\frac{aSI}{N}\Delta t$, $bI\Delta t$, and $cR\Delta t$ as transition probabilties:
+
+\begin{equation}
+\begin{split}
+P(S\rightarrow I) &= \frac{aSI}{N}\Delta t,\\
+P(I \rightarrow R) &= bI\Delta t,\\
+P(R \rightarrow S) &= cR\Delta t.\\
+\end{split}
+\end{equation}
+For each possible move, a random number between 0 and 1 is generated. If the number is less than the probability for the move, the move is taken.
+
+Develop now a Monte Carlo algorithm which implements the last
+equations using the same parameters $N$, $a$, $b$, and $c$ for each
+population. Compare your results to those obtained with the
+deterministic differential equation solver and discuss your findings. 
+
+You will need to find the
+fraction of people when the system has been equilibrated.  You will
+need to find the equlibrium expectation values and corresonding
+standard deviations.
+
+\paragraph{Part c) Improvements, vital dynamics.}
+The same principles used in this simple model can be extended to
+include more details about the population and disease.  
+
+For instance, vital dynamics can be easily added to the system so that
+the model can describe the spread of diseases which occur over longer
+stretches of time. If $b$ is the birth rate, $d$ is the death rate,
+and $d_I$ is the death rate of infected people due to the disease,
+then the modified differential equations are given by:
+
+\begin{equation}
+\begin{split}
+S'&=cR-\frac{aSI}{N}-dS+eN\\
+I'&=\frac{aSI}{N}-bI-dI-d_I I\\
+R'&=bI-cR-dR\\
+\end{split}
+\end{equation}
+Here, we have assumed that all the babies born into the population are initially susceptible. 
+
+Add now these additions to your ODE solver and Monte Carlo solver and discuss the results. 
+
+\paragraph{Part d) Seasonal Variation.}
+For diseases such as influenza, the rate of transmission depends
+largely on the time of year. During the colder months, individuals are
+more likely to spend time in closer proximity to one another,
+resulting in a rate of transmission which oscillates. So we can let
+$a$ be given by
+
+\begin{equation}
+a(t)=Acos(\omega t) + a_0,
+\end{equation}
+
+where $a_0$ is the average transmission rate, $A$ is the maximum
+deviation from $a_0$, and $\omega$ is the frequency of oscillation.
+Study the the effect of seasonal variations as well, with both the ODE
+and Monte Carlo solver. Try different values of the above new
+parameters and discuss your results.
+
+\paragraph{Part e) Vaccination.}
+Diseases with available vaccinations allow people to move directly
+from $S$ to $R$, breaking the cyclic structure of the SIRS model. We
+assume that a susceptible individual's choice to become vaccinated
+does not depend on how many other susceptibles are vaccinated. We may,
+however, assume that the rate of vaccination $f$ can depend on the
+time, since this rate may oscillate during the course of a year and/or
+increase as awareness and medical research increases. Then the system
+of differential equations become
+
+\begin{equation}
+\begin{split}
+S'&=cR-\frac{aSI}{N}-f\\
+I'&=\frac{aSI}{N}-bI\\
+R'&=bI-cR+f\\
+\end{split}
+\end{equation}
+
+Add now the effect of vaccination via the parameter $f$ and discuss
+again your results.  Play around with different values of the
+parameter $f$.
+
+
+\subsection{Introduction to numerical projects}
+
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+\begin{itemize}
+  \item Give a short description of the nature of the problem and the eventual  numerical methods you have used.
+
+  \item Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.
+
+  \item Include the source code of your program. Comment your program properly.
+
+  \item If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.
+
+  \item Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.
+
+  \item Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
+
+  \item Try to give an interpretation of you results in your answers to  the problems.
+
+  \item Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.
+
+  \item Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.
+\end{itemize}
+
+\noindent
+\subsection{Format for electronic delivery of report and programs}
+
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+\begin{itemize}
+  \item Use Devilry to hand in your projects, log in  at  \href{{http://devilry.ifi.uio.no}}{\nolinkurl{http://devilry.ifi.uio.no}} with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.
+
+  \item Upload \textbf{only} the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.
+
+  \item In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parametxers.
+
+  \item In this and all later projects, you should include tests (for example unit tests) of your code(s).
+
+  \item Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.
+\end{itemize}
+
+\noindent
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. For this specific report you can  hand in a common report.
+
+
+
+
+
+
+
+
+
+
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+
