@@ -13,6 +13,8 @@
 #include <fstream>
 #include <iomanip>
 #include <cstdlib>
+#include <random>
+#define NUM_THREADS 4
 using namespace  std;
 
 // output file
@@ -33,8 +35,13 @@ void output(int, int, double, double, double, double, double, double);
 void  **matrix(int, int, int);
 //  free space for  a matrix
 void free_matrix(void **);
-// ran2 for uniform deviates, initialize with negative seed.
-double ran2(long *);
+
+minstd_rand0 generator;
+
+inline double ran(){
+        //return ((double) generator())/2147483647;
+        return ((double) rand()) / RAND_MAX;
+}
 
 // Main program begins here
 
@@ -57,9 +64,9 @@ int main(int argc, char* argv[])
   n_spins = 2; mcs = 100000;  initial_temp = 1.0; final_temp = 2.4; temp_step =0.1;
   cout << "  C++/OpenMP version" << endl;
   cout << "  Ising model with OpenMP" << endl;
-  int thread_num = omp_get_max_threads ( );
+  omp_set_num_threads(NUM_THREADS);
+    //  int thread_num = omp_get_max_threads ( );
   cout << "  The number of processors available = " << omp_get_num_procs ( ) << endl;
-  cout << "  The number of threads available    = " << thread_num <<  endl;
   // defining time and various variables needed for the integration
   double wtime = omp_get_wtime ( );
   //  Allocate memory for spin matrix
@@ -67,6 +74,8 @@ int main(int argc, char* argv[])
   // every node has its own seed for the random numbers, this is important else
   // if one starts with the same seed, one ends with the same random numbers
 
+  srand(time(NULL));
+  generator.seed(time(NULL));
   // Start Monte Carlo sampling by looping over T first
   for ( double temperature = initial_temp; temperature <= final_temp; temperature+=temp_step){
     //    initialise energy and magnetization 
@@ -79,10 +88,9 @@ int main(int argc, char* argv[])
     int cycles; 
     // start Monte Carlo computation and parallel region
     double totalE, totalM, Mabs, totalE2, totalM2;    
-# pragma omp parallel default(shared) private (cycles, E, M) reduction(+:totalE)//,totalM,totalE2,totalM2,Mabs)
-    E = M = 0.;
     totalE = 0.0; totalM = Mabs = totalE2 = totalM2 = 0.0;
-# pragma omp for 
+# pragma omp parallel for default(shared) private (cycles, E, M) reduction(+:totalE,totalM,totalE2,totalM2,Mabs)
+    E = M = 0.;
     for (cycles = 1; cycles <= mcs; cycles++){
       Metropolis(n_spins, spin_matrix, E, M, w);
       // update expectation values
@@ -126,14 +134,14 @@ void Metropolis(int n_spins, int **spin_matrix, double& E, double&M, double *w)
   // loop over all spins
   for(int y =0; y < n_spins; y++) {
     for (int x= 0; x < n_spins; x++){
-      int ix = (int) (ran2(&idum)*(double)n_spins);
-      int iy = (int) (ran2(&idum)*(double)n_spins);
+      int ix = (int) (ran()*(double)n_spins);
+      int iy = (int) (ran()*(double)n_spins);
       int deltaE =  2*spin_matrix[iy][ix]*
 	(spin_matrix[iy][periodic(ix,n_spins,-1)]+
 	 spin_matrix[periodic(iy,n_spins,-1)][ix] +
 	 spin_matrix[iy][periodic(ix,n_spins,1)] +
 	 spin_matrix[periodic(iy,n_spins,1)][ix]);
-      if ( ran2(&idum) <= w[deltaE+8] ) {
+      if ( ran() <= w[deltaE+8] ) {
 	spin_matrix[iy][ix] *= -1;  // flip one spin and accept new spin config
         M += (double) 2*spin_matrix[iy][ix];
         E += (double) deltaE;
@@ -162,85 +170,6 @@ void output(int n_spins, int mcs, double temperature, double totalE, double tota
   ofile << setw(15) << setprecision(8) << Mvariance/temperature;
   ofile << setw(15) << setprecision(8) << Mabstotal_average/n_spins/n_spins << endl;
 } // end output function
-
-/*
-** The function 
-**         ran2()
-** is a long periode (> 2 x 10^18) random number generator of 
-** L'Ecuyer and Bays-Durham shuffle and added safeguards.
-** Call with idum a negative integer to initialize; thereafter,
-** do not alter idum between sucessive deviates in a
-** sequence. RNMX should approximate the largest floating point value
-** that is less than 1.
-** The function returns a uniform deviate between 0.0 and 1.0
-** (exclusive of end-point values).
-*/
-
-#define IM1 2147483563
-#define IM2 2147483399
-#define AM (1.0/IM1)
-#define IMM1 (IM1-1)
-#define IA1 40014
-#define IA2 40692
-#define IQ1 53668
-#define IQ2 52774
-#define IR1 12211
-#define IR2 3791
-#define NTAB 32
-#define NDIV (1+IMM1/NTAB)
-#define EPS 1.2e-7
-#define RNMX (1.0-EPS)
-
-double ran2(long *idum)
-{
-  int            j;
-  long           k;
-  static long    idum2 = 123456789;
-  static long    iy=0;
-  static long    iv[NTAB];
-  double         temp;
-
-  if(*idum <= 0) {
-    if(-(*idum) < 1) *idum = 1;
-    else             *idum = -(*idum);
-    idum2 = (*idum);
-    for(j = NTAB + 7; j >= 0; j--) {
-      k     = (*idum)/IQ1;
-      *idum = IA1*(*idum - k*IQ1) - k*IR1;
-      if(*idum < 0) *idum +=  IM1;
-      if(j < NTAB)  iv[j]  = *idum;
-    }
-    iy=iv[0];
-  }
-  k     = (*idum)/IQ1;
-  *idum = IA1*(*idum - k*IQ1) - k*IR1;
-  if(*idum < 0) *idum += IM1;
-  k     = idum2/IQ2;
-  idum2 = IA2*(idum2 - k*IQ2) - k*IR2;
-  if(idum2 < 0) idum2 += IM2;
-  j     = iy/NDIV;
-  iy    = iv[j] - idum2;
-  iv[j] = *idum;
-  if(iy < 1) iy += IMM1;
-  if((temp = AM*iy) > RNMX) return RNMX;
-  else return temp;
-}
-#undef IM1
-#undef IM2
-#undef AM
-#undef IMM1
-#undef IA1
-#undef IA2
-#undef IQ1
-#undef IQ2
-#undef IR1
-#undef IR2
-#undef NTAB
-#undef NDIV
-#undef EPS
-#undef RNMX
-
-// End: function ran2()
 
 
 /*
