@@ -45,8 +45,8 @@ community can take only two attitudes ($A$ or $B$) then in several
 votes one expects some difference $m$ of voters for $A$ and against.
 We assume three limiting cases:
 
-o all members of the community vote for $A$ (an "all $A$" state),
-o all members of the community vote for $B$ (an "all $B$" state),
+o all members of the community vote for $A$ (an _all_ $A$ state),
+o all members of the community vote for $B$ (an _all_ $B$ state),
 o $50\%$ vote for $A$ and $50\%$ vote for $B$,
 where the latter is meant to  be the stable solutions of our model.
 
