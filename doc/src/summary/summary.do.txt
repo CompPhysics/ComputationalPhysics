@@ -6,7 +6,6 @@ DATE: today
 !split
 ===== What? Me worry? No final exam in this course! =====
 FIGURE: [figures/exam1.jpeg, width=500 frac=0.6]
-FIGURE: [figures/whatmeworry.jpeg, width=500 frac=0.6]
 
 
 !split
@@ -21,7 +20,7 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 !split
 ===== Topics we have covered this year =====
 * Linear algebra and eigenvalue problems. (Lecture notes chapters 6.1-6.5  and 7.1-7.5 and projects 1 and 2).
-* Ordinary differential equations (Lecture notes chapter 8  and projects 3 and 5)
+* Ordinary differential equations (Lecture notes chapter 8  and project 5)
 * Partial differential equations (Lecture notes chapter 10 and project 5)
 * Monte Carlo methods in physics (Lecture notes chapters 11, 12, 13  and 14, projects 4 and 5)
 
@@ -48,11 +47,11 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 !split
 ===== Ordinary differential equations (Chapter 8) =====
 
-* Euler's method and improved Euler's method, truncation errors (project 3)
+* Euler's method and improved Euler's method, truncation errors (project 5)
 * Runge Kutta methods, 2nd and 4th order, truncation errors
-* Verlet algoritm (projects 3 and 5)
-* How to implement and solve a second-order differential equation,  both linear and non-linear (projects 3 and 5).
-* How to make your equations dimensionless (projects 2, 3, 4 and 5).
+* Verlet algoritm (project 5)
+* How to implement and solve a second-order differential equation,  both linear and non-linear (project 5).
+* How to make your equations dimensionless (projects 2, 4 and 5).
 
 !split
 ===== Partial differential equations, chapter 10 =====
@@ -112,12 +111,12 @@ o "Read more here":"https://www.cs.tau.ac.il/~nachumd/horror.html"
 ===== Other courses in Computational Science at UiO =====
 
 !bblock Bachelor/Master/PhD Courses
-  * "INF-MAT4130":"http://www.uio.no/studier/emner/matnat/math/MAT-INF4130/index-eng.html" Numerical linear algebra
+  * "MAT4110":"https://www.uio.no/studier/emner/matnat/math/MAT4110/index-eng.html" Introduction to Numerical Analysis"
   * "MAT3360":"https://www.uio.no/studier/emner/matnat/math/MAT3360/index-eng.html". Introduction to Partial Differential Equations
-  * "INF5620":"http://www.uio.no/studier/emner/matnat/ifi/INF5620/index-eng.html" Numerical methods for PDEs, finite element method
+  * "IN5270":"https://www.uio.no/studier/emner/matnat/ifi/IN5270/index-eng.html" Numerical methods for PDEs, finite element method
   * "FYS4411":"http://www.uio.no/studier/emner/matnat/fys/FYS4411/" Computational physics II (Parallelization (MPI), object orientation, quantum mechanical systems with many interacting particles), spring semester
   * "FYS4460":"http://www.uio.no/studier/emner/matnat/fys/FYS4460/" Computational physics III (Parallelization (MPI), object orientation, classical statistical physics, simulation of phase transitions, spring semester
-  * "INF3331/4331":"http://www.uio.no/studier/emner/matnat/ifi/INF3331/" Problem solving with high-level languages (Python), fall semester
+  * "IN3110/IN4110":"https://www.uio.no/studier/emner/matnat/ifi/IN3110/index.html" Problem solving with high-level languages (Python), fall semester
   * "IN3200/4200":"http://www.uio.no/studier/emner/matnat/ifi/IN4200/index-eng.html", High-Performance Computing and Numerical Projects. Spring semester
 !eblock
 
@@ -126,13 +125,12 @@ o "Read more here":"https://www.cs.tau.ac.il/~nachumd/horror.html"
 ===== New Courses in Computational Science and Data Science  =====
 
 o "STK2100 Machine learning and statistical methods for prediction and classification":"http://www.uio.no/studier/emner/matnat/math/STK2100/index-eng.html". 
-o "IN3050 Introduction to Artificial Intelligence and Machine Learning":"https://www.uio.no/studier/emner/matnat/ifi/IN3050/index-eng.html". Introductory course in machine learning and AI with an algorithmic approach. 
+o "IN3050/IN4050 Introduction to Artificial Intelligence and Machine Learning":"https://www.uio.no/studier/emner/matnat/ifi/IN3050/index-eng.html". Introductory course in machine learning and AI with an algorithmic approach. 
 o "STK-INF3000/4000 Selected Topics in Data Science":"http://www.uio.no/studier/emner/matnat/math/STK-INF3000/index-eng.html". The course provides insight into selected contemporary relevant topics within Data Science. 
 o "IN4080 Natural Language Processing":"https://www.uio.no/studier/emner/matnat/ifi/IN4080/index.html". Probabilistic and machine learning techniques applied to natural language processing. 
 o "STK-IN4300 – Statistical learning methods in Data Science":"https://www.uio.no/studier/emner/matnat/math/STK-IN4300/index-eng.html". An advanced introduction to statistical and machine learning. For students with a good mathematics and statistics background.
-o "INF4490 Biologically Inspired Computing":"http://www.uio.no/studier/emner/matnat/ifi/INF4490/". An introduction to self-adapting methods also called artificial intelligence or machine learning. 
 o "IN-STK5000  Adaptive Methods for Data-Based Decision Making":"https://www.uio.no/studier/emner/matnat/ifi/IN-STK5000/index-eng.html". Methods for adaptive collection and processing of data based on machine learning techniques. 
-o "IN5400/INF5860 – Machine Learning for Image Analysis":"https://www.uio.no/studier/emner/matnat/ifi/IN5400/". An introduction to deep learning with particular emphasis on applications within Image analysis, but useful for other application areas too.
+o "IN5400 Machine Learning for Image Analysis":"https://www.uio.no/studier/emner/matnat/ifi/IN5400/". An introduction to deep learning with particular emphasis on applications within Image analysis, but useful for other application areas too.
 o "TEK5040 – Dyp læring for autonome systemer":"https://www.uio.no/studier/emner/matnat/its/TEK5040/". The course addresses advanced algorithms and architectures for deep learning with neural networks. The course provides an introduction to how deep-learning techniques can be used in the construction of key parts of advanced autonomous systems that exist in physical environments and cyber environments.
 
 !split
@@ -161,7 +159,7 @@ topics that cover several disciplines.
 * Computational Science:  Mechanics
 * Computational Science:  Physics
 
-The thesis projects will be tailored to the student's needs, wishes and scientific background. The projects can easily incorporate topics from more than one discipline.
+The thesis projects will be tailored to the your interests, wishes and scientific background. The projects can easily incorporate topics from more than one discipline.
 
 
 
