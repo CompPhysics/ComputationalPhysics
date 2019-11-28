@@ -19,10 +19,11 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 
 !split
 ===== Topics we have covered this year =====
-* Linear algebra and eigenvalue problems. (Lecture notes chapters 6.1-6.5  and 7.1-7.5 and projects 1 and 2).
+* Linear algebra and eigenvalue problems. (Lecture notes chapters 6.1-6.5  and 7.1-7.5. Projects 1 and 2).
+* Numerical integration, Gaussian quadrature and Monte Carlo integration (Lecture notes chapters 5 and 11 and project 3)
 * Ordinary differential equations (Lecture notes chapter 8  and project 5)
 * Partial differential equations (Lecture notes chapter 10 and project 5)
-* Monte Carlo methods in physics (Lecture notes chapters 11, 12, 13  and 14, projects 4 and 5)
+* Monte Carlo methods (Lecture notes chapters 11, 12, 13  and 14, projects 3, 4 and 5)
 
 !split
 ===== Linear algebra and eigenvalue problems, chapters 6.1-6.5 and 7.1-7.5 =====
@@ -36,12 +37,13 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 * Jacobi's method for finding eigenvalues (project 2)
 
 !split
-===== Monte Carlo methods in physics (Chapters 11, 12 and 13) =====
+===== Monte Carlo methods (Chapters 11, 12 and 13) =====
+* Numerical integration of multidimensional integrals (project 3)
 * Random walks and Markov chains
 * Metropolis algorithm (project 4)
 * Applications to statistical physics systems (project 4)
 * Monte Carlo sampling (project 4 and 5)
-* No applications to quantum mechanical systems with MC methods this year
+* Applications to quantum mechanical systems (project 5)
 
 
 !split
@@ -51,7 +53,7 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 * Runge Kutta methods, 2nd and 4th order, truncation errors
 * Verlet algoritm (project 5)
 * How to implement and solve a second-order differential equation,  both linear and non-linear (project 5).
-* How to make your equations dimensionless (projects 2, 4 and 5).
+* How to make your equations dimensionless (projects 2 and 5).
 
 !split
 ===== Partial differential equations, chapter 10 =====
@@ -60,6 +62,7 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 * Explicit, implicit and Crank-Nicolson schemes, and how to solve them. Remember that they result in triangular matrices (project 5).  
 * Diffusion equation in two dimensions (project 5).  
 * Poisson equation in two dimensions (project 5)
+* How to make equations dimensionless or scale them properly (project 5)
 
 !split
 ===== Learning outcomes and overarching aims of this course =====
@@ -75,17 +78,17 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 !split
 ===== Additional learning outcomes =====
 !bblock 
- * has a thorough understanding of how computing is used to solve scientific problems
- * knows some central  algorithms used in science
- * has knowledge of high-performance computing elements: memory usage, vectorization and parallel algorithms
- * understands approximation errors and what can go wrong with algorithms
- * has experience with programming in a compiled language (Fortran, C, C++)
- * has experience with debugging software
- * has experience with test frameworks and procedures
- * can critically evaluate results and errors
- * understands how to increase the efficiency of numerical algorithms and pertinent software
- * understands tools to make science reproducible and has a sound ethical approach to scientific problems
- * Is able to write a scientific report
+ * you have  a thorough understanding of how computing is used to solve scientific problems
+ * you know some central  algorithms used in science
+ * you have knowledge of high-performance computing elements: memory usage, vectorization and parallel algorithms
+ * you understand approximation errors and what can go wrong with algorithms
+ * you have experience with programming in a compiled language (Fortran, C, C++)
+ * you have experience with debugging software
+ * you have experience with test frameworks and procedures
+ * you can critically evaluate results and errors
+ * you understand how to increase the efficiency of numerical algorithms and pertinent software
+ * you understand tools to make science reproducible and has a sound ethical approach to scientific problems
+ * and finally you know how to write a scientific report
 !eblock
 
 
