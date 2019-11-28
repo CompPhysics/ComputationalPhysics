@@ -25,12 +25,12 @@ int main(int argc, char* argv[])
   // With spherical coordinates RMin = 0 always
   RMin = 0.0;
 
-  RMax = 10.0;  lOrbital = 0;  Dim =100;  
+  RMax = 10.0;  lOrbital = 0;  Dim =2000;  
   mat Hamiltonian = zeros<mat>(Dim,Dim);
   // Integration step length
   Step    = RMax/ (Dim+1);
-  DiagConst = 2.0 / (Step*Step);
-  NondiagConst =  -1.0 / (Step*Step);
+  DiagConst = 1.0 / (Step*Step);
+  NondiagConst =  -0.5 / (Step*Step);
   OrbitalFactor = lOrbital * (lOrbital + 1.0);
   
   // local memory for r and the potential w[r] 
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 
 double potential(double x)
 {
-  return x*x;
+  return 0.5*x*x+1./x;
 
 } // End: function potential()  
 
