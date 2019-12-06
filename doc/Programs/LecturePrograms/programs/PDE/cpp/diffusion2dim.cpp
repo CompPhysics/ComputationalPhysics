@@ -1,7 +1,8 @@
 /* Simple program for solving the two-dimensional diffusion 
    equation or Poisson equation using Jacobi's iterative method
    Note that this program does not contain a loop over the time 
-   dependence.
+   dependence.  It is however set up for the calculation of the 
+   diffusion equation in two dimensions.
 */
 
 #include <iostream>
