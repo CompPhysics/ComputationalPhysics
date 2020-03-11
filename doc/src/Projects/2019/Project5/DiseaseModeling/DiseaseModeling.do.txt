@@ -5,12 +5,12 @@ DATE: Fall semester 2019
 
 ===== Theoretical background and description of the system =====
 
-The goal of this project was to develop a Monte Carlo simulation of
-the spread of an infectious disease. The classical SIRS model of
-epidemiology was studied and used to develop the necessary transition
+The goal of this project is to develop a Monte Carlo simulation of
+the spread of an infectious disease. We will use the classical SIRS model of
+to develop the necessary transition
 probabilities for the simulation. Interpreting the simulation requires
 a thorough understanding of the SIRS model, so a deterministic
-approach was used in conjunction with the Monte Carlo methods. 
+approach is used in conjunction with Monte Carlo methods. 
 
 The main purpose of creating such a simulation is to investigate how a
 disease spreads throughout a given population over time. Then we can
