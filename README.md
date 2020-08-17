@@ -23,12 +23,11 @@ This course will be delivered in a hybrid mode, with online lectures and on site
 
 1. Four lectures per week, Fall semester, 10 ECTS. The lectures will be fully online. The lectures will be recorded and linked to this site and the official University of Oslo website for the course;
 2. Two hours of laboratory sessions for work on computational projects for each group. Due to social distancing, at most 15 participants can attend. There will  also be fully digital laboratory sessions for those who cannot attend physically;
-3. Three projects which are graded and count 1/3 each of the final grade;
-4. A selected number of weekly assignments;
-5. The course is offered as  FYS4150 (Master of Science level) and  FYS3150 (senior undergraduate level);
-6. We use Piazza for course communication, a special link on how to register to Piazza can be found at the official University of Oslo page for the course or just use the link here https://piazza.com/uio.no/fall2020/fys3150. Slack is also used for course communication. The Slack link is https://machinelearninguio.slack.com ;
-8. Videos of teaching material are available via the links at https://compphysics.github.io/MachineLearning/doc/web/course.html;
-9. Weekly emails with summary of activities will be mailed to all participants;
+3. Three projects which are graded and count 1/3 each of the final grade, five projects in total;
+4. The course is offered as  FYS4150 (Master of Science level) and  FYS3150 (senior undergraduate level);
+5. We use Piazza for course communication, a special link on how to register to Piazza can be found at the official University of Oslo page for the course or just use the link here https://piazza.com/uio.no/fall2020/fys3150. Slack is also used for course communication. The Slack link is https://compphysicsuio.slack.com ;
+6. Videos of teaching material are available via the links at https://compphysics.github.io/MachineLearning/doc/web/course.html;
+7. Weekly emails with summary of activities will be mailed to all participants;
 
 ## Grading
 Grading scale: Grades are awarded on a scale from A to F, where A is the best grade and F is a fail. There are three projects which are graded and each project counts 1/3 of the final grade. The total score is thus the average from all three projects.
@@ -46,7 +45,7 @@ The final number of points is based on the average of all projects (including ev
 
 Course participants are expected to have their own laptops/PCs. We use _Git_ as version control software and the usage of providers like _GitHub_, _GitLab_ or similar are strongly recommended.
 
-We will make extensive use of C++ and/r Python as programming language and its
+We will make extensive use of C++ and/or Python as programming language and its
 myriad of available libraries.  You will find
 Jupyter notebooks invaluable in your work.  You can run _R_
 codes in the Jupyter/IPython notebooks, with the immediate benefit of
