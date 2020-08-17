@@ -4,19 +4,23 @@ The material here aims at giving you an introduction to several of the most used
 
 The course is project based and through various projects, normally four to five, you will be exposed to fundamental research problems from various fields (Physics, Geophysics, Chemistry, Mathematics, Statistics etc), where, if possible, we aim at reproducing state of the art scientific results. You will learn to develop and structure codes when solving the projects, develop a critical understanding of the strengths and limits of the various numerical methods, become familiar with supercomputing facilities and parallel computing and learn to write scientific projects. 
 
-## Instructor information
+## Instructors information
 * _Name_: Morten Hjorth-Jensen
-* _Email_: morten.hjorth-jensen@fys.uio.no
-* _Phone_: +47-48257387
-* _Office_: Department of Physics, University of Oslo, Eastern wing room 470 
-* _Office hours_: *Anytime*! In Fall Semester 2020 (FS20), as a rule of thumb office hours are planned via computer or telephone. Individual or group office hours will be performed via zoom. Feel free to send an email for planning. In person meetings may also be possible if allowed by the University of Oslo's COVID-19 instructions (see below for links).
-
+  * _Email_: morten.hjorth-jensen@fys.uio.no
+  * _Phone_: +47-48257387
+  * _Office_: Department of Physics, University of Oslo, Eastern wing room 470 
+  * _Office hours_: *Anytime*! In Fall Semester 2020 (FS20), as a rule of thumb office hours are planned via computer or telephone. Individual or group office   hours will be performed via zoom. Feel free to send an email for planning. In person meetings may also be possible if allowed by the University of Oslo's COVID-19 instructions (see below for links).
+* _Name_: Anders Kvellestad
+  * _Email_: anders.kvellestad@fys.uio.no
+  * _Office_: Department of Physics, University of Oslo, Eastern wing room 447 
 
 ##  Teaching Assistants FS20
-* 
-* 
-* 
-* 
+* Sebastian Wither-Larsen, sebastwi@student.matnat.uio.no
+  * _Office_: Department of Physics, University of Oslo, Eastern wing room 454
+* René Alexander Ask, r.a.ask@fys.uio.no
+* Kaspara Gåsvær, k.s.gasvar@fys.uio.no
+* Maria Linea Horgen, m.l.horgen@fys.uio.no
+* Aksel Graneng, akselgraneng@gmail.com
 
 ## Practicalities
 This course will be delivered in a hybrid mode, with online lectures and on site or online laboratory sessions. 
