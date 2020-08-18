@@ -15,7 +15,7 @@ The course is project based and through various projects, normally four to five,
   * _Office_: Department of Physics, University of Oslo, Eastern wing room 447 
 
 ##  Teaching Assistants FS20
-* Sebastian Wither-Larsen, sebastwi@student.matnat.uio.no
+* Sebastian G. Wither-Larsen, s.g.winther-larsen@fys.uio.no
   * _Office_: Department of Physics, University of Oslo, Eastern wing room 454
 * René Alexander Ask, r.a.ask@fys.uio.no
 * Kaspara Gåsvær, k.s.gasvar@fys.uio.no
