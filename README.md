@@ -29,8 +29,8 @@ This course will be delivered in a hybrid mode, with online lectures and on site
 2. Two hours of laboratory sessions for work on computational projects for each group. Due to social distancing, at most 15 participants can attend. There will  also be fully digital laboratory sessions for those who cannot attend physically;
 3. Three projects which are graded and count 1/3 each of the final grade, five projects in total;
 4. The course is offered as  FYS4150 (Master of Science level) and  FYS3150 (senior undergraduate level);
-5. We use Piazza for course communication, a special link on how to register to Piazza can be found at the official University of Oslo page for the course or just use the link here https://piazza.com/uio.no/fall2020/fys3150. Slack is also used for course communication. The Slack link is https://compphysicsuio.slack.com ;
-6. Videos of teaching material are available via the links at https://compphysics.github.io/MachineLearning/doc/web/course.html;
+5. We use Piazza for course communication, a special link on how to register to Piazza can be found at the official University of Oslo page for the course or just use the link here https://piazza.com/uio.no/fall2020/fys3150. We use Canvas at UiO for delivery of projects;
+6. Videos of teaching material are available via the links below here;
 7. Weekly emails with summary of activities will be mailed to all participants;
 
 ## Grading
@@ -50,11 +50,7 @@ The final number of points is based on the average of all projects (including ev
 Course participants are expected to have their own laptops/PCs. We use _Git_ as version control software and the usage of providers like _GitHub_, _GitLab_ or similar are strongly recommended.
 
 We will make extensive use of C++ and/or Python as programming language and its
-myriad of available libraries.  You will find
-Jupyter notebooks invaluable in your work.  You can run _R_
-codes in the Jupyter/IPython notebooks, with the immediate benefit of
-visualizing your data. You can also use compiled languages like C++,
-Rust, Julia, Fortran etc if you prefer. 
+myriad of available libraries.   You can also use compiled languages like Rust, Julia, Fortran etc if you prefer. Beware that in case you use Rust or Julia we may not be able to help you properly at the lab.
 
 
 If you have Python installed (we strongly recommend Python3) and you feel
@@ -67,7 +63,7 @@ For OSX users we recommend, after having installed Xcode, to
 install _brew_. Brew allows for a seamless installation of additional
 software via for example 
 
-* brew install python3
+* brew install python
 
 For Linux users, with its variety of distributions like for example the widely popular Ubuntu distribution,
 you can use _pip_ as well and simply install Python as 
