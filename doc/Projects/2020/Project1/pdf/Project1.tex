@@ -3,33 +3,8 @@
 %% (https://github.com/hplgit/doconce/)
 %%
 %%
-% #ifdef PTEX2TEX_EXPLANATION
-%%
-%% The file follows the ptex2tex extended LaTeX format, see
-%% ptex2tex: http://code.google.com/p/ptex2tex/
-%%
-%% Run
-%%      ptex2tex myfile
-%% or
-%%      doconce ptex2tex myfile
-%%
-%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
-%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
-%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
-%%
-%%      ptex2tex -DMINTED myfile
-%%      doconce ptex2tex myfile envir=minted
-%%
-%% ptex2tex will typeset code environments according to a global or local
-%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
-%% according to options on the command line (just type doconce ptex2tex to
-%% see examples). If doconce ptex2tex has envir=minted, it enables the
-%% minted style without needing -DMINTED.
-% #endif
 
-% #define PREAMBLE
 
-% #ifdef PREAMBLE
 %-------------------- begin preamble ----------------------
 
 \documentclass[%
@@ -45,11 +20,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 
 \usepackage[pdftex]{graphicx}
 
-\usepackage{ptex2tex}
-% #ifdef MINTED
-\usepackage{minted}
-\usemintedstyle{default}
-% #endif
+\usepackage{fancyvrb} % packages needed for verbatim environments
 
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
@@ -85,14 +56,14 @@ final,                   % draft: marks overfull hboxes, figures with paths
 % Ensure copyright on titlepage (article style) and chapter pages (book style)
 \fancypagestyle{plain}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2020, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2019, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
 %  \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
 % Ensure copyright on titlepages with \thispagestyle{empty}
 \fancypagestyle{empty}{
   \fancyhf{}
-  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2020, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
+  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2019, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
   \renewcommand{\footrulewidth}{0mm}
   \renewcommand{\headrulewidth}{0mm}
 }
@@ -119,7 +90,6 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \begin{document}
 
 % matching end for #ifdef PREAMBLE
-% #endif
 
 \newcommand{\exercisesection}[1]{\subsection*{#1}}
 
@@ -155,14 +125,14 @@ Project 1, deadline  September 9
 
 % --- begin date ---
 \begin{center}
-Aug 19, 2020
+Aug 22, 2019
 \end{center}
 % --- end date ---
 
 \vspace{1cm}
 
 
-\subsection{Introduction}
+\subsection*{Introduction}
 The aim of this project is to get familiar with various vector and matrix operations,
 from dynamic memory allocation to the usage of programs in the library
 package of the course. 
@@ -173,7 +143,7 @@ there are several possible options. Two are listed here.
 \begin{itemize}
   \item For this exercise we recommend that you make your own functions for dynamic memory allocation of a  vector and a matrix. You don't need to write a class for this operations.  Use then the  library package lib.cpp with its header file  lib.hpp for obtaining LU-decomposed matrices, solve linear equations etc.
 
-  \item A very good and often recommended library for C++ handling of arrays is the library Armadillo, to be found at \url{arma.sourceforge.net}.  We will discuss the usage of this library during the lab sessions and lectures. Armadillo has also an interface to Lapack functions for solving systems of linear equations. Alternatively you can use the \href{{http://eigen.tuxfamily.org/index.php?title=Main_Page}}{Eigen} library, which has much of the same functionality as Armadillo.
+  \item A very good and often recommended library for C++ handling of arrays is the library Armadillo, to be found at \url{arma.sourceforge.net}.  We will discuss the usage of this library during the lab sessions and lectures. Armadillo has also an interface to Lapack functions for solving systems of linear equations.
 \end{itemize}
 
 \noindent
@@ -367,7 +337,7 @@ Comment your results.
 
 
 To compute the elapsed time in c++ you can use the following statements
-\bcppcod
+\begin{verbatim}
 ...
 #include "time.h"   //  you have to include the time.h header
 int main()
@@ -380,9 +350,9 @@ int main()
     finish = clock();
     ( (finish - start)/CLOCKS_PER_SEC );
 ...
-\ecppcod
+\end{verbatim}
 Similarly, in Fortran, this simple example shows how to compute the elapsed time.
-\bfcod
+\begin{verbatim}
 PROGRAM time
  REAL :: etime          ! Declare the type of etime()
  REAL :: elapsed(2)     ! For receiving user and system time
@@ -400,14 +370,14 @@ PROGRAM time
               ' system=', elapsed(2)
 
 END PROGRAM time
-\efcod
-
-Your results may depend on the granularity of the clock.
+\end{verbatim}
 
 
 
 
-\subsection{Introduction to numerical projects}
+
+
+\subsection*{Introduction to numerical projects}
 
 Here follows a brief recipe and recommendation on how to write a report for each
 project.
@@ -433,20 +403,20 @@ project.
 \end{itemize}
 
 \noindent
-\subsection{Format for electronic delivery of report and programs}
+\subsection*{Format for electronic delivery of report and programs}
 
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
 
 \begin{itemize}
-  \item Use \textbf{Canvas} to hand in your projects, log in  at  \href{{https://www.uio.no/english/services/it/education/canvas/}}{\nolinkurl{https://www.uio.no/english/services/it/education/canvas/}} with your normal UiO username and password.
+  \item Use Devilry to hand in your projects, log in  at  \href{{http://devilry.ifi.uio.no}}{\nolinkurl{http://devilry.ifi.uio.no}} with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.
 
-  \item Upload \textbf{only} the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them. Alternatively, you can just upload the address to your GitHub or GitLab repository.
+  \item Upload \textbf{only} the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.
 
   \item In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parameters.
 
   \item In this and all later projects, you should include tests (for example unit tests) of your code(s).
 
-  \item Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your \textbf{Canvas} domain and are only visible to you and the teachers of the course.
+  \item Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.
 \end{itemize}
 
 \noindent
@@ -467,7 +437,5 @@ we encourage you to work two and two together. Optimal working groups consist of
 
 % ------------------- end of main content ---------------
 
-% #ifdef PREAMBLE
 \end{document}
-% #endif
 
