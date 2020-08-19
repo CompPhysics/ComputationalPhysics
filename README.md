@@ -52,12 +52,16 @@ Course participants are expected to have their own laptops/PCs. We use _Git_ as 
 We will make extensive use of C++ and/or Python as programming language and its
 myriad of available libraries.   You can also use compiled languages like Rust, Julia, Fortran etc if you prefer. Beware that in case you use Rust or Julia we may not be able to help you properly at the lab.
 
+The focus during the lectures will be on C++. Please read the intro to C++ programming at http://compphysics.github.io/ComputationalPhysics/doc/pub/learningcpp/html/learningcpp-bs.html
 
-If you have Python installed (we strongly recommend Python3) and you feel
+This link contains info about installing compilers as well.
+
+If you have Python installed and you feel
 pretty familiar with installing different packages, we recommend that
 you install the following Python packages via _pip_ as 
 
-* pip install numpy scipy matplotlib ipython scikit-learn mglearn sympy pandas pillow 
+* pip install numpy scipy matplotlib ipython sympy
+and obviously many other packages.
 
 For OSX users we recommend, after having installed Xcode, to
 install _brew_. Brew allows for a seamless installation of additional
@@ -68,7 +72,7 @@ software via for example
 For Linux users, with its variety of distributions like for example the widely popular Ubuntu distribution,
 you can use _pip_ as well and simply install Python as 
 
-* sudo apt-get install python3
+* sudo apt-get install python
 
 ### Python installers
 
@@ -110,6 +114,18 @@ Here we list several useful Python libraries we strongly recommend (if you use a
 * _Keras_:https://keras.io/ is a high-level neural networks API, written in Python and capable of running on top of TensorFlow, CNTK, or Theano
 * And many more such as _pytorch_:https://pytorch.org/,  _Theano_:https://pypi.org/project/Theano/ etc 
 
+## Textbooks
+
+_Recommended textbooks_:
+- Morten Hjorth-Jensen, Introduction to Computational Physics, IoP, in press. The version from 2015 at https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Lectures/lectures2015.pdf will be updated shortly.
+- Philipp O.J. Scherer, Computational Physics, Simulation of Classical and Quantum Systems, https://link.springer.com/book/10.1007/978-3-319-00401-3 (can be downloaded for free if you are connected with a UiO IP-number).
+
+
+## Face coverings. 
+As of now this is not required, but the situation may change. If face covering will be required during the semester, we will fill in more details. 
+
+## Physical distancing 
+We will be practicing physical distancing in the classroom dedicated to the lab sessions. Thus, everybody should maintain at least one meter distance between themselves and others (excluding those with whom they live). This applies to all aspects of the classroom setting, including seating arrangements, informal conversations, and dialogue between teachers and students.
 
 ## Personal Hygiene
 All participants attending the laboratory sessions must maintain proper hygiene and health practices, including:
