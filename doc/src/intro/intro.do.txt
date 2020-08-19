@@ -31,9 +31,8 @@ DATE: today
 !bblock
   * Lectures: Thursday (8.15am-10am) and Friday (8.15am-10am), Store Fys Aud, but due to Covid-19 all lectures, unless announced, will be fully online and in a flipped style. 
   * Weekly reading assignments needed to solve projects. This includes written material and videos as well
-  * First hour of each lab session may be used to discuss technicalities, address questions etc linked with projects.
   * Detailed lecture notes, exercises, all programs presented, projects etc can be found at the homepage of the course.
-  * Computerlab: Thursday (10am-6pm, room FV203, Dept of Physics) and Friday (10am-6pm, room FØ434, Dept of Physics). Depending on the number of participants, we may extend to more lab sessions. Please bring your own laptops to the lab sessions.
+  * Computerlab: Thursday (10am-6pm, room FØ397, Dept of Physics) and Friday (10am-6pm, room FØ397, Dept of Physics). Depending on the number of participants, we may extend to more lab sessions. Please bring your own laptops to the lab sessions.  We may also organize online lab sessions.
   * Weekly plans and all other information are on the official webpage.
   * No final exam, the last three projects are graded.  In total five projects which all have to be approved. 
 !eblock
