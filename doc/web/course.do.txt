@@ -1,12 +1,5 @@
-# Strange way of testing for vortex...
-# #ifdef NON_VORTEX
-TITLE: Overview of course material: Computational Physics
-
-TOC: off
-# #else
 TITLE: Overview of course material: Computational Physics
 AUTHOR: "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/doc/web/" at Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University, USA &  Department of Physics, University of Oslo, Norway
-# #endif
 
 <%
 pub_url = 'http://compphysics.github.io/ComputationalPhysics/doc/pub'

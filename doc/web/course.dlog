@@ -349,3 +349,11 @@ the preprocess program to be installed (see code.google.com/p/preprocess).
 On Debian systems, preprocess can be installed through the
 preprocess package (sudo apt-get install preprocess).
 
+course.do.txt makes use of preprocess directives and therefore requires
+the preprocess program to be installed (see code.google.com/p/preprocess).
+On Debian systems, preprocess can be installed through the
+preprocess package (sudo apt-get install preprocess).
+
+running mako on course.do.txt to make tmp_mako__course.do.txt
+translating doconce text in tmp_mako__course.do.txt to html
+output in course.html
