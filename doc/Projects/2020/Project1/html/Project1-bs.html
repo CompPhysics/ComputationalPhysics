@@ -11,28 +11,29 @@ Automatically generated HTML file from DocOnce source
 
 <title>Project 1, deadline  September 9</title>
 
+<!-- Bootstrap style: bootstrap -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
 
 <style type="text/css">
-/* bloodish style */
 
-body {
-  font-family: Helvetica, Verdana, Arial, Sans-serif;
-  color: #404040;
-  background: #ffffff;
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
 }
-h1 { font-size: 1.8em;  color: #8A0808; }
-h2 { font-size: 1.6em;  color: #8A0808; }
-h3 { font-size: 1.4em;  color: #8A0808; }
-h4 { color: #8A0808; }
-a { color: #8A0808; text-decoration:none; }
-tt { font-family: "Courier New", Courier; }
-/* pre style removed because it will interfer with pygments */
-p { text-indent: 0px; }
-hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-p.caption { width: 80%; font-style: normal; text-align: left; }
-hr.figure { border: 0; width: 80%; border-bottom: 1px solid #aaa}
 
-div { text-align: justify; text-justify: inter-word; }
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
 </style>
 
 
@@ -60,7 +61,7 @@ end of tocinfo -->
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
   TeX: {
-     equationNumbers: {  autoNumber: "AMS"  },
+     equationNumbers: {  autoNumber: "none"  },
      extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
   }
 });
@@ -72,17 +73,55 @@ MathJax.Hub.Config({
 
 
     
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="Project1-bs.html">Project 1, deadline  September 9</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#___sec0" style="font-size: 80%;"><b>Introduction</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 a):</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 b):</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 c):</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec4" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 d):</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Project 1 e):</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec6" style="font-size: 80%;"><b>Introduction to numerical projects</b></a></li>
+     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;"><b>Format for electronic delivery of report and programs</b></a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0000"></a>
 <!-- ------------------- main content ---------------------- -->
 
 
 
+<div class="jumbotron">
 <center><h1>Project 1, deadline  September 9</h1></center>  <!-- document title -->
 
 <p>
-<!-- author(s): <a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_blank">Computational Physics I FYS3150/FYS4150</a> -->
+<!-- author(s): <a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_self">Computational Physics I FYS3150/FYS4150</a> -->
 
 <center>
-<b><a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_blank">Computational Physics I FYS3150/FYS4150</a></b> 
+<b><a href="http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" target="_self">Computational Physics I FYS3150/FYS4150</a></b> 
 </center>
 
 <p>
@@ -91,10 +130,12 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, University of Oslo, Norway</b></center>
 <br>
 <p>
-<center><h4>Aug 19, 2020</h4></center> <!-- date -->
+<center><h4>Aug 22, 2019</h4></center> <!-- date -->
 <br>
+<p>
+</div> <!-- end jumbotron -->
 
-<h2 id="___sec0">Introduction </h2>
+<h2 id="___sec0" class="anchor">Introduction </h2>
 The aim of this project is to get familiar with various vector and matrix operations,
 from dynamic memory allocation to the usage of programs in the library
 package of the course. 
@@ -104,7 +145,7 @@ there are several possible options. Two are listed here.
 
 <ul>
   <li> For this exercise we recommend that you make your own functions for dynamic memory allocation of a  vector and a matrix. You don't need to write a class for this operations.  Use then the  library package lib.cpp with its header file  lib.hpp for obtaining LU-decomposed matrices, solve linear equations etc.</li>
-  <li> A very good and often recommended library for C++ handling of arrays is the library Armadillo, to be found at \url{arma.sourceforge.net}.  We will discuss the usage of this library during the lab sessions and lectures. Armadillo has also an interface to Lapack functions for solving systems of linear equations. Alternatively you can use the <a href="http://eigen.tuxfamily.org/index.php?title=Main_Page" target="_blank">Eigen</a> library, which has much of the same functionality as Armadillo.</li>
+  <li> A very good and often recommended library for C++ handling of arrays is the library Armadillo, to be found at \url{arma.sourceforge.net}.  We will discuss the usage of this library during the lab sessions and lectures. Armadillo has also an interface to Lapack functions for solving systems of linear equations.</li>
 </ul>
 
 Your program, whether it is written in C++, Python, Fortran or other languages, should include
@@ -168,7 +209,7 @@ $$
 \end{equation*}
 $$
 
-<h3 id="___sec1">Project 1 a): </h3>
+<h3 id="___sec1" class="anchor">Project 1 a): </h3>
 
 In this project we will solve the one-dimensional Poisson equation
 with Dirichlet boundary conditions by rewriting it as a set of linear equations.
@@ -227,7 +268,7 @@ has a closed-form  solution given by \( u(x) = 1-(1-e^{-10})x-e^{-10x} \) (convi
 solution in the Poisson equation).  We will compare
 our numerical solution with this result in the next exercise.
 
-<h3 id="___sec2">Project 1 b): </h3>
+<h3 id="___sec2" class="anchor">Project 1 b): </h3>
 
 <p>
 We can rewrite our matrix \( \mathbf{A} \) in terms of one-dimensional vectors \( a,b,c \)  
@@ -274,7 +315,7 @@ substitution.
 
 <p>
 Before we proceed with the solution of the differential equation, you should now plan the organization of your data flow. Here you will find it convenient to define vectors that will contain the matrix elements, the solution to the problem and the function \( f(x) \) when discretized. You should also plan on to read input data, whether you do this from the command line or from a selected file. We recommend strongly that you use dynamical memory allocation.
-An example of a C++ program which reads from the command line various input parameters can <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Projects/2018/Project1/CodeExamples/TridiagonalSimple.cpp" target="_blank">be found here</a>
+An example of a C++ program which reads from the command line various input parameters can <a href="https://github.com/CompPhysics/ComputationalPhysicsMSU/blob/master/doc/Projects/2018/Project1/CodeExamples/TridiagonalSimple.cpp" target="_self">be found here</a>
 
 <p>
 Your first task is to set up the general algorithm (assuming different
@@ -293,13 +334,13 @@ Then you should code the above algorithm and solve the problem for matrices of t
 Compare your results (make plots) with the closed-form solution for the different number of grid points  in the 
 interval \( x\in(0,1) \).  The different number of grid points corresponds to different step lengths \( h \).
 
-<h3 id="___sec3">Project 1 c): </h3>
+<h3 id="___sec3" class="anchor">Project 1 c): </h3>
 
 <p>
 Use thereafter the fact that the matrix has identical matrix elements along the diagonal and identical (but different) values for the non-diagonal elements. Specialize your algorithm to the special case and find the number of floating point operations
 for this specific tri-diagonal matrix. Compare the CPU time with the general algorithm from the previous point for matrices up to  \( n=10^6 \) grid points.
 
-<h3 id="___sec4">Project 1 d): </h3>
+<h3 id="___sec4" class="anchor">Project 1 d): </h3>
 
 <p>
 Compute the relative error  in the data set \( i=1,\dots, n \),by setting up
@@ -314,9 +355,8 @@ For each step length extract the max value of the relative error.
 Try to increase \( n \) to \( n=10^7 \).  Make a table of the results and 
 comment your results. You can use either the algorithm from b) or c).
 
-<h3 id="___sec5">Project 1 e): </h3>
+<h3 id="___sec5" class="anchor">Project 1 e): </h3>
 
-<p>
 Compare your results with those from the LU decomposition codes for the matrix of sizes \( 10\times 10 \), \( 100\times 100 \) and
 \( 1000\times 1000 \). Here you should use the library functions provided  on the webpage of the course. Alternatively, if you use armadillo as a library, you can use the similar function for LU decomposition.  The armadillo function for the LU decomposition is called \( LU \) while the function for solving linear sets of equations is called \( solve \).
 Use for example the unix function <em>time</em> when you run your codes 
@@ -372,10 +412,8 @@ Similarly, in Fortran, this simple example shows how to compute the elapsed time
 
 <span style="color: #008000; font-weight: bold">END PROGRAM </span><span style="color: #008000">time</span>
 </pre></div>
-<p>
-Your results may depend on the granularity of the clock.
 
-<h2 id="___sec6">Introduction to numerical projects </h2>
+<h2 id="___sec6" class="anchor">Introduction to numerical projects </h2>
 
 <p>
 Here follows a brief recipe and recommendation on how to write a report for each
@@ -393,17 +431,17 @@ project.
   <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
 </ul>
 
-<h2 id="___sec7">Format for electronic delivery of report and programs </h2>
+<h2 id="___sec7" class="anchor">Format for electronic delivery of report and programs </h2>
 
 <p>
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
 
 <ul>
-  <li> Use <b>Canvas</b> to hand in your projects, log in  at  <a href="https://www.uio.no/english/services/it/education/canvas/" target="_blank"><tt>https://www.uio.no/english/services/it/education/canvas/</tt></a> with your normal UiO username and password.</li>
-  <li> Upload <b>only</b> the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them. Alternatively, you can just upload the address to your GitHub or GitLab repository.</li>
+  <li> Use Devilry to hand in your projects, log in  at  <a href="http://devilry.ifi.uio.no" target="_self"><tt>http://devilry.ifi.uio.no</tt></a> with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.</li>
+  <li> Upload <b>only</b> the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.</li>
   <li> In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parameters.</li>
   <li> In this and all later projects, you should include tests (for example unit tests) of your code(s).</li>
-  <li> Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your <b>Canvas</b> domain and are only visible to you and the teachers of the course.</li>
+  <li> Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.</li>
 </ul>
 
 Finally, 
@@ -412,11 +450,27 @@ we encourage you to work two and two together. Optimal working groups consist of
 
 <p>
 
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+  <li class="active"><a href="._Project1-bs000.html">1</a></li>
+</ul>
 <!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2020, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2019, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 
