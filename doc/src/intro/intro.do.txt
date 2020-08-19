@@ -12,9 +12,8 @@ DATE: today
   * Thursday: Second Lecture: Introduction to C++ programming (chapters 2 and 3 of lecture notes) and start discussion of project 1.  
   * Friday: Numerical precision and C++ programming, continued and discussion of project 1 (chapter 2 and 3 of lecture notes)
   * Numerical differentiation and loss of numerical precision (chapter 3 lecture notes)
-  * Computer lab: Thursday and Friday. First time: Thursday and Friday this week, Presentation of hardware and software  The first two weeks we focus on simple programming exercises, start with project 1 and to set up GitHub/GitLab (with _git_ as version control software)  and QTcreator as IDE (integrated Development Environment). This week we discuss how to set up git and obtain a GitHub/GitLab account and look at  simple programming exercises and for those interested start with project 1. 
+  * Computer lab: Thursday and Friday. First time: Thursday and Friday this week, Presentation of hardware and software  The first two weeks we focus on simple programming exercises, start with project 1 and to set up GitHub/GitLab (with _git_ as version control software)  and QTcreator as IDE (integrated Development Environment). This week we discuss how to set up git and obtain a GitHub/GitLab account and look at  simple programming exercises and for those interested start with project 1. We discuss also how to install C++ compilers.
   * The recommended programming exercises for the first week: Exercises 3.1, 2.1 and 2.2 in "Lecture notes":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Lectures/lectures2015.pdf". _Exercise 3.1 is the most relevant for project 1._
-  * We will often use the first hour of each lab session to discuss technicalities and relevant software.
 !eblock
 
 !split
@@ -30,8 +29,8 @@ DATE: today
 ===== Lectures and ComputerLab =====
 
 !bblock
-  * Lectures: Thursday (8.15am-10am) and Friday (8.15am-10am), Store Fys Aud.
-  * Weekly reading assignments needed to solve projects.
+  * Lectures: Thursday (8.15am-10am) and Friday (8.15am-10am), Store Fys Aud, but due to Covid-19 all lectures, unless announced, will be fully online and in a flipped style. 
+  * Weekly reading assignments needed to solve projects. This includes written material and videos as well
   * First hour of each lab session may be used to discuss technicalities, address questions etc linked with projects.
   * Detailed lecture notes, exercises, all programs presented, projects etc can be found at the homepage of the course.
   * Computerlab: Thursday (10am-6pm, room FV203, Dept of Physics) and Friday (10am-6pm, room FØ434, Dept of Physics). Depending on the number of participants, we may extend to more lab sessions. Please bring your own laptops to the lab sessions.
@@ -53,22 +52,36 @@ DATE: today
 
 !bblock
 
-_Teachers :_
+_Teachers:_
 
-o "Jonas Gahr Lunde":"https://www.mn.uio.no/fysikk/?vrtx=person-view&uid=jonassl"
-o "Daniel Heinesen":"https://www.mn.uio.no/astro/?vrtx=person-view&uid=daniehei"
-o "Morten Hjorth-Jensen":"http://mhjgit.github.io/info/doc/web/"
-o "Aram Sahili":"https://www.mn.uio.no/fysikk/?vrtx=person-view&uid=arams"
-o Halvard Sutterud
+* Morten Hjorth-Jensen
+  * _Email_: morten.hjorth-jensen@fys.uio.no
+  * _Phone_: +47-48257387
+  * _Office_: Department of Physics, University of Oslo, Eastern wing room 470 
+  * _Office hours_: *Anytime*! In Fall Semester 2020 (FS20), as a rule of thumb office hours are planned via computer or telephone. Individual or group office   hours will be performed via zoom. Feel free to send an email for planning. In person meetings may also be possible if allowed by the University of Oslo's COVID-19 instructions.
+* Anders Kvellestad
+  * _Email_: anders.kvellestad@fys.uio.no
+  * _Office_: Department of Physics, University of Oslo, Eastern wing room 447 
+
+
+_Teaching Assistants FS20:_
+
+* Sebastian G. Wither-Larsen, s.g.winther-larsen@fys.uio.no
+  * _Office_: Department of Physics, University of Oslo, Eastern wing room 454
+* René Alexander Ask, r.a.ask@fys.uio.no
+* Kaspara Gåsvær, k.s.gasvar@fys.uio.no
+* Maria Linea Horgen, m.l.horgen@fys.uio.no
+* Aksel Graneng, akselgraneng@gmail.com
 
 |------------------------------------------------------|
-|      day         |            teacher                |
+|      Thursday         |            Friday                |
 |---------l-----------------------l--------------------|
-| Group 1: Thursday 10am-2pm | Aram, Daniel, Halvard, Jonas og Morten  | 
-| Group 2: Thursday 2pm-6pm |  Aram, Daniel, Halvard, Jonas og Morten  | 
-| Group 3: Friday 10am-2pm   | Aram, Daniel, Halvard, Jonas og Morten  | 
-| Group 4: Friday 2pm-6pm   |  Aram, Daniel, Halvard, Jonas og Morten  | 
+| Group 1: 10am-12pm |   Group 5: 10am-12pm |   
+| Group 2: 12pm-2pm |  Group 6: 12pm-2pm |   
+| Group 3: 2pm-4pm   | Group 7: 2pm-4pm |   
+| Group 4: 4pm-6pm   | Group 8: 4pm-6pm |    
 |------------------------------------------------------|
+Groups are in person but  we are also planning fully online groups if needed. 
 
 !eblock
 
@@ -81,9 +94,9 @@ o Project 1: September 9 (not graded, only feedback)
 o Project 2: September 30 (not graded, only feedback)
 o Project 3: October 21 (graded with feedback)
 o Project 4: November 18 (graded with feedback)
-o Project 5: December 15 (graded with feedback)
+o Project 5: December 9 (graded with feedback)
 
-Projects are handed in using devilry.ifi.uio.no. We use Github as repository for codes, benchmark calculations etc. Comments and feedback on projects only via devilry. 
+Projects are handed in using _canvas_. We use Github or GitLab (eventually Bitbucket) as repository for codes, benchmark calculations etc. Comments and feedback on projects only via _canvas_. 
 
 !eblock
 
@@ -240,11 +253,10 @@ FIGURE: [fig-intro/Nebbdyr2.pdf, width=500 frac=0.6]
 ===== Extremely useful tools, strongly recommended =====
 
 !bblock and discussed at the lab sessions
-  * GIT for version control (see webpage), this week
+  * GIT for version control (see webpage), this week at lab
   * ipython notebook
-  * QTcreator for editing and mastering computational projects (for C++ codes, see webpage of course), next week
-  * Armadillo as a useful numerical library for C++, highly recommended, week 36 and rest of semester
+  * QTcreator for editing and mastering computational projects (for C++ codes, see webpage of course), discussed during second week
+  * Armadillo or Eigen as a useful numerical libraries for C++, highly recommended, week 36 and rest of semester
   * Unit tests, week 37 and later
-  * Devilry for handing in projects, next week
 !eblock
 
