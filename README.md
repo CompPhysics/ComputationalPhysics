@@ -118,7 +118,7 @@ Here we list several useful Python libraries we strongly recommend (if you use a
 
 _Recommended textbooks_:
 - Morten Hjorth-Jensen, Introduction to Computational Physics, IoP, in press. The version from 2015 at https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Lectures/lectures2015.pdf will be updated shortly.
-- Philipp O.J. Scherer, Computational Physics, Simulation of Classical and Quantum Systems, https://link.springer.com/book/10.1007/978-3-319-00401-3 (can be downloaded for free if you are connected with a UiO IP-number).
+- Philipp O.J. Scherer, Computational Physics, Simulation of Classical and Quantum Systems, https://www.springer.com/gp/book/9783319610870 (can be downloaded for free if you are connected with a UiO IP-number).
 
 
 ## Face coverings. 
