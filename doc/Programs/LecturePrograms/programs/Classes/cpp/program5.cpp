@@ -34,7 +34,8 @@ int main(int argc, char* argv[])
  for (int j = 0; j < i; j++) {
    a[j] = j*exp(2.0);
    // ofile instead of cout
-   ofile << setw(15) << setprecision(8) << "a=" << a[j] << endl;
+      ofile << setw(15) << setprecision(8) << scientific << "a=" << a[j] << endl;
+      //   ofile << setiosflags(ios::showpoint | ios::uppercase) << setw(15) << setprecision(8) << scientific << "a=" << a[j] << endl;
  }
  delete [] a; // free memory
  ofile.close();  // close output file
