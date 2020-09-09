@@ -123,18 +123,18 @@ As in project 1, we have not included the endpoints $u_0$ and $u_N$.
 We have defined $d=2/h^2$ and the non-diagonal ones as $a=-1/h^2$. This eigenvalue problem has analytical eigenpairs, with eigenvalues given as 
 !bt
 \[
-\lambda_j = d+2a\cos{(\frac{j\pi}{N+1})} \hspace{0.1cm} j=1,2,\dots N.
+\lambda_j = d+2a\cos{(\frac{j\pi}{N+1})}, \hspace{0.2cm} j=1,2,\dots N.
 \]
 !et
 
 The eigenvectors are 
 !bt
 \[
-u_j = \sin{(\frac{j\pi}{N+1})} \hspace{0.1cm} j=1,2,\dots N.
+u_j = \sin{(\frac{j\pi}{N+1})}, \hspace{0.2cm} j=1,2,\dots N.
 \]
 !et
 
-The lecture notes of "Tom Lyche":"https://www.uio.no/studier/emner/matnat/math/MAT-INF4130/h17/book2017.pdf" provide an excellent description of this matrix. See chapters 1.2 and 1.3 of this text present a thourough discussion of tridiagonal matrices and two-point boundary value problems.
+The lecture notes of "Tom Lyche":"https://www.uio.no/studier/emner/matnat/math/MAT-INF4130/h17/book2017.pdf" provide an excellent description of this matrix. Chapters 1.2 and 1.3 of this text present a thourough discussion of tridiagonal matrices and two-point boundary value problems.
 === Project 2 a): Mathematical intermezzo === 
 A unitary transformation preserves  the orthogonality of the obtained eigenvectors. To see this consider first a basis of vectors $\mathbf{v}_i$,
 !bt
