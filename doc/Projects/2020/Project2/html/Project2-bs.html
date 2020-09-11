@@ -179,7 +179,7 @@ MathJax.Hub.Config({
 <center><b>Department of Physics, University of Oslo, Norway</b></center>
 <br>
 <p>
-<center><h4>Sep 9, 2020</h4></center> <!-- date -->
+<center><h4>Sep 11, 2020</h4></center> <!-- date -->
 <br>
 <p>
 </div> <!-- end jumbotron -->
@@ -304,15 +304,15 @@ $$
 $$
 
 As in project 1, we have not included the endpoints \( u_0 \) and \( u_N \). 
-We have defined \( d=2/h^2 \) and the non-diagonal ones as \( a=-1/h^2 \). This eigenvalue problem has analytical eigenpairs, with eigenvalues given as 
+We have defined \( d=2/h^2 \) and the non-diagonal ones as \( a=-1/h^2 \). This eigenvalue problem has analytical eigenpairs, with eigenvalues given as (note that we define the matrix to run from \( i=1 \) to \( i=N-1 \))
 $$
-\lambda_j = d+2a\cos{(\frac{j\pi}{N+1})}, \hspace{0.2cm} j=1,2,\dots N.
+\lambda_j = d+2a\cos{(\frac{j\pi}{N})}, \hspace{0.2cm} j=1,2,\dots N-1.
 $$
 
 <p>
 The eigenvectors are 
 $$
-u_j = \sin{(\frac{j\pi}{N+1})}, \hspace{0.2cm} j=1,2,\dots N.
+\mathbf{u}_j = [ \sin(\frac{j\pi}{N}), \sin(\frac{2j\pi}{N}), ..., \sin(\frac{(N-1)j\pi}{N}) ]^T, \hspace{0.2cm} j=1,2,\dots N-1.
 $$
 
 <p>
