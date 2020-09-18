@@ -317,7 +317,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._eigvalues-bs005.html#___sec4" style="font-size: 80%;">Abel-Ruffini Impossibility Theorem</a></li>
      <!-- navigation toc: --> <li><a href="._eigvalues-bs006.html#___sec5" style="font-size: 80%;">Abel-Ruffini Impossibility Theorem</a></li>
      <!-- navigation toc: --> <li><a href="._eigvalues-bs007.html#___sec6" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec7" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs008.html#___sec7" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
      <!-- navigation toc: --> <li><a href="._eigvalues-bs009.html#___sec8" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
      <!-- navigation toc: --> <li><a href="._eigvalues-bs010.html#___sec9" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
      <!-- navigation toc: --> <li><a href="._eigvalues-bs011.html#___sec10" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
@@ -391,7 +391,7 @@ MathJax.Hub.Config({
      <!-- navigation toc: --> <li><a href="._eigvalues-bs079.html#___sec78" style="font-size: 80%;">Eigenvalues with the <b>QR</b> algorithm and Lanczos' method</a></li>
      <!-- navigation toc: --> <li><a href="._eigvalues-bs080.html#___sec79" style="font-size: 80%;">Eigenvalues and Lanczos' method</a></li>
      <!-- navigation toc: --> <li><a href="._eigvalues-bs081.html#___sec80" style="font-size: 80%;">Eigenvalues and Lanczos' method, tridiagonal matrix</a></li>
-     <!-- navigation toc: --> <li><a href="._eigvalues-bs082.html#___sec81" style="font-size: 80%;">Eigenvalues and Lanczos' method, tridiagonal and orthogonal matrices</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec81" style="font-size: 80%;">Eigenvalues and Lanczos' method, tridiagonal and orthogonal matrices</a></li>
      <!-- navigation toc: --> <li><a href="._eigvalues-bs083.html#___sec82" style="font-size: 80%;">Eigenvalues and Lanczos' method</a></li>
      <!-- navigation toc: --> <li><a href="._eigvalues-bs084.html#___sec83" style="font-size: 80%;">Eigenvalues and Lanczos' method, defining the Lanczos' vectors</a></li>
      <!-- navigation toc: --> <li><a href="._eigvalues-bs085.html#___sec84" style="font-size: 80%;">Eigenvalues and Lanczos' method, basic steps</a></li>
@@ -407,29 +407,27 @@ MathJax.Hub.Config({
 
 <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
 
-<a name="part0008"></a>
+<a name="part0082"></a>
 <!-- !split -->
 
-<h2 id="___sec7" class="anchor">Eigenvalue problems, basic definitions </h2>
+<h2 id="___sec81" class="anchor">Eigenvalues and Lanczos' method, tridiagonal and orthogonal matrices </h2>
 <div class="panel panel-default">
 <div class="panel-body">
 <p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
-To obtain the eigenvalues of \( \mathbf{A}\in {\mathbb{R}}^{n\times n} \),
-the strategy is to
-perform a series of similarity transformations on the original
-matrix \( \mathbf{A} \), in order to reduce it either into a  diagonal form as above
-or into a  tridiagonal form.
-
-<p>
-We say that a matrix \( \mathbf{B} \) is a similarity
-transform  of  \( \mathbf{A} \) if 
+Using the fact that 
 $$
-     \mathbf{B}= \mathbf{S}^T \mathbf{A}\mathbf{S}, \hspace{1cm} \mathrm{where} \hspace{1cm}  \mathbf{S}^T\mathbf{S}=\mathbf{S}^{-1}\mathbf{S} =\mathbf{I}.
+\hat{Q}\hat{Q}^T=\hat{I}, 
 $$
 
-The importance of a similarity transformation lies in the fact that
-the resulting matrix has the same
-eigenvalues, but the eigenvectors are in general different.
+we can rewrite 
+$$
+\hat{T}= \hat{Q}^{T}\hat{A}\hat{Q},
+$$
+
+as 
+$$
+\hat{Q}\hat{T}= \hat{A}\hat{Q}.
+$$
 </div>
 </div>
 
@@ -438,28 +436,22 @@ eigenvalues, but the eigenvectors are in general different.
 <p>
 <!-- navigation buttons at the bottom of the page -->
 <ul class="pagination">
-<li><a href="._eigvalues-bs007.html">&laquo;</a></li>
+<li><a href="._eigvalues-bs081.html">&laquo;</a></li>
   <li><a href="._eigvalues-bs000.html">1</a></li>
-  <li><a href="._eigvalues-bs001.html">2</a></li>
-  <li><a href="._eigvalues-bs002.html">3</a></li>
-  <li><a href="._eigvalues-bs003.html">4</a></li>
-  <li><a href="._eigvalues-bs004.html">5</a></li>
-  <li><a href="._eigvalues-bs005.html">6</a></li>
-  <li><a href="._eigvalues-bs006.html">7</a></li>
-  <li><a href="._eigvalues-bs007.html">8</a></li>
-  <li class="active"><a href="._eigvalues-bs008.html">9</a></li>
-  <li><a href="._eigvalues-bs009.html">10</a></li>
-  <li><a href="._eigvalues-bs010.html">11</a></li>
-  <li><a href="._eigvalues-bs011.html">12</a></li>
-  <li><a href="._eigvalues-bs012.html">13</a></li>
-  <li><a href="._eigvalues-bs013.html">14</a></li>
-  <li><a href="._eigvalues-bs014.html">15</a></li>
-  <li><a href="._eigvalues-bs015.html">16</a></li>
-  <li><a href="._eigvalues-bs016.html">17</a></li>
-  <li><a href="._eigvalues-bs017.html">18</a></li>
   <li><a href="">...</a></li>
+  <li><a href="._eigvalues-bs074.html">75</a></li>
+  <li><a href="._eigvalues-bs075.html">76</a></li>
+  <li><a href="._eigvalues-bs076.html">77</a></li>
+  <li><a href="._eigvalues-bs077.html">78</a></li>
+  <li><a href="._eigvalues-bs078.html">79</a></li>
+  <li><a href="._eigvalues-bs079.html">80</a></li>
+  <li><a href="._eigvalues-bs080.html">81</a></li>
+  <li><a href="._eigvalues-bs081.html">82</a></li>
+  <li class="active"><a href="._eigvalues-bs082.html">83</a></li>
+  <li><a href="._eigvalues-bs083.html">84</a></li>
+  <li><a href="._eigvalues-bs084.html">85</a></li>
   <li><a href="._eigvalues-bs085.html">86</a></li>
-  <li><a href="._eigvalues-bs009.html">&raquo;</a></li>
+  <li><a href="._eigvalues-bs083.html">&raquo;</a></li>
 </ul>
 <!-- ------------------- end of main content --------------- -->
 
