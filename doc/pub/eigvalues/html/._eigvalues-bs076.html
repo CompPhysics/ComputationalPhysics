@@ -1,0 +1,485 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Computational Physics  Lectures: Eigenvalue problems">
+
+<title>Computational Physics  Lectures: Eigenvalue problems</title>
+
+<!-- Bootstrap style: bootstrap -->
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
+
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px;      /* fixed header height for style bootstrap */
+  margin:-50px 0 0; /* negative fixed header height */
+}
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 2,
+ 'sections': [('Overview of eigenvalue discussion', 2, None, '___sec0'),
+              ('Eigenvalue problems, basic definitions', 2, None, '___sec1'),
+              ('Eigenvalue problems, basic definitions', 2, None, '___sec2'),
+              ('Eigenvalue problems, basic definitions', 2, None, '___sec3'),
+              ('Abel-Ruffini Impossibility Theorem', 2, None, '___sec4'),
+              ('Abel-Ruffini Impossibility Theorem', 2, None, '___sec5'),
+              ('Eigenvalue problems, basic definitions', 2, None, '___sec6'),
+              ('Eigenvalue problems, basic definitions', 2, None, '___sec7'),
+              ('Eigenvalue problems, basic definitions', 2, None, '___sec8'),
+              ('Eigenvalue problems, basic definitions', 2, None, '___sec9'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec10'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec11'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec12'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec13'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec14'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec15'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec16'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec17'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec18'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec19'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec20'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec21'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec22'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec23'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec24'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec25'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec26'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec27'),
+              ("Discussion of Jacobi's method for eigenvalues",
+               2,
+               None,
+               '___sec28'),
+              ('Discussion of project 2', 2, None, '___sec29'),
+              ('Discussion of project 2', 2, None, '___sec30'),
+              ('Discussion of project 2', 2, None, '___sec31'),
+              ('Discussion of project 2', 2, None, '___sec32'),
+              ('Discussion of project 2', 2, None, '___sec33'),
+              ('Discussion of project 2', 2, None, '___sec34'),
+              ('Discussion of project 2', 2, None, '___sec35'),
+              ('Discussion of project 2', 2, None, '___sec36'),
+              ('Discussion of project 2', 2, None, '___sec37'),
+              ('Discussion of project 2', 2, None, '___sec38'),
+              ('Discussion of project 2', 2, None, '___sec39'),
+              ('Discussion of project 2', 2, None, '___sec40'),
+              ('Discussion of project 2', 2, None, '___sec41'),
+              ('Discussion of project 2', 2, None, '___sec42'),
+              ('Discussion of project 2', 2, None, '___sec43'),
+              ('Discussion of project 2', 2, None, '___sec44'),
+              ('Discussion of project 2, simple program for one particle in a '
+               'harmonic oscillator trap',
+               2,
+               None,
+               '___sec45'),
+              ('Unit Testing', 2, None, '___sec46'),
+              ('Unit Testing, benefits', 2, None, '___sec47'),
+              ('Simple example of unit test', 2, None, '___sec48'),
+              ('Simple example of unit test', 2, None, '___sec49'),
+              ('"Unit '
+               'tests":"https://github.com/philsquared/Catch/blob/master/docs/tutorial.md"',
+               2,
+               None,
+               '___sec50'),
+              ('Examples', 2, None, '___sec51'),
+              ('Factorial Example', 2, None, '___sec52'),
+              ('What did we do (1)?', 2, None, '___sec53'),
+              ('What did we do (2)?', 2, None, '___sec54'),
+              ('Unit test summary and testing approach', 2, None, '___sec55'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec56'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec57'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec58'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec59'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec60'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec61'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec62'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec63'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec64'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec65'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec66'),
+              ("Discussion of Householder's method for eigenvalues",
+               2,
+               None,
+               '___sec67'),
+              ('Eigenvalues with the *QR* and Lanczos methods',
+               2,
+               None,
+               '___sec68'),
+              ('Eigenvalues with the *QR* and Lanczos methods',
+               2,
+               None,
+               '___sec69'),
+              ('Eigenvalues with the *QR* and Lanczos methods',
+               2,
+               None,
+               '___sec70'),
+              ("Eigenvalues with the _QR_ algorithm and Lanczos' method",
+               2,
+               None,
+               '___sec71'),
+              ("Eigenvalues with the _QR_ algorithm and Lanczos' method",
+               2,
+               None,
+               '___sec72'),
+              ("Eigenvalues with the _QR_ algorithm and Lanczos' method",
+               2,
+               None,
+               '___sec73'),
+              ("Eigenvalues with the _QR_ algorithm and Lanczos' method",
+               2,
+               None,
+               '___sec74'),
+              ("Eigenvalues with the _QR_ algorithm and Lanczos' method",
+               2,
+               None,
+               '___sec75'),
+              ("Eigenvalues with the _QR_ algorithm and Lanczos' method",
+               2,
+               None,
+               '___sec76'),
+              ("Eigenvalues with the _QR_ algorithm and Lanczos' method",
+               2,
+               None,
+               '___sec77'),
+              ("Eigenvalues with the _QR_ algorithm and Lanczos' method",
+               2,
+               None,
+               '___sec78'),
+              ("Eigenvalues and Lanczos' method", 2, None, '___sec79'),
+              ("Eigenvalues and Lanczos' method, tridiagonal matrix",
+               2,
+               None,
+               '___sec80'),
+              ("Eigenvalues and Lanczos' method, tridiagonal and orthogonal "
+               'matrices',
+               2,
+               None,
+               '___sec81'),
+              ("Eigenvalues and Lanczos' method", 2, None, '___sec82'),
+              ("Eigenvalues and Lanczos' method, defining the Lanczos' vectors",
+               2,
+               None,
+               '___sec83'),
+              ("Eigenvalues and Lanczos' method, basic steps",
+               2,
+               None,
+               '___sec84')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="eigvalues-bs.html">Computational Physics  Lectures: Eigenvalue problems</a>
+  </div>
+
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs001.html#___sec0" style="font-size: 80%;">Overview of eigenvalue discussion</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs002.html#___sec1" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs003.html#___sec2" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs004.html#___sec3" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs005.html#___sec4" style="font-size: 80%;">Abel-Ruffini Impossibility Theorem</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs006.html#___sec5" style="font-size: 80%;">Abel-Ruffini Impossibility Theorem</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs007.html#___sec6" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs008.html#___sec7" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs009.html#___sec8" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs010.html#___sec9" style="font-size: 80%;">Eigenvalue problems, basic definitions</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs011.html#___sec10" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs012.html#___sec11" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs013.html#___sec12" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs014.html#___sec13" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs015.html#___sec14" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs016.html#___sec15" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs017.html#___sec16" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs018.html#___sec17" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs019.html#___sec18" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs020.html#___sec19" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs021.html#___sec20" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs022.html#___sec21" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs023.html#___sec22" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs024.html#___sec23" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs025.html#___sec24" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs026.html#___sec25" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs027.html#___sec26" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs028.html#___sec27" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs029.html#___sec28" style="font-size: 80%;">Discussion of Jacobi's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs030.html#___sec29" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs031.html#___sec30" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs032.html#___sec31" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs033.html#___sec32" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs034.html#___sec33" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs035.html#___sec34" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs036.html#___sec35" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs037.html#___sec36" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs038.html#___sec37" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs039.html#___sec38" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs040.html#___sec39" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs041.html#___sec40" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs042.html#___sec41" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs043.html#___sec42" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs044.html#___sec43" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs045.html#___sec44" style="font-size: 80%;">Discussion of project 2</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs046.html#___sec45" style="font-size: 80%;">Discussion of project 2, simple program for one particle in a harmonic oscillator trap</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs047.html#___sec46" style="font-size: 80%;">Unit Testing</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs048.html#___sec47" style="font-size: 80%;">Unit Testing, benefits</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs049.html#___sec48" style="font-size: 80%;">Simple example of unit test</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs050.html#___sec49" style="font-size: 80%;">Simple example of unit test</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs051.html#___sec50" style="font-size: 80%;">"Unit tests":"https://github.com/philsquared/Catch/blob/master/docs/tutorial.md"</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs052.html#___sec51" style="font-size: 80%;">Examples</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs053.html#___sec52" style="font-size: 80%;">Factorial Example</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs054.html#___sec53" style="font-size: 80%;">What did we do (1)?</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs055.html#___sec54" style="font-size: 80%;">What did we do (2)?</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs056.html#___sec55" style="font-size: 80%;">Unit test summary and testing approach</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs057.html#___sec56" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs058.html#___sec57" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs059.html#___sec58" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs060.html#___sec59" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs061.html#___sec60" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs062.html#___sec61" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs063.html#___sec62" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs064.html#___sec63" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs065.html#___sec64" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs066.html#___sec65" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs067.html#___sec66" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs068.html#___sec67" style="font-size: 80%;">Discussion of Householder's method for eigenvalues</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs069.html#___sec68" style="font-size: 80%;">Eigenvalues with the <em>QR</em> and Lanczos methods</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs070.html#___sec69" style="font-size: 80%;">Eigenvalues with the <em>QR</em> and Lanczos methods</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs071.html#___sec70" style="font-size: 80%;">Eigenvalues with the <em>QR</em> and Lanczos methods</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs072.html#___sec71" style="font-size: 80%;">Eigenvalues with the <b>QR</b> algorithm and Lanczos' method</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs073.html#___sec72" style="font-size: 80%;">Eigenvalues with the <b>QR</b> algorithm and Lanczos' method</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs074.html#___sec73" style="font-size: 80%;">Eigenvalues with the <b>QR</b> algorithm and Lanczos' method</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs075.html#___sec74" style="font-size: 80%;">Eigenvalues with the <b>QR</b> algorithm and Lanczos' method</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec75" style="font-size: 80%;">Eigenvalues with the <b>QR</b> algorithm and Lanczos' method</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs077.html#___sec76" style="font-size: 80%;">Eigenvalues with the <b>QR</b> algorithm and Lanczos' method</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs078.html#___sec77" style="font-size: 80%;">Eigenvalues with the <b>QR</b> algorithm and Lanczos' method</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs079.html#___sec78" style="font-size: 80%;">Eigenvalues with the <b>QR</b> algorithm and Lanczos' method</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs080.html#___sec79" style="font-size: 80%;">Eigenvalues and Lanczos' method</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs081.html#___sec80" style="font-size: 80%;">Eigenvalues and Lanczos' method, tridiagonal matrix</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs082.html#___sec81" style="font-size: 80%;">Eigenvalues and Lanczos' method, tridiagonal and orthogonal matrices</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs083.html#___sec82" style="font-size: 80%;">Eigenvalues and Lanczos' method</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs084.html#___sec83" style="font-size: 80%;">Eigenvalues and Lanczos' method, defining the Lanczos' vectors</a></li>
+     <!-- navigation toc: --> <li><a href="._eigvalues-bs085.html#___sec84" style="font-size: 80%;">Eigenvalues and Lanczos' method, basic steps</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0076"></a>
+<!-- !split -->
+
+<h2 id="___sec75" class="anchor">Eigenvalues with the <b>QR</b> algorithm and Lanczos' method </h2>
+<div class="panel panel-default">
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
+The matrix \( \hat{U} \) takes then the form
+$$
+ \hat{U} =
+      \left( \begin{array}{ccccccccc} 
+                 x&x &x &0 &0 &  \dots &0 & 0 & 0\\
+                 0&x &x &x &0 &   \dots &0 & 0 & 0\\
+                 0&0 &x &x &x &   \dots &0 & 0 & 0\\
+                 \dots&\dots &\dots &\dots &\dots &\dots      \\
+                 0&0 &0 & 0 & 0 & \dots &x &x &x      \\
+                 0&0 &0 & 0 & 0 & \dots &0 &x &x      \\
+                 0&0 &0 & 0 & 0 & \dots &0 &0 & x  
+             \end{array} \right)
+$$
+
+which has a second superdiagonal.
+</div>
+</div>
+
+
+<p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pagination">
+<li><a href="._eigvalues-bs075.html">&laquo;</a></li>
+  <li><a href="._eigvalues-bs000.html">1</a></li>
+  <li><a href="">...</a></li>
+  <li><a href="._eigvalues-bs068.html">69</a></li>
+  <li><a href="._eigvalues-bs069.html">70</a></li>
+  <li><a href="._eigvalues-bs070.html">71</a></li>
+  <li><a href="._eigvalues-bs071.html">72</a></li>
+  <li><a href="._eigvalues-bs072.html">73</a></li>
+  <li><a href="._eigvalues-bs073.html">74</a></li>
+  <li><a href="._eigvalues-bs074.html">75</a></li>
+  <li><a href="._eigvalues-bs075.html">76</a></li>
+  <li class="active"><a href="._eigvalues-bs076.html">77</a></li>
+  <li><a href="._eigvalues-bs077.html">78</a></li>
+  <li><a href="._eigvalues-bs078.html">79</a></li>
+  <li><a href="._eigvalues-bs079.html">80</a></li>
+  <li><a href="._eigvalues-bs080.html">81</a></li>
+  <li><a href="._eigvalues-bs081.html">82</a></li>
+  <li><a href="._eigvalues-bs082.html">83</a></li>
+  <li><a href="._eigvalues-bs083.html">84</a></li>
+  <li><a href="._eigvalues-bs084.html">85</a></li>
+  <li><a href="._eigvalues-bs085.html">86</a></li>
+  <li><a href="._eigvalues-bs077.html">&raquo;</a></li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright only on the titlepage -->
+</center>
+
+
+</body>
+</html>
+    
+
