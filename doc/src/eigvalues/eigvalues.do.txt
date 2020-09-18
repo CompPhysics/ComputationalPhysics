@@ -1245,6 +1245,183 @@ void output(double RMin , double RMax, int Dim, vec& d)
 
 
 
+!split
+===== Unit Testing =====
+!bblock
+Unit Testing is the practice of testing the smallest testable parts,
+called units, of an application individually and independently to
+determine if they behave exactly as expected. 
+
+Unit tests (short code
+fragments) are usually written such that they can be preformed at any
+time during the development to continually verify the behavior of the
+code. 
+
+In this way, possible bugs will be identified early in the
+development cycle, making the debugging at later stages much
+easier. 
+!eblock
+
+!split
+===== Unit Testing, benefits =====
+!bblock
+There are many benefits associated with Unit Testing, such as
+  * It increases confidence in changing and maintaining code. Big changes can be made to the code quickly, since the tests will ensure that everything still is working properly.
+  * Since the code needs to be modular to make Unit Testing possible, the code will be easier to reuse. This improves the code design.
+  * Debugging is easier, since when a test fails, only the latest changes need to be debugged.
+  *  Different parts of a project can be tested without the need to wait for the other parts to be available.
+  * A unit test can serve as a documentation on the functionality of a unit of the code.
+!eblock
+
+
+!split
+===== Simple example of unit test =====
+!bblock
+!bc cppcod
+#include <unittest++/UnitTest++.h>
+
+class MyMultiplyClass{
+public:
+    double multiply(double x, double y) {
+        return x * y;
+    }
+};
+
+TEST(MyMath) {
+    MyMultiplyClass my;
+    CHECK_EQUAL(56, my.multiply(7,8));
+}
+
+int main()
+{
+    return UnitTest::RunAllTests();
+}
+!ec
+!eblock
+
+!split
+===== Simple example of unit test =====
+!bblock
+And without classes
+!bc cppcod
+#include <unittest++/UnitTest++.h>
+
+
+double multiply(double x, double y) {
+    return x * y;
+}
+
+TEST(MyMath) {
+    CHECK_EQUAL(56, multiply(7,8));
+}
+
+int main()
+{
+    return UnitTest::RunAllTests();
+} 
+!ec
+For Fortran users, the link at URL: "http://sourceforge.net/projects/fortranxunit/" contains a similar
+software for unit testing. 
+!eblock
+
+
+
+
+
+!split
+===== "Unit tests":"https://github.com/philsquared/Catch/blob/master/docs/tutorial.md"  =====
+!bblock 
+There are many types of _unit test_ libraries. One which is very popular with C++ programmers is "Catch":"https://github.com/philsquared/Catch/blob/master/docs/tutorial.md"
+
+Catch is header only. All you need to do is drop the file(s) somewhere reachable from your project - either in some central location you can set your header search path to find, or directly into your project tree itself! 
+
+This is a particularly good option for other Open-Source projects that want to use Catch for their test suite.
+!eblock
+
+!split
+===== Examples ===== 
+
+Computing factorials
+!bc cppcod
+inline unsigned int Factorial( unsigned int number ) {
+  return number > 1 ? Factorial(number-1)*number : 1;
+}
+!ec
+
+!split
+===== Factorial Example ===== 
+
+Simple test where we put everything in a single file 
+
+!bc cppcod
+#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main()
+#include "catch.hpp"
+inline unsigned int Factorial( unsigned int number ) {
+  return number > 1 ? Factorial(number-1)*number : 1;
+}
+
+TEST_CASE( "Factorials are computed", "[factorial]" ) {
+    REQUIRE( Factorial(0) == 1 );
+    REQUIRE( Factorial(1) == 1 );
+    REQUIRE( Factorial(2) == 2 );
+    REQUIRE( Factorial(3) == 6 );
+    REQUIRE( Factorial(10) == 3628800 );
+}
+
+!ec
+This will compile to a complete executable which responds to command line arguments. If you just run it with no arguments it will execute all test cases (in this case there is just one), report any failures, report a summary of how many tests passed and failed and return the number of failed tests.
+
+!split
+===== What did we do (1)? =====
+All we did was 
+!bc cppcod
+#define 
+!ec
+one identifier and 
+!bc cppcod
+#include 
+!ec
+one header and we got everything - even an implementation of main() that will respond to command line arguments. 
+Once you have more than one file with unit tests in you'll just need to 
+!bc cppcod
+#include "catch.hpp" 
+!ec
+and go. Usually it's a good idea to have a dedicated implementation file that just has 
+!bc cppcod
+#define CATCH_CONFIG_MAIN 
+#include "catch.hpp". 
+!ec
+You can also provide your own implementation of main and drive Catch yourself.
+
+
+!split
+===== What did we do (2)? =====
+We introduce test cases with the 
+!bc cppcod
+TEST_CASE 
+!ec 
+macro.
+
+The test name must be unique. You can run sets of tests by specifying a wildcarded test name or a tag expression. 
+All we did was _define_ one identifier and _include_ one header and we got everything.
+
+We write our individual test assertions using the 
+!bc cppcod
+REQUIRE 
+!ec
+macro.
+
+
+!split
+===== Unit test summary and testing approach =====
+!bblock
+Three levels of tests
+o Microscopic level: testing small parts of code, use often unit test libraries
+o Mesoscopic level: testing the integration of various parts  of your code
+o Macroscopic level: testing that the final result is ok
+!eblock 
+
+
 
 !split
 ===== Discussion of Householder's method for eigenvalues =====
