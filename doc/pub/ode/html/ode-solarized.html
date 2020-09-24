@@ -6,6 +6,7 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Computational Physics  Lectures: Ordinary differential equations">
 
 <title>Computational Physics  Lectures: Ordinary differential equations</title>
@@ -15,7 +16,7 @@ Automatically generated HTML file from DocOnce source
 <script src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<link href="http://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet">
+<link href="https://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet">
 <style type="text/css">
 h1 {color: #b58900;}  /* yellow */
 /* h1 {color: #cb4b16;}  orange */
@@ -56,8 +57,8 @@ div { text-align: justify; text-justify: inter-word; }
 </style>
 
 
-<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
-<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
 <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 <script>
 $(function () {
@@ -81,10 +82,7 @@ $(function () {
               ('Differential Equations', 2, None, '___sec3'),
               ('Differential Equations', 2, None, '___sec4'),
               ('Differential Equations', 2, None, '___sec5'),
-              ('Differential Equations, Finite Difference',
-               2,
-               None,
-               '___sec6'),
+              ('Differential Equations, Finite Difference', 2, None, '___sec6'),
               ('Differential Equations', 2, None, '___sec7'),
               ('Differential Equations', 2, None, '___sec8'),
               ('Differential Equations', 2, None, '___sec9'),
@@ -129,14 +127,16 @@ $(function () {
                2,
                None,
                '___sec32'),
-              ('The second example: The classical pendulum and scaling the equations',
+              ('The second example: The classical pendulum and scaling the '
+               'equations',
                2,
                None,
                '___sec33'),
               ('More on the Pendulum', 2, None, '___sec34'),
               ('More on the Pendulum', 2, None, '___sec35'),
               ('More on the Pendulum', 2, None, '___sec36'),
-              ('Building a code for the solar system, gravitational force and constants',
+              ('Building a code for the solar system, gravitational force and '
+               'constants',
                2,
                None,
                '___sec37'),
@@ -164,7 +164,8 @@ $(function () {
                2,
                None,
                '___sec43'),
-              ('How can I get the initial velocities and positions of the planets',
+              ('How can I get the initial velocities and positions of the '
+               'planets',
                2,
                None,
                '___sec44'),
@@ -174,7 +175,8 @@ $(function () {
                '___sec45'),
               ('More on large numerical projects', 2, None, '___sec46'),
               ('How to start our solar system project', 2, None, '___sec47'),
-              ('How to start our solar system project, the simple Euler equations',
+              ('How to start our solar system project, the simple Euler '
+               'equations',
                2,
                None,
                '___sec48'),
@@ -196,8 +198,8 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -223,7 +225,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Oct 5, 2017</h4></center> <!-- date -->
+<center><h4>Sep 24, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -1945,12 +1947,12 @@ $$
 <span style="color: #228B22">// output file as global variable</span>
 ofstream ofile;
 <span style="color: #228B22">// function declarations</span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">output</span>( <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">output</span>( <span style="color: #00688B; font-weight: bold">double</span>, <span style="color: #00688B; font-weight: bold">double</span>, <span style="color: #00688B; font-weight: bold">double</span>, <span style="color: #00688B; font-weight: bold">double</span>, <span style="color: #00688B; font-weight: bold">double</span>);
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span>* argv[])
 {
 <span style="color: #228B22">//  declarations of variables</span>
-  <span style="color: #a7a7a7; font-weight: bold">char</span> *outfilename;
+  <span style="color: #00688B; font-weight: bold">char</span> *outfilename;
   <span style="color: #228B22">// Read in output file, abort if there are too few command-line arguments</span>
   <span style="color: #8B008B; font-weight: bold">if</span>( argc &lt;= <span style="color: #B452CD">1</span> ){
     cout &lt;&lt; <span style="color: #CD5555">&quot;Bad Usage: &quot;</span> &lt;&lt; argv[<span style="color: #B452CD">0</span>] &lt;&lt;
@@ -1962,15 +1964,15 @@ ofstream ofile;
   }
   ofile.open(outfilename);
 
-  <span style="color: #a7a7a7; font-weight: bold">int</span> NumberofSteps = <span style="color: #B452CD">1000</span>;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> FinalTime = <span style="color: #B452CD">1.0</span>;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> Step = FinalTime/((<span style="color: #a7a7a7; font-weight: bold">double</span>) NumberofSteps);
-  <span style="color: #a7a7a7; font-weight: bold">double</span> time = <span style="color: #B452CD">0.0</span>;
+  <span style="color: #00688B; font-weight: bold">int</span> NumberofSteps = <span style="color: #B452CD">1000</span>;
+  <span style="color: #00688B; font-weight: bold">double</span> FinalTime = <span style="color: #B452CD">1.0</span>;
+  <span style="color: #00688B; font-weight: bold">double</span> Step = FinalTime/((<span style="color: #00688B; font-weight: bold">double</span>) NumberofSteps);
+  <span style="color: #00688B; font-weight: bold">double</span> time = <span style="color: #B452CD">0.0</span>;
   <span style="color: #228B22">// Initial values  x = 1.0 AU and vy = 2*pi</span>
-  <span style="color: #a7a7a7; font-weight: bold">double</span> pi = acos(-<span style="color: #B452CD">1.0</span>);
-  <span style="color: #a7a7a7; font-weight: bold">double</span> FourPi2 = <span style="color: #B452CD">4</span>*pi*pi;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> x =  <span style="color: #B452CD">1.0</span>; <span style="color: #a7a7a7; font-weight: bold">double</span> y =  <span style="color: #B452CD">0.0</span>; <span style="color: #a7a7a7; font-weight: bold">double</span> vx = <span style="color: #B452CD">0.0</span>; <span style="color: #a7a7a7; font-weight: bold">double</span> vy = <span style="color: #B452CD">2.0</span>*pi;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> r = sqrt(x*x+y*y);
+  <span style="color: #00688B; font-weight: bold">double</span> pi = acos(-<span style="color: #B452CD">1.0</span>);
+  <span style="color: #00688B; font-weight: bold">double</span> FourPi2 = <span style="color: #B452CD">4</span>*pi*pi;
+  <span style="color: #00688B; font-weight: bold">double</span> x =  <span style="color: #B452CD">1.0</span>; <span style="color: #00688B; font-weight: bold">double</span> y =  <span style="color: #B452CD">0.0</span>; <span style="color: #00688B; font-weight: bold">double</span> vx = <span style="color: #B452CD">0.0</span>; <span style="color: #00688B; font-weight: bold">double</span> vy = <span style="color: #B452CD">2.0</span>*pi;
+  <span style="color: #00688B; font-weight: bold">double</span> r = sqrt(x*x+y*y);
 
 <span style="color: #228B22">// now we start solving the differential equations using Euler&#39;s method</span>
   <span style="color: #8B008B; font-weight: bold">while</span> (time &lt;= FinalTime){
@@ -1987,7 +1989,7 @@ ofstream ofile;
 }   <span style="color: #228B22">//  End of main function </span>
 
 <span style="color: #228B22">//    function to write out the final results</span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">output</span>(<span style="color: #a7a7a7; font-weight: bold">double</span> time, <span style="color: #a7a7a7; font-weight: bold">double</span> x, <span style="color: #a7a7a7; font-weight: bold">double</span> y, <span style="color: #a7a7a7; font-weight: bold">double</span> vx, <span style="color: #a7a7a7; font-weight: bold">double</span> vy)
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">output</span>(<span style="color: #00688B; font-weight: bold">double</span> time, <span style="color: #00688B; font-weight: bold">double</span> x, <span style="color: #00688B; font-weight: bold">double</span> y, <span style="color: #00688B; font-weight: bold">double</span> vx, <span style="color: #00688B; font-weight: bold">double</span> vy)
 {
   ofile &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
   ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; time;
@@ -2112,7 +2114,7 @@ we can design the following algorithm:
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2020, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 
