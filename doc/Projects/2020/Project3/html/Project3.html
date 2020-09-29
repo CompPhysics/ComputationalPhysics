@@ -252,19 +252,20 @@ We will use the velocity Verlet algorithm in the remaining part of the project.
 <p>
 Use Kepler's second law to show that angular momentum is
 conserved. Discuss your results with circular and elliptical orbits
-for the Earth-sun system.
+for the Earth-Sun system.
 
 <h3 id="___sec6">Project 3e): Testing forms of the force </h3>
 
 <p>
 Till now we have assumed that we have an inverse-square force
 \[
-F_G=\frac{GM_{\odot}M_{\mathrm{Earth}}}{r^2},
+F_G=\frac{GM_{\odot}M_{\mathrm{Earth}}}{r^2}.
 \]
-with
+We replace our inverse-square force with 
 \[
-F_G=\frac{GM_{\odot}M_{\mathrm{Earth}}}{r^{\beta}}.
+F_G=\frac{GM_{\odot}M_{\mathrm{Earth}}}{r^{\beta}},
 \]
+with \( \beta \in [2,3] \).
 Rerun your Earth-Sun system using the Velocity Verlet algorithm
 where you let \( \beta\in [2,3] \). What happens to the Earth-Sun system when \( \beta \) creeps towards \( 3 \)? Comment your results.
 Can you use the observations of planetary motion to determine by what amount Nature deviates from a
