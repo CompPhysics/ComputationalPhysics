@@ -4,7 +4,7 @@ The material here aims at giving you an introduction to several of the most used
 
 The course is project based and through various projects, normally four to five, you will be exposed to fundamental research problems from various fields (Physics, Geophysics, Chemistry, Mathematics, Statistics etc), where, if possible, we aim at reproducing state of the art scientific results. You will learn to develop and structure codes when solving the projects, develop a critical understanding of the strengths and limits of the various numerical methods, become familiar with supercomputing facilities and parallel computing and learn to write scientific projects. 
 
-## Instructors information
+## Information About Instructor
 * _Name_: Morten Hjorth-Jensen
   * _Email_: morten.hjorth-jensen@fys.uio.no
   * _Phone_: +47-48257387
@@ -33,7 +33,7 @@ This course will be delivered in a hybrid mode, with online lectures and on site
 6. Videos of teaching material are available via the links below here;
 7. Weekly emails with summary of activities will be mailed to all participants;
 
-## Grading
+## Grading Scale
 Grading scale: Grades are awarded on a scale from A to F, where A is the best grade and F is a fail. There are three projects which are graded and each project counts 1/3 of the final grade. The total score is thus the average from all three projects.
 
 The final number of points is based on the average of all projects (including eventual additional points) and the grade follows the following table:
