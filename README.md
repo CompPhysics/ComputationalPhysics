@@ -1,4 +1,4 @@
-# Computational Physics
+# Computational Physics Project
 
 The material here aims at giving you an introduction to several of the most used algorithms in Computational Science. These algorithms cover topics such as advanced numerical integration using Gaussian quadrature, Monte Carlo methods with applications to random processes, Markov chains, integration of multidimensional integrals and applications to problems in statistical physics and quantum mechanics. Other methods which are presented are eigenvalue problems, from the simple Jacobi method to iterative Krylov methods. Popular methods from linear algebra are also discussed. A good fraction of the course is also devoted to solving ordinary differential equations with or without boundary conditions and finally methods for solving partial differential equations. You will also find material on popular Machine Learning algorithms, starting with various linear regression methods and ending with neural networks. The focus for the Machine Learning algorithms is on supervised learning.
 
