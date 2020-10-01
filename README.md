@@ -96,7 +96,7 @@ distribution for scientific and analytic computing distribution and
 analysis environment, available for free and under a commercial
 license.
 
-Furthermore, Google's Colab:https://colab.research.google.com/notebooks/welcome.ipynb is a free Jupyter notebook environment that requires 
+Furthermore, Google's Collab:https://colab.research.google.com/notebooks/welcome.ipynb is a free Jupyter notebook environment that requires 
 no setup and runs entirely in the cloud. Try it out!
 
 ### Useful Python libraries
@@ -139,9 +139,9 @@ Course participants  will (a) look for instructional signs posted by UiO or publ
 The relevant links are https://www.uio.no/om/hms/korona/index.html and https://www.uio.no/om/hms/korona/retningslinjer/veileder-smittevern.html
 
 ## Self-Monitoring
-Students will self-monitor for flu-like symptoms (for example, cough, shortness of breath, difficulty breathing, fever, sore throat or loss of taste or smell). If a student experiences any flu-like symptoms, they will stay home and contact a health care provider to determine what steps should be taken.
+Students will self-monitor for flu-like symptoms (for example, cough, shortness of breath, difficulty breathing, fever, sore throat or loss of taste or smell). If a student experiences any flu-like symptoms, they will stay at home and contact a health care provider to determine what steps should be taken.
 ## Exposure to COVID-19 
-If a student is exposed to someone who is ill or has tested positive for the COVID-19 virus, they will stay home, contact a health care provider and follow all public health recommendations. You may also contact the study administration of the department where you are registered as student. 
+If a student is exposed to someone who is ill or has tested positive for the COVID-19 virus, they will stay at home, contact a health care provider and follow all public health recommendations. You may also contact the study administration of the department where you are registered as student. 
 ## Compliance and reporting 
 Those who come to UiO facilities must commit to the personal responsibility necessary for us to remain as safe as possible, including following the specific guidelines outlined in this syllabus and provided by UiO more broadly (see links below here). 
 
