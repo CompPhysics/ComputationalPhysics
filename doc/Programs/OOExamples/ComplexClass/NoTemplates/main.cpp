@@ -9,7 +9,8 @@ int main()
   // we declare  complex variables b and c
   Complex b(3.0), c(5.0,-2.3);  
   // using the copy constructor to define a new complex variable z=c
-  Complex z(c);   // Could use C++11 as z{c}
+  //  Complex z(c);   // Could use C++11 as z{c}
+  Complex z{c};   // Could use C++11 as z{c}
   // C++11 way of declaring compile with c++ -std=c++11
   Complex g{3,4};
   cout << g.Re() << " " << g.Im() << endl;
