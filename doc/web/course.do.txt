@@ -99,7 +99,7 @@ ${text_types(ch)}
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project2/ipynb/Project2.ipynb"
 
-=== Project 3, Deadline October 21 ===
+=== Project 3, Deadline October 26 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project3/pdf/Project3.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project3/pdf/Project3.pdf"

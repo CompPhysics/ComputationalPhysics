@@ -1,4 +1,4 @@
-TITLE: Project 3, deadline  October 21 (Wednesday)
+TITLE: Project 3, deadline  October 26 (Monday)
 AUTHOR: "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html" {copyright, 1999-present|CC BY-NC} at Department of Physics, University of Oslo, Norway
 DATE: Fall semester 2020
 
