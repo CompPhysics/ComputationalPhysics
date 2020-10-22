@@ -6,6 +6,7 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm">
 
 <title>Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm</title>
@@ -392,14 +393,14 @@ VelocityValues <span style="color: #666666">=</span> np<span style="color: #6666
 AverageEnergy <span style="color: #666666">=</span> AverageEnergy<span style="color: #666666">/</span>MCcycles
 AverageEnergy2 <span style="color: #666666">=</span> AverageEnergy2<span style="color: #666666">/</span>MCcycles
 Variance <span style="color: #666666">=</span> AverageEnergy2 <span style="color: #666666">-</span> AverageEnergy<span style="color: #666666">*</span>AverageEnergy
-<span style="color: #008000; font-weight: bold">print</span>(AverageEnergy, Variance)
+<span style="color: #008000">print</span>(AverageEnergy, Variance)
 n, bins, patches <span style="color: #666666">=</span> plt<span style="color: #666666">.</span>hist(VelocityValues, <span style="color: #666666">400</span>, facecolor<span style="color: #666666">=</span><span style="color: #BA2121">&#39;green&#39;</span>)
 
 plt<span style="color: #666666">.</span>xlabel(<span style="color: #BA2121">&#39;$v$&#39;</span>)
 plt<span style="color: #666666">.</span>ylabel(<span style="color: #BA2121">&#39;Velocity distribution P(v)&#39;</span>)
 plt<span style="color: #666666">.</span>title(<span style="color: #BA2121">r&#39;Velocity histogram at $k_BT=2$&#39;</span>)
 plt<span style="color: #666666">.</span>axis([<span style="color: #666666">-5</span>, <span style="color: #666666">5</span>, <span style="color: #666666">0</span>, <span style="color: #666666">600</span>])
-plt<span style="color: #666666">.</span>grid(<span style="color: #008000">True</span>)
+plt<span style="color: #666666">.</span>grid(<span style="color: #008000; font-weight: bold">True</span>)
 plt<span style="color: #666666">.</span>show()
 </pre></div>
 <p>

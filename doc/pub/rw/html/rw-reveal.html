@@ -1,8 +1,8 @@
-\
 <!DOCTYPE html>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm">
 
 <title>Computational Physics Lectures: Random walks, Brownian motion and the Metropolis algorithm</title>
@@ -163,12 +163,12 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>Oct 31, 2018</h4></center> <!-- date -->
+<center><h4>Oct 22, 2020</h4></center> <!-- date -->
 <br>
 <p>
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2018, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2020, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 </section>
 
@@ -1716,14 +1716,14 @@ VelocityValues = np.zeros(MCcycles)
 AverageEnergy = AverageEnergy/MCcycles
 AverageEnergy2 = AverageEnergy2/MCcycles
 Variance = AverageEnergy2 - AverageEnergy*AverageEnergy
-<span style="color: #8B008B; font-weight: bold">print</span>(AverageEnergy, Variance)
+<span style="color: #658b00">print</span>(AverageEnergy, Variance)
 n, bins, patches = plt.hist(VelocityValues, <span style="color: #B452CD">400</span>, facecolor=<span style="color: #CD5555">&#39;green&#39;</span>)
 
 plt.xlabel(<span style="color: #CD5555">&#39;$v$&#39;</span>)
 plt.ylabel(<span style="color: #CD5555">&#39;Velocity distribution P(v)&#39;</span>)
 plt.title(<span style="color: #CD5555">r&#39;Velocity histogram at $k_BT=2$&#39;</span>)
 plt.axis([-<span style="color: #B452CD">5</span>, <span style="color: #B452CD">5</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">600</span>])
-plt.grid(<span style="color: #658b00">True</span>)
+plt.grid(<span style="color: #8B008B; font-weight: bold">True</span>)
 plt.show()
 </pre></div>
 </section>

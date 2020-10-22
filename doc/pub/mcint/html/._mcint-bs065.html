@@ -560,9 +560,9 @@ MathJax.Hub.Config({
         t[i] <span style="color: #666666">=</span> statistic(data[randint(<span style="color: #666666">0</span>,n,n)])
 
     <span style="color: #408080; font-style: italic"># analysis                                                                                                                                                                     </span>
-    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Runtime: </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> sec&quot;</span> <span style="color: #666666">%</span> (time()<span style="color: #666666">-</span>t0)); <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;Bootstrap Statistics :&quot;</span>)
-    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;original           bias      std. error&quot;</span>)
-    <span style="color: #008000; font-weight: bold">print</span>(<span style="color: #BA2121">&quot;</span><span style="color: #BB6688; font-weight: bold">%8g</span><span style="color: #BA2121"> </span><span style="color: #BB6688; font-weight: bold">%8g</span><span style="color: #BA2121"> </span><span style="color: #BB6688; font-weight: bold">%14g</span><span style="color: #BA2121"> </span><span style="color: #BB6688; font-weight: bold">%15g</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">%</span> (statistic(data), std(data),\
+    <span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;Runtime: </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121"> sec&quot;</span> <span style="color: #666666">%</span> (time()<span style="color: #666666">-</span>t0)); <span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;Bootstrap Statistics :&quot;</span>)
+    <span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;original           bias      std. error&quot;</span>)
+    <span style="color: #008000">print</span>(<span style="color: #BA2121">&quot;</span><span style="color: #BB6688; font-weight: bold">%8g</span><span style="color: #BA2121"> </span><span style="color: #BB6688; font-weight: bold">%8g</span><span style="color: #BA2121"> </span><span style="color: #BB6688; font-weight: bold">%14g</span><span style="color: #BA2121"> </span><span style="color: #BB6688; font-weight: bold">%15g</span><span style="color: #BA2121">&quot;</span> <span style="color: #666666">%</span> (statistic(data), std(data),\
                              mean(t), \
                              std(t)))
     <span style="color: #008000; font-weight: bold">return</span> t
@@ -582,7 +582,7 @@ lt <span style="color: #666666">=</span> plt<span style="color: #666666">.</span
 plt<span style="color: #666666">.</span>xlabel(<span style="color: #BA2121">&#39;Smarts&#39;</span>)
 plt<span style="color: #666666">.</span>ylabel(<span style="color: #BA2121">&#39;Probability&#39;</span>)
 plt<span style="color: #666666">.</span>axis([<span style="color: #666666">99.5</span>, <span style="color: #666666">100.6</span>, <span style="color: #666666">0</span>, <span style="color: #666666">3.0</span>])
-plt<span style="color: #666666">.</span>grid(<span style="color: #008000">True</span>)
+plt<span style="color: #666666">.</span>grid(<span style="color: #008000; font-weight: bold">True</span>)
 
 plt<span style="color: #666666">.</span>show()
 </pre></div>

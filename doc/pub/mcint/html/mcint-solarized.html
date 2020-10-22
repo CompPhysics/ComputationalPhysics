@@ -425,7 +425,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Oct 17, 2019</h4></center> <!-- date -->
+<center><h4>Oct 22, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -2425,9 +2425,9 @@ more practically oriented methods like the blocking technique.
         t[i] = statistic(data[randint(<span style="color: #B452CD">0</span>,n,n)])
 
     <span style="color: #228B22"># analysis                                                                                                                                                                     </span>
-    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Runtime: %g sec&quot;</span> % (time()-t0)); <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;Bootstrap Statistics :&quot;</span>)
-    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;original           bias      std. error&quot;</span>)
-    <span style="color: #8B008B; font-weight: bold">print</span>(<span style="color: #CD5555">&quot;%8g %8g %14g %15g&quot;</span> % (statistic(data), std(data),\
+    <span style="color: #658b00">print</span>(<span style="color: #CD5555">&quot;Runtime: %g sec&quot;</span> % (time()-t0)); <span style="color: #658b00">print</span>(<span style="color: #CD5555">&quot;Bootstrap Statistics :&quot;</span>)
+    <span style="color: #658b00">print</span>(<span style="color: #CD5555">&quot;original           bias      std. error&quot;</span>)
+    <span style="color: #658b00">print</span>(<span style="color: #CD5555">&quot;%8g %8g %14g %15g&quot;</span> % (statistic(data), std(data),\
                              mean(t), \
                              std(t)))
     <span style="color: #8B008B; font-weight: bold">return</span> t
@@ -2447,7 +2447,7 @@ lt = plt.plot(binsboot, y, <span style="color: #CD5555">&#39;r--&#39;</span>, li
 plt.xlabel(<span style="color: #CD5555">&#39;Smarts&#39;</span>)
 plt.ylabel(<span style="color: #CD5555">&#39;Probability&#39;</span>)
 plt.axis([<span style="color: #B452CD">99.5</span>, <span style="color: #B452CD">100.6</span>, <span style="color: #B452CD">0</span>, <span style="color: #B452CD">3.0</span>])
-plt.grid(<span style="color: #658b00">True</span>)
+plt.grid(<span style="color: #8B008B; font-weight: bold">True</span>)
 
 plt.show()
 </pre></div>
@@ -4501,7 +4501,7 @@ print "Sigma             = %10.8E" % sigma
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2019, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2020, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 
