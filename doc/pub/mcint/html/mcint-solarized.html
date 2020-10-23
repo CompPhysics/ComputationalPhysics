@@ -425,7 +425,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Oct 22, 2020</h4></center> <!-- date -->
+<center><h4>Oct 23, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -4406,9 +4406,9 @@ N = 100000
 #Evaluate the integral
 sum  = 0.0
 sum2 = 0.0
-for i in xrange(N):
+for i in range(N):
     #Generate random coordinates to sample at
-    x = numpy.array([-L+2*L*numpy.random.random() for j in xrange(6)])
+    x = numpy.array([-L+2*L*numpy.random.random() for j in range(6)])
 
     fx         = integrand(x)
     sum       += fx
@@ -4423,8 +4423,8 @@ int_mc  = jacobi*sum;
 sigma   = jacobi*math.sqrt((sum2-sum**2)/float(N))
 
 #Output
-print "Montecarlo result = %10.8E" % int_mc
-print "Sigma             = %10.8E" % sigma
+print ("Montecarlo result = %10.8E" % int_mc)
+print ("Sigma             = %10.8E" % sigma)
 
 
 </script></div>
@@ -4470,9 +4470,9 @@ N = 100000
 #Evaluate the integral
 sum  = 0.0
 sum2 = 0.0
-for i in xrange(N):
+for i in range(N):
     #Generate random, gaussian distributed coordinates to sample at
-    x = numpy.array([numpy.random.normal()*sqrt2 for j in xrange(6)])
+    x = numpy.array([numpy.random.normal()*sqrt2 for j in range(6)])
 
     fx         = integrand(x)
     sum       += fx
@@ -4487,8 +4487,8 @@ int_mc  = jacobi*sum;
 sigma   = jacobi*math.sqrt((sum2-sum**2)/float(N))
 
 #Output
-print "Montecarlo result = %10.8E" % int_mc
-print "Sigma             = %10.8E" % sigma
+print("Montecarlo result = %10.8E" % int_mc)
+print("Sigma             = %10.8E" % sigma)
 
 </script></div>
 
