@@ -575,9 +575,9 @@ N = 100000
 #Evaluate the integral
 sum  = 0.0
 sum2 = 0.0
-for i in xrange(N):
+for i in range(N):
     #Generate random coordinates to sample at
-    x = numpy.array([-L+2*L*numpy.random.random() for j in xrange(6)])
+    x = numpy.array([-L+2*L*numpy.random.random() for j in range(6)])
 
     fx         = integrand(x)
     sum       += fx
@@ -592,8 +592,8 @@ int_mc  = jacobi*sum;
 sigma   = jacobi*math.sqrt((sum2-sum**2)/float(N))
 
 #Output
-print "Montecarlo result = %10.8E" % int_mc
-print "Sigma             = %10.8E" % sigma
+print ("Montecarlo result = %10.8E" % int_mc)
+print ("Sigma             = %10.8E" % sigma)
 
 
 </script></div>
