@@ -109,7 +109,7 @@ ${text_types(ch)}
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project3/ipynb/Project3.ipynb"
 
-=== Project 4, Deadline November 18 ===
+=== Project 4, Deadline November 23 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project4/pdf/Project4.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project4/pdf/Project4.pdf"
@@ -121,7 +121,7 @@ ${text_types(ch)}
 
 
 
-=== Project 5 To be defined , deadline December 9 ===
+=== Project 5 To be defined , deadline December 14 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.pdf"
