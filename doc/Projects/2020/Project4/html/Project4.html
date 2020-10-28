@@ -50,33 +50,38 @@ div { text-align: justify; text-justify: inter-word; }
                3,
                None,
                '___sec2'),
-              ('Project 4b): Writing a code for the Ising model',
+              ('Project 4b) Setting up boundary conditions and Boltzmann '
+               'distribution',
                3,
                None,
                '___sec3'),
-              ('Project 4c): When is the most likely state reached?',
+              ('Project 4c): Writing a code for the Ising model',
                3,
                None,
                '___sec4'),
-              ('Project 4d): Analyzing the probability distribution',
+              ('Project 4d): When is the most likely state reached?',
                3,
                None,
                '___sec5'),
-              ('Studies of phase transitions', 3, None, '___sec6'),
-              ('Project 4e): Numerical studies of phase transitions',
+              ('Project 4e): Analyzing the probability distribution',
                3,
                None,
-               '___sec7'),
-              ('Project 4f): Extracting the critical temperature',
+               '___sec6'),
+              ('Studies of phase transitions', 3, None, '___sec7'),
+              ('Project 4f): Numerical studies of phase transitions',
                3,
                None,
                '___sec8'),
-              ('Background literature', 2, None, '___sec9'),
-              ('Introduction to numerical projects', 2, None, '___sec10'),
+              ('Project 4g): Extracting the critical temperature',
+               3,
+               None,
+               '___sec9'),
+              ('Background literature', 2, None, '___sec10'),
+              ('Introduction to numerical projects', 2, None, '___sec11'),
               ('Format for electronic delivery of report and programs',
                2,
                None,
-               '___sec11')]}
+               '___sec12')]}
 end of tocinfo -->
 
 <body>
@@ -150,6 +155,7 @@ This project (together with projects 3 and 5) counts 1/3 of the final mark.
 
 <h3 id="___sec2">Project 4a): A simple \( 2\times 2 \) lattice, analytical expressions  </h3>
 
+<p>
 Assume we have only two spins in each dimension, that is \( L=2 \).
 Find the analytical expression 
 for the partition function and the corresponding
@@ -157,8 +163,25 @@ expectations values for the energy \( E \), the mean absolute value of the magne
 the specific heat \( C_V \) and the susceptibility \( \chi \) 
 as functions of  \( T \) using periodic boundary conditions. These results will serve as benchmark calculations for our next steps.
 
-<h3 id="___sec3">Project 4b): Writing a code for the Ising model  </h3>
+<h3 id="___sec3">Project 4b) Setting up boundary conditions and Boltzmann distribution </h3>
 
+<p>
+Convince yourself about the correctness of Equations (13.6) and (13.7)
+of the lecture notes. Show that only five possible values of the
+energy differences \( \Delta E \) are possible for the two-dimensional
+Ising model. Figure out how to encode efficiently the energy
+differences in the Boltzmann distribution.  See the discussions in
+section 13.5 of the lecture notes.  Why don't you need to calculate
+\( \exp{-\Delta E\beta} \) each time you update the energy?
+
+<p>
+Discuss also how to encode periodic boundary conditions. Here you
+could start with simple <b>if</b> tests. Discuss thereafter possibly   more efficient
+ways of coding the periodic boundary conditions.
+
+<h3 id="___sec4">Project 4c): Writing a code for the Ising model  </h3>
+
+<p>
 Write now a code for the Ising model which computes the mean energy 
 \( E \), mean magnetization 
 \( \vert M\vert \), the specific heat \( C_V \) and the susceptibility \( \chi \) 
@@ -171,7 +194,7 @@ for  a  temperature \( T=1.0 \) (in units of \( kT/J \)).
 How many Monte Carlo cycles do you need in order to achieve a 
 good agreeement?
 
-<h3 id="___sec4">Project 4c): When is the most likely state reached?  </h3>
+<h3 id="___sec5">Project 4d): When is the most likely state reached?  </h3>
 
 We choose now a square lattice with \( L=20 \) spins in the \( x \) and \( y \) directions.
 
@@ -196,7 +219,7 @@ Make also a plot of the total number of accepted configurations
 as function of the total number of Monte Carlo cycles. How does the number of
 accepted configurations behave as function of temperature \( T \)?
 
-<h3 id="___sec5">Project 4d): Analyzing the probability distribution  </h3>
+<h3 id="___sec6">Project 4e): Analyzing the probability distribution  </h3>
 
 <p>
 Compute thereafter the probability
@@ -207,7 +230,7 @@ the steady state situation has been reached.
 Compare your results with the computed variance in energy 
 \( \sigma^2_E \) and discuss the behavior you observe.
 
-<h3 id="___sec6">Studies of phase transitions </h3>
+<h3 id="___sec7">Studies of phase transitions </h3>
 
 <p>
 Near \( T_C \) we can characterize the behavior of many physical quantities
@@ -293,8 +316,9 @@ $$
 \end{equation}
 $$
 
-<h3 id="___sec7">Project 4e): Numerical studies of phase transitions </h3>
+<h3 id="___sec8">Project 4f): Numerical studies of phase transitions </h3>
 
+<p>
 We wish to study the behavior of the Ising model
 in two dimensions close to the critical temperature as a function of
 the lattice size \( L\times L \). Calculate the expectation values for
@@ -310,7 +334,7 @@ you see an indication of a phase transition?  Use the absolute value
 \( \langle \vert M\vert\rangle \) when you evaluate \( \chi \).  For these production runs you should
 parallelize the code using MPI (recommended). Alternatively OpenMP can be used. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code.
 
-<h3 id="___sec8">Project 4f): Extracting the critical temperature  </h3>
+<h3 id="___sec9">Project 4g): Extracting the critical temperature  </h3>
 
 <p>
 Use Eq. \eqref{eq:tc} and the exact result
@@ -320,7 +344,7 @@ using your simulations with \( L=40 \), \( L=60 \), \( L=80 \) and \( L=100 \)
 The exact result for the critical temperature (<a href="http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117" target="_blank">after Lars Onsager</a>) is
 \( kT_C/J=2/ln(1+\sqrt{2})\approx 2.269 \) with \( \nu=1 \).
 
-<h2 id="___sec9">Background literature </h2>
+<h2 id="___sec10">Background literature </h2>
 
 <p>
 If you wish to read more about the Ising model and statistical physics here are three suggestions.
@@ -331,7 +355,7 @@ If you wish to read more about the Ising model and statistical physics here are 
   <li> <a href="https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&" target="_blank">M. E. J. Newman and T. Barkema</a>, <em>Monte Carlo Methods in Statistical Physics</em>, Oxford, see chapters 3 and 4.</li>
 </ul>
 
-<h2 id="___sec10">Introduction to numerical projects </h2>
+<h2 id="___sec11">Introduction to numerical projects </h2>
 
 <p>
 Here follows a brief recipe and recommendation on how to write a report for each
@@ -349,7 +373,7 @@ project.
   <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
 </ul>
 
-<h2 id="___sec11">Format for electronic delivery of report and programs </h2>
+<h2 id="___sec12">Format for electronic delivery of report and programs </h2>
 
 <p>
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
