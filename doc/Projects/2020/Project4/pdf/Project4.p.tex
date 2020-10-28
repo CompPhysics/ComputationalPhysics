@@ -187,7 +187,20 @@ expectations values for the energy $E$, the mean absolute value of the magnetic 
 the specific heat $C_V$ and the susceptibility $\chi$ 
 as functions of  $T$ using periodic boundary conditions. These results will serve as benchmark calculations for our next steps.
 
-\paragraph{Project 4b): Writing a code for the Ising model.}
+\paragraph{Project 4b) Setting up boundary conditions and Boltzmann distribution.}
+Convince yourself about the correctness of Equations (13.6) and (13.7)
+of the lecture notes. Show that only five possible values of the
+energy differences $\Delta E$ are possible for the two-dimensional
+Ising model. Figure out how to encode efficiently the energy
+differences in the Boltzmann distribution.  See the discussions in
+section 13.5 of the lecture notes.  Why don't you need to calculate
+$\exp{-\Delta E\beta}$ each time you update the energy?
+
+Discuss also how to encode periodic boundary conditions. Here you
+could start with simple \textbf{if} tests. Discuss thereafter possibly   more efficient
+ways of coding the periodic boundary conditions.  
+
+\paragraph{Project 4c): Writing a code for the Ising model.}
 Write now a code for the Ising model which computes the mean energy 
 $E$, mean magnetization 
 $\vert M\vert$, the specific heat $C_V$ and the susceptibility $\chi$ 
@@ -199,7 +212,7 @@ for  a  temperature $T=1.0$ (in units of $kT/J$).
 How many Monte Carlo cycles do you need in order to achieve a 
 good agreeement?
 
-\paragraph{Project 4c): When is the most likely state reached?}
+\paragraph{Project 4d): When is the most likely state reached?}
 We choose now a square lattice with $L=20$ spins in the $x$ and $y$ directions. 
 
 In the previous exercise  we did not study carefully how many Monte Carlo cycles were needed in order to reach the most likely state. Here
@@ -221,7 +234,7 @@ Make also a plot of the total number of accepted configurations
 as function of the total number of Monte Carlo cycles. How does the number of
 accepted configurations behave as function of temperature $T$?
 
-\paragraph{Project 4d): Analyzing the probability distribution.}
+\paragraph{Project 4e): Analyzing the probability distribution.}
 Compute thereafter the probability
 $P(E)$ for the previous system with $L=20$ and the same temperatures, that is at $T=1.0$ and $T=2.4$.
 You compute this probability by simply counting the number of times a 
@@ -295,7 +308,7 @@ and susceptibility
 \end{equation}
 
 
-\paragraph{Project 4e): Numerical studies of phase transitions.}
+\paragraph{Project 4f): Numerical studies of phase transitions.}
 We wish to study the behavior of the Ising model
 in two dimensions close to the critical temperature as a function of
 the lattice size $L\times L$. Calculate the expectation values for
@@ -312,7 +325,7 @@ parallelize the code using MPI (recommended). Alternatively OpenMP can be used. 
 
 
 
-\paragraph{Project 4f): Extracting the critical temperature.}
+\paragraph{Project 4g): Extracting the critical temperature.}
 Use Eq. (\ref{eq:tc}) and the exact result
 $\nu=1$ in order to estimate $T_C$ in the thermodynamic limit 
 $L\rightarrow \infty$

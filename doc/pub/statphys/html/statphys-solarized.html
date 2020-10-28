@@ -6,6 +6,7 @@ Automatically generated HTML file from DocOnce source
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Computational Physics Lectures: Statistical physics and the Ising Model">
 
 <title>Computational Physics Lectures: Statistical physics and the Ising Model</title>
@@ -15,7 +16,7 @@ Automatically generated HTML file from DocOnce source
 <script src="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_styles/style_solarized_box/js/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<link href="http://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet">
+<link href="https://thomasf.github.io/solarized-css/solarized-light.min.css" rel="stylesheet">
 <style type="text/css">
 h1 {color: #b58900;}  /* yellow */
 /* h1 {color: #cb4b16;}  orange */
@@ -30,8 +31,8 @@ div { text-align: justify; text-justify: inter-word; }
 </style>
 
 
-<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
-<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
 <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 <script>
 $(function () {
@@ -56,12 +57,10 @@ $(function () {
                2,
                None,
                '___sec3'),
-              ('Helmoltz free energy, what does it mean?',
-               2,
-               None,
-               '___sec4'),
+              ('Helmoltz free energy, what does it mean?', 2, None, '___sec4'),
               ('Thermodynamical quantities', 2, None, '___sec5'),
-              ('Thermodynamical quantities, the energy in the canonical ensemble',
+              ('Thermodynamical quantities, the energy in the canonical '
+               'ensemble',
                2,
                None,
                '___sec6'),
@@ -97,28 +96,19 @@ $(function () {
                2,
                None,
                '___sec23'),
-              ('Phase Transitions and Critical Phenomena',
-               2,
-               None,
-               '___sec24'),
+              ('Phase Transitions and Critical Phenomena', 2, None, '___sec24'),
               ('Phase Transitions and Critical Phenomena, correlation length',
                2,
                None,
                '___sec25'),
               ('Classification of phase transitions', 2, None, '___sec26'),
               ('Second-order phase Transitions', 2, None, '___sec27'),
-              ('Phase Transitions and Critical Phenomena',
-               2,
-               None,
-               '___sec28'),
+              ('Phase Transitions and Critical Phenomena', 2, None, '___sec28'),
               ('Eherenfest definition of phase Transitions',
                2,
                None,
                '___sec29'),
-              ('Phase Transitions and Critical Phenomena',
-               2,
-               None,
-               '___sec30'),
+              ('Phase Transitions and Critical Phenomena', 2, None, '___sec30'),
               ('The Ising Model and Phase Transitions', 2, None, '___sec31'),
               ('The Ising Model and Phase Transitions, mean magnetization',
                2,
@@ -148,12 +138,15 @@ $(function () {
                2,
                None,
                '___sec38'),
-              ('The Metropolis Algorithm and the Two-dimensional Ising Model, practical issues',
+              ('The Metropolis Algorithm and the Two-dimensional Ising Model, '
+               'practical issues',
                2,
                None,
                '___sec39'),
               ('Five possible energy differences', 2, None, '___sec40'),
-              ('"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/MPIising.cpp"',
+              ('"The Metropolis Algorithm and the Two-dimensional Ising Model, '
+               'elements of '
+               'program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/MPIising.cpp"',
                2,
                None,
                '___sec41'),
@@ -166,7 +159,9 @@ $(function () {
               ('Change in magnetization', 2, None, '___sec45'),
               ('A small note', 2, None, '___sec46'),
               ('Initialization', 2, None, '___sec47'),
-              ('"The Metropolis Algorithm and the Two-dimensional Ising Model, elements of program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/IsingModel.cpp"',
+              ('"The Metropolis Algorithm and the Two-dimensional Ising Model, '
+               'elements of '
+               'program":"https://github.com/CompPhysics/ComputationalPhysics/blob/master/doc/Programs/ParallelizationMPI/IsingModel.cpp"',
                2,
                None,
                '___sec48'),
@@ -192,8 +187,8 @@ MathJax.Hub.Config({
   }
 });
 </script>
-<script type="text/javascript"
- src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+<script type="text/javascript" async
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 
 
@@ -219,7 +214,7 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>
-<center><h4>Aug 23, 2017</h4></center> <!-- date -->
+<center><h4>Oct 28, 2020</h4></center> <!-- date -->
 <br>
 <p>
 <!-- !split --><br><br><br><br><br><br><br><br><br><br>
@@ -1351,25 +1346,25 @@ The main part of the Ising model program is shown here
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span>  std;
 ofstream ofile;
 <span style="color: #228B22">// inline function for periodic boundary conditions</span>
-<span style="color: #8B008B; font-weight: bold">inline</span> <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">periodic</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i, <span style="color: #a7a7a7; font-weight: bold">int</span> limit, <span style="color: #a7a7a7; font-weight: bold">int</span> add) { 
+<span style="color: #8B008B; font-weight: bold">inline</span> <span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">periodic</span>(<span style="color: #00688B; font-weight: bold">int</span> i, <span style="color: #00688B; font-weight: bold">int</span> limit, <span style="color: #00688B; font-weight: bold">int</span> add) { 
   <span style="color: #8B008B; font-weight: bold">return</span> (i+limit+add) % (limit);
 }
 <span style="color: #228B22">// Function to read in data from screen  </span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">read_input</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">int</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">read_input</span>(<span style="color: #00688B; font-weight: bold">int</span>&amp;, <span style="color: #00688B; font-weight: bold">int</span>&amp;, <span style="color: #00688B; font-weight: bold">double</span>&amp;, <span style="color: #00688B; font-weight: bold">double</span>&amp;, <span style="color: #00688B; font-weight: bold">double</span>&amp;);
 <span style="color: #228B22">// Function to initialise energy and magnetization</span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">initialize</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">int</span> **, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">initialize</span>(<span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">double</span>, <span style="color: #00688B; font-weight: bold">int</span> **, <span style="color: #00688B; font-weight: bold">double</span>&amp;, <span style="color: #00688B; font-weight: bold">double</span>&amp;);
 <span style="color: #228B22">// The metropolis algorithm </span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Metropolis</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">long</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">int</span> **, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span> *);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">Metropolis</span>(<span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">long</span>&amp;, <span style="color: #00688B; font-weight: bold">int</span> **, <span style="color: #00688B; font-weight: bold">double</span>&amp;, <span style="color: #00688B; font-weight: bold">double</span>&amp;, <span style="color: #00688B; font-weight: bold">double</span> *);
 <span style="color: #228B22">// prints to file the results of the calculations  </span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">output</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">double</span> *);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">output</span>(<span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">double</span>, <span style="color: #00688B; font-weight: bold">double</span> *);
 
 <span style="color: #228B22">//  main program</span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span>* argv[])
 {
-  <span style="color: #a7a7a7; font-weight: bold">char</span> *outfilename;
-  <span style="color: #a7a7a7; font-weight: bold">long</span> idum;
-  <span style="color: #a7a7a7; font-weight: bold">int</span> **spin_matrix, n_spins, mcs;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> w[<span style="color: #B452CD">17</span>], average[<span style="color: #B452CD">5</span>], initial_temp, final_temp, E, M, temp_step;
+  <span style="color: #00688B; font-weight: bold">char</span> *outfilename;
+  <span style="color: #00688B; font-weight: bold">long</span> idum;
+  <span style="color: #00688B; font-weight: bold">int</span> **spin_matrix, n_spins, mcs;
+  <span style="color: #00688B; font-weight: bold">double</span> w[<span style="color: #B452CD">17</span>], average[<span style="color: #B452CD">5</span>], initial_temp, final_temp, E, M, temp_step;
 
   <span style="color: #228B22">// Read in output file, abort if there are too few command-line arguments</span>
   <span style="color: #8B008B; font-weight: bold">if</span>( argc &lt;= <span style="color: #B452CD">1</span> ){
@@ -1383,19 +1378,19 @@ ofstream ofile;
   ofile.open(outfilename);
   <span style="color: #228B22">//    Read in initial values such as size of lattice, temp and cycles</span>
   read_input(n_spins, mcs, initial_temp, final_temp, temp_step);
-  spin_matrix = (<span style="color: #a7a7a7; font-weight: bold">int</span>**) matrix(n_spins, n_spins, <span style="color: #8B008B; font-weight: bold">sizeof</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>));
+  spin_matrix = (<span style="color: #00688B; font-weight: bold">int</span>**) matrix(n_spins, n_spins, <span style="color: #8B008B; font-weight: bold">sizeof</span>(<span style="color: #00688B; font-weight: bold">int</span>));
   idum = -<span style="color: #B452CD">1</span>; <span style="color: #228B22">// random starting point</span>
-  <span style="color: #8B008B; font-weight: bold">for</span> ( <span style="color: #a7a7a7; font-weight: bold">double</span> temp = initial_temp; temp &lt;= final_temp; temp+=temp_step){
+  <span style="color: #8B008B; font-weight: bold">for</span> ( <span style="color: #00688B; font-weight: bold">double</span> temp = initial_temp; temp &lt;= final_temp; temp+=temp_step){
     <span style="color: #228B22">//    initialise energy and magnetization </span>
     E = M = <span style="color: #B452CD">0.</span>;
     <span style="color: #228B22">// setup array for possible energy changes</span>
-    <span style="color: #8B008B; font-weight: bold">for</span>( <span style="color: #a7a7a7; font-weight: bold">int</span> de =-<span style="color: #B452CD">8</span>; de &lt;= <span style="color: #B452CD">8</span>; de++) w[de+<span style="color: #B452CD">8</span>] = <span style="color: #B452CD">0</span>;
-    <span style="color: #8B008B; font-weight: bold">for</span>( <span style="color: #a7a7a7; font-weight: bold">int</span> de =-<span style="color: #B452CD">8</span>; de &lt;= <span style="color: #B452CD">8</span>; de+=<span style="color: #B452CD">4</span>) w[de+<span style="color: #B452CD">8</span>] = exp(-de/temp);
+    <span style="color: #8B008B; font-weight: bold">for</span>( <span style="color: #00688B; font-weight: bold">int</span> de =-<span style="color: #B452CD">8</span>; de &lt;= <span style="color: #B452CD">8</span>; de++) w[de+<span style="color: #B452CD">8</span>] = <span style="color: #B452CD">0</span>;
+    <span style="color: #8B008B; font-weight: bold">for</span>( <span style="color: #00688B; font-weight: bold">int</span> de =-<span style="color: #B452CD">8</span>; de &lt;= <span style="color: #B452CD">8</span>; de+=<span style="color: #B452CD">4</span>) w[de+<span style="color: #B452CD">8</span>] = exp(-de/temp);
     <span style="color: #228B22">// initialise array for expectation values</span>
-    <span style="color: #8B008B; font-weight: bold">for</span>( <span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; <span style="color: #B452CD">5</span>; i++) average[i] = <span style="color: #B452CD">0.</span>;
-    initialize(n_spins, <span style="color: #a7a7a7; font-weight: bold">double</span> temp, spin_matrix, E, M);
+    <span style="color: #8B008B; font-weight: bold">for</span>( <span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; <span style="color: #B452CD">5</span>; i++) average[i] = <span style="color: #B452CD">0.</span>;
+    initialize(n_spins, <span style="color: #00688B; font-weight: bold">double</span> temp, spin_matrix, E, M);
     <span style="color: #228B22">// start Monte Carlo computation</span>
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> cycles = <span style="color: #B452CD">1</span>; cycles &lt;= mcs; cycles++){
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> cycles = <span style="color: #B452CD">1</span>; cycles &lt;= mcs; cycles++){
       Metropolis(n_spins, idum, spin_matrix, E, M, w);
       <span style="color: #228B22">// update expectation values</span>
       average[<span style="color: #B452CD">0</span>] += E;    average[<span style="color: #B452CD">1</span>] += E*E;
@@ -1404,7 +1399,7 @@ ofstream ofile;
     <span style="color: #228B22">// print results</span>
     output(n_spins, mcs, temp, average);
   }
-  free_matrix((<span style="color: #a7a7a7; font-weight: bold">void</span> **) spin_matrix); <span style="color: #228B22">// free memory</span>
+  free_matrix((<span style="color: #00688B; font-weight: bold">void</span> **) spin_matrix); <span style="color: #228B22">// free memory</span>
   ofile.close();  <span style="color: #228B22">// close output file</span>
   <span style="color: #8B008B; font-weight: bold">return</span> <span style="color: #B452CD">0</span>;
 }
@@ -1503,15 +1498,15 @@ Eqs. \eqref{eq:deltaeising} and \eqref{eq:deltamising} are implemented in the fu
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">Metropolis</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> n_spins, <span style="color: #a7a7a7; font-weight: bold">long</span>&amp; idum, <span style="color: #a7a7a7; font-weight: bold">int</span> **spin_matrix, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; E, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;M, <span style="color: #a7a7a7; font-weight: bold">double</span> *w)
+<div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">Metropolis</span>(<span style="color: #00688B; font-weight: bold">int</span> n_spins, <span style="color: #00688B; font-weight: bold">long</span>&amp; idum, <span style="color: #00688B; font-weight: bold">int</span> **spin_matrix, <span style="color: #00688B; font-weight: bold">double</span>&amp; E, <span style="color: #00688B; font-weight: bold">double</span>&amp;M, <span style="color: #00688B; font-weight: bold">double</span> *w)
 {
   <span style="color: #228B22">// loop over all spins</span>
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> y =<span style="color: #B452CD">0</span>; y &lt; n_spins; y++) {
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> x= <span style="color: #B452CD">0</span>; x &lt; n_spins; x++){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> y =<span style="color: #B452CD">0</span>; y &lt; n_spins; y++) {
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> x= <span style="color: #B452CD">0</span>; x &lt; n_spins; x++){
       <span style="color: #228B22">// Find random position</span>
-      <span style="color: #a7a7a7; font-weight: bold">int</span> ix = (<span style="color: #a7a7a7; font-weight: bold">int</span>) (ran1(&amp;idum)*(<span style="color: #a7a7a7; font-weight: bold">double</span>)n_spins);
-      <span style="color: #a7a7a7; font-weight: bold">int</span> iy = (<span style="color: #a7a7a7; font-weight: bold">int</span>) (ran1(&amp;idum)*(<span style="color: #a7a7a7; font-weight: bold">double</span>)n_spins);
-      <span style="color: #a7a7a7; font-weight: bold">int</span> deltaE =  <span style="color: #B452CD">2</span>*spin_matrix[iy][ix]*
+      <span style="color: #00688B; font-weight: bold">int</span> ix = (<span style="color: #00688B; font-weight: bold">int</span>) (ran1(&amp;idum)*(<span style="color: #00688B; font-weight: bold">double</span>)n_spins);
+      <span style="color: #00688B; font-weight: bold">int</span> iy = (<span style="color: #00688B; font-weight: bold">int</span>) (ran1(&amp;idum)*(<span style="color: #00688B; font-weight: bold">double</span>)n_spins);
+      <span style="color: #00688B; font-weight: bold">int</span> deltaE =  <span style="color: #B452CD">2</span>*spin_matrix[iy][ix]*
 	(spin_matrix[iy][periodic(ix,n_spins,-<span style="color: #B452CD">1</span>)]+
 	 spin_matrix[periodic(iy,n_spins,-<span style="color: #B452CD">1</span>)][ix] +
 	 spin_matrix[iy][periodic(ix,n_spins,<span style="color: #B452CD">1</span>)] +
@@ -1520,8 +1515,8 @@ Eqs. \eqref{eq:deltaeising} and \eqref{eq:deltamising} are implemented in the fu
       <span style="color: #8B008B; font-weight: bold">if</span> ( ran1(&amp;idum) &lt;= w[deltaE+<span style="color: #B452CD">8</span>] ) {
 	spin_matrix[iy][ix] *= -<span style="color: #B452CD">1</span>;  <span style="color: #228B22">// flip one spin and accept new spin config</span>
         <span style="color: #228B22">// update energy and magnetization</span>
-        M += (<span style="color: #a7a7a7; font-weight: bold">double</span>) <span style="color: #B452CD">2</span>*spin_matrix[iy][ix];
-        E += (<span style="color: #a7a7a7; font-weight: bold">double</span>) deltaE;
+        M += (<span style="color: #00688B; font-weight: bold">double</span>) <span style="color: #B452CD">2</span>*spin_matrix[iy][ix];
+        E += (<span style="color: #00688B; font-weight: bold">double</span>) deltaE;
       }
     }
   }
@@ -1549,20 +1544,20 @@ This is done in the function here.
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="line-height: 125%"><span></span><span style="color: #228B22">// function to initialise energy, spin matrix and magnetization</span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">initialize</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> n_spins, <span style="color: #a7a7a7; font-weight: bold">double</span> temp, <span style="color: #a7a7a7; font-weight: bold">int</span> **spin_matrix, 
-		<span style="color: #a7a7a7; font-weight: bold">double</span>&amp; E, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; M)
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">initialize</span>(<span style="color: #00688B; font-weight: bold">int</span> n_spins, <span style="color: #00688B; font-weight: bold">double</span> temp, <span style="color: #00688B; font-weight: bold">int</span> **spin_matrix, 
+		<span style="color: #00688B; font-weight: bold">double</span>&amp; E, <span style="color: #00688B; font-weight: bold">double</span>&amp; M)
 {
   <span style="color: #228B22">// setup spin matrix and intial magnetization</span>
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> y =<span style="color: #B452CD">0</span>; y &lt; n_spins; y++) {
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> x= <span style="color: #B452CD">0</span>; x &lt; n_spins; x++){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> y =<span style="color: #B452CD">0</span>; y &lt; n_spins; y++) {
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> x= <span style="color: #B452CD">0</span>; x &lt; n_spins; x++){
       <span style="color: #8B008B; font-weight: bold">if</span> (temp &lt; <span style="color: #B452CD">1.5</span>) spin_matrix[y][x] = <span style="color: #B452CD">1</span>; <span style="color: #228B22">// spin orientation for the ground state</span>
-      M +=  (<span style="color: #a7a7a7; font-weight: bold">double</span>) spin_matrix[y][x];
+      M +=  (<span style="color: #00688B; font-weight: bold">double</span>) spin_matrix[y][x];
     }
   }
   <span style="color: #228B22">// setup initial energy</span>
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> y =<span style="color: #B452CD">0</span>; y &lt; n_spins; y++) {
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> x= <span style="color: #B452CD">0</span>; x &lt; n_spins; x++){
-      E -=  (<span style="color: #a7a7a7; font-weight: bold">double</span>) spin_matrix[y][x]*
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> y =<span style="color: #B452CD">0</span>; y &lt; n_spins; y++) {
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> x= <span style="color: #B452CD">0</span>; x &lt; n_spins; x++){
+      E -=  (<span style="color: #00688B; font-weight: bold">double</span>) spin_matrix[y][x]*
 	(spin_matrix[periodic(y,n_spins,-<span style="color: #B452CD">1</span>)][x] +
 	 spin_matrix[y][periodic(x,n_spins,-<span style="color: #B452CD">1</span>)]);
     }
@@ -1610,23 +1605,23 @@ Here follows an alternative Ising model code using the <a href="http://www.cplus
 ofstream ofile;
 
 <span style="color: #228B22">// inline function for periodic boundary conditions</span>
-<span style="color: #8B008B; font-weight: bold">inline</span> <span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">periodic</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i, <span style="color: #a7a7a7; font-weight: bold">int</span> limit, <span style="color: #a7a7a7; font-weight: bold">int</span> add) { 
+<span style="color: #8B008B; font-weight: bold">inline</span> <span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">periodic</span>(<span style="color: #00688B; font-weight: bold">int</span> i, <span style="color: #00688B; font-weight: bold">int</span> limit, <span style="color: #00688B; font-weight: bold">int</span> add) { 
   <span style="color: #8B008B; font-weight: bold">return</span> (i+limit+add) % (limit);
 }
 <span style="color: #228B22">// Function to initialise energy and magnetization</span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">InitializeLattice</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, mat &amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp;);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">InitializeLattice</span>(<span style="color: #00688B; font-weight: bold">int</span>, mat &amp;, <span style="color: #00688B; font-weight: bold">double</span>&amp;, <span style="color: #00688B; font-weight: bold">double</span>&amp;);
 <span style="color: #228B22">// The metropolis algorithm including the loop over Monte Carlo cycles</span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">MetropolisSampling</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, vec &amp;);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">MetropolisSampling</span>(<span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">double</span>, vec &amp;);
 <span style="color: #228B22">// prints to file the results of the calculations  </span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">output</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, vec);
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">output</span>(<span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">double</span>, vec);
 
 <span style="color: #228B22">// Main program begins here</span>
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span>* argv[])
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span>* argv[])
 {
   string filename;
-  <span style="color: #a7a7a7; font-weight: bold">int</span> NSpins, MCcycles;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> InitialTemp, FinalTemp, TempStep;
+  <span style="color: #00688B; font-weight: bold">int</span> NSpins, MCcycles;
+  <span style="color: #00688B; font-weight: bold">double</span> InitialTemp, FinalTemp, TempStep;
   <span style="color: #8B008B; font-weight: bold">if</span> (argc &lt;= <span style="color: #B452CD">5</span>) {
     cout &lt;&lt; <span style="color: #CD5555">&quot;Bad Usage: &quot;</span> &lt;&lt; argv[<span style="color: #B452CD">0</span>] &lt;&lt; 
       <span style="color: #CD5555">&quot; read output file, Number of spins, MC cycles, initial and final temperature and tempurate step&quot;</span> &lt;&lt; endl;
@@ -1646,7 +1641,7 @@ ofstream ofile;
   fileout.append(argument);
   ofile.open(fileout);
   <span style="color: #228B22">// Start Monte Carlo sampling by looping over T first</span>
-  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">double</span> Temperature = InitialTemp; Temperature &lt;= FinalTemp; Temperature+=TempStep){
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">double</span> Temperature = InitialTemp; Temperature &lt;= FinalTemp; Temperature+=TempStep){
     vec ExpectationValues = zeros&lt;mat&gt;(<span style="color: #B452CD">5</span>);
     <span style="color: #228B22">// start Monte Carlo computation</span>
     MetropolisSampling(NSpins, MCcycles, Temperature, ExpectationValues);
@@ -1657,19 +1652,19 @@ ofstream ofile;
 }
 
 <span style="color: #228B22">// function to initialise energy, spin matrix and magnetization</span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">InitializeLattice</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> NSpins, mat &amp;SpinMatrix,  <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; Energy, <span style="color: #a7a7a7; font-weight: bold">double</span>&amp; MagneticMoment)
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">InitializeLattice</span>(<span style="color: #00688B; font-weight: bold">int</span> NSpins, mat &amp;SpinMatrix,  <span style="color: #00688B; font-weight: bold">double</span>&amp; Energy, <span style="color: #00688B; font-weight: bold">double</span>&amp; MagneticMoment)
 {
   <span style="color: #228B22">// setup spin matrix and initial magnetization</span>
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> x =<span style="color: #B452CD">0</span>; x &lt; NSpins; x++) {
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> y= <span style="color: #B452CD">0</span>; y &lt; NSpins; y++){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> x =<span style="color: #B452CD">0</span>; x &lt; NSpins; x++) {
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> y= <span style="color: #B452CD">0</span>; y &lt; NSpins; y++){
       SpinMatrix(x,y) = <span style="color: #B452CD">1.0</span>; <span style="color: #228B22">// spin orientation for the ground state</span>
-      MagneticMoment +=  (<span style="color: #a7a7a7; font-weight: bold">double</span>) SpinMatrix(x,y);
+      MagneticMoment +=  (<span style="color: #00688B; font-weight: bold">double</span>) SpinMatrix(x,y);
     }
   }
   <span style="color: #228B22">// setup initial energy</span>
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> x =<span style="color: #B452CD">0</span>; x &lt; NSpins; x++) {
-    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> y= <span style="color: #B452CD">0</span>; y &lt; NSpins; y++){
-      Energy -=  (<span style="color: #a7a7a7; font-weight: bold">double</span>) SpinMatrix(x,y)*
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> x =<span style="color: #B452CD">0</span>; x &lt; NSpins; x++) {
+    <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> y= <span style="color: #B452CD">0</span>; y &lt; NSpins; y++){
+      Energy -=  (<span style="color: #00688B; font-weight: bold">double</span>) SpinMatrix(x,y)*
 	(SpinMatrix(periodic(x,NSpins,-<span style="color: #B452CD">1</span>),y) +
 	 SpinMatrix(x,periodic(y,NSpins,-<span style="color: #B452CD">1</span>)));
     }
@@ -1678,37 +1673,37 @@ ofstream ofile;
 
 
 <span style="color: #228B22">// The Monte Carlo part with the Metropolis algo with sweeps over the lattice</span>
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">MetropolisSampling</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> NSpins, <span style="color: #a7a7a7; font-weight: bold">int</span> MCcycles, <span style="color: #a7a7a7; font-weight: bold">double</span> Temperature, vec &amp;ExpectationValues)
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">MetropolisSampling</span>(<span style="color: #00688B; font-weight: bold">int</span> NSpins, <span style="color: #00688B; font-weight: bold">int</span> MCcycles, <span style="color: #00688B; font-weight: bold">double</span> Temperature, vec &amp;ExpectationValues)
 {
   <span style="color: #228B22">// Initialize the seed and call the Mersenne algo</span>
   std::random_device rd;
   std::mt19937_64 gen(rd());
   <span style="color: #228B22">// Then set up the uniform distribution for x \in [[0, 1]</span>
-  std::uniform_real_distribution&lt;<span style="color: #a7a7a7; font-weight: bold">double</span>&gt; distribution(<span style="color: #B452CD">0.0</span>,<span style="color: #B452CD">1.0</span>);
+  std::uniform_real_distribution&lt;<span style="color: #00688B; font-weight: bold">double</span>&gt; distribution(<span style="color: #B452CD">0.0</span>,<span style="color: #B452CD">1.0</span>);
   <span style="color: #228B22">//  Allocate memory for spin matrix</span>
   mat SpinMatrix = zeros&lt;mat&gt;(NSpins,NSpins);
   <span style="color: #228B22">//    initialise energy and magnetization </span>
-  <span style="color: #a7a7a7; font-weight: bold">double</span> Energy = <span style="color: #B452CD">0.</span>;     <span style="color: #a7a7a7; font-weight: bold">double</span> MagneticMoment = <span style="color: #B452CD">0.</span>;
+  <span style="color: #00688B; font-weight: bold">double</span> Energy = <span style="color: #B452CD">0.</span>;     <span style="color: #00688B; font-weight: bold">double</span> MagneticMoment = <span style="color: #B452CD">0.</span>;
   <span style="color: #228B22">// initialize array for expectation values</span>
   InitializeLattice(NSpins, SpinMatrix, Energy, MagneticMoment);
   <span style="color: #228B22">// setup array for possible energy changes</span>
   vec EnergyDifference = zeros&lt;mat&gt;(<span style="color: #B452CD">17</span>); 
-  <span style="color: #8B008B; font-weight: bold">for</span>( <span style="color: #a7a7a7; font-weight: bold">int</span> de =-<span style="color: #B452CD">8</span>; de &lt;= <span style="color: #B452CD">8</span>; de+=<span style="color: #B452CD">4</span>) EnergyDifference(de+<span style="color: #B452CD">8</span>) = exp(-de/Temperature);
-  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> cycles = <span style="color: #B452CD">1</span>; cycles &lt;= MCcycles; cycles++){
+  <span style="color: #8B008B; font-weight: bold">for</span>( <span style="color: #00688B; font-weight: bold">int</span> de =-<span style="color: #B452CD">8</span>; de &lt;= <span style="color: #B452CD">8</span>; de+=<span style="color: #B452CD">4</span>) EnergyDifference(de+<span style="color: #B452CD">8</span>) = exp(-de/Temperature);
+  <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> cycles = <span style="color: #B452CD">1</span>; cycles &lt;= MCcycles; cycles++){
     <span style="color: #228B22">// The sweep over the lattice, looping over all spin sites</span>
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> x =<span style="color: #B452CD">0</span>; x &lt; NSpins; x++) {
-      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> y= <span style="color: #B452CD">0</span>; y &lt; NSpins; y++){
-	<span style="color: #a7a7a7; font-weight: bold">int</span> ix = (<span style="color: #a7a7a7; font-weight: bold">int</span>) (distribution(gen)*(<span style="color: #a7a7a7; font-weight: bold">double</span>)NSpins);
-	<span style="color: #a7a7a7; font-weight: bold">int</span> iy = (<span style="color: #a7a7a7; font-weight: bold">int</span>) (distribution(gen)*(<span style="color: #a7a7a7; font-weight: bold">double</span>)NSpins);
-	<span style="color: #a7a7a7; font-weight: bold">int</span> deltaE =  <span style="color: #B452CD">2</span>*SpinMatrix(ix,iy)*
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> x =<span style="color: #B452CD">0</span>; x &lt; NSpins; x++) {
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> y= <span style="color: #B452CD">0</span>; y &lt; NSpins; y++){
+	<span style="color: #00688B; font-weight: bold">int</span> ix = (<span style="color: #00688B; font-weight: bold">int</span>) (distribution(gen)*(<span style="color: #00688B; font-weight: bold">double</span>)NSpins);
+	<span style="color: #00688B; font-weight: bold">int</span> iy = (<span style="color: #00688B; font-weight: bold">int</span>) (distribution(gen)*(<span style="color: #00688B; font-weight: bold">double</span>)NSpins);
+	<span style="color: #00688B; font-weight: bold">int</span> deltaE =  <span style="color: #B452CD">2</span>*SpinMatrix(ix,iy)*
 	  (SpinMatrix(ix,periodic(iy,NSpins,-<span style="color: #B452CD">1</span>))+
 	   SpinMatrix(periodic(ix,NSpins,-<span style="color: #B452CD">1</span>),iy) +
 	   SpinMatrix(ix,periodic(iy,NSpins,<span style="color: #B452CD">1</span>)) +
 	   SpinMatrix(periodic(ix,NSpins,<span style="color: #B452CD">1</span>),iy));
 	<span style="color: #8B008B; font-weight: bold">if</span> ( distribution(gen) &lt;= EnergyDifference(deltaE+<span style="color: #B452CD">8</span>) ) {
 	  SpinMatrix(ix,iy) *= -<span style="color: #B452CD">1.0</span>;  <span style="color: #228B22">// flip one spin and accept new spin config</span>
-	  MagneticMoment += (<span style="color: #a7a7a7; font-weight: bold">double</span>) <span style="color: #B452CD">2</span>*SpinMatrix(ix,iy);
-	  Energy += (<span style="color: #a7a7a7; font-weight: bold">double</span>) deltaE;
+	  MagneticMoment += (<span style="color: #00688B; font-weight: bold">double</span>) <span style="color: #B452CD">2</span>*SpinMatrix(ix,iy);
+	  Energy += (<span style="color: #00688B; font-weight: bold">double</span>) deltaE;
 	}
       }
     }
@@ -1721,17 +1716,17 @@ ofstream ofile;
 
 } <span style="color: #228B22">// end of Metropolis sampling over spins</span>
 
-<span style="color: #a7a7a7; font-weight: bold">void</span> <span style="color: #008b45">output</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> NSpins, <span style="color: #a7a7a7; font-weight: bold">int</span> MCcycles, <span style="color: #a7a7a7; font-weight: bold">double</span> temperature, vec ExpectationValues)
+<span style="color: #00688B; font-weight: bold">void</span> <span style="color: #008b45">output</span>(<span style="color: #00688B; font-weight: bold">int</span> NSpins, <span style="color: #00688B; font-weight: bold">int</span> MCcycles, <span style="color: #00688B; font-weight: bold">double</span> temperature, vec ExpectationValues)
 {
-  <span style="color: #a7a7a7; font-weight: bold">double</span> norm = <span style="color: #B452CD">1.0</span>/((<span style="color: #a7a7a7; font-weight: bold">double</span>) (MCcycles));  <span style="color: #228B22">// divided by  number of cycles </span>
-  <span style="color: #a7a7a7; font-weight: bold">double</span> E_ExpectationValues = ExpectationValues(<span style="color: #B452CD">0</span>)*norm;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> E2_ExpectationValues = ExpectationValues(<span style="color: #B452CD">1</span>)*norm;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> M_ExpectationValues = ExpectationValues(<span style="color: #B452CD">2</span>)*norm;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> M2_ExpectationValues = ExpectationValues(<span style="color: #B452CD">3</span>)*norm;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> Mabs_ExpectationValues = ExpectationValues(<span style="color: #B452CD">4</span>)*norm;
+  <span style="color: #00688B; font-weight: bold">double</span> norm = <span style="color: #B452CD">1.0</span>/((<span style="color: #00688B; font-weight: bold">double</span>) (MCcycles));  <span style="color: #228B22">// divided by  number of cycles </span>
+  <span style="color: #00688B; font-weight: bold">double</span> E_ExpectationValues = ExpectationValues(<span style="color: #B452CD">0</span>)*norm;
+  <span style="color: #00688B; font-weight: bold">double</span> E2_ExpectationValues = ExpectationValues(<span style="color: #B452CD">1</span>)*norm;
+  <span style="color: #00688B; font-weight: bold">double</span> M_ExpectationValues = ExpectationValues(<span style="color: #B452CD">2</span>)*norm;
+  <span style="color: #00688B; font-weight: bold">double</span> M2_ExpectationValues = ExpectationValues(<span style="color: #B452CD">3</span>)*norm;
+  <span style="color: #00688B; font-weight: bold">double</span> Mabs_ExpectationValues = ExpectationValues(<span style="color: #B452CD">4</span>)*norm;
   <span style="color: #228B22">// all expectation values are per spin, divide by 1/NSpins/NSpins</span>
-  <span style="color: #a7a7a7; font-weight: bold">double</span> Evariance = (E2_ExpectationValues- E_ExpectationValues*E_ExpectationValues)/NSpins/NSpins;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> Mvariance = (M2_ExpectationValues - Mabs_ExpectationValues*Mabs_ExpectationValues)/NSpins/NSpins;
+  <span style="color: #00688B; font-weight: bold">double</span> Evariance = (E2_ExpectationValues- E_ExpectationValues*E_ExpectationValues)/NSpins/NSpins;
+  <span style="color: #00688B; font-weight: bold">double</span> Mvariance = (M2_ExpectationValues - Mabs_ExpectationValues*Mabs_ExpectationValues)/NSpins/NSpins;
   ofile &lt;&lt; setiosflags(ios::showpoint | ios::uppercase);
   ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; temperature;
   ofile &lt;&lt; setw(<span style="color: #B452CD">15</span>) &lt;&lt; setprecision(<span style="color: #B452CD">8</span>) &lt;&lt; E_ExpectationValues/NSpins/NSpins;
@@ -2103,7 +2098,7 @@ pygame.quit();
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2020, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 
 
