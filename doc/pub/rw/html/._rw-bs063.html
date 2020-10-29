@@ -395,7 +395,7 @@ def mc_trial(number_walks,move_probability,walk_cum,walk2_cum):
     #the arrays...
     pos = 0;
     
-    for walk in xrange(number_walks+1):
+    for walk in range(number_walks+1):
         if numpy.random.random() <= move_probability:
             pos += 1
         else:
@@ -413,7 +413,7 @@ def mc_sample(trials, number_walks, move_probability):
 
     walk_cum  = numpy.zeros(number_walks+1)
     walk2_cum = numpy.zeros(number_walks+1)
-    for trial in xrange(trials):
+    for trial in range(trials):
         mc_trial(number_walks,move_probability,walk_cum,walk2_cum)
 
     return (walk_cum,walk2_cum)
@@ -432,7 +432,7 @@ x = np.zeros(Dim)
 xaverage = np.zeros(Dim)
 variance = np.zeros(Dim)
 #Output
-for i in xrange(Dim):
+for i in range(Dim):
     x[i] = i
     #Normalize to number of trials (= number of walkers)
     xaverage[i]  = walk_cum[i]/float(trials)
