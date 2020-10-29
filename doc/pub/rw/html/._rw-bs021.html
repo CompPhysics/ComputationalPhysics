@@ -392,7 +392,7 @@ def mc_trial(number_walks,move_probability,walk_cum,walk2_cum, probability):
     #the arrays...
     pos = 0;
     
-    for walk in xrange(number_walks+1):
+    for walk in range(number_walks+1):
         if numpy.random.random() <= move_probability:
             pos += 1
         else:
@@ -424,8 +424,8 @@ def mc_sample(length,trials, number_walks, move_probability):
 
     #Loop over timesteps and walkers,
     #and find the walkers "ending positions"
-    for t in xrange(number_walks):
-        for i in xrange(trials):
+    for t in range(number_walks):
+        for i in range(trials):
             if numpy.random.random() <= move_probability:
                 x[i] += 1
                 #Wraparound?
@@ -439,11 +439,11 @@ def mc_sample(length,trials, number_walks, move_probability):
     #Calculate the probability of finding a walker
     #each grid-position
     probability = numpy.zeros(2*length+1)
-    for i in xrange(len(probability)):
+    for i in range(len(probability)):
         pos = i-length
         #count number of occurences of this pos i x array
         count = 0
-        for j in xrange(len(x)):
+        for j in range(len(x)):
             if x[j] == pos:
                 count += 1
         #Normalize and save
@@ -464,19 +464,19 @@ probability = mc_sample(length,trials,number_walks,move_probability);
 #entropy = - numpy.sum(probability*numpy.log(probability))
 
 entropy = 0.0
-for i in xrange(len(probability)):
+for i in range(len(probability)):
     if probability[i] > 0.0:
         entropy -= probability[i]*math.log(probability[i])
 
-print "Timesteps             =",number_walks
-print "Walkers (num. trials) =",trials
-print "Entropy               =",entropy
-print
+print("Timesteps             =",number_walks)
+print("Walkers (num. trials) =",trials)
+print("Entropy               =",entropy)
+
 if len(probability) <= 101:
-    print "Probability distribution (Flat => high entropy):"
-    print probability
+    print("Probability distribution (Flat => high entropy):")
+    print(probability)
 else:
-    print "Probability distribution to big to print"
+    print("Probability distribution to big to print")
 
 
 </script></div>

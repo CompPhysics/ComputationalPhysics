@@ -1,0 +1,384 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% --- fancyhdr package for fancy headers ---
+\usepackage{fancyhdr}
+\fancyhf{} % sets both header and footer to nothing
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[LE,RO]{\thepage}
+% Ensure copyright on titlepage (article style) and chapter pages (book style)
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2020, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
+%  \renewcommand{\footrulewidth}{0mm}
+  \renewcommand{\headrulewidth}{0mm}
+}
+% Ensure copyright on titlepages with \thispagestyle{empty}
+\fancypagestyle{empty}{
+  \fancyhf{}
+  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2020, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
+  \renewcommand{\footrulewidth}{0mm}
+  \renewcommand{\headrulewidth}{0mm}
+}
+
+\pagestyle{fancy}
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Project 4, deadline  November 23
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf \href{{http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html}}{Computational Physics I FYS3150/FYS4150}}
+\end{center}
+
+    \begin{center}
+% List of all institutions:
+\centerline{{\small Department of Physics, University of Oslo, Norway}}
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+
+% --- begin date ---
+\begin{center}
+Fall semester 2020
+\end{center}
+% --- end date ---
+
+\vspace{1cm}
+
+
+\subsection*{Studies of phase transitions in magnetic systems}
+
+\paragraph{Introduction.}
+The aim of this project is to study a widely popular model to simulate phase transitions, the so-called Ising model in two dimensions. At a given critical temperature, this model exhbits a phase transition from a magnetic phase (a system with a finite magnetic moment) to a phase with zero magnetization.
+This is a so-called binary system where the objects at each lattice site can only take two values. These could be $0$ and $1$ or other values. Here we will use spins pointing up or down as the model for our system. But we could replace the spins with blue and green balls for example.
+The \href{{https://en.wikipedia.org/wiki/Ising_model}}{Ising model} has been extremely popular, with applications spanning from studies of phase transitions to simulations in statistics. In one and two dimensions its has analytical solutions to several expectation values and it gives a qualitatively  good underatanding of several types of phase transitions.  
+
+In its simplest form
+the energy of the Ising model is expressed as, without an externally applied magnetic field, 
+\[
+E=-J\sum_{< kl >}^{N}s_ks_l 
+\]
+with
+$s_k=\pm 1$. The quantity $N$ represents the total number of spins and $J$ is a coupling
+constant expressing the strength of the interaction between
+neighboring spins.  The symbol $<kl>$ indicates that we sum over
+nearest neighbors only. We will assume that we have a ferromagnetic
+ordering, viz $J> 0$.  We will use periodic boundary conditions and
+the Metropolis algorithm only. The material on the Ising model can be found in chapter 13 of the lecture notes. The Metropolis algorithm is discussed in chapter 12. 
+
+\textbf{For this project you can hand in collaborative reports and programs.}
+This project (together with projects 3 and 5) counts 1/3 of the final mark.
+
+\paragraph{Project 4a): A simple $2\times 2$ lattice, analytical expressions.}
+Assume we have only two spins in each dimension, that is $L=2$.
+Find the analytical expression 
+for the partition function and the corresponding
+expectations values for the energy $E$, the mean absolute value of the magnetic moment $\vert M\vert$ (we will refer to this as the mean magnetization), 
+the specific heat $C_V$ and the susceptibility $\chi$ 
+as functions of  $T$ using periodic boundary conditions. These results will serve as benchmark calculations for our next steps.
+
+\paragraph{Project 4b) Setting up boundary conditions and Boltzmann distribution.}
+Convince yourself about the correctness of Equations (13.6) and (13.7)
+of the lecture notes. Show that only five possible values of the
+energy differences $\Delta E$ are possible for the two-dimensional
+Ising model. Figure out how to encode efficiently the energy
+differences in the Boltzmann distribution.  See the discussions in
+section 13.5 of the lecture notes.  Why don't you need to calculate
+$\exp{-\Delta E\beta}$ each time you update the energy?
+
+Discuss also how to encode periodic boundary conditions. Here you
+could start with simple \textbf{if} tests. Discuss thereafter possibly   more efficient
+ways of coding the periodic boundary conditions.  
+
+\paragraph{Project 4c): Writing a code for the Ising model.}
+Write now a code for the Ising model which computes the mean energy 
+$E$, mean magnetization 
+$\vert M\vert$, the specific heat $C_V$ and the susceptibility $\chi$ 
+as functions of  $T$ using periodic boundary conditions for 
+$L=2$ in the $x$ and $y$ directions. 
+Compare your results with the expressions from a)
+for  a  temperature $T=1.0$ (in units of $kT/J$). 
+
+How many Monte Carlo cycles do you need in order to achieve a 
+good agreeement?
+
+\paragraph{Project 4d): When is the most likely state reached?}
+We choose now a square lattice with $L=20$ spins in the $x$ and $y$ directions. 
+
+In the previous exercise  we did not study carefully how many Monte Carlo cycles were needed in order to reach the most likely state. Here
+we want to perform a study of the time (here it corresponds to the number 
+of Monte Carlo sweeps of the lattice) one needs before one reaches an equilibrium situation 
+and can start computing various expectations values. Our 
+first attempt is a rough and plain graphical
+one, where we plot various expectations values as functions of the number of Monte Carlo cycles.
+
+Choose first a temperature of $T=1.0$ (in units of $kT/J$) and study the 
+mean energy and magnetisation (absolute value) as functions of the number of Monte Carlo cycles. Let the number of Monte Carlo cycles (sweeps per lattice)
+represent time.
+Use both an ordered (all spins pointing in one direction) and a random
+spin orientation as starting configuration. 
+How many Monte Carlo cycles do you need before you reach an equilibrium situation?
+Repeat this analysis for $T=2.4$. 
+Can you, based on these values estimate an equilibration time?
+Make also a plot of the total number of accepted configurations 
+as function of the total number of Monte Carlo cycles. How does the number of
+accepted configurations behave as function of temperature $T$?
+
+\paragraph{Project 4e): Analyzing the probability distribution.}
+Compute thereafter the probability
+$P(E)$ for the previous system with $L=20$ and the same temperatures, that is at $T=1.0$ and $T=2.4$.
+You compute this probability by simply counting the number of times a 
+given energy appears in your computation. Start the computation after 
+the steady state situation has been reached.
+Compare your results with the computed variance in energy 
+$\sigma^2_E$ and discuss the behavior you observe. 
+
+\paragraph{Studies of phase transitions.}
+Near $T_C$ we can characterize the behavior of many physical quantities
+by a power law behavior.
+As an example, for the Ising class of models, 
+the mean magnetization is given by
+\[
+  \langle M(T) \rangle \sim \left(T-T_C\right)^{\beta},
+\]
+where $\beta=1/8$ is a so-called critical exponent. A similar relation
+applies to the heat capacity
+
+\[
+  C_V(T) \sim \left|T_C-T\right|^{\alpha},
+\]
+and the susceptibility
+\begin{equation}
+  \chi(T) \sim \left|T_C-T\right|^{\gamma},
+\end{equation}
+with $\alpha = 0$ and $\gamma = 7/4$.
+Another important quantity is the correlation length, which is expected
+to be of the order of the lattice spacing for $T>> T_C$. Because the spins
+become more and more correlated as $T$ approaches $T_C$, the correlation
+length increases as we get closer to the critical temperature. The divergent
+behavior of $\xi$ near $T_C$ 
+is
+
+\begin{equation}
+  \xi(T) \sim \left|T_C-T\right|^{-\nu}.
+  \label{eq:xi}
+\end{equation}
+A second-order phase transition is characterized by a
+correlation length which spans the whole system.
+Since we are always limited to a finite lattice, $\xi$ will
+be proportional with the size of the lattice. 
+Through so-called finite size scaling relations
+it is possible to relate the behavior at finite lattices with the 
+results for an infinitely large lattice.
+The critical temperature scales then as
+
+\begin{equation}
+ T_C(L)-T_C(L=\infty) = aL^{-1/\nu},
+ \label{eq:tc}
+\end{equation}
+with  $a$ a constant and  $\nu$ defined in Eq. (\ref{eq:xi}).
+We set $T=T_C$ and obtain a mean magnetisation
+
+\begin{equation}
+  \langle {\cal M}(T) \rangle \sim \left(T-T_C\right)^{\beta}
+  \rightarrow L^{-\beta/\nu},
+  \label{eq:scale1}
+\end{equation}
+a heat capacity
+
+\begin{equation}
+  C_V(T) \sim \left|T_C-T\right|^{-\gamma} \rightarrow L^{\alpha/\nu},
+  \label{eq:scale2}
+\end{equation}
+and susceptibility
+
+\begin{equation}
+  \chi(T) \sim \left|T_C-T\right|^{-\alpha} \rightarrow L^{\gamma/\nu}.
+  \label{eq:scale3}
+\end{equation}
+
+
+\paragraph{Project 4f): Numerical studies of phase transitions.}
+We wish to study the behavior of the Ising model
+in two dimensions close to the critical temperature as a function of
+the lattice size $L\times L$. Calculate the expectation values for
+$\langle E\rangle$ and $\langle \vert M\vert \rangle$, the specific heat
+$C_V$ and the susceptibility $\chi$ as functions of $T$ for $L=40$,
+$L=60$, $L=80$ and $L=100$ for $T\in [2.0,2.3]$ with a step in
+temperature $\Delta T=0.05$ or smaller.  You may find it convenient to narrow the domain for $T$. 
+
+Plot $\langle E\rangle$,
+$\langle \vert M\vert\rangle$, $C_V$ and $\chi$ as functions of $T$. Can
+you see an indication of a phase transition?  Use the absolute value
+$\langle \vert M\vert\rangle$ when you evaluate $\chi$.  For these production runs you should
+parallelize the code using MPI (recommended). Alternatively OpenMP can be used. Use optimization flags when compiling. Perform a timing analysis of some selected runs in order to see that you get an optimal speedup when parallelizing your code. 
+
+
+
+\paragraph{Project 4g): Extracting the critical temperature.}
+Use Eq. (\ref{eq:tc}) and the exact result
+$\nu=1$ in order to estimate $T_C$ in the thermodynamic limit 
+$L\rightarrow \infty$
+using your simulations with $L=40$, $L=60$, $L=80$ and $L=100$
+The exact result for the critical temperature (\href{{http://journals.aps.org/pr/abstract/10.1103/PhysRev.65.117}}{after Lars Onsager}) is
+$kT_C/J=2/ln(1+\sqrt{2})\approx 2.269$ with $\nu=1$.
+
+\subsection*{Background literature}
+
+If you wish to read more about the Ising model and statistical physics here are three suggestions.
+
+\begin{itemize}
+  \item \href{{http://www.worldscientific.com/worldscibooks/10.1142/5660}}{M. Plischke and B. Bergersen}, \emph{Equilibrium Statistical Physics}, World Scientific, see chapters 5 and 6.
+
+  \item \href{{http://www.cambridge.org/no/academic/subjects/physics/computational-science-and-modelling/guide-monte-carlo-simulations-statistical-physics-4th-edition?format=HB}}{D. P. Landau and K. Binder}, \emph{A Guide to Monte Carlo Simulations in Statistical Physics}, Cambridge, see chapters 2,3 and 4.
+
+  \item \href{{https://global.oup.com/academic/product/monte-carlo-methods-in-statistical-physics-9780198517979?cc=no&lang=en&}}{M. E. J. Newman and T. Barkema}, \emph{Monte Carlo Methods in Statistical Physics}, Oxford, see chapters 3 and 4.
+\end{itemize}
+
+\noindent
+\subsection*{Introduction to numerical projects}
+
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+\begin{itemize}
+  \item Give a short description of the nature of the problem and the eventual  numerical methods you have used.
+
+  \item Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.
+
+  \item Include the source code of your program. Comment your program properly.
+
+  \item If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.
+
+  \item Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.
+
+  \item Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
+
+  \item Try to give an interpretation of you results in your answers to  the problems.
+
+  \item Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.
+
+  \item Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.
+\end{itemize}
+
+\noindent
+\subsection*{Format for electronic delivery of report and programs}
+
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+\begin{itemize}
+  \item Use \textbf{Canvas} to hand in your projects, log in  at  \href{{https://www.uio.no/english/services/it/education/canvas/}}{\nolinkurl{https://www.uio.no/english/services/it/education/canvas/}} with your normal UiO username and password.
+
+  \item Upload \textbf{only} the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them. Alternatively, you can just upload the address to your GitHub or GitLab repository.
+
+  \item In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parameters.
+
+  \item In this and all later projects, you should include tests (for example unit tests) of your code(s).
+
+  \item Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your \textbf{Canvas} domain and are only visible to you and the teachers of the course.
+\end{itemize}
+
+\noindent
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. You can then hand in a common report. 
+
+
+
+
+
+
+
+
+
+
+
+
+% ------------------- end of main content ---------------
+
+\end{document}
+
