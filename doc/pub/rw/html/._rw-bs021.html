@@ -468,15 +468,15 @@ for i in xrange(len(probability)):
     if probability[i] > 0.0:
         entropy -= probability[i]*math.log(probability[i])
 
-print "Timesteps             =",number_walks
-print "Walkers (num. trials) =",trials
-print "Entropy               =",entropy
-print
+print("Timesteps             =",number_walks)
+print("Walkers (num. trials) =",trials)
+print("Entropy               =",entropy)
+
 if len(probability) <= 101:
-    print "Probability distribution (Flat => high entropy):"
-    print probability
+    print("Probability distribution (Flat => high entropy):")
+    print(probability)
 else:
-    print "Probability distribution to big to print"
+    print("Probability distribution to big to print")
 
 
 </script></div>
