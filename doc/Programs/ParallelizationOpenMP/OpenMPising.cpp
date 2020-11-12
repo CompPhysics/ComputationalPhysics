@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
     // start Monte Carlo computation and parallel region
     double totalE, totalM, Mabs, totalE2, totalM2;    
     totalE = 0.0; totalM = Mabs = totalE2 = totalM2 = 0.0;
-# pragma omp parallel for default(shared) private (cycles, E, M) reduction(+:totalE,totalM,totalE2,totalM2,Mabs)
+# pragma omp parallel for default(shared) private (cycles, E, M, spin_matrix) reduction(+:totalE,totalM,totalE2,totalM2,Mabs)
     E = M = 0.;
     for (cycles = 1; cycles <= mcs; cycles++){
       Metropolis(n_spins, spin_matrix, E, M, w);
