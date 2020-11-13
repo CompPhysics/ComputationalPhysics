@@ -33,7 +33,8 @@ int main (int argc, char* argv[])
   }
   Fsum = 0.0;
   // Define parallel region
-# pragma omp parallel default(shared) private (angle, i, j, k) reduction(+:Fsum)
+  // private (angle, i, j, k)
+# pragma omp parallel default(shared)  reduction(+:Fsum)
   {
   // Set up values for matrix A and B and zero matrix C
   # pragma omp for
