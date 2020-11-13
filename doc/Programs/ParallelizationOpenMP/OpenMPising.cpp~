@@ -11,7 +11,7 @@
    ./executable Outputfile numberof spins number of MC cycles initial temp final temp tempstep
    ./test.x Lattice 100 10000000 2.1 2.4 0.01
    Compile and link as 
-   c++ -O3 -std=c++11 -Rpass=loop-vectorize -o Ising.x IsingModel.cpp -larmadillo -lomp
+   c++ -O3 -std=c++11 -Rpass=loop-vectorize -o Ising.x IsingModel.cpp -larmadillo
 */
 
 #include <cmath>
@@ -70,7 +70,7 @@ int main(int argc, char* argv[])
   for (double Temperature = InitialTemp; Temperature <= FinalTemp; Temperature+=TempStep){
     vec ExpectationValues = zeros<mat>(5);
     // Start Monte Carlo computation and get local expectation values
-    // This may need a fix!!  
+    // his may need a fix!!  
 # pragma omp parallel for default(shared) reduction(+:ExpectationValues)
     MetropolisSampling(NSpins, MonteCarloCycles, Temperature, ExpectationValues);
     WriteResultstoFile(NSpins, MonteCarloCycles, Temperature, ExpectationValues);
