@@ -54,7 +54,7 @@ int main(int argc, char* argv[])
 //   Write mean value and standard deviation 
      cout << " Standard deviation= " << STDev << " Integral = " << Mean << endl;
 
-     // Now we compute the autocorrelation function, setting the distance d 
+     // Now we compute the autocorrelation function
      double *autocor;  autocor = new double[n];
      for (int j = 0; j < n; j++){
        double sum = 0.0;
