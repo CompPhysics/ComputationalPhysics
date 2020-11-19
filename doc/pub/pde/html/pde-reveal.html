@@ -1,8 +1,8 @@
-\
 <!DOCTYPE html>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="Computational Physics  Lectures: Partial differential equations">
 
 <title>Computational Physics  Lectures: Partial differential equations</title>
@@ -10,8 +10,8 @@
 
 
 
-<script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
-<script src="http://sagecell.sagemath.org/embedded_sagecell.js"></script>
+<script src="https://sagecell.sagemath.org/static/jquery.min.js"></script>
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script>
 <link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
 <script>
 $(function () {
@@ -163,12 +163,12 @@ MathJax.Hub.Config({
 <center>[2] <b>Department of Physics and Astronomy and National Superconducting Cyclotron Laboratory, Michigan State University</b></center>
 <br>
 <p>&nbsp;<br>
-<center><h4>Aug 30, 2017</h4></center> <!-- date -->
+<center><h4>Nov 19, 2020</h4></center> <!-- date -->
 <br>
 <p>
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 1999-2017, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
+<!-- copyright --> &copy; 1999-2020, Morten Hjorth-Jensen. Released under CC Attribution-NonCommercial 4.0 license
 </center>
 </section>
 
@@ -2608,7 +2608,7 @@ Let us revisit project 1 and the Thomas algorithm for solving a system of tridia
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">//  Solves linear equations for simple tridiagonal matrix using the iterative Jacobi method</span>
 ....
 <span style="color: #228B22">// Begin main program</span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> main(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> *argv[]){
+<span style="color: #00688B; font-weight: bold">int</span> main(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span> *argv[]){
      <span style="color: #228B22">// missing statements, see code link above</span>
 
       mat A = zeros&lt;mat&gt;(n,n);
@@ -2616,7 +2616,7 @@ Let us revisit project 1 and the Thomas algorithm for solving a system of tridia
       vec <span style="color: #008b45">b</span>(n);  vec <span style="color: #008b45">x</span>(n);
       A(<span style="color: #B452CD">0</span>,<span style="color: #B452CD">1</span>) = -<span style="color: #B452CD">1</span>;  x(<span style="color: #B452CD">0</span>) = h;  b(<span style="color: #B452CD">0</span>) =  hh*f(x(<span style="color: #B452CD">0</span>)); 
       x(n-<span style="color: #B452CD">1</span>) = x(<span style="color: #B452CD">0</span>)+(n-<span style="color: #B452CD">1</span>)*h; b(n-<span style="color: #B452CD">1</span>) = hh*f(x(n-<span style="color: #B452CD">1</span>)); 
-      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n-<span style="color: #B452CD">1</span>; i++){ 
+      <span style="color: #8B008B; font-weight: bold">for</span> (<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; n-<span style="color: #B452CD">1</span>; i++){ 
         x(i) = x(i-<span style="color: #B452CD">1</span>)+h; 
 	b(i) = hh*f(x(i));
         A(i,i-<span style="color: #B452CD">1</span>)  = -<span style="color: #B452CD">1.0</span>;
@@ -2624,8 +2624,8 @@ Let us revisit project 1 and the Thomas algorithm for solving a system of tridia
       }
      A(n-<span style="color: #B452CD">2</span>,n-<span style="color: #B452CD">1</span>) = -<span style="color: #B452CD">1.0</span>; A(n-<span style="color: #B452CD">1</span>,n-<span style="color: #B452CD">2</span>) = -<span style="color: #B452CD">1.0</span>;
   <span style="color: #228B22">// solve Ax = b by iteration with a random starting vector</span>
-     <span style="color: #a7a7a7; font-weight: bold">int</span> maxiter = <span style="color: #B452CD">100</span>; <span style="color: #a7a7a7; font-weight: bold">double</span> diff = <span style="color: #B452CD">1.0</span>; 
-     <span style="color: #a7a7a7; font-weight: bold">double</span> epsilon = <span style="color: #B452CD">1.0e-10</span>;  <span style="color: #a7a7a7; font-weight: bold">int</span> iter = <span style="color: #B452CD">0</span>;
+     <span style="color: #00688B; font-weight: bold">int</span> maxiter = <span style="color: #B452CD">100</span>; <span style="color: #00688B; font-weight: bold">double</span> diff = <span style="color: #B452CD">1.0</span>; 
+     <span style="color: #00688B; font-weight: bold">double</span> epsilon = <span style="color: #B452CD">1.0e-10</span>;  <span style="color: #00688B; font-weight: bold">int</span> iter = <span style="color: #B452CD">0</span>;
       vec SolutionOld  = randu&lt;vec&gt;(n);
       vec SolutionNew  = zeros&lt;vec&gt;(n);
       <span style="color: #8B008B; font-weight: bold">while</span> (iter &lt;= maxiter || diff &gt; epsilon){
@@ -2656,28 +2656,28 @@ The following program sets up the diffusion equation solver in two spatial dimen
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, mat &amp;, mat &amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>);
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">double</span>, <span style="color: #00688B; font-weight: bold">double</span>, mat &amp;, mat &amp;, <span style="color: #00688B; font-weight: bold">double</span>);
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> * argv[]){
-  <span style="color: #a7a7a7; font-weight: bold">int</span> Npoints = <span style="color: #B452CD">40</span>;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> ExactSolution;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> dx = <span style="color: #B452CD">1.0</span>/(Npoints-<span style="color: #B452CD">1</span>);
-  <span style="color: #a7a7a7; font-weight: bold">double</span> dt = <span style="color: #B452CD">0.25</span>*dx*dx;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> tolerance = <span style="color: #B452CD">1.0e-14</span>;
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span> * argv[]){
+  <span style="color: #00688B; font-weight: bold">int</span> Npoints = <span style="color: #B452CD">40</span>;
+  <span style="color: #00688B; font-weight: bold">double</span> ExactSolution;
+  <span style="color: #00688B; font-weight: bold">double</span> dx = <span style="color: #B452CD">1.0</span>/(Npoints-<span style="color: #B452CD">1</span>);
+  <span style="color: #00688B; font-weight: bold">double</span> dt = <span style="color: #B452CD">0.25</span>*dx*dx;
+  <span style="color: #00688B; font-weight: bold">double</span> tolerance = <span style="color: #B452CD">1.0e-14</span>;
   mat A = zeros&lt;mat&gt;(Npoints,Npoints);
   mat q = zeros&lt;mat&gt;(Npoints,Npoints);
 
   <span style="color: #228B22">// setting up an additional source term</span>
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++)
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; Npoints; j++)
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++)
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; Npoints; j++)
       q(i,j) = -<span style="color: #B452CD">2.0</span>*M_PI*M_PI*sin(M_PI*dx*i)*sin(M_PI*dx*j);
     
-  <span style="color: #a7a7a7; font-weight: bold">int</span> itcount = JacobiSolver(Npoints,dx,dt,A,q,tolerance);
+  <span style="color: #00688B; font-weight: bold">int</span> itcount = JacobiSolver(Npoints,dx,dt,A,q,tolerance);
  
   <span style="color: #228B22">// Testing against exact solution</span>
-  <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++){
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j &lt; Npoints; j++){
+  <span style="color: #00688B; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++){
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j &lt; Npoints; j++){
       ExactSolution = -sin(M_PI*dx*i)*sin(M_PI*dx*j);
       sum += fabs((A(i,j) - ExactSolution));
     }
@@ -2695,36 +2695,36 @@ The following program sets up the diffusion equation solver in two spatial dimen
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
 <div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #228B22">// Function for setting up the iterative Jacobi solver</span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #a7a7a7; font-weight: bold">double</span> dx, <span style="color: #a7a7a7; font-weight: bold">double</span> dt, mat &amp;A, mat &amp;q, <span style="color: #a7a7a7; font-weight: bold">double</span> abstol)
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #00688B; font-weight: bold">int</span> N, <span style="color: #00688B; font-weight: bold">double</span> dx, <span style="color: #00688B; font-weight: bold">double</span> dt, mat &amp;A, mat &amp;q, <span style="color: #00688B; font-weight: bold">double</span> abstol)
 {
-  <span style="color: #a7a7a7; font-weight: bold">int</span> MaxIterations = <span style="color: #B452CD">100000</span>;
+  <span style="color: #00688B; font-weight: bold">int</span> MaxIterations = <span style="color: #B452CD">100000</span>;
   mat Aold = zeros&lt;mat&gt;(N,N);
   
-  <span style="color: #a7a7a7; font-weight: bold">double</span> D = dt/(dx*dx);
+  <span style="color: #00688B; font-weight: bold">double</span> D = dt/(dx*dx);
   
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>;  i &lt; N-<span style="color: #B452CD">1</span>; i++)
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">1</span>; j &lt; N-<span style="color: #B452CD">1</span>; j++)
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i=<span style="color: #B452CD">1</span>;  i &lt; N-<span style="color: #B452CD">1</span>; i++)
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> j=<span style="color: #B452CD">1</span>; j &lt; N-<span style="color: #B452CD">1</span>; j++)
       Aold(i,j) = <span style="color: #B452CD">1.0</span>;
   
   <span style="color: #228B22">// Boundary Conditions -- all zeros</span>
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i &lt; N; i++){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i &lt; N; i++){
     A(<span style="color: #B452CD">0</span>,i) = <span style="color: #B452CD">0.0</span>;
     A(N-<span style="color: #B452CD">1</span>,i) = <span style="color: #B452CD">0.0</span>;
     A(i,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.0</span>;
     A(i,N-<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">0.0</span>;
   }
   <span style="color: #228B22">// Start the iterative solver</span>
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> k = <span style="color: #B452CD">0</span>; k &lt; MaxIterations; k++){
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; N-<span style="color: #B452CD">1</span>; i++){
-      <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">1</span>; j &lt; N-<span style="color: #B452CD">1</span>; j++){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> k = <span style="color: #B452CD">0</span>; k &lt; MaxIterations; k++){
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">1</span>; i &lt; N-<span style="color: #B452CD">1</span>; i++){
+      <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> j=<span style="color: #B452CD">1</span>; j &lt; N-<span style="color: #B452CD">1</span>; j++){
 	A(i,j) = dt*q(i,j) + Aold(i,j) +
 	  D*(Aold(i+<span style="color: #B452CD">1</span>,j) + Aold(i,j+<span style="color: #B452CD">1</span>) - <span style="color: #B452CD">4.0</span>*Aold(i,j) + 
 	     Aold(i-<span style="color: #B452CD">1</span>,j) + Aold(i,j-<span style="color: #B452CD">1</span>));
       }
     }
-    <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; N;i++){
-      <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; N;j++){
+    <span style="color: #00688B; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; N;i++){
+      <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; N;j++){
 	sum += (Aold(i,j)-A(i,j))*(Aold(i,j)-A(i,j));
 	Aold(i,j) = A(i,j);
       }
@@ -2756,10 +2756,10 @@ and implement it in parallel.
 <span style="color: #1e889b">#include</span> <span style="color: #228B22">&lt;mpi.h&gt;</span><span style="color: #1e889b"></span>
 
 <span style="color: #228B22">//  Omitted statements</span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> * argv[]){
-  <span style="color: #a7a7a7; font-weight: bold">int</span> i,j, N = <span style="color: #B452CD">20</span>;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> **A,*x,*q;
-  <span style="color: #a7a7a7; font-weight: bold">int</span> totalnodes,mynode;
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span> * argv[]){
+  <span style="color: #00688B; font-weight: bold">int</span> i,j, N = <span style="color: #B452CD">20</span>;
+  <span style="color: #00688B; font-weight: bold">double</span> **A,*x,*q;
+  <span style="color: #00688B; font-weight: bold">int</span> totalnodes,mynode;
 
   MPI_Init(&amp;argc,&amp;argv);
   MPI_Comm_size(MPI_COMM_WORLD, &amp;totalnodes);
@@ -2770,7 +2770,7 @@ and implement it in parallel.
   }
   ParallelJacobi(mynode,totalnodes,N,A,x,q,<span style="color: #B452CD">1.0e-14</span>);
   <span style="color: #8B008B; font-weight: bold">if</span>(mynode==<span style="color: #B452CD">0</span>){
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; N; i++)
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; N; i++)
       cout &lt;&lt; x[i] &lt;&lt; endl;
 
   }
@@ -2788,15 +2788,15 @@ Here follows the parallel implementation of the Jacobi algorithm
 <p>
 
 <!-- code=c++ (!bc cppcod) typeset with pygments style "perldoc" -->
-<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">ParallelJacobi</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> mynode, <span style="color: #a7a7a7; font-weight: bold">int</span> numnodes, <span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #a7a7a7; font-weight: bold">double</span> **A, <span style="color: #a7a7a7; font-weight: bold">double</span> *x, <span style="color: #a7a7a7; font-weight: bold">double</span> *b, <span style="color: #a7a7a7; font-weight: bold">double</span> abstol){
-  <span style="color: #a7a7a7; font-weight: bold">int</span> i,j,k,i_global;
-  <span style="color: #a7a7a7; font-weight: bold">int</span> maxit = <span style="color: #B452CD">100000</span>;
-  <span style="color: #a7a7a7; font-weight: bold">int</span> rows_local,local_offset,last_rows_local,*count,*displacements;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> sum1,sum2,*xold;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> error_sum_local, error_sum_global;
+<div class="highlight" style="background: #eeeedd"><pre style="font-size: 80%; line-height: 125%"><span></span><span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">ParallelJacobi</span>(<span style="color: #00688B; font-weight: bold">int</span> mynode, <span style="color: #00688B; font-weight: bold">int</span> numnodes, <span style="color: #00688B; font-weight: bold">int</span> N, <span style="color: #00688B; font-weight: bold">double</span> **A, <span style="color: #00688B; font-weight: bold">double</span> *x, <span style="color: #00688B; font-weight: bold">double</span> *b, <span style="color: #00688B; font-weight: bold">double</span> abstol){
+  <span style="color: #00688B; font-weight: bold">int</span> i,j,k,i_global;
+  <span style="color: #00688B; font-weight: bold">int</span> maxit = <span style="color: #B452CD">100000</span>;
+  <span style="color: #00688B; font-weight: bold">int</span> rows_local,local_offset,last_rows_local,*count,*displacements;
+  <span style="color: #00688B; font-weight: bold">double</span> sum1,sum2,*xold;
+  <span style="color: #00688B; font-weight: bold">double</span> error_sum_local, error_sum_global;
   MPI_Status status;
 
-  rows_local = (<span style="color: #a7a7a7; font-weight: bold">int</span>) floor((<span style="color: #a7a7a7; font-weight: bold">double</span>)N/numnodes);
+  rows_local = (<span style="color: #00688B; font-weight: bold">int</span>) floor((<span style="color: #00688B; font-weight: bold">double</span>)N/numnodes);
   local_offset = mynode*rows_local;
   <span style="color: #8B008B; font-weight: bold">if</span>(mynode == (numnodes-<span style="color: #B452CD">1</span>)) 
     rows_local = N - rows_local*(numnodes-<span style="color: #B452CD">1</span>);
@@ -2818,17 +2818,17 @@ Here follows the parallel implementation of the Jacobi algorithm
   }
   <span style="color: #8B008B; font-weight: bold">else</span>{
     A = CreateMatrix(rows_local,N);
-    x = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[rows_local];    
-    b = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[rows_local];
+    x = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span>[rows_local];    
+    b = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span>[rows_local];
     <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span>;i&lt;rows_local;i++)
       MPI_Recv(A[i],N,MPI_DOUBLE,<span style="color: #B452CD">0</span>,i,MPI_COMM_WORLD,&amp;status);
     MPI_Recv(b,rows_local,MPI_DOUBLE,<span style="color: #B452CD">0</span>,rows_local,MPI_COMM_WORLD,&amp;status);
   }
 
 
-  xold = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">double</span>[N];
-  count = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[numnodes];
-  displacements = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #a7a7a7; font-weight: bold">int</span>[numnodes];
+  xold = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">double</span>[N];
+  count = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">int</span>[numnodes];
+  displacements = <span style="color: #8B008B; font-weight: bold">new</span> <span style="color: #00688B; font-weight: bold">int</span>[numnodes];
 
 
   <span style="color: #228B22">//set initial guess to all 1.0</span>
@@ -2837,10 +2837,10 @@ Here follows the parallel implementation of the Jacobi algorithm
   }
 
   <span style="color: #8B008B; font-weight: bold">for</span>(i=<span style="color: #B452CD">0</span>;i&lt;numnodes;i++){
-    count[i] = (<span style="color: #a7a7a7; font-weight: bold">int</span>) floor((<span style="color: #a7a7a7; font-weight: bold">double</span>)N/numnodes);
+    count[i] = (<span style="color: #00688B; font-weight: bold">int</span>) floor((<span style="color: #00688B; font-weight: bold">double</span>)N/numnodes);
     displacements[i] = i*count[i];
   }
-  count[numnodes-<span style="color: #B452CD">1</span>] = N - ((<span style="color: #a7a7a7; font-weight: bold">int</span>)floor((<span style="color: #a7a7a7; font-weight: bold">double</span>)N/numnodes))*(numnodes-<span style="color: #B452CD">1</span>);
+  count[numnodes-<span style="color: #B452CD">1</span>] = N - ((<span style="color: #00688B; font-weight: bold">int</span>)floor((<span style="color: #00688B; font-weight: bold">double</span>)N/numnodes))*(numnodes-<span style="color: #B452CD">1</span>);
   
   <span style="color: #8B008B; font-weight: bold">for</span>(k=<span style="color: #B452CD">0</span>; k&lt;maxit; k++){
     error_sum_local = <span style="color: #B452CD">0.0</span>;
@@ -2919,33 +2919,33 @@ Here follows the parallel implementation of the diffusion equation using OpenMP
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> std;
 <span style="color: #8B008B; font-weight: bold">using</span> <span style="color: #8B008B; font-weight: bold">namespace</span> arma;
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #a7a7a7; font-weight: bold">int</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, <span style="color: #a7a7a7; font-weight: bold">double</span>, mat &amp;, mat &amp;, <span style="color: #a7a7a7; font-weight: bold">double</span>);
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #00688B; font-weight: bold">int</span>, <span style="color: #00688B; font-weight: bold">double</span>, <span style="color: #00688B; font-weight: bold">double</span>, mat &amp;, mat &amp;, <span style="color: #00688B; font-weight: bold">double</span>);
 
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> argc, <span style="color: #a7a7a7; font-weight: bold">char</span> * argv[]){
-  <span style="color: #a7a7a7; font-weight: bold">int</span> Npoints = <span style="color: #B452CD">100</span>;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> ExactSolution;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> dx = <span style="color: #B452CD">1.0</span>/(Npoints-<span style="color: #B452CD">1</span>);
-  <span style="color: #a7a7a7; font-weight: bold">double</span> dt = <span style="color: #B452CD">0.25</span>*dx*dx;
-  <span style="color: #a7a7a7; font-weight: bold">double</span> tolerance = <span style="color: #B452CD">1.0e-8</span>;
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">main</span>(<span style="color: #00688B; font-weight: bold">int</span> argc, <span style="color: #00688B; font-weight: bold">char</span> * argv[]){
+  <span style="color: #00688B; font-weight: bold">int</span> Npoints = <span style="color: #B452CD">100</span>;
+  <span style="color: #00688B; font-weight: bold">double</span> ExactSolution;
+  <span style="color: #00688B; font-weight: bold">double</span> dx = <span style="color: #B452CD">1.0</span>/(Npoints-<span style="color: #B452CD">1</span>);
+  <span style="color: #00688B; font-weight: bold">double</span> dt = <span style="color: #B452CD">0.25</span>*dx*dx;
+  <span style="color: #00688B; font-weight: bold">double</span> tolerance = <span style="color: #B452CD">1.0e-8</span>;
   mat A = zeros&lt;mat&gt;(Npoints,Npoints);
   mat q = zeros&lt;mat&gt;(Npoints,Npoints);
 
-  <span style="color: #a7a7a7; font-weight: bold">int</span> thread_num;
+  <span style="color: #00688B; font-weight: bold">int</span> thread_num;
   omp_set_num_threads(<span style="color: #B452CD">4</span>);
   thread_num = omp_get_max_threads ();
   cout &lt;&lt; <span style="color: #CD5555">&quot;  The number of processors available = &quot;</span> &lt;&lt; omp_get_num_procs () &lt;&lt; endl ;
   cout &lt;&lt; <span style="color: #CD5555">&quot;  The number of threads available    = &quot;</span> &lt;&lt; thread_num &lt;&lt;  endl;
   <span style="color: #228B22">// setting up an additional source term</span>
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++)
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; Npoints; j++)
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++)
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> j = <span style="color: #B452CD">0</span>; j &lt; Npoints; j++)
       q(i,j) = -<span style="color: #B452CD">2.0</span>*M_PI*M_PI*sin(M_PI*dx*i)*sin(M_PI*dx*j);
     
-  <span style="color: #a7a7a7; font-weight: bold">int</span> itcount = JacobiSolver(Npoints,dx,dt,A,q,tolerance);
+  <span style="color: #00688B; font-weight: bold">int</span> itcount = JacobiSolver(Npoints,dx,dt,A,q,tolerance);
  
   <span style="color: #228B22">// Testing against exact solution</span>
-  <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++){
-    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j &lt; Npoints; j++){
+  <span style="color: #00688B; font-weight: bold">double</span> sum = <span style="color: #B452CD">0.0</span>;
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i = <span style="color: #B452CD">0</span>; i &lt; Npoints; i++){
+    <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> j=<span style="color: #B452CD">0</span>;j &lt; Npoints; j++){
       ExactSolution = -sin(M_PI*dx*i)*sin(M_PI*dx*j);
       sum += fabs((A(i,j) - ExactSolution));
     }
@@ -2956,26 +2956,26 @@ Here follows the parallel implementation of the diffusion equation using OpenMP
 
 
 <span style="color: #228B22">// Function for setting up the iterative Jacobi solver</span>
-<span style="color: #a7a7a7; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> N, <span style="color: #a7a7a7; font-weight: bold">double</span> dx, <span style="color: #a7a7a7; font-weight: bold">double</span> dt, mat &amp;A, mat &amp;q, <span style="color: #a7a7a7; font-weight: bold">double</span> abstol)
+<span style="color: #00688B; font-weight: bold">int</span> <span style="color: #008b45">JacobiSolver</span>(<span style="color: #00688B; font-weight: bold">int</span> N, <span style="color: #00688B; font-weight: bold">double</span> dx, <span style="color: #00688B; font-weight: bold">double</span> dt, mat &amp;A, mat &amp;q, <span style="color: #00688B; font-weight: bold">double</span> abstol)
 {
-  <span style="color: #a7a7a7; font-weight: bold">int</span> MaxIterations = <span style="color: #B452CD">100000</span>;
+  <span style="color: #00688B; font-weight: bold">int</span> MaxIterations = <span style="color: #B452CD">100000</span>;
 
   
-  <span style="color: #a7a7a7; font-weight: bold">double</span> D = dt/(dx*dx);
+  <span style="color: #00688B; font-weight: bold">double</span> D = dt/(dx*dx);
   <span style="color: #228B22">// initial guess</span>
   mat Aold = randu&lt;mat&gt;(N,N);  
   <span style="color: #228B22">// Boundary conditions, all zeros</span>
-  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #a7a7a7; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i &lt; N; i++){
+  <span style="color: #8B008B; font-weight: bold">for</span>(<span style="color: #00688B; font-weight: bold">int</span> i=<span style="color: #B452CD">0</span>; i &lt; N; i++){
     A(<span style="color: #B452CD">0</span>,i) = <span style="color: #B452CD">0.0</span>;
     A(N-<span style="color: #B452CD">1</span>,i) = <span style="color: #B452CD">0.0</span>;
     A(i,<span style="color: #B452CD">0</span>) = <span style="color: #B452CD">0.0</span>;
     A(i,N-<span style="color: #B452CD">1</span>) = <span style="color: #B452CD">0.0</span>;
   }
-  <span style="color: #a7a7a7; font-weight: bold">double</span> sum = <span style="color: #B452CD">1.0</span>;
-  <span style="color: #a7a7a7; font-weight: bold">int</span> k = <span style="color: #B452CD">0</span>;
+  <span style="color: #00688B; font-weight: bold">double</span> sum = <span style="color: #B452CD">1.0</span>;
+  <span style="color: #00688B; font-weight: bold">int</span> k = <span style="color: #B452CD">0</span>;
   <span style="color: #228B22">// Start the iterative solver</span>
   <span style="color: #8B008B; font-weight: bold">while</span> (k &lt; MaxIterations &amp;&amp; sum &gt; abstol){
-  <span style="color: #a7a7a7; font-weight: bold">int</span> i, j;
+  <span style="color: #00688B; font-weight: bold">int</span> i, j;
   sum = <span style="color: #B452CD">0.0</span>;
   <span style="color: #228B22">// Define parallel region</span>
 <span style="color: #1e889b"># pragma omp parallel default(shared) private (i, j) reduction(+:sum)</span>
