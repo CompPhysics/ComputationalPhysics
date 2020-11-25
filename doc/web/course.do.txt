@@ -121,7 +121,7 @@ ${text_types(ch)}
 
 
 
-=== Project 5 To be defined , deadline December 14 ===
+=== Project 5 Quantum Monte Carlo, deadline December 16 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.pdf"
@@ -130,6 +130,74 @@ ${text_types(ch)}
    * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/QuantumMonteCarlo/html/QuantumMonteCarlo-bs.html"
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/QuantumMonteCarlo/ipynb/QuantumMonteCarlo.ipynb"
+
+
+=== Project 5 Disease Modeling, deadline December 16 ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiseaseModeling/pdf/DiseaseModeling.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiseaseModeling/pdf/DiseaseModeling.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiseaseModeling/html/DiseaseModeling.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiseaseModeling/html/DiseaseModeling-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiseaseModeling/ipynb/DiseaseModeling.ipynb"
+
+
+=== Project 5 Diffusion Equation, deadline December 16 ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiffusionEquation/pdf/DiffusionEquation.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiffusionEquation/pdf/DiffusionEquation.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiffusionEquation/html/DiffusionEquation.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiffusionEquation/html/DiffusionEquation-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiffusionEquation/ipynb/DiffusionEquation.ipynb"
+
+
+=== Project 5 Monte Carlo Modeling of Elections, deadline December 16 ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/IsingSocial/pdf/IsingSocial.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/IsingSocial/pdf/IsingSocial.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/IsingSocial/html/IsingSocial.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/IsingSocial/html/IsingSocial-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/IsingSocial/ipynb/IsingSocial.ipynb"
+
+
+
+=== Project 5 Rosby wave and wave equation, deadline December 16 ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/WaveEquation/pdf/WaveEquation.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/WaveEquation/pdf/WaveEquation.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/WaveEquation/html/WaveEquation.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/WaveEquation/html/WaveEquation-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/WaveEquation/ipynb/WaveEquation.ipynb"
+
+
+=== Project 5 Molecular Dynamics, deadline December 16 ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/MolecularDynamics/pdf/MolecularDynamics.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/MolecularDynamics/pdf/MolecularDynamics.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/MolecularDynamics/html/MolecularDynamics.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/MolecularDynamics/html/MolecularDynamics-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/MolecularDynamics/ipynb/MolecularDynamics.ipynb"
+
+
+=== Project 5 Financial Modeling and Black-Scholes Equation, deadline December 16 ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/pdf/FinancialEngineering.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/pdf/FinancialEngineering.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/html/FinancialEngineering.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/html/FinancialEngineering-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/ipynb/FinancialEngineering.ipynb"
+
 
 
 

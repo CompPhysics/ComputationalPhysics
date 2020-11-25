@@ -20,10 +20,10 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 !split
 ===== Topics we have covered this year =====
 * Linear algebra and eigenvalue problems. (Lecture notes chapters 6.1-6.5  and 7.1-7.5. Projects 1 and 2).
-* Numerical integration, Gaussian quadrature and Monte Carlo integration (Lecture notes chapters 5 and 11 and project 3)
-* Ordinary differential equations (Lecture notes chapter 8  and project 5)
+* Numerical integration, Gaussian quadrature and Monte Carlo integration (Lecture notes chapters 5 and 11)
+* Ordinary differential equations (Lecture notes chapter 8  and project 3)
 * Partial differential equations (Lecture notes chapter 10 and project 5)
-* Monte Carlo methods (Lecture notes chapters 11, 12, 13  and 14, projects 3, 4 and 5)
+* Monte Carlo methods (Lecture notes chapters 11, 12, 13  and 14, projects 4 and 5)
 
 !split
 ===== Linear algebra and eigenvalue problems, chapters 6.1-6.5 and 7.1-7.5 =====
@@ -38,7 +38,7 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 
 !split
 ===== Monte Carlo methods (Chapters 11, 12 and 13) =====
-* Numerical integration of multidimensional integrals (project 3)
+* Numerical integration of multidimensional integrals
 * Random walks and Markov chains
 * Metropolis algorithm (project 4)
 * Applications to statistical physics systems (project 4)
@@ -49,10 +49,10 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 !split
 ===== Ordinary differential equations (Chapter 8) =====
 
-* Euler's method and improved Euler's method, truncation errors (project 5)
+* Euler's method and improved Euler's method, truncation errors (projects 3 and 5)
 * Runge Kutta methods, 2nd and 4th order, truncation errors
 * Verlet algoritm (project 5)
-* How to implement and solve a second-order differential equation,  both linear and non-linear (project 5).
+* How to implement and solve a second-order differential equation,  both linear and non-linear (projects 3 and  5).
 * How to make your equations dimensionless (projects 2 and 5).
 
 !split
