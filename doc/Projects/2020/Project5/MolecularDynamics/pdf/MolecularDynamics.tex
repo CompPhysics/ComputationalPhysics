@@ -1,0 +1,399 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+
+
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Project 5, deadline  December 16, 2020
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf Molecular Dynamics project${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+
+% --- begin date ---
+\begin{center}
+Fall semester 2020
+\end{center}
+% --- end date ---
+
+\vspace{1cm}
+
+
+\subsection*{Theoretical background and description of the physical system}
+
+In this project we will implement a model called molecular dynamics
+(MD). Molecular dynamics allows us to study the dynamics of atoms and
+explore the phase space. For those of you who are taking FYS2160 -
+Thermodynamics, this project will be an excellent choice. The atoms
+interact through a force given by the negative gradient of a potential
+energy function. With this force, we can integrate Newton's
+laws. While exploring the phase space, we will sample statistical
+properties of the system like energy, temperature, pressure, diffusion
+constant and so on.  The project can be seen also as an extension from project 3,
+where you wrote an object-oriented code for the solar system. 
+
+Here we will use another potential  for modeling the interaction between atoms.
+Molecular dynamics is based on the assumption that even atoms move
+according to the laws of Newton, given the correct model for
+interactions. The goal of this project is to model an argon gas, where
+the atoms interact according to the famous Lennard-Jones potential,
+
+\begin{equation}
+    U(r) = 4\varepsilon\qty(\qty(\frac{\sigma}{r})^{12} - \qty(\frac{\sigma}{r})^6), \label{eq:lj}
+\end{equation}
+
+where $r$ is the distance between two atoms,
+$r=\norm{\bm{r}_i-\bm{r}_j}$. The quantity $\sigma$ and $\varepsilon$
+are parameters which determine which chemical compound is
+modelled. This potential is a good approximation for noble
+gases. Before you begin it is also useful to find the force on atom
+$i$ at position $\bm{r}_i$ from atom $j$ at position $\bm{r}_j$. 
+
+
+
+We will also learn how to do write object oriented code. You can use your code 
+from project 3 or look at a 
+a code skeleton that contains the basic structure of an MD code.
+You can find the \href{{https://github.com/andeplane/molecular-dynamics-fys3150}}{code skeleton
+here}. You
+can clone or fork this repository into your own.  The class structure
+which you developed for project 3 can also be used again here, as well
+as the Velocity Verlet algorithm of project 3.
+
+
+
+
+
+
+
+After you have downloaded the repository, open the project in Qt
+Creator and see if it runs. The program should create 100 argon atoms
+and place them uniformly inside a cubic box with sides 10
+Angstroms. Each atom is given a velocity according to the
+Maxwell-Boltzmann distribution so that
+\begin{align} 
+P(v_i)d\mathrm{v}_i = \left(\frac{m}{2\pi k_B
+T}\right)^{1/2} \exp\left(-\frac{m v_i^2}{2k_B T}\right)d\mathrm{v}_i,
+\end{align} 
+where $m$ is the mass of the atom, $k_B$ is
+Boltzmann's constant and $T$ is the temperature. We recognize this as
+a normal distribution with zero mean and standard deviation $\sigma =
+\sqrt{k_B T/m}$. We recognize this also as the Boltzmann distribution $P(E) \propto \exp{(-\beta E)}$, with $E = 0.5mv^2$.
+The program will evolve the system in time with no
+forces so that all atoms move in a straight line. It will create a
+file called \emph{movie.xyz} containing all the timesteps ready to
+visualize with for example Ovito. You can download Ovito from this \href{{http://www.ovito.org/index.php/download}}{site}. You should start
+with the fun part - to look at the simulation in Ovito. We then
+strongly recommend that, before you start, you look at the code
+structure and try to understand how the different classes are
+connected to each other and how a typical timestep is computed. You
+can skip understanding the contents of \emph{unitconverter.cpp} and \emph{vec3.cpp}.
+
+
+\textbf{For this project you can collaborate with fellow students and you can  hand in a common report.}
+This project (together with projects 3 and 4) counts 1/3 of the final mark.
+
+\subsection*{Before starting}
+
+If you wish to study the above program, while you develop your own code, it may be useful to 
+pay attention to the following two steps:
+\begin{enumerate}
+ \item First, spend some 30 minutes figuring out what molecular dynamics is and which problems it can be applied to. What areas of physics can it be used in? What about chemistry and biology? What you find here should be part of the  introductory section in your report.
+
+ \item Then run the program, visualize the output with for example Ovito (as mentioned above). Now, spend some 30-60 minutes looking at the code and understand how the output is produced and try to understand every step in the code. The best way to do this is to start at the top of the \emph{main()} function and follow every line and every function call, step by step. \textbf{As a part of your report, you should explain the code structure and draw a flow chart (a diagram showing how the program is executed).} This part is extremely important and will save you a lot of time. And of course, please ask us teachers if you have any questions!
+\end{enumerate}
+
+\noindent
+\paragraph{Project 5a): Getting started.}
+When working with MD, the system size is usually limited by available computer resources. A typical large MD simulation (with a parallelized code) contains a few million atoms corresponding to a system much smaller than a cubic micron. In order to get rid of boundary effects, we usually apply periodic boundary conditions so that we simulate a system of infinite size. You need to implement the \emph{applyPeriodicBoundaryConditions} function in the \emph{System} class. After doing so, run the program again and notice how the atoms now are contained inside a box. Discuss the benefits of this strategy.
+
+\paragraph{Project 5b): Velocity distribution.}
+The atoms are usually given velocities according to the Maxwell-Boltzmann distribution (you should discuss why this is the case) which will result in a nonzero net momentum in the system. Implement the \emph{removeMomentum} function in the \emph{System} class so that the net momentum is zero.
+
+\paragraph{Project 5c): FCC lattice.}
+The atoms are now uniformly distributed in space. This is not very physical, so we should place the atoms in a crystal structure. When we later implement the Lennard-Jones potential, we will see that the face-centered cubic (FCC) lattice is a stable structure for the potential (it is actually the crystalline structure of argon). A lattice is built up by \emph{unit cells} - a group of atoms - so that a larger system can be created by repeating these cells in space. An FCC lattice unit cell of size $b$ in Angstroms (this is the lattice constant) consists of four atoms with local coordinates
+
+\begin{align}
+	\mathbf{r}_1 &= 0 \hat{\mathbf{i}} + 0 \hat{\mathbf{j}} + 0 \hat{\mathbf{k}},\\
+	\mathbf{r}_2 &= \frac{b}{2} \hat{\mathbf{i}} + \frac{b}{2} \hat{\mathbf{j}} + 0 \hat{\mathbf{k}},\\
+	\mathbf{r}_3 &= 0 \hat{\mathbf{i}} + \frac{b}{2} \hat{\mathbf{j}} + \frac{b}{2} \hat{\mathbf{k}},\\
+	\mathbf{r}_4 &= \frac{b}{2} \hat{\mathbf{i}} + 0 \hat{\mathbf{j}} + \frac{b}{2} \hat{\mathbf{k}}.
+\end{align}
+You can now create $N_x \times N_y \times N_z$ such unit cells next to each other to form a larger system so that the origin of unit cell $(i,j,k)$ is
+
+\begin{align}
+	\mathbf{R}_{i,j,k} = i \hat{\mathbf{u}}_1 + j \hat{\mathbf{u}}_2 + k \hat{\mathbf{u}}_3,
+\end{align}
+where $i=0,1,..., N_x-1, j=0,1,..., N_y-1, k=0,1,..., N_z-1$. The unit vectors of the unit cells are scaled with the lattice constant $b$ so that
+
+\begin{align}
+	\hat{\mathbf{u}}_1 = b\hat{\mathbf{i}}, \quad \hat{\mathbf{u}}_2 = b\hat{\mathbf{j}}, \quad \hat{\mathbf{u}}_3 = b\hat{\mathbf{k}}.
+\end{align}
+Implement the function \emph{createFCCLattice(int numberOfUnitCellsEachDimension, double latticeConstant)} in the \emph{System} class. Remember to remove the 100 atoms that are created as the code is right now. Use lattice constant $b=5.26$ $\mathrm{Angstrom}$. Remember to update the system size so the \emph{applyPeriodicBoundaryConditions} function works properly. If you now visualize the result of the program, you should see the nice crystalline structure in the beginning of the simulation. What is the density $\rho$ in your system?
+
+\paragraph{Project 5d): Calculation of forces.}
+While this looks nice, we need to implement the computation of forces in order to see interesting physics. In this project, we will use the \href{{http://en.wikipedia.org/wiki/Lennard-Jones_potential}}{Lennard-Jones potential}  which calculates the energy between two atoms $i$ and $j$ as
+
+\begin{align}
+	U(r_{ij}) = 4\epsilon\left[\left(\frac{\sigma}{r_{ij}}\right)^{12} - \left(\frac{\sigma}{r_{ij}}\right)^6\right],
+\end{align}
+where $r_{ij} = \vert\mathbf{r}_i - \mathbf{r}_j\vert$ is the distance from atom $i$ to atom $j$, $\epsilon$ is the depth of the potential well (with dimension energy) and $\sigma$ is the distance at which the potential is zero. For argon, optimal values of the parameters are:
+
+\begin{align}
+	\frac{\epsilon}{k_B} = 119.8\mathrm{K}, \sigma=3.405 \mathrm{Angstrom}.
+\end{align}
+In our code, we use the so called MD units (see the units definition at the end). This potential reproduces thermodynamic equilibrium properties that are in good agreement with experimental values for argon. The equation of state for this system is the van der Waals equation of state. Phases such as solid, liquid and gas are reproduced from this simple model with phase transitions and other properties as well with a  remarkable agreement with data.
+
+The total potential energy $V$ in the system is computed by summing over all pairs of atoms (counting each pair only once)
+
+\begin{align}
+	V = \sum_{i>j} U(r_{ij}).
+\end{align}
+The force is calculated by taking the negative gradient of the potential
+
+\begin{align}
+	\mathbf{F}(r_{ij}) = -\nabla U(r_{ij}),
+\end{align}
+giving the $x$-component (the other components are calculated the same way)
+
+\begin{align}
+	F_x(r_{ij}) = -\frac{\partial U}{\partial r_{ij}}\frac{\partial r_{ij}}{\partial x_{ij}},
+\end{align}
+where $x_{ij}$ is the $x$-component of $\mathbf{r}_{ij}$.
+
+Calculate (analytically) the force and implement the \emph{calculateForces} function in the LennardJones class, using the Velocity Verlet algorithm that you developed for project 3. You will have to take care of the periodic boundary conditions. You could use the minimum image convention as described \href{{http://en.wikipedia.org/wiki/Periodic_boundary_conditions}}{here}. Now run the simulation with 5 unit cells in each dimension (500 atoms) for different initial temperatures. Can you tell if the system is in a solid state just by looking at the system in Ovito? At what initial temperature is the crystal melting?
+
+\paragraph{Project 5e): Kinetic and potential energies.}
+We now have a working Molecular dynamics code! The next step is to calculate some physical properties of the system. The easiest properties to measure are the kinetic and potential energy (calculated in the LennardJones class). The kinetic energy is defined as
+
+\begin{align}
+	E_k = \sum_{i=1}^{N_\text{atoms}} \frac{1}{2} m_i v_i^2,
+\end{align}
+where $m_i$ and $v_i$ is the mass and the speed of atom $i$. You can use the function \emph{atom->velocity.lengthSquared()} to calculate the dot product of the velocities. 
+
+You can also calculate an estimate of the temperature through the equipartition theorem, see for example D. Schroeder's \emph{An Introduction to Thermal Physics} for details,
+\begin{align}
+	\langle E_k \rangle = \frac{3}{2}N_\text{atoms} k_B T.
+\end{align}
+We can use this to define an \emph{instantaneous} temperature
+
+\begin{align}
+	T = \frac{2}{3}\frac{E_k}{N_\text{atoms} k_B}.
+\end{align}
+
+All of these quantities should be calculated in the \emph{StatisticsSampler} class. All the statistical quantities should be saved to a file which needs to be implemented in the \emph{saveToFile} function in the same class. 
+
+As you will see, since the temperature is proportional to the kinetic energy, its initial value will drop in the beginning when the system is initialized in the crystal structure. Why does this happen? What happens to the total energy? In order to have a system with final temperature $T$, what initial temperature $T_i$ is needed? What is the ratio $T/T_i$? Do multiple simulations with different random seeds and plot this ratio as a function of time. Again visualize with for example \emph{Ovito} and try to determine at what temperature the system actually melts at. After the temperature drops, it will reach a more or less stable value. The system is then said to be in an equilibrium state.
+
+\paragraph{Project 5f): Diffusion constant.}
+The last exercise is to compute the diffusion constant and use this to measure the melting temperature. We use the Einstein relation that relates the so called mean square displacement (MSD) to the diffusion constant
+
+\begin{align}
+	\langle r^2(t) \rangle = 6Dt,
+\end{align}
+where $D$ is the diffusion constant, $t$ is time. The mean square displacement for atom $i$ is calculated as
+
+\begin{align}
+	r_i^2(t) = |\mathbf{r}_i(t) - \mathbf{r}_i(0)|^2,
+\end{align}
+where $\mathbf{r}_i(t)$ is the position of atom $i$ at time $t$. When you implement this you need to add the initial position as a new property in the \emph{Atom} class. You also need to update the \emph{applyPeriodicBoundaryConditions} so that $r_i^2(t)$ is the actual displacement as if no periodic boundary condition has occured. Why is this important?
+
+We can use the diffusion constant to find the melting temperature. Atoms in a solid will not diffuse much, meaning that a solid will have a diffusion constant close to zero. Now solve the Einstein relation for the diffusion constant $D$ and add a function in \emph{StatisticsSampler} thats measures this quantity. Plot the diffusion constant as a function of temperature $T$ and use this to find an estimate for the melting temperature. Use what you found earlier  to make sure you simulate temperatures both above and below the melting temperature. Also remember not to use the initial temperature, but the measured temperature after the system has reached equilibrium. You can use the builtin \emph{UnitConverter} to convert the temperature to SI units as illustrated in the top of the \emph{main} function. 
+
+
+\section*{Link with FYS2160 - what is really going on here?}
+The idea of an MD simulation is to sample microstates from a statistical ensemble. In our simulation, we have a constant number of atoms $N$, a constant volume $V$ and a (more or less, depending on our integrator) constant energy $E$. This corresponds to the microcanonical ensemble (NVE). 
+
+Although we produce the dynamics of atoms, we should not see MD as a model that will give the true trajectories of the atoms, but rather a model that allows us to explore the phase space according to the probabilities we can calculate with statistical mechanics. A fundamental assumption in any MD simulation is the ergodic hypothesis. It states that \emph{over long periods of time, the time spent by a system in some region of the phase space of microstates with the same energy is proportional to the volume of this region, i.e., that all accessible microstates are equiprobable over a long period of time}. This means that by evolving the atoms through time will visit microstates of the ensemble according to the true probabilities given by the ensemble.
+
+\section*{Units}
+
+The program uses by default a set of units. We have chosen the following four units
+
+\begin{align}
+	\text{1 unit of mass } &= 1 \text{ a.m.u} = 1.661\times 10^{-27}\mathrm{kg},\\
+	\text{1 unit of length } &= 1.0 \mathrm{angstrom} = 1.0\times 10^{-10}\mathrm{m},\\
+	\text{1 unit of energy } &= 1.651\times 10^{-21}\mathrm{J},\\
+	\text{1 unit of temperature} &= 119.735\mathrm{K}.
+\end{align}
+Boltzmann's constant is then equal to one (convince yourself about this), and other units can be derived by using known relations. We can for example find the unit of time by using $E=mc^2$. We have that
+
+\begin{align}
+	\text{Energy} = \text{Mass} \times \frac{\text{Length}^2}{\text{Time}^2},
+\end{align}
+which can be solved for time
+
+\begin{align}
+	\text{Time} = \text{Length} \times \sqrt{\frac{\text{Mass}}{\text{Energy}}}.
+\end{align}
+By inserting the values above, we get
+
+\begin{align}
+	\text{1 unit of time } &= 1.0 \times 10^{-10}\sqrt{\frac{1.661\times 10^{-27}}{1.651\times 10^{-21}}} \text{ s} = 1.00224\times 10^{-13}\mathrm{s}.
+\end{align}
+This way, we can continue working out the values of the other units. What are the units of force? And pressure? In the project, a class that calculates these values is given.
+
+
+
+
+\subsection*{Introduction to numerical projects}
+
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+\begin{itemize}
+  \item Give a short description of the nature of the problem and the eventual  numerical methods you have used.
+
+  \item Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.
+
+  \item Include the source code of your program. Comment your program properly.
+
+  \item If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.
+
+  \item Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.
+
+  \item Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
+
+  \item Try to give an interpretation of you results in your answers to  the problems.
+
+  \item Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.
+
+  \item Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.
+\end{itemize}
+
+\noindent
+\subsection*{Format for electronic delivery of report and programs}
+
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+\begin{itemize}
+  \item Use \textbf{Canvas} to hand in your projects, log in  at  \href{{https://www.uio.no/english/services/it/education/canvas/}}{\nolinkurl{https://www.uio.no/english/services/it/education/canvas/}} with your normal UiO username and password.
+
+  \item Upload \textbf{only} the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them. Alternatively, you can just upload the address to your GitHub or GitLab repository.
+
+  \item In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parameters.
+
+  \item In this and all later projects, you should include tests (for example unit tests) of your code(s).
+
+  \item Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your \textbf{Canvas} domain and are only visible to you and the teachers of the course.
+\end{itemize}
+
+\noindent
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. You can then hand in a common report. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ------------------- end of main content ---------------
+
+\end{document}
+

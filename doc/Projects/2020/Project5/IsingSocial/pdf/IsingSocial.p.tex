@@ -1,0 +1,395 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% --- fancyhdr package for fancy headers ---
+\usepackage{fancyhdr}
+\fancyhf{} % sets both header and footer to nothing
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[LE,RO]{\thepage}
+% Ensure copyright on titlepage (article style) and chapter pages (book style)
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2020, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
+%  \renewcommand{\footrulewidth}{0mm}
+  \renewcommand{\headrulewidth}{0mm}
+}
+% Ensure copyright on titlepages with \thispagestyle{empty}
+\fancypagestyle{empty}{
+  \fancyhf{}
+  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2020, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
+  \renewcommand{\footrulewidth}{0mm}
+  \renewcommand{\headrulewidth}{0mm}
+}
+
+\pagestyle{fancy}
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Project 5, deadline  December 16, 2020
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf \href{{http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html}}{Computational Physics I FYS3150/FYS4150}}
+\end{center}
+
+    \begin{center}
+% List of all institutions:
+\centerline{{\small Department of Physics, University of Oslo, Norway}}
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+
+% --- begin date ---
+\begin{center}
+Fall semester 2020
+\end{center}
+% --- end date ---
+
+\vspace{1cm}
+
+
+\subsection{Studies of social interactions using the Ising model}
+
+The Ising model is one of the most
+frequently used models of statistical mechanics. Recently, this
+model has also become widely studied in many other disciplines, including mathematics, statistics, biology, \href{{https://www.springer.com/gp/book/9783319477046}}{economy} and \href{{https://www.springer.com/gp/book/9781461420316}}{sociology}.
+
+\textbf{For this project you can hand in collaborative reports and programs.}
+This project (together with projects 3 and 4) counts 1/3 of the final mark.
+
+
+
+\paragraph{Introduction.}
+The aim of this project is to use the Ising model from project 4 and 
+apply it to the modeling of electoral patterns and social interactions.
+This project aims at studying the work of \href{{https://arxiv.org/abs/cond-mat/0101130}}{Katarzyna Sznajd-Weron and
+Jozef Sznajd}, see also their
+published work in \href{{https://www.worldscientific.com/doi/abs/10.1142/S0129183100000936}}{Int. J. Mod. Phys. C11,(2000) 1157}. 
+
+
+We repeat 
+In its simplest form
+the energy of the Ising model from project 4 without an externally applied magnetic field, 
+\[
+E=-J\sum_{< kl >}^{N}s_ks_l 
+\]
+with
+$s_k=\pm 1$. The quantity $N$ represents the total number of spins and $J$ is a coupling
+constant expressing the strength of the interaction between
+neighboring spins.  The symbol $<kl>$ indicates that we sum over
+nearest neighbors only. 
+ordering, viz $J> 0$.  
+
+We will  consider as our model a community which time and again should
+take a stand in some matter, for example vote on a president in
+a two-party system. If each member of the
+community can take only two attitudes ($A$ or $B$) then in several
+votes one expects some difference $m$ of voters for $A$ and against.
+We assume three limiting cases:
+
+\begin{enumerate}
+\item all members of the community vote for $A$ (an \textbf{all} $A$ state),
+
+\item all members of the community vote for $B$ (an \textbf{all} $B$ state),
+
+\item $50\%$ vote for $A$ and $50\%$ vote for $B$,
+\end{enumerate}
+
+\noindent
+where the latter is meant to  be the stable solutions of our model.
+
+The aim here is to analyze the time evolution of $m$. To model the
+above mentioned system we consider an Ising spins chain
+($S_i;i=1,2,\ldots N$) with the following dynamic rules:
+
+\begin{itemize}
+\item if $S_iS_{i+1}=1$ then $S_{i-1}$ and $S_{i+2}$ take the direction of the pair (i,i+1),
+
+\item if $S_iS_{i+1}=-1$ then $S_{i-1}$ takes the direction of $S_{i+1}$ and $S_{i+2}$ the direction of $S_i$. 
+\end{itemize}
+
+\noindent
+These rules describe the influence of a given pair on the decision of
+its nearest neighbours. When members of a pair have the same opinion
+then their nearest neighbours agree with them. On the contrary, when
+members of a pair have opinions different then the nearest neighbour
+of each member disagrees with her/him.  These dynamic rules lead to
+the three steady states above.  However, the third steady state ($50\%$
+for $A$ and $50\%$ for $B$) is realized in a very special way.  Every
+member of the community disagrees with her/his nearest neighbour (it
+is easy to see that the Ising model with only next nearest neighbour
+interaction has such fixed points: ferro- and antiferromagnetic
+state).  According to the authors of the above mentioned article,
+this rule is in accordance with the well known sentence
+\emph{united we stand divided we fall} (USDF-model).
+
+
+\paragraph{Project 5a):}
+To investigate our model we perform a standard Monte Carlo simulation
+with random updating.  Consider a chain of $N$ Ising spins with free
+boundary conditions. In our simulation you could use values from
+$N=1000$ up to $N=10000$. We start from a totally random initial state
+i.e.~to each site of the chain we assign an arrow with a randomly
+chosen direction: up or down (Ising spin).  Show that you obtain as a
+state, one of the three fixed points (1-3, i.e.~AAAA, BBBB, ABAB) with
+probability 0.25,0.25 and 0.5, respectively. The typical relaxation
+time for $N=1000$ is $\sim 10^4$ Monte Carlo steps (MCS). Plot the
+spatial distribution of spins from the initial to a steady state and
+compare your results with figure 1 of \href{{https://arxiv.org/abs/cond-mat/0101130}}{Katarzyna Sznajd-Weron and
+Jozef Sznajd}. Can you see
+whether there is a formation of clusters?  Comment your results.
+
+
+\paragraph{Project 5b): Magnetization and Social Mood.}
+Let us define the decision as a magnetization, i.e.:
+\begin{equation}
+m=\frac{1}{N}\sum_{i=1}^N S_i.
+\label{em}
+\end{equation}
+
+Compute the magnetization and compare your results with figure 2 of \href{{https://arxiv.org/abs/cond-mat/0101130}}{Katarzyna Sznajd-Weron and
+Jozef Sznajd}.
+
+Without any external stimulation decision can change
+dramatically in a relatively short time.
+Such strongly non-monotonic behaviour of the change of $m$
+is typically observed in the USDF-model when the system evolves
+towards the third steady state (total disagreement or in magnetic
+language the antiferromagnetic state). Comment your results.
+
+
+\paragraph{Project 5c): Autocorrelation Function.}
+To measure the time correlation of $m$ one can employ the
+classical autocorrelation function:
+
+\begin{equation}
+G(\Delta t) = \frac
+{\sum \left( m(t)-<m>\right) \left( m(t+ \Delta t)- <m>\right)}
+{\sum (m(t)-<m>)^2}.
+\end{equation}
+
+In the work of Sznajd-Weron and Snajzd, there is a comparison of
+simulation results with empirical data as shown in their figure 3. Make a plot similar to their figure 3 and comment your results. 
+Following the changes of one particular individual, the dynamics seem to lead to some interesting effects. If an individual changes her/his opinion at time $t$ she/he will probably
+change it also at time $t+1$.
+
+ On the other hand
+an individual can stay for a long time without changing her/his decision.
+Let us denote by $\tau$ the time needed by an individual to change  her/his
+opinion. From the autocorrelation function  it can be seen that $\tau$ is usually very short,
+but sometimes can be very long. The distribution of $(\tau)$ ($P(\tau)$)
+follows seeminingly a power law behavior
+with an exponent $-3/2$. Plot this distribution and compare your results with
+figure 4 Sznajd-Weron and Snajzd. Comment your results.
+
+
+
+
+
+\paragraph{Project 5d): Initial Conditions.}
+We will now study the influence of the initial conditions on the
+evolution of the system by considering  two different ways -
+randomly and in clusters.  In both cases you could start from an initial
+concentration $c_B$ of opinion $B$.  In the random setup $c_B*N$
+individuals are randomly (uniformly) chosen out of all $N$
+individuals. In the cluster setup simply the first $c_B*N$ individuals
+are chosen.
+
+Study whether the distribution of decision time $\tau$ still follows
+the power law with the same exponent as you found in the previous
+part.  A non-monotonic behaviour of decision change is still typical
+and sometimes even much stronger.  However, it is obvious that if
+initially there is more $A$'s then $B$'s the final state should be
+more often "all $A$" then "all $B$".  Compare your results to figure 5
+of Sznajd-Weron and Snajzd and comment your results.
+
+\paragraph{Project 5e): Information Noise.}
+It is well known that the changes of opinion are determined by the
+social impact. Till now we have considered a community in which a
+change of an individuals opinion is caused only by a contact with its
+neighbours. It was the simplest social impact one can imagine.  Now,
+we introduce to our model noise $p$, which is the probability that an
+individual, instead of following the dynamic rules, will make a random
+decision. We start from an "all $A$" state to investigate if there is
+a $p \in (0,1)$ which does not throw the system out of this state.
+
+See if you can reproduce figures 6 and 7 of the above authors and
+comment your final results. Their discussion section contains several interesting observations you may consider discussing. The text by \href{{https://www.springer.com/gp/book/9781461420316}}{Serge Galam} contains several other interesting obeservations which can be useful in the present analysi.
+
+\subsection{Introduction to numerical projects}
+
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+\begin{itemize}
+  \item Give a short description of the nature of the problem and the eventual  numerical methods you have used.
+
+  \item Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.
+
+  \item Include the source code of your program. Comment your program properly.
+
+  \item If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.
+
+  \item Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.
+
+  \item Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
+
+  \item Try to give an interpretation of you results in your answers to  the problems.
+
+  \item Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.
+
+  \item Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.
+\end{itemize}
+
+\noindent
+\subsection{Format for electronic delivery of report and programs}
+
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+\begin{itemize}
+  \item Use \textbf{Canvas} to hand in your projects, log in  at  \href{{https://www.uio.no/english/services/it/education/canvas/}}{\nolinkurl{https://www.uio.no/english/services/it/education/canvas/}} with your normal UiO username and password.
+
+  \item Upload \textbf{only} the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them. Alternatively, you can just upload the address to your GitHub or GitLab repository.
+
+  \item In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parameters.
+
+  \item In this and all later projects, you should include tests (for example unit tests) of your code(s).
+
+  \item Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your \textbf{Canvas} domain and are only visible to you and the teachers of the course.
+\end{itemize}
+
+\noindent
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. You can then hand in a common report. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

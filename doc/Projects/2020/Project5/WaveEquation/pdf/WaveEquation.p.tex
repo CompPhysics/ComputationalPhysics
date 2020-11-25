@@ -1,0 +1,516 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Project 5, deadline  December 16, 2020
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf The Rossby wave equation in a basin${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+
+% --- begin date ---
+\begin{center}
+Fall semester 2020
+\end{center}
+% --- end date ---
+
+\vspace{1cm}
+
+
+\textbf{For this project you can collaborate with fellow students and you can  hand in a common report.}
+This project (together with projects 3 and 4) counts 1/3 of the final mark.
+
+
+\subsection{Theoretical background and description of the system}
+
+Large scale, time-dependent motion in the atmosphere and ocean is
+often conceptualized in terms of \emph{Rossby waves}, which have scales
+of hundreds to thousands of kilometers. The waves are used, for
+example, to understand the meandering of the atmospheric Jet Stream
+and the adjustment of the ocean to changes in wind forcing. Rossby
+waves exist because of the Coriolis acceleration, which acts
+perpendicular to the velocity of a fluid parcel. The Coriolis
+acceleration varies with latitude, being negative in the Southern
+Hemisphere and positive in the Northern (and vanishes at the equator).
+As a result of this variation, fluid parcels experience a change in
+their spin or \emph{vorticity} if they move to different latitudes.
+
+We will use the shorthand notations
+\[
+\partial_t = \frac{\partial }{\partial t},
+\]
+\[
+\partial_x = \frac{\partial }{\partial x}
+\]
+\[
+\partial_{xx} = \frac{\partial^2 }{\partial x^2}
+\]
+etc. 
+
+The equation governing the vorticity is:
+
+\begin{equation}
+  \label{eq:Rossby1}
+   \partial_t \zeta  + \beta \partial_x\psi = 0.
+ \end{equation}
+where $\zeta$ is the vorticity and $\psi$ is the streamfunction, which determines the velocities:
+
+\begin{equation}
+	u = -\partial_y \psi \quad,\quad v = \partial_x \psi,
+\end{equation}
+Here $u$ is the velocity component in the east-west direction ($x$)
+and $v$ in the north-south direction ($y$). The vorticity is
+defined:
+
+\begin{equation}
+\label{eq:Rossby2}
+	\zeta = \partial_x v -\partial_y u = \nabla_H^2 \psi.
+\end{equation}
+Thus the vorticity is the Laplacian of the streamfunction. 
+
+Then there is the Coriolis parameter, defined as:
+
+\begin{equation}
+f = 2 \Omega \sin{(\theta)}
+\end{equation}
+where $\theta$ is the latitude and $\Omega$ is the rotation
+rate of the Earth, $\Omega=2 \pi/day$. We often approximate
+$f$ as a linear function, centered on a latitude $\theta_0$:
+
+\begin{equation}
+f \approx f_0 + \beta y
+\end{equation}
+where $f_0 = 2 \Omega \sin{(\theta_0)}$, $\beta = 2 \Omega
+\cos{(\theta_0)}/R_e$ and $y = R_e (\theta - \theta_0)$, if $R_e$ is the
+Earth's radius. This linear representation is called the
+$\beta$-plane approximation, and accounts for the $\beta$ term in
+(\ref{eq:Rossby1}).
+
+Thus the vorticity equation can be written in terms of one variable,
+the streamfunction, thus:
+
+\begin{equation}
+  \label{eq:Rossby}
+\boxed{\partial_t \nabla_H^2 \psi  + \beta \partial_x\psi = 0.}
+ \end{equation}
+This is the \emph{barotropic Rossby wave equation}.
+
+
+We will examine analytic and numerical solutions to the vorticity
+equation in a \emph{periodic domain} and a \emph{closed domain}. A
+periodic domain is one that ``wraps around'', like the atmosphere. A
+closed domain has walls, like the continents bounding the oceans.
+
+\subsection{Analytical solutions}
+
+\paragraph{Project 5a): Solution to the Rossby equation in a periodic domain.}
+Consider the vorticity equation (\ref{eq:Rossby}) in one dimension
+(we'll add the second dimension later). Say the periodic domain
+extends from $x=[0,L]$ (east-west). A suitable wave solution has the
+form:
+
+\begin{equation}
+  \label{eq:Rossby5}
+	\psi = A \cos{(\frac{2n\pi x}{L} - \omega t)}, 
+\end{equation}
+where $n$ is an integer ($=1,2,\cdots$), and where $\omega$ is the
+wave frequency and $A$ is the amplitude.
+
+Show that the solution is the same at the two boundaries, so that it
+satisfies the periodic boundary conditions. Then use this wave solution
+in equation (\ref{eq:Rossby}) and solve for $\omega$. Use the
+one-dimensional form for the vorticity:
+
+\begin{equation}
+  \label{eq:Rossby6}
+	\zeta = \partial_x v = \partial_{xx} \psi
+\end{equation}
+The result is known as the wave \emph{dispersion relation}.
+
+The \emph{phase speed} is the speed at which the Rossby waves move. To see how this comes about, consider the phase of the wave:
+
+\begin{equation}
+  \label{eq:Rossby7}
+	\theta = \frac{n\pi x}{L} - \omega t.
+\end{equation}
+For instance, if $\theta=2\pi$, then $\psi = A\cos{(2\pi)} = A$. This is a maximum or ``high pressure'' point. To see how this moves, we solve (\ref{eq:Rossby7}) for $x$:
+
+\begin{equation}
+	x = \frac{\theta L}{2n\pi} + \frac{\omega tL}{2n\pi}.
+\end{equation}
+Taking a time derivative, we obtain
+
+\begin{equation}
+	c = \frac{dx}{dt} = \frac{\omega L}{2n\pi}
+\end{equation}
+
+Calculate the phase speed for the Rossby wave, using the dispersion relation. Which direction is the wave moving?
+
+
+\paragraph{Project 5b): Solution to the Rossby equation with solid boundaries.}
+More appropriate boundary conditions for the ocean are no flow at the
+two end points. In the present problem, we can enforce this with
+simple Dirichlet conditions: $\psi=0$ at $x=0$ and $x=L$. Use
+a wave solution with the form:
+
+\begin{equation}
+	\psi = A(x)\cos{(kx - \omega t)}, 
+\end{equation}
+where $k$ is the wavenumber. Substitute this into equation
+(\ref{eq:Rossby}). You'll obtain terms multiplied by $\sin{(kx - \omega
+t)}$ and others multiplied by $\sin{(kx - \omega t)}$. Set each of these
+expressions to zero. One will give you the dispersion relation for the
+waves. The other will give you the form for $A(x)$, which must satisfy
+the boundary conditions. You see that $k$ will be \emph{quantized}:
+only specific values will be allowed.
+
+Waves like these are known as Rossby ``basin modes''. The phase speed
+can be calculated as in the preceding problem. What is it? Discuss the
+structure of the wave (which is unusual).
+
+
+\subsection{Numerical solution}
+Now we consider solving equation (\ref{eq:Rossby}) numerically. This
+involves two steps. If we know the velocity or streamfunction
+initially, we can advance the vorticity in time to a new time. Then
+the streamfunction at the new time is found by inverting
+(\ref{eq:Rossby2}). Having done this we may advance the vorticity to
+the next time level using (\ref{eq:Rossby}), and so forth. We note
+that (\ref{eq:Rossby}) is a \emph{prognostic equation} and may
+therefore be solved numerically using a time stepping method. In
+contrast, (\ref{eq:Rossby2}) is a \emph{diagnostic equation}. We will
+solve this using an elliptic solver.
+
+To discretize the equations, we assume a grid of equally-spaced
+points:
+
+\begin{equation}
+x_j = j\Delta x
+\end{equation}
+where $\Delta x$ is the grid spacing. We discretize time in a similar way:
+
+\begin{equation}
+t^n = n\Delta t
+\end{equation}
+where $\Delta t$ is the time step. Thus $t^0=0$, $t^1=\Delta t$, and so on.
+
+We then approximate the derivatives by finite differences. For
+the spatial derivatives, we use centered-differences:
+
+\begin{align}
+	\partial_x\psi &\approx \frac{\psi_{j+1}^{n} - \psi_{j-1}^{n}}{2\Delta x}, \\
+	\partial_{xx}\psi &\approx \frac{\psi_{j+1}^{n} - 2\psi_{j}^{n} + \psi_{j-1}^{n}}{\Delta x^2},
+\end{align}
+For the time stepping, we will test two methods. One involves a
+forward difference:
+
+\begin{equation}
+  \label{eq:Rossby3}
+  \partial_t\psi \approx \frac{\psi_{j}^{n+1} - \psi_{j}^{n}}{\Delta t} ,
+\end{equation}
+while the second involves a centered difference:
+
+\begin{align}
+  \label{eq:Rossby4}
+	\partial_t\psi &\approx \frac{\psi_{j}^{n+1} - \psi_{j}^{n-1}}{2\Delta t}.
+\end{align}
+
+\paragraph{Project 5c): Setting up the algorithms.}
+Now we will examine 
+numerical solutions in one dimension in the east-west
+direction. When calculating these, it is convenient to use
+\emph{non-dimensional} forms of the equations:
+
+\begin{align}
+	\partial_t\zeta + \partial_x\psi &= 0. \\
+	\partial_{xx}\psi &= \zeta.
+\end{align}
+These are obtained by \emph{scaling} each term by typical values.
+Doing this, the domain extends from $x=0$ to $x=1$, which is
+much simpler than worrying about realistic sizes.   For the latter equation you can use your code from project 1. 
+
+For the boundary conditions, we'll consider both the periodic
+domain (that wraps around) and the bounded domain (with solid
+walls). For the bounded domain, the streamfunction is zero at the
+ends, while for the periodic one the boundary values can vary.
+
+Write the algorithms for the two time-stepping methods and the
+equations you need to implement for the one-dimensional case,
+including the numerical analogues of the boundary conditions.
+
+
+\paragraph{Project 5d): Truncation errors and stability.}
+Determine the truncation errors of the two time-stepping schemes
+and investigate their stability properties. What do you conclude
+about the two schemes? What is the stability criterion for the
+stable algorithm.
+
+
+\paragraph{Project 5e): Implementation.}
+Now we'll implement the model, using both time-stepping schemes.
+Hereafter we'll use two (non-dimensional) initial
+conditions, a sine wave:
+
+\begin{equation}
+\psi(x,0) = \sin{\left( 4\pi x \right)}
+\end{equation}
+and a Gaussian:
+
+\begin{equation}
+\psi = \exp{-\left(\frac{x-x0}{\sigma}\right)^2},
+\end{equation}
+Here $\sigma = 0.1$ the width of the Gaussian.
+
+Compare the time-stepping routines, using the sine wave in the
+periodic domain. Use $\Delta x=1/40$ and $\Delta t$ as determined from the
+results of (5d). Store the results at three times, in addition to the
+initial condition, e.g.~$t=0$, $t=50$, $t=100$ and $t=150$.  Is one of the
+time-stepping routines better than the other?
+
+
+\paragraph{Project 5f): Visualization and discussion.}
+Now we'll examine a suite of solutions, using the stable time-stepping
+algorithm. Consider the following:
+
+a) Calculate the phase speed of the sine wave in the periodic domain.
+Do this by using a \emph{Hovmuller diagram}.  For this you construct a
+matrix with $\psi(x,t)$ at different times. $t=0$ can be on the bottom
+row, then $t=\Delta t$ in the next row, $t=2\Delta t$ in the next and
+so. Contour the matrix and extract the phase speed. How does it
+compare to the theoretical prediction in (5a)?
+
+b) Now consider the sine wave in the bounded domain. How does this
+evolve differently? Rationalize the results using the theoretical
+prediction from (5b).
+
+c) Now examine the Gaussian, in the periodic domain. How does the
+Hovmuller diagram differ? Can you find a phase speed? Try varying
+the width, $\sigma$. How does this affect the phase speed.
+
+d) Lastly, describe the evolution of the Gaussian in the bounded
+domain. How does this compare to the sine wave in the same domain?
+
+
+\paragraph{Project 5g): Moving to two dimensions.}
+Extend the code you have developed here to two dimensions, that is,
+$\psi = \psi(x,y,t)$ and $\zeta = \zeta(x,y,t)$. It means that we deal
+with a $2+1$ dimensional problem. Our differential equations become
+
+\begin{equation}
+  \label{eq:Rossby10}
+	\partial_t\zeta + \partial_x\psi = 0, \quad \textrm{$t > 0$ and} \quad x,y\in [0,1],
+\end{equation}
+and
+
+\begin{equation}
+  \label{eq:Rossby11}
+	\left( \partial_{xx}\psi + \partial_{yy}\psi \right) = \zeta, \quad \textrm{$t > 0$ and} \quad x,y\in [0,1],
+\end{equation}
+where we now have made a model with a square lattice for $x$ and $y$. The last equation is just another example of Poisson's equation which can be solved by Jacobi's method, or the Gauss-Seidel method or the so-called Successive Over Relaxation method discussed in chapters 6 and 10 of the lecture notes.
+
+How would you extend the boundary conditions from one dimension to two
+dimensions? And can you find a closed form solution here as well?  It
+is left to you to decide upon what kind of boundary conditions you
+deem appropriate.
+
+\paragraph{Project 5h): Solving the two-dimensional equations numerically.}
+Use an explicit scheme for (\ref{eq:Rossby10}). To solve
+(\ref{eq:Rossby11}) you need to use for example an iterative method
+like Jacobi's or Gauss-Seidel method or the Successive Over Relaxation (SOR) method. These methods are described in the lecture notes, see chapters 6 and 10.
+
+Outline the algorithm for solving the two-dimensional equations and
+implement the scheme as function of $\Delta x$ (assuming $\Delta x =
+\Delta y$) and $\Delta t$. Solve the equations numerically and give a
+critical discussion of your results. Compare your results with the
+closed-form answer if possible. Discuss the stability of the solution
+as function of different values of $\Delta x$ and $\Delta t$.
+
+
+\paragraph{References.}
+A very good reference is the textbook by \href{{http://www.springer.com/us/book/9783540225515}}{Winther and Tveito on partial differential equations}. It is available online \href{{https://vpn2.uio.no/+CSCO+0h756767633A2F2F797661782E66636576617472652E70627A++/book/10.1007/b138016/page/1}}{from the University library}.
+
+
+\subsection{Introduction to numerical projects}
+
+Here follows a brief recipe and recommendation on how to write a report for each
+project.
+
+\begin{itemize}
+  \item Give a short description of the nature of the problem and the eventual  numerical methods you have used.
+
+  \item Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.
+
+  \item Include the source code of your program. Comment your program properly.
+
+  \item If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.
+
+  \item Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.
+
+  \item Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
+
+  \item Try to give an interpretation of you results in your answers to  the problems.
+
+  \item Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.
+
+  \item Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.
+\end{itemize}
+
+\noindent
+\subsection{Format for electronic delivery of report and programs}
+
+The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
+
+\begin{itemize}
+  \item Use \textbf{Canvas} to hand in your projects, log in  at  \href{{https://www.uio.no/english/services/it/education/canvas/}}{\nolinkurl{https://www.uio.no/english/services/it/education/canvas/}} with your normal UiO username and password.
+
+  \item Upload \textbf{only} the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them. Alternatively, you can just upload the address to your GitHub or GitLab repository.
+
+  \item In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parameters.
+
+  \item In this and all later projects, you should include tests (for example unit tests) of your code(s).
+
+  \item Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your \textbf{Canvas} domain and are only visible to you and the teachers of the course.
+\end{itemize}
+
+\noindent
+Finally, 
+we encourage you to work two and two together. Optimal working groups consist of 
+2-3 students. You can then hand in a common report. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

@@ -1,6 +1,6 @@
-TITLE: Project 5, deadline  December 15, 2019
+TITLE: Project 5, deadline  December 16, 2020
 AUTHOR: Quantum Monte Carlo of confined electrons
-DATE: Fall semester 2019
+DATE: Fall semester 2020
 
 _For this project you can collaborate with fellow students and you can  hand in a common report._
 This project (together with projects 3 and 4) counts 1/3 of the final mark.
@@ -332,23 +332,40 @@ project.
 
 
 
+
+
 ===== Format for electronic delivery of report and programs =====
 
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
 
-  * Use Devilry to hand in your projects, log in  at  URL:"http://devilry.ifi.uio.no" with your normal UiO username and password and choose either 'fys3150' or 'fys4150'. There you can load up the files within the deadline.
+  * Use _Canvas_ to hand in your projects, log in  at  URL:"https://www.uio.no/english/services/it/education/canvas/" with your normal UiO username and password.
 
-  * Upload _only_ the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them.
+  * Upload _only_ the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them. Alternatively, you can just upload the address to your GitHub or GitLab repository.
 
-  * In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parametxers.
+  * In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parameters.
 
   * In this and all later projects, you should include tests (for example unit tests) of your code(s).
 
-  * Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your Devilry domain and are only visible to you and the teachers of the course.
+  * Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your _Canvas_ domain and are only visible to you and the teachers of the course.
+
+
 
 Finally, 
 we encourage you to work two and two together. Optimal working groups consist of 
-2-3 students. For this specific report you can  hand in a common report.
+2-3 students. You can then hand in a common report. 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
