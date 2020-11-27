@@ -188,7 +188,7 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/MolecularDynamics/ipynb/MolecularDynamics.ipynb"
 
 
-=== Project 5 Financial Modeling and Black-Scholes Equation, deadline December 16 ===
+=== Project 5 Financial Modeling with Monte Carlo sampling, deadline December 16 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/pdf/FinancialEngineering.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/pdf/FinancialEngineering.pdf"
@@ -197,6 +197,17 @@ ${text_types(ch)}
    * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/html/FinancialEngineering-bs.html"
  * iPython notebook:
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/ipynb/FinancialEngineering.ipynb"
+
+
+=== Project 5 Option Markest and the Black-Scholes Equation, deadline December 16 ===
+ * LaTeX and PDF:
+     * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/BlackScholes/pdf/BlackScholes.tex"
+     * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/BlackScholes/pdf/BlackScholes.pdf"
+ * HTML:
+   * "Plain html":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/BlackScholes/html/BlackScholes.html"
+   * "Bootstrap  slide style, easy for reading on mobile devices": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/BlackScholes/html/BlackScholes-bs.html"
+ * iPython notebook:
+   * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/BlackScholes/ipynb/BlackScholes.ipynb"
 
 
 
