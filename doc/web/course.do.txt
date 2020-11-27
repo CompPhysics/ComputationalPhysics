@@ -166,7 +166,7 @@ ${text_types(ch)}
 
 
 
-=== Project 5 Rosby wave and wave equation, deadline December 16 ===
+=== Project 5 Rossby wave and wave equation, deadline December 16 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/WaveEquation/pdf/WaveEquation.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/WaveEquation/pdf/WaveEquation.pdf"
@@ -199,7 +199,7 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/ipynb/FinancialEngineering.ipynb"
 
 
-=== Project 5 Option Markest and the Black-Scholes Equation, deadline December 16 ===
+=== Project 5 Option Markets and the Black-Scholes Equation, deadline December 16 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/BlackScholes/pdf/BlackScholes.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/BlackScholes/pdf/BlackScholes.pdf"
