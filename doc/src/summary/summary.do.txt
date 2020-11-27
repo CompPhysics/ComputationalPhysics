@@ -19,50 +19,53 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 
 !split
 ===== Topics we have covered this year =====
-* Linear algebra and eigenvalue problems. (Lecture notes chapters 6.1-6.5  and 7.1-7.5. Projects 1 and 2).
+
+* Linear algebra and eigenvalue problems. (Lecture notes chapters 6.1-6.5  and 7.1-7.5. Projects 1, 2 and 5).
 * Numerical integration, Gaussian quadrature and Monte Carlo integration (Lecture notes chapters 5 and 11)
-* Ordinary differential equations (Lecture notes chapter 8  and project 3)
-* Partial differential equations (Lecture notes chapter 10 and project 5)
-* Monte Carlo methods (Lecture notes chapters 11, 12, 13  and 14, projects 4 and 5)
+* Ordinary differential equations (Lecture notes chapter 8  and projects 3 and 5-molecular dynamics and SIRS)
+* Partial differential equations (Lecture notes chapter 10 and project 5-diffusion and Rossby waves)
+* Monte Carlo methods (Lecture notes chapters 11, 12, 13  and 14, projects 4 and 5-VMC, Social and Financial)
 
 !split
 ===== Linear algebra and eigenvalue problems, chapters 6.1-6.5 and 7.1-7.5 =====
+
 * Know Gaussian elimination and LU decomposition   (project 1)
 * How to solve linear equations   (project 1)
 * How to obtain the inverse and the determinant of a real symmetric matrix
-* Iterative solvers (project 5)
+* Iterative solvers (project 5-diffusion eq)
 * Cubic spline
-* Tridiagonal matrix decomposition   (project 1)
+* Tridiagonal matrix decomposition   (project 1 and project 5-diffusion)
 * Householder's tridiagonalization technique and finding eigenvalues based on this (project 2)
 * Jacobi's method for finding eigenvalues (project 2)
 
 !split
 ===== Monte Carlo methods (Chapters 11, 12 and 13) =====
+
 * Numerical integration of multidimensional integrals
-* Random walks and Markov chains
-* Metropolis algorithm (project 4)
-* Applications to statistical physics systems (project 4)
-* Monte Carlo sampling (project 4 and 5)
-* Applications to quantum mechanical systems (project 5)
+* Random walks and Markov chains (projects 4 and 5-VMC, Financial and Social)
+* Metropolis algorithm (projects 4 and 5-VMC, Financial and Social)
+* Applications to statistical physics systems (project 4 and 5-Social)
+* Monte Carlo sampling (project 4 and 5-VMC, Financial, SIRS and Social)
+* Applications to quantum mechanical systems (project 5-VMC)
 
 
 !split
 ===== Ordinary differential equations (Chapter 8) =====
 
-* Euler's method and improved Euler's method, truncation errors (projects 3 and 5)
-* Runge Kutta methods, 2nd and 4th order, truncation errors
-* Verlet algoritm (project 5)
-* How to implement and solve a second-order differential equation,  both linear and non-linear (projects 3 and  5).
-* How to make your equations dimensionless (projects 2 and 5).
+* Euler's method and improved Euler's method, truncation errors (project 3)
+* Runge Kutta methods, 2nd and 4th order, truncation errors (project 5-SIRS model)
+* Verlet algoritm (projects 3 and 5-molecular dynamics)
+* How to implement and solve a second-order differential equation,  both linear and non-linear (projects 3 and  5-molecular dynamics).
+* How to make your equations dimensionless (projects 2 and 5-molecular dynamics and SIRS).
 
 !split
 ===== Partial differential equations, chapter 10 =====
 * Set up diffusion, Poisson and wave equations up to 2 spatial dimensions and time  
 * Set up the mathematical model and algorithms for these equations, with boundary and initial conditions. The stability conditions for the diffusion equation.
-* Explicit, implicit and Crank-Nicolson schemes, and how to solve them. Remember that they result in triangular matrices (project 5).  
-* Diffusion equation in two dimensions (project 5).  
-* Poisson equation in two dimensions (project 5)
-* How to make equations dimensionless or scale them properly (project 5)
+* Explicit, implicit and Crank-Nicolson schemes, and how to solve them. Remember that they result in triangular matrices (project 5-diffusion).  
+* Diffusion equation in two dimensions (project 5-diffusion).  
+* Poisson equation in two dimensions (project 5-diffusion)
+* How to make equations dimensionless or scale them properly (project 5-diffusion)
 
 !split
 ===== Learning outcomes and overarching aims of this course =====
@@ -95,7 +98,7 @@ FIGURE: [figures/exam2.jpg, width=500 frac=0.7]
 !split
 ===== Disasters attributable to poor code =====
 
-Hopefully, after this course, you may be aware of some of the problems below
+Hopefully, after this course, you may be aware of some of the problems below.
 
 Have you been paying attention in your numerical analysis or scientific computation courses? If not, it could be a costly mistake. Here are some real life examples of what can happen when numerical algorithms are not correctly applied.
 
