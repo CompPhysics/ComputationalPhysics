@@ -1,16 +1,144 @@
-TITLE: Project 5, deadline  December 16, 2020
-AUTHOR: Black-Scholes equation
-DATE: Fall semester 2020
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% --- end of standard preamble for documents ---
 
 
-===== Solving the Black-Scholes Equation Numerically =====
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+Project 5, deadline  December 16, 2020
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf Black-Scholes equation${}^{}$} \\ [0mm]
+\end{center}
+
+\begin{center}
+% List of all institutions:
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+
+% --- begin date ---
+\begin{center}
+Fall semester 2020
+\end{center}
+% --- end date ---
+
+\vspace{1cm}
+
+
+\subsection{Solving the Black-Scholes Equation Numerically}
 
 WARNING: this is a somewhat experimental problem given for the 
 first time the Autumn of 2020. Only a very minimal theoretical 
 background is given in this text. Feel free to write to Sebastian for more information.
 
-=== The briefest introduction to options ===
-
+\paragraph{The briefest introduction to options.}
 A financial derivative is a contract that derives its value from 
 the performance of an underlying asset. Perhaps the most common 
 financial derivative is the option. Such contracts are 
@@ -18,11 +146,11 @@ incredibly old, the first mention of options contracts in
 history is by greek philosopher Thales from the sixth century.
 
 An option is a right, but not an obligation, to buy or sell 
-and underlying asset[^1] at a pretermined price $E$ at or before 
+and underlying asset\footnote{We focus on stocks, but it can be anything.} at a pretermined price $E$ at or before 
 an expiration time $T$. Having such an option is valuable, but
 determining the fair price of an option is a difficult problem.
 
-[^1]: We focus on stocks, but it can be anything.
+
 
 Options to buy (sell) are commonly referred to as 
 call (put) options. An option that only allows one to 
@@ -36,21 +164,18 @@ to Robert C. Merton and Myron S. Scholes "for a new method
 to determine the value of derivatives", the Black-Scholes-Merton
 model.
 
-=== The Black-Scholes equation ===
-
+\paragraph{The Black-Scholes equation.}
 The Black-Scholes equation is a partial differential equation, which 
 describes the price of an option over time. The key insight behind the 
 equation is that one can perfectly hedge the option by 
 buying and selling the underlying asses and the "bank account 
 asset" (cash) in just the right way to eliminate risk.
 
-!bt
 \begin{equation}
     \frac{\partial V}{\partial t}
     + \frac{1}{2}S^2\sigma^2\frac{\partial^2 V}{\partial S^2}
     + (r - D)\frac{\partial V}{\partial S} - r V = 0
 \end{equation}
-!et
 
 Here $V(S, T)$ is the value of the options, $S$ is the price of the 
 underlying asset, $\sigma$ is the volatility of the underlying asset,
@@ -59,11 +184,9 @@ $r$ is the "risk-free" interest rate, and $D$ is the yield
 
 The volatility $\sigma$ stems from an underlying assumption that 
 the stock moves like a geometric Brownial motion,
-!bt
 \begin{equation}
     \frac{dS}{S} = \mu dt + \sigma dW.
 \end{equation}
-!et
 
 Explicit solutions for the Black-Scholes equation,
 called The Black-Scholes formulae, are known only for 
@@ -71,10 +194,9 @@ European call and put options. For other derivatives, such
 a formula doest not have to exist. However, a numberical solution is 
 always possible.
 
-=== 5a: Transformation to Heat Equation/Diffusion equation ===
-
+\paragraph{5a: Transformation to Heat Equation/Diffusion equation.}
 Instead of an initial value problem, we have a terminal value
-problem at time $T$, i.e. the expiration date or the 
+problem at time $T$, i.e.~the expiration date or the 
 maturity date. We change to an initial value problem 
 by substitutin $\tau = T - t$. This new variable can 
 be interpretad as time remaining to expiration.
@@ -90,34 +212,29 @@ exercise price.
 Just substituting for the variables above leads to a parabolic 
 equation, with constant coefficitions. Show that by making a final
 substitution;
-!bt
 \begin{equation}
     u(x, \tau) = e^{\alpha x + \beta \tau} V(S, t)
 \end{equation}
-!et
 we get the heat (diffusion) equation
-!bt
 \begin{equation}
     \frac{\partial u}{\partial \tau}
     = \frac{\sigma^2}{2}\frac{\partial^2 u}{\partial x^2}
 \end{equation}
-!et
 
 What are the correct parameters for $\alpha$ and $\beta$?
 
-# SUPPOSED TO BE COMMENTED. THIS IS THE SOLUTION.
+% SUPPOSED TO BE COMMENTED. THIS IS THE SOLUTION.
 
-# $$
-#     \alpha = \frac{r - D}{\sigma^2} - \frac{1}{2},
-# $$
+% $$
+% \alpha = \frac{r - D}{\sigma^2} - \frac{1}{2},
+% $$
 
-# $$
-#     \beta = \frac{r - D}{2} + \frac{\sigma^2}{8} 
-#     + \frac{(r - D)^2}{2\sigma^2}.
-# $$
+% $$
+% \beta = \frac{r - D}{2} + \frac{\sigma^2}{8}
+% + \frac{(r - D)^2}{2\sigma^2}.
+% $$
 
-=== 5b: Create solver(s) for the 1D diffusion equation. ===
-
+\paragraph{5b: Create solver(s) for the 1D diffusion equation.}
 You can implement a solver for the diffusion equation 
 inspiration from the project on the diffusion equation.
 Another very good resourse is Langtangen and Linge's 
@@ -134,7 +251,7 @@ After creating a general diffusion equation solver, you
 can adapt the program to solve the Black-Scholes equation.
 Plot $V$ vs $S$ at different values for $t$ ($\tau$).
 
-__Special considerations__
+\paragraph{Special considerations}
 The variable $x$ is unbounded, i,e. $s\in[-\infty, \infty]$. Numerically,
 we have to pick a bounded interval $[-L, L]$, wher $L$ is a sufficiently 
 large number. This interval remain unchanged when considering an option with a
@@ -152,15 +269,12 @@ In order to make reasonable plots, you need to transform the solution of
 the diffusion equation into the solution for the Black-Scholes 
 equation. 
 
-You should compare to the analytic solution, i.e. the Black-Scholes Formula:
+You should compare to the analytic solution, i.e.~the Black-Scholes Formula:
 
-!bt
 \begin{equation}
     C(S_t, t) = N(d_1) S_t - N(d_2) PV(K),
 \end{equation}
-!et
 where
-!bt
 \begin{equation}    
     d_1 = \frac{1}{\sigma \sqrt{T - t}}
     \left[
@@ -168,17 +282,13 @@ where
         + \left(r + \frac{\sigma^2}{2} \right) (T - t)
     \right] 
 \end{equation}
-!et
 and
-!bt
 \begin{equation}
     d_2 = d_1 - \sigma \sqrt{t}
 \end{equation}
-!et
 
 
-=== 5c: Compute values for first-order Greeks ===
-
+\paragraph{5c: Compute values for first-order Greeks.}
 The "Greeks" measure sensitivity of the value of the derivative of 
 a portfolio to changes in parameter value while holding other 
 parameters fixed. There are different ways of hedging a portfolio
@@ -189,9 +299,9 @@ Delta: $\Delta = \frac{\partial V}{\partial S}$
 
 Gamma: $\gamma = \frac{\partial^2 V}{\partial V}$
 
-Vega[^2]: $\nu = \frac{\partial V}{\partial \sigma}$
+Vega\footnote{Notice that this is not really a greek letter.}: $\nu = \frac{\partial V}{\partial \sigma}$
 
-[^2]: Notice that this is not really a greek letter.
+
 
 Theta: $\Theta = -\frac{\partial V}{\partial \tau}$
 
@@ -201,13 +311,12 @@ Make a representation of how these parameters move over time.
 Why are the Greeks interesting? Is your computed results reasonable?
 
 
-=== 5d: Find data and compute implied volatility ===
-
+\paragraph{5d: Find data and compute implied volatility.}
 There are several market-traded standardised options. On the 
 Oslo Stock Exchange (OSE) there are standardised options for several 
 of the larger listed companies such as Equinor, Norsk Hydro,
 Telenor, Mowi, Orkla etc. See for instance
-URL:"https://www.oslobors.no/markedsaktivitet/#/list/derivatives/quotelist/false"
+\href{{https://www.oslobors.no/markedsaktivitet/#/list/derivatives/quotelist/false}}{\nolinkurl{https://www.oslobors.no/markedsaktivitet/\#/list/derivatives/quotelist/false}}
 
 Since there the marked already prices the options, one can use these options 
 prices to derive the value of implicit variables. A common practice 
@@ -232,50 +341,49 @@ error, but also use a root-finder like Newton's method or Brent's
 method.
 
 
-===== Introduction to numerical projects =====
+\subsection{Introduction to numerical projects}
 
 Here follows a brief recipe and recommendation on how to write a report for each
 project.
 
-  * Give a short description of the nature of the problem and the eventual  numerical methods you have used.
+\begin{itemize}
+  \item Give a short description of the nature of the problem and the eventual  numerical methods you have used.
 
-  * Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.
+  \item Describe the algorithm you have used and/or developed. Here you may find it convenient to use pseudocoding. In many cases you can describe the algorithm in the program itself.
 
-  * Include the source code of your program. Comment your program properly.
+  \item Include the source code of your program. Comment your program properly.
 
-  * If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.
+  \item If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.
 
-  * Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.
+  \item Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.
 
-  * Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
+  \item Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
 
-  * Try to give an interpretation of you results in your answers to  the problems.
+  \item Try to give an interpretation of you results in your answers to  the problems.
 
-  * Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.
+  \item Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.
 
-  * Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.
+  \item Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.
+\end{itemize}
 
-
-
-
-
-
-===== Format for electronic delivery of report and programs =====
+\noindent
+\subsection{Format for electronic delivery of report and programs}
 
 The preferred format for the report is a PDF file. You can also use DOC or postscript formats or as an ipython notebook file.  As programming language we prefer that you choose between C/C++, Fortran2008 or Python. The following prescription should be followed when preparing the report:
 
-  * Use _Canvas_ to hand in your projects, log in  at  URL:"https://www.uio.no/english/services/it/education/canvas/" with your normal UiO username and password.
+\begin{itemize}
+  \item Use \textbf{Canvas} to hand in your projects, log in  at  \href{{https://www.uio.no/english/services/it/education/canvas/}}{\nolinkurl{https://www.uio.no/english/services/it/education/canvas/}} with your normal UiO username and password.
 
-  * Upload _only_ the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them. Alternatively, you can just upload the address to your GitHub or GitLab repository.
+  \item Upload \textbf{only} the report file!  For the source code file(s) you have developed please provide us with your link to your github domain.  The report file should include all of your discussions and a list of the codes you have developed.  Do not include library files which are available at the course homepage, unless you have made specific changes to them. Alternatively, you can just upload the address to your GitHub or GitLab repository.
 
-  * In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parameters.
+  \item In your git repository, please include a folder which contains selected results. These can be in the form of output from your code for a selected set of runs and input parameters.
 
-  * In this and all later projects, you should include tests (for example unit tests) of your code(s).
+  \item In this and all later projects, you should include tests (for example unit tests) of your code(s).
 
-  * Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your _Canvas_ domain and are only visible to you and the teachers of the course.
+  \item Comments  from us on your projects, approval or not, corrections to be made  etc can be found under your \textbf{Canvas} domain and are only visible to you and the teachers of the course.
+\end{itemize}
 
-
-
+\noindent
 Finally, 
 we encourage you to work two and two together. Optimal working groups consist of 
 2-3 students. You can then hand in a common report. 
@@ -294,4 +402,11 @@ we encourage you to work two and two together. Optimal working groups consist of
 
 
 
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
 
