@@ -7,7 +7,7 @@ DATE: Fall semester 2020
 
 WARNING: this is a somewhat experimental problem given for the 
 first time the Autumn of 2020. Only a very minimal theoretical 
-background is given in this text.
+background is given in this text. Feel free to write to Sebastian for more information.
 
 === The briefest introduction to options ===
 
@@ -71,7 +71,7 @@ European call and put options. For other derivatives, such
 a formula doest not have to exist. However, a numberical solution is 
 always possible.
 
-=== TASK: Transformation to Heat Equation. ===
+=== 5a: Transformation to Heat Equation/Diffusion equation ===
 
 Instead of an initial value problem, we have a terminal value
 problem at time $T$, i.e. the expiration date or the 
@@ -116,7 +116,7 @@ What are the correct parameters for $\alpha$ and $\beta$?
 #     + \frac{(r - D)^2}{2\sigma^2}.
 # $$
 
-=== TASK: Create solver(s) for the 1D diffusion equation. ===
+=== 5b: Create solver(s) for the 1D diffusion equation. ===
 
 You can implement a solver for the diffusion equation 
 inspiration from the project on the diffusion equation.
@@ -157,7 +157,7 @@ You should compare to the analytic solution, i.e. the Black-Scholes Formula:
 !bt
 \begin{equation}
     C(S_t, t) = N(d_1) S_t - N(d_2) PV(K),
-\en{equation}
+\end{equation}
 !et
 where
 !bt
@@ -177,7 +177,7 @@ and
 !et
 
 
-=== TASK: Compute values for first-order Greeks ===
+=== 5c: Compute values for first-order Greeks ===
 
 The "Greeks" measure sensitivity of the value of the derivative of 
 a portfolio to changes in parameter value while holding other 
@@ -201,13 +201,13 @@ Make a representation of how these parameters move over time.
 Why are the Greeks interesting? Is your computed results reasonable?
 
 
-=== TASK: Find data and compute implied volatility ===
+=== 5d: Find data and compute implied volatility ===
 
 There are several market-traded standardised options. On the 
 Oslo Stock Exchange (OSE) there are standardised options for several 
 of the larger listed companies such as Equinor, Norsk Hydro,
 Telenor, Mowi, Orkla etc. See for instance
-"https://www.oslobors.no/markedsaktivitet/#/list/derivatives/quotelist/false"
+URL:"https://www.oslobors.no/markedsaktivitet/#/list/derivatives/quotelist/false"
 
 Since there the marked already prices the options, one can use these options 
 prices to derive the value of implicit variables. A common practice 
