@@ -120,7 +120,7 @@ incredibly old, the first mention of options contracts in
 history is by greek philosopher Thales from the sixth century.
 
 An option is a right, but not an obligation, to buy or sell 
-and underlying asset\footnote{We focus on stocks, but it can be anything.} at a pretermined price $E$ at or before 
+and underlying asset\footnote{We focus on stocks, but it can be anything.} at a predetermined price $E$ at or before 
 an expiration time $T$. Having such an option is valuable, but
 determining the fair price of an option is a difficult problem.
 
@@ -148,7 +148,7 @@ asset" (cash) in just the right way to eliminate risk.
 \begin{equation}
     \frac{\partial V}{\partial t}
     + \frac{1}{2}S^2\sigma^2\frac{\partial^2 V}{\partial S^2}
-    + (r - D)\frac{\partial V}{\partial S} - r V = 0
+    + (r - D)S\frac{\partial V}{\partial S} - r V = 0
 \end{equation}
 
 Here $V(S, T)$ is the value of the options, $S$ is the price of the 
@@ -157,7 +157,7 @@ $r$ is the "risk-free" interest rate, and $D$ is the yield
 (dividend paying rate) of the underlying stock.
 
 The volatility $\sigma$ stems from an underlying assumption that 
-the stock moves like a geometric Brownial motion,
+the stock moves like a geometric Brownian motion,
 \begin{equation}
     \frac{dS}{S} = \mu dt + \sigma dW.
 \end{equation}
@@ -172,8 +172,8 @@ always possible.
 Instead of an initial value problem, we have a terminal value
 problem at time $T$, i.e.~the expiration date or the 
 maturity date. We change to an initial value problem 
-by substitutin $\tau = T - t$. This new variable can 
-be interpretad as time remaining to expiration.
+by substituting $\tau = T - t$. This new variable can 
+be interpreted as time remaining to expiration.
 
 The transformed spatial variable is $x = \ln(S/E)$, where 
 $E$ is the exercise price of the option. Now, values of 
@@ -184,7 +184,7 @@ positive values of $x$ correspond to prices higher than the
 exercise price.
 
 Just substituting for the variables above leads to a parabolic 
-equation, with constant coefficitions. Show that by making a final
+equation, with constant coefficients. Show that by making a final
 substitution;
 \begin{equation}
     u(x, \tau) = e^{\alpha x + \beta \tau} V(S, t)
@@ -211,7 +211,7 @@ What are the correct parameters for $\alpha$ and $\beta$?
 \paragraph{5b: Create solver(s) for the 1D diffusion equation.}
 You can implement a solver for the diffusion equation 
 inspiration from the project on the diffusion equation.
-Another very good resourse is Langtangen and Linge's 
+Another very good resource is Langtangen and Linge's 
 book "Finite Difference Computing with PDEs".
 
 It is highly recommended to start with an explicit 
@@ -331,7 +331,7 @@ project.
 
   \item Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.
 
-  \item Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
+  \item Try to evaluate the reliability and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.
 
   \item Try to give an interpretation of you results in your answers to  the problems.
 
