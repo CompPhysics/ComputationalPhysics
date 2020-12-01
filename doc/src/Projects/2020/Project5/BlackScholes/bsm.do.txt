@@ -15,7 +15,7 @@ incredibly old, the first mention of options contracts in
 history is by greek philosopher Thales from the sixth century.
 
 An option is a right, but not an obligation, to buy or sell 
-and underlying asset[^1] at a pretermined price $E$ at or before 
+and underlying asset[^1] at a predetermined price $E$ at or before 
 an expiration time $T$. Having such an option is valuable, but
 determining the fair price of an option is a difficult problem.
 
@@ -23,7 +23,7 @@ determining the fair price of an option is a difficult problem.
 
 Options to buy (sell) are commonly referred to as 
 call (put) options. An option that only allows one to 
-excercise this right at the maturity date is called a 
+exercise this right at the maturity date is called a 
 European option, while an option that can be exercise at any 
 date prior to the maturity date is called an American option.
 There are many other varieties.
@@ -45,7 +45,7 @@ asset" (cash) in just the right way to eliminate risk.
 \begin{equation}
     \frac{\partial V}{\partial t}
     + \frac{1}{2}S^2\sigma^2\frac{\partial^2 V}{\partial S^2}
-    + (r - D)\frac{\partial V}{\partial S} - r V = 0
+    + (r - D)S\frac{\partial V}{\partial S} - r V = 0
 \end{equation}
 !et
 
@@ -55,7 +55,7 @@ $r$ is the "risk-free" interest rate, and $D$ is the yield
 (dividend paying rate) of the underlying stock.
 
 The volatility $\sigma$ stems from an underlying assumption that 
-the stock moves like a geometric Brownial motion,
+the stock moves like a geometric Brownian motion,
 !bt
 \begin{equation}
     \frac{dS}{S} = \mu dt + \sigma dW.
@@ -65,7 +65,7 @@ the stock moves like a geometric Brownial motion,
 Explicit solutions for the Black-Scholes equation,
 called The Black-Scholes formulae, are known only for 
 European call and put options. For other derivatives, such 
-a formula doest not have to exist. However, a numberical solution is 
+a formula doest not have to exist. However, a numerical solution is 
 always possible.
 
 === TASK: Transformation to Heat Equation. ===
@@ -73,8 +73,8 @@ always possible.
 Instead of an initial value problem, we have a terminal value
 problem at time $T$, i.e. the expiration date or the 
 maturity date. We change to an initial value problem 
-by substitutin $\tau = T - t$. This new variable can 
-be interpretad as time remaining to expiration.
+by substituting $\tau = T - t$. This new variable can 
+be interpreted as time remaining to expiration.
 
 The transformed spatial variable is $x = \ln(S/E)$, where 
 $E$ is the exercise price of the option. Now, values of 
@@ -85,7 +85,7 @@ positive values of $x$ correspond to prices higher than the
 exercise price.
 
 Just substituting for the variables above leads to a parabolic 
-equation, with constant coefficitions. Show that by making a final
+equation, with constant coefficients. Show that by making a final
 substitution;
 !bt
 \begin{equation}
@@ -117,7 +117,7 @@ What are the correct parameters for $\alpha$ and $\beta$?
 
 You can implement a solver for the diffusion equation 
 inspiration from the project on the diffusion equation.
-Another very good resourse is Langtangen and Linge's 
+Another very good resource is Langtangen and Linge's 
 book "Finite Difference Computing with PDEs".
 
 It is highly recommended to start with an explicit 
@@ -133,7 +133,7 @@ Plot $V$ vs $S$ at different values for $t$ ($\tau$).
 
 __Special considerations__
 The variable $x$ is unbounded, i,e. $s\in[-\infty, \infty]$. Numerically,
-we have to pick a bounded interval $[-L, L]$, wher $L$ is a sufficiently 
+we have to pick a bounded interval $[-L, L]$, where $L$ is a sufficiently 
 large number. This interval remain unchanged when considering an option with a
 different strike price.
 

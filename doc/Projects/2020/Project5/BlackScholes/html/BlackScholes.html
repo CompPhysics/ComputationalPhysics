@@ -124,7 +124,7 @@ history is by greek philosopher Thales from the sixth century.
 
 <p>
 An option is a right, but not an obligation, to buy or sell 
-and underlying asset [<a id="link_footnote_1" href="#def_footnote_1">1</a>] at a pretermined price \( E \) at or before 
+and underlying asset [<a id="link_footnote_1" href="#def_footnote_1">1</a>] at a predetermined price \( E \) at or before 
 an expiration time \( T \). Having such an option is valuable, but
 determining the fair price of an option is a difficult problem.
 
@@ -157,7 +157,7 @@ $$
 \begin{equation}
     \frac{\partial V}{\partial t}
     + \frac{1}{2}S^2\sigma^2\frac{\partial^2 V}{\partial S^2}
-    + (r - D)\frac{\partial V}{\partial S} - r V = 0
+    + (r - D)S\frac{\partial V}{\partial S} - r V = 0
 \label{_auto1}
 \end{equation}
 $$
@@ -170,7 +170,7 @@ underlying asset, \( \sigma \) is the volatility of the underlying asset,
 
 <p>
 The volatility \( \sigma \) stems from an underlying assumption that 
-the stock moves like a geometric Brownial motion,
+the stock moves like a geometric Brownian motion,
 $$
 \begin{equation}
     \frac{dS}{S} = \mu dt + \sigma dW.
@@ -191,8 +191,8 @@ always possible.
 Instead of an initial value problem, we have a terminal value
 problem at time \( T \), i.e. the expiration date or the 
 maturity date. We change to an initial value problem 
-by substitutin \( \tau = T - t \). This new variable can 
-be interpretad as time remaining to expiration.
+by substituting \( \tau = T - t \). This new variable can 
+be interpreted as time remaining to expiration.
 
 <p>
 The transformed spatial variable is \( x = \ln(S/E) \), where 
@@ -205,7 +205,7 @@ exercise price.
 
 <p>
 Just substituting for the variables above leads to a parabolic 
-equation, with constant coefficitions. Show that by making a final
+equation, with constant coefficients. Show that by making a final
 substitution;
 $$
 \begin{equation}
@@ -245,7 +245,7 @@ What are the correct parameters for \( \alpha \) and \( \beta \)?
 <p>
 You can implement a solver for the diffusion equation 
 inspiration from the project on the diffusion equation.
-Another very good resourse is Langtangen and Linge's 
+Another very good resource is Langtangen and Linge's 
 book "Finite Difference Computing with PDEs".
 
 <p>
@@ -388,7 +388,7 @@ project.
   <li> Include the source code of your program. Comment your program properly.</li>
   <li> If possible, try to find analytic solutions, or known limits in order to test your program when developing the code.</li>
   <li> Include your results either in figure form or in a table. Remember to        label your results. All tables and figures should have relevant captions        and labels on the axes.</li>
-  <li> Try to evaluate the reliabilty and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.</li>
+  <li> Try to evaluate the reliability and numerical stability/precision of your results. If possible, include a qualitative and/or quantitative discussion of the numerical stability, eventual loss of precision etc.</li>
   <li> Try to give an interpretation of you results in your answers to  the problems.</li>
   <li> Critique: if possible include your comments and reflections about the  exercise, whether you felt you learnt something, ideas for improvements and  other thoughts you've made when solving the exercise. We wish to keep this course at the interactive level and your comments can help us improve it.</li>
   <li> Try to establish a practice where you log your work at the  computerlab. You may find such a logbook very handy at later stages in your work, especially when you don't properly remember  what a previous test version  of your program did. Here you could also record  the time spent on solving the exercise, various algorithms you may have tested or other topics which you feel worthy of mentioning.</li>
