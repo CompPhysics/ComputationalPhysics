@@ -224,7 +224,7 @@ $$
 Explicit solutions for the Black-Scholes equation,
 called The Black-Scholes formulae, are known only for 
 European call and put options. For other derivatives, such 
-a formula doest not have to exist. However, a numberical solution is 
+a formula doest not have to exist. However, a numerical solution is 
 always possible.
 
 <h3 id="___sec3" class="anchor">5a: Transformation to Heat Equation/Diffusion equation </h3>
@@ -305,8 +305,8 @@ Plot \( V \) vs \( S \) at different values for \( t \) (\( \tau \)).
 
 <p>
 <b>Special considerations</b>
-The variable \( x \) is unbounded, i,e. \( s\in[-\infty, \infty] \). Numerically,
-we have to pick a bounded interval \( [-L, L] \), wher \( L \) is a sufficiently 
+The variable \( x \) is unbounded, i,e. \( x\in[-\infty, \infty] \). Numerically,
+we have to pick a bounded interval \( [-L, L] \), where \( L \) is a sufficiently 
 large number. This interval remain unchanged when considering an option with a
 different strike price.
 
@@ -330,30 +330,41 @@ You should compare to the analytic solution, i.e. the Black-Scholes Formula:
 
 $$
 \begin{equation}
-    C(S_t, t) = N(d_1) S_t - N(d_2) PV(K),
+    C(S_t, t) = N(d_1) S_t - N(d_2) PV(E),
 \tag{5}
 \end{equation}
 $$
 
-where
+where the present value of the exercise price is
+given by
 $$
-\begin{equation}    
-    d_1 = \frac{1}{\sigma \sqrt{T - t}}
-    \left[
-        \ln \left(\frac{S_t}{K} \right) 
-        + \left(r + \frac{\sigma^2}{2} \right) (T - t)
-    \right] 
+\begin{equation}
+    PV(E) = Ee^{-rt},
 \tag{6}
 \end{equation}
 $$
 
-and
+furthermore we have parameters \( d_1 \),
 $$
-\begin{equation}
-    d_2 = d_1 - \sigma \sqrt{t}
+\begin{equation}    
+    d_1 = \frac{1}{\sigma \sqrt{T - t}}
+    \left[
+        \ln \left(\frac{S_t}{E} \right) 
+        + \left(r + \frac{\sigma^2}{2} \right) (T - t),
+    \right] 
 \tag{7}
 \end{equation}
 $$
+
+and \( d_2 \),
+$$
+\begin{equation}
+    d_2 = d_1 - \sigma \sqrt{t},
+\tag{8}
+\end{equation}
+$$
+
+while \( N \) is the cumulative normal distribution function.
 
 <h3 id="___sec5" class="anchor">5c: Compute values for first-order Greeks </h3>
 
@@ -395,7 +406,7 @@ Telenor, Mowi, Orkla etc. See for instance
 <a href="https://www.oslobors.no/markedsaktivitet/#/list/derivatives/quotelist/false" target="_self"><tt>https://www.oslobors.no/markedsaktivitet/#/list/derivatives/quotelist/false</tt></a>
 
 <p>
-Since there the marked already prices the options, one can use these options 
+Since there the market already prices the options, one can use these options 
 prices to derive the value of implicit variables. A common practice 
 is to use the market-given prices of options to derive the 
 implied volatility of the option.
