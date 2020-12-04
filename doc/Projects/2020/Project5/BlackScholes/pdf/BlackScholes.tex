@@ -251,7 +251,7 @@ You should compare to the analytic solution, i.e.~the Black-Scholes Formula:
 where the present value of the exercise price is
 given by
 \begin{equation}
-    PV(E) = Ee^{-rt},
+    PV(E) = Ee^{-r(T - t)},
 \end{equation}
 furthermore we have parameters $d_1$,
 \begin{equation}    
@@ -263,7 +263,7 @@ furthermore we have parameters $d_1$,
 \end{equation}
 and $d_2$,
 \begin{equation}
-    d_2 = d_1 - \sigma \sqrt{t},
+    d_2 = d_1 - \sigma \sqrt{T - t},
 \end{equation}
 while $N$ is the cumulative normal distribution function.
 
