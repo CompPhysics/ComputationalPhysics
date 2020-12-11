@@ -121,7 +121,7 @@ ${text_types(ch)}
 
 
 
-=== Project 5 Quantum Monte Carlo, deadline December 16 ===
+=== Project 5 Quantum Monte Carlo, deadline December 18 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/QuantumMonteCarlo/pdf/QuantumMonteCarlo.pdf"
@@ -132,7 +132,7 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/QuantumMonteCarlo/ipynb/QuantumMonteCarlo.ipynb"
 
 
-=== Project 5 Disease Modeling, deadline December 16 ===
+=== Project 5 Disease Modeling, deadline December 18 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiseaseModeling/pdf/DiseaseModeling.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiseaseModeling/pdf/DiseaseModeling.pdf"
@@ -143,7 +143,7 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiseaseModeling/ipynb/DiseaseModeling.ipynb"
 
 
-=== Project 5 Diffusion Equation, deadline December 16 ===
+=== Project 5 Diffusion Equation, deadline December 18 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiffusionEquation/pdf/DiffusionEquation.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiffusionEquation/pdf/DiffusionEquation.pdf"
@@ -154,7 +154,7 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/DiffusionEquation/ipynb/DiffusionEquation.ipynb"
 
 
-=== Project 5 Monte Carlo Modeling of Elections, deadline December 16 ===
+=== Project 5 Monte Carlo Modeling of Elections, deadline December 18 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/IsingSocial/pdf/IsingSocial.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/IsingSocial/pdf/IsingSocial.pdf"
@@ -166,7 +166,7 @@ ${text_types(ch)}
 
 
 
-=== Project 5 Rossby wave and wave equation, deadline December 16 ===
+=== Project 5 Rossby wave and wave equation, deadline December 18 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/WaveEquation/pdf/WaveEquation.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/WaveEquation/pdf/WaveEquation.pdf"
@@ -177,7 +177,7 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/WaveEquation/ipynb/WaveEquation.ipynb"
 
 
-=== Project 5 Molecular Dynamics, deadline December 16 ===
+=== Project 5 Molecular Dynamics, deadline December 18 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/MolecularDynamics/pdf/MolecularDynamics.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/MolecularDynamics/pdf/MolecularDynamics.pdf"
@@ -188,7 +188,7 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/MolecularDynamics/ipynb/MolecularDynamics.ipynb"
 
 
-=== Project 5 Financial Modeling with Monte Carlo sampling, deadline December 16 ===
+=== Project 5 Financial Modeling with Monte Carlo sampling, deadline December 18 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/pdf/FinancialEngineering.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/pdf/FinancialEngineering.pdf"
@@ -199,7 +199,7 @@ ${text_types(ch)}
    * "ipynb file": "http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/FinancialEngineering/ipynb/FinancialEngineering.ipynb"
 
 
-=== Project 5 Option Markets and the Black-Scholes Equation, deadline December 16 ===
+=== Project 5 Option Markets and the Black-Scholes Equation, deadline December 18 ===
  * LaTeX and PDF:
      * "LaTex file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/BlackScholes/pdf/BlackScholes.tex"
      * "PDF file":"http://compphysics.github.io/ComputationalPhysics/doc/Projects/2020/Project5/BlackScholes/pdf/BlackScholes.pdf"
