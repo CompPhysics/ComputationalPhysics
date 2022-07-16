@@ -145,5 +145,5 @@ If a student is exposed to someone who is ill or has tested positive for the COV
 ## Compliance and reporting 
 Those who come to UiO facilities must commit to the personal responsibility necessary for us to remain as safe as possible, including following the specific guidelines outlined in this syllabus and provided by UiO more broadly (see links below here). 
 
-## Additional information
+## Additional information And FAQs
 See https://www.uio.no/om/hms/korona/index.html and https://www.uio.no/om/hms/korona/retningslinjer/veileder-smittevern.html. For English version, click on the relevant link.
